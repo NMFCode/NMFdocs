@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using NTL Relational: Households </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Using NTL Relational: Households ">
+    <meta name="generator" content="docfx 2.40.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="using-ntl-relational-households">Using NTL Relational: Households</h1>
+
+<p><strong>This tutorial is based on the <a href="Persons-to-FamilyRelations">Persons to FamilyRelations</a> tutorial. You may want to visit that one first, if you have not already done so.</strong></p>
+<p>In some cases it is necessary to transform elements based on rather complex patterns. NTL supports such patterns, where you can specify patterns using LINQ through the language extension NTL Relational.</p>
+<p>In the scenario of Persons and FamilyRelations, suppose you want to find households. A household may be represented by a person of at leats 18 years plus his spouse, if any. To find these households, we match males and females and check whether they are spouses. Note that this is a very inefficient solution, but in practice, it happens from time to time that one needs to create matches and this is only a tutorial.</p>
+<p>To implement this with NTL Relations, add the following code:</p>
+<p>{code:c#}
+public class Households : TransformationRule&lt;Ps.Person, Ps.Person, Households&gt;
+{
+public override void RegisterDependencies()
+{
+var possibleMoms = Rule<person2female>().ToComputationSource(
+allowNull: true,
+filter: c =&gt; c.Input.Age &gt;= 18);
+var possibleDads = Rule<person2male>().ToComputationSource(
+allowNull: true,
+filter: c =&gt; c.Input.Age &gt;= 18);<p>
+<pre><code>      WithPattern(from mom in possibleMoms
+                  from dad in possibleDads
+                  where mom.Input.Spouse == dad.Input
+                  select Tuple.Create(mom.Input, dad.Input));
+  }
+</code></pre>
+<p>}</p>
+<p>The advantage here is that we can call <em>Person2Person</em> for another model element in <em>Households</em> and the LINQ statement recognizes this as well considers it for the further matching.</p>
+<p>However, NTL Relations does not employ any query optimization technique, such as understanding that any <em>Female</em> model element can be part of at most one pair. What NTL does is really match all combinations of the specified sets (all computations of <em>Person2Female</em> where the age of the input Person object is at least 18, or null, and the <em>Male</em> elements respectively) and tries to match them.</p>
+</person2male></person2female></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

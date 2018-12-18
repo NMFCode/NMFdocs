@@ -1,0 +1,4 @@
+# NMF Synchronizations
+NMF Synchronizations is an internal DSL for model synchronization. These synchronizations may be unidirectional or bidirectional. NMF Synchronizations supports multiple [change propagation modes](ChangePropagationMode) and [directions](SynchronizationDirection) with a single synchronization specification. 
+
+In NMF Synchronizations, model synchronizations consist of a set of synchronization rules. Similar to transformation rules, these synchronization rules may have dependencies to other synchronization rules. These dependencies define references to other model elements that also should be synchronized, if a particular model element is synchronized.

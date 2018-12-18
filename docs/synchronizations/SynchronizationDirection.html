@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Synchronization Directions </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Synchronization Directions ">
+    <meta name="generator" content="docfx 2.40.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="synchronization-directions">Synchronization Directions</h1>
+
+<p>NMF Synchronizations supports multiple synchronization directions. The direction of a synchronization determines, which model is used as the main input, which one is used as the main output and how these models should be merged. The direction distinguishes between a left side and a right side. These sides correspond to the left and right side in the synchronization specification.</p>
+<h2 id="lefttoright">LeftToRight</h2>
+<p>The direction left to right means that the left side is used as the input, while the right side is used as the output. The synchronization leaves the left side untouched, while the right side is merged with the left side. That is, the synchronization makes sure that every model element in the left side has a correspondence in the right side. However, model elements may reside in the right side that do not have a corespondence on the left side. These elements are simply ignored.</p>
+<p>For attributes like e.g. names, the direction LeftToRight means that the name is initially taken from the left side and copied to the right side. This does not influence the <a href="ChangePropagationMode">change propagation</a>, so if the change propagation is set to TwoWay and the right side updates its name, then this name is copied to the left side. The synchronization direction only specifies that initially (when the synchronization engine establishes the correspondence) the name of the left side is copied to the right side.</p>
+<h2 id="lefttorightforced">LeftToRightForced</h2>
+<p>Again, the left side is used as the input and the right side is used as the output. But unlike LeftToRight, elements of the right hand side that do not have a correspondence in the left hand side are deleted from the right hand side.</p>
+<h2 id="leftwins">LeftWins</h2>
+<p>Similar to LeftToRight and LeftToRightForced, LeftWins specifies that the left hand side is used as input and the right hand side is used as output. Unlike the first two, if the synchronization finds an element on the right side, where there is no corresponding element on the left side, a corresponding element on the left side is established.</p>
+<h2 id="righttoleft-righttoleftforced-rightwins">RightToLeft, RightToLeftForced, RightWins</h2>
+<p>These directions are the counterparts of LeftToRight, LeftToRightForced, LeftWins, but with interchanged meanings of the left and right side.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

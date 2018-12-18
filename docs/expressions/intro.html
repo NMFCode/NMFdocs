@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>NMF Expressions! </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="NMF Expressions! ">
+    <meta name="generator" content="docfx 2.40.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="nmf-expressions">NMF Expressions!</h1>
+
+<p>NMF Expressions is a framework for incremental expression evaluation. Instead of executing a function, it returns an observable value, basically an object that throws an event whenever the result of that function changes. Observable Expressions are based on Linq Expressions and are thus only supported for single-line lambda expressions that do not have side-effects.</p>
+<p>{code:C#}
+var test = Observable.Expression(() =&gt; person.Addresses.Count &gt; 0 ? person.Addresses<a href="0">0</a>.Street : &quot;(No address provided)&quot;);</p>
+<p>test.ValueChanged += SomeEventHandler;</p>
+<p>// will cause the ValueChanged event to be fired
+person.Address.Add(new Address() {...});
+{code:C#}</p>
+<h1 id="nmf-expressions-linq">NMF Expressions Linq!</h1>
+<p>NMF Expressions Linq is a new Linq implementation that results in a ObservableEnumerable that provides an event to notify clients whenever the results of the Linq query change. Besides index-based operations (overloads of e.g. Select and Where that take an index parameter as well as Take, Skip), almost the entire Standard Query Operations Library is implemented. The exceptions to this include GroupJoin, some overloads of GroupBy, Single and Last. FirstDefault is implemented. Aggregators do not throw exceptions if collections are emty as collections are allowed to be emptied during status updates. This may happen for example as part of a reset of a child collection for e,g. Concat.</p>
+<p>NMF Expressions Linq is based on a newly introduced monad INotifyEnumerable that is joint of IEnumerable and INotifyCollectionChanged that further knows the parameterless methods Attach() and Detach() to attach or detach from or to an object model. If attached, the implementations will collect any changes tracable by INotifyCollectionChanged, INotifyPropertyChanged or custom proxies. In order to not interfere with the Linq implementation from the System.Linq namespace, NMF Expressions Linq does include a unit function called WithUpdates that generates an adapter to INotifyEnumerable. When using this adapter, the compiler will automatically choose a different set of extension methods enabling the query syntax, so you can write code as intuitive as this:</p>
+<p>{code:C#}
+var violations = from employee in employees.WithUpdates()
+where employee.WorkItems &gt; 2 *
+(from collegue in employees
+where collegue.Team == employee.Team
+select collegue.WorkItems).Average()
+select employee.Name;</p>
+<p>violations.CollectionChanged += ViolationsChanged;</p>
+<p>employees.Add(name: &quot;John&quot;, workItems: 20, team: &quot;A&quot;);
+employees.Add(name: &quot;Susan&quot;, workItems: 5, team: &quot;A&quot;);
+// this will cause an event saying that John now has too many work items assigned to him
+employees.Add(name: &quot;Joe&quot;, workItems: 3, team: &quot;A&quot;);
+{code:C#}</p>
+<p>All you have to do for this magic to work is really just including a new using statements to import NMF.Expressions.Linq.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

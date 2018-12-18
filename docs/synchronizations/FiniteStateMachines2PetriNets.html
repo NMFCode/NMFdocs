@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Finite State Machines to Petri Nets </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Finite State Machines to Petri Nets ">
+    <meta name="generator" content="docfx 2.40.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="finite-state-machines-to-petri-nets">Finite State Machines to Petri Nets</h1>
+
+<p>Finite state machines and Petri Nets are both well known formalisms to specify behavior and are widely used across industry and academia, e.g. to model business processes.</p>
+<p><img src="FiniteStateMachines2PetriNets_finiteStateMachine.PNG" alt=""></p>
+<p>Finite state machines consist of states and transitions. States can be start states or end states. Transitions can have exactly one starting state and exactly one target state. However, states can have multiple incoming or outgoing transitions. Transitions are usually triggered by an input that we catch up as simple strings here.</p>
+<p><img src="FiniteStateMachines2PetriNets_petriNet.PNG" alt=""></p>
+<p>Petri Nets are very similar to finite state machines, yet a little different. The equivalent of states in Petri Nets are states. The main difference is that transitions can have arbitrarily many source or target places. Furthermore, instead of being a start state, a place has a variable amount of tokens. Petri Nets represent their status not by a single state, but by the distribution of tokens among places. If a transition &quot;fires&quot;, it takes away a token from each source place and adds a token to each target place. The property of being an end state is also missing. Instead, Petri Nets &quot;end&quot; if a transition swallows the last token, i.e. a transition consumes the token but has no target place to create a new token to.</p>
+<p>Finite state machines are a very basic form of behavioral formalisms and have many restrictions. Most relevant for business process modeling for example, the system can always only be in a single state, which is infeasible for modeling parallel actions. Here, Petri Nets can serve this need as they can hold tokens on multiple places.</p>
+<p>Thus, the transformation of finite state machines to Petri Nets is an interesting case study an serves as an example to demonstrate <a href="../transformations/index.html">NMF Transformations</a> and <a href="index.html">NMF Synchronizations</a>.</p>
+<p>The transformation now transforms each state to a corresponding place. If the state is a start state, the place is assigned a single token, otherwise the place does not receive any tokens. Each transition in the finite state machine is then transformed into a Petri Net transition. Finally, all places corresponding to end states of the finite state machine get a transition that has no target place. The semantic of such transitions is that they basically swallow the tokens.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

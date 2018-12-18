@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Finite States to Petri Nets with NTL </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Finite States to Petri Nets with NTL ">
+    <meta name="generator" content="docfx 2.40.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="finite-states-to-petri-nets-with-ntl">Finite States to Petri Nets with NTL</h1>
+
+<p>This tutorial shows how to transform <a href="FiniteStateMachines2PetriNets">finite state machines to Petri Nets</a> using NTL.</p>
+<h2 id="setting-up-the-environment">Setting up the environment</h2>
+<p>Create a new project in your IDE. Download the <a href="FSM2PNTransformation_metamodels.zip">metamodels (zip, 804 Bytes)</a> and add the two files contained in there to your project. They contain very simple implementations of the finite state machine and Petri Net metamodels.</p>
+<p><strong>Note:</strong> See that both of these metamodels do not hold any reference to NMF. In fact, their implementation is super-straight-forward. The implementation of the models is also not reflected, so you can use arbitrary CLR objects within NMF Transformations.</p>
+<h2 id="adding-a-reference-to-nmf-transformations">Adding a reference to NMF Transformations</h2>
+<p>We will need to add a reference to NMF Transformations in order to use it. Thus, add a reference to the assemblies <strong>NMF.Transformations.Core.dll</strong> (this is <a href="NMF-Transformations-Core">NMF Transformations Core</a>) and <strong>NMF.Transformations.dll</strong> (the <a href="NMF-Transformations-Language">NMF Transformations Language</a>).</p>
+<h2 id="create-a-transformation-file">Create a transformation file</h2>
+<p>Create a new file and name <strong>FSM2PN.cs</strong> (or any other name if you wish). Inside the file, we will work with NTL. Thus, add the following using statements on top of the transformation file:</p>
+<p>{code:c#}
+using NMF.Transformations;
+using NMF.Transformations.Core;
+{code:c#}</p>
+<h2 id="create-a-new-transformation-class">Create a new transformation class</h2>
+<p>Our transformation will use the default behavior and simply inherit from <strong>ReflectiveTransformation</strong>. As a consequence, NTL will infere the rules of our transformation by the public nested classes. So, add the following class:</p>
+<p>{code:c#}
+public class FSM2PN : ReflectiveTransformation
+{
+}
+{code:c#}</p>
+<p>Of course, you can embrace the transformation class in a namespace as you wish. It is also perfectly legal to make the transformation class itself internal.</p>
+<h2 id="transforming-finite-state-machines-to-petri-nets">Transforming Finite State Machines to Petri Nets</h2>
+<p>We start by adding a rule to transform finite state machines to Petri Nets. Add the following code as nested class inside the previous <em>FSM2PN</em> class:</p>
+<p>{code:c#}
+public class AutomataToNet : TransformationRule&lt;FSM.FiniteStateMachine, PN.PetriNet&gt;
+{
+public override void Transform(FSM.FiniteStateMachine input, PN.PetriNet output, ITransformationContext context)
+{
+output.ID = input.ID;
+}
+}
+{code:c#}</p>
+<p>This tells NTL how to transform finite state machines to Petri Nets. By inheriting from <strong>TransformationRule</strong>, we tell NTL that this class is a transformation rule and what this rule takes as input and output. In the <strong>Transform</strong> method, we specify what shall be done, if a state machine is transformed to a Petri Net. Here, we only copy the ID. However, this is not really suprising and would be better done without NTL, so far. Thus, we go ahead and add rules to transform places and transitions.</p>
+<h2 id="transforming-states">Transforming states</h2>
+<p>To transform states to places, just add the following lines of code as another nested class of <strong>FSM2PN</strong>:</p>
+<p>{code:c#}
+public class StateToPlace : TransformationRule&lt;FSM.State, PN.Place&gt;
+{
+public override void Transform(FSM.State input, PN.Place output, ITransformationContext context)
+{
+output.ID = input.Name;</p>
+<pre><code>            if (input.IsStartState)
+            {
+                output.TokenCount = 1;
+            }
+            else
+            {
+                output.TokenCount = 0;
+            }
+        }
+    }
+</code></pre>
+<p>{code:c#}</p>
+<p>In the <strong>Transform</strong> method, we again just copy the very simplest data from the finite state machine to the Petri Net.</p>
+<h2 id="adding-dependencies">Adding dependencies</h2>
+<p>However, if we called our new transformation to transform a finite state machine to a Petri Net, NTL would not know when to use the new rule <em>State2Place</em>. Thus, we need to add a dependency. We can do so on two spots: Either in <em>Automata2Net</em> to specify what other rules should be called (forward dependency) or in <em>State2Place</em> to specify when it will be called (reversed dependency). In this tutorial, we will use a reversed dependency. In that way, the code belonging to the transformation of states is all stored in <em>State2Place</em>. Dependencies are generally specified in the <strong>RegisterDependencies</strong> method. Thus, add the following method in the <em>State2Place</em> rule:</p>
+<p>{code:c#}
+public override void RegisterDependencies()
+{
+CallForEach(Rule<automatatonet>(),
+selector: fsm =&gt; fsm.States,
+persistor: (pn, places) =&gt; pn.Places.AddRange(places));
+}
+{code:c#}<p>
+<p>The method Rule&lt;&gt; simply gets the instance of the rule with the specified rule type. As a consequence, the compiler is aware of the input type and can provide IntelliSense support for specifying the lambda predicates.</p>
+<p>As you can see, dependencies can have a row of lambda expressions, specifying their behavior. The names are according to their functionality. If a finite state machine is transformed into a Petri Net using <em>Automata2Net</em>, then the selector specifies which states the current rule (<em>State2Place</em>) should be called. If all states of the finite state machine are transformed, the persistor specifies how the transformed elements should be persisted. Here, we just add the places to the places collection of the Petri Net.</p>
+<h2 id="transforming-transitions">Transforming Transitions</h2>
+<p>Now, we have transformed the places of our state machine. However, we still need to transform the transitions. Thus, add the following code as a new nested class of <em>FSM2PN</em>:</p>
+<p>{code:c#}
+public class TransitionToTransition : TransformationRule&lt;FSM.Transition, PN.Transition&gt;
+{
+public override void Transform(FSM.Transition input, PN.Transition output, ITransformationContext context)
+{
+output.Input = input.Input;
+}</p>
+<pre><code>        public override void RegisterDependencies()
+        {
+            CallForEach(Rule&lt;AutomataToNet&gt;(),
+                (fsm =&gt; fsm.Transitions,
+                (pn, transitions) =&gt; pn.Transitions.AddRange(transitions));
+        }
+    }
+</code></pre>
+<p>{code:c#}
+Again, we have a rule how transistions are transformed to transitions of the Petri Net. We copy the inputs and create a reversed dependency to let NTL know which transitions to transform and add the transformed transitions to the Transitions collection of the Petri Net.</p>
+<p>What is left is to fill the transitions start and end places. So if a state machine transition has had a start state, we want the Petri Net transition to have exactly the output of the <em>State2Place</em> added to the From collection. The same holds for the target state and the To collection.</p>
+<p>To do this, just add the following code next to the existing reversed dependency in <em>Transition2Transition</em>:</p>
+<p>{code:c#}
+Require(Rule<statetoplace>(),
+t =&gt; t.StartState, (t, p) =&gt;
+{
+t.From.Add(p);
+p.Outgoing.Add(t);
+});<p>
+<pre><code>            Require(Rule&lt;StateToPlace&gt;(),
+                t =&gt; t.EndState, (t, p) =&gt;
+                {
+                    t.To.Add(p);
+                    p.Incoming.Add(t);
+                });
+</code></pre>
+<p>{code:c#}</p>
+<p>This will do. We specify that <em>Transition2Transition</em> needs the start state eventually transformed to a place (using <em>State2Place</em>). We already triggered this transformation elsewhere, thus the states are already transformed and NTL just takes the already transformed places.</p>
+<p><strong>Note:</strong> We assume here that the model representation has no direct support for opposite references. We made this assumption for brevity of the example. In reality, the To reference of transitions and the Incoming reference would better be true opposite references and thus, only one of the two statements in the dependencies would be required.</p>
+<h2 id="end-states">End states</h2>
+<p>Finally, we still need to transform the information that some states are end states. Thus, we add a new transformation rule that transforms end states to transitions.</p>
+<p>{code:c#}
+public class EndStateToTransition : TransformationRule&lt;FSM.State, PN.Transition&gt;
+{
+public override void Transform(FSM.State input, PN.Transition output, ITransformationContext context)
+{
+output.Input = &quot;&quot;;
+}</p>
+<pre><code>        public override void RegisterDependencies()
+        {
+            CallForEach(Rule&lt;AutomataToNet&gt;(),
+                selector: fsm =&gt; fsm.States.Where(s =&gt; s.IsEndState),
+                persistor: (pn, endTransitions) =&gt; pn.Transitions.AddRange(endTransitions));
+        }
+    }
+</code></pre>
+<p>{code:c#}</p>
+<p>Now, the created transition currently is not starting from the place corresponding to our end state. We could of course solve this problem by adding a new dependency (if you want to practice, just try that!). However, in some cases, these persistors eventually get very complex.</p>
+<p>For such circumstances, NTL provides a trace. The trace allows to look up the corresponding model elements for certain elements directly. The trace is exposed through the <strong>Trace</strong> property of the transformation context that comes as argument to the <strong>Transform</strong> method. Thus, in the <strong>Transform</strong> method of the <em>EndState2Transition</em> rule, add the following lines:</p>
+<p>{code:c#}
+var from = context.Trace.ResolveIn(Rule<statetoplace>(), input);
+output.From.Add(from);
+from.Outgoing.Add(output);
+{code:c#}<p>
+<h2 id="triggering-the-transformation">Triggering the transformation</h2>
+<p>We are done with our transformation, so let's try it out! The simplest way to do this is by using the <strong>TransformationEngine</strong> class. Anywhere in your client, just call add the following line:</p>
+<p>{code:c#}
+var pn = TransformationEngine.Transform&lt;FSM.FiniteStateMachine, PN.PetriNet&gt;(fsm, new FSM2PN());
+{code:c#}</p>
+<p>This tells NTL to call the transformation with the finite state machine of the variable <em>fsm</em>. In this example, we created a new transformation just for this call. If you want to make frequent calls to use the transformation, you can also reuse the transformation initialization by using the same transformation instance several times. Transformations are even thread-safe, once they are initialized, as the data of a transformation run is only saved in the transformation context.</p>
+<p>So start create some finite state machines and see how they are transformed to Petri Nets!</p>
+</statetoplace></statetoplace></automatatonet></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
