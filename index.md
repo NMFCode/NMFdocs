@@ -22,13 +22,13 @@ The packages are:
 
 Detailed project information to the sub-projects of NMF can be found on the wiki pages to these projects:
 
-* [Models](models/intro.md)
-* [Transformations](transformations/intro.md)
-* [Expressions](expressions/intro.md)
-* [Synchronizations](synchronizations/intro.md)
-* [Optimizations](optimizations/intro.md)
-* [Interop](interop/intro.md)
-* [Collections](collections/intro.md)
+* [Models](models/index.md)
+* [Transformations](transformations/index.md)
+* [Expressions](expressions/index.md)
+* [Synchronizations](synchronizations/index.md)
+* [Optimizations](optimizations/index.md)
+* [Interop](interop/index.md)
+* [Collections](collections/index.md)
 
 ## Publications
 The publications about NMF are available on https://sdqweb.ipd.kit.edu/publications/topics/nmf.html

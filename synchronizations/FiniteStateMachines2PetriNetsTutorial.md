@@ -14,11 +14,13 @@ Similar to NTL, synchronizations in NMF Synchronizations are represented as clas
 
 Add the following using statements:
 
-{code:c#}
+
+>
+```csharp
 using NMF.Expressions.Linq;
 using NMF.Synchronizations;
 using NMF.Transformations;
-{code:c#}
+```
 
 As indicated by the using statements, NMF Synchronization basically combines the two projects [Transformations](Transformations) and [Expressions](Expressions) to obtain a synchronization language. We will see how the benefits of both projects are used in NMF Synchronizations.
 
@@ -26,7 +28,9 @@ As indicated by the using statements, NMF Synchronization basically combines the
 
 We start by defining a synchronization rule for the automata itself. Again, synchronization rules are represented by public nested classes. Thus, create a new nested class within _FSM2PN_ with the following code:
 
-{code:c#}
+
+>
+```csharp
         public class AutomataToNet : SynchronizationRule<FSM.FiniteStateMachine, PN.PetriNet>
         {
             public override bool ShouldCorrespond(FSM.FiniteStateMachine left, PN.PetriNet right, ISynchronizationContext context)
@@ -39,7 +43,7 @@ We start by defining a synchronization rule for the automata itself. Again, sync
                 Synchronize(fsm => fsm.Id, pn => pn.Id);
             }
         }
-{code:c#}
+```
 
 The method **ShouldCorrespond** decides whether a correspondence link between the given finite state machine and the Petri Net should be established within the given synchronization context. The synchronization context is basically a transformation context with a [change propagation mode](ChangePropagationMode) and a [synchronization direction](SynchronizationDirection).
 
@@ -49,7 +53,9 @@ The **DeclareSynchronization** method specifies the body of the synchronization 
 
 Next, we synchronize the states of the finite state machine with the places of the Petri Net. For this to work, add the following synchronization rule:
 
-{code:c#}
+
+>
+```csharp
         public class StateToPlace : SynchronizationRule<FSM.State, PN.Place>
         {
             public override bool ShouldCorrespond(FSM.State left, PN.Place right, ISynchronizationContext context)
@@ -62,16 +68,18 @@ Next, we synchronize the states of the finite state machine with the places of t
                 Synchronize(state => state.Name, place => place.Id);
             }
         }
-{code:c#}
+```
 
 Thus, a state should correspond to a place if the name of the state matches the Id of the place. The synchronization then synchronizes these names. The latter is required to support change propagation.
 
 Now that we have specified a synchronization rule how to synchronize states and places, we need to make sure that this rule is called appropriately. Thus, add the following line **into the DeclareSynchronization method of AutomataToNet**:
 
-{code:c#}
+
+>
+```csharp
 SynchronizeMany(SyncRule<StateToPlace>(),
         fsm => fsm.States, pn => pn.Places);
-{code:c#}
+```
 
 This statement tells NMF Synchronization, that the states of a state machine should correspond to the places of a Petri Net through the synchronization rule _StateToPlace_. Depending on the change propagation mode, the synchronization engine will automatically react on new states in the States collection by adding a new place to the Petri Net (or vice versa).
 
@@ -85,7 +93,9 @@ Internally, NMF Synchronization creates two transformation rules, one for either
 
 To synchronize the transitions, add the following code:
 
-{code:c#}
+
+>
+```csharp
         public class TransitionToTransition : SynchronizationRule<FSM.Transition, PN.Transition>
         {
 
@@ -110,7 +120,7 @@ To synchronize the transitions, add the following code:
                     && right.To.Contains(context.Trace.ResolveIn(stateToPlace, left.EndState));
             }
         }
-{code:c#}
+```
 
 Now, the **DeclareSynchronization** method seems to be pretty much OK, since we have already seen such synchronization commands. But the synchronization of start and target states needs a bit more explanation. 
 
@@ -122,10 +132,12 @@ The **ShouldCorrespond** basically states that we want to have a correspondence 
 
 Next, we need to make sure that transitions are also synchronized. In the **Automata2Net**, please add the following line to **DeclareSynchronization**. The lines must be added **after** the synchronization call of _StateToPlace_. 
 
-{code:c#}
+
+>
+```csharp
 SynchronizeMany(SyncRule<TransitionToTransition>(),
          fsm => fsm.Transitions, pn => pn.Transitions.Where(t => t.To.Count > 0));
-{code:c#}
+```
 
 The reason that this line must be added **after** the synchronization of _StateToPlace_ is that we do want to have synchronization links of states and places if we look for corresponding transitions. If we swap the order, the synchronization would not find correspondences and duplicate these elements to enforce correspondence.
 
@@ -133,28 +145,32 @@ The reason that this line must be added **after** the synchronization of _StateT
 
 Similar to the [transformation](FSM2PNTransformation) of finite state machines to Petri Nets, we use a synchronization rule to synchronize end states with swallowing transitions of the Petri Net. Thus, add the following rule to the synchronization specification:
 
-{code:c#}
+>
+```csharp
 public class EndStateToTransition : SynchronizationRule<FSM.State, PN.Transition>
 {
 }
-{code:c#}
+```
 
 We begin with the specification when this new synchronization rule is going to called. Add the following line to the **DeclareSynchronization** method of the **AutomataToNet** rule:
 
-{code:c#}
+>
+```csharp
 SynchronizeMany(SyncRule<EndStateToTransition>(),
        fsm => fsm.States.Where(state => state.IsEndState),
        pn => pn.Transitions.Where(t => t.To.Count == 0));
-{code:c#}
+```
 
 Thus, we only consider transitions of the Petri Net that have no target place. We can thus identify correspondence by the first and only source place of a transition. Thus, add the **ShouldCorrespond** method to **EndStateToTransition** as follows:
 
-{code:c#}
+
+>
+```csharp
     public override bool ShouldCorrespond(FSM.State left, PN.Transition right, ISynchronizationContext context)
    {
        return context.Trace.ResolveIn(SyncRule<StateToPlace>().LeftToRight, left) == right.From.FirstOrDefault();
    }
-{code:c#}
+```
 
 Because the synchronization context is basically just a transformation context, we can use its tracing component like we did when synchronizing transitions.
 
@@ -164,37 +180,43 @@ Generally spoken, how is it possible to synchronize the value of an attribute (_
 
 Thus, add the following **DeclareSynchronization** method to _EndStateToTransition_:
 
-{code:c#}
+
+>
+```csharp
 public override void DeclareSynchronization()
 {
    Synchronize(SyncRule<StateToPlace>(),
        state => state.IsEndState ? state : null,
        transition => transition.From.FirstOrDefault());
 }
-{code:c#}
+```
 
 This will cause a runtime exception, if the synchronization is run from right to left. Why? Because the ternary operator in the left selector is not inversable. As a simple solution, we can restrict this synchronization job to left to right directions. Thus, change the method to the following:
 
-{code:c#}
+
+>
+```csharp
 public override void DeclareSynchronization()
 {
    SynchronizeLeftToRightOnly(SyncRule<StateToPlace>(),
        state => state.IsEndState ? state : null,
        transition => transition.From.FirstOrDefault());
 }
-{code:c#}
+```
 
 However, what happens the other way around? In particular, how are the states right states found for transitions that have no target place? The dependency that we specified in _AutomataToNet_ for this purpose will try to find state candidates for the transition within the end states of the finite state machine. Currently, it is not possible to specify directly that the synchronization engine should look for candidate states in _all_ states of the state machine.
 
 What we can do, however, and it's even more efficient, we can override the creation of correspondent lefts directly. There, we could use the trace to find out the place corresponding to the source place of the transition. This is more efficient, because the NMF Transformations trace has an average effort of O(1). Thus, add the following method to _EndStateToTransition_:
 
-{code:c#}
+
+>
+```csharp
 protected override FSM.State CreateLeftOutput(PN.Transition transition, IEnumerable<FSM.State> candidates, ISynchronizationContext context)
 {
     if (transition.From.Count == 0) throw new InvalidOperationException();
     return context.Trace.ResolveIn(SyncRule<StateToPlace>().RightToLeft, transition.From.FirstOrDefault());
 }
-{code:c#}
+```
 
 ## Limitations
 

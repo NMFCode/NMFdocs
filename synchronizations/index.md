@@ -1,4 +1,10 @@
 # NMF Synchronizations
-NMF Synchronizations is an internal DSL for model synchronization. These synchronizations may be unidirectional or bidirectional. NMF Synchronizations supports multiple [change propagation modes](ChangePropagationMode) and [directions](SynchronizationDirection) with a single synchronization specification. 
 
-In NMF Synchronizations, model synchronizations consist of a set of synchronization rules. Similar to transformation rules, these synchronization rules may have dependencies to other synchronization rules. These dependencies define references to other model elements that also should be synchronized, if a particular model element is synchronized.
+Based on [NTL](../transformations/index.md) and [NMF Expressions](../expressions/index.md), NMF also contains a language to synchronize models of heterogeneous metamodels, named **NMF Synchronizations**. Like NTL, it is also implemented as an internal DSL so that developers can
+familiarize quickly. This synchronization language is able to support 18 different operation modes out of a single specification: One may choose between three different [change propagation modes](ChangePropagationMode) (none, one-way and two-way) and six different
+[directions](SynchronizationDirection) (left-to-right and right-to-left in three different variants each).
+
+Similar to NTL, a synchronization rule in NMF Synchronizations is represented by a class, inferring the synchronization rules by the public nested classes.
+The synchronization rules each define an isomorphism between the classes they
+are to synchronize, referred to as left-hand-side (LHS) and right-hand-side (RHS)
+class. These classes are passed as generic type parameters.

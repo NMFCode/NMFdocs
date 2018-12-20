@@ -76,154 +76,169 @@
 <h2 id="creating-a-new-synchronization">Creating a new synchronization</h2>
 <p>Similar to NTL, synchronizations in NMF Synchronizations are represented as classes, derived from ReflectiveSynchronization. Thus, create a new class <em>FSM2PN</em> and let it inherit from <em>ReflectiveSynchronization</em>.</p>
 <p>Add the following using statements:</p>
-<p>{code:c#}
-using NMF.Expressions.Linq;
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">using NMF.Expressions.Linq;
 using NMF.Synchronizations;
 using NMF.Transformations;
-{code:c#}</p>
+</code></pre>
 <p>As indicated by the using statements, NMF Synchronization basically combines the two projects <a href="Transformations">Transformations</a> and <a href="Expressions">Expressions</a> to obtain a synchronization language. We will see how the benefits of both projects are used in NMF Synchronizations.</p>
 <h2 id="synchronizing-machines">Synchronizing machines</h2>
 <p>We start by defining a synchronization rule for the automata itself. Again, synchronization rules are represented by public nested classes. Thus, create a new nested class within <em>FSM2PN</em> with the following code:</p>
-<p>{code:c#}
-public class AutomataToNet : SynchronizationRule&lt;FSM.FiniteStateMachine, PN.PetriNet&gt;
-{
-public override bool ShouldCorrespond(FSM.FiniteStateMachine left, PN.PetriNet right, ISynchronizationContext context)
-{
-return true;
-}</p>
-<pre><code>        public override void DeclareSynchronization()
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">        public class AutomataToNet : SynchronizationRule&lt;FSM.FiniteStateMachine, PN.PetriNet&gt;
         {
-            Synchronize(fsm =&gt; fsm.Id, pn =&gt; pn.Id);
+            public override bool ShouldCorrespond(FSM.FiniteStateMachine left, PN.PetriNet right, ISynchronizationContext context)
+            {
+                return true;
+            }
+
+            public override void DeclareSynchronization()
+            {
+                Synchronize(fsm =&gt; fsm.Id, pn =&gt; pn.Id);
+            }
         }
-    }
 </code></pre>
-<p>{code:c#}</p>
 <p>The method <strong>ShouldCorrespond</strong> decides whether a correspondence link between the given finite state machine and the Petri Net should be established within the given synchronization context. The synchronization context is basically a transformation context with a <a href="ChangePropagationMode">change propagation mode</a> and a <a href="SynchronizationDirection">synchronization direction</a>.</p>
 <p>The <strong>DeclareSynchronization</strong> method specifies the body of the synchronization rule. In this case, the ids of the finite state machine and the Petri Net should be synchronized. Whether the id from the finite state machine is written to the Petri Net or vice versa, or how updates of either property are propagated is up to the synchronization engine and this is dependent on the mode, in which the synchronization is run.</p>
 <h2 id="synchronizing-states-and-places">Synchronizing states and places</h2>
 <p>Next, we synchronize the states of the finite state machine with the places of the Petri Net. For this to work, add the following synchronization rule:</p>
-<p>{code:c#}
-public class StateToPlace : SynchronizationRule&lt;FSM.State, PN.Place&gt;
-{
-public override bool ShouldCorrespond(FSM.State left, PN.Place right, ISynchronizationContext context)
-{
-return left.Name == right.Id;
-}</p>
-<pre><code>        public override void DeclareSynchronization()
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">        public class StateToPlace : SynchronizationRule&lt;FSM.State, PN.Place&gt;
         {
-            Synchronize(state =&gt; state.Name, place =&gt; place.Id);
+            public override bool ShouldCorrespond(FSM.State left, PN.Place right, ISynchronizationContext context)
+            {
+                return left.Name == right.Id;
+            }
+
+            public override void DeclareSynchronization()
+            {
+                Synchronize(state =&gt; state.Name, place =&gt; place.Id);
+            }
         }
-    }
 </code></pre>
-<p>{code:c#}</p>
 <p>Thus, a state should correspond to a place if the name of the state matches the Id of the place. The synchronization then synchronizes these names. The latter is required to support change propagation.</p>
 <p>Now that we have specified a synchronization rule how to synchronize states and places, we need to make sure that this rule is called appropriately. Thus, add the following line <strong>into the DeclareSynchronization method of AutomataToNet</strong>:</p>
-<p>{code:c#}
-SynchronizeMany(SyncRule<statetoplace>(),
-fsm =&gt; fsm.States, pn =&gt; pn.Places);
-{code:c#}<p>
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">SynchronizeMany(SyncRule&lt;StateToPlace&gt;(),
+        fsm =&gt; fsm.States, pn =&gt; pn.Places);
+</code></pre>
 <p>This statement tells NMF Synchronization, that the states of a state machine should correspond to the places of a Petri Net through the synchronization rule <em>StateToPlace</em>. Depending on the change propagation mode, the synchronization engine will automatically react on new states in the States collection by adding a new place to the Petri Net (or vice versa).</p>
 <p>The dependency also gives a hint to NMF Synchronizations where to look for candidates. The dependency is only executed when the correspondence of a state machine and a Petri Net is already clear. Then, each state in the States collection has to correspond to a Place in the Places collection. Thus, the synchronization engine will try to match the existing entries. However, this also means that the dependency limits the candidates for corresponding places for a state that is contained in the States collection of the state machine to the places contained in the Places collection, at least unless there is already a correspondence known.</p>
 <p>Internally, NMF Synchronization creates two transformation rules, one for either main <a href="SynchronizationDirection">synchronization direction</a>. What <em>SynchronizeMany</em> called with a synchronization rule does is basically to wire up transformation rules underneath and add dependencies. However, it is also possible to directly specify the dependencies of the underneath transformation rules directly, if you wish to add more complex synchronization topologies. If one has a synchronization rule object (like the <em>this</em> pointer in within a <em>DeclareSynchronization</em> method for instance), the transformation rules for the synchronization directions are stored in the properties <em>LeftToRight</em> and <em>RightToLeft</em>.</p>
 <p><strong>Note:</strong> We rely on the <em>LeftToRight</em> transformation rule here, independent of the synchronization direction the synchronization process is executed. This is possible because an established correspondence link between two model elements always results in trace entries for both directions, i.e. the synchronization direction does not matter for tracing purposes.</p>
 <h2 id="synchronizing-transitions">Synchronizing Transitions</h2>
 <p>To synchronize the transitions, add the following code:</p>
-<p>{code:c#}
-public class TransitionToTransition : SynchronizationRule&lt;FSM.Transition, PN.Transition&gt;
-{</p>
-<pre><code>        public override void DeclareSynchronization()
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">        public class TransitionToTransition : SynchronizationRule&lt;FSM.Transition, PN.Transition&gt;
         {
-            Synchronize(t =&gt; t.Input, t =&gt; t.Input);
 
-            Synchronize(SyncRule&lt;StateToPlace&gt;(),
-                t =&gt; t.StartState,
-                t =&gt; t.From.FirstOrDefault());
+            public override void DeclareSynchronization()
+            {
+                Synchronize(t =&gt; t.Input, t =&gt; t.Input);
 
-            Synchronize(SyncRule&lt;StateToPlace&gt;(),
-                t =&gt; t.EndState,
-                t =&gt; t.To.FirstOrDefault());
+                Synchronize(SyncRule&lt;StateToPlace&gt;(),
+                    t =&gt; t.StartState,
+                    t =&gt; t.From.FirstOrDefault());
+
+                Synchronize(SyncRule&lt;StateToPlace&gt;(),
+                    t =&gt; t.EndState,
+                    t =&gt; t.To.FirstOrDefault());
+            }
+
+            public override bool ShouldCorrespond(FSM.Transition left, PN.Transition right, ISynchronizationContext context)
+            {
+                var stateToPlace = SyncRule&lt;StateToPlace&gt;().LeftToRight;
+                return left.Input == right.Input
+                    &amp;&amp; right.From.Contains(context.Trace.ResolveIn(stateToPlace, left.StartState))
+                    &amp;&amp; right.To.Contains(context.Trace.ResolveIn(stateToPlace, left.EndState));
+            }
         }
-
-        public override bool ShouldCorrespond(FSM.Transition left, PN.Transition right, ISynchronizationContext context)
-        {
-            var stateToPlace = SyncRule&lt;StateToPlace&gt;().LeftToRight;
-            return left.Input == right.Input
-                &amp;&amp; right.From.Contains(context.Trace.ResolveIn(stateToPlace, left.StartState))
-                &amp;&amp; right.To.Contains(context.Trace.ResolveIn(stateToPlace, left.EndState));
-        }
-    }
 </code></pre>
-<p>{code:c#}</p>
 <p>Now, the <strong>DeclareSynchronization</strong> method seems to be pretty much OK, since we have already seen such synchronization commands. But the synchronization of start and target states needs a bit more explanation.</p>
 <p>The direction from right to left is pretty much self-explanatory, we just take the first target place that is available assign the corresponding state to the target state of the corresponding transition.</p>
 <p>The other way round is more complicated. What we are actually doing is to assign the corresponding place to the target state of the transition to - to the first or default of the target places? In fact, yes, we do. This is perfectly fine, because the extension method <em>FirstOrDefault</em> has a decorator attribute that is used by <a href="Expressions">Expressions</a> to make the expression that we see a reversable expression. Thus, if FirstOrDefault is assigned a value, then the reverse expression makes sure that this element is in fact contained in the collection (if not, it is added). If the assigned value is the default value, then the collection is cleared.</p>
 <p>The <strong>ShouldCorrespond</strong> basically states that we want to have a correspondence link between transitions, if and only if we already have a correspondence link between the source and target state (or place, respectively). For this, it uses the trace functionality of the synchronization context, querying the LeftToRight transformation rule of the <em>StateToPlace</em> synchronization rule.</p>
 <p>Next, we need to make sure that transitions are also synchronized. In the <strong>Automata2Net</strong>, please add the following line to <strong>DeclareSynchronization</strong>. The lines must be added <strong>after</strong> the synchronization call of <em>StateToPlace</em>.</p>
-<p>{code:c#}
-SynchronizeMany(SyncRule<transitiontotransition>(),
-fsm =&gt; fsm.Transitions, pn =&gt; pn.Transitions.Where(t =&gt; t.To.Count &gt; 0));
-{code:c#}<p>
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">SynchronizeMany(SyncRule&lt;TransitionToTransition&gt;(),
+         fsm =&gt; fsm.Transitions, pn =&gt; pn.Transitions.Where(t =&gt; t.To.Count &gt; 0));
+</code></pre>
 <p>The reason that this line must be added <strong>after</strong> the synchronization of <em>StateToPlace</em> is that we do want to have synchronization links of states and places if we look for corresponding transitions. If we swap the order, the synchronization would not find correspondences and duplicate these elements to enforce correspondence.</p>
 <h2 id="end-states">End states</h2>
 <p>Similar to the <a href="FSM2PNTransformation">transformation</a> of finite state machines to Petri Nets, we use a synchronization rule to synchronize end states with swallowing transitions of the Petri Net. Thus, add the following rule to the synchronization specification:</p>
-<p>{code:c#}
-public class EndStateToTransition : SynchronizationRule&lt;FSM.State, PN.Transition&gt;
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">public class EndStateToTransition : SynchronizationRule&lt;FSM.State, PN.Transition&gt;
 {
 }
-{code:c#}</p>
+</code></pre>
 <p>We begin with the specification when this new synchronization rule is going to called. Add the following line to the <strong>DeclareSynchronization</strong> method of the <strong>AutomataToNet</strong> rule:</p>
-<p>{code:c#}
-SynchronizeMany(SyncRule<endstatetotransition>(),
-fsm =&gt; fsm.States.Where(state =&gt; state.IsEndState),
-pn =&gt; pn.Transitions.Where(t =&gt; t.To.Count == 0));
-{code:c#}<p>
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">SynchronizeMany(SyncRule&lt;EndStateToTransition&gt;(),
+       fsm =&gt; fsm.States.Where(state =&gt; state.IsEndState),
+       pn =&gt; pn.Transitions.Where(t =&gt; t.To.Count == 0));
+</code></pre>
 <p>Thus, we only consider transitions of the Petri Net that have no target place. We can thus identify correspondence by the first and only source place of a transition. Thus, add the <strong>ShouldCorrespond</strong> method to <strong>EndStateToTransition</strong> as follows:</p>
-<p>{code:c#}
-public override bool ShouldCorrespond(FSM.State left, PN.Transition right, ISynchronizationContext context)
-{
-return context.Trace.ResolveIn(SyncRule<statetoplace>().LeftToRight, left) == right.From.FirstOrDefault();
-}
-{code:c#}<p>
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">    public override bool ShouldCorrespond(FSM.State left, PN.Transition right, ISynchronizationContext context)
+   {
+       return context.Trace.ResolveIn(SyncRule&lt;StateToPlace&gt;().LeftToRight, left) == right.From.FirstOrDefault();
+   }
+</code></pre>
 <p>Because the synchronization context is basically just a transformation context, we can use its tracing component like we did when synchronizing transitions.</p>
 <p>Thus, whenever there is an end state, we make sure that there is a corresponding transition. There condition inside the <em>Where</em> clause states that this new transition has no target place. However, this condition is not enforced, because <em>Count</em> is a read-only property and thus cannot be set to 0. We still need to add the corresponding place of our end state to the new transition.</p>
 <p>Generally spoken, how is it possible to synchronize the value of an attribute (<em>IsEndState</em>) with the existence of a model element (the loose transition)? A helpful hint is the idea what should happen in each case. If a state was made an end state, it is automatically added to the collection of end states and thus, the dependency in <em>AutomataToNet</em> causes a transition to be created that needs to start at the corresponding place. If an endstate is no longer marked as an endstate, the transition is removed from its container and cease to exist, is therefore deleted from the model. However, if we hide this implementation detail of the model representation for a moment, we would have to remove the transition from the outgoing transitions of our corresponding place. We can do this, by setting the <em>FirstOrDefault</em> to null.</p>
 <p>Thus, add the following <strong>DeclareSynchronization</strong> method to <em>EndStateToTransition</em>:</p>
-<p>{code:c#}
-public override void DeclareSynchronization()
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">public override void DeclareSynchronization()
 {
-Synchronize(SyncRule<statetoplace>(),
-state =&gt; state.IsEndState ? state : null,
-transition =&gt; transition.From.FirstOrDefault());
+   Synchronize(SyncRule&lt;StateToPlace&gt;(),
+       state =&gt; state.IsEndState ? state : null,
+       transition =&gt; transition.From.FirstOrDefault());
 }
-{code:c#}<p>
+</code></pre>
 <p>This will cause a runtime exception, if the synchronization is run from right to left. Why? Because the ternary operator in the left selector is not inversable. As a simple solution, we can restrict this synchronization job to left to right directions. Thus, change the method to the following:</p>
-<p>{code:c#}
-public override void DeclareSynchronization()
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">public override void DeclareSynchronization()
 {
-SynchronizeLeftToRightOnly(SyncRule<statetoplace>(),
-state =&gt; state.IsEndState ? state : null,
-transition =&gt; transition.From.FirstOrDefault());
+   SynchronizeLeftToRightOnly(SyncRule&lt;StateToPlace&gt;(),
+       state =&gt; state.IsEndState ? state : null,
+       transition =&gt; transition.From.FirstOrDefault());
 }
-{code:c#}<p>
+</code></pre>
 <p>However, what happens the other way around? In particular, how are the states right states found for transitions that have no target place? The dependency that we specified in <em>AutomataToNet</em> for this purpose will try to find state candidates for the transition within the end states of the finite state machine. Currently, it is not possible to specify directly that the synchronization engine should look for candidate states in <em>all</em> states of the state machine.</p>
 <p>What we can do, however, and it's even more efficient, we can override the creation of correspondent lefts directly. There, we could use the trace to find out the place corresponding to the source place of the transition. This is more efficient, because the NMF Transformations trace has an average effort of O(1). Thus, add the following method to <em>EndStateToTransition</em>:</p>
-<p>{code:c#}
-protected override FSM.State CreateLeftOutput(PN.Transition transition, IEnumerable&lt;FSM.State&gt; candidates, ISynchronizationContext context)
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">protected override FSM.State CreateLeftOutput(PN.Transition transition, IEnumerable&lt;FSM.State&gt; candidates, ISynchronizationContext context)
 {
-if (transition.From.Count == 0) throw new InvalidOperationException();
-return context.Trace.ResolveIn(SyncRule<statetoplace>().RightToLeft, transition.From.FirstOrDefault());
+    if (transition.From.Count == 0) throw new InvalidOperationException();
+    return context.Trace.ResolveIn(SyncRule&lt;StateToPlace&gt;().RightToLeft, transition.From.FirstOrDefault());
 }
-{code:c#}<p>
+</code></pre>
 <h2 id="limitations">Limitations</h2>
 <p>The example of Petri Nets and state charts shows some limitations of NMF Synchronizations. The problem is exactly with the transitions. Once a correspondence is determined, it is currently fixed. This assumption is necessary for tracing purposes. In this scenario, it means that NMF Synchrionizations is unable to register that a transition can be used in multiple roles, either as a representation of finite state machine transitions or as a characterization of end states.</p>
 <p>However, NMF Synchronizations is still in incubation, so this limitation might eventually cease.</p>
-</statetoplace></statetoplace></statetoplace></statetoplace></endstatetotransition></transitiontotransition></statetoplace></article>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NMFCode/NMFdocs/blob/master/synchronizations/FiniteStateMachines2PetriNetsTutorial.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

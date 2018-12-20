@@ -1,0 +1,1640 @@
+### YamlMime:ManagedReference
+items:
+- uid: NMF.Transformations.Core.Computation
+  commentId: T:NMF.Transformations.Core.Computation
+  id: Computation
+  parent: NMF.Transformations.Core
+  children:
+  - NMF.Transformations.Core.Computation.#ctor(NMF.Transformations.Core.GeneralTransformationRule,NMF.Transformations.Core.IComputationContext)
+  - NMF.Transformations.Core.Computation.Computed
+  - NMF.Transformations.Core.Computation.Context
+  - NMF.Transformations.Core.Computation.CreateInputArray
+  - NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  - NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  - NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  - NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  - NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  - NMF.Transformations.Core.Computation.InputArguments
+  - NMF.Transformations.Core.Computation.IsDelayed
+  - NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  - NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  - NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  - NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  - NMF.Transformations.Core.Computation.Output
+  - NMF.Transformations.Core.Computation.OutputCore
+  - NMF.Transformations.Core.Computation.OutputInitialized
+  - NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  - NMF.Transformations.Core.Computation.ThrowDelayedException
+  - NMF.Transformations.Core.Computation.Transform
+  - NMF.Transformations.Core.Computation.TransformationContext
+  - NMF.Transformations.Core.Computation.TransformationRule
+  langs:
+  - csharp
+  - vb
+  name: Computation
+  nameWithType: Computation
+  fullName: NMF.Transformations.Core.Computation
+  type: Class
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Computation
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 16
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nThis class represents a single computation within the transformation engine of NMF.Transformations\n"
+  remarks: This class is visible to public as it provides reaction to delayness
+  example: []
+  syntax:
+    content: 'public abstract class Computation : IPersistor, ITraceEntry'
+    content.vb: >-
+      Public MustInherit Class Computation
+
+          Implements IPersistor, ITraceEntry
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - NMF.Transformations.ComputationBase
+  - NMF.Transformations.ComputationBase`1
+  - NMF.Transformations.ComputationBase`2
+  implements:
+  - NMF.Transformations.Core.IPersistor
+  - NMF.Transformations.Core.ITraceEntry
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - NMF.Transformations.Core.ITraceEntry.NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: NMF.Transformations.Core.Computation.#ctor(NMF.Transformations.Core.GeneralTransformationRule,NMF.Transformations.Core.IComputationContext)
+  commentId: M:NMF.Transformations.Core.Computation.#ctor(NMF.Transformations.Core.GeneralTransformationRule,NMF.Transformations.Core.IComputationContext)
+  id: '#ctor(NMF.Transformations.Core.GeneralTransformationRule,NMF.Transformations.Core.IComputationContext)'
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: Computation(GeneralTransformationRule, IComputationContext)
+  nameWithType: Computation.Computation(GeneralTransformationRule, IComputationContext)
+  fullName: NMF.Transformations.Core.Computation.Computation(NMF.Transformations.Core.GeneralTransformationRule, NMF.Transformations.Core.IComputationContext)
+  type: Constructor
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: .ctor
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 23
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nCreates a new computation for the given transformation rule with the given input arguments\n"
+  example: []
+  syntax:
+    content: protected Computation(GeneralTransformationRule transformationRule, IComputationContext context)
+    parameters:
+    - id: transformationRule
+      type: NMF.Transformations.Core.GeneralTransformationRule
+      description: The transformation rule responsible for the transformation of the input data
+    - id: context
+      type: NMF.Transformations.Core.IComputationContext
+      description: The transformation context, in which the computation is done
+    content.vb: Protected Sub New(transformationRule As GeneralTransformationRule, context As IComputationContext)
+  overload: NMF.Transformations.Core.Computation.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: NMF.Transformations.Core.Computation.TransformationRule
+  commentId: P:NMF.Transformations.Core.Computation.TransformationRule
+  id: TransformationRule
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: TransformationRule
+  nameWithType: Computation.TransformationRule
+  fullName: NMF.Transformations.Core.Computation.TransformationRule
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: TransformationRule
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 37
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets the transformation rule, which has been used to compute this computation\n"
+  example: []
+  syntax:
+    content: public GeneralTransformationRule TransformationRule { get; }
+    parameters: []
+    return:
+      type: NMF.Transformations.Core.GeneralTransformationRule
+    content.vb: Public ReadOnly Property TransformationRule As GeneralTransformationRule
+  overload: NMF.Transformations.Core.Computation.TransformationRule*
+  implements:
+  - NMF.Transformations.Core.ITraceEntry.TransformationRule
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Transformations.Core.Computation.TransformationContext
+  commentId: P:NMF.Transformations.Core.Computation.TransformationContext
+  id: TransformationContext
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: TransformationContext
+  nameWithType: Computation.TransformationContext
+  fullName: NMF.Transformations.Core.Computation.TransformationContext
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: TransformationContext
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 42
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets the context, in which the computation has been made\n"
+  example: []
+  syntax:
+    content: public ITransformationContext TransformationContext { get; }
+    parameters: []
+    return:
+      type: NMF.Transformations.Core.ITransformationContext
+    content.vb: Public ReadOnly Property TransformationContext As ITransformationContext
+  overload: NMF.Transformations.Core.Computation.TransformationContext*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Transformations.Core.Computation.Context
+  commentId: P:NMF.Transformations.Core.Computation.Context
+  id: Context
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: Context
+  nameWithType: Computation.Context
+  fullName: NMF.Transformations.Core.Computation.Context
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Context
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 47
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets the computation context for this computation\n"
+  example: []
+  syntax:
+    content: public IComputationContext Context { get; }
+    parameters: []
+    return:
+      type: NMF.Transformations.Core.IComputationContext
+    content.vb: Public ReadOnly Property Context As IComputationContext
+  overload: NMF.Transformations.Core.Computation.Context*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Transformations.Core.Computation.InputArguments
+  commentId: P:NMF.Transformations.Core.Computation.InputArguments
+  id: InputArguments
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: InputArguments
+  nameWithType: Computation.InputArguments
+  fullName: NMF.Transformations.Core.Computation.InputArguments
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: InputArguments
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 53
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets the number of input arguments\n"
+  example: []
+  syntax:
+    content: public int InputArguments { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property InputArguments As Integer
+  overload: NMF.Transformations.Core.Computation.InputArguments*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  commentId: M:NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  id: GetInput(System.Int32)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: GetInput(Int32)
+  nameWithType: Computation.GetInput(Int32)
+  fullName: NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetInput
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 60
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets the input argument for this computation with the given index\n"
+  example: []
+  syntax:
+    content: public abstract object GetInput(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The index of the input parameter
+    return:
+      type: System.Object
+      description: The input parameter at the ith position
+    content.vb: Public MustOverride Function GetInput(index As Integer) As Object
+  overload: NMF.Transformations.Core.Computation.GetInput*
+  implements:
+  - NMF.Transformations.Core.ITraceEntry.GetInput(System.Int32)
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NMF.Transformations.Core.Computation.CreateInputArray
+  commentId: M:NMF.Transformations.Core.Computation.CreateInputArray
+  id: CreateInputArray
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: CreateInputArray()
+  nameWithType: Computation.CreateInputArray()
+  fullName: NMF.Transformations.Core.Computation.CreateInputArray()
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateInputArray
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 66
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nCopies the input of this computation into an array\n"
+  example: []
+  syntax:
+    content: public object[] CreateInputArray()
+    return:
+      type: System.Object[]
+      description: An array with the inputs
+    content.vb: Public Function CreateInputArray As Object()
+  overload: NMF.Transformations.Core.Computation.CreateInputArray*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Transformations.Core.Computation.Output
+  commentId: P:NMF.Transformations.Core.Computation.Output
+  id: Output
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: Computation.Output
+  fullName: NMF.Transformations.Core.Computation.Output
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Output
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 80
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets the output of this computation\n"
+  example: []
+  syntax:
+    content: public object Output { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public ReadOnly Property Output As Object
+  overload: NMF.Transformations.Core.Computation.Output*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: This property may throw a DelayedOutputCreationException in case that the output has been tried to access, although the output creation was delayed
+  implements:
+  - NMF.Transformations.Core.ITraceEntry.Output
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Transformations.Core.Computation.ThrowDelayedException
+  commentId: M:NMF.Transformations.Core.Computation.ThrowDelayedException
+  id: ThrowDelayedException
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: ThrowDelayedException()
+  nameWithType: Computation.ThrowDelayedException()
+  fullName: NMF.Transformations.Core.Computation.ThrowDelayedException()
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: ThrowDelayedException
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 93
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nThrows an exception that the output has been accessed although the output of teh computation is delayed\n"
+  example: []
+  syntax:
+    content: protected static void ThrowDelayedException()
+    content.vb: Protected Shared Sub ThrowDelayedException
+  overload: NMF.Transformations.Core.Computation.ThrowDelayedException*
+  modifiers.csharp:
+  - protected
+  - static
+  modifiers.vb:
+  - Protected
+  - Shared
+- uid: NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  commentId: M:NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  id: MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: MarkRequire(Computation, Boolean, ITransformationRuleDependency)
+  nameWithType: Computation.MarkRequire(Computation, Boolean, ITransformationRuleDependency)
+  fullName: NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation, System.Boolean, NMF.Transformations.Core.ITransformationRuleDependency)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: MarkRequire
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 106
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nMarks that this computations requires another to be transformed.\n"
+  remarks: The default implementation does nothing, so feel free to override. This method is intended to be called by NMF.Transformations, only.
+  example: []
+  syntax:
+    content: public virtual void MarkRequire(Computation other, bool isRequired, ITransformationRuleDependency dependency)
+    parameters:
+    - id: other
+      type: NMF.Transformations.Core.Computation
+      description: The other computation
+    - id: isRequired
+      type: System.Boolean
+      description: A value indicating whether the other computation must be execute before or after the current computation
+    - id: dependency
+      type: NMF.Transformations.Core.ITransformationRuleDependency
+      description: The dependency that required this
+    content.vb: Public Overridable Sub MarkRequire(other As Computation, isRequired As Boolean, dependency As ITransformationRuleDependency)
+  overload: NMF.Transformations.Core.Computation.MarkRequire*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: NMF.Transformations.Core.Computation.OutputCore
+  commentId: P:NMF.Transformations.Core.Computation.OutputCore
+  id: OutputCore
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: OutputCore
+  nameWithType: Computation.OutputCore
+  fullName: NMF.Transformations.Core.Computation.OutputCore
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: OutputCore
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 120
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets or sets the output in a derived class\n"
+  example: []
+  syntax:
+    content: protected abstract object OutputCore { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Protected MustOverride Property OutputCore As Object
+  overload: NMF.Transformations.Core.Computation.OutputCore*
+  modifiers.csharp:
+  - protected
+  - abstract
+  - get
+  - set
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: NMF.Transformations.Core.Computation.OutputInitialized
+  commentId: E:NMF.Transformations.Core.Computation.OutputInitialized
+  id: OutputInitialized
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: OutputInitialized
+  nameWithType: Computation.OutputInitialized
+  fullName: NMF.Transformations.Core.Computation.OutputInitialized
+  type: Event
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: OutputInitialized
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 125
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nThis event is fired as soon as the output of this computation is initialized\n"
+  example: []
+  syntax:
+    content: public event EventHandler OutputInitialized
+    return:
+      type: System.EventHandler
+    content.vb: Public Event OutputInitialized As EventHandler
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Transformations.Core.Computation.Computed
+  commentId: E:NMF.Transformations.Core.Computation.Computed
+  id: Computed
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: Computed
+  nameWithType: Computation.Computed
+  fullName: NMF.Transformations.Core.Computation.Computed
+  type: Event
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Computed
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 131
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nThis event is fired as soon as the computation has been computed,\ni.e., the computation has been processed in the computation list\n"
+  example: []
+  syntax:
+    content: public event EventHandler Computed
+    return:
+      type: System.EventHandler
+    content.vb: Public Event Computed As EventHandler
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  commentId: M:NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  id: DelayOutputAtLeast(System.Byte)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: DelayOutputAtLeast(Byte)
+  nameWithType: Computation.DelayOutputAtLeast(Byte)
+  fullName: NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: DelayOutputAtLeast
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 137
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nConfigures the computation to create its output at minimum with the given delay level\n"
+  example: []
+  syntax:
+    content: public void DelayOutputAtLeast(byte delayLevel)
+    parameters:
+    - id: delayLevel
+      type: System.Byte
+      description: The minimum delay level for this computation
+    content.vb: Public Sub DelayOutputAtLeast(delayLevel As Byte)
+  overload: NMF.Transformations.Core.Computation.DelayOutputAtLeast*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  commentId: M:NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  id: DelayTransformationAtLeast(System.Byte)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: DelayTransformationAtLeast(Byte)
+  nameWithType: Computation.DelayTransformationAtLeast(Byte)
+  fullName: NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: DelayTransformationAtLeast
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 146
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nConfigures the computation to be transformed at least with the given delay level\n"
+  example: []
+  syntax:
+    content: public void DelayTransformationAtLeast(byte delayLevel)
+    parameters:
+    - id: delayLevel
+      type: System.Byte
+      description: ''
+    content.vb: Public Sub DelayTransformationAtLeast(delayLevel As Byte)
+  overload: NMF.Transformations.Core.Computation.DelayTransformationAtLeast*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  commentId: M:NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  id: OnOutputInitialized(System.EventArgs)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: OnOutputInitialized(EventArgs)
+  nameWithType: Computation.OnOutputInitialized(EventArgs)
+  fullName: NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnOutputInitialized
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 155
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nFires the <xref href=\"NMF.Transformations.Core.Computation.OutputInitialized\" data-throw-if-not-resolved=\"false\"></xref>-event\n"
+  example: []
+  syntax:
+    content: protected virtual void OnOutputInitialized(EventArgs e)
+    parameters:
+    - id: e
+      type: System.EventArgs
+      description: The event arguments
+    content.vb: Protected Overridable Sub OnOutputInitialized(e As EventArgs)
+  overload: NMF.Transformations.Core.Computation.OnOutputInitialized*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: NMF.Transformations.Core.Computation.IsDelayed
+  commentId: P:NMF.Transformations.Core.Computation.IsDelayed
+  id: IsDelayed
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: IsDelayed
+  nameWithType: Computation.IsDelayed
+  fullName: NMF.Transformations.Core.Computation.IsDelayed
+  type: Property
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsDelayed
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 189
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nGets a value indicating whether the output creation for this computation is delayed\n"
+  example: []
+  syntax:
+    content: public bool IsDelayed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsDelayed As Boolean
+  overload: NMF.Transformations.Core.Computation.IsDelayed*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  commentId: M:NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  id: OnComputed(System.EventArgs)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: OnComputed(EventArgs)
+  nameWithType: Computation.OnComputed(EventArgs)
+  fullName: NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnComputed
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 195
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nFires the <xref href=\"NMF.Transformations.Core.Computation.Computed\" data-throw-if-not-resolved=\"false\"></xref>-event\n"
+  example: []
+  syntax:
+    content: protected virtual void OnComputed(EventArgs e)
+    parameters:
+    - id: e
+      type: System.EventArgs
+      description: The event arguments
+    content.vb: Protected Overridable Sub OnComputed(e As EventArgs)
+  overload: NMF.Transformations.Core.Computation.OnComputed*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: NMF.Transformations.Core.Computation.Transform
+  commentId: M:NMF.Transformations.Core.Computation.Transform
+  id: Transform
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: Transform()
+  nameWithType: Computation.Transform()
+  fullName: NMF.Transformations.Core.Computation.Transform()
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Transform
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 208
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nInitializes the transformation output\n"
+  remarks: At this point, all the transformation outputs are created (also the delayed ones), thus, the trace is fully reliable
+  example: []
+  syntax:
+    content: public abstract void Transform()
+    content.vb: Public MustOverride Sub Transform
+  overload: NMF.Transformations.Core.Computation.Transform*
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  commentId: M:NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  id: CreateOutput(System.Collections.IEnumerable)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: CreateOutput(IEnumerable)
+  nameWithType: Computation.CreateOutput(IEnumerable)
+  fullName: NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateOutput
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 215
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nCreates the output of this transformation rule\n"
+  remarks: At this point, not all of the computations have created their output and thus, the trace is not complete. Use the OutputDelayLevel-feature to have the trace contain all elements created in earlier levels
+  example: []
+  syntax:
+    content: public abstract object CreateOutput(IEnumerable context)
+    parameters:
+    - id: context
+      type: System.Collections.IEnumerable
+    return:
+      type: System.Object
+      description: The output for this transformation under this input
+    content.vb: Public MustOverride Function CreateOutput(context As IEnumerable) As Object
+  overload: NMF.Transformations.Core.Computation.CreateOutput*
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  commentId: M:NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  id: InitializeOutput(System.Object)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: InitializeOutput(Object)
+  nameWithType: Computation.InitializeOutput(Object)
+  fullName: NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: InitializeOutput
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 221
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  summary: "\nInitializes the output for the actual computation\n"
+  example: []
+  syntax:
+    content: public void InitializeOutput(object output)
+    parameters:
+    - id: output
+      type: System.Object
+      description: The intended output
+    content.vb: Public Sub InitializeOutput(output As Object)
+  overload: NMF.Transformations.Core.Computation.InitializeOutput*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  commentId: M:NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  id: SetBaseComputation(NMF.Transformations.Core.Computation)
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: SetBaseComputation(Computation)
+  nameWithType: Computation.SetBaseComputation(Computation)
+  fullName: NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: SetBaseComputation
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 228
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  syntax:
+    content: public virtual void SetBaseComputation(Computation baseComputation)
+    parameters:
+    - id: baseComputation
+      type: NMF.Transformations.Core.Computation
+    content.vb: Public Overridable Sub SetBaseComputation(baseComputation As Computation)
+  overload: NMF.Transformations.Core.Computation.SetBaseComputation*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  commentId: M:NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  id: NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  isEii: true
+  parent: NMF.Transformations.Core.Computation
+  langs:
+  - csharp
+  - vb
+  name: IPersistor.Persist(Object)
+  nameWithType: Computation.IPersistor.Persist(Object)
+  fullName: NMF.Transformations.Core.Computation.NMF.Transformations.Core.IPersistor.Persist(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Transformations/Transformations.Core/Core/Computation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: NMF.Transformations.Core.IPersistor.Persist
+    path: src/Transformations/Transformations.Core/Core/Computation.cs
+    startLine: 230
+  assemblies:
+  - NMF.Transformations.Core
+  namespace: NMF.Transformations.Core
+  syntax:
+    content: void IPersistor.Persist(object output)
+    parameters:
+    - id: output
+      type: System.Object
+    content.vb: Sub NMF.Transformations.Core.IPersistor.Persist(output As Object) Implements IPersistor.Persist
+  overload: NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist*
+  implements:
+  - NMF.Transformations.Core.IPersistor.Persist(System.Object)
+  nameWithType.vb: Computation.NMF.Transformations.Core.IPersistor.Persist(Object)
+  name.vb: NMF.Transformations.Core.IPersistor.Persist(Object)
+references:
+- uid: NMF.Transformations.Core
+  commentId: N:NMF.Transformations.Core
+  name: NMF.Transformations.Core
+  nameWithType: NMF.Transformations.Core
+  fullName: NMF.Transformations.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NMF.Transformations.Core.IPersistor
+  commentId: T:NMF.Transformations.Core.IPersistor
+  parent: NMF.Transformations.Core
+  name: IPersistor
+  nameWithType: IPersistor
+  fullName: NMF.Transformations.Core.IPersistor
+- uid: NMF.Transformations.Core.ITraceEntry
+  commentId: T:NMF.Transformations.Core.ITraceEntry
+  parent: NMF.Transformations.Core
+  name: ITraceEntry
+  nameWithType: ITraceEntry
+  fullName: NMF.Transformations.Core.ITraceEntry
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.ITraceEntry.NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+  commentId: M:NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+  parent: NMF.Transformations.Core.TraceEntryExtensions
+  definition: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+  name: CreateInputArray()
+  nameWithType: TraceEntryExtensions.CreateInputArray()
+  fullName: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+    name: CreateInputArray
+    nameWithType: TraceEntryExtensions.CreateInputArray
+    fullName: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+    name: CreateInputArray
+    nameWithType: TraceEntryExtensions.CreateInputArray
+    fullName: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+  commentId: M:NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+  name: CreateInputArray(ITraceEntry)
+  nameWithType: TraceEntryExtensions.CreateInputArray(ITraceEntry)
+  fullName: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+    name: CreateInputArray
+    nameWithType: TraceEntryExtensions.CreateInputArray
+    fullName: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.ITraceEntry
+    name: ITraceEntry
+    nameWithType: ITraceEntry
+    fullName: NMF.Transformations.Core.ITraceEntry
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray(NMF.Transformations.Core.ITraceEntry)
+    name: CreateInputArray
+    nameWithType: TraceEntryExtensions.CreateInputArray
+    fullName: NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.ITraceEntry
+    name: ITraceEntry
+    nameWithType: ITraceEntry
+    fullName: NMF.Transformations.Core.ITraceEntry
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TraceEntryExtensions
+  commentId: T:NMF.Transformations.Core.TraceEntryExtensions
+  parent: NMF.Transformations.Core
+  name: TraceEntryExtensions
+  nameWithType: TraceEntryExtensions
+  fullName: NMF.Transformations.Core.TraceEntryExtensions
+- uid: NMF.Transformations.Core.Computation.#ctor*
+  commentId: Overload:NMF.Transformations.Core.Computation.#ctor
+  name: Computation
+  nameWithType: Computation.Computation
+  fullName: NMF.Transformations.Core.Computation.Computation
+- uid: NMF.Transformations.Core.GeneralTransformationRule
+  commentId: T:NMF.Transformations.Core.GeneralTransformationRule
+  parent: NMF.Transformations.Core
+  name: GeneralTransformationRule
+  nameWithType: GeneralTransformationRule
+  fullName: NMF.Transformations.Core.GeneralTransformationRule
+- uid: NMF.Transformations.Core.IComputationContext
+  commentId: T:NMF.Transformations.Core.IComputationContext
+  parent: NMF.Transformations.Core
+  name: IComputationContext
+  nameWithType: IComputationContext
+  fullName: NMF.Transformations.Core.IComputationContext
+- uid: NMF.Transformations.Core.Computation.TransformationRule*
+  commentId: Overload:NMF.Transformations.Core.Computation.TransformationRule
+  name: TransformationRule
+  nameWithType: Computation.TransformationRule
+  fullName: NMF.Transformations.Core.Computation.TransformationRule
+- uid: NMF.Transformations.Core.ITraceEntry.TransformationRule
+  commentId: P:NMF.Transformations.Core.ITraceEntry.TransformationRule
+  parent: NMF.Transformations.Core.ITraceEntry
+  name: TransformationRule
+  nameWithType: ITraceEntry.TransformationRule
+  fullName: NMF.Transformations.Core.ITraceEntry.TransformationRule
+- uid: NMF.Transformations.Core.Computation.TransformationContext*
+  commentId: Overload:NMF.Transformations.Core.Computation.TransformationContext
+  name: TransformationContext
+  nameWithType: Computation.TransformationContext
+  fullName: NMF.Transformations.Core.Computation.TransformationContext
+- uid: NMF.Transformations.Core.ITransformationContext
+  commentId: T:NMF.Transformations.Core.ITransformationContext
+  parent: NMF.Transformations.Core
+  name: ITransformationContext
+  nameWithType: ITransformationContext
+  fullName: NMF.Transformations.Core.ITransformationContext
+- uid: NMF.Transformations.Core.Computation.Context*
+  commentId: Overload:NMF.Transformations.Core.Computation.Context
+  name: Context
+  nameWithType: Computation.Context
+  fullName: NMF.Transformations.Core.Computation.Context
+- uid: NMF.Transformations.Core.Computation.InputArguments*
+  commentId: Overload:NMF.Transformations.Core.Computation.InputArguments
+  name: InputArguments
+  nameWithType: Computation.InputArguments
+  fullName: NMF.Transformations.Core.Computation.InputArguments
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NMF.Transformations.Core.Computation.GetInput*
+  commentId: Overload:NMF.Transformations.Core.Computation.GetInput
+  name: GetInput
+  nameWithType: Computation.GetInput
+  fullName: NMF.Transformations.Core.Computation.GetInput
+- uid: NMF.Transformations.Core.ITraceEntry.GetInput(System.Int32)
+  commentId: M:NMF.Transformations.Core.ITraceEntry.GetInput(System.Int32)
+  parent: NMF.Transformations.Core.ITraceEntry
+  isExternal: true
+  name: GetInput(Int32)
+  nameWithType: ITraceEntry.GetInput(Int32)
+  fullName: NMF.Transformations.Core.ITraceEntry.GetInput(System.Int32)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.ITraceEntry.GetInput(System.Int32)
+    name: GetInput
+    nameWithType: ITraceEntry.GetInput
+    fullName: NMF.Transformations.Core.ITraceEntry.GetInput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.ITraceEntry.GetInput(System.Int32)
+    name: GetInput
+    nameWithType: ITraceEntry.GetInput
+    fullName: NMF.Transformations.Core.ITraceEntry.GetInput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.CreateInputArray*
+  commentId: Overload:NMF.Transformations.Core.Computation.CreateInputArray
+  name: CreateInputArray
+  nameWithType: Computation.CreateInputArray
+  fullName: NMF.Transformations.Core.Computation.CreateInputArray
+- uid: System.Object[]
+  isExternal: true
+  name: Object[]
+  nameWithType: Object[]
+  fullName: System.Object[]
+  nameWithType.vb: Object()
+  fullName.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: NMF.Transformations.Core.Computation.Output*
+  commentId: Overload:NMF.Transformations.Core.Computation.Output
+  name: Output
+  nameWithType: Computation.Output
+  fullName: NMF.Transformations.Core.Computation.Output
+- uid: NMF.Transformations.Core.ITraceEntry.Output
+  commentId: P:NMF.Transformations.Core.ITraceEntry.Output
+  parent: NMF.Transformations.Core.ITraceEntry
+  name: Output
+  nameWithType: ITraceEntry.Output
+  fullName: NMF.Transformations.Core.ITraceEntry.Output
+- uid: NMF.Transformations.Core.Computation.ThrowDelayedException*
+  commentId: Overload:NMF.Transformations.Core.Computation.ThrowDelayedException
+  name: ThrowDelayedException
+  nameWithType: Computation.ThrowDelayedException
+  fullName: NMF.Transformations.Core.Computation.ThrowDelayedException
+- uid: NMF.Transformations.Core.Computation.MarkRequire*
+  commentId: Overload:NMF.Transformations.Core.Computation.MarkRequire
+  name: MarkRequire
+  nameWithType: Computation.MarkRequire
+  fullName: NMF.Transformations.Core.Computation.MarkRequire
+- uid: NMF.Transformations.Core.Computation
+  commentId: T:NMF.Transformations.Core.Computation
+  parent: NMF.Transformations.Core
+  name: Computation
+  nameWithType: Computation
+  fullName: NMF.Transformations.Core.Computation
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: NMF.Transformations.Core.ITransformationRuleDependency
+  commentId: T:NMF.Transformations.Core.ITransformationRuleDependency
+  parent: NMF.Transformations.Core
+  name: ITransformationRuleDependency
+  nameWithType: ITransformationRuleDependency
+  fullName: NMF.Transformations.Core.ITransformationRuleDependency
+- uid: NMF.Transformations.Core.Computation.OutputCore*
+  commentId: Overload:NMF.Transformations.Core.Computation.OutputCore
+  name: OutputCore
+  nameWithType: Computation.OutputCore
+  fullName: NMF.Transformations.Core.Computation.OutputCore
+- uid: System.EventHandler
+  commentId: T:System.EventHandler
+  parent: System
+  isExternal: true
+  name: EventHandler
+  nameWithType: EventHandler
+  fullName: System.EventHandler
+- uid: NMF.Transformations.Core.Computation.DelayOutputAtLeast*
+  commentId: Overload:NMF.Transformations.Core.Computation.DelayOutputAtLeast
+  name: DelayOutputAtLeast
+  nameWithType: Computation.DelayOutputAtLeast
+  fullName: NMF.Transformations.Core.Computation.DelayOutputAtLeast
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  name: Byte
+  nameWithType: Byte
+  fullName: System.Byte
+- uid: NMF.Transformations.Core.Computation.DelayTransformationAtLeast*
+  commentId: Overload:NMF.Transformations.Core.Computation.DelayTransformationAtLeast
+  name: DelayTransformationAtLeast
+  nameWithType: Computation.DelayTransformationAtLeast
+  fullName: NMF.Transformations.Core.Computation.DelayTransformationAtLeast
+- uid: NMF.Transformations.Core.Computation.OutputInitialized
+  commentId: E:NMF.Transformations.Core.Computation.OutputInitialized
+  parent: NMF.Transformations.Core.Computation
+  name: OutputInitialized
+  nameWithType: Computation.OutputInitialized
+  fullName: NMF.Transformations.Core.Computation.OutputInitialized
+- uid: NMF.Transformations.Core.Computation.OnOutputInitialized*
+  commentId: Overload:NMF.Transformations.Core.Computation.OnOutputInitialized
+  name: OnOutputInitialized
+  nameWithType: Computation.OnOutputInitialized
+  fullName: NMF.Transformations.Core.Computation.OnOutputInitialized
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: NMF.Transformations.Core.Computation.IsDelayed*
+  commentId: Overload:NMF.Transformations.Core.Computation.IsDelayed
+  name: IsDelayed
+  nameWithType: Computation.IsDelayed
+  fullName: NMF.Transformations.Core.Computation.IsDelayed
+- uid: NMF.Transformations.Core.Computation.Computed
+  commentId: E:NMF.Transformations.Core.Computation.Computed
+  parent: NMF.Transformations.Core.Computation
+  name: Computed
+  nameWithType: Computation.Computed
+  fullName: NMF.Transformations.Core.Computation.Computed
+- uid: NMF.Transformations.Core.Computation.OnComputed*
+  commentId: Overload:NMF.Transformations.Core.Computation.OnComputed
+  name: OnComputed
+  nameWithType: Computation.OnComputed
+  fullName: NMF.Transformations.Core.Computation.OnComputed
+- uid: NMF.Transformations.Core.Computation.Transform*
+  commentId: Overload:NMF.Transformations.Core.Computation.Transform
+  name: Transform
+  nameWithType: Computation.Transform
+  fullName: NMF.Transformations.Core.Computation.Transform
+- uid: NMF.Transformations.Core.Computation.CreateOutput*
+  commentId: Overload:NMF.Transformations.Core.Computation.CreateOutput
+  name: CreateOutput
+  nameWithType: Computation.CreateOutput
+  fullName: NMF.Transformations.Core.Computation.CreateOutput
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+- uid: NMF.Transformations.Core.Computation.InitializeOutput*
+  commentId: Overload:NMF.Transformations.Core.Computation.InitializeOutput
+  name: InitializeOutput
+  nameWithType: Computation.InitializeOutput
+  fullName: NMF.Transformations.Core.Computation.InitializeOutput
+- uid: NMF.Transformations.Core.Computation.SetBaseComputation*
+  commentId: Overload:NMF.Transformations.Core.Computation.SetBaseComputation
+  name: SetBaseComputation
+  nameWithType: Computation.SetBaseComputation
+  fullName: NMF.Transformations.Core.Computation.SetBaseComputation
+- uid: NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist*
+  commentId: Overload:NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist
+  name: IPersistor.Persist
+  nameWithType: Computation.IPersistor.Persist
+  fullName: NMF.Transformations.Core.Computation.NMF.Transformations.Core.IPersistor.Persist
+  nameWithType.vb: Computation.NMF.Transformations.Core.IPersistor.Persist
+  name.vb: NMF.Transformations.Core.IPersistor.Persist
+- uid: NMF.Transformations.Core.IPersistor.Persist(System.Object)
+  commentId: M:NMF.Transformations.Core.IPersistor.Persist(System.Object)
+  parent: NMF.Transformations.Core.IPersistor
+  isExternal: true
+  name: Persist(Object)
+  nameWithType: IPersistor.Persist(Object)
+  fullName: NMF.Transformations.Core.IPersistor.Persist(System.Object)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.IPersistor.Persist(System.Object)
+    name: Persist
+    nameWithType: IPersistor.Persist
+    fullName: NMF.Transformations.Core.IPersistor.Persist
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.IPersistor.Persist(System.Object)
+    name: Persist
+    nameWithType: IPersistor.Persist
+    fullName: NMF.Transformations.Core.IPersistor.Persist
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

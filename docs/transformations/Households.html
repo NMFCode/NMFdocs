@@ -69,37 +69,42 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="using-ntl-relational-households">Using NTL Relational: Households</h1>
 
-<p><strong>This tutorial is based on the <a href="Persons-to-FamilyRelations">Persons to FamilyRelations</a> tutorial. You may want to visit that one first, if you have not already done so.</strong></p>
+<p><strong>This tutorial is based on the <a href="Persons2FamilyRelations.html">Persons to FamilyRelations</a> tutorial. You may want to visit that one first, if you have not already done so.</strong></p>
 <p>In some cases it is necessary to transform elements based on rather complex patterns. NTL supports such patterns, where you can specify patterns using LINQ through the language extension NTL Relational.</p>
 <p>In the scenario of Persons and FamilyRelations, suppose you want to find households. A household may be represented by a person of at leats 18 years plus his spouse, if any. To find these households, we match males and females and check whether they are spouses. Note that this is a very inefficient solution, but in practice, it happens from time to time that one needs to create matches and this is only a tutorial.</p>
 <p>To implement this with NTL Relations, add the following code:</p>
-<p>{code:c#}
-public class Households : TransformationRule&lt;Ps.Person, Ps.Person, Households&gt;
+<blockquote>
+</blockquote>
+<pre><code class="lang-csharp">public class Households : TransformationRule&lt;Ps.Person, Ps.Person, Households&gt;
 {
-public override void RegisterDependencies()
-{
-var possibleMoms = Rule<person2female>().ToComputationSource(
-allowNull: true,
-filter: c =&gt; c.Input.Age &gt;= 18);
-var possibleDads = Rule<person2male>().ToComputationSource(
-allowNull: true,
-filter: c =&gt; c.Input.Age &gt;= 18);<p>
-<pre><code>      WithPattern(from mom in possibleMoms
-                  from dad in possibleDads
-                  where mom.Input.Spouse == dad.Input
-                  select Tuple.Create(mom.Input, dad.Input));
-  }
+      public override void RegisterDependencies()
+      {
+          var possibleMoms = Rule&lt;Person2Female&gt;().ToComputationSource(
+              allowNull: true,
+              filter: c =&gt; c.Input.Age &gt;= 18);
+          var possibleDads = Rule&lt;Person2Male&gt;().ToComputationSource(
+              allowNull: true,
+              filter: c =&gt; c.Input.Age &gt;= 18);
+
+          WithPattern(from mom in possibleMoms
+                      from dad in possibleDads
+                      where mom.Input.Spouse == dad.Input
+                      select Tuple.Create(mom.Input, dad.Input));
+      }
+}
 </code></pre>
-<p>}</p>
 <p>The advantage here is that we can call <em>Person2Person</em> for another model element in <em>Households</em> and the LINQ statement recognizes this as well considers it for the further matching.</p>
 <p>However, NTL Relations does not employ any query optimization technique, such as understanding that any <em>Female</em> model element can be part of at most one pair. What NTL does is really match all combinations of the specified sets (all computations of <em>Person2Female</em> where the age of the input Person object is at least 18, or null, and the <em>Male</em> elements respectively) and tries to match them.</p>
-</person2male></person2female></article>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NMFCode/NMFdocs/blob/master/transformations/Households.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

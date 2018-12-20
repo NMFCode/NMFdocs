@@ -69,9 +69,25 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="nmeta">NMeta</h1>
 
-<p>NMeta is the meta-metamodel used in NMF. It is inspired by Ecore, the meta-metamodel used in <a href="http://www.eclipse.org/modeling/emf/">EMF</a>, but modified and extended in multiple ways to overcome Ecores limitations as well as to support platform specifics of the .NET platform (such as supports for structures and events).</p>
-<p><img src="NMeta_nMeta.PNG" alt=""></p>
-<p>An (almost) complete diagram of NMeta is shown above. For users of other meta-metamodels like Ecore, most of the above is well known, such as the concept of classes, namespaces (which is the packaging scheme) and types. However, there are a couple of noteworthy differences.</p>
+<p>NMF contains its own meta-metamodel called NMeta. NMeta is similar to Ecore
+but contains dedicated support for type system features widely used on the .NET
+platform such as structures or events. Furthermore, it also supports an extension
+mechanism closely related to stereotypes as well as refinements. The semantics
+of NMeta is clearly defined through a mapping to category theory. Though there
+is a high semantic overlap with the Essential Meta Object Facility (EMOF) standard, there are also some features that do not have a counterpart in NMeta, in
+particular factories and generic types.</p>
+<p>However, since Ecore is the meta-metamodel most often used in MDE, NMF
+contains a model transformation from Ecore to NMeta. This transformation is
+based on the extensible Model Transformation Language <a href="../transformations/index.html">NTL</a> and thus support for other types can be easily extended.</p>
+<p>The resulting NMeta metamodel is compliant with the original Ecore metamodel if the latter only contains basic structures (packages, classes, attributes
+and references). Here, compliant means that serialized instances of the original
+Ecore metamodel can be deserialized with the NMeta metamodel (if no custom
+XMI handlers are used) and vive versa. In particular, the XMI serialization of
+the metamodels is equivalent and the NMF serializer uses the same addressing
+scheme for cross references as the EMF serializer uses for Ecore.</p>
+<p>Similar to Ecore, NMeta is bootstrapped and the classes ModelElement and
+Model are the only ones with a custom implementation, the implementation of
+all other classes originate directly from the code generator.</p>
 <p>The most distinguishing features of NMeta are:</p>
 <ul>
 <li>Builtin addressing scheme (every model element has an absolute and a relative Uri)</li>
@@ -81,8 +97,8 @@
 </ul>
 <p>To get more details, the following wiki pages contain more details:</p>
 <ul>
-<li><a href="ModelElement">ModelElement</a></li>
-<li><a href="MetaElement">MetaElement</a></li>
+<li><a href="ModelElement.html">ModelElement</a></li>
+<li><a href="MetaElement.html">MetaElement</a></li>
 </ul>
 <p>More documentation, including especially how metamodels are generated to code will be coming soon.</p>
 </article>
@@ -92,6 +108,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NMFCode/NMFdocs/blob/master/models/NMeta.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

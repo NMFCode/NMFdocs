@@ -1,6 +1,6 @@
 # Using NTL Relational: Households
 
-**This tutorial is based on the [Persons to FamilyRelations](Persons-to-FamilyRelations) tutorial. You may want to visit that one first, if you have not already done so.**
+**This tutorial is based on the [Persons to FamilyRelations](Persons2FamilyRelations.md) tutorial. You may want to visit that one first, if you have not already done so.**
 
 In some cases it is necessary to transform elements based on rather complex patterns. NTL supports such patterns, where you can specify patterns using LINQ through the language extension NTL Relational.
 
@@ -8,7 +8,9 @@ In the scenario of Persons and FamilyRelations, suppose you want to find househo
 
 To implement this with NTL Relations, add the following code:
 
-{code:c#}
+
+>
+```csharp
 public class Households : TransformationRule<Ps.Person, Ps.Person, Households>
 {
       public override void RegisterDependencies()
@@ -26,6 +28,7 @@ public class Households : TransformationRule<Ps.Person, Ps.Person, Households>
                       select Tuple.Create(mom.Input, dad.Input));
       }
 }
+```
 
 The advantage here is that we can call _Person2Person_ for another model element in _Households_ and the LINQ statement recognizes this as well considers it for the further matching.
 

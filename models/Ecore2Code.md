@@ -1,5 +1,5 @@
 # Ecore2Code
-Ecore2Code is a small command line tool that generates model representation code for a specified Ecore metamodel. The code generation is currently based on _System.CodeDOM_. As a consequence, no language specific code as e.g. operator overloads is generated. The supported parameters of Ecore2Code are listed below with their explanations.
+Ecore2Code is a small command line tool that generates model representation code for a specified NMeta or Ecore metamodel(s). The code generation is currently based on _System.CodeDOM_. As a consequence, no language specific code as e.g. operator overloads is generated. The supported parameters of Ecore2Code are listed below with their explanations.
 
 ## -n, --namespace
 This parameter specifies the root namespace for the generated code. If no namespace argument is provided, the default namespace **"GeneratedCode"** is used.
@@ -18,3 +18,5 @@ This parameter determines whether each generated type should be separated in its
 
 ## -o, --output
 This parameter determines the output file (if the code is not separated) or folder. In case the code is separated, the code generator generates the least general common package into that folder.
+
+There might be other parameters that have been added to Ecore2Code since this documentation was last updated. You get a full list of parameters by just executing Ecore2Code without any parameters or pass the help verb.
