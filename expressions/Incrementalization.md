@@ -20,19 +20,20 @@ syntax tree is converted into a dynamic dependency graph on a high abstraction
 level. Changes of the model under analysis are then propagated through the
 dependency graph, ultimately updating the analysis result.
 
+```csharp
 var faultyPositions = from route in routes
         where route.Entry != null && route.Entry.Signal == Signal.GO
-3 from swP in route.Follows
-4 where swP.Switch.CurrentPosition != swP.Position
-5 select swP;
+        from swP in route.Follows
+        where swP.Switch.CurrentPosition != swP.Position
+        select swP;
+```
 
-As an example, consider the code in Listing 1, taken from the NMF solution
-of the TTC Train Benchmark [ 3]. NMF allows the user to specify queries like
+As an example, consider the code in `the listing above, taken from the NMF solution
+of the TTC Train Benchmark. NMF allows the user to specify queries like
 this in regular C# code with all of the tool support provided for this language
 and is able to implicitly deduct an incremental evaluation.
 
 The high abstraction level in the dynamic dependency graph is achieved by a
 manual incrementalization of analysis operators yielding valid results as a consequence of the underlying formalization as a categorial functor. NMF Expressions
 includes a library of such manually incrementalized operators, including most of
-the Standard Query Operators (SQO)4. As a consequence, developers can specify query analyses conveniently through the query syntax such as used in Listing
-1.
+the Standard Query Operators (SQO). As a consequence, developers can specify query analyses conveniently through the query syntax such as used in the listing above.

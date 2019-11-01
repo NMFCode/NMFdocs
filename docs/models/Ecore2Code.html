@@ -70,9 +70,11 @@
 <h1 id="ecore2code">Ecore2Code</h1>
 
 <p>Ecore2Code is a small command line tool that generates model representation code for a specified NMeta or Ecore metamodel(s). The code generation is currently based on <em>System.CodeDOM</em>. As a consequence, no language specific code as e.g. operator overloads is generated. The supported parameters of Ecore2Code are listed below with their explanations.</p>
-<h2 id="-n---namespace">-n, --namespace</h2>
+<h2 id="common-command-parameters">Common Command Parameters</h2>
+<p>The following lists the most common command-line parameters of Ecore2Code.</p>
+<h3 id="-n---namespace">-n, --namespace</h3>
 <p>This parameter specifies the root namespace for the generated code. If no namespace argument is provided, the default namespace <strong>&quot;GeneratedCode&quot;</strong> is used.</p>
-<h2 id="-l---language">-l, --language</h2>
+<h3 id="-l---language">-l, --language</h3>
 <p>This parameter specifies the language, in which the code should be generated. The supported languages names are:</p>
 <ul>
 <li><strong>CS</strong> specifies C#. This is also the default.</li>
@@ -80,11 +82,35 @@
 <li><strong>FS</strong> specifies F#.</li>
 <li><strong>CPP</strong> specifies C++/CLI.</li>
 <li><strong>JS</strong> specifies JavaScript.NET.</li>
+<li><strong>PY</strong> specifies Python</li>
 </ul>
-<h2 id="-s---separate">-s, --separate</h2>
+<p>The Python support is still experimental.</p>
+<h3 id="-f---folder">-f, --folder</h3>
 <p>This parameter determines whether each generated type should be separated in its own code file. If this parameter is not set, the code is generated into a single file.</p>
-<h2 id="-o---output">-o, --output</h2>
+<h3 id="-o---output">-o, --output</h3>
 <p>This parameter determines the output file (if the code is not separated) or folder. In case the code is separated, the code generator generates the least general common package into that folder.</p>
+<h3 id="-m---metamodel">-m, --metamodel</h3>
+<p>Specify this argument if you want to serialize the NMeta metamodel generated from Ecore. If the input metamodel already is an NMeta metamodel, this parameter is ignored.</p>
+<h3 id="-r---resolve">-r, --resolve</h3>
+<p>A list of namespace remappings with optional code base namespace override in the syntax URI@baseNamespace=file, multiple entries separated by ';'.
+If your input metamodel contains references to another metamodel through a URI rather than a file reference, the code generator is by default not able to
+resolve these references (the code generator will not try to download the metamodel from the URI). Therefore, references have to be downloaded in advance.</p>
+<p>That is, if your metamodel contains a reference to a class with an absolute URI like <code>http://example.org/#Foo</code>, you have to specify a mapping <code>http://example.org=Example.nmeta</code> to instruct Ecore2Code to load the
+metamodel with the URI <code>http://example.org</code> from the given path <code>Example.nmeta</code>. Further, you can define a namespace that was used to generate code for said metamodel.</p>
+<h3 id="-i---input-only">-i, --input-only</h3>
+<p>If this parameter is specified, only code for the input files is generated. Otherwise, the code generator will generate code for the input files and
+referenced metamodels.</p>
+<h1 id="advanced-topics">Advanced Topics</h1>
+<p>The following parameters serve rather special needs.</p>
+<h3 id="-t---type-mapping">-t, --type-mapping</h3>
+<p>A list of type mappings in the syntax <code>&lt;Ecore Instance Class&gt;=&lt;.NET class&gt;</code>, multiple entries separated by ';'. This is used to customize the mapping from Ecore data types.
+By default, the code generator looks into the Java instance class and maps that to .NET classes. With a mapping information you give to the generator, you can modify this mapping to your will.</p>
+<h3 id="-p---primitive-types">-p, --primitive-types</h3>
+<p>If set, Ecore Data types are transformed to primitive types. Otherwise, data types are simply ignored.</p>
+<h3 id="-u---model-uri">-u, --model-uri</h3>
+<p>If specified, overrides the uri of the base package. Otherwise, the code generator will use the URI that is provided with the metamodel root element.</p>
+<h3 id="-x---force">-x, --force</h3>
+<p>If specified, the code is generated regardless of existing code. By default, the code generator will not regenerate existing code.</p>
 <p>There might be other parameters that have been added to Ecore2Code since this documentation was last updated. You get a full list of parameters by just executing Ecore2Code without any parameters or pass the help verb.</p>
 </article>
           </div>

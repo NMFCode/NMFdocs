@@ -25,7 +25,7 @@ Technically, NMF Transformations is a set of assemblies, **NMF.Transformations.d
 
 >
 ```powershell
-PM> Install-Package NMFTransformations
+PM> Install-Package NMF-Transformations
 ```
 
 Having installed NMF Transformations, you might want to see the [tutorials](TransformationTutorials.md). Alternatively, you can take a more top-down approach and start by reading the documentation for the core transformation framework [NMF Transformations Core](NMF-Transformations-Core.md).

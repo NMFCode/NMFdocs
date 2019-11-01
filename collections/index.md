@@ -8,7 +8,7 @@ The goal of NMF Collections is to provide a library of collection classes that a
 	* **ReadOnlyListSelection**: This class provides a readonly _IList<T>_ implementation given a list of items and a selector. Basically, this class can be used to maintain the _IList<T>_ interface when using the _Select_ Query operator.
 	* **ReadOnlyOrderedSet**: A read-only wrapper for ordered sets
 * In the namespace **NMF.Collections.ObjectModel**
-	* **ObservableList**: A thin layer upon _ObservableCollection<T>_ (which in fact is a list) implementing _INotifyCollection_ from the [Expressions](http://nmfexpressions.com) project
+	* **ObservableList**: A thin layer upon _ObservableCollection<T>_ (which in fact is a list) implementing _INotifyCollection_ from the [Expressions](../expressions/index.md) project
 	* **ObservableOrderedSet**: An observable implementation of an ordered set
 	* **ObservableReadOnlyOrderedSet**: A read-only wrapper for observable ordered sets
 	* **ObservableSet**: An implementation for observable hash sets

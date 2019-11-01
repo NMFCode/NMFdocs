@@ -22,6 +22,7 @@ The packages are:
 * [NMF Synchronizations](synchronizations/SynchronizationTutorials.md)
 
 Besides, there is a range of [solutions to various cases of the Transformation Tool Contest (TTC)](publications/ttc.md). They can serve to describe how to solve specific problems using NMF and each come with a GitHub repository that includes the code.
+Further, the [journal publications](publications/article.md) contain rich documentation on select topics. Lastly, the [PhD thesis of Georg Hinkel](https://dx.doi.org/10.5445/IR/1000084464) is probably the richest documentation available.
 
 ## Detailed Project information
 
