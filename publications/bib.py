@@ -61,7 +61,7 @@ def reorder(names, faname):
         if (len(namesplit) == 1):
             namesplit = namestring.rsplit(' ', 1)
             last = namesplit[-1].strip().strip('{}')
-            firsts = namesplit[:-2]
+            firsts = namesplit[:-1]
         else:
             last = namesplit[0].strip().strip('{}')
             firsts = [i.strip().strip('.') for i in namesplit[1].split()]
@@ -283,10 +283,11 @@ def main(argv):
                 year = ref["year"]
                 if year != pubyear:
                     pubyear = year
-                    write_year = '\n\n### {}\n'.format(year)
+                    write_year = '\n### {}\n'.format(year)
                     out_file.write(write_year)
 
                 out_file.write(format_entry(ref, faname))
+                out_file.write("\n\n")
 
 if __name__ == "__main__":
     import sys
