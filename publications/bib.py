@@ -138,7 +138,7 @@ def format_entry(ref, faname):
     elif "booktitle" in ref:
         reference += " in " + em + ref["booktitle"] + em
     elif ref["ENTRYTYPE"].lower() == "techreport":
-        reference += "Technical report, " + ref["publisher"]
+        reference += ", Technical report, " + ref["publisher"]
 
     if "pages" in ref:
         reference += ', pp. ' + ref["pages"].replace("--", "-")
