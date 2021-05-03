@@ -4,6 +4,8 @@ The .Net Modeling Framework (NMF) is a framework to support model-driven enginee
 
 > [!Video https://www.youtube.com/watch?v=NIMYuwTltVs&feature=youtu.be]
 
+If the video above does not work, [here is a direct link](https://www.youtube.com/watch?v=NIMYuwTltVs&feature=youtu.be) to a tutorial how to use NMF.
+
 ## NuGet Packages
 
 There are a range of NuGet-packages available that bundle some of the functionality of NMF. These packages are potentially more stable than the source code, but may not contain the latest features of NMF.
