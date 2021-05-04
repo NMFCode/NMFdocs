@@ -23,15 +23,16 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: XmiSerializationContext
     path: src/Models/Serialization/XMI/XmiSerializationEntity.cs
-    startLine: 9
+    startLine: 12
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization.Xmi
+  summary: "\nDenotes a deserialization context for XMI\n"
+  example: []
   syntax:
     content: 'public class XmiSerializationContext : XmlSerializationContext'
     content.vb: >-
       Public Class XmiSerializationContext
-
           Inherits XmlSerializationContext
   inheritance:
   - System.Object
@@ -39,21 +40,21 @@ items:
   derivedClasses:
   - NMF.Models.Repository.Serialization.ModelSerializationContext
   inheritedMembers:
-  - NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object)
   - NMF.Serialization.XmlSerializationContext.Cleanup
-  - NMF.Serialization.XmlSerializationContext.ContainsId(System.String,System.Type)
-  - NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,System.Type,System.Collections.Generic.IEnumerable{System.Object},System.Object)
-  - NMF.Serialization.XmlSerializationContext.Resolve(System.String,System.Type,System.Type,System.Boolean,System.Boolean,System.Object)
-  - NMF.Serialization.XmlSerializationContext.IsOppositeSet(System.Object,NMF.Serialization.IPropertySerializationInfo)
-  - NMF.Serialization.XmlSerializationContext.BlockOpposite(System.Object,NMF.Serialization.IPropertySerializationInfo)
+  - NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object,NMF.Serialization.ITypeSerializationInfo)
+  - NMF.Serialization.XmlSerializationContext.ContainsId(System.String,NMF.Serialization.ITypeSerializationInfo)
+  - NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,NMF.Serialization.ITypeSerializationInfo,System.Collections.Generic.IEnumerable{System.Object},System.Object)
+  - NMF.Serialization.XmlSerializationContext.Resolve(System.String,NMF.Serialization.ITypeSerializationInfo,System.Type,System.Boolean,System.Object)
+  - NMF.Serialization.XmlSerializationContext.IsBlocked(System.Object,NMF.Serialization.IPropertySerializationInfo)
+  - NMF.Serialization.XmlSerializationContext.BlockProperty(System.Object,NMF.Serialization.IPropertySerializationInfo)
   - NMF.Serialization.XmlSerializationContext.Root
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -78,15 +79,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Models/Serialization/XMI/XmiSerializationEntity.cs
-    startLine: 11
+    startLine: 18
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization.Xmi
+  summary: "\nCreates a new instance\n"
+  example: []
   syntax:
     content: public XmiSerializationContext(object root)
     parameters:
     - id: root
       type: System.Object
+      description: the root object of the deserialization
     content.vb: Public Sub New(root As Object)
   overload: NMF.Serialization.Xmi.XmiSerializationContext.#ctor*
   modifiers.csharp:
@@ -111,17 +115,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetId
     path: src/Models/Serialization/XMI/XmiSerializationEntity.cs
-    startLine: 15
+    startLine: 27
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization.Xmi
+  summary: "\nGets the identifier of the given object\n"
+  example: []
   syntax:
     content: public string GetId(object input)
     parameters:
     - id: input
       type: System.Object
+      description: the object
     return:
       type: System.String
+      description: the objects identifier
     content.vb: Public Function GetId(input As Object) As String
   overload: NMF.Serialization.Xmi.XmiSerializationContext.GetId*
   modifiers.csharp:
@@ -146,17 +154,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetId
     path: src/Models/Serialization/XMI/XmiSerializationEntity.cs
-    startLine: 26
+    startLine: 43
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization.Xmi
+  summary: "\nSets the identifier of the given object\n"
+  example: []
   syntax:
     content: public void SetId(object input, string id)
     parameters:
     - id: input
       type: System.Object
+      description: the object
     - id: id
       type: System.String
+      description: the identifier
     content.vb: Public Sub SetId(input As Object, id As String)
   overload: NMF.Serialization.Xmi.XmiSerializationContext.SetId*
   modifiers.csharp:
@@ -181,10 +193,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IDs
     path: src/Models/Serialization/XMI/XmiSerializationEntity.cs
-    startLine: 38
+    startLine: 58
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization.Xmi
+  summary: "\nGets the stored identfiers\n"
+  example: []
   syntax:
     content: public IEnumerable<KeyValuePair<string, object>> IDs { get; }
     parameters: []
@@ -217,61 +231,6 @@ references:
   name: XmlSerializationContext
   nameWithType: XmlSerializationContext
   fullName: NMF.Serialization.XmlSerializationContext
-- uid: NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object)
-  commentId: M:NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object)
-  parent: NMF.Serialization.XmlSerializationContext
-  isExternal: true
-  name: RegisterId(String, Object)
-  nameWithType: XmlSerializationContext.RegisterId(String, Object)
-  fullName: NMF.Serialization.XmlSerializationContext.RegisterId(System.String, System.Object)
-  spec.csharp:
-  - uid: NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object)
-    name: RegisterId
-    nameWithType: XmlSerializationContext.RegisterId
-    fullName: NMF.Serialization.XmlSerializationContext.RegisterId
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object)
-    name: RegisterId
-    nameWithType: XmlSerializationContext.RegisterId
-    fullName: NMF.Serialization.XmlSerializationContext.RegisterId
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Serialization.XmlSerializationContext.Cleanup
   commentId: M:NMF.Serialization.XmlSerializationContext.Cleanup
   parent: NMF.Serialization.XmlSerializationContext
@@ -300,18 +259,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Serialization.XmlSerializationContext.ContainsId(System.String,System.Type)
-  commentId: M:NMF.Serialization.XmlSerializationContext.ContainsId(System.String,System.Type)
+- uid: NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object,NMF.Serialization.ITypeSerializationInfo)
+  commentId: M:NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object,NMF.Serialization.ITypeSerializationInfo)
   parent: NMF.Serialization.XmlSerializationContext
   isExternal: true
-  name: ContainsId(String, Type)
-  nameWithType: XmlSerializationContext.ContainsId(String, Type)
-  fullName: NMF.Serialization.XmlSerializationContext.ContainsId(System.String, System.Type)
+  name: RegisterId(String, Object, ITypeSerializationInfo)
+  nameWithType: XmlSerializationContext.RegisterId(String, Object, ITypeSerializationInfo)
+  fullName: NMF.Serialization.XmlSerializationContext.RegisterId(System.String, System.Object, NMF.Serialization.ITypeSerializationInfo)
   spec.csharp:
-  - uid: NMF.Serialization.XmlSerializationContext.ContainsId(System.String,System.Type)
-    name: ContainsId
-    nameWithType: XmlSerializationContext.ContainsId
-    fullName: NMF.Serialization.XmlSerializationContext.ContainsId
+  - uid: NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object,NMF.Serialization.ITypeSerializationInfo)
+    name: RegisterId
+    nameWithType: XmlSerializationContext.RegisterId
+    fullName: NMF.Serialization.XmlSerializationContext.RegisterId
   - name: (
     nameWithType: (
     fullName: (
@@ -323,16 +282,61 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Type
-    name: Type
-    nameWithType: Type
-    fullName: System.Type
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Serialization.XmlSerializationContext.ContainsId(System.String,System.Type)
+  - uid: NMF.Serialization.XmlSerializationContext.RegisterId(System.String,System.Object,NMF.Serialization.ITypeSerializationInfo)
+    name: RegisterId
+    nameWithType: XmlSerializationContext.RegisterId
+    fullName: NMF.Serialization.XmlSerializationContext.RegisterId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Serialization.XmlSerializationContext.ContainsId(System.String,NMF.Serialization.ITypeSerializationInfo)
+  commentId: M:NMF.Serialization.XmlSerializationContext.ContainsId(System.String,NMF.Serialization.ITypeSerializationInfo)
+  parent: NMF.Serialization.XmlSerializationContext
+  isExternal: true
+  name: ContainsId(String, ITypeSerializationInfo)
+  nameWithType: XmlSerializationContext.ContainsId(String, ITypeSerializationInfo)
+  fullName: NMF.Serialization.XmlSerializationContext.ContainsId(System.String, NMF.Serialization.ITypeSerializationInfo)
+  spec.csharp:
+  - uid: NMF.Serialization.XmlSerializationContext.ContainsId(System.String,NMF.Serialization.ITypeSerializationInfo)
     name: ContainsId
     nameWithType: XmlSerializationContext.ContainsId
     fullName: NMF.Serialization.XmlSerializationContext.ContainsId
@@ -347,26 +351,48 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Type
-    name: Type
-    nameWithType: Type
-    fullName: System.Type
-    isExternal: true
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,System.Type,System.Collections.Generic.IEnumerable{System.Object},System.Object)
-  commentId: M:NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,System.Type,System.Collections.Generic.IEnumerable{System.Object},System.Object)
+  spec.vb:
+  - uid: NMF.Serialization.XmlSerializationContext.ContainsId(System.String,NMF.Serialization.ITypeSerializationInfo)
+    name: ContainsId
+    nameWithType: XmlSerializationContext.ContainsId
+    fullName: NMF.Serialization.XmlSerializationContext.ContainsId
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,NMF.Serialization.ITypeSerializationInfo,System.Collections.Generic.IEnumerable{System.Object},System.Object)
+  commentId: M:NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,NMF.Serialization.ITypeSerializationInfo,System.Collections.Generic.IEnumerable{System.Object},System.Object)
   parent: NMF.Serialization.XmlSerializationContext
   isExternal: true
-  name: OnNameClash(String, Type, IEnumerable<Object>, Object)
-  nameWithType: XmlSerializationContext.OnNameClash(String, Type, IEnumerable<Object>, Object)
-  fullName: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String, System.Type, System.Collections.Generic.IEnumerable<System.Object>, System.Object)
-  nameWithType.vb: XmlSerializationContext.OnNameClash(String, Type, IEnumerable(Of Object), Object)
-  fullName.vb: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String, System.Type, System.Collections.Generic.IEnumerable(Of System.Object), System.Object)
-  name.vb: OnNameClash(String, Type, IEnumerable(Of Object), Object)
+  name: OnNameClash(String, ITypeSerializationInfo, IEnumerable<Object>, Object)
+  nameWithType: XmlSerializationContext.OnNameClash(String, ITypeSerializationInfo, IEnumerable<Object>, Object)
+  fullName: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String, NMF.Serialization.ITypeSerializationInfo, System.Collections.Generic.IEnumerable<System.Object>, System.Object)
+  nameWithType.vb: XmlSerializationContext.OnNameClash(String, ITypeSerializationInfo, IEnumerable(Of Object), Object)
+  fullName.vb: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String, NMF.Serialization.ITypeSerializationInfo, System.Collections.Generic.IEnumerable(Of System.Object), System.Object)
+  name.vb: OnNameClash(String, ITypeSerializationInfo, IEnumerable(Of Object), Object)
   spec.csharp:
-  - uid: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,System.Type,System.Collections.Generic.IEnumerable{System.Object},System.Object)
+  - uid: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,NMF.Serialization.ITypeSerializationInfo,System.Collections.Generic.IEnumerable{System.Object},System.Object)
     name: OnNameClash
     nameWithType: XmlSerializationContext.OnNameClash
     fullName: NMF.Serialization.XmlSerializationContext.OnNameClash
@@ -381,11 +407,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Type
-    name: Type
-    nameWithType: Type
-    fullName: System.Type
-    isExternal: true
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -417,7 +442,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,System.Type,System.Collections.Generic.IEnumerable{System.Object},System.Object)
+  - uid: NMF.Serialization.XmlSerializationContext.OnNameClash(System.String,NMF.Serialization.ITypeSerializationInfo,System.Collections.Generic.IEnumerable{System.Object},System.Object)
     name: OnNameClash
     nameWithType: XmlSerializationContext.OnNameClash
     fullName: NMF.Serialization.XmlSerializationContext.OnNameClash
@@ -432,11 +457,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Type
-    name: Type
-    nameWithType: Type
-    fullName: System.Type
-    isExternal: true
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -467,15 +491,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Serialization.XmlSerializationContext.Resolve(System.String,System.Type,System.Type,System.Boolean,System.Boolean,System.Object)
-  commentId: M:NMF.Serialization.XmlSerializationContext.Resolve(System.String,System.Type,System.Type,System.Boolean,System.Boolean,System.Object)
+- uid: NMF.Serialization.XmlSerializationContext.Resolve(System.String,NMF.Serialization.ITypeSerializationInfo,System.Type,System.Boolean,System.Object)
+  commentId: M:NMF.Serialization.XmlSerializationContext.Resolve(System.String,NMF.Serialization.ITypeSerializationInfo,System.Type,System.Boolean,System.Object)
   parent: NMF.Serialization.XmlSerializationContext
   isExternal: true
-  name: Resolve(String, Type, Type, Boolean, Boolean, Object)
-  nameWithType: XmlSerializationContext.Resolve(String, Type, Type, Boolean, Boolean, Object)
-  fullName: NMF.Serialization.XmlSerializationContext.Resolve(System.String, System.Type, System.Type, System.Boolean, System.Boolean, System.Object)
+  name: Resolve(String, ITypeSerializationInfo, Type, Boolean, Object)
+  nameWithType: XmlSerializationContext.Resolve(String, ITypeSerializationInfo, Type, Boolean, Object)
+  fullName: NMF.Serialization.XmlSerializationContext.Resolve(System.String, NMF.Serialization.ITypeSerializationInfo, System.Type, System.Boolean, System.Object)
   spec.csharp:
-  - uid: NMF.Serialization.XmlSerializationContext.Resolve(System.String,System.Type,System.Type,System.Boolean,System.Boolean,System.Object)
+  - uid: NMF.Serialization.XmlSerializationContext.Resolve(System.String,NMF.Serialization.ITypeSerializationInfo,System.Type,System.Boolean,System.Object)
     name: Resolve
     nameWithType: XmlSerializationContext.Resolve
     fullName: NMF.Serialization.XmlSerializationContext.Resolve
@@ -490,11 +514,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Type
-    name: Type
-    nameWithType: Type
-    fullName: System.Type
-    isExternal: true
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -502,14 +525,6 @@ references:
     name: Type
     nameWithType: Type
     fullName: System.Type
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -531,7 +546,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Serialization.XmlSerializationContext.Resolve(System.String,System.Type,System.Type,System.Boolean,System.Boolean,System.Object)
+  - uid: NMF.Serialization.XmlSerializationContext.Resolve(System.String,NMF.Serialization.ITypeSerializationInfo,System.Type,System.Boolean,System.Object)
     name: Resolve
     nameWithType: XmlSerializationContext.Resolve
     fullName: NMF.Serialization.XmlSerializationContext.Resolve
@@ -546,11 +561,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Type
-    name: Type
-    nameWithType: Type
-    fullName: System.Type
-    isExternal: true
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -570,14 +584,6 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
   - uid: System.Object
     name: Object
     nameWithType: Object
@@ -586,18 +592,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Serialization.XmlSerializationContext.IsOppositeSet(System.Object,NMF.Serialization.IPropertySerializationInfo)
-  commentId: M:NMF.Serialization.XmlSerializationContext.IsOppositeSet(System.Object,NMF.Serialization.IPropertySerializationInfo)
+- uid: NMF.Serialization.XmlSerializationContext.IsBlocked(System.Object,NMF.Serialization.IPropertySerializationInfo)
+  commentId: M:NMF.Serialization.XmlSerializationContext.IsBlocked(System.Object,NMF.Serialization.IPropertySerializationInfo)
   parent: NMF.Serialization.XmlSerializationContext
   isExternal: true
-  name: IsOppositeSet(Object, IPropertySerializationInfo)
-  nameWithType: XmlSerializationContext.IsOppositeSet(Object, IPropertySerializationInfo)
-  fullName: NMF.Serialization.XmlSerializationContext.IsOppositeSet(System.Object, NMF.Serialization.IPropertySerializationInfo)
+  name: IsBlocked(Object, IPropertySerializationInfo)
+  nameWithType: XmlSerializationContext.IsBlocked(Object, IPropertySerializationInfo)
+  fullName: NMF.Serialization.XmlSerializationContext.IsBlocked(System.Object, NMF.Serialization.IPropertySerializationInfo)
   spec.csharp:
-  - uid: NMF.Serialization.XmlSerializationContext.IsOppositeSet(System.Object,NMF.Serialization.IPropertySerializationInfo)
-    name: IsOppositeSet
-    nameWithType: XmlSerializationContext.IsOppositeSet
-    fullName: NMF.Serialization.XmlSerializationContext.IsOppositeSet
+  - uid: NMF.Serialization.XmlSerializationContext.IsBlocked(System.Object,NMF.Serialization.IPropertySerializationInfo)
+    name: IsBlocked
+    nameWithType: XmlSerializationContext.IsBlocked
+    fullName: NMF.Serialization.XmlSerializationContext.IsBlocked
   - name: (
     nameWithType: (
     fullName: (
@@ -617,10 +623,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Serialization.XmlSerializationContext.IsOppositeSet(System.Object,NMF.Serialization.IPropertySerializationInfo)
-    name: IsOppositeSet
-    nameWithType: XmlSerializationContext.IsOppositeSet
-    fullName: NMF.Serialization.XmlSerializationContext.IsOppositeSet
+  - uid: NMF.Serialization.XmlSerializationContext.IsBlocked(System.Object,NMF.Serialization.IPropertySerializationInfo)
+    name: IsBlocked
+    nameWithType: XmlSerializationContext.IsBlocked
+    fullName: NMF.Serialization.XmlSerializationContext.IsBlocked
   - name: (
     nameWithType: (
     fullName: (
@@ -639,18 +645,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Serialization.XmlSerializationContext.BlockOpposite(System.Object,NMF.Serialization.IPropertySerializationInfo)
-  commentId: M:NMF.Serialization.XmlSerializationContext.BlockOpposite(System.Object,NMF.Serialization.IPropertySerializationInfo)
+- uid: NMF.Serialization.XmlSerializationContext.BlockProperty(System.Object,NMF.Serialization.IPropertySerializationInfo)
+  commentId: M:NMF.Serialization.XmlSerializationContext.BlockProperty(System.Object,NMF.Serialization.IPropertySerializationInfo)
   parent: NMF.Serialization.XmlSerializationContext
   isExternal: true
-  name: BlockOpposite(Object, IPropertySerializationInfo)
-  nameWithType: XmlSerializationContext.BlockOpposite(Object, IPropertySerializationInfo)
-  fullName: NMF.Serialization.XmlSerializationContext.BlockOpposite(System.Object, NMF.Serialization.IPropertySerializationInfo)
+  name: BlockProperty(Object, IPropertySerializationInfo)
+  nameWithType: XmlSerializationContext.BlockProperty(Object, IPropertySerializationInfo)
+  fullName: NMF.Serialization.XmlSerializationContext.BlockProperty(System.Object, NMF.Serialization.IPropertySerializationInfo)
   spec.csharp:
-  - uid: NMF.Serialization.XmlSerializationContext.BlockOpposite(System.Object,NMF.Serialization.IPropertySerializationInfo)
-    name: BlockOpposite
-    nameWithType: XmlSerializationContext.BlockOpposite
-    fullName: NMF.Serialization.XmlSerializationContext.BlockOpposite
+  - uid: NMF.Serialization.XmlSerializationContext.BlockProperty(System.Object,NMF.Serialization.IPropertySerializationInfo)
+    name: BlockProperty
+    nameWithType: XmlSerializationContext.BlockProperty
+    fullName: NMF.Serialization.XmlSerializationContext.BlockProperty
   - name: (
     nameWithType: (
     fullName: (
@@ -670,10 +676,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Serialization.XmlSerializationContext.BlockOpposite(System.Object,NMF.Serialization.IPropertySerializationInfo)
-    name: BlockOpposite
-    nameWithType: XmlSerializationContext.BlockOpposite
-    fullName: NMF.Serialization.XmlSerializationContext.BlockOpposite
+  - uid: NMF.Serialization.XmlSerializationContext.BlockProperty(System.Object,NMF.Serialization.IPropertySerializationInfo)
+    name: BlockProperty
+    nameWithType: XmlSerializationContext.BlockProperty
+    fullName: NMF.Serialization.XmlSerializationContext.BlockProperty
   - name: (
     nameWithType: (
     fullName: (
@@ -698,37 +704,6 @@ references:
   name: Root
   nameWithType: XmlSerializationContext.Root
   fullName: NMF.Serialization.XmlSerializationContext.Root
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -807,63 +782,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -970,6 +888,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (

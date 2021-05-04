@@ -2,7 +2,7 @@
 
 The .Net Modeling Framework (NMF) is a framework to support model-driven engineering using .NET technologies. It consists of several subprojects that ease various model-driven tasks, such as generating code for model representation, or languages to support model transformation, synchronization and optimization.
 
-> [!Video https://www.youtube.com/watch?v=NIMYuwTltVs&feature=youtu.be]
+> [!Video https://www.youtube.com/embed/NIMYuwTltVs]
 
 If the video above does not work, [here is a direct link](https://www.youtube.com/watch?v=NIMYuwTltVs&feature=youtu.be) to a tutorial how to use NMF.
 

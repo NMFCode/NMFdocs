@@ -7,6 +7,7 @@ items:
   children:
   - NMF.Models.Repository.ModelRepository.#ctor
   - NMF.Models.Repository.ModelRepository.#ctor(NMF.Models.Repository.IModelRepository)
+  - NMF.Models.Repository.ModelRepository.#ctor(NMF.Models.Repository.IModelRepository,NMF.Models.Repository.IModelSerializer,NMF.Models.Repository.IModelLocator[])
   - NMF.Models.Repository.ModelRepository.BubbledChange
   - NMF.Models.Repository.ModelRepository.Locators
   - NMF.Models.Repository.ModelRepository.Models
@@ -45,20 +46,19 @@ items:
     content: 'public class ModelRepository : IModelRepository'
     content.vb: >-
       Public Class ModelRepository
-
           Implements IModelRepository
   inheritance:
   - System.Object
   implements:
   - NMF.Models.Repository.IModelRepository
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -245,6 +245,52 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: NMF.Models.Repository.ModelRepository.#ctor(NMF.Models.Repository.IModelRepository,NMF.Models.Repository.IModelSerializer,NMF.Models.Repository.IModelLocator[])
+  commentId: M:NMF.Models.Repository.ModelRepository.#ctor(NMF.Models.Repository.IModelRepository,NMF.Models.Repository.IModelSerializer,NMF.Models.Repository.IModelLocator[])
+  id: '#ctor(NMF.Models.Repository.IModelRepository,NMF.Models.Repository.IModelSerializer,NMF.Models.Repository.IModelLocator[])'
+  parent: NMF.Models.Repository.ModelRepository
+  langs:
+  - csharp
+  - vb
+  name: ModelRepository(IModelRepository, IModelSerializer, IModelLocator[])
+  nameWithType: ModelRepository.ModelRepository(IModelRepository, IModelSerializer, IModelLocator[])
+  fullName: NMF.Models.Repository.ModelRepository.ModelRepository(NMF.Models.Repository.IModelRepository, NMF.Models.Repository.IModelSerializer, NMF.Models.Repository.IModelLocator[])
+  type: Constructor
+  source:
+    remote:
+      path: Models/Models/Repository/ModelRepository.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: .ctor
+    path: src/Models/Models/Repository/ModelRepository.cs
+    startLine: 52
+  assemblies:
+  - NMF.Models
+  namespace: NMF.Models.Repository
+  summary: "\nCreates a new model repository with a given parent\n"
+  remarks: If no parent repository is provided, the meta repository is used as parent repository
+  example: []
+  syntax:
+    content: public ModelRepository(IModelRepository parent, IModelSerializer serializer, params IModelLocator[] locators)
+    parameters:
+    - id: parent
+      type: NMF.Models.Repository.IModelRepository
+      description: The parent repository
+    - id: serializer
+      type: NMF.Models.Repository.IModelSerializer
+      description: A serializer object or null to use the default
+    - id: locators
+      type: NMF.Models.Repository.IModelLocator[]
+      description: A set of model locators
+    content.vb: Public Sub New(parent As IModelRepository, serializer As IModelSerializer, ParamArray locators As IModelLocator())
+  overload: NMF.Models.Repository.ModelRepository.#ctor*
+  nameWithType.vb: ModelRepository.ModelRepository(IModelRepository, IModelSerializer, IModelLocator())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Models.Repository.ModelRepository.ModelRepository(NMF.Models.Repository.IModelRepository, NMF.Models.Repository.IModelSerializer, NMF.Models.Repository.IModelLocator())
+  name.vb: ModelRepository(IModelRepository, IModelSerializer, IModelLocator())
 - uid: NMF.Models.Repository.ModelRepository.Resolve(System.Uri,System.Boolean)
   commentId: M:NMF.Models.Repository.ModelRepository.Resolve(System.Uri,System.Boolean)
   id: Resolve(System.Uri,System.Boolean)
@@ -263,7 +309,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 65
+    startLine: 73
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -310,7 +356,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 78
+    startLine: 86
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -358,7 +404,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 161
+    startLine: 168
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -397,7 +443,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Save
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 197
+    startLine: 204
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -436,7 +482,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Save
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 219
+    startLine: 226
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -478,7 +524,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Save
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 241
+    startLine: 248
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -520,7 +566,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnUnresolvedModelElement
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 261
+    startLine: 268
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -558,7 +604,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UnresolvedModelElement
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 269
+    startLine: 276
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -591,7 +637,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnBubbledChange
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 271
+    startLine: 278
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -626,7 +672,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: BubbledChange
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 276
+    startLine: 283
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -659,7 +705,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Models
     path: src/Models/Models/Repository/ModelRepository.cs
-    startLine: 301
+    startLine: 308
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Repository
@@ -699,37 +745,6 @@ references:
   name: IModelRepository
   nameWithType: IModelRepository
   fullName: NMF.Models.Repository.IModelRepository
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -808,63 +823,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -971,6 +929,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (
@@ -1097,6 +1143,30 @@ references:
   name: ModelRepository
   nameWithType: ModelRepository.ModelRepository
   fullName: NMF.Models.Repository.ModelRepository.ModelRepository
+- uid: NMF.Models.Repository.IModelLocator[]
+  isExternal: true
+  name: IModelLocator[]
+  nameWithType: IModelLocator[]
+  fullName: NMF.Models.Repository.IModelLocator[]
+  nameWithType.vb: IModelLocator()
+  fullName.vb: NMF.Models.Repository.IModelLocator()
+  name.vb: IModelLocator()
+  spec.csharp:
+  - uid: NMF.Models.Repository.IModelLocator
+    name: IModelLocator
+    nameWithType: IModelLocator
+    fullName: NMF.Models.Repository.IModelLocator
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: NMF.Models.Repository.IModelLocator
+    name: IModelLocator
+    nameWithType: IModelLocator
+    fullName: NMF.Models.Repository.IModelLocator
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: NMF.Models.Repository.ModelRepository.Resolve*
   commentId: Overload:NMF.Models.Repository.ModelRepository.Resolve
   name: Resolve

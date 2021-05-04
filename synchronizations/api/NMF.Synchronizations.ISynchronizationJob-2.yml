@@ -21,19 +21,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ISynchronizationJob
     path: src/Synchronizations/Synchronizations/SynchronizationJob.cs
-    startLine: 9
+    startLine: 14
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nDenotes a job that should be performed as part of a model synchronization\n"
+  example: []
   syntax:
-    content: >-
-      public interface ISynchronizationJob<TLeft, TRight>
-
-          where TLeft : class where TRight : class
+    content: public interface ISynchronizationJob<TLeft, TRight>
     typeParameters:
     - id: TLeft
+      description: The LHS type
     - id: TRight
-    content.vb: Public Interface ISynchronizationJob(Of TLeft As Class, TRight As Class)
+      description: The RHS type
+    content.vb: Public Interface ISynchronizationJob(Of TLeft, TRight)
   nameWithType.vb: ISynchronizationJob(Of TLeft, TRight)
   modifiers.csharp:
   - public
@@ -61,10 +62,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsEarly
     path: src/Synchronizations/Synchronizations/SynchronizationJob.cs
-    startLine: 13
+    startLine: 19
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nTrue, if the job must be executed before any dependency, otherwise False\n"
+  example: []
   syntax:
     content: bool IsEarly { get; }
     parameters: []
@@ -96,21 +99,27 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Perform
     path: src/Synchronizations/Synchronizations/SynchronizationJob.cs
-    startLine: 15
+    startLine: 28
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nPerforms the job\n"
+  example: []
   syntax:
     content: IDisposable Perform(SynchronizationComputation<TLeft, TRight> computation, SynchronizationDirection direction, ISynchronizationContext context)
     parameters:
     - id: computation
       type: NMF.Synchronizations.SynchronizationComputation{{TLeft},{TRight}}
+      description: The correspondence
     - id: direction
       type: NMF.Synchronizations.SynchronizationDirection
+      description: The direction of the synchronization
     - id: context
       type: NMF.Synchronizations.ISynchronizationContext
+      description: The context of the synchronization
     return:
       type: System.IDisposable
+      description: A disposable that will be disposed once the correspondence is broken or null
     content.vb: Function Perform(computation As SynchronizationComputation(Of TLeft, TRight), direction As SynchronizationDirection, context As ISynchronizationContext) As IDisposable
   overload: NMF.Synchronizations.ISynchronizationJob`2.Perform*
   nameWithType.vb: ISynchronizationJob(Of TLeft, TRight).Perform(SynchronizationComputation(Of TLeft, TRight), SynchronizationDirection, ISynchronizationContext)

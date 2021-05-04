@@ -5,12 +5,10 @@ items:
   id: ISuccessorList
   parent: NMF.Expressions
   children:
-  - NMF.Expressions.ISuccessorList.Attached
   - NMF.Expressions.ISuccessorList.Count
-  - NMF.Expressions.ISuccessorList.Detached
+  - NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
   - NMF.Expressions.ISuccessorList.HasSuccessors
   - NMF.Expressions.ISuccessorList.IsAttached
-  - NMF.Expressions.ISuccessorList.Item(System.Int32)
   - NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
   - NMF.Expressions.ISuccessorList.SetDummy
   - NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable,System.Boolean)
@@ -34,15 +32,8 @@ items:
   - NMF.Expressions
   namespace: NMF.Expressions
   syntax:
-    content: 'public interface ISuccessorList : IEnumerable<INotifiable>, IEnumerable'
-    content.vb: >-
-      Public Interface ISuccessorList
-
-          Inherits IEnumerable(Of INotifiable)
-  inheritedMembers:
-  - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.GetEnumerator
-  extensionMethods:
-  - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
+    content: public interface ISuccessorList
+    content.vb: Public Interface ISuccessorList
   modifiers.csharp:
   - public
   - interface
@@ -82,44 +73,37 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: NMF.Expressions.ISuccessorList.Item(System.Int32)
-  commentId: P:NMF.Expressions.ISuccessorList.Item(System.Int32)
-  id: Item(System.Int32)
+- uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  commentId: M:NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  id: GetSuccessor(System.Int32)
   parent: NMF.Expressions.ISuccessorList
   langs:
   - csharp
   - vb
-  name: Item[Int32]
-  nameWithType: ISuccessorList.Item[Int32]
-  fullName: NMF.Expressions.ISuccessorList.Item[System.Int32]
-  type: Property
+  name: GetSuccessor(Int32)
+  nameWithType: ISuccessorList.GetSuccessor(Int32)
+  fullName: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  type: Method
   source:
     remote:
       path: Expressions/Expressions/Public/ISuccessorList.cs
       branch: master
       repo: https://github.com/NMFCode/NMF.git
-    id: this[]
+    id: GetSuccessor
     path: src/Expressions/Expressions/Public/ISuccessorList.cs
     startLine: 11
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
   syntax:
-    content: INotifiable this[int index] { get; }
+    content: INotifiable GetSuccessor(int index)
     parameters:
     - id: index
       type: System.Int32
     return:
       type: NMF.Expressions.INotifiable
-    content.vb: ReadOnly Property Item(index As Integer) As INotifiable
-  overload: NMF.Expressions.ISuccessorList.Item*
-  nameWithType.vb: ISuccessorList.Item(Int32)
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.ISuccessorList.Item(System.Int32)
-  name.vb: Item(Int32)
+    content.vb: Function GetSuccessor(index As Integer) As INotifiable
+  overload: NMF.Expressions.ISuccessorList.GetSuccessor*
 - uid: NMF.Expressions.ISuccessorList.HasSuccessors
   commentId: P:NMF.Expressions.ISuccessorList.HasSuccessors
   id: HasSuccessors
@@ -298,320 +282,12 @@ items:
     content: void UnsetAll()
     content.vb: Sub UnsetAll
   overload: NMF.Expressions.ISuccessorList.UnsetAll*
-- uid: NMF.Expressions.ISuccessorList.Attached
-  commentId: E:NMF.Expressions.ISuccessorList.Attached
-  id: Attached
-  parent: NMF.Expressions.ISuccessorList
-  langs:
-  - csharp
-  - vb
-  name: Attached
-  nameWithType: ISuccessorList.Attached
-  fullName: NMF.Expressions.ISuccessorList.Attached
-  type: Event
-  source:
-    remote:
-      path: Expressions/Expressions/Public/ISuccessorList.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: Attached
-    path: src/Expressions/Expressions/Public/ISuccessorList.cs
-    startLine: 25
-  assemblies:
-  - NMF.Expressions
-  namespace: NMF.Expressions
-  syntax:
-    content: event EventHandler Attached
-    return:
-      type: System.EventHandler
-    content.vb: Event Attached As EventHandler
-- uid: NMF.Expressions.ISuccessorList.Detached
-  commentId: E:NMF.Expressions.ISuccessorList.Detached
-  id: Detached
-  parent: NMF.Expressions.ISuccessorList
-  langs:
-  - csharp
-  - vb
-  name: Detached
-  nameWithType: ISuccessorList.Detached
-  fullName: NMF.Expressions.ISuccessorList.Detached
-  type: Event
-  source:
-    remote:
-      path: Expressions/Expressions/Public/ISuccessorList.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: Detached
-    path: src/Expressions/Expressions/Public/ISuccessorList.cs
-    startLine: 27
-  assemblies:
-  - NMF.Expressions
-  namespace: NMF.Expressions
-  syntax:
-    content: event EventHandler Detached
-    return:
-      type: System.EventHandler
-    content.vb: Event Detached As EventHandler
 references:
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
-- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.GetEnumerator
-  commentId: M:System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.GetEnumerator
-  parent: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
-  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
-  name: GetEnumerator()
-  nameWithType: IEnumerable<INotifiable>.GetEnumerator()
-  fullName: System.Collections.Generic.IEnumerable<NMF.Expressions.INotifiable>.GetEnumerator()
-  nameWithType.vb: IEnumerable(Of INotifiable).GetEnumerator()
-  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Expressions.INotifiable).GetEnumerator()
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
-    name: GetEnumerator
-    nameWithType: IEnumerable<INotifiable>.GetEnumerator
-    fullName: System.Collections.Generic.IEnumerable<NMF.Expressions.INotifiable>.GetEnumerator
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
-    name: GetEnumerator
-    nameWithType: IEnumerable(Of INotifiable).GetEnumerator
-    fullName: System.Collections.Generic.IEnumerable(Of NMF.Expressions.INotifiable).GetEnumerator
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
-  commentId: M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
-  parent: NMF.Expressions.Linq.ObservableExtensions
-  definition: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
-  name: WithUpdates<INotifiable>()
-  nameWithType: ObservableExtensions.WithUpdates<INotifiable>()
-  fullName: NMF.Expressions.Linq.ObservableExtensions.WithUpdates<NMF.Expressions.INotifiable>()
-  nameWithType.vb: ObservableExtensions.WithUpdates(Of INotifiable)()
-  fullName.vb: NMF.Expressions.Linq.ObservableExtensions.WithUpdates(Of NMF.Expressions.INotifiable)()
-  name.vb: WithUpdates(Of INotifiable)()
-  spec.csharp:
-  - uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
-    name: WithUpdates<INotifiable>
-    nameWithType: ObservableExtensions.WithUpdates<INotifiable>
-    fullName: NMF.Expressions.Linq.ObservableExtensions.WithUpdates<NMF.Expressions.INotifiable>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
-    name: WithUpdates(Of INotifiable)
-    nameWithType: ObservableExtensions.WithUpdates(Of INotifiable)
-    fullName: NMF.Expressions.Linq.ObservableExtensions.WithUpdates(Of NMF.Expressions.INotifiable)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
-  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
-  isExternal: true
-  name: GetEnumerator()
-  nameWithType: IEnumerable<T>.GetEnumerator()
-  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
-    name: GetEnumerator
-    nameWithType: IEnumerable<T>.GetEnumerator
-    fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
-    name: GetEnumerator
-    nameWithType: IEnumerable(Of T).GetEnumerator
-    fullName: System.Collections.Generic.IEnumerable(Of T).GetEnumerator
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
-  commentId: T:System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<INotifiable>
-  nameWithType: IEnumerable<INotifiable>
-  fullName: System.Collections.Generic.IEnumerable<NMF.Expressions.INotifiable>
-  nameWithType.vb: IEnumerable(Of INotifiable)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Expressions.INotifiable)
-  name.vb: IEnumerable(Of INotifiable)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
-  commentId: M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
-  isExternal: true
-  name: WithUpdates<T>(IEnumerable<T>)
-  nameWithType: ObservableExtensions.WithUpdates<T>(IEnumerable<T>)
-  fullName: NMF.Expressions.Linq.ObservableExtensions.WithUpdates<T>(System.Collections.Generic.IEnumerable<T>)
-  nameWithType.vb: ObservableExtensions.WithUpdates(Of T)(IEnumerable(Of T))
-  fullName.vb: NMF.Expressions.Linq.ObservableExtensions.WithUpdates(Of T)(System.Collections.Generic.IEnumerable(Of T))
-  name.vb: WithUpdates(Of T)(IEnumerable(Of T))
-  spec.csharp:
-  - uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
-    name: WithUpdates<T>
-    nameWithType: ObservableExtensions.WithUpdates<T>
-    fullName: NMF.Expressions.Linq.ObservableExtensions.WithUpdates<T>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
-    name: WithUpdates(Of T)
-    nameWithType: ObservableExtensions.WithUpdates(Of T)
-    fullName: NMF.Expressions.Linq.ObservableExtensions.WithUpdates(Of T)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.Linq.ObservableExtensions
-  commentId: T:NMF.Expressions.Linq.ObservableExtensions
-  parent: NMF.Expressions.Linq
-  name: ObservableExtensions
-  nameWithType: ObservableExtensions
-  fullName: NMF.Expressions.Linq.ObservableExtensions
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-- uid: NMF.Expressions.Linq
-  commentId: N:NMF.Expressions.Linq
-  name: NMF.Expressions.Linq
-  nameWithType: NMF.Expressions.Linq
-  fullName: NMF.Expressions.Linq
 - uid: NMF.Expressions.ISuccessorList.Count*
   commentId: Overload:NMF.Expressions.ISuccessorList.Count
   name: Count
@@ -630,11 +306,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: NMF.Expressions.ISuccessorList.Item*
-  commentId: Overload:NMF.Expressions.ISuccessorList.Item
-  name: Item
-  nameWithType: ISuccessorList.Item
-  fullName: NMF.Expressions.ISuccessorList.Item
+- uid: NMF.Expressions.ISuccessorList.GetSuccessor*
+  commentId: Overload:NMF.Expressions.ISuccessorList.GetSuccessor
+  name: GetSuccessor
+  nameWithType: ISuccessorList.GetSuccessor
+  fullName: NMF.Expressions.ISuccessorList.GetSuccessor
 - uid: NMF.Expressions.INotifiable
   commentId: T:NMF.Expressions.INotifiable
   parent: NMF.Expressions
@@ -678,10 +354,3 @@ references:
   name: UnsetAll
   nameWithType: ISuccessorList.UnsetAll
   fullName: NMF.Expressions.ISuccessorList.UnsetAll
-- uid: System.EventHandler
-  commentId: T:System.EventHandler
-  parent: System
-  isExternal: true
-  name: EventHandler
-  nameWithType: EventHandler
-  fullName: System.EventHandler

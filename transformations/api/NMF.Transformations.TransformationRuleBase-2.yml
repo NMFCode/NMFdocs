@@ -85,15 +85,14 @@ items:
   summary: "\nDefines a transformation rule of a transformation that has one input argument and an output\n"
   example: []
   syntax:
-    content: 'public abstract class TransformationRuleBase<TIn, TOut> : GeneralTransformationRule<TIn> where TIn : class where TOut : class'
+    content: 'public abstract class TransformationRuleBase<TIn, TOut> : GeneralTransformationRule<TIn>'
     typeParameters:
     - id: TIn
       description: The type of the input argument
     - id: TOut
       description: The type of the output
     content.vb: >-
-      Public MustInherit Class TransformationRuleBase(Of TIn As Class, TOut As Class)
-
+      Public MustInherit Class TransformationRuleBase(Of TIn, TOut)
           Inherits GeneralTransformationRule(Of TIn)
   inheritance:
   - System.Object
@@ -106,7 +105,7 @@ items:
   - NMF.Transformations.GeneralTransformationRule{{TIn}}.MarkInstantiatingFor(NMF.Transformations.Core.GeneralTransformationRule,System.Predicate{{TIn}})
   - NMF.Transformations.GeneralTransformationRule{{TIn}}.Rule``1
   - NMF.Transformations.GeneralTransformationRule{{TIn}}.WithPattern(NMF.Transformations.ITransformationRulePattern{{TIn}})
-  - NMF.Transformations.GeneralTransformationRule{{TIn}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{{TIn}}})
+  - NMF.Transformations.GeneralTransformationRule{{TIn}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{{TIn}}})
   - NMF.Transformations.GeneralTransformationRule{{TIn}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{{TIn}}})
   - NMF.Transformations.GeneralTransformationRule{{TIn}}.RequireByType``1
   - NMF.Transformations.GeneralTransformationRule{{TIn}}.RequireByType``1(System.Func{{TIn},{TRequiredInput}})
@@ -192,19 +191,10 @@ items:
   - NMF.Transformations.Core.GeneralTransformationRule.MarkInstantiatingFor(NMF.Transformations.Core.GeneralTransformationRule,System.Predicate{NMF.Transformations.Core.Computation})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
-  extensionMethods:
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext)
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean)
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean)
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  - NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut)
   modifiers.csharp:
   - public
@@ -234,23 +224,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MarkInstantiatingFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 25
+    startLine: 23
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nMarks the current transformation rule instantiating for every rule with the specified signature\n"
   example: []
   syntax:
-    content: >-
-      public void MarkInstantiatingFor<TBaseIn, TBaseOut>()
-
-          where TBaseIn : class where TBaseOut : class
+    content: public void MarkInstantiatingFor<TBaseIn, TBaseOut>()
     typeParameters:
     - id: TBaseIn
       description: The input argument type of the base transformation rule
     - id: TBaseOut
       description: The output argument type of the base transformation rule
-    content.vb: Public Sub MarkInstantiatingFor(Of TBaseIn As Class, TBaseOut As Class)
+    content.vb: Public Sub MarkInstantiatingFor(Of TBaseIn, TBaseOut)
   overload: NMF.Transformations.TransformationRuleBase`2.MarkInstantiatingFor*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).MarkInstantiatingFor(Of TBaseIn, TBaseOut)()
   modifiers.csharp:
@@ -277,17 +264,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MarkInstantiatingFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 39
+    startLine: 34
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nMarks the current transformation rule instantiating for every rule with the specified signature\n"
   example: []
   syntax:
-    content: >-
-      public void MarkInstantiatingFor<TBaseIn, TBaseOut>(Predicate<TIn> filter)
-
-          where TBaseIn : class where TBaseOut : class
+    content: public void MarkInstantiatingFor<TBaseIn, TBaseOut>(Predicate<TIn> filter)
     parameters:
     - id: filter
       type: System.Predicate{{TIn}}
@@ -297,7 +281,7 @@ items:
       description: The input argument type of the base transformation rule
     - id: TBaseOut
       description: The output argument type of the base transformation rule
-    content.vb: Public Sub MarkInstantiatingFor(Of TBaseIn As Class, TBaseOut As Class)(filter As Predicate(Of TIn))
+    content.vb: Public Sub MarkInstantiatingFor(Of TBaseIn, TBaseOut)(filter As Predicate(Of TIn))
   overload: NMF.Transformations.TransformationRuleBase`2.MarkInstantiatingFor*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).MarkInstantiatingFor(Of TBaseIn, TBaseOut)(Predicate(Of TIn))
   modifiers.csharp:
@@ -324,7 +308,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 74
+    startLine: 66
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -332,10 +316,7 @@ items:
   remarks: This version Always takes the input parameter as input for the dependent transformations. Thus, this method will throw an exception, if the types do not match
   example: []
   syntax:
-    content: >-
-      public void RequireByType<TRequiredInput, TRequiredOutput>(Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void RequireByType<TRequiredInput, TRequiredOutput>(Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: persistor
       type: System.Action{{TOut},{TRequiredOutput}}
@@ -345,7 +326,7 @@ items:
       description: The input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub RequireByType(Of TRequiredInput As Class, TRequiredOutput As Class)(persistor As Action(Of TOut, TRequiredOutput))
+    content.vb: Public Sub RequireByType(Of TRequiredInput, TRequiredOutput)(persistor As Action(Of TOut, TRequiredOutput))
   overload: NMF.Transformations.TransformationRuleBase`2.RequireByType*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).RequireByType(Of TRequiredInput, TRequiredOutput)(Action(Of TOut, TRequiredOutput))
   modifiers.csharp:
@@ -372,7 +353,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 99
+    startLine: 88
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -380,10 +361,7 @@ items:
   remarks: This version Always takes the input parameter as input for the dependent transformations. Thus, this method will throw an exception, if the types do not match
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -398,7 +376,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -429,7 +407,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 117
+    startLine: 104
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -437,10 +415,7 @@ items:
   remarks: This version Always takes the input parameter as input for the dependent transformations. Thus, this method will throw an exception, if the types do not match
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Predicate<TIn> filter, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Predicate<TIn> filter, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -458,7 +433,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), filter As Predicate(Of TIn), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), filter As Predicate(Of TIn), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -489,17 +464,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 148
+    startLine: 132
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform items with the specified signature\n"
   example: []
   syntax:
-    content: >-
-      public void RequireByType<TRequiredInput, TRequiredOutput>(Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void RequireByType<TRequiredInput, TRequiredOutput>(Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: selector
       type: System.Func{{TIn},{TRequiredInput}}
@@ -512,7 +484,7 @@ items:
       description: The input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub RequireByType(Of TRequiredInput As Class, TRequiredOutput As Class)(selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput))
+    content.vb: Public Sub RequireByType(Of TRequiredInput, TRequiredOutput)(selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput))
   overload: NMF.Transformations.TransformationRuleBase`2.RequireByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -543,7 +515,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 173
+    startLine: 155
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -602,17 +574,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 194
+    startLine: 176
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -630,7 +599,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -664,17 +633,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 217
+    startLine: 196
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -697,7 +663,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -734,17 +700,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireManyByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 237
+    startLine: 212
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform S to T with all of the specified objects\n"
   example: []
   syntax:
-    content: >-
-      public void RequireManyByType<TRequiredInput, TRequiredOutput>(Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void RequireManyByType<TRequiredInput, TRequiredOutput>(Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{{TRequiredInput}}}
@@ -757,7 +720,7 @@ items:
       description: The input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub RequireManyByType(Of TRequiredInput As Class, TRequiredOutput As Class)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
+    content.vb: Public Sub RequireManyByType(Of TRequiredInput, TRequiredOutput)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
   overload: NMF.Transformations.TransformationRuleBase`2.RequireManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -788,17 +751,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireManyByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 258
+    startLine: 231
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform S to T with all of the specified objects\n"
   example: []
   syntax:
-    content: >-
-      public void RequireManyByType<TRequiredInput1, TRequiredInput2, TRequiredOutput>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void RequireManyByType<TRequiredInput1, TRequiredInput2, TRequiredOutput>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{System.Tuple{{TRequiredInput1},{TRequiredInput2}}}}
@@ -813,7 +773,7 @@ items:
       description: The second input argument type of the dependent transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub RequireManyByType(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
+    content.vb: Public Sub RequireManyByType(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
   overload: NMF.Transformations.TransformationRuleBase`2.RequireManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -844,17 +804,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 281
+    startLine: 251
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type with all of the specified inputs\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency RequireMany<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency RequireMany<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -872,7 +829,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function RequireMany(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
+    content.vb: Public Function RequireMany(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.RequireMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -906,17 +863,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 302
+    startLine: 269
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type with all of the specified inputs\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency RequireMany<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency RequireMany<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -936,7 +890,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function RequireMany(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
+    content.vb: Public Function RequireMany(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.RequireMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -970,7 +924,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 320
+    startLine: 283
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -978,10 +932,7 @@ items:
   remarks: This version Always takes the input parameter as input for the dependent transformations. Thus, this method will throw an exception, if the types do not match
   example: []
   syntax:
-    content: >-
-      public void CallByType<TRequiredInput, TRequiredOutput>(Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallByType<TRequiredInput, TRequiredOutput>(Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: persistor
       type: System.Action{{TOut},{TRequiredOutput}}
@@ -991,7 +942,7 @@ items:
       description: The input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub CallByType(Of TRequiredInput As Class, TRequiredOutput As Class)(persistor As Action(Of TOut, TRequiredOutput))
+    content.vb: Public Sub CallByType(Of TRequiredInput, TRequiredOutput)(persistor As Action(Of TOut, TRequiredOutput))
   overload: NMF.Transformations.TransformationRuleBase`2.CallByType*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).CallByType(Of TRequiredInput, TRequiredOutput)(Action(Of TOut, TRequiredOutput))
   modifiers.csharp:
@@ -1018,7 +969,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 344
+    startLine: 304
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1026,10 +977,7 @@ items:
   remarks: This version Always takes the input parameter as input for the dependent transformations. Thus, this method will throw an exception, if the types do not match
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Call<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -1044,7 +992,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1075,17 +1023,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 368
+    startLine: 325
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform items with the specified signature after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallByType<TRequiredInput, TRequiredOutput>(Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallByType<TRequiredInput, TRequiredOutput>(Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: selector
       type: System.Func{{TIn},{TRequiredInput}}
@@ -1098,7 +1043,7 @@ items:
       description: The input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub CallByType(Of TRequiredInput As Class, TRequiredOutput As Class)(selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput))
+    content.vb: Public Sub CallByType(Of TRequiredInput, TRequiredOutput)(selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput))
   overload: NMF.Transformations.TransformationRuleBase`2.CallByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1129,17 +1074,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 393
+    startLine: 348
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform items with the specified signature after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallByType<TRequiredInput1, TRequiredInput2, TRequiredOutput>(Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallByType<TRequiredInput1, TRequiredInput2, TRequiredOutput>(Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: selector1
       type: System.Func{{TIn},{TRequiredInput1}}
@@ -1157,7 +1099,7 @@ items:
       description: The second input argument type of the dependent transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub CallByType(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), persistor As Action(Of TOut, TRequiredOutput))
+    content.vb: Public Sub CallByType(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), persistor As Action(Of TOut, TRequiredOutput))
   overload: NMF.Transformations.TransformationRuleBase`2.CallByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1191,17 +1133,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 418
+    startLine: 370
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Call<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, TRequiredInput> selector, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -1219,7 +1158,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, TRequiredInput), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1253,17 +1192,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 441
+    startLine: 390
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -1286,7 +1222,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), persistor As Action(Of TOut, TRequiredOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1323,17 +1259,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 461
+    startLine: 406
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform S to T with all of the specified objects after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallManyByType<TRequiredInput, TRequiredOutput>(Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallManyByType<TRequiredInput, TRequiredOutput>(Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{{TRequiredInput}}}
@@ -1346,7 +1279,7 @@ items:
       description: The input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub CallManyByType(Of TRequiredInput As Class, TRequiredOutput As Class)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
+    content.vb: Public Sub CallManyByType(Of TRequiredInput, TRequiredOutput)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
   overload: NMF.Transformations.TransformationRuleBase`2.CallManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1377,17 +1310,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyByType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 482
+    startLine: 425
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform S to T with all of the specified objects after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallManyByType<TRequiredInput1, TRequiredInput2, TRequiredOutput>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallManyByType<TRequiredInput1, TRequiredInput2, TRequiredOutput>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{System.Tuple{{TRequiredInput1},{TRequiredInput2}}}}
@@ -1402,7 +1332,7 @@ items:
       description: The second input argument type of the dependent transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformations
-    content.vb: Public Sub CallManyByType(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
+    content.vb: Public Sub CallManyByType(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput)))
   overload: NMF.Transformations.TransformationRuleBase`2.CallManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1433,17 +1363,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 505
+    startLine: 445
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type with all of the specified inputs after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallMany<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency CallMany<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -1461,7 +1388,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallMany(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
+    content.vb: Public Function CallMany(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of TRequiredInput)), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -1495,17 +1422,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 526
+    startLine: 463
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type with all of the specified inputs after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallMany<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public ITransformationRuleDependency CallMany<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Action<TOut, IEnumerable<TRequiredOutput>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -1525,7 +1449,7 @@ items:
       description: The output type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallMany(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
+    content.vb: Public Function CallMany(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), persistor As Action(Of TOut, IEnumerable(Of TRequiredOutput))) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -1559,17 +1483,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 545
+    startLine: 478
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, TRequiredInput> selector)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency CallOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, TRequiredInput> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1582,7 +1503,7 @@ items:
       description: The input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallOutputSensitive(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, TRequiredInput)) As ITransformationRuleDependency
+    content.vb: Public Function CallOutputSensitive(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, TRequiredInput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -1616,17 +1537,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 561
+    startLine: 492
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, TRequiredInput> selector, Func<TIn, TOut, bool> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency CallOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, TRequiredInput> selector, Func<TIn, TOut, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1642,7 +1560,7 @@ items:
       description: The input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallOutputSensitive(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, TRequiredInput), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
+    content.vb: Public Function CallOutputSensitive(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, TRequiredInput), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -1676,17 +1594,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 580
+    startLine: 509
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, bool> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency CallOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1699,7 +1614,7 @@ items:
       description: The input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallOutputSensitive(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
+    content.vb: Public Function CallOutputSensitive(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -1730,17 +1645,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 603
+    startLine: 530
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, TRequiredInput1> selector1, Func<TIn, TOut, TRequiredInput2> selector2)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency CallOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, TRequiredInput1> selector1, Func<TIn, TOut, TRequiredInput2> selector2)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -1758,7 +1670,7 @@ items:
       description: The second input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TOut, TRequiredInput1), selector2 As Func(Of TIn, TOut, TRequiredInput2)) As ITransformationRuleDependency
+    content.vb: Public Function CallOutputSensitive(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TOut, TRequiredInput1), selector2 As Func(Of TIn, TOut, TRequiredInput2)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -1795,17 +1707,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 623
+    startLine: 547
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, TRequiredInput1> selector1, Func<TIn, TOut, TRequiredInput2> selector2, Func<TIn, TOut, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency CallOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, TRequiredInput1> selector1, Func<TIn, TOut, TRequiredInput2> selector2, Func<TIn, TOut, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -1826,7 +1735,7 @@ items:
       description: The second input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TOut, TRequiredInput1), selector2 As Func(Of TIn, TOut, TRequiredInput2), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
+    content.vb: Public Function CallOutputSensitive(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TOut, TRequiredInput1), selector2 As Func(Of TIn, TOut, TRequiredInput2), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -1863,7 +1772,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 642
+    startLine: 563
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1908,7 +1817,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 653
+    startLine: 574
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1956,17 +1865,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 671
+    startLine: 591
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule for all inputs, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, IEnumerable<TRequiredInput>> selector)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, IEnumerable<TRequiredInput>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1979,7 +1885,7 @@ items:
       description: The input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, IEnumerable(Of TRequiredInput))) As ITransformationRuleDependency
+    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, IEnumerable(Of TRequiredInput))) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallManyOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -2013,17 +1919,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 687
+    startLine: 605
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule for all inputs, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, IEnumerable<TRequiredInput>> selector, Func<TIn, TOut, bool> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TOut, IEnumerable<TRequiredInput>> selector, Func<TIn, TOut, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -2039,7 +1942,7 @@ items:
       description: The input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, IEnumerable(Of TRequiredInput)), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
+    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TOut, IEnumerable(Of TRequiredInput)), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallManyOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -2073,17 +1976,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 708
+    startLine: 624
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule for all inputs, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -2098,7 +1998,7 @@ items:
       description: The second input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, TOut, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2)))) As ITransformationRuleDependency
+    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, TOut, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2)))) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallManyOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -2132,17 +2032,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyOutputSensitive
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 726
+    startLine: 639
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule for all inputs, but no earlier than it created its output\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Func<TIn, TOut, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency CallManyOutputSensitive<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TOut, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Func<TIn, TOut, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -2160,7 +2057,7 @@ items:
       description: The second input argument for the called transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, TOut, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
+    content.vb: Public Function CallManyOutputSensitive(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, TOut, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), filter As Func(Of TIn, TOut, Boolean)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.CallManyOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -2194,7 +2091,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 747
+    startLine: 657
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2245,7 +2142,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 762
+    startLine: 672
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2254,7 +2151,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TIn> selector, Action<TOut, TRequiredOutput> persistor)
-
           where TRequiredInput : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -2305,7 +2201,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 778
+    startLine: 688
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2358,17 +2254,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 794
+    startLine: 704
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector, Action<TOut, TRequiredOutput> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallFor<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector, Action<TOut, TRequiredOutput> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -2386,7 +2279,7 @@ items:
       description: The second input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallFor(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn), persistor As Action(Of TOut, TRequiredOutput))
+    content.vb: Public Sub CallFor(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn), persistor As Action(Of TOut, TRequiredOutput))
   overload: NMF.Transformations.TransformationRuleBase`2.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2420,7 +2313,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 811
+    startLine: 718
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2474,17 +2367,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 830
+    startLine: 737
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TIn> selector, Action<TOut, TRequiredOutput> persistor, Predicate<TRequiredInput> filter)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallFor<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TIn> selector, Action<TOut, TRequiredOutput> persistor, Predicate<TRequiredInput> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -2503,7 +2393,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallFor(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TIn), persistor As Action(Of TOut, TRequiredOutput), filter As Predicate(Of TRequiredInput))
+    content.vb: Public Sub CallFor(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TIn), persistor As Action(Of TOut, TRequiredOutput), filter As Predicate(Of TRequiredInput))
   overload: NMF.Transformations.TransformationRuleBase`2.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2537,7 +2427,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 852
+    startLine: 756
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2593,17 +2483,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 872
+    startLine: 776
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector, Action<TOut, TRequiredOutput> persistor, Func<TRequiredInput1, TRequiredInput2, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallFor<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector, Action<TOut, TRequiredOutput> persistor, Func<TRequiredInput1, TRequiredInput2, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -2624,7 +2511,7 @@ items:
       description: The second input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallFor(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn), persistor As Action(Of TOut, TRequiredOutput), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean))
+    content.vb: Public Sub CallFor(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn), persistor As Action(Of TOut, TRequiredOutput), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean))
   overload: NMF.Transformations.TransformationRuleBase`2.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2658,7 +2545,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 894
+    startLine: 794
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2709,17 +2596,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 911
+    startLine: 811
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallForEach<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -2735,7 +2619,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallForEach(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, IEnumerable(Of TIn)), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
+    content.vb: Public Sub CallForEach(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, IEnumerable(Of TIn)), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
   overload: NMF.Transformations.TransformationRuleBase`2.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -2769,7 +2653,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 928
+    startLine: 826
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2823,17 +2707,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 948
+    startLine: 846
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector, Predicate<TRequiredInput> filter, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallForEach<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector, Predicate<TRequiredInput> filter, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -2852,7 +2733,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallForEach(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, IEnumerable(Of TIn)), filter As Predicate(Of TRequiredInput), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
+    content.vb: Public Sub CallForEach(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, IEnumerable(Of TIn)), filter As Predicate(Of TRequiredInput), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
   overload: NMF.Transformations.TransformationRuleBase`2.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -2886,7 +2767,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 970
+    startLine: 865
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2939,17 +2820,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 988
+    startLine: 883
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallForEach<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -2967,7 +2845,7 @@ items:
       description: The second input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallForEach(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
+    content.vb: Public Sub CallForEach(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
   overload: NMF.Transformations.TransformationRuleBase`2.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -3001,7 +2879,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1007
+    startLine: 899
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3057,17 +2935,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1028
+    startLine: 920
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the specified signature is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallForEach<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter, Action<TRequiredOutput, IEnumerable<TOut>> persistor)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -3088,7 +2963,7 @@ items:
       description: The second input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the source transformation rule
-    content.vb: Public Sub CallForEach(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
+    content.vb: Public Sub CallForEach(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean), persistor As Action(Of TRequiredOutput, IEnumerable(Of TOut)))
   overload: NMF.Transformations.TransformationRuleBase`2.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -3122,7 +2997,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OutputType
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1044
+    startLine: 932
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3166,7 +3041,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SelectArrays
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1061
+    startLine: 948
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3174,16 +3049,14 @@ items:
   remarks: This method is used as helper function for DependMany. This version is output sensitive. Use it only with the needOutput-parameter of DependMany set to true!
   example: []
   syntax:
-    content: >-
-      protected static IEnumerable<object[]> SelectArrays<TRequiredInput1, TRequiredInput2>(Func<TIn, TOut, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Computation computation)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: protected static IEnumerable<object[]> SelectArrays<TRequiredInput1, TRequiredInput2>(Func<TIn, TOut, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector, Computation computation)
     parameters:
     - id: selector
       type: System.Func{{TIn},{TOut},System.Collections.Generic.IEnumerable{System.Tuple{{TRequiredInput1},{TRequiredInput2}}}}
       description: The source selector that selects the output of dependant transformation rules as typed tuples
     - id: computation
       type: NMF.Transformations.Core.Computation
+      description: The computation from which the arrays are selected
     typeParameters:
     - id: TRequiredInput1
       description: The first type argument of the selector output tuple
@@ -3192,7 +3065,7 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{System.Object[]}
       description: A collection of inputs for other transformation rules
-    content.vb: Protected Shared Function SelectArrays(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(selector As Func(Of TIn, TOut, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), computation As Computation) As IEnumerable(Of Object())
+    content.vb: Protected Shared Function SelectArrays(Of TRequiredInput1, TRequiredInput2)(selector As Func(Of TIn, TOut, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))), computation As Computation) As IEnumerable(Of Object())
   overload: NMF.Transformations.TransformationRuleBase`2.SelectArrays*
   exceptions:
   - type: System.ArgumentNullException
@@ -3228,7 +3101,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SelectArrays
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1090
+    startLine: 974
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3236,23 +3109,21 @@ items:
   remarks: This method is used as helper function for DependMany. This version is output sensitive. Use it only with the needOutput-parameter of DependMany set to true!
   example: []
   syntax:
-    content: >-
-      protected static IEnumerable<object[]> SelectArrays<TRequiredInput>(Func<TIn, TOut, IEnumerable<TRequiredInput>> selector, Computation computation)
-
-          where TRequiredInput : class
+    content: protected static IEnumerable<object[]> SelectArrays<TRequiredInput>(Func<TIn, TOut, IEnumerable<TRequiredInput>> selector, Computation computation)
     parameters:
     - id: selector
       type: System.Func{{TIn},{TOut},System.Collections.Generic.IEnumerable{{TRequiredInput}}}
       description: The source selector that selects the output of dependant transformation rules as typed tuples
     - id: computation
       type: NMF.Transformations.Core.Computation
+      description: The computation from which the arrays are selected
     typeParameters:
     - id: TRequiredInput
       description: The type argument of the selector output
     return:
       type: System.Collections.Generic.IEnumerable{System.Object[]}
       description: A collection of inputs for other transformation rules
-    content.vb: Protected Shared Function SelectArrays(Of TRequiredInput As Class)(selector As Func(Of TIn, TOut, IEnumerable(Of TRequiredInput)), computation As Computation) As IEnumerable(Of Object())
+    content.vb: Protected Shared Function SelectArrays(Of TRequiredInput)(selector As Func(Of TIn, TOut, IEnumerable(Of TRequiredInput)), computation As Computation) As IEnumerable(Of Object())
   overload: NMF.Transformations.TransformationRuleBase`2.SelectArrays*
   exceptions:
   - type: System.ArgumentNullException
@@ -3288,17 +3159,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceOutput
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1130
+    startLine: 1013
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreates a trace entry for every computation with the key specified by the given selector method\n"
   example: []
   syntax:
-    content: >-
-      public TraceEntryGroup<TKey, TOut> TraceOutput<TKey>(Func<TIn, TOut, TKey> traceSelector)
-
-          where TKey : class
+    content: public TraceEntryGroup<TKey, TOut> TraceOutput<TKey>(Func<TIn, TOut, TKey> traceSelector)
     parameters:
     - id: traceSelector
       type: System.Func{{TIn},{TOut},{TKey}}
@@ -3309,7 +3177,7 @@ items:
     return:
       type: NMF.Transformations.TraceEntryGroup{{TKey},{TOut}}
       description: A transformation rule that can be used as group or for direct tracing purposes
-    content.vb: Public Function TraceOutput(Of TKey As Class)(traceSelector As Func(Of TIn, TOut, TKey)) As TraceEntryGroup(Of TKey, TOut)
+    content.vb: Public Function TraceOutput(Of TKey)(traceSelector As Func(Of TIn, TOut, TKey)) As TraceEntryGroup(Of TKey, TOut)
   overload: NMF.Transformations.TransformationRuleBase`2.TraceOutput*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).TraceOutput(Of TKey)(Func(Of TIn, TOut, TKey))
   modifiers.csharp:
@@ -3336,17 +3204,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceOutput
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1146
+    startLine: 1028
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreates a trace entry for every computation with the key specified by the given selector method\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency TraceOutput<TKey>(TraceEntryGroup<TKey, TOut> traceKey, Func<TIn, TOut, TKey> traceSelector)
-
-          where TKey : class
+    content: public ITransformationRuleDependency TraceOutput<TKey>(TraceEntryGroup<TKey, TOut> traceKey, Func<TIn, TOut, TKey> traceSelector)
     parameters:
     - id: traceKey
       type: NMF.Transformations.TraceEntryGroup{{TKey},{TOut}}
@@ -3359,7 +3224,7 @@ items:
       description: The type of the trace entry key
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function TraceOutput(Of TKey As Class)(traceKey As TraceEntryGroup(Of TKey, TOut), traceSelector As Func(Of TIn, TOut, TKey)) As ITransformationRuleDependency
+    content.vb: Public Function TraceOutput(Of TKey)(traceKey As TraceEntryGroup(Of TKey, TOut), traceSelector As Func(Of TIn, TOut, TKey)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.TraceOutput*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).TraceOutput(Of TKey)(TraceEntryGroup(Of TKey, TOut), Func(Of TIn, TOut, TKey))
   modifiers.csharp:
@@ -3386,7 +3251,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceAs
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1170
+    startLine: 1051
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3394,10 +3259,7 @@ items:
   remarks: Using this overload requires that the type parameter TTraceOutput is a base class of TOut and the type parameter TTraceInput is a base class of TIn. Sadly, this cannot be checked by the C# compiler
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey)
-
-          where TTraceInput : class where TTraceOutput : class
+    content: public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey)
     parameters:
     - id: traceKey
       type: NMF.Transformations.TraceEntryGroup{{TTraceInput},{TTraceOutput}}
@@ -3409,7 +3271,7 @@ items:
       description: The output type for the newly created trace entries
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function TraceAs(Of TTraceInput As Class, TTraceOutput As Class)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput)) As ITransformationRuleDependency
+    content.vb: Public Function TraceAs(Of TTraceInput, TTraceOutput)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.TraceAs*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).TraceAs(Of TTraceInput, TTraceOutput)(TraceEntryGroup(Of TTraceInput, TTraceOutput))
   modifiers.csharp:
@@ -3436,7 +3298,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceAs
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1185
+    startLine: 1064
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3444,10 +3306,7 @@ items:
   remarks: Using this overload requires that the type parameter TTraceOutput is a base class of TOut. Sadly, this cannot be checked by the C# compiler
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey, Func<TIn, TOut, TTraceInput> inputSelector)
-
-          where TTraceInput : class where TTraceOutput : class
+    content: public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey, Func<TIn, TOut, TTraceInput> inputSelector)
     parameters:
     - id: traceKey
       type: NMF.Transformations.TraceEntryGroup{{TTraceInput},{TTraceOutput}}
@@ -3462,7 +3321,7 @@ items:
       description: The output type for the newly created trace entries
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function TraceAs(Of TTraceInput As Class, TTraceOutput As Class)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput), inputSelector As Func(Of TIn, TOut, TTraceInput)) As ITransformationRuleDependency
+    content.vb: Public Function TraceAs(Of TTraceInput, TTraceOutput)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput), inputSelector As Func(Of TIn, TOut, TTraceInput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.TraceAs*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).TraceAs(Of TTraceInput, TTraceOutput)(TraceEntryGroup(Of TTraceInput, TTraceOutput), Func(Of TIn, TOut, TTraceInput))
   modifiers.csharp:
@@ -3489,7 +3348,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceAs
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1200
+    startLine: 1077
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3497,10 +3356,7 @@ items:
   remarks: Using this overload requires that the type parameter TTraceInput is a base class of TIn. Sadly, this cannot be checked by the C# compiler
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey, Func<TIn, TOut, TTraceOutput> outputSelector)
-
-          where TTraceInput : class where TTraceOutput : class
+    content: public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey, Func<TIn, TOut, TTraceOutput> outputSelector)
     parameters:
     - id: traceKey
       type: NMF.Transformations.TraceEntryGroup{{TTraceInput},{TTraceOutput}}
@@ -3515,7 +3371,7 @@ items:
       description: The output type for the newly created trace entries
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function TraceAs(Of TTraceInput As Class, TTraceOutput As Class)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput), outputSelector As Func(Of TIn, TOut, TTraceOutput)) As ITransformationRuleDependency
+    content.vb: Public Function TraceAs(Of TTraceInput, TTraceOutput)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput), outputSelector As Func(Of TIn, TOut, TTraceOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.TraceAs*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).TraceAs(Of TTraceInput, TTraceOutput)(TraceEntryGroup(Of TTraceInput, TTraceOutput), Func(Of TIn, TOut, TTraceOutput))
   modifiers.csharp:
@@ -3542,17 +3398,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceAs
     path: src/Transformations/Transformations/NTL/TransformationRuleBase.cs
-    startLine: 1215
+    startLine: 1090
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreates a trace entry for every computation of the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey, Func<TIn, TOut, TTraceInput> inputSelector, Func<TIn, TOut, TTraceOutput> outputSelector)
-
-          where TTraceInput : class where TTraceOutput : class
+    content: public ITransformationRuleDependency TraceAs<TTraceInput, TTraceOutput>(TraceEntryGroup<TTraceInput, TTraceOutput> traceKey, Func<TIn, TOut, TTraceInput> inputSelector, Func<TIn, TOut, TTraceOutput> outputSelector)
     parameters:
     - id: traceKey
       type: NMF.Transformations.TraceEntryGroup{{TTraceInput},{TTraceOutput}}
@@ -3570,7 +3423,7 @@ items:
       description: The output type for the newly created trace entries
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function TraceAs(Of TTraceInput As Class, TTraceOutput As Class)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput), inputSelector As Func(Of TIn, TOut, TTraceInput), outputSelector As Func(Of TIn, TOut, TTraceOutput)) As ITransformationRuleDependency
+    content.vb: Public Function TraceAs(Of TTraceInput, TTraceOutput)(traceKey As TraceEntryGroup(Of TTraceInput, TTraceOutput), inputSelector As Func(Of TIn, TOut, TTraceInput), outputSelector As Func(Of TIn, TOut, TTraceOutput)) As ITransformationRuleDependency
   overload: NMF.Transformations.TransformationRuleBase`2.TraceAs*
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut).TraceAs(Of TTraceInput, TTraceOutput)(TraceEntryGroup(Of TTraceInput, TTraceOutput), Func(Of TIn, TOut, TTraceInput), Func(Of TIn, TOut, TTraceOutput))
   modifiers.csharp:
@@ -3800,18 +3653,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Transformations.GeneralTransformationRule{{TIn}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{{TIn}}})
-  commentId: M:NMF.Transformations.GeneralTransformationRule{`0}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+- uid: NMF.Transformations.GeneralTransformationRule{{TIn}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{{TIn}}})
+  commentId: M:NMF.Transformations.GeneralTransformationRule{`0}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
   parent: NMF.Transformations.GeneralTransformationRule{{TIn}}
-  definition: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+  definition: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
   name: WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>>)
   nameWithType: GeneralTransformationRule<TIn>.WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>>)
-  fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<TIn>>)
+  fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<TIn>>)
   nameWithType.vb: GeneralTransformationRule(Of TIn).WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of TIn)))
-  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of TIn)))
+  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of TIn)))
   name.vb: WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of TIn)))
   spec.csharp:
-  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
     name: WithPattern
     nameWithType: GeneralTransformationRule<TIn>.WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern
@@ -3833,11 +3686,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -3854,7 +3706,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
     name: WithPattern
     nameWithType: GeneralTransformationRule(Of TIn).WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern
@@ -3876,11 +3728,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -13174,63 +13025,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
@@ -13324,665 +13118,60 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext)
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext)
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext)
-  name: ToComputationSource<TIn, TOut>(ITransformationContext)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(ITransformationContext)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(NMF.Transformations.Core.ITransformationContext)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(ITransformationContext)
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(NMF.Transformations.Core.ITransformationContext)
-  name.vb: ToComputationSource(Of TIn, TOut)(ITransformationContext)
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
   spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext)
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext)
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean)
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean)
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean)
-  name: ToComputationSource<TIn, TOut>(ITransformationContext, Boolean)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(ITransformationContext, Boolean)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(NMF.Transformations.Core.ITransformationContext, System.Boolean)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(ITransformationContext, Boolean)
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(NMF.Transformations.Core.ITransformationContext, System.Boolean)
-  name.vb: ToComputationSource(Of TIn, TOut)(ITransformationContext, Boolean)
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean)
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean)
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  name: ToComputationSource<TIn, TOut>(ITransformationContext, Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(ITransformationContext, Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(NMF.Transformations.Core.ITransformationContext, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TIn, TOut>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(ITransformationContext, Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(NMF.Transformations.Core.ITransformationContext, System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn, TOut), System.Boolean))
-  name.vb: ToComputationSource(Of TIn, TOut)(ITransformationContext, Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  name: ToComputationSource<TIn, TOut>(ITransformationContext, Boolean, Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(ITransformationContext, Boolean, Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(NMF.Transformations.Core.ITransformationContext, System.Boolean, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TIn, TOut>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(ITransformationContext, Boolean, Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(NMF.Transformations.Core.ITransformationContext, System.Boolean, System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn, TOut), System.Boolean))
-  name.vb: ToComputationSource(Of TIn, TOut)(ITransformationContext, Boolean, Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1})
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1})
-  name: ToComputationSource<TIn, TOut>()
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>()
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>()
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)()
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)()
-  name.vb: ToComputationSource(Of TIn, TOut)()
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean)
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean)
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean)
-  name: ToComputationSource<TIn, TOut>(Boolean)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(Boolean)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(System.Boolean)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(Boolean)
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(System.Boolean)
-  name.vb: ToComputationSource(Of TIn, TOut)(Boolean)
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean)
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean)
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  name: ToComputationSource<TIn, TOut>(Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TIn, TOut>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn, TOut), System.Boolean))
-  name.vb: ToComputationSource(Of TIn, TOut)(Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.TransformationRuleBase`2.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn},{TOut}},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  parent: NMF.Transformations.Linq.IncrementalExtensions
-  definition: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  name: ToComputationSource<TIn, TOut>(Boolean, Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>(Boolean, Func<TransformationComputationWrapper<TIn, TOut>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>(System.Boolean, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TIn, TOut>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TIn, TOut)(Boolean, Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)(System.Boolean, System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn, TOut), System.Boolean))
-  name.vb: ToComputationSource(Of TIn, TOut)(Boolean, Func(Of TransformationComputationWrapper(Of TIn, TOut), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TIn, TOut>
-    nameWithType: IncrementalExtensions.ToComputationSource<TIn, TOut>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TIn, TOut>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TIn, TOut)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TIn, TOut)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOut
-    nameWithType: TOut
-    fullName: TOut
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -14192,17 +13381,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
-  commentId: M:NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+- uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
+  commentId: M:NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
   isExternal: true
   name: WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>>)
   nameWithType: GeneralTransformationRule<TIn>.WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>>)
-  fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<TIn>>)
+  fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<TIn>>)
   nameWithType.vb: GeneralTransformationRule(Of TIn).WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of TIn)))
-  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of TIn)))
+  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of TIn)))
   name.vb: WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of TIn)))
   spec.csharp:
-  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
     name: WithPattern
     nameWithType: GeneralTransformationRule<TIn>.WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern
@@ -14224,11 +13413,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -14245,7 +13433,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+  - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
     name: WithPattern
     nameWithType: GeneralTransformationRule(Of TIn).WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern
@@ -14267,11 +13455,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -23008,1015 +22195,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext)
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext)
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, NMF.Transformations.Core.ITransformationContext)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext)
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), NMF.Transformations.Core.ITransformationContext)
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext)
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext)
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext)
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions
-  commentId: T:NMF.Transformations.Linq.IncrementalExtensions
-  parent: NMF.Transformations.Linq
-  name: IncrementalExtensions
-  nameWithType: IncrementalExtensions
-  fullName: NMF.Transformations.Linq.IncrementalExtensions
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean)
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean)
-  isExternal: true
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext, Boolean)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext, Boolean)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, NMF.Transformations.Core.ITransformationContext, System.Boolean)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext, Boolean)
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), NMF.Transformations.Core.ITransformationContext, System.Boolean)
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext, Boolean)
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean)
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean)
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  isExternal: true
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, NMF.Transformations.Core.ITransformationContext, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TInput, TOutput>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext, Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), NMF.Transformations.Core.ITransformationContext, System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TInput, TOutput), System.Boolean))
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext, Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  isExternal: true
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext, Boolean, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, ITransformationContext, Boolean, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, NMF.Transformations.Core.ITransformationContext, System.Boolean, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TInput, TOutput>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext, Boolean, Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), NMF.Transformations.Core.ITransformationContext, System.Boolean, System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TInput, TOutput), System.Boolean))
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), ITransformationContext, Boolean, Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},NMF.Transformations.Core.ITransformationContext,System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: NMF.Transformations.Core.ITransformationContext
-    name: ITransformationContext
-    nameWithType: ITransformationContext
-    fullName: NMF.Transformations.Core.ITransformationContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1})
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput))
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1})
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1})
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean)
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean)
-  isExternal: true
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, Boolean)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, Boolean)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, System.Boolean)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), Boolean)
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), System.Boolean)
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), Boolean)
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean)
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean)
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  isExternal: true
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TInput, TOutput>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TInput, TOutput), System.Boolean))
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  commentId: M:NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-  isExternal: true
-  name: ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, Boolean, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>(TransformationRuleBase<TInput, TOutput>, Boolean, Func<TransformationComputationWrapper<TInput, TOutput>, Boolean>)
-  fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>(NMF.Transformations.TransformationRuleBase<TInput, TOutput>, System.Boolean, System.Func<NMF.Transformations.Linq.TransformationComputationWrapper<TInput, TOutput>, System.Boolean>)
-  nameWithType.vb: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), Boolean, Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  fullName.vb: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)(NMF.Transformations.TransformationRuleBase(Of TInput, TOutput), System.Boolean, System.Func(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TInput, TOutput), System.Boolean))
-  name.vb: ToComputationSource(Of TInput, TOutput)(TransformationRuleBase(Of TInput, TOutput), Boolean, Func(Of TransformationComputationWrapper(Of TInput, TOutput), Boolean))
-  spec.csharp:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource<TInput, TOutput>
-    nameWithType: IncrementalExtensions.ToComputationSource<TInput, TOutput>
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource<TInput, TOutput>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``2(NMF.Transformations.TransformationRuleBase{``0,``1},System.Boolean,System.Func{NMF.Transformations.Linq.TransformationComputationWrapper{``0,``1},System.Boolean})
-    name: ToComputationSource(Of TInput, TOutput)
-    nameWithType: IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-    fullName: NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource(Of TInput, TOutput)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Transformations.TransformationRuleBase`2
-    name: TransformationRuleBase
-    nameWithType: TransformationRuleBase
-    fullName: NMF.Transformations.TransformationRuleBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`2
-    name: TransformationComputationWrapper
-    nameWithType: TransformationComputationWrapper
-    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TInput
-    nameWithType: TInput
-    fullName: TInput
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TOutput
-    nameWithType: TOutput
-    fullName: TOutput
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Transformations.Linq
-  commentId: N:NMF.Transformations.Linq
-  name: NMF.Transformations.Linq
-  nameWithType: NMF.Transformations.Linq
-  fullName: NMF.Transformations.Linq
 - uid: NMF.Transformations.TransformationRuleBase`2.MarkInstantiatingFor*
   commentId: Overload:NMF.Transformations.TransformationRuleBase`2.MarkInstantiatingFor
   name: MarkInstantiatingFor

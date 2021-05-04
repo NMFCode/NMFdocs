@@ -11,9 +11,14 @@ items:
   - NMF.Synchronizations.Synchronization.GetSynchronizationRulesForType(System.Type)
   - NMF.Synchronizations.Synchronization.RegisterRules
   - NMF.Synchronizations.Synchronization.SynchronizationRules
-  - NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  - NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  - NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
+  - NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  - NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  - NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  - NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  - NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  - NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  - NMF.Synchronizations.Synchronization.SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  - NMF.Synchronizations.Synchronization.SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
   langs:
   - csharp
   - vb
@@ -28,20 +33,48 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synchronization
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 12
+    startLine: 15
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nDenotes an abstract synchronization\n"
+  example: []
   syntax:
     content: 'public abstract class Synchronization : Transformation'
     content.vb: >-
       Public MustInherit Class Synchronization
-
           Inherits Transformation
   inheritance:
   - System.Object
+  - NMF.Transformations.Core.Transformation
   derivedClasses:
   - NMF.Synchronizations.ReflectiveSynchronization
+  inheritedMembers:
+  - NMF.Transformations.Core.Transformation.CreateRules
+  - NMF.Transformations.Core.Transformation.Patterns
+  - NMF.Transformations.Core.Transformation.IsInitialized
+  - NMF.Transformations.Core.Transformation.IsRulesRegistered
+  - NMF.Transformations.Core.Transformation.CreateRulesInternal
+  - NMF.Transformations.Core.Transformation.CreateContext
+  - NMF.Transformations.Core.Transformation.Initialize
+  - NMF.Transformations.Core.Transformation.MaxOutputDelay
+  - NMF.Transformations.Core.Transformation.MaxTransformationDelay
+  - NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath(NMF.Transformations.Core.Computation)
+  - NMF.Transformations.Core.Transformation.GetRuleForRuleType(System.Type)
+  - NMF.Transformations.Core.Transformation.GetRulesForRuleType(System.Type)
+  - NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type)
+  - NMF.Transformations.Core.Transformation.GetRulesExact(System.Type[],System.Type)
+  - NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type[],System.Type)
+  - NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type[])
+  - NMF.Transformations.Core.Transformation.Rules
+  - NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type,System.Boolean)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - abstract
@@ -68,10 +101,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizationRules
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 14
+    startLine: 20
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets a collection of synchronization rules\n"
+  example: []
   syntax:
     content: public abstract IEnumerable<SynchronizationRuleBase> SynchronizationRules { get; }
     parameters: []
@@ -105,13 +140,15 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RegisterRules
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 16
+    startLine: 23
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public override void RegisterRules()
     content.vb: Public Overrides Sub RegisterRules
+  overridden: NMF.Transformations.Core.Transformation.RegisterRules
   overload: NMF.Synchronizations.Synchronization.RegisterRules*
   modifiers.csharp:
   - public
@@ -137,17 +174,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetSynchronizationRuleForType
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 38
+    startLine: 50
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the synchronization rule for the given synchronization rule type\n"
+  example: []
   syntax:
     content: public virtual SynchronizationRuleBase GetSynchronizationRuleForType(Type type)
     parameters:
     - id: type
       type: System.Type
+      description: The type of synchronization rule
     return:
       type: NMF.Synchronizations.SynchronizationRuleBase
+      description: The synchronization rule object
     content.vb: Public Overridable Function GetSynchronizationRuleForType(type As Type) As SynchronizationRuleBase
   overload: NMF.Synchronizations.Synchronization.GetSynchronizationRuleForType*
   modifiers.csharp:
@@ -174,17 +215,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetSynchronizationRulesForType
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 44
+    startLine: 61
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets all synchronization rules of the given type\n"
+  example: []
   syntax:
     content: public virtual IEnumerable<SynchronizationRuleBase> GetSynchronizationRulesForType(Type type)
     parameters:
     - id: type
       type: System.Type
+      description: The type of synchronization rule
     return:
       type: System.Collections.Generic.IEnumerable{NMF.Synchronizations.SynchronizationRuleBase}
+      description: All synchronization rules of the given type
     content.vb: Public Overridable Function GetSynchronizationRulesForType(type As Type) As IEnumerable(Of SynchronizationRuleBase)
   overload: NMF.Synchronizations.Synchronization.GetSynchronizationRulesForType*
   modifiers.csharp:
@@ -211,19 +256,24 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetSynchronizationRuleForSignature
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 50
+    startLine: 73
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the synchronization rule for the given LHS and RHS type combination\n"
+  example: []
   syntax:
     content: public virtual SynchronizationRuleBase GetSynchronizationRuleForSignature(Type left, Type right)
     parameters:
     - id: left
       type: System.Type
+      description: The LHS type
     - id: right
       type: System.Type
+      description: The RHS type
     return:
       type: NMF.Synchronizations.SynchronizationRuleBase
+      description: The synchronization rule or null, if no synchronization rule could be found
     content.vb: Public Overridable Function GetSynchronizationRuleForSignature(left As Type, right As Type) As SynchronizationRuleBase
   overload: NMF.Synchronizations.Synchronization.GetSynchronizationRuleForSignature*
   modifiers.csharp:
@@ -250,19 +300,24 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetSynchronizationRulesForSignature
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 57
+    startLine: 86
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets all synchronization rules for the given LHS and RHS type combination\n"
+  example: []
   syntax:
     content: public virtual IEnumerable<SynchronizationRuleBase> GetSynchronizationRulesForSignature(Type left, Type right)
     parameters:
     - id: left
       type: System.Type
+      description: The LHS type
     - id: right
       type: System.Type
+      description: The RHS type
     return:
       type: System.Collections.Generic.IEnumerable{NMF.Synchronizations.SynchronizationRuleBase}
+      description: ''
     content.vb: Public Overridable Function GetSynchronizationRulesForSignature(left As Type, right As Type) As IEnumerable(Of SynchronizationRuleBase)
   overload: NMF.Synchronizations.Synchronization.GetSynchronizationRulesForSignature*
   modifiers.csharp:
@@ -271,16 +326,16 @@ items:
   modifiers.vb:
   - Public
   - Overridable
-- uid: NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  commentId: M:NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  id: Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
+- uid: NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  commentId: M:NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  id: Synchronize``2(``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
   parent: NMF.Synchronizations.Synchronization
   langs:
   - csharp
   - vb
   name: Synchronize<TLeft, TRight>(ref TLeft, ref TRight, SynchronizationDirection, ChangePropagationMode)
   nameWithType: Synchronization.Synchronize<TLeft, TRight>(ref TLeft, ref TRight, SynchronizationDirection, ChangePropagationMode)
-  fullName: NMF.Synchronizations.Synchronization.Synchronize<TLeft, TRight>(ref TLeft, ref TRight, NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  fullName: NMF.Synchronizations.Synchronization.Synchronize<TLeft, TRight>(ref TLeft, ref TRight, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   type: Method
   source:
     remote:
@@ -289,29 +344,37 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synchronize
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 62
+    startLine: 101
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS element with the provided RHS element or creates them if necessary\n"
+  example: []
   syntax:
     content: >-
       public ISynchronizationContext Synchronize<TLeft, TRight>(ref TLeft left, ref TRight right, SynchronizationDirection direction, ChangePropagationMode changePropagation)
-
           where TLeft : class where TRight : class
     parameters:
     - id: left
       type: '{TLeft}'
+      description: The LHS element
     - id: right
       type: '{TRight}'
+      description: The RHS element
     - id: direction
       type: NMF.Synchronizations.SynchronizationDirection
+      description: The direction of the model synchronization
     - id: changePropagation
-      type: ChangePropagationMode
+      type: NMF.Transformations.ChangePropagationMode
+      description: The change propagation mode
     typeParameters:
     - id: TLeft
+      description: The LHS type
     - id: TRight
+      description: The RHS type
     return:
       type: NMF.Synchronizations.ISynchronizationContext
+      description: The synchronization context in which the synchronization takes place
     content.vb: Public Function Synchronize(Of TLeft As Class, TRight As Class)(ByRef left As TLeft, ByRef right As TRight, direction As SynchronizationDirection, changePropagation As ChangePropagationMode) As ISynchronizationContext
   overload: NMF.Synchronizations.Synchronization.Synchronize*
   nameWithType.vb: Synchronization.Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, SynchronizationDirection, ChangePropagationMode)
@@ -319,18 +382,18 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Synchronizations.Synchronization.Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  fullName.vb: NMF.Synchronizations.Synchronization.Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   name.vb: Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, SynchronizationDirection, ChangePropagationMode)
-- uid: NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  commentId: M:NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  id: Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
+- uid: NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  commentId: M:NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  id: Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
   parent: NMF.Synchronizations.Synchronization
   langs:
   - csharp
   - vb
   name: Synchronize<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, SynchronizationDirection, ChangePropagationMode)
   nameWithType: Synchronization.Synchronize<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, SynchronizationDirection, ChangePropagationMode)
-  fullName: NMF.Synchronizations.Synchronization.Synchronize<TLeft, TRight>(NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  fullName: NMF.Synchronizations.Synchronization.Synchronize<TLeft, TRight>(NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   type: Method
   source:
     remote:
@@ -339,31 +402,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synchronize
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 69
+    startLine: 119
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS element with the provided RHS element or creates them if necessary\n"
+  example: []
   syntax:
     content: >-
       public ISynchronizationContext Synchronize<TLeft, TRight>(SynchronizationRule<TLeft, TRight> startRule, ref TLeft left, ref TRight right, SynchronizationDirection direction, ChangePropagationMode changePropagation)
-
           where TLeft : class where TRight : class
     parameters:
     - id: startRule
       type: NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}}
+      description: The rule that should be started with
     - id: left
       type: '{TLeft}'
+      description: The LHS element
     - id: right
       type: '{TRight}'
+      description: The RHS element
     - id: direction
       type: NMF.Synchronizations.SynchronizationDirection
+      description: The direction of the model synchronization
     - id: changePropagation
-      type: ChangePropagationMode
+      type: NMF.Transformations.ChangePropagationMode
+      description: The change propagation mode
     typeParameters:
     - id: TLeft
+      description: The LHS type
     - id: TRight
+      description: The RHS type
     return:
       type: NMF.Synchronizations.ISynchronizationContext
+      description: The synchronization context in which the synchronization takes place
     content.vb: Public Function Synchronize(Of TLeft As Class, TRight As Class)(startRule As SynchronizationRule(Of TLeft, TRight), ByRef left As TLeft, ByRef right As TRight, direction As SynchronizationDirection, changePropagation As ChangePropagationMode) As ISynchronizationContext
   overload: NMF.Synchronizations.Synchronization.Synchronize*
   nameWithType.vb: Synchronization.Synchronize(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, SynchronizationDirection, ChangePropagationMode)
@@ -371,18 +443,125 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Synchronizations.Synchronization.Synchronize(Of TLeft, TRight)(NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  fullName.vb: NMF.Synchronizations.Synchronization.Synchronize(Of TLeft, TRight)(NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   name.vb: Synchronize(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, SynchronizationDirection, ChangePropagationMode)
-- uid: NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  commentId: M:NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  id: SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
+- uid: NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  commentId: M:NMF.Synchronizations.Synchronization.Synchronize``2(``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  id: Synchronize``2(``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
   parent: NMF.Synchronizations.Synchronization
   langs:
   - csharp
   - vb
-  name: SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ICollection<TLeft>, ICollection<TRight>, SynchronizationDirection, ChangePropagationMode)
-  nameWithType: Synchronization.SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ICollection<TLeft>, ICollection<TRight>, SynchronizationDirection, ChangePropagationMode)
-  fullName: NMF.Synchronizations.Synchronization.SynchronizeMany<TLeft, TRight>(NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, System.Collections.Generic.ICollection<TLeft>, System.Collections.Generic.ICollection<TRight>, NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  name: Synchronize<TLeft, TRight>(ref TLeft, ref TRight, ISynchronizationContext)
+  nameWithType: Synchronization.Synchronize<TLeft, TRight>(ref TLeft, ref TRight, ISynchronizationContext)
+  fullName: NMF.Synchronizations.Synchronization.Synchronize<TLeft, TRight>(ref TLeft, ref TRight, NMF.Synchronizations.ISynchronizationContext)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Synchronization.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Synchronize
+    path: src/Synchronizations/Synchronizations/Synchronization.cs
+    startLine: 138
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS element with the provided RHS element or creates them if necessary\n"
+  example: []
+  syntax:
+    content: >-
+      public void Synchronize<TLeft, TRight>(ref TLeft left, ref TRight right, ISynchronizationContext synchronizationContext)
+          where TLeft : class where TRight : class
+    parameters:
+    - id: left
+      type: '{TLeft}'
+      description: The LHS element
+    - id: right
+      type: '{TRight}'
+      description: The RHS element
+    - id: synchronizationContext
+      type: NMF.Synchronizations.ISynchronizationContext
+      description: The context in which the synchronization shall be executed
+    typeParameters:
+    - id: TLeft
+      description: The LHS type
+    - id: TRight
+      description: The RHS type
+    content.vb: Public Sub Synchronize(Of TLeft As Class, TRight As Class)(ByRef left As TLeft, ByRef right As TRight, synchronizationContext As ISynchronizationContext)
+  overload: NMF.Synchronizations.Synchronization.Synchronize*
+  nameWithType.vb: Synchronization.Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, ISynchronizationContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.Synchronization.Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, NMF.Synchronizations.ISynchronizationContext)
+  name.vb: Synchronize(Of TLeft, TRight)(ByRef TLeft, ByRef TRight, ISynchronizationContext)
+- uid: NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  commentId: M:NMF.Synchronizations.Synchronization.Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  id: Synchronize``2(NMF.Synchronizations.SynchronizationRule{``0,``1},``0@,``1@,NMF.Synchronizations.ISynchronizationContext)
+  parent: NMF.Synchronizations.Synchronization
+  langs:
+  - csharp
+  - vb
+  name: Synchronize<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, ISynchronizationContext)
+  nameWithType: Synchronization.Synchronize<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, ISynchronizationContext)
+  fullName: NMF.Synchronizations.Synchronization.Synchronize<TLeft, TRight>(NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, ref TLeft, ref TRight, NMF.Synchronizations.ISynchronizationContext)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Synchronization.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Synchronize
+    path: src/Synchronizations/Synchronizations/Synchronization.cs
+    startLine: 154
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS element with the provided RHS element or creates them if necessary\n"
+  example: []
+  syntax:
+    content: >-
+      public void Synchronize<TLeft, TRight>(SynchronizationRule<TLeft, TRight> startRule, ref TLeft left, ref TRight right, ISynchronizationContext synchronizationContext)
+          where TLeft : class where TRight : class
+    parameters:
+    - id: startRule
+      type: NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}}
+      description: The rule that should be started with
+    - id: left
+      type: '{TLeft}'
+      description: The LHS element
+    - id: right
+      type: '{TRight}'
+      description: The RHS element
+    - id: synchronizationContext
+      type: NMF.Synchronizations.ISynchronizationContext
+      description: The context in which the synchronization shall be executed
+    typeParameters:
+    - id: TLeft
+      description: The LHS type
+    - id: TRight
+      description: The RHS type
+    content.vb: Public Sub Synchronize(Of TLeft As Class, TRight As Class)(startRule As SynchronizationRule(Of TLeft, TRight), ByRef left As TLeft, ByRef right As TRight, synchronizationContext As ISynchronizationContext)
+  overload: NMF.Synchronizations.Synchronization.Synchronize*
+  nameWithType.vb: Synchronization.Synchronize(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, ISynchronizationContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.Synchronization.Synchronize(Of TLeft, TRight)(NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, NMF.Synchronizations.ISynchronizationContext)
+  name.vb: Synchronize(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ByRef TLeft, ByRef TRight, ISynchronizationContext)
+- uid: NMF.Synchronizations.Synchronization.SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  commentId: M:NMF.Synchronizations.Synchronization.SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  id: SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  parent: NMF.Synchronizations.Synchronization
+  langs:
+  - csharp
+  - vb
+  name: SynchronizeMany<TLeft, TRight>(ICollection<TLeft>, ICollection<TRight>, SynchronizationDirection, ChangePropagationMode)
+  nameWithType: Synchronization.SynchronizeMany<TLeft, TRight>(ICollection<TLeft>, ICollection<TRight>, SynchronizationDirection, ChangePropagationMode)
+  fullName: NMF.Synchronizations.Synchronization.SynchronizeMany<TLeft, TRight>(System.Collections.Generic.ICollection<TLeft>, System.Collections.Generic.ICollection<TRight>, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   type: Method
   source:
     remote:
@@ -391,31 +570,98 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizeMany
     path: src/Synchronizations/Synchronizations/Synchronization.cs
-    startLine: 98
+    startLine: 197
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS elements with the provided RHS elements or creates them if necessary\n"
+  example: []
+  syntax:
+    content: >-
+      public ISynchronizationContext SynchronizeMany<TLeft, TRight>(ICollection<TLeft> lefts, ICollection<TRight> rights, SynchronizationDirection direction, ChangePropagationMode changePropagation)
+          where TLeft : class where TRight : class
+    parameters:
+    - id: lefts
+      type: System.Collections.Generic.ICollection{{TLeft}}
+      description: The LHS elements
+    - id: rights
+      type: System.Collections.Generic.ICollection{{TRight}}
+      description: The RHS elements
+    - id: direction
+      type: NMF.Synchronizations.SynchronizationDirection
+      description: The direction of the model synchronization
+    - id: changePropagation
+      type: NMF.Transformations.ChangePropagationMode
+      description: The change propagation mode
+    typeParameters:
+    - id: TLeft
+      description: The LHS type
+    - id: TRight
+      description: The RHS type
+    return:
+      type: NMF.Synchronizations.ISynchronizationContext
+      description: The synchronization context in which the synchronization takes place
+    content.vb: Public Function SynchronizeMany(Of TLeft As Class, TRight As Class)(lefts As ICollection(Of TLeft), rights As ICollection(Of TRight), direction As SynchronizationDirection, changePropagation As ChangePropagationMode) As ISynchronizationContext
+  overload: NMF.Synchronizations.Synchronization.SynchronizeMany*
+  nameWithType.vb: Synchronization.SynchronizeMany(Of TLeft, TRight)(ICollection(Of TLeft), ICollection(Of TRight), SynchronizationDirection, ChangePropagationMode)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.Synchronization.SynchronizeMany(Of TLeft, TRight)(System.Collections.Generic.ICollection(Of TLeft), System.Collections.Generic.ICollection(Of TRight), NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
+  name.vb: SynchronizeMany(Of TLeft, TRight)(ICollection(Of TLeft), ICollection(Of TRight), SynchronizationDirection, ChangePropagationMode)
+- uid: NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  commentId: M:NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  id: SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  parent: NMF.Synchronizations.Synchronization
+  langs:
+  - csharp
+  - vb
+  name: SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ICollection<TLeft>, ICollection<TRight>, SynchronizationDirection, ChangePropagationMode)
+  nameWithType: Synchronization.SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ICollection<TLeft>, ICollection<TRight>, SynchronizationDirection, ChangePropagationMode)
+  fullName: NMF.Synchronizations.Synchronization.SynchronizeMany<TLeft, TRight>(NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, System.Collections.Generic.ICollection<TLeft>, System.Collections.Generic.ICollection<TRight>, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Synchronization.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: SynchronizeMany
+    path: src/Synchronizations/Synchronizations/Synchronization.cs
+    startLine: 215
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS elements with the provided RHS elements or creates them if necessary\n"
+  example: []
   syntax:
     content: >-
       public ISynchronizationContext SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight> startRule, ICollection<TLeft> lefts, ICollection<TRight> rights, SynchronizationDirection direction, ChangePropagationMode changePropagation)
-
           where TLeft : class where TRight : class
     parameters:
     - id: startRule
       type: NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}}
+      description: The synchronization rule to start with
     - id: lefts
       type: System.Collections.Generic.ICollection{{TLeft}}
+      description: The LHS elements
     - id: rights
       type: System.Collections.Generic.ICollection{{TRight}}
+      description: The RHS elements
     - id: direction
       type: NMF.Synchronizations.SynchronizationDirection
+      description: The direction of the model synchronization
     - id: changePropagation
-      type: ChangePropagationMode
+      type: NMF.Transformations.ChangePropagationMode
+      description: The change propagation mode
     typeParameters:
     - id: TLeft
+      description: The LHS type
     - id: TRight
+      description: The RHS type
     return:
       type: NMF.Synchronizations.ISynchronizationContext
+      description: The synchronization context in which the synchronization takes place
     content.vb: Public Function SynchronizeMany(Of TLeft As Class, TRight As Class)(startRule As SynchronizationRule(Of TLeft, TRight), lefts As ICollection(Of TLeft), rights As ICollection(Of TRight), direction As SynchronizationDirection, changePropagation As ChangePropagationMode) As ISynchronizationContext
   overload: NMF.Synchronizations.Synchronization.SynchronizeMany*
   nameWithType.vb: Synchronization.SynchronizeMany(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ICollection(Of TLeft), ICollection(Of TRight), SynchronizationDirection, ChangePropagationMode)
@@ -423,8 +669,115 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Synchronizations.Synchronization.SynchronizeMany(Of TLeft, TRight)(NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), System.Collections.Generic.ICollection(Of TLeft), System.Collections.Generic.ICollection(Of TRight), NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  fullName.vb: NMF.Synchronizations.Synchronization.SynchronizeMany(Of TLeft, TRight)(NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), System.Collections.Generic.ICollection(Of TLeft), System.Collections.Generic.ICollection(Of TRight), NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   name.vb: SynchronizeMany(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ICollection(Of TLeft), ICollection(Of TRight), SynchronizationDirection, ChangePropagationMode)
+- uid: NMF.Synchronizations.Synchronization.SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  commentId: M:NMF.Synchronizations.Synchronization.SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  id: SynchronizeMany``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  parent: NMF.Synchronizations.Synchronization
+  langs:
+  - csharp
+  - vb
+  name: SynchronizeMany<TLeft, TRight>(ICollection<TLeft>, ICollection<TRight>, ISynchronizationContext)
+  nameWithType: Synchronization.SynchronizeMany<TLeft, TRight>(ICollection<TLeft>, ICollection<TRight>, ISynchronizationContext)
+  fullName: NMF.Synchronizations.Synchronization.SynchronizeMany<TLeft, TRight>(System.Collections.Generic.ICollection<TLeft>, System.Collections.Generic.ICollection<TRight>, NMF.Synchronizations.ISynchronizationContext)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Synchronization.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: SynchronizeMany
+    path: src/Synchronizations/Synchronizations/Synchronization.cs
+    startLine: 235
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS elements with the provided RHS elements or creates them if necessary\n"
+  example: []
+  syntax:
+    content: >-
+      public void SynchronizeMany<TLeft, TRight>(ICollection<TLeft> lefts, ICollection<TRight> rights, ISynchronizationContext synchronizationContext)
+          where TLeft : class where TRight : class
+    parameters:
+    - id: lefts
+      type: System.Collections.Generic.ICollection{{TLeft}}
+      description: The LHS elements
+    - id: rights
+      type: System.Collections.Generic.ICollection{{TRight}}
+      description: The RHS elements
+    - id: synchronizationContext
+      type: NMF.Synchronizations.ISynchronizationContext
+      description: The context in which the synchronization shall be executed
+    typeParameters:
+    - id: TLeft
+      description: The LHS type
+    - id: TRight
+      description: The RHS type
+    content.vb: Public Sub SynchronizeMany(Of TLeft As Class, TRight As Class)(lefts As ICollection(Of TLeft), rights As ICollection(Of TRight), synchronizationContext As ISynchronizationContext)
+  overload: NMF.Synchronizations.Synchronization.SynchronizeMany*
+  nameWithType.vb: Synchronization.SynchronizeMany(Of TLeft, TRight)(ICollection(Of TLeft), ICollection(Of TRight), ISynchronizationContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.Synchronization.SynchronizeMany(Of TLeft, TRight)(System.Collections.Generic.ICollection(Of TLeft), System.Collections.Generic.ICollection(Of TRight), NMF.Synchronizations.ISynchronizationContext)
+  name.vb: SynchronizeMany(Of TLeft, TRight)(ICollection(Of TLeft), ICollection(Of TRight), ISynchronizationContext)
+- uid: NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  commentId: M:NMF.Synchronizations.Synchronization.SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  id: SynchronizeMany``2(NMF.Synchronizations.SynchronizationRule{``0,``1},System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``1},NMF.Synchronizations.ISynchronizationContext)
+  parent: NMF.Synchronizations.Synchronization
+  langs:
+  - csharp
+  - vb
+  name: SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ICollection<TLeft>, ICollection<TRight>, ISynchronizationContext)
+  nameWithType: Synchronization.SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight>, ICollection<TLeft>, ICollection<TRight>, ISynchronizationContext)
+  fullName: NMF.Synchronizations.Synchronization.SynchronizeMany<TLeft, TRight>(NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, System.Collections.Generic.ICollection<TLeft>, System.Collections.Generic.ICollection<TRight>, NMF.Synchronizations.ISynchronizationContext)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Synchronization.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: SynchronizeMany
+    path: src/Synchronizations/Synchronizations/Synchronization.cs
+    startLine: 252
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nSynchronizes the given LHS elements with the provided RHS elements or creates them if necessary\n"
+  example: []
+  syntax:
+    content: >-
+      public void SynchronizeMany<TLeft, TRight>(SynchronizationRule<TLeft, TRight> startRule, ICollection<TLeft> lefts, ICollection<TRight> rights, ISynchronizationContext synchronizationContext)
+          where TLeft : class where TRight : class
+    parameters:
+    - id: startRule
+      type: NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}}
+      description: The synchronization rule to start with
+    - id: lefts
+      type: System.Collections.Generic.ICollection{{TLeft}}
+      description: The LHS elements
+    - id: rights
+      type: System.Collections.Generic.ICollection{{TRight}}
+      description: The RHS elements
+    - id: synchronizationContext
+      type: NMF.Synchronizations.ISynchronizationContext
+      description: The context in which the synchronization shall be executed
+    typeParameters:
+    - id: TLeft
+      description: The LHS type
+    - id: TRight
+      description: The RHS type
+    content.vb: Public Sub SynchronizeMany(Of TLeft As Class, TRight As Class)(startRule As SynchronizationRule(Of TLeft, TRight), lefts As ICollection(Of TLeft), rights As ICollection(Of TRight), synchronizationContext As ISynchronizationContext)
+  overload: NMF.Synchronizations.Synchronization.SynchronizeMany*
+  nameWithType.vb: Synchronization.SynchronizeMany(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ICollection(Of TLeft), ICollection(Of TRight), ISynchronizationContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.Synchronization.SynchronizeMany(Of TLeft, TRight)(NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), System.Collections.Generic.ICollection(Of TLeft), System.Collections.Generic.ICollection(Of TRight), NMF.Synchronizations.ISynchronizationContext)
+  name.vb: SynchronizeMany(Of TLeft, TRight)(SynchronizationRule(Of TLeft, TRight), ICollection(Of TLeft), ICollection(Of TRight), ISynchronizationContext)
 references:
 - uid: NMF.Synchronizations
   commentId: N:NMF.Synchronizations
@@ -438,12 +791,884 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: NMF.Transformations.Core.Transformation
+  commentId: T:NMF.Transformations.Core.Transformation
+  parent: NMF.Transformations.Core
+  name: Transformation
+  nameWithType: Transformation
+  fullName: NMF.Transformations.Core.Transformation
+- uid: NMF.Transformations.Core.Transformation.CreateRules
+  commentId: M:NMF.Transformations.Core.Transformation.CreateRules
+  parent: NMF.Transformations.Core.Transformation
+  name: CreateRules()
+  nameWithType: Transformation.CreateRules()
+  fullName: NMF.Transformations.Core.Transformation.CreateRules()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.CreateRules
+    name: CreateRules
+    nameWithType: Transformation.CreateRules
+    fullName: NMF.Transformations.Core.Transformation.CreateRules
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.CreateRules
+    name: CreateRules
+    nameWithType: Transformation.CreateRules
+    fullName: NMF.Transformations.Core.Transformation.CreateRules
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.Patterns
+  commentId: P:NMF.Transformations.Core.Transformation.Patterns
+  parent: NMF.Transformations.Core.Transformation
+  name: Patterns
+  nameWithType: Transformation.Patterns
+  fullName: NMF.Transformations.Core.Transformation.Patterns
+- uid: NMF.Transformations.Core.Transformation.IsInitialized
+  commentId: P:NMF.Transformations.Core.Transformation.IsInitialized
+  parent: NMF.Transformations.Core.Transformation
+  name: IsInitialized
+  nameWithType: Transformation.IsInitialized
+  fullName: NMF.Transformations.Core.Transformation.IsInitialized
+- uid: NMF.Transformations.Core.Transformation.IsRulesRegistered
+  commentId: P:NMF.Transformations.Core.Transformation.IsRulesRegistered
+  parent: NMF.Transformations.Core.Transformation
+  name: IsRulesRegistered
+  nameWithType: Transformation.IsRulesRegistered
+  fullName: NMF.Transformations.Core.Transformation.IsRulesRegistered
+- uid: NMF.Transformations.Core.Transformation.CreateRulesInternal
+  commentId: M:NMF.Transformations.Core.Transformation.CreateRulesInternal
+  parent: NMF.Transformations.Core.Transformation
+  name: CreateRulesInternal()
+  nameWithType: Transformation.CreateRulesInternal()
+  fullName: NMF.Transformations.Core.Transformation.CreateRulesInternal()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.CreateRulesInternal
+    name: CreateRulesInternal
+    nameWithType: Transformation.CreateRulesInternal
+    fullName: NMF.Transformations.Core.Transformation.CreateRulesInternal
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.CreateRulesInternal
+    name: CreateRulesInternal
+    nameWithType: Transformation.CreateRulesInternal
+    fullName: NMF.Transformations.Core.Transformation.CreateRulesInternal
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.CreateContext
+  commentId: M:NMF.Transformations.Core.Transformation.CreateContext
+  parent: NMF.Transformations.Core.Transformation
+  name: CreateContext()
+  nameWithType: Transformation.CreateContext()
+  fullName: NMF.Transformations.Core.Transformation.CreateContext()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.CreateContext
+    name: CreateContext
+    nameWithType: Transformation.CreateContext
+    fullName: NMF.Transformations.Core.Transformation.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.CreateContext
+    name: CreateContext
+    nameWithType: Transformation.CreateContext
+    fullName: NMF.Transformations.Core.Transformation.CreateContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.Initialize
+  commentId: M:NMF.Transformations.Core.Transformation.Initialize
+  parent: NMF.Transformations.Core.Transformation
+  name: Initialize()
+  nameWithType: Transformation.Initialize()
+  fullName: NMF.Transformations.Core.Transformation.Initialize()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.Initialize
+    name: Initialize
+    nameWithType: Transformation.Initialize
+    fullName: NMF.Transformations.Core.Transformation.Initialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.Initialize
+    name: Initialize
+    nameWithType: Transformation.Initialize
+    fullName: NMF.Transformations.Core.Transformation.Initialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.MaxOutputDelay
+  commentId: P:NMF.Transformations.Core.Transformation.MaxOutputDelay
+  parent: NMF.Transformations.Core.Transformation
+  name: MaxOutputDelay
+  nameWithType: Transformation.MaxOutputDelay
+  fullName: NMF.Transformations.Core.Transformation.MaxOutputDelay
+- uid: NMF.Transformations.Core.Transformation.MaxTransformationDelay
+  commentId: P:NMF.Transformations.Core.Transformation.MaxTransformationDelay
+  parent: NMF.Transformations.Core.Transformation
+  name: MaxTransformationDelay
+  nameWithType: Transformation.MaxTransformationDelay
+  fullName: NMF.Transformations.Core.Transformation.MaxTransformationDelay
+- uid: NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath(NMF.Transformations.Core.Computation)
+  commentId: M:NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath(NMF.Transformations.Core.Computation)
+  parent: NMF.Transformations.Core.Transformation
+  name: ComputeInstantiatingTransformationRulePath(Computation)
+  nameWithType: Transformation.ComputeInstantiatingTransformationRulePath(Computation)
+  fullName: NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath(NMF.Transformations.Core.Computation)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath(NMF.Transformations.Core.Computation)
+    name: ComputeInstantiatingTransformationRulePath
+    nameWithType: Transformation.ComputeInstantiatingTransformationRulePath
+    fullName: NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath(NMF.Transformations.Core.Computation)
+    name: ComputeInstantiatingTransformationRulePath
+    nameWithType: Transformation.ComputeInstantiatingTransformationRulePath
+    fullName: NMF.Transformations.Core.Transformation.ComputeInstantiatingTransformationRulePath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.GetRuleForRuleType(System.Type)
+  commentId: M:NMF.Transformations.Core.Transformation.GetRuleForRuleType(System.Type)
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRuleForRuleType(Type)
+  nameWithType: Transformation.GetRuleForRuleType(Type)
+  fullName: NMF.Transformations.Core.Transformation.GetRuleForRuleType(System.Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRuleForRuleType(System.Type)
+    name: GetRuleForRuleType
+    nameWithType: Transformation.GetRuleForRuleType
+    fullName: NMF.Transformations.Core.Transformation.GetRuleForRuleType
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRuleForRuleType(System.Type)
+    name: GetRuleForRuleType
+    nameWithType: Transformation.GetRuleForRuleType
+    fullName: NMF.Transformations.Core.Transformation.GetRuleForRuleType
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.GetRulesForRuleType(System.Type)
+  commentId: M:NMF.Transformations.Core.Transformation.GetRulesForRuleType(System.Type)
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRulesForRuleType(Type)
+  nameWithType: Transformation.GetRulesForRuleType(Type)
+  fullName: NMF.Transformations.Core.Transformation.GetRulesForRuleType(System.Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForRuleType(System.Type)
+    name: GetRulesForRuleType
+    nameWithType: Transformation.GetRulesForRuleType
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForRuleType
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForRuleType(System.Type)
+    name: GetRulesForRuleType
+    nameWithType: Transformation.GetRulesForRuleType
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForRuleType
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type)
+  commentId: M:NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type)
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRulesForTypeSignature(Type[], Type)
+  nameWithType: Transformation.GetRulesForTypeSignature(Type[], Type)
+  fullName: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[], System.Type)
+  nameWithType.vb: Transformation.GetRulesForTypeSignature(Type(), Type)
+  fullName.vb: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type(), System.Type)
+  name.vb: GetRulesForTypeSignature(Type(), Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type)
+    name: GetRulesForTypeSignature
+    nameWithType: Transformation.GetRulesForTypeSignature
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type)
+    name: GetRulesForTypeSignature
+    nameWithType: Transformation.GetRulesForTypeSignature
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.GetRulesExact(System.Type[],System.Type)
+  commentId: M:NMF.Transformations.Core.Transformation.GetRulesExact(System.Type[],System.Type)
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRulesExact(Type[], Type)
+  nameWithType: Transformation.GetRulesExact(Type[], Type)
+  fullName: NMF.Transformations.Core.Transformation.GetRulesExact(System.Type[], System.Type)
+  nameWithType.vb: Transformation.GetRulesExact(Type(), Type)
+  fullName.vb: NMF.Transformations.Core.Transformation.GetRulesExact(System.Type(), System.Type)
+  name.vb: GetRulesExact(Type(), Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesExact(System.Type[],System.Type)
+    name: GetRulesExact
+    nameWithType: Transformation.GetRulesExact
+    fullName: NMF.Transformations.Core.Transformation.GetRulesExact
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesExact(System.Type[],System.Type)
+    name: GetRulesExact
+    nameWithType: Transformation.GetRulesExact
+    fullName: NMF.Transformations.Core.Transformation.GetRulesExact
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type[],System.Type)
+  commentId: M:NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type[],System.Type)
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRuleForTypeSignature(Type[], Type)
+  nameWithType: Transformation.GetRuleForTypeSignature(Type[], Type)
+  fullName: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type[], System.Type)
+  nameWithType.vb: Transformation.GetRuleForTypeSignature(Type(), Type)
+  fullName.vb: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type(), System.Type)
+  name.vb: GetRuleForTypeSignature(Type(), Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type[],System.Type)
+    name: GetRuleForTypeSignature
+    nameWithType: Transformation.GetRuleForTypeSignature
+    fullName: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature(System.Type[],System.Type)
+    name: GetRuleForTypeSignature
+    nameWithType: Transformation.GetRuleForTypeSignature
+    fullName: NMF.Transformations.Core.Transformation.GetRuleForTypeSignature
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type[])
+  commentId: M:NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type[])
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRulesForInputTypes(Type[])
+  nameWithType: Transformation.GetRulesForInputTypes(Type[])
+  fullName: NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type[])
+  nameWithType.vb: Transformation.GetRulesForInputTypes(Type())
+  fullName.vb: NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type())
+  name.vb: GetRulesForInputTypes(Type())
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type[])
+    name: GetRulesForInputTypes
+    nameWithType: Transformation.GetRulesForInputTypes
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForInputTypes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForInputTypes(System.Type[])
+    name: GetRulesForInputTypes
+    nameWithType: Transformation.GetRulesForInputTypes
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForInputTypes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Transformation.Rules
+  commentId: P:NMF.Transformations.Core.Transformation.Rules
+  parent: NMF.Transformations.Core.Transformation
+  name: Rules
+  nameWithType: Transformation.Rules
+  fullName: NMF.Transformations.Core.Transformation.Rules
+- uid: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type,System.Boolean)
+  commentId: M:NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type,System.Boolean)
+  parent: NMF.Transformations.Core.Transformation
+  isExternal: true
+  name: GetRulesForTypeSignature(Type[], Type, Boolean)
+  nameWithType: Transformation.GetRulesForTypeSignature(Type[], Type, Boolean)
+  fullName: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[], System.Type, System.Boolean)
+  nameWithType.vb: Transformation.GetRulesForTypeSignature(Type(), Type, Boolean)
+  fullName.vb: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type(), System.Type, System.Boolean)
+  name.vb: GetRulesForTypeSignature(Type(), Type, Boolean)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type,System.Boolean)
+    name: GetRulesForTypeSignature
+    nameWithType: Transformation.GetRulesForTypeSignature
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature(System.Type[],System.Type,System.Boolean)
+    name: GetRulesForTypeSignature
+    nameWithType: Transformation.GetRulesForTypeSignature
+    fullName: NMF.Transformations.Core.Transformation.GetRulesForTypeSignature
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: NMF.Transformations.Core
+  commentId: N:NMF.Transformations.Core
+  name: NMF.Transformations.Core
+  nameWithType: NMF.Transformations.Core
+  fullName: NMF.Transformations.Core
 - uid: NMF.Synchronizations.Synchronization.SynchronizationRules*
   commentId: Overload:NMF.Synchronizations.Synchronization.SynchronizationRules
   name: SynchronizationRules
@@ -536,6 +1761,34 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: NMF.Transformations.Core.Transformation.RegisterRules
+  commentId: M:NMF.Transformations.Core.Transformation.RegisterRules
+  parent: NMF.Transformations.Core.Transformation
+  name: RegisterRules()
+  nameWithType: Transformation.RegisterRules()
+  fullName: NMF.Transformations.Core.Transformation.RegisterRules()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Transformation.RegisterRules
+    name: RegisterRules
+    nameWithType: Transformation.RegisterRules
+    fullName: NMF.Transformations.Core.Transformation.RegisterRules
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Transformation.RegisterRules
+    name: RegisterRules
+    nameWithType: Transformation.RegisterRules
+    fullName: NMF.Transformations.Core.Transformation.RegisterRules
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Synchronizations.Synchronization.RegisterRules*
   commentId: Overload:NMF.Synchronizations.Synchronization.RegisterRules
   name: RegisterRules
@@ -597,11 +1850,12 @@ references:
   name: SynchronizationDirection
   nameWithType: SynchronizationDirection
   fullName: NMF.Synchronizations.SynchronizationDirection
-- uid: ChangePropagationMode
-  isExternal: true
+- uid: NMF.Transformations.ChangePropagationMode
+  commentId: T:NMF.Transformations.ChangePropagationMode
+  parent: NMF.Transformations
   name: ChangePropagationMode
   nameWithType: ChangePropagationMode
-  fullName: ChangePropagationMode
+  fullName: NMF.Transformations.ChangePropagationMode
 - uid: NMF.Synchronizations.ISynchronizationContext
   commentId: T:NMF.Synchronizations.ISynchronizationContext
   parent: NMF.Synchronizations
@@ -616,6 +1870,11 @@ references:
   name: TRight
   nameWithType: TRight
   fullName: TRight
+- uid: NMF.Transformations
+  commentId: N:NMF.Transformations
+  name: NMF.Transformations
+  nameWithType: NMF.Transformations
+  fullName: NMF.Transformations
 - uid: NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}}
   commentId: T:NMF.Synchronizations.SynchronizationRule{``0,``1}
   parent: NMF.Synchronizations

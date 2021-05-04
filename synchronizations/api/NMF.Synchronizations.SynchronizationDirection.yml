@@ -5,6 +5,7 @@ items:
   id: SynchronizationDirection
   parent: NMF.Synchronizations
   children:
+  - NMF.Synchronizations.SynchronizationDirection.CheckOnly
   - NMF.Synchronizations.SynchronizationDirection.LeftToRight
   - NMF.Synchronizations.SynchronizationDirection.LeftToRightForced
   - NMF.Synchronizations.SynchronizationDirection.LeftWins
@@ -25,10 +26,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizationDirection
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 8
+    startLine: 11
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nDenotes the direction of a synchronization\n"
+  example: []
   syntax:
     content: public enum SynchronizationDirection
     content.vb: Public Enum SynchronizationDirection
@@ -59,10 +62,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftToRight
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 10
+    startLine: 16
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nElements existing in LHS are translated to RHS\n"
+  example: []
   syntax:
     content: LeftToRight = 0
     return:
@@ -91,10 +96,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightToLeft
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 11
+    startLine: 20
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nElements existing in RHS are translated to LHS\n"
+  example: []
   syntax:
     content: RightToLeft = 1
     return:
@@ -123,10 +130,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftToRightForced
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 12
+    startLine: 24
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nElements existing in LHS are translated to RHS, RHS elements with no existing corresponding LHS element are deleted\n"
+  example: []
   syntax:
     content: LeftToRightForced = 2
     return:
@@ -155,10 +164,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightToLeftForced
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 13
+    startLine: 28
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nElements existing in RHS are translated to LHS, LHS elements with no existing corresponding HS element are deleted\n"
+  example: []
   syntax:
     content: RightToLeftForced = 3
     return:
@@ -187,10 +198,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftWins
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 14
+    startLine: 32
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nElements existing in LHS are translated to RHS and vice versa, in case of conflicts the LHS wins\n"
+  example: []
   syntax:
     content: LeftWins = 4
     return:
@@ -219,12 +232,48 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightWins
     path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
-    startLine: 15
+    startLine: 36
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nElements existing in LHS are translated to RHS and vice versa, in case of conflicts the RHS wins\n"
+  example: []
   syntax:
     content: RightWins = 5
+    return:
+      type: NMF.Synchronizations.SynchronizationDirection
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: NMF.Synchronizations.SynchronizationDirection.CheckOnly
+  commentId: F:NMF.Synchronizations.SynchronizationDirection.CheckOnly
+  id: CheckOnly
+  parent: NMF.Synchronizations.SynchronizationDirection
+  langs:
+  - csharp
+  - vb
+  name: CheckOnly
+  nameWithType: SynchronizationDirection.CheckOnly
+  fullName: NMF.Synchronizations.SynchronizationDirection.CheckOnly
+  type: Field
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationDirection.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: CheckOnly
+    path: src/Synchronizations/Synchronizations/SynchronizationDirection.cs
+    startLine: 40
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nNo changes are made, but only inconsistencies are found and reported\n"
+  example: []
+  syntax:
+    content: CheckOnly = 6
     return:
       type: NMF.Synchronizations.SynchronizationDirection
   modifiers.csharp:

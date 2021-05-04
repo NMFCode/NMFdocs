@@ -22,15 +22,19 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ILookupExpression
     path: src/Expressions/Expressions.Utilities/ILookupExpression.cs
-    startLine: 6
+    startLine: 11
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  summary: "\nDenotes an interface for a lookup\n"
+  example: []
   syntax:
     content: public interface ILookupExpression<TSource, TKey>
     typeParameters:
     - id: TSource
+      description: The source type of the lookup
     - id: TKey
+      description: The type of key elements
     content.vb: Public Interface ILookupExpression(Of TSource, TKey)
   nameWithType.vb: ILookupExpression(Of TSource, TKey)
   modifiers.csharp:
@@ -59,17 +63,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: this[]
     path: src/Expressions/Expressions.Utilities/ILookupExpression.cs
-    startLine: 8
+    startLine: 18
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  summary: "\nGets the elements for the provided key\n"
+  example: []
   syntax:
     content: IEnumerableExpression<TSource> this[TKey key] { get; }
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key
     return:
       type: NMF.Expressions.IEnumerableExpression{{TSource}}
+      description: The elements for this key
     content.vb: ReadOnly Property Item(key As TKey) As IEnumerableExpression(Of TSource)
   overload: NMF.Expressions.Linq.ILookupExpression`2.Item*
   nameWithType.vb: ILookupExpression(Of TSource, TKey).Item(TKey)
@@ -97,10 +105,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Keys
     path: src/Expressions/Expressions.Utilities/ILookupExpression.cs
-    startLine: 10
+    startLine: 23
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  summary: "\nGets a collection of keys\n"
+  example: []
   syntax:
     content: IEnumerableExpression<TKey> Keys { get; }
     parameters: []
@@ -132,14 +142,17 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AsNotifiable
     path: src/Expressions/Expressions.Utilities/ILookupExpression.cs
-    startLine: 12
+    startLine: 29
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  summary: "\nGets an incremental version of the lookup\n"
+  example: []
   syntax:
     content: INotifyLookup<TSource, TKey> AsNotifiable()
     return:
       type: NMF.Expressions.Linq.INotifyLookup{{TSource},{TKey}}
+      description: ''
     content.vb: Function AsNotifiable As INotifyLookup(Of TSource, TKey)
   overload: NMF.Expressions.Linq.ILookupExpression`2.AsNotifiable*
   nameWithType.vb: ILookupExpression(Of TSource, TKey).AsNotifiable()

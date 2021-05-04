@@ -9,6 +9,7 @@ items:
   - NMF.Expressions.SetExpressionRewriter.CreateSetter(System.Linq.Expressions.LambdaExpression)
   - NMF.Expressions.SetExpressionRewriter.CreateSetter``1(System.Linq.Expressions.Expression{System.Func{``0}})
   - NMF.Expressions.SetExpressionRewriter.CreateSetter``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  - NMF.Expressions.SetExpressionRewriter.CreateSetter``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   - NMF.Expressions.SetExpressionRewriter.Value
   - NMF.Expressions.SetExpressionRewriter.Visit(System.Linq.Expressions.Expression)
   - NMF.Expressions.SetExpressionRewriter.VisitBinary(System.Linq.Expressions.BinaryExpression)
@@ -41,15 +42,16 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetExpressionRewriter
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 9
+    startLine: 12
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nAn expression visitor that turns getter functions into setters\n"
+  example: []
   syntax:
     content: 'public class SetExpressionRewriter : ExpressionVisitor'
     content.vb: >-
       Public Class SetExpressionRewriter
-
           Inherits ExpressionVisitor
   inheritance:
   - System.Object
@@ -60,30 +62,30 @@ items:
   - System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1({T},System.String)
   - System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{{T}},System.String)
   - System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
+  - System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
   - System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
   - System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
   - System.Linq.Expressions.ExpressionVisitor.VisitDynamic(System.Linq.Expressions.DynamicExpression)
   - System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
   - System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
   - System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
   - System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
+  - System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
   - System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{{T}})
   - System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
+  - System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
   - System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
   - System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+  - System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
   - System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
   - System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
-  - System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -108,19 +110,24 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateSetter
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 21
+    startLine: 30
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nCreate a setter for the given getter expression\n"
+  example: []
   syntax:
     content: public static Expression<Action<TValue>> CreateSetter<TValue>(Expression<Func<TValue>> getter)
     parameters:
     - id: getter
       type: System.Linq.Expressions.Expression{System.Func{{TValue}}}
+      description: The getter expression
     typeParameters:
     - id: TValue
+      description: The return type of the getter expression
     return:
       type: System.Linq.Expressions.Expression{System.Action{{TValue}}}
+      description: An expression that corresponds to the setter of the given getter
     content.vb: Public Shared Function CreateSetter(Of TValue)(getter As Expression(Of Func(Of TValue))) As Expression(Of Action(Of TValue))
   overload: NMF.Expressions.SetExpressionRewriter.CreateSetter*
   nameWithType.vb: SetExpressionRewriter.CreateSetter(Of TValue)(Expression(Of Func(Of TValue)))
@@ -150,20 +157,26 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateSetter
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 31
+    startLine: 47
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nCreate a setter for the given getter expression\n"
+  example: []
   syntax:
     content: public static Expression<Action<T, TValue>> CreateSetter<T, TValue>(Expression<Func<T, TValue>> getter)
     parameters:
     - id: getter
       type: System.Linq.Expressions.Expression{System.Func{{T},{TValue}}}
+      description: The getter expression
     typeParameters:
     - id: T
+      description: The type of the first parameter
     - id: TValue
+      description: The return type of the getter expression
     return:
       type: System.Linq.Expressions.Expression{System.Action{{T},{TValue}}}
+      description: An expression that corresponds to the setter of the given getter
     content.vb: Public Shared Function CreateSetter(Of T, TValue)(getter As Expression(Of Func(Of T, TValue))) As Expression(Of Action(Of T, TValue))
   overload: NMF.Expressions.SetExpressionRewriter.CreateSetter*
   nameWithType.vb: SetExpressionRewriter.CreateSetter(Of T, TValue)(Expression(Of Func(Of T, TValue)))
@@ -175,6 +188,57 @@ items:
   - Shared
   fullName.vb: NMF.Expressions.SetExpressionRewriter.CreateSetter(Of T, TValue)(System.Linq.Expressions.Expression(Of System.Func(Of T, TValue)))
   name.vb: CreateSetter(Of T, TValue)(Expression(Of Func(Of T, TValue)))
+- uid: NMF.Expressions.SetExpressionRewriter.CreateSetter``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  commentId: M:NMF.Expressions.SetExpressionRewriter.CreateSetter``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  id: CreateSetter``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
+  parent: NMF.Expressions.SetExpressionRewriter
+  langs:
+  - csharp
+  - vb
+  name: CreateSetter<T1, T2, TValue>(Expression<Func<T1, T2, TValue>>)
+  nameWithType: SetExpressionRewriter.CreateSetter<T1, T2, TValue>(Expression<Func<T1, T2, TValue>>)
+  fullName: NMF.Expressions.SetExpressionRewriter.CreateSetter<T1, T2, TValue>(System.Linq.Expressions.Expression<System.Func<T1, T2, TValue>>)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateSetter
+    path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
+    startLine: 65
+  assemblies:
+  - NMF.Expressions
+  namespace: NMF.Expressions
+  summary: "\nCreate a setter for the given getter expression\n"
+  example: []
+  syntax:
+    content: public static Expression<Action<T1, T2, TValue>> CreateSetter<T1, T2, TValue>(Expression<Func<T1, T2, TValue>> getter)
+    parameters:
+    - id: getter
+      type: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{TValue}}}
+      description: The getter expression
+    typeParameters:
+    - id: T1
+      description: The type of the first parameter
+    - id: T2
+      description: The type of the second parameter
+    - id: TValue
+      description: The return type of the getter expression
+    return:
+      type: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{TValue}}}
+      description: An expression that corresponds to the setter of the given getter
+    content.vb: Public Shared Function CreateSetter(Of T1, T2, TValue)(getter As Expression(Of Func(Of T1, T2, TValue))) As Expression(Of Action(Of T1, T2, TValue))
+  overload: NMF.Expressions.SetExpressionRewriter.CreateSetter*
+  nameWithType.vb: SetExpressionRewriter.CreateSetter(Of T1, T2, TValue)(Expression(Of Func(Of T1, T2, TValue)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: NMF.Expressions.SetExpressionRewriter.CreateSetter(Of T1, T2, TValue)(System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, TValue)))
+  name.vb: CreateSetter(Of T1, T2, TValue)(Expression(Of Func(Of T1, T2, TValue)))
 - uid: NMF.Expressions.SetExpressionRewriter.CreateSetter(System.Linq.Expressions.LambdaExpression)
   commentId: M:NMF.Expressions.SetExpressionRewriter.CreateSetter(System.Linq.Expressions.LambdaExpression)
   id: CreateSetter(System.Linq.Expressions.LambdaExpression)
@@ -193,17 +257,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateSetter
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 41
+    startLine: 80
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nCreate a setter for the given getter expression\n"
+  example: []
   syntax:
     content: public static LambdaExpression CreateSetter(LambdaExpression getter)
     parameters:
     - id: getter
       type: System.Linq.Expressions.LambdaExpression
+      description: The getter expression
     return:
       type: System.Linq.Expressions.LambdaExpression
+      description: An expression that corresponds to the setter of the given getter
     content.vb: Public Shared Function CreateSetter(getter As LambdaExpression) As LambdaExpression
   overload: NMF.Expressions.SetExpressionRewriter.CreateSetter*
   modifiers.csharp:
@@ -230,10 +298,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Value
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 61
+    startLine: 103
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nGets the value of the rewrite\n"
+  example: []
   syntax:
     content: public Expression Value { get; set; }
     parameters: []
@@ -265,15 +335,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 63
+    startLine: 109
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nCreate a new instance\n"
+  example: []
   syntax:
     content: public SetExpressionRewriter(Expression value)
     parameters:
     - id: value
       type: System.Linq.Expressions.Expression
+      description: The expression that is going to be inverted
     content.vb: Public Sub New(value As Expression)
   overload: NMF.Expressions.SetExpressionRewriter.#ctor*
   modifiers.csharp:
@@ -298,10 +371,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Visit
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 70
+    startLine: 117
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: public override Expression Visit(Expression node)
     parameters:
@@ -336,10 +410,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitBinary
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 76
+    startLine: 124
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitBinary(BinaryExpression node)
     parameters:
@@ -374,10 +449,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitConditional
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 234
+    startLine: 283
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitConditional(ConditionalExpression node)
     parameters:
@@ -412,10 +488,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitDefault
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 264
+    startLine: 314
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitDefault(DefaultExpression node)
     parameters:
@@ -450,10 +527,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitElementInit
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 269
+    startLine: 320
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override ElementInit VisitElementInit(ElementInit node)
     parameters:
@@ -488,10 +566,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitIndex
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 274
+    startLine: 326
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitIndex(IndexExpression node)
     parameters:
@@ -526,10 +605,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitListInit
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 279
+    startLine: 332
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitListInit(ListInitExpression node)
     parameters:
@@ -564,10 +644,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitMember
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 284
+    startLine: 338
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitMember(MemberExpression node)
     parameters:
@@ -602,10 +683,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitMemberAssignment
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 296
+    startLine: 358
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override MemberAssignment VisitMemberAssignment(MemberAssignment node)
     parameters:
@@ -640,10 +722,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitMemberInit
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 301
+    startLine: 364
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitMemberInit(MemberInitExpression node)
     parameters:
@@ -678,10 +761,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitMemberListBinding
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 306
+    startLine: 370
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override MemberListBinding VisitMemberListBinding(MemberListBinding node)
     parameters:
@@ -716,10 +800,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitMemberMemberBinding
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 311
+    startLine: 376
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override MemberMemberBinding VisitMemberMemberBinding(MemberMemberBinding node)
     parameters:
@@ -754,10 +839,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitMethodCall
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 316
+    startLine: 382
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitMethodCall(MethodCallExpression node)
     parameters:
@@ -792,10 +878,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitNew
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 404
+    startLine: 468
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitNew(NewExpression node)
     parameters:
@@ -830,10 +917,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitNewArray
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 409
+    startLine: 474
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitNewArray(NewArrayExpression node)
     parameters:
@@ -868,10 +956,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitParameter
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 414
+    startLine: 480
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitParameter(ParameterExpression node)
     parameters:
@@ -906,10 +995,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VisitUnary
     path: src/Expressions/Expressions/ExpressionRewriter/SetExpressionRewriter.cs
-    startLine: 419
+    startLine: 486
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  example: []
   syntax:
     content: protected override Expression VisitUnary(UnaryExpression node)
     parameters:
@@ -1295,6 +1385,47 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+  parent: System.Linq.Expressions.ExpressionVisitor
+  isExternal: true
+  name: VisitCatchBlock(CatchBlock)
+  nameWithType: ExpressionVisitor.VisitCatchBlock(CatchBlock)
+  fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+  spec.csharp:
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+    name: VisitCatchBlock
+    nameWithType: ExpressionVisitor.VisitCatchBlock
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.CatchBlock
+    name: CatchBlock
+    nameWithType: CatchBlock
+    fullName: System.Linq.Expressions.CatchBlock
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+    name: VisitCatchBlock
+    nameWithType: ExpressionVisitor.VisitCatchBlock
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.CatchBlock
+    name: CatchBlock
+    nameWithType: CatchBlock
+    fullName: System.Linq.Expressions.CatchBlock
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
   commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -1541,47 +1672,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitLabelTarget(LabelTarget)
-  nameWithType: ExpressionVisitor.VisitLabelTarget(LabelTarget)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-    name: VisitLabelTarget
-    nameWithType: ExpressionVisitor.VisitLabelTarget
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LabelTarget
-    name: LabelTarget
-    nameWithType: LabelTarget
-    fullName: System.Linq.Expressions.LabelTarget
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
-    name: VisitLabelTarget
-    nameWithType: ExpressionVisitor.VisitLabelTarget
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.LabelTarget
-    name: LabelTarget
-    nameWithType: LabelTarget
-    fullName: System.Linq.Expressions.LabelTarget
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
   commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -1619,6 +1709,47 @@ references:
     name: LabelExpression
     nameWithType: LabelExpression
     fullName: System.Linq.Expressions.LabelExpression
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
+  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
+  parent: System.Linq.Expressions.ExpressionVisitor
+  isExternal: true
+  name: VisitLabelTarget(LabelTarget)
+  nameWithType: ExpressionVisitor.VisitLabelTarget(LabelTarget)
+  fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
+  spec.csharp:
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
+    name: VisitLabelTarget
+    nameWithType: ExpressionVisitor.VisitLabelTarget
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.LabelTarget
+    name: LabelTarget
+    nameWithType: LabelTarget
+    fullName: System.Linq.Expressions.LabelTarget
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
+    name: VisitLabelTarget
+    nameWithType: ExpressionVisitor.VisitLabelTarget
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.LabelTarget
+    name: LabelTarget
+    nameWithType: LabelTarget
+    fullName: System.Linq.Expressions.LabelTarget
     isExternal: true
   - name: )
     nameWithType: )
@@ -1726,6 +1857,47 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
+  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
+  parent: System.Linq.Expressions.ExpressionVisitor
+  isExternal: true
+  name: VisitMemberBinding(MemberBinding)
+  nameWithType: ExpressionVisitor.VisitMemberBinding(MemberBinding)
+  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
+  spec.csharp:
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
+    name: VisitMemberBinding
+    nameWithType: ExpressionVisitor.VisitMemberBinding
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.MemberBinding
+    name: MemberBinding
+    nameWithType: MemberBinding
+    fullName: System.Linq.Expressions.MemberBinding
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
+    name: VisitMemberBinding
+    nameWithType: ExpressionVisitor.VisitMemberBinding
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.MemberBinding
+    name: MemberBinding
+    nameWithType: MemberBinding
+    fullName: System.Linq.Expressions.MemberBinding
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
   commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -1763,47 +1935,6 @@ references:
     name: RuntimeVariablesExpression
     nameWithType: RuntimeVariablesExpression
     fullName: System.Linq.Expressions.RuntimeVariablesExpression
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitSwitchCase(SwitchCase)
-  nameWithType: ExpressionVisitor.VisitSwitchCase(SwitchCase)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-    name: VisitSwitchCase
-    nameWithType: ExpressionVisitor.VisitSwitchCase
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.SwitchCase
-    name: SwitchCase
-    nameWithType: SwitchCase
-    fullName: System.Linq.Expressions.SwitchCase
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
-    name: VisitSwitchCase
-    nameWithType: ExpressionVisitor.VisitSwitchCase
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.SwitchCase
-    name: SwitchCase
-    nameWithType: SwitchCase
-    fullName: System.Linq.Expressions.SwitchCase
     isExternal: true
   - name: )
     nameWithType: )
@@ -1849,43 +1980,43 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+- uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
+  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
   parent: System.Linq.Expressions.ExpressionVisitor
   isExternal: true
-  name: VisitCatchBlock(CatchBlock)
-  nameWithType: ExpressionVisitor.VisitCatchBlock(CatchBlock)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
+  name: VisitSwitchCase(SwitchCase)
+  nameWithType: ExpressionVisitor.VisitSwitchCase(SwitchCase)
+  fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
   spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-    name: VisitCatchBlock
-    nameWithType: ExpressionVisitor.VisitCatchBlock
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
+    name: VisitSwitchCase
+    nameWithType: ExpressionVisitor.VisitSwitchCase
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Linq.Expressions.CatchBlock
-    name: CatchBlock
-    nameWithType: CatchBlock
-    fullName: System.Linq.Expressions.CatchBlock
+  - uid: System.Linq.Expressions.SwitchCase
+    name: SwitchCase
+    nameWithType: SwitchCase
+    fullName: System.Linq.Expressions.SwitchCase
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
-    name: VisitCatchBlock
-    nameWithType: ExpressionVisitor.VisitCatchBlock
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock
+  - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
+    name: VisitSwitchCase
+    nameWithType: ExpressionVisitor.VisitSwitchCase
+    fullName: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Linq.Expressions.CatchBlock
-    name: CatchBlock
-    nameWithType: CatchBlock
-    fullName: System.Linq.Expressions.CatchBlock
+  - uid: System.Linq.Expressions.SwitchCase
+    name: SwitchCase
+    nameWithType: SwitchCase
+    fullName: System.Linq.Expressions.SwitchCase
     isExternal: true
   - name: )
     nameWithType: )
@@ -1972,78 +2103,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  commentId: M:System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  parent: System.Linq.Expressions.ExpressionVisitor
-  isExternal: true
-  name: VisitMemberBinding(MemberBinding)
-  nameWithType: ExpressionVisitor.VisitMemberBinding(MemberBinding)
-  fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-  spec.csharp:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-    name: VisitMemberBinding
-    nameWithType: ExpressionVisitor.VisitMemberBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberBinding
-    name: MemberBinding
-    nameWithType: MemberBinding
-    fullName: System.Linq.Expressions.MemberBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
-    name: VisitMemberBinding
-    nameWithType: ExpressionVisitor.VisitMemberBinding
-    fullName: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Linq.Expressions.MemberBinding
-    name: MemberBinding
-    nameWithType: MemberBinding
-    fullName: System.Linq.Expressions.MemberBinding
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -2122,63 +2181,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -2285,6 +2287,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (
@@ -2908,6 +2998,178 @@ references:
   - name: T
     nameWithType: T
     fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Func{{T1},{T2},{TValue}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<T1, T2, TValue>>
+  nameWithType: Expression<Func<T1, T2, TValue>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T1, T2, TValue>>
+  nameWithType.vb: Expression(Of Func(Of T1, T2, TValue))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T1, T2, TValue))
+  name.vb: Expression(Of Func(Of T1, T2, TValue))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression{System.Action{{T1},{T2},{TValue}}}
+  commentId: T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Action<T1, T2, TValue>>
+  nameWithType: Expression<Action<T1, T2, TValue>>
+  fullName: System.Linq.Expressions.Expression<System.Action<T1, T2, TValue>>
+  nameWithType.vb: Expression(Of Action(Of T1, T2, TValue))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Action(Of T1, T2, TValue))
+  name.vb: Expression(Of Action(Of T1, T2, TValue))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Action`3
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T1
+    nameWithType: T1
+    fullName: T1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T2
+    nameWithType: T2
+    fullName: T2
   - name: ', '
     nameWithType: ', '
     fullName: ', '

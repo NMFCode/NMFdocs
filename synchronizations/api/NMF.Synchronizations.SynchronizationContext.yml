@@ -5,9 +5,10 @@ items:
   id: SynchronizationContext
   parent: NMF.Synchronizations
   children:
-  - NMF.Synchronizations.SynchronizationContext.#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
+  - NMF.Synchronizations.SynchronizationContext.#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
   - NMF.Synchronizations.SynchronizationContext.ChangePropagation
   - NMF.Synchronizations.SynchronizationContext.Direction
+  - NMF.Synchronizations.SynchronizationContext.Inconsistencies
   langs:
   - csharp
   - vb
@@ -22,39 +23,71 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizationContext
     path: src/Synchronizations/Synchronizations/SynchronizationContext.cs
-    startLine: 10
+    startLine: 16
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nDenotes a context in which a synchroniation takes place\n"
+  example: []
   syntax:
-    content: 'public class SynchronizationContext : TransformationContext, ISynchronizationContext, ITransformationContext'
+    content: 'public class SynchronizationContext : TransformationContext, ISynchronizationContext, ITransformationEngineContext, ITransformationContext'
     content.vb: >-
       Public Class SynchronizationContext
-
           Inherits TransformationContext
-
-          Implements ISynchronizationContext, ITransformationContext
+          Implements ISynchronizationContext, ITransformationEngineContext, ITransformationContext
   inheritance:
   - System.Object
+  - NMF.Transformations.Core.TransformationContext
   implements:
   - NMF.Synchronizations.ISynchronizationContext
-  - ITransformationContext
+  - NMF.Transformations.Core.ITransformationEngineContext
+  - NMF.Transformations.Core.ITransformationContext
+  inheritedMembers:
+  - NMF.Transformations.Core.TransformationContext.Transformation
+  - NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+  - NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object[],NMF.Transformations.Core.GeneralTransformationRule)
+  - NMF.Transformations.Core.TransformationContext.AddTraceEntry(NMF.Transformations.Core.Computation)
+  - NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+  - NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList{NMF.Transformations.Core.Computation})
+  - NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+  - NMF.Transformations.Core.TransformationContext.GetRules(System.Type[],System.Type)
+  - NMF.Transformations.Core.TransformationContext.GetRule(System.Type[],System.Type)
+  - NMF.Transformations.Core.TransformationContext.Bag
+  - NMF.Transformations.Core.TransformationContext.Data
+  - NMF.Transformations.Core.TransformationContext.ExecutePending
+  - NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+  - NMF.Transformations.Core.TransformationContext.Computations
+  - NMF.Transformations.Core.TransformationContext.Trace
+  - NMF.Transformations.Core.TransformationContext.Input
+  - NMF.Transformations.Core.TransformationContext.Inputs
+  - NMF.Transformations.Core.TransformationContext.Output
+  - NMF.Transformations.Core.TransformationContext.Outputs
+  - NMF.Transformations.Core.TransformationContext.OnComputationCompleted(NMF.Transformations.Core.ComputationEventArgs)
+  - NMF.Transformations.Core.TransformationContext.ComputationCompleted
+  - NMF.Transformations.Core.TransformationContext.NMF#Transformations#Core#ITransformationContext#IsThreadSafe
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: NMF.Synchronizations.SynchronizationContext.#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  commentId: M:NMF.Synchronizations.SynchronizationContext.#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)
-  id: '#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,ChangePropagationMode)'
+- uid: NMF.Synchronizations.SynchronizationContext.#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  commentId: M:NMF.Synchronizations.SynchronizationContext.#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)
+  id: '#ctor(NMF.Synchronizations.Synchronization,NMF.Synchronizations.SynchronizationDirection,NMF.Transformations.ChangePropagationMode)'
   parent: NMF.Synchronizations.SynchronizationContext
   langs:
   - csharp
   - vb
   name: SynchronizationContext(Synchronization, SynchronizationDirection, ChangePropagationMode)
   nameWithType: SynchronizationContext.SynchronizationContext(Synchronization, SynchronizationDirection, ChangePropagationMode)
-  fullName: NMF.Synchronizations.SynchronizationContext.SynchronizationContext(NMF.Synchronizations.Synchronization, NMF.Synchronizations.SynchronizationDirection, ChangePropagationMode)
+  fullName: NMF.Synchronizations.SynchronizationContext.SynchronizationContext(NMF.Synchronizations.Synchronization, NMF.Synchronizations.SynchronizationDirection, NMF.Transformations.ChangePropagationMode)
   type: Constructor
   source:
     remote:
@@ -63,19 +96,24 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Synchronizations/Synchronizations/SynchronizationContext.cs
-    startLine: 15
+    startLine: 24
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nCreates a new instance\n"
+  example: []
   syntax:
     content: public SynchronizationContext(Synchronization synchronization, SynchronizationDirection direction, ChangePropagationMode changePropagation)
     parameters:
     - id: synchronization
       type: NMF.Synchronizations.Synchronization
+      description: The synchronization that should be executed
     - id: direction
       type: NMF.Synchronizations.SynchronizationDirection
+      description: The direction of the synchronization
     - id: changePropagation
-      type: ChangePropagationMode
+      type: NMF.Transformations.ChangePropagationMode
+      description: The change propagation mode of the synchronization
     content.vb: Public Sub New(synchronization As Synchronization, direction As SynchronizationDirection, changePropagation As ChangePropagationMode)
   overload: NMF.Synchronizations.SynchronizationContext.#ctor*
   modifiers.csharp:
@@ -100,25 +138,27 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Direction
     path: src/Synchronizations/Synchronizations/SynchronizationContext.cs
-    startLine: 22
+    startLine: 33
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the direction of the synchronization process\n"
+  example: []
   syntax:
-    content: public SynchronizationDirection Direction { get; }
+    content: public SynchronizationDirection Direction { get; set; }
     parameters: []
     return:
       type: NMF.Synchronizations.SynchronizationDirection
-    content.vb: Public ReadOnly Property Direction As SynchronizationDirection
+    content.vb: Public Property Direction As SynchronizationDirection
   overload: NMF.Synchronizations.SynchronizationContext.Direction*
   implements:
   - NMF.Synchronizations.ISynchronizationContext.Direction
   modifiers.csharp:
   - public
   - get
+  - set
   modifiers.vb:
   - Public
-  - ReadOnly
 - uid: NMF.Synchronizations.SynchronizationContext.ChangePropagation
   commentId: P:NMF.Synchronizations.SynchronizationContext.ChangePropagation
   id: ChangePropagation
@@ -137,19 +177,61 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ChangePropagation
     path: src/Synchronizations/Synchronizations/SynchronizationContext.cs
-    startLine: 27
+    startLine: 39
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the change propagation mode of the model synchronization\n"
+  example: []
   syntax:
     content: public ChangePropagationMode ChangePropagation { get; }
     parameters: []
     return:
-      type: ChangePropagationMode
+      type: NMF.Transformations.ChangePropagationMode
     content.vb: Public ReadOnly Property ChangePropagation As ChangePropagationMode
   overload: NMF.Synchronizations.SynchronizationContext.ChangePropagation*
   implements:
   - NMF.Synchronizations.ISynchronizationContext.ChangePropagation
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Synchronizations.SynchronizationContext.Inconsistencies
+  commentId: P:NMF.Synchronizations.SynchronizationContext.Inconsistencies
+  id: Inconsistencies
+  parent: NMF.Synchronizations.SynchronizationContext
+  langs:
+  - csharp
+  - vb
+  name: Inconsistencies
+  nameWithType: SynchronizationContext.Inconsistencies
+  fullName: NMF.Synchronizations.SynchronizationContext.Inconsistencies
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationContext.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Inconsistencies
+    path: src/Synchronizations/Synchronizations/SynchronizationContext.cs
+    startLine: 45
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nGets a collection of inconsistencies found during the synchronization\n"
+  remarks: This property is only used by the synchronization engine if the direction is set to CheckOnly
+  example: []
+  syntax:
+    content: public ICollectionExpression<IInconsistency> Inconsistencies { get; }
+    parameters: []
+    return:
+      type: NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
+    content.vb: Public ReadOnly Property Inconsistencies As ICollectionExpression(Of IInconsistency)
+  overload: NMF.Synchronizations.SynchronizationContext.Inconsistencies*
+  implements:
+  - NMF.Synchronizations.ISynchronizationContext.Inconsistencies
   modifiers.csharp:
   - public
   - get
@@ -169,24 +251,902 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: NMF.Transformations.Core.TransformationContext
+  commentId: T:NMF.Transformations.Core.TransformationContext
+  parent: NMF.Transformations.Core
+  name: TransformationContext
+  nameWithType: TransformationContext
+  fullName: NMF.Transformations.Core.TransformationContext
 - uid: NMF.Synchronizations.ISynchronizationContext
   commentId: T:NMF.Synchronizations.ISynchronizationContext
   parent: NMF.Synchronizations
   name: ISynchronizationContext
   nameWithType: ISynchronizationContext
   fullName: NMF.Synchronizations.ISynchronizationContext
-- uid: ITransformationContext
-  commentId: '!:ITransformationContext'
-  isExternal: true
+- uid: NMF.Transformations.Core.ITransformationEngineContext
+  commentId: T:NMF.Transformations.Core.ITransformationEngineContext
+  parent: NMF.Transformations.Core
+  name: ITransformationEngineContext
+  nameWithType: ITransformationEngineContext
+  fullName: NMF.Transformations.Core.ITransformationEngineContext
+- uid: NMF.Transformations.Core.ITransformationContext
+  commentId: T:NMF.Transformations.Core.ITransformationContext
+  parent: NMF.Transformations.Core
   name: ITransformationContext
   nameWithType: ITransformationContext
-  fullName: ITransformationContext
+  fullName: NMF.Transformations.Core.ITransformationContext
+- uid: NMF.Transformations.Core.TransformationContext.Transformation
+  commentId: P:NMF.Transformations.Core.TransformationContext.Transformation
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Transformation
+  nameWithType: TransformationContext.Transformation
+  fullName: NMF.Transformations.Core.TransformationContext.Transformation
+- uid: NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+  commentId: M:NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+  parent: NMF.Transformations.Core.TransformationContext
+  isExternal: true
+  name: CallTransformation(GeneralTransformationRule, Object[], IEnumerable)
+  nameWithType: TransformationContext.CallTransformation(GeneralTransformationRule, Object[], IEnumerable)
+  fullName: NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, System.Object[], System.Collections.IEnumerable)
+  nameWithType.vb: TransformationContext.CallTransformation(GeneralTransformationRule, Object(), IEnumerable)
+  fullName.vb: NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, System.Object(), System.Collections.IEnumerable)
+  name.vb: CallTransformation(GeneralTransformationRule, Object(), IEnumerable)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+    name: CallTransformation
+    nameWithType: TransformationContext.CallTransformation
+    fullName: NMF.Transformations.Core.TransformationContext.CallTransformation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.GeneralTransformationRule
+    name: GeneralTransformationRule
+    nameWithType: GeneralTransformationRule
+    fullName: NMF.Transformations.Core.GeneralTransformationRule
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+    name: CallTransformation
+    nameWithType: TransformationContext.CallTransformation
+    fullName: NMF.Transformations.Core.TransformationContext.CallTransformation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.GeneralTransformationRule
+    name: GeneralTransformationRule
+    nameWithType: GeneralTransformationRule
+    fullName: NMF.Transformations.Core.GeneralTransformationRule
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object[],NMF.Transformations.Core.GeneralTransformationRule)
+  commentId: M:NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object[],NMF.Transformations.Core.GeneralTransformationRule)
+  parent: NMF.Transformations.Core.TransformationContext
+  isExternal: true
+  name: CreateComputationContext(Object[], GeneralTransformationRule)
+  nameWithType: TransformationContext.CreateComputationContext(Object[], GeneralTransformationRule)
+  fullName: NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object[], NMF.Transformations.Core.GeneralTransformationRule)
+  nameWithType.vb: TransformationContext.CreateComputationContext(Object(), GeneralTransformationRule)
+  fullName.vb: NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object(), NMF.Transformations.Core.GeneralTransformationRule)
+  name.vb: CreateComputationContext(Object(), GeneralTransformationRule)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object[],NMF.Transformations.Core.GeneralTransformationRule)
+    name: CreateComputationContext
+    nameWithType: TransformationContext.CreateComputationContext
+    fullName: NMF.Transformations.Core.TransformationContext.CreateComputationContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Transformations.Core.GeneralTransformationRule
+    name: GeneralTransformationRule
+    nameWithType: GeneralTransformationRule
+    fullName: NMF.Transformations.Core.GeneralTransformationRule
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.CreateComputationContext(System.Object[],NMF.Transformations.Core.GeneralTransformationRule)
+    name: CreateComputationContext
+    nameWithType: TransformationContext.CreateComputationContext
+    fullName: NMF.Transformations.Core.TransformationContext.CreateComputationContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Transformations.Core.GeneralTransformationRule
+    name: GeneralTransformationRule
+    nameWithType: GeneralTransformationRule
+    fullName: NMF.Transformations.Core.GeneralTransformationRule
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.AddTraceEntry(NMF.Transformations.Core.Computation)
+  commentId: M:NMF.Transformations.Core.TransformationContext.AddTraceEntry(NMF.Transformations.Core.Computation)
+  parent: NMF.Transformations.Core.TransformationContext
+  name: AddTraceEntry(Computation)
+  nameWithType: TransformationContext.AddTraceEntry(Computation)
+  fullName: NMF.Transformations.Core.TransformationContext.AddTraceEntry(NMF.Transformations.Core.Computation)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.AddTraceEntry(NMF.Transformations.Core.Computation)
+    name: AddTraceEntry
+    nameWithType: TransformationContext.AddTraceEntry
+    fullName: NMF.Transformations.Core.TransformationContext.AddTraceEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.AddTraceEntry(NMF.Transformations.Core.Computation)
+    name: AddTraceEntry
+    nameWithType: TransformationContext.AddTraceEntry
+    fullName: NMF.Transformations.Core.TransformationContext.AddTraceEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+  commentId: M:NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+  parent: NMF.Transformations.Core.TransformationContext
+  name: ExecutePendingComputations()
+  nameWithType: TransformationContext.ExecutePendingComputations()
+  fullName: NMF.Transformations.Core.TransformationContext.ExecutePendingComputations()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+    name: ExecutePendingComputations
+    nameWithType: TransformationContext.ExecutePendingComputations
+    fullName: NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+    name: ExecutePendingComputations
+    nameWithType: TransformationContext.ExecutePendingComputations
+    fullName: NMF.Transformations.Core.TransformationContext.ExecutePendingComputations
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList{NMF.Transformations.Core.Computation})
+  commentId: M:NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList{NMF.Transformations.Core.Computation})
+  parent: NMF.Transformations.Core.TransformationContext
+  isExternal: true
+  name: ExecuteLevel(IList<Computation>)
+  nameWithType: TransformationContext.ExecuteLevel(IList<Computation>)
+  fullName: NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList<NMF.Transformations.Core.Computation>)
+  nameWithType.vb: TransformationContext.ExecuteLevel(IList(Of Computation))
+  fullName.vb: NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList(Of NMF.Transformations.Core.Computation))
+  name.vb: ExecuteLevel(IList(Of Computation))
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList{NMF.Transformations.Core.Computation})
+    name: ExecuteLevel
+    nameWithType: TransformationContext.ExecuteLevel
+    fullName: NMF.Transformations.Core.TransformationContext.ExecuteLevel
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.ExecuteLevel(System.Collections.Generic.IList{NMF.Transformations.Core.Computation})
+    name: ExecuteLevel
+    nameWithType: TransformationContext.ExecuteLevel
+    fullName: NMF.Transformations.Core.TransformationContext.ExecuteLevel
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+  commentId: M:NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+  parent: NMF.Transformations.Core.TransformationContext
+  name: CreateDelayedOutputs()
+  nameWithType: TransformationContext.CreateDelayedOutputs()
+  fullName: NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+    name: CreateDelayedOutputs
+    nameWithType: TransformationContext.CreateDelayedOutputs
+    fullName: NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+    name: CreateDelayedOutputs
+    nameWithType: TransformationContext.CreateDelayedOutputs
+    fullName: NMF.Transformations.Core.TransformationContext.CreateDelayedOutputs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.GetRules(System.Type[],System.Type)
+  commentId: M:NMF.Transformations.Core.TransformationContext.GetRules(System.Type[],System.Type)
+  parent: NMF.Transformations.Core.TransformationContext
+  isExternal: true
+  name: GetRules(Type[], Type)
+  nameWithType: TransformationContext.GetRules(Type[], Type)
+  fullName: NMF.Transformations.Core.TransformationContext.GetRules(System.Type[], System.Type)
+  nameWithType.vb: TransformationContext.GetRules(Type(), Type)
+  fullName.vb: NMF.Transformations.Core.TransformationContext.GetRules(System.Type(), System.Type)
+  name.vb: GetRules(Type(), Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.GetRules(System.Type[],System.Type)
+    name: GetRules
+    nameWithType: TransformationContext.GetRules
+    fullName: NMF.Transformations.Core.TransformationContext.GetRules
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.GetRules(System.Type[],System.Type)
+    name: GetRules
+    nameWithType: TransformationContext.GetRules
+    fullName: NMF.Transformations.Core.TransformationContext.GetRules
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.GetRule(System.Type[],System.Type)
+  commentId: M:NMF.Transformations.Core.TransformationContext.GetRule(System.Type[],System.Type)
+  parent: NMF.Transformations.Core.TransformationContext
+  isExternal: true
+  name: GetRule(Type[], Type)
+  nameWithType: TransformationContext.GetRule(Type[], Type)
+  fullName: NMF.Transformations.Core.TransformationContext.GetRule(System.Type[], System.Type)
+  nameWithType.vb: TransformationContext.GetRule(Type(), Type)
+  fullName.vb: NMF.Transformations.Core.TransformationContext.GetRule(System.Type(), System.Type)
+  name.vb: GetRule(Type(), Type)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.GetRule(System.Type[],System.Type)
+    name: GetRule
+    nameWithType: TransformationContext.GetRule
+    fullName: NMF.Transformations.Core.TransformationContext.GetRule
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.GetRule(System.Type[],System.Type)
+    name: GetRule
+    nameWithType: TransformationContext.GetRule
+    fullName: NMF.Transformations.Core.TransformationContext.GetRule
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.Bag
+  commentId: P:NMF.Transformations.Core.TransformationContext.Bag
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Bag
+  nameWithType: TransformationContext.Bag
+  fullName: NMF.Transformations.Core.TransformationContext.Bag
+- uid: NMF.Transformations.Core.TransformationContext.Data
+  commentId: P:NMF.Transformations.Core.TransformationContext.Data
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Data
+  nameWithType: TransformationContext.Data
+  fullName: NMF.Transformations.Core.TransformationContext.Data
+- uid: NMF.Transformations.Core.TransformationContext.ExecutePending
+  commentId: M:NMF.Transformations.Core.TransformationContext.ExecutePending
+  parent: NMF.Transformations.Core.TransformationContext
+  name: ExecutePending()
+  nameWithType: TransformationContext.ExecutePending()
+  fullName: NMF.Transformations.Core.TransformationContext.ExecutePending()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.ExecutePending
+    name: ExecutePending
+    nameWithType: TransformationContext.ExecutePending
+    fullName: NMF.Transformations.Core.TransformationContext.ExecutePending
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.ExecutePending
+    name: ExecutePending
+    nameWithType: TransformationContext.ExecutePending
+    fullName: NMF.Transformations.Core.TransformationContext.ExecutePending
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+  commentId: M:NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+  parent: NMF.Transformations.Core.TransformationContext
+  name: CallPendingDependencies()
+  nameWithType: TransformationContext.CallPendingDependencies()
+  fullName: NMF.Transformations.Core.TransformationContext.CallPendingDependencies()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+    name: CallPendingDependencies
+    nameWithType: TransformationContext.CallPendingDependencies
+    fullName: NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+    name: CallPendingDependencies
+    nameWithType: TransformationContext.CallPendingDependencies
+    fullName: NMF.Transformations.Core.TransformationContext.CallPendingDependencies
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.Computations
+  commentId: P:NMF.Transformations.Core.TransformationContext.Computations
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Computations
+  nameWithType: TransformationContext.Computations
+  fullName: NMF.Transformations.Core.TransformationContext.Computations
+- uid: NMF.Transformations.Core.TransformationContext.Trace
+  commentId: P:NMF.Transformations.Core.TransformationContext.Trace
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Trace
+  nameWithType: TransformationContext.Trace
+  fullName: NMF.Transformations.Core.TransformationContext.Trace
+- uid: NMF.Transformations.Core.TransformationContext.Input
+  commentId: P:NMF.Transformations.Core.TransformationContext.Input
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Input
+  nameWithType: TransformationContext.Input
+  fullName: NMF.Transformations.Core.TransformationContext.Input
+- uid: NMF.Transformations.Core.TransformationContext.Inputs
+  commentId: P:NMF.Transformations.Core.TransformationContext.Inputs
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Inputs
+  nameWithType: TransformationContext.Inputs
+  fullName: NMF.Transformations.Core.TransformationContext.Inputs
+- uid: NMF.Transformations.Core.TransformationContext.Output
+  commentId: P:NMF.Transformations.Core.TransformationContext.Output
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Output
+  nameWithType: TransformationContext.Output
+  fullName: NMF.Transformations.Core.TransformationContext.Output
+- uid: NMF.Transformations.Core.TransformationContext.Outputs
+  commentId: P:NMF.Transformations.Core.TransformationContext.Outputs
+  parent: NMF.Transformations.Core.TransformationContext
+  name: Outputs
+  nameWithType: TransformationContext.Outputs
+  fullName: NMF.Transformations.Core.TransformationContext.Outputs
+- uid: NMF.Transformations.Core.TransformationContext.OnComputationCompleted(NMF.Transformations.Core.ComputationEventArgs)
+  commentId: M:NMF.Transformations.Core.TransformationContext.OnComputationCompleted(NMF.Transformations.Core.ComputationEventArgs)
+  parent: NMF.Transformations.Core.TransformationContext
+  name: OnComputationCompleted(ComputationEventArgs)
+  nameWithType: TransformationContext.OnComputationCompleted(ComputationEventArgs)
+  fullName: NMF.Transformations.Core.TransformationContext.OnComputationCompleted(NMF.Transformations.Core.ComputationEventArgs)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.TransformationContext.OnComputationCompleted(NMF.Transformations.Core.ComputationEventArgs)
+    name: OnComputationCompleted
+    nameWithType: TransformationContext.OnComputationCompleted
+    fullName: NMF.Transformations.Core.TransformationContext.OnComputationCompleted
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.ComputationEventArgs
+    name: ComputationEventArgs
+    nameWithType: ComputationEventArgs
+    fullName: NMF.Transformations.Core.ComputationEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.TransformationContext.OnComputationCompleted(NMF.Transformations.Core.ComputationEventArgs)
+    name: OnComputationCompleted
+    nameWithType: TransformationContext.OnComputationCompleted
+    fullName: NMF.Transformations.Core.TransformationContext.OnComputationCompleted
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.ComputationEventArgs
+    name: ComputationEventArgs
+    nameWithType: ComputationEventArgs
+    fullName: NMF.Transformations.Core.ComputationEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.TransformationContext.ComputationCompleted
+  commentId: E:NMF.Transformations.Core.TransformationContext.ComputationCompleted
+  parent: NMF.Transformations.Core.TransformationContext
+  name: ComputationCompleted
+  nameWithType: TransformationContext.ComputationCompleted
+  fullName: NMF.Transformations.Core.TransformationContext.ComputationCompleted
+- uid: NMF.Transformations.Core.TransformationContext.NMF#Transformations#Core#ITransformationContext#IsThreadSafe
+  commentId: P:NMF.Transformations.Core.TransformationContext.NMF#Transformations#Core#ITransformationContext#IsThreadSafe
+  parent: NMF.Transformations.Core.TransformationContext
+  name: ITransformationContext.IsThreadSafe
+  nameWithType: TransformationContext.ITransformationContext.IsThreadSafe
+  fullName: NMF.Transformations.Core.TransformationContext.NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+  nameWithType.vb: TransformationContext.NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+  name.vb: NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: NMF.Transformations.Core
+  commentId: N:NMF.Transformations.Core
+  name: NMF.Transformations.Core
+  nameWithType: NMF.Transformations.Core
+  fullName: NMF.Transformations.Core
 - uid: NMF.Synchronizations.SynchronizationContext.#ctor*
   commentId: Overload:NMF.Synchronizations.SynchronizationContext.#ctor
   name: SynchronizationContext
@@ -204,11 +1164,17 @@ references:
   name: SynchronizationDirection
   nameWithType: SynchronizationDirection
   fullName: NMF.Synchronizations.SynchronizationDirection
-- uid: ChangePropagationMode
-  isExternal: true
+- uid: NMF.Transformations.ChangePropagationMode
+  commentId: T:NMF.Transformations.ChangePropagationMode
+  parent: NMF.Transformations
   name: ChangePropagationMode
   nameWithType: ChangePropagationMode
-  fullName: ChangePropagationMode
+  fullName: NMF.Transformations.ChangePropagationMode
+- uid: NMF.Transformations
+  commentId: N:NMF.Transformations
+  name: NMF.Transformations
+  nameWithType: NMF.Transformations
+  fullName: NMF.Transformations
 - uid: NMF.Synchronizations.SynchronizationContext.Direction*
   commentId: Overload:NMF.Synchronizations.SynchronizationContext.Direction
   name: Direction
@@ -231,3 +1197,95 @@ references:
   name: ChangePropagation
   nameWithType: ISynchronizationContext.ChangePropagation
   fullName: NMF.Synchronizations.ISynchronizationContext.ChangePropagation
+- uid: NMF.Synchronizations.SynchronizationContext.Inconsistencies*
+  commentId: Overload:NMF.Synchronizations.SynchronizationContext.Inconsistencies
+  name: Inconsistencies
+  nameWithType: SynchronizationContext.Inconsistencies
+  fullName: NMF.Synchronizations.SynchronizationContext.Inconsistencies
+- uid: NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+  commentId: P:NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+  parent: NMF.Synchronizations.ISynchronizationContext
+  name: Inconsistencies
+  nameWithType: ISynchronizationContext.Inconsistencies
+  fullName: NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+- uid: NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
+  commentId: T:NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.ICollectionExpression`1
+  name: ICollectionExpression<IInconsistency>
+  nameWithType: ICollectionExpression<IInconsistency>
+  fullName: NMF.Expressions.ICollectionExpression<NMF.Synchronizations.Inconsistencies.IInconsistency>
+  nameWithType.vb: ICollectionExpression(Of IInconsistency)
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of NMF.Synchronizations.Inconsistencies.IInconsistency)
+  name.vb: ICollectionExpression(Of IInconsistency)
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Synchronizations.Inconsistencies.IInconsistency
+    name: IInconsistency
+    nameWithType: IInconsistency
+    fullName: NMF.Synchronizations.Inconsistencies.IInconsistency
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Synchronizations.Inconsistencies.IInconsistency
+    name: IInconsistency
+    nameWithType: IInconsistency
+    fullName: NMF.Synchronizations.Inconsistencies.IInconsistency
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.ICollectionExpression`1
+  commentId: T:NMF.Expressions.ICollectionExpression`1
+  name: ICollectionExpression<T>
+  nameWithType: ICollectionExpression<T>
+  fullName: NMF.Expressions.ICollectionExpression<T>
+  nameWithType.vb: ICollectionExpression(Of T)
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of T)
+  name.vb: ICollectionExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions

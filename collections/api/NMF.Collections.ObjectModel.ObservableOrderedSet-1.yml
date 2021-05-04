@@ -11,6 +11,8 @@ items:
   - NMF.Collections.ObjectModel.ObservableOrderedSet`1.CollectionChanged
   - NMF.Collections.ObjectModel.ObservableOrderedSet`1.CollectionChanging
   - NMF.Collections.ObjectModel.ObservableOrderedSet`1.Insert(System.Int32,`0)
+  - NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
+  - NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
   - NMF.Collections.ObjectModel.ObservableOrderedSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   - NMF.Collections.ObjectModel.ObservableOrderedSet`1.OnCollectionChanging(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   - NMF.Collections.ObjectModel.ObservableOrderedSet`1.OnPropertyChanged(System.String)
@@ -42,15 +44,13 @@ items:
   - NMF.Collections
   namespace: NMF.Collections.ObjectModel
   syntax:
-    content: 'public class ObservableOrderedSet<T> : OrderedSet<T>, IList, ICollection, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<T>, IListExpression<T>, ISetExpression<T>, IOrderedSet<T>, IList<T>, ISet<T>, ICollection<T>, IEnumerable<T>, IEnumerable, ICollectionExpression'
+    content: 'public class ObservableOrderedSet<T> : OrderedSet<T>, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<T>, IListExpression<T>, ISetExpression<T>, ICollectionExpression<T>, IEnumerableExpression<T>, IOrderedSet<T>, IList<T>, ISet<T>, ICollection<T>, IEnumerable<T>, ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable'
     typeParameters:
     - id: T
     content.vb: >-
       Public Class ObservableOrderedSet(Of T)
-
           Inherits OrderedSet(Of T)
-
-          Implements IList, ICollection, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression(Of T), IListExpression(Of T), ISetExpression(Of T), IOrderedSet(Of T), IList(Of T), ISet(Of T), ICollection(Of T), IEnumerable(Of T), IEnumerable, ICollectionExpression
+          Implements INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression(Of T), IListExpression(Of T), ISetExpression(Of T), ICollectionExpression(Of T), IEnumerableExpression(Of T), IOrderedSet(Of T), IList(Of T), ISet(Of T), ICollection(Of T), IEnumerable(Of T), ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable
   inheritance:
   - System.Object
   - NMF.Collections.Generic.DecoratedSet{{T}}
@@ -58,21 +58,24 @@ items:
   derivedClasses:
   - NMF.Collections.ObjectModel.ObservableOppositeOrderedSet`2
   implements:
-  - System.Collections.IList
-  - System.Collections.ICollection
   - System.Collections.Specialized.INotifyCollectionChanged
   - NMF.Collections.ObjectModel.INotifyCollectionChanging
   - System.ComponentModel.INotifyPropertyChanged
   - NMF.Collections.Generic.IOrderedSetExpression{{T}}
-  - IListExpression{{T}}
-  - ISetExpression{{T}}
+  - NMF.Expressions.IListExpression{{T}}
+  - NMF.Expressions.ISetExpression{{T}}
+  - NMF.Expressions.ICollectionExpression{{T}}
+  - NMF.Expressions.IEnumerableExpression{{T}}
   - NMF.Collections.Generic.IOrderedSet{{T}}
   - System.Collections.Generic.IList{{T}}
   - System.Collections.Generic.ISet{{T}}
   - System.Collections.Generic.ICollection{{T}}
   - System.Collections.Generic.IEnumerable{{T}}
+  - NMF.Expressions.ICollectionExpression
+  - NMF.Expressions.IEnumerableExpression
+  - System.Collections.IList
+  - System.Collections.ICollection
   - System.Collections.IEnumerable
-  - ICollectionExpression
   inheritedMembers:
   - NMF.Collections.Generic.OrderedSet{{T}}.Remove({T})
   - NMF.Collections.Generic.OrderedSet{{T}}.GetEnumerator
@@ -110,13 +113,13 @@ items:
   - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IEnumerable#GetEnumerator
   - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Clear
   - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#RemoveAt(System.Int32)
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   nameWithType.vb: ObservableOrderedSet(Of T)
   modifiers.csharp:
   - public
@@ -361,15 +364,85 @@ items:
   syntax:
     content: public INotifyCollection<T> AsNotifiable()
     return:
-      type: INotifyCollection{{T}}
+      type: NMF.Expressions.INotifyCollection{{T}}
     content.vb: Public Function AsNotifiable As INotifyCollection(Of T)
   overload: NMF.Collections.ObjectModel.ObservableOrderedSet`1.AsNotifiable*
+  implements:
+  - NMF.Expressions.ICollectionExpression{{T}}.AsNotifiable
   nameWithType.vb: ObservableOrderedSet(Of T).AsNotifiable()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: NMF.Collections.ObjectModel.ObservableOrderedSet(Of T).AsNotifiable()
+- uid: NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
+  commentId: M:NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
+  id: NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
+  isEii: true
+  parent: NMF.Collections.ObjectModel.ObservableOrderedSet`1
+  langs:
+  - csharp
+  - vb
+  name: IEnumerableExpression<T>.AsNotifiable()
+  nameWithType: ObservableOrderedSet<T>.IEnumerableExpression<T>.AsNotifiable()
+  fullName: NMF.Collections.ObjectModel.ObservableOrderedSet<T>.NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+  type: Method
+  source:
+    remote:
+      path: Collections/Collections/ObjectModel/ObservableOrderedSet.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+    path: src/Collections/Collections/ObjectModel/ObservableOrderedSet.cs
+    startLine: 45
+  assemblies:
+  - NMF.Collections
+  namespace: NMF.Collections.ObjectModel
+  syntax:
+    content: INotifyEnumerable<T> IEnumerableExpression<T>.AsNotifiable()
+    return:
+      type: NMF.Expressions.INotifyEnumerable{{T}}
+    content.vb: Function NMF.Expressions.IEnumerableExpression<T>.AsNotifiable As INotifyEnumerable(Of T) Implements IEnumerableExpression(Of T).AsNotifiable
+  overload: NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable*
+  implements:
+  - NMF.Expressions.IEnumerableExpression{{T}}.AsNotifiable
+  nameWithType.vb: ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+  fullName.vb: NMF.Collections.ObjectModel.ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+  name.vb: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+- uid: NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
+  commentId: M:NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
+  id: NMF#Expressions#IEnumerableExpression#AsNotifiable
+  isEii: true
+  parent: NMF.Collections.ObjectModel.ObservableOrderedSet`1
+  langs:
+  - csharp
+  - vb
+  name: IEnumerableExpression.AsNotifiable()
+  nameWithType: ObservableOrderedSet<T>.IEnumerableExpression.AsNotifiable()
+  fullName: NMF.Collections.ObjectModel.ObservableOrderedSet<T>.NMF.Expressions.IEnumerableExpression.AsNotifiable()
+  type: Method
+  source:
+    remote:
+      path: Collections/Collections/ObjectModel/ObservableOrderedSet.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: NMF.Expressions.IEnumerableExpression.AsNotifiable
+    path: src/Collections/Collections/ObjectModel/ObservableOrderedSet.cs
+    startLine: 50
+  assemblies:
+  - NMF.Collections
+  namespace: NMF.Collections.ObjectModel
+  syntax:
+    content: INotifyEnumerable IEnumerableExpression.AsNotifiable()
+    return:
+      type: NMF.Expressions.INotifyEnumerable
+    content.vb: Function NMF.Expressions.IEnumerableExpression.AsNotifiable As INotifyEnumerable Implements IEnumerableExpression.AsNotifiable
+  overload: NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable*
+  implements:
+  - NMF.Expressions.IEnumerableExpression.AsNotifiable
+  nameWithType.vb: ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable()
+  fullName.vb: NMF.Collections.ObjectModel.ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable()
+  name.vb: NMF.Expressions.IEnumerableExpression.AsNotifiable()
 - uid: NMF.Collections.ObjectModel.ObservableOrderedSet`1.RequireEvents
   commentId: M:NMF.Collections.ObjectModel.ObservableOrderedSet`1.RequireEvents
   id: RequireEvents
@@ -591,6 +664,7 @@ items:
   overload: NMF.Collections.ObjectModel.ObservableOrderedSet`1.Clear*
   implements:
   - System.Collections.Generic.ICollection{{T}}.Clear
+  - System.Collections.IList.Clear
   nameWithType.vb: ObservableOrderedSet(Of T).Clear()
   modifiers.csharp:
   - public
@@ -882,20 +956,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.IList
-  commentId: T:System.Collections.IList
-  parent: System.Collections
-  isExternal: true
-  name: IList
-  nameWithType: IList
-  fullName: System.Collections.IList
-- uid: System.Collections.ICollection
-  commentId: T:System.Collections.ICollection
-  parent: System.Collections
-  isExternal: true
-  name: ICollection
-  nameWithType: ICollection
-  fullName: System.Collections.ICollection
 - uid: System.Collections.Specialized.INotifyCollectionChanged
   commentId: T:System.Collections.Specialized.INotifyCollectionChanged
   parent: System.Collections.Specialized
@@ -954,21 +1014,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IListExpression{{T}}
-  commentId: '!:IListExpression{`0}'
-  definition: IListExpression`1
+- uid: NMF.Expressions.IListExpression{{T}}
+  commentId: T:NMF.Expressions.IListExpression{`0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.IListExpression`1
   name: IListExpression<T>
   nameWithType: IListExpression<T>
-  fullName: IListExpression<T>
+  fullName: NMF.Expressions.IListExpression<T>
   nameWithType.vb: IListExpression(Of T)
-  fullName.vb: IListExpression(Of T)
+  fullName.vb: NMF.Expressions.IListExpression(Of T)
   name.vb: IListExpression(Of T)
   spec.csharp:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: <
     nameWithType: <
     fullName: <
@@ -979,11 +1039,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -993,21 +1052,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: ISetExpression{{T}}
-  commentId: '!:ISetExpression{`0}'
-  definition: ISetExpression`1
+- uid: NMF.Expressions.ISetExpression{{T}}
+  commentId: T:NMF.Expressions.ISetExpression{`0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.ISetExpression`1
   name: ISetExpression<T>
   nameWithType: ISetExpression<T>
-  fullName: ISetExpression<T>
+  fullName: NMF.Expressions.ISetExpression<T>
   nameWithType.vb: ISetExpression(Of T)
-  fullName.vb: ISetExpression(Of T)
+  fullName.vb: NMF.Expressions.ISetExpression(Of T)
   name.vb: ISetExpression(Of T)
   spec.csharp:
-  - uid: ISetExpression`1
+  - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
     nameWithType: ISetExpression
-    fullName: ISetExpression
-    isExternal: true
+    fullName: NMF.Expressions.ISetExpression
   - name: <
     nameWithType: <
     fullName: <
@@ -1018,11 +1077,86 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ISetExpression`1
+  - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
     nameWithType: ISetExpression
-    fullName: ISetExpression
-    isExternal: true
+    fullName: NMF.Expressions.ISetExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.ICollectionExpression{{T}}
+  commentId: T:NMF.Expressions.ICollectionExpression{`0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.ICollectionExpression`1
+  name: ICollectionExpression<T>
+  nameWithType: ICollectionExpression<T>
+  fullName: NMF.Expressions.ICollectionExpression<T>
+  nameWithType.vb: ICollectionExpression(Of T)
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of T)
+  name.vb: ICollectionExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.IEnumerableExpression{{T}}
+  commentId: T:NMF.Expressions.IEnumerableExpression{`0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.IEnumerableExpression`1
+  name: IEnumerableExpression<T>
+  nameWithType: IEnumerableExpression<T>
+  fullName: NMF.Expressions.IEnumerableExpression<T>
+  nameWithType.vb: IEnumerableExpression(Of T)
+  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T)
+  name.vb: IEnumerableExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1230,6 +1364,32 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: NMF.Expressions.ICollectionExpression
+  commentId: T:NMF.Expressions.ICollectionExpression
+  parent: NMF.Expressions
+  name: ICollectionExpression
+  nameWithType: ICollectionExpression
+  fullName: NMF.Expressions.ICollectionExpression
+- uid: NMF.Expressions.IEnumerableExpression
+  commentId: T:NMF.Expressions.IEnumerableExpression
+  parent: NMF.Expressions
+  name: IEnumerableExpression
+  nameWithType: IEnumerableExpression
+  fullName: NMF.Expressions.IEnumerableExpression
+- uid: System.Collections.IList
+  commentId: T:System.Collections.IList
+  parent: System.Collections
+  isExternal: true
+  name: IList
+  nameWithType: IList
+  fullName: System.Collections.IList
+- uid: System.Collections.ICollection
+  commentId: T:System.Collections.ICollection
+  parent: System.Collections
+  isExternal: true
+  name: ICollection
+  nameWithType: ICollection
+  fullName: System.Collections.ICollection
 - uid: System.Collections.IEnumerable
   commentId: T:System.Collections.IEnumerable
   parent: System.Collections
@@ -1237,11 +1397,6 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
-- uid: ICollectionExpression
-  isExternal: true
-  name: ICollectionExpression
-  nameWithType: ICollectionExpression
-  fullName: ICollectionExpression
 - uid: NMF.Collections.Generic.OrderedSet{{T}}.Remove({T})
   commentId: M:NMF.Collections.Generic.OrderedSet{`0}.Remove(`0)
   parent: NMF.Collections.Generic.OrderedSet{{T}}
@@ -2696,37 +2851,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -2805,63 +2929,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -2975,6 +3042,94 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -3058,12 +3213,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections
-  commentId: N:System.Collections
-  isExternal: true
-  name: System.Collections
-  nameWithType: System.Collections
-  fullName: System.Collections
 - uid: System.Collections.Specialized
   commentId: N:System.Collections.Specialized
   isExternal: true
@@ -3112,79 +3261,152 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IListExpression`1
-  isExternal: true
-  name: IListExpression<>
-  nameWithType: IListExpression<>
-  fullName: IListExpression<>
-  nameWithType.vb: IListExpression(Of )
-  fullName.vb: IListExpression(Of )
-  name.vb: IListExpression(Of )
+- uid: NMF.Expressions.IListExpression`1
+  commentId: T:NMF.Expressions.IListExpression`1
+  name: IListExpression<T>
+  nameWithType: IListExpression<T>
+  fullName: NMF.Expressions.IListExpression<T>
+  nameWithType.vb: IListExpression(Of T)
+  fullName.vb: NMF.Expressions.IListExpression(Of T)
+  name.vb: IListExpression(Of T)
   spec.csharp:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: ISetExpression`1
-  isExternal: true
-  name: ISetExpression<>
-  nameWithType: ISetExpression<>
-  fullName: ISetExpression<>
-  nameWithType.vb: ISetExpression(Of )
-  fullName.vb: ISetExpression(Of )
-  name.vb: ISetExpression(Of )
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions
+- uid: NMF.Expressions.ISetExpression`1
+  commentId: T:NMF.Expressions.ISetExpression`1
+  name: ISetExpression<T>
+  nameWithType: ISetExpression<T>
+  fullName: NMF.Expressions.ISetExpression<T>
+  nameWithType.vb: ISetExpression(Of T)
+  fullName.vb: NMF.Expressions.ISetExpression(Of T)
+  name.vb: ISetExpression(Of T)
   spec.csharp:
-  - uid: ISetExpression`1
+  - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
     nameWithType: ISetExpression
-    fullName: ISetExpression
-    isExternal: true
+    fullName: NMF.Expressions.ISetExpression
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ISetExpression`1
+  - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
     nameWithType: ISetExpression
-    fullName: ISetExpression
-    isExternal: true
+    fullName: NMF.Expressions.ISetExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.ICollectionExpression`1
+  commentId: T:NMF.Expressions.ICollectionExpression`1
+  name: ICollectionExpression<T>
+  nameWithType: ICollectionExpression<T>
+  fullName: NMF.Expressions.ICollectionExpression<T>
+  nameWithType.vb: ICollectionExpression(Of T)
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of T)
+  name.vb: ICollectionExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.IEnumerableExpression`1
+  commentId: T:NMF.Expressions.IEnumerableExpression`1
+  name: IEnumerableExpression<T>
+  nameWithType: IEnumerableExpression<T>
+  fullName: NMF.Expressions.IEnumerableExpression<T>
+  nameWithType.vb: IEnumerableExpression(Of T)
+  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T)
+  name.vb: IEnumerableExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -3386,6 +3608,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
 - uid: NMF.Collections.Generic.OrderedSet`1.Remove(`0)
   commentId: M:NMF.Collections.Generic.OrderedSet`1.Remove(`0)
   name: Remove(T)
@@ -4948,21 +5176,52 @@ references:
   fullName: NMF.Collections.ObjectModel.ObservableOrderedSet<T>.AsNotifiable
   nameWithType.vb: ObservableOrderedSet(Of T).AsNotifiable
   fullName.vb: NMF.Collections.ObjectModel.ObservableOrderedSet(Of T).AsNotifiable
-- uid: INotifyCollection{{T}}
-  commentId: '!:INotifyCollection{`0}'
-  definition: INotifyCollection`1
+- uid: NMF.Expressions.ICollectionExpression{{T}}.AsNotifiable
+  commentId: M:NMF.Expressions.ICollectionExpression{`0}.AsNotifiable
+  parent: NMF.Expressions.ICollectionExpression{{T}}
+  definition: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+  name: AsNotifiable()
+  nameWithType: ICollectionExpression<T>.AsNotifiable()
+  fullName: NMF.Expressions.ICollectionExpression<T>.AsNotifiable()
+  nameWithType.vb: ICollectionExpression(Of T).AsNotifiable()
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable()
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: ICollectionExpression<T>.AsNotifiable
+    fullName: NMF.Expressions.ICollectionExpression<T>.AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: ICollectionExpression(Of T).AsNotifiable
+    fullName: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyCollection{{T}}
+  commentId: T:NMF.Expressions.INotifyCollection{`0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyCollection`1
   name: INotifyCollection<T>
   nameWithType: INotifyCollection<T>
-  fullName: INotifyCollection<T>
+  fullName: NMF.Expressions.INotifyCollection<T>
   nameWithType.vb: INotifyCollection(Of T)
-  fullName.vb: INotifyCollection(Of T)
+  fullName.vb: NMF.Expressions.INotifyCollection(Of T)
   name.vb: INotifyCollection(Of T)
   spec.csharp:
-  - uid: INotifyCollection`1
+  - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
     nameWithType: INotifyCollection
-    fullName: INotifyCollection
-    isExternal: true
+    fullName: NMF.Expressions.INotifyCollection
   - name: <
     nameWithType: <
     fullName: <
@@ -4973,11 +5232,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: INotifyCollection`1
+  - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
     nameWithType: INotifyCollection
-    fullName: INotifyCollection
-    isExternal: true
+    fullName: NMF.Expressions.INotifyCollection
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -4987,44 +5245,255 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: INotifyCollection`1
-  isExternal: true
-  name: INotifyCollection<>
-  nameWithType: INotifyCollection<>
-  fullName: INotifyCollection<>
-  nameWithType.vb: INotifyCollection(Of )
-  fullName.vb: INotifyCollection(Of )
-  name.vb: INotifyCollection(Of )
+- uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+  commentId: M:NMF.Expressions.ICollectionExpression`1.AsNotifiable
+  name: AsNotifiable()
+  nameWithType: ICollectionExpression<T>.AsNotifiable()
+  fullName: NMF.Expressions.ICollectionExpression<T>.AsNotifiable()
+  nameWithType.vb: ICollectionExpression(Of T).AsNotifiable()
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable()
   spec.csharp:
-  - uid: INotifyCollection`1
+  - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: ICollectionExpression<T>.AsNotifiable
+    fullName: NMF.Expressions.ICollectionExpression<T>.AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: ICollectionExpression(Of T).AsNotifiable
+    fullName: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyCollection`1
+  commentId: T:NMF.Expressions.INotifyCollection`1
+  name: INotifyCollection<T>
+  nameWithType: INotifyCollection<T>
+  fullName: NMF.Expressions.INotifyCollection<T>
+  nameWithType.vb: INotifyCollection(Of T)
+  fullName.vb: NMF.Expressions.INotifyCollection(Of T)
+  name.vb: INotifyCollection(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
     nameWithType: INotifyCollection
-    fullName: INotifyCollection
-    isExternal: true
+    fullName: NMF.Expressions.INotifyCollection
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: INotifyCollection`1
+  - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
     nameWithType: INotifyCollection
-    fullName: INotifyCollection
-    isExternal: true
+    fullName: NMF.Expressions.INotifyCollection
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable*
+  commentId: Overload:NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
+  name: IEnumerableExpression<T>.AsNotifiable
+  nameWithType: ObservableOrderedSet<T>.IEnumerableExpression<T>.AsNotifiable
+  fullName: NMF.Collections.ObjectModel.ObservableOrderedSet<T>.NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+  nameWithType.vb: ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+  fullName.vb: NMF.Collections.ObjectModel.ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+  name.vb: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+- uid: NMF.Expressions.IEnumerableExpression{{T}}.AsNotifiable
+  commentId: M:NMF.Expressions.IEnumerableExpression{`0}.AsNotifiable
+  parent: NMF.Expressions.IEnumerableExpression{{T}}
+  definition: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+  name: AsNotifiable()
+  nameWithType: IEnumerableExpression<T>.AsNotifiable()
+  fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+  nameWithType.vb: IEnumerableExpression(Of T).AsNotifiable()
+  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable()
+  spec.csharp:
+  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: IEnumerableExpression<T>.AsNotifiable
+    fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: IEnumerableExpression(Of T).AsNotifiable
+    fullName: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{{T}}
+  commentId: T:NMF.Expressions.INotifyEnumerable{`0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyEnumerable`1
+  name: INotifyEnumerable<T>
+  nameWithType: INotifyEnumerable<T>
+  fullName: NMF.Expressions.INotifyEnumerable<T>
+  nameWithType.vb: INotifyEnumerable(Of T)
+  fullName.vb: NMF.Expressions.INotifyEnumerable(Of T)
+  name.vb: INotifyEnumerable(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+  commentId: M:NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+  name: AsNotifiable()
+  nameWithType: IEnumerableExpression<T>.AsNotifiable()
+  fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+  nameWithType.vb: IEnumerableExpression(Of T).AsNotifiable()
+  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable()
+  spec.csharp:
+  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: IEnumerableExpression<T>.AsNotifiable
+    fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
+    name: AsNotifiable
+    nameWithType: IEnumerableExpression(Of T).AsNotifiable
+    fullName: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable`1
+  commentId: T:NMF.Expressions.INotifyEnumerable`1
+  name: INotifyEnumerable<T>
+  nameWithType: INotifyEnumerable<T>
+  fullName: NMF.Expressions.INotifyEnumerable<T>
+  nameWithType.vb: INotifyEnumerable(Of T)
+  fullName.vb: NMF.Expressions.INotifyEnumerable(Of T)
+  name.vb: INotifyEnumerable(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable*
+  commentId: Overload:NMF.Collections.ObjectModel.ObservableOrderedSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
+  name: IEnumerableExpression.AsNotifiable
+  nameWithType: ObservableOrderedSet<T>.IEnumerableExpression.AsNotifiable
+  fullName: NMF.Collections.ObjectModel.ObservableOrderedSet<T>.NMF.Expressions.IEnumerableExpression.AsNotifiable
+  nameWithType.vb: ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable
+  fullName.vb: NMF.Collections.ObjectModel.ObservableOrderedSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable
+  name.vb: NMF.Expressions.IEnumerableExpression.AsNotifiable
+- uid: NMF.Expressions.IEnumerableExpression.AsNotifiable
+  commentId: M:NMF.Expressions.IEnumerableExpression.AsNotifiable
+  parent: NMF.Expressions.IEnumerableExpression
+  name: AsNotifiable()
+  nameWithType: IEnumerableExpression.AsNotifiable()
+  fullName: NMF.Expressions.IEnumerableExpression.AsNotifiable()
+  spec.csharp:
+  - uid: NMF.Expressions.IEnumerableExpression.AsNotifiable
+    name: AsNotifiable
+    nameWithType: IEnumerableExpression.AsNotifiable
+    fullName: NMF.Expressions.IEnumerableExpression.AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.IEnumerableExpression.AsNotifiable
+    name: AsNotifiable
+    nameWithType: IEnumerableExpression.AsNotifiable
+    fullName: NMF.Expressions.IEnumerableExpression.AsNotifiable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable
+  commentId: T:NMF.Expressions.INotifyEnumerable
+  parent: NMF.Expressions
+  name: INotifyEnumerable
+  nameWithType: INotifyEnumerable
+  fullName: NMF.Expressions.INotifyEnumerable
 - uid: NMF.Collections.ObjectModel.ObservableOrderedSet`1.RequireEvents*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableOrderedSet`1.RequireEvents
   name: RequireEvents
@@ -5511,6 +5980,37 @@ references:
     name: Clear
     nameWithType: ICollection(Of T).Clear
     fullName: System.Collections.Generic.ICollection(Of T).Clear
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.IList.Clear
+  commentId: M:System.Collections.IList.Clear
+  parent: System.Collections.IList
+  isExternal: true
+  name: Clear()
+  nameWithType: IList.Clear()
+  fullName: System.Collections.IList.Clear()
+  spec.csharp:
+  - uid: System.Collections.IList.Clear
+    name: Clear
+    nameWithType: IList.Clear
+    fullName: System.Collections.IList.Clear
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.IList.Clear
+    name: Clear
+    nameWithType: IList.Clear
+    fullName: System.Collections.IList.Clear
     isExternal: true
   - name: (
     nameWithType: (

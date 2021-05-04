@@ -75,7 +75,7 @@ items:
   - NMF.Transformations.GeneralTransformationRule`1.TraceInput``1(NMF.Transformations.TraceEntryGroup{``0,`0},System.Func{`0,``0})
   - NMF.Transformations.GeneralTransformationRule`1.TraceInput``1(System.Func{`0,``0})
   - NMF.Transformations.GeneralTransformationRule`1.WithPattern(NMF.Transformations.ITransformationRulePattern{`0})
-  - NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+  - NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
   - NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{`0}})
   langs:
   - csharp
@@ -98,13 +98,12 @@ items:
   summary: "\nDefines a transformation rule of a transformation that has one input argument\n"
   example: []
   syntax:
-    content: 'public abstract class GeneralTransformationRule<TIn> : GeneralTransformationRule where TIn : class'
+    content: 'public abstract class GeneralTransformationRule<TIn> : GeneralTransformationRule'
     typeParameters:
     - id: TIn
       description: The type of the input argument
     content.vb: >-
-      Public MustInherit Class GeneralTransformationRule(Of TIn As Class)
-
+      Public MustInherit Class GeneralTransformationRule(Of TIn)
           Inherits GeneralTransformationRule
   inheritance:
   - System.Object
@@ -131,10 +130,10 @@ items:
   - NMF.Transformations.Core.GeneralTransformationRule.MarkInstantiatingFor(NMF.Transformations.Core.GeneralTransformationRule,System.Predicate{NMF.Transformations.Core.Computation})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType.vb: GeneralTransformationRule(Of TIn)
   modifiers.csharp:
   - public
@@ -164,7 +163,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MarkInstantiatingFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -206,7 +205,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Rule
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 52
+    startLine: 51
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -215,7 +214,6 @@ items:
   syntax:
     content: >-
       public TRule Rule<TRule>()
-
           where TRule : GeneralTransformationRule
     typeParameters:
     - id: TRule
@@ -250,7 +248,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: WithPattern
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 62
+    startLine: 61
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -271,16 +269,16 @@ items:
   - Public
   fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(NMF.Transformations.ITransformationRulePattern(Of TIn))
   name.vb: WithPattern(ITransformationRulePattern(Of TIn))
-- uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
-  commentId: M:NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
-  id: WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}})
+- uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
+  commentId: M:NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
+  id: WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}})
   parent: NMF.Transformations.GeneralTransformationRule`1
   langs:
   - csharp
   - vb
   name: WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>>)
   nameWithType: GeneralTransformationRule<TIn>.WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>>)
-  fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<TIn>>)
+  fullName: NMF.Transformations.GeneralTransformationRule<TIn>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<TIn>>)
   type: Method
   source:
     remote:
@@ -289,7 +287,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: WithPattern
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 75
+    startLine: 74
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -299,7 +297,7 @@ items:
     content: public void WithPattern(Func<ITransformationContext, INotifyEnumerable<TIn>> patternCreator)
     parameters:
     - id: patternCreator
-      type: System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{{TIn}}}
+      type: System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{{TIn}}}
       description: The relation pattern that should be applied on the current transformation rule
     content.vb: Public Sub WithPattern(patternCreator As Func(Of ITransformationContext, INotifyEnumerable(Of TIn)))
   overload: NMF.Transformations.GeneralTransformationRule`1.WithPattern*
@@ -308,7 +306,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of TIn)))
+  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of TIn)))
   name.vb: WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of TIn)))
 - uid: NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{`0}})
   commentId: M:NMF.Transformations.GeneralTransformationRule`1.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{`0}})
@@ -328,7 +326,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: WithPattern
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 86
+    startLine: 85
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -367,7 +365,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 98
+    startLine: 97
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -375,14 +373,11 @@ items:
   remarks: This version Always takes the input parameter as input for the dependent transformations. Thus, this method will throw an exception, if the types do not match
   example: []
   syntax:
-    content: >-
-      public void RequireByType<TRequiredInput>()
-
-          where TRequiredInput : class
+    content: public void RequireByType<TRequiredInput>()
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the dependent transformations
-    content.vb: Public Sub RequireByType(Of TRequiredInput As Class)
+    content.vb: Public Sub RequireByType(Of TRequiredInput)
   overload: NMF.Transformations.GeneralTransformationRule`1.RequireByType*
   nameWithType.vb: GeneralTransformationRule(Of TIn).RequireByType(Of TRequiredInput)()
   modifiers.csharp:
@@ -409,17 +404,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 118
+    startLine: 115
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform items with the input type\n"
   example: []
   syntax:
-    content: >-
-      public void RequireByType<TRequiredInput>(Func<TIn, TRequiredInput> selector)
-
-          where TRequiredInput : class
+    content: public void RequireByType<TRequiredInput>(Func<TIn, TRequiredInput> selector)
     parameters:
     - id: selector
       type: System.Func{{TIn},{TRequiredInput}}
@@ -427,7 +419,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the dependent transformations
-    content.vb: Public Sub RequireByType(Of TRequiredInput As Class)(selector As Func(Of TIn, TRequiredInput))
+    content.vb: Public Sub RequireByType(Of TRequiredInput)(selector As Func(Of TIn, TRequiredInput))
   overload: NMF.Transformations.GeneralTransformationRule`1.RequireByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -458,17 +450,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 138
+    startLine: 133
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform items with the input type\n"
   example: []
   syntax:
-    content: >-
-      public void RequireByType<TRequiredInput1, TRequiredInput2>(Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void RequireByType<TRequiredInput1, TRequiredInput2>(Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2)
     parameters:
     - id: selector1
       type: System.Func{{TIn},{TRequiredInput1}}
@@ -481,7 +470,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub RequireByType(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2))
+    content.vb: Public Sub RequireByType(Of TRequiredInput1, TRequiredInput2)(selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2))
   overload: NMF.Transformations.GeneralTransformationRule`1.RequireByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -515,17 +504,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 159
+    startLine: 151
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -538,7 +524,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -572,17 +558,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 185
+    startLine: 175
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -600,7 +583,7 @@ items:
       description: The second input argument type of the dependent transformations
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -637,17 +620,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 201
+    startLine: 188
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform S to T with all of the specified objects\n"
   example: []
   syntax:
-    content: >-
-      public void RequireManyByType<TRequiredInput>(Func<TIn, IEnumerable<TRequiredInput>> selector)
-
-          where TRequiredInput : class
+    content: public void RequireManyByType<TRequiredInput>(Func<TIn, IEnumerable<TRequiredInput>> selector)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{{TRequiredInput}}}
@@ -655,7 +635,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the dependent transformations
-    content.vb: Public Sub RequireManyByType(Of TRequiredInput As Class)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)))
+    content.vb: Public Sub RequireManyByType(Of TRequiredInput)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)))
   overload: NMF.Transformations.GeneralTransformationRule`1.RequireManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -686,17 +666,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 219
+    startLine: 204
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires all transformation rules that transform S to T with all of the specified objects\n"
   example: []
   syntax:
-    content: >-
-      public void RequireManyByType<TRequiredInput1, TRequiredInput2>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void RequireManyByType<TRequiredInput1, TRequiredInput2>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{System.Tuple{{TRequiredInput1},{TRequiredInput2}}}}
@@ -706,7 +683,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub RequireManyByType(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))))
+    content.vb: Public Sub RequireManyByType(Of TRequiredInput1, TRequiredInput2)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))))
   overload: NMF.Transformations.GeneralTransformationRule`1.RequireManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -737,7 +714,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 238
+    startLine: 220
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -788,17 +765,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 252
+    startLine: 234
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Predicate<TIn> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Predicate<TIn> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -811,7 +785,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -842,17 +816,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 270
+    startLine: 250
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector, Predicate<TIn> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector, Predicate<TIn> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -868,7 +839,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -902,17 +873,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 292
+    startLine: 270
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Predicate<TIn> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Predicate<TIn> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -933,7 +901,7 @@ items:
       description: The second input argument type of the dependent transformations
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Require(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), filter As Predicate(Of TIn)) As ITransformationRuleDependency
+    content.vb: Public Function Require(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), filter As Predicate(Of TIn)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Require*
   exceptions:
   - type: System.ArgumentNullException
@@ -970,7 +938,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 311
+    startLine: 286
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1021,7 +989,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 324
+    startLine: 299
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1030,7 +998,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency RequireMany<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -1078,17 +1045,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 344
+    startLine: 318
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nRequires the transformation rule with the given type with all of the specified inputs\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency RequireMany<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency RequireMany<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -1103,7 +1067,7 @@ items:
       description: The second input argument type of the dependent transformations
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function RequireMany(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2)))) As ITransformationRuleDependency
+    content.vb: Public Function RequireMany(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2)))) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.RequireMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -1137,7 +1101,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 363
+    startLine: 334
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1188,7 +1152,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 376
+    startLine: 347
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1239,17 +1203,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 388
+    startLine: 359
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform items with the input type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallByType<TRequiredInput>(Func<TIn, TRequiredInput> selector)
-
-          where TRequiredInput : class
+    content: public void CallByType<TRequiredInput>(Func<TIn, TRequiredInput> selector)
     parameters:
     - id: selector
       type: System.Func{{TIn},{TRequiredInput}}
@@ -1257,7 +1218,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the dependent transformations
-    content.vb: Public Sub CallByType(Of TRequiredInput As Class)(selector As Func(Of TIn, TRequiredInput))
+    content.vb: Public Sub CallByType(Of TRequiredInput)(selector As Func(Of TIn, TRequiredInput))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1288,7 +1249,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 407
+    startLine: 377
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1342,17 +1303,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 425
+    startLine: 395
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1365,7 +1323,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1399,17 +1357,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 444
+    startLine: 412
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -1427,7 +1382,7 @@ items:
       description: The second input argument type of the dependent transformations
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1464,17 +1419,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 461
+    startLine: 426
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Predicate<TIn> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Predicate<TIn> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1487,7 +1439,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1518,17 +1470,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 479
+    startLine: 442
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector, Predicate<TIn> filter)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, TRequiredInput> selector, Predicate<TIn> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1544,7 +1493,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, TRequiredInput), filter As Predicate(Of TIn)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1578,17 +1527,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 501
+    startLine: 462
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Predicate<TIn> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, TRequiredInput1> selector1, Func<TIn, TRequiredInput2> selector2, Predicate<TIn> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -1609,7 +1555,7 @@ items:
       description: The second input argument type of the dependent transformations
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function Call(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), filter As Predicate(Of TIn)) As ITransformationRuleDependency
+    content.vb: Public Function Call(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector1 As Func(Of TIn, TRequiredInput1), selector2 As Func(Of TIn, TRequiredInput2), filter As Predicate(Of TIn)) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.Call*
   exceptions:
   - type: System.ArgumentNullException
@@ -1646,17 +1592,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 518
+    startLine: 476
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform S to T with all of the specified objects after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallManyByType<TRequiredInput>(Func<TIn, IEnumerable<TRequiredInput>> selector)
-
-          where TRequiredInput : class
+    content: public void CallManyByType<TRequiredInput>(Func<TIn, IEnumerable<TRequiredInput>> selector)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{{TRequiredInput}}}
@@ -1664,7 +1607,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the dependent transformations
-    content.vb: Public Sub CallManyByType(Of TRequiredInput As Class)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)))
+    content.vb: Public Sub CallManyByType(Of TRequiredInput)(selector As Func(Of TIn, IEnumerable(Of TRequiredInput)))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1695,17 +1638,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 536
+    startLine: 492
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls all transformation rules that transform S to T with all of the specified objects after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public void CallManyByType<TRequiredInput1, TRequiredInput2>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void CallManyByType<TRequiredInput1, TRequiredInput2>(Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
     parameters:
     - id: selector
       type: System.Func{{TIn},System.Collections.Generic.IEnumerable{System.Tuple{{TRequiredInput1},{TRequiredInput2}}}}
@@ -1715,7 +1655,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub CallManyByType(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))))
+    content.vb: Public Sub CallManyByType(Of TRequiredInput1, TRequiredInput2)(selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2))))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallManyByType*
   exceptions:
   - type: System.ArgumentNullException
@@ -1746,17 +1686,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 556
+    startLine: 509
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type with all of the specified inputs after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallMany<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector)
-
-          where TRequiredInput : class
+    content: public ITransformationRuleDependency CallMany<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn, IEnumerable<TRequiredInput>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -1769,7 +1706,7 @@ items:
       description: The input argument type of the dependent transformation
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallMany(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, IEnumerable(Of TRequiredInput))) As ITransformationRuleDependency
+    content.vb: Public Function CallMany(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TIn, IEnumerable(Of TRequiredInput))) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.CallMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -1803,17 +1740,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 576
+    startLine: 527
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCalls the transformation rule with the given type with all of the specified inputs after the current transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public ITransformationRuleDependency CallMany<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public ITransformationRuleDependency CallMany<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -1828,7 +1762,7 @@ items:
       description: The second input argument type of the dependent transformations
     return:
       type: NMF.Transformations.Core.ITransformationRuleDependency
-    content.vb: Public Function CallMany(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2)))) As ITransformationRuleDependency
+    content.vb: Public Function CallMany(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TIn, IEnumerable(Of Tuple(Of TRequiredInput1, TRequiredInput2)))) As ITransformationRuleDependency
   overload: NMF.Transformations.GeneralTransformationRule`1.CallMany*
   exceptions:
   - type: System.ArgumentNullException
@@ -1862,7 +1796,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InputType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 593
+    startLine: 541
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1906,7 +1840,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 604
+    startLine: 552
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1952,7 +1886,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 618
+    startLine: 565
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2000,17 +1934,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 633
+    startLine: 579
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, TIn> selector)
-
-          where TRequiredInput : class
+    content: public void CallFor<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, TIn> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -2021,7 +1952,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the source transformation rule
-    content.vb: Public Sub CallFor(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TRequiredInput, TIn))
+    content.vb: Public Sub CallFor(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TRequiredInput, TIn))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2055,17 +1986,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 650
+    startLine: 594
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void CallFor<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -2078,7 +2006,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub CallFor(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn))
+    content.vb: Public Sub CallFor(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2112,7 +2040,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 666
+    startLine: 607
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2161,7 +2089,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 682
+    startLine: 622
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2212,17 +2140,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 699
+    startLine: 638
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, TIn> selector, Predicate<TRequiredInput> filter)
-
-          where TRequiredInput : class
+    content: public void CallFor<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, TIn> selector, Predicate<TRequiredInput> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -2236,7 +2161,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the source transformation rule
-    content.vb: Public Sub CallFor(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TRequiredInput, TIn), filter As Predicate(Of TRequiredInput))
+    content.vb: Public Sub CallFor(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TRequiredInput, TIn), filter As Predicate(Of TRequiredInput))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2270,17 +2195,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 718
+    startLine: 655
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallFor<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void CallFor<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, TIn> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -2296,7 +2218,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub CallFor(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean))
+    content.vb: Public Sub CallFor(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, TIn), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallFor*
   exceptions:
   - type: System.ArgumentNullException
@@ -2330,7 +2252,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 735
+    startLine: 669
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2376,7 +2298,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 750
+    startLine: 683
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2424,7 +2346,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 765
+    startLine: 697
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2473,7 +2395,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 782
+    startLine: 713
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2524,7 +2446,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 801
+    startLine: 731
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2533,7 +2455,6 @@ items:
   syntax:
     content: >-
       public void CallForEach<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -2579,17 +2500,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 819
+    startLine: 748
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void CallForEach<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -2602,7 +2520,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub CallForEach(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)))
+    content.vb: Public Sub CallForEach(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -2636,17 +2554,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 838
+    startLine: 764
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector, Predicate<TRequiredInput> filter)
-
-          where TRequiredInput : class
+    content: public void CallForEach<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, IEnumerable<TIn>> selector, Predicate<TRequiredInput> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput}}
@@ -2660,7 +2575,7 @@ items:
     typeParameters:
     - id: TRequiredInput
       description: The input argument type of the source transformation rule
-    content.vb: Public Sub CallForEach(Of TRequiredInput As Class)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TRequiredInput, IEnumerable(Of TIn)), filter As Predicate(Of TRequiredInput))
+    content.vb: Public Sub CallForEach(Of TRequiredInput)(rule As GeneralTransformationRule(Of TRequiredInput), selector As Func(Of TRequiredInput, IEnumerable(Of TIn)), filter As Predicate(Of TRequiredInput))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -2694,17 +2609,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 858
+    startLine: 782
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEach<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class
+    content: public void CallForEach<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<TIn>> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.GeneralTransformationRule{{TRequiredInput1},{TRequiredInput2}}
@@ -2720,7 +2632,7 @@ items:
       description: The first input argument type of the dependent transformations
     - id: TRequiredInput2
       description: The second input argument type of the dependent transformations
-    content.vb: Public Sub CallForEach(Of TRequiredInput1 As Class, TRequiredInput2 As Class)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean))
+    content.vb: Public Sub CallForEach(Of TRequiredInput1, TRequiredInput2)(rule As GeneralTransformationRule(Of TRequiredInput1, TRequiredInput2), selector As Func(Of TRequiredInput1, TRequiredInput2, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput1, TRequiredInput2, Boolean))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEach*
   exceptions:
   - type: System.ArgumentNullException
@@ -2754,7 +2666,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 875
+    startLine: 796
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2802,7 +2714,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 890
+    startLine: 810
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2852,17 +2764,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 906
+    startLine: 825
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallForOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, TIn> selector)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallForOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, TIn> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -2875,7 +2784,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, TIn))
+    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, TIn))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -2909,17 +2818,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 925
+    startLine: 841
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallForOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallForOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -2934,7 +2840,7 @@ items:
       description: The second input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn))
+    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -2968,7 +2874,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 943
+    startLine: 855
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3019,7 +2925,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 963
+    startLine: 874
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3072,17 +2978,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 984
+    startLine: 894
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallForOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, TIn> selector, Func<TRequiredInput, TRequiredOutput, bool> filter)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallForOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, TIn> selector, Func<TRequiredInput, TRequiredOutput, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -3098,7 +3001,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, TIn), filter As Func(Of TRequiredInput, TRequiredOutput, Boolean))
+    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, TIn), filter As Func(Of TRequiredInput, TRequiredOutput, Boolean))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -3132,17 +3035,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1008
+    startLine: 915
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\n"
   example: []
   syntax:
-    content: >-
-      public void CallForOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn> selector, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallForOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn> selector, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -3160,7 +3060,7 @@ items:
       description: The second input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn), filter As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, Boolean))
+    content.vb: Public Sub CallForOutputSensitive(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn), filter As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, Boolean))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -3194,7 +3094,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1030
+    startLine: 933
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3242,7 +3142,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1046
+    startLine: 948
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3292,7 +3192,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1062
+    startLine: 963
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3343,7 +3243,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1083
+    startLine: 983
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3396,17 +3296,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1106
+    startLine: 1005
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEachOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, IEnumerable<TIn>> selector)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallForEachOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, IEnumerable<TIn>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -3419,7 +3316,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, IEnumerable(Of TIn)))
+    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, IEnumerable(Of TIn)))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEachOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -3453,17 +3350,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1125
+    startLine: 1022
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEachOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable<TIn>> selector)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallForEachOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable<TIn>> selector)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -3478,7 +3372,7 @@ items:
       description: The second input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable(Of TIn)))
+    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable(Of TIn)))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEachOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -3512,17 +3406,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1145
+    startLine: 1039
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEachOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, IEnumerable<TIn>> selector, Func<TRequiredInput, TRequiredOutput, bool> filter)
-
-          where TRequiredInput : class where TRequiredOutput : class
+    content: public void CallForEachOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, IEnumerable<TIn>> selector, Func<TRequiredInput, TRequiredOutput, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput},{TRequiredOutput}}
@@ -3538,7 +3429,7 @@ items:
       description: The input argument type of the source transformation rule
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput, TRequiredOutput, Boolean))
+    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput, TRequiredOutput), selector As Func(Of TRequiredInput, TRequiredOutput, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput, TRequiredOutput, Boolean))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEachOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -3572,17 +3463,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1170
+    startLine: 1061
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nCreate a call dependency, i.e., let this transformation be called as soon as a transformation with the input type is made\nThis version calls this transformation rule for a whol collection of input objects\n"
   example: []
   syntax:
-    content: >-
-      public void CallForEachOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable<TIn>> selector, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, bool> filter)
-
-          where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
+    content: public void CallForEachOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable<TIn>> selector, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, bool> filter)
     parameters:
     - id: rule
       type: NMF.Transformations.TransformationRuleBase{{TRequiredInput1},{TRequiredInput2},{TRequiredOutput}}
@@ -3600,7 +3488,7 @@ items:
       description: The second input argument type of the dependent transformations
     - id: TRequiredOutput
       description: The output type of the dependent transformation
-    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput1 As Class, TRequiredInput2 As Class, TRequiredOutput As Class)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, Boolean))
+    content.vb: Public Sub CallForEachOutputSensitive(Of TRequiredInput1, TRequiredInput2, TRequiredOutput)(rule As TransformationRuleBase(Of TRequiredInput1, TRequiredInput2, TRequiredOutput), selector As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable(Of TIn)), filter As Func(Of TRequiredInput1, TRequiredInput2, TRequiredOutput, Boolean))
   overload: NMF.Transformations.GeneralTransformationRule`1.CallForEachOutputSensitive*
   exceptions:
   - type: System.ArgumentNullException
@@ -3634,7 +3522,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceInput
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1190
+    startLine: 1077
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3643,7 +3531,6 @@ items:
   syntax:
     content: >-
       public TraceEntryGroup<TKey, TIn> TraceInput<TKey>(Func<TIn, TKey> traceSelector)
-
           where TKey : class
     parameters:
     - id: traceSelector
@@ -3682,7 +3569,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceInput
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1210
+    startLine: 1097
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3691,7 +3578,6 @@ items:
   syntax:
     content: >-
       public void TraceInput<TKey>(TraceEntryGroup<TKey, TIn> traceKey, Func<TIn, TKey> traceSelector)
-
           where TKey : class
     parameters:
     - id: traceKey
@@ -3730,7 +3616,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1349
+    startLine: 1233
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3782,7 +3668,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1363
+    startLine: 1247
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3837,7 +3723,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1376
+    startLine: 1260
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3889,7 +3775,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1390
+    startLine: 1274
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3944,7 +3830,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ToString
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBase.cs
-    startLine: 1401
+    startLine: 1285
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -4477,63 +4363,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
@@ -4624,6 +4453,63 @@ references:
   - name: (
     nameWithType: (
     fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -4822,15 +4708,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{{TIn}}}
-  commentId: T:System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{`0}}
+- uid: System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{{TIn}}}
+  commentId: T:System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{`0}}
   parent: System
   definition: System.Func`2
   name: Func<ITransformationContext, INotifyEnumerable<TIn>>
   nameWithType: Func<ITransformationContext, INotifyEnumerable<TIn>>
-  fullName: System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<TIn>>
+  fullName: System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<TIn>>
   nameWithType.vb: Func(Of ITransformationContext, INotifyEnumerable(Of TIn))
-  fullName.vb: System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of TIn))
+  fullName.vb: System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of TIn))
   name.vb: Func(Of ITransformationContext, INotifyEnumerable(Of TIn))
   spec.csharp:
   - uid: System.Func`2
@@ -4848,11 +4734,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -4881,11 +4766,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

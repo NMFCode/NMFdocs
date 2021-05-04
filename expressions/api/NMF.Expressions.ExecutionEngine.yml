@@ -27,10 +27,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecutionEngine
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nDeotes an execution engine for incremental computation\n"
+  example: []
   syntax:
     content: public abstract class ExecutionEngine
     content.vb: Public MustInherit Class ExecutionEngine
@@ -40,13 +42,13 @@ items:
   - NMF.Expressions.ParallelExecutionEngine
   - NMF.Expressions.SequentialExecutionEngine
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - abstract
@@ -73,10 +75,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TransactionActive
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 18
+    startLine: 25
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nIndicates whether the system is in a transaction\n"
+  example: []
   syntax:
     content: public bool TransactionActive { get; }
     parameters: []
@@ -108,10 +112,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: BeginTransaction
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 20
+    startLine: 30
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nStarts a new change transaction\n"
+  example: []
   syntax:
     content: public void BeginTransaction()
     content.vb: Public Sub BeginTransaction
@@ -138,10 +144,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CommitTransaction
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 25
+    startLine: 38
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nCommits the transaction\n"
+  example: []
   syntax:
     content: public void CommitTransaction()
     content.vb: Public Sub CommitTransaction
@@ -168,10 +176,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RollbackTransaction
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 53
+    startLine: 69
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nRolls back the transaction\n"
+  example: []
   syntax:
     content: public void RollbackTransaction()
     content.vb: Public Sub RollbackTransaction
@@ -198,15 +208,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InvalidateNode
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 59
+    startLine: 80
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nInvalidates the given DDG node\n"
+  example: []
   syntax:
     content: public void InvalidateNode(INotifiable node)
     parameters:
     - id: node
       type: NMF.Expressions.INotifiable
+      description: The DDG node
     content.vb: Public Sub InvalidateNode(node As INotifiable)
   overload: NMF.Expressions.ExecutionEngine.InvalidateNode*
   modifiers.csharp:
@@ -231,15 +244,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecuteSingle
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 90
+    startLine: 115
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nPropagates the changes of a single DDG node\n"
+  example: []
   syntax:
     content: protected virtual void ExecuteSingle(INotifiable source)
     parameters:
     - id: source
       type: NMF.Expressions.INotifiable
+      description: The changed DDG node
     content.vb: Protected Overridable Sub ExecuteSingle(source As INotifiable)
   overload: NMF.Expressions.ExecutionEngine.ExecuteSingle*
   modifiers.csharp:
@@ -266,15 +282,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Execute
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 117
+    startLine: 147
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nPropagates changes of the given DDG nodes\n"
+  example: []
   syntax:
     content: protected abstract void Execute(List<INotifiable> nodes)
     parameters:
     - id: nodes
       type: System.Collections.Generic.List{NMF.Expressions.INotifiable}
+      description: The changed DDG nodes
     content.vb: Protected MustOverride Sub Execute(nodes As List(Of INotifiable))
   overload: NMF.Expressions.ExecutionEngine.Execute*
   nameWithType.vb: ExecutionEngine.Execute(List(Of INotifiable))
@@ -304,10 +323,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Current
     path: src/Expressions/Expressions/Execution/ExecutionEngine.cs
-    startLine: 119
+    startLine: 152
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nGets or sets the current execution engine\n"
+  example: []
   syntax:
     content: public static ExecutionEngine Current { get; set; }
     parameters: []
@@ -336,37 +357,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -445,63 +435,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -608,6 +541,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (

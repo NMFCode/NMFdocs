@@ -16,7 +16,7 @@ items:
   - NMF.Transformations.Linq.TransformationRuleSource`3.Filter
   - NMF.Transformations.Linq.TransformationRuleSource`3.GetEnumerator
   - NMF.Transformations.Linq.TransformationRuleSource`3.HandleDependency(NMF.Transformations.Core.Computation)
-  - NMF.Transformations.Linq.TransformationRuleSource`3.Notify(System.Collections.Generic.IList{INotificationResult})
+  - NMF.Transformations.Linq.TransformationRuleSource`3.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   - NMF.Transformations.Linq.TransformationRuleSource`3.Successors
   - NMF.Transformations.Linq.TransformationRuleSource`3.System#Collections#IEnumerable#GetEnumerator
   - NMF.Transformations.Linq.TransformationRuleSource`3.TransformationRule
@@ -41,7 +41,7 @@ items:
   summary: "\nRepresents the usage of a transformation rule with two input arguments in a relational pattern\n"
   example: []
   syntax:
-    content: 'public class TransformationRuleSource<TIn1, TIn2, TOut> : ITransformationRuleDependency, INotifyEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>> where TIn1 : class where TIn2 : class where TOut : class'
+    content: 'public class TransformationRuleSource<TIn1, TIn2, TOut> : ITransformationRuleDependency, INotifyEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>, IEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>, INotifyEnumerable, IEnumerable, INotifyCollectionChanged, INotifiable, IDisposable where TIn1 : class where TIn2 : class where TOut : class'
     typeParameters:
     - id: TIn1
       description: The type of the first transformation rule input argument
@@ -51,21 +51,26 @@ items:
       description: The transformation rule output type
     content.vb: >-
       Public Class TransformationRuleSource(Of TIn1 As Class, TIn2 As Class, TOut As Class)
-
-          Implements ITransformationRuleDependency, INotifyEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut))
+          Implements ITransformationRuleDependency, INotifyEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut)), IEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut)), INotifyEnumerable, IEnumerable, INotifyCollectionChanged, INotifiable, IDisposable
   inheritance:
   - System.Object
   implements:
   - NMF.Transformations.Core.ITransformationRuleDependency
-  - INotifyEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
+  - NMF.Expressions.INotifyEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
+  - System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
+  - NMF.Expressions.INotifyEnumerable
+  - System.Collections.IEnumerable
+  - System.Collections.Specialized.INotifyCollectionChanged
+  - NMF.Expressions.INotifiable
+  - System.IDisposable
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut)
   modifiers.csharp:
   - public
@@ -93,7 +98,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 164
+    startLine: 163
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -135,7 +140,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TransformationRule
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 185
+    startLine: 184
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -174,7 +179,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Context
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 190
+    startLine: 189
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -213,7 +218,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Filter
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 195
+    startLine: 194
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -252,7 +257,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: HandleDependency
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 201
+    startLine: 200
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -292,7 +297,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecuteBefore
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 218
+    startLine: 214
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -333,7 +338,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dispose
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 227
+    startLine: 223
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -343,6 +348,8 @@ items:
     content: public void Dispose()
     content.vb: Public Sub Dispose
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.Dispose*
+  implements:
+  - System.IDisposable.Dispose
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Dispose()
   modifiers.csharp:
   - public
@@ -367,7 +374,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dispose
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 237
+    startLine: 233
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -407,7 +414,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 257
+    startLine: 253
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -420,6 +427,8 @@ items:
       description: An enumerator
     content.vb: Public Function GetEnumerator As IEnumerator(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut))
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}.GetEnumerator
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).GetEnumerator()
   modifiers.csharp:
   - public
@@ -445,7 +454,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: System.Collections.IEnumerable.GetEnumerator
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 262
+    startLine: 258
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -455,6 +464,8 @@ items:
       type: System.Collections.IEnumerator
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.System#Collections#IEnumerable#GetEnumerator*
+  implements:
+  - System.Collections.IEnumerable.GetEnumerator
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).System.Collections.IEnumerable.GetEnumerator()
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).System.Collections.IEnumerable.GetEnumerator()
   name.vb: System.Collections.IEnumerable.GetEnumerator()
@@ -476,17 +487,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Successors
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 268
+    startLine: 265
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  example: []
   syntax:
     content: public ISuccessorList Successors { get; }
     parameters: []
     return:
-      type: ISuccessorList
+      type: NMF.Expressions.ISuccessorList
     content.vb: Public ReadOnly Property Successors As ISuccessorList
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.Successors*
+  implements:
+  - NMF.Expressions.INotifiable.Successors
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Successors
   modifiers.csharp:
   - public
@@ -513,17 +527,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dependencies
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 270
+    startLine: 268
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  example: []
   syntax:
     content: public IEnumerable<INotifiable> Dependencies { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.IEnumerable{INotifiable}
+      type: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
     content.vb: Public ReadOnly Property Dependencies As IEnumerable(Of INotifiable)
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.Dependencies*
+  implements:
+  - NMF.Expressions.INotifiable.Dependencies
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Dependencies
   modifiers.csharp:
   - public
@@ -550,17 +567,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecutionMetaData
     path: src/Transformations/Transformations/Linq/TransformationRuleSource.cs
-    startLine: 272
+    startLine: 271
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  example: []
   syntax:
     content: public ExecutionMetaData ExecutionMetaData { get; }
     parameters: []
     return:
-      type: ExecutionMetaData
+      type: NMF.Expressions.ExecutionMetaData
     content.vb: Public ReadOnly Property ExecutionMetaData As ExecutionMetaData
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.ExecutionMetaData*
+  implements:
+  - NMF.Expressions.INotifiable.ExecutionMetaData
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).ExecutionMetaData
   modifiers.csharp:
   - public
@@ -569,16 +589,16 @@ items:
   - Public
   - ReadOnly
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).ExecutionMetaData
-- uid: NMF.Transformations.Linq.TransformationRuleSource`3.Notify(System.Collections.Generic.IList{INotificationResult})
-  commentId: M:NMF.Transformations.Linq.TransformationRuleSource`3.Notify(System.Collections.Generic.IList{INotificationResult})
-  id: Notify(System.Collections.Generic.IList{INotificationResult})
+- uid: NMF.Transformations.Linq.TransformationRuleSource`3.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  commentId: M:NMF.Transformations.Linq.TransformationRuleSource`3.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  id: Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   parent: NMF.Transformations.Linq.TransformationRuleSource`3
   langs:
   - csharp
   - vb
   name: Notify(IList<INotificationResult>)
   nameWithType: TransformationRuleSource<TIn1, TIn2, TOut>.Notify(IList<INotificationResult>)
-  fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.Notify(System.Collections.Generic.IList<INotificationResult>)
+  fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.Notify(System.Collections.Generic.IList<NMF.Expressions.INotificationResult>)
   type: Method
   source:
     remote:
@@ -591,21 +611,24 @@ items:
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  example: []
   syntax:
     content: public INotificationResult Notify(IList<INotificationResult> sources)
     parameters:
     - id: sources
-      type: System.Collections.Generic.IList{INotificationResult}
+      type: System.Collections.Generic.IList{NMF.Expressions.INotificationResult}
     return:
-      type: INotificationResult
+      type: NMF.Expressions.INotificationResult
     content.vb: Public Function Notify(sources As IList(Of INotificationResult)) As INotificationResult
   overload: NMF.Transformations.Linq.TransformationRuleSource`3.Notify*
+  implements:
+  - NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Notify(IList(Of INotificationResult))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).Notify(System.Collections.Generic.IList(Of INotificationResult))
+  fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).Notify(System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult))
   name.vb: Notify(IList(Of INotificationResult))
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.CollectionChanged
   commentId: E:NMF.Transformations.Linq.TransformationRuleSource`3.CollectionChanged
@@ -636,6 +659,8 @@ items:
     return:
       type: System.Collections.Specialized.NotifyCollectionChangedEventHandler
     content.vb: Public Event CollectionChanged As NotifyCollectionChangedEventHandler
+  implements:
+  - System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).CollectionChanged
   modifiers.csharp:
   - public
@@ -661,21 +686,21 @@ references:
   name: ITransformationRuleDependency
   nameWithType: ITransformationRuleDependency
   fullName: NMF.Transformations.Core.ITransformationRuleDependency
-- uid: INotifyEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
-  commentId: '!:INotifyEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{`0,`1,`2}}'
-  definition: INotifyEnumerable`1
+- uid: NMF.Expressions.INotifyEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
+  commentId: T:NMF.Expressions.INotifyEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{`0,`1,`2}}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyEnumerable`1
   name: INotifyEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>
   nameWithType: INotifyEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>
-  fullName: INotifyEnumerable<NMF.Transformations.Linq.TransformationComputationWrapper<TIn1, TIn2, TOut>>
+  fullName: NMF.Expressions.INotifyEnumerable<NMF.Transformations.Linq.TransformationComputationWrapper<TIn1, TIn2, TOut>>
   nameWithType.vb: INotifyEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut))
-  fullName.vb: INotifyEnumerable(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn1, TIn2, TOut))
+  fullName.vb: NMF.Expressions.INotifyEnumerable(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn1, TIn2, TOut))
   name.vb: INotifyEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut))
   spec.csharp:
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -708,11 +733,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -744,37 +768,123 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+- uid: System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
+  commentId: T:System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{`0,`1,`2}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>
+  nameWithType: IEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>
+  fullName: System.Collections.Generic.IEnumerable<NMF.Transformations.Linq.TransformationComputationWrapper<TIn1, TIn2, TOut>>
+  nameWithType.vb: IEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn1, TIn2, TOut))
+  name.vb: IEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut))
   spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`3
+    name: TransformationComputationWrapper
+    nameWithType: TransformationComputationWrapper
+    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TIn1
+    nameWithType: TIn1
+    fullName: TIn1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TIn2
+    nameWithType: TIn2
+    fullName: TIn2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TOut
+    nameWithType: TOut
+    fullName: TOut
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Transformations.Linq.TransformationComputationWrapper`3
+    name: TransformationComputationWrapper
+    nameWithType: TransformationComputationWrapper
+    fullName: NMF.Transformations.Linq.TransformationComputationWrapper
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TIn1
+    nameWithType: TIn1
+    fullName: TIn1
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TIn2
+    nameWithType: TIn2
+    fullName: TIn2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TOut
+    nameWithType: TOut
+    fullName: TOut
   - name: )
     nameWithType: )
     fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable
+  commentId: T:NMF.Expressions.INotifyEnumerable
+  parent: NMF.Expressions
+  name: INotifyEnumerable
+  nameWithType: INotifyEnumerable
+  fullName: NMF.Expressions.INotifyEnumerable
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Collections.Specialized.INotifyCollectionChanged
+  commentId: T:System.Collections.Specialized.INotifyCollectionChanged
+  parent: System.Collections.Specialized
+  isExternal: true
+  name: INotifyCollectionChanged
+  nameWithType: INotifyCollectionChanged
+  fullName: System.Collections.Specialized.INotifyCollectionChanged
+- uid: NMF.Expressions.INotifiable
+  commentId: T:NMF.Expressions.INotifiable
+  parent: NMF.Expressions
+  name: INotifiable
+  nameWithType: INotifiable
+  fullName: NMF.Expressions.INotifiable
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -853,63 +963,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -1023,6 +1076,94 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -1034,44 +1175,104 @@ references:
   name: NMF.Transformations.Core
   nameWithType: NMF.Transformations.Core
   fullName: NMF.Transformations.Core
-- uid: INotifyEnumerable`1
-  isExternal: true
-  name: INotifyEnumerable<>
-  nameWithType: INotifyEnumerable<>
-  fullName: INotifyEnumerable<>
-  nameWithType.vb: INotifyEnumerable(Of )
-  fullName.vb: INotifyEnumerable(Of )
-  name.vb: INotifyEnumerable(Of )
+- uid: NMF.Expressions.INotifyEnumerable`1
+  commentId: T:NMF.Expressions.INotifyEnumerable`1
+  name: INotifyEnumerable<T>
+  nameWithType: INotifyEnumerable<T>
+  fullName: NMF.Expressions.INotifyEnumerable<T>
+  nameWithType.vb: INotifyEnumerable(Of T)
+  fullName.vb: NMF.Expressions.INotifyEnumerable(Of T)
+  name.vb: INotifyEnumerable(Of T)
   spec.csharp:
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+- uid: System.Collections.Specialized
+  commentId: N:System.Collections.Specialized
+  isExternal: true
+  name: System.Collections.Specialized
+  nameWithType: System.Collections.Specialized
+  fullName: System.Collections.Specialized
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.#ctor*
   commentId: Overload:NMF.Transformations.Linq.TransformationRuleSource`3.#ctor
   name: TransformationRuleSource
@@ -1460,6 +1661,37 @@ references:
   fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.Dispose
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Dispose
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.GetEnumerator*
   commentId: Overload:NMF.Transformations.Linq.TransformationRuleSource`3.GetEnumerator
   name: GetEnumerator
@@ -1467,6 +1699,39 @@ references:
   fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.GetEnumerator
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).GetEnumerator
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{`0,`1,`2}}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<NMF.Transformations.Linq.TransformationComputationWrapper<TIn1, TIn2, TOut>>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut)).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn1, TIn2, TOut)).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable<TransformationComputationWrapper<TIn1, TIn2, TOut>>.GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable<NMF.Transformations.Linq.TransformationComputationWrapper<TIn1, TIn2, TOut>>.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable(Of TransformationComputationWrapper(Of TIn1, TIn2, TOut)).GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable(Of NMF.Transformations.Linq.TransformationComputationWrapper(Of TIn1, TIn2, TOut)).GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.IEnumerator{NMF.Transformations.Linq.TransformationComputationWrapper{{TIn1},{TIn2},{TOut}}}
   commentId: T:System.Collections.Generic.IEnumerator{NMF.Transformations.Linq.TransformationComputationWrapper{`0,`1,`2}}
   parent: System.Collections.Generic
@@ -1551,6 +1816,38 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable<T>.GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable(Of T).GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable(Of T).GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.IEnumerator`1
   commentId: T:System.Collections.Generic.IEnumerator`1
   isExternal: true
@@ -1590,12 +1887,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.System#Collections#IEnumerable#GetEnumerator*
   commentId: Overload:NMF.Transformations.Linq.TransformationRuleSource`3.System#Collections#IEnumerable#GetEnumerator
   name: IEnumerable.GetEnumerator
@@ -1604,6 +1895,37 @@ references:
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).System.Collections.IEnumerable.GetEnumerator
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).System.Collections.IEnumerable.GetEnumerator
   name.vb: System.Collections.IEnumerable.GetEnumerator
+- uid: System.Collections.IEnumerable.GetEnumerator
+  commentId: M:System.Collections.IEnumerable.GetEnumerator
+  parent: System.Collections.IEnumerable
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: IEnumerable.GetEnumerator()
+  fullName: System.Collections.IEnumerable.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable.GetEnumerator
+    fullName: System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable.GetEnumerator
+    fullName: System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.IEnumerator
   commentId: T:System.Collections.IEnumerator
   parent: System.Collections
@@ -1611,12 +1933,6 @@ references:
   name: IEnumerator
   nameWithType: IEnumerator
   fullName: System.Collections.IEnumerator
-- uid: System.Collections
-  commentId: N:System.Collections
-  isExternal: true
-  name: System.Collections
-  nameWithType: System.Collections
-  fullName: System.Collections
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.Successors*
   commentId: Overload:NMF.Transformations.Linq.TransformationRuleSource`3.Successors
   name: Successors
@@ -1624,11 +1940,18 @@ references:
   fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.Successors
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Successors
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).Successors
-- uid: ISuccessorList
-  isExternal: true
+- uid: NMF.Expressions.INotifiable.Successors
+  commentId: P:NMF.Expressions.INotifiable.Successors
+  parent: NMF.Expressions.INotifiable
+  name: Successors
+  nameWithType: INotifiable.Successors
+  fullName: NMF.Expressions.INotifiable.Successors
+- uid: NMF.Expressions.ISuccessorList
+  commentId: T:NMF.Expressions.ISuccessorList
+  parent: NMF.Expressions
   name: ISuccessorList
   nameWithType: ISuccessorList
-  fullName: ISuccessorList
+  fullName: NMF.Expressions.ISuccessorList
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.Dependencies*
   commentId: Overload:NMF.Transformations.Linq.TransformationRuleSource`3.Dependencies
   name: Dependencies
@@ -1636,15 +1959,21 @@ references:
   fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.Dependencies
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Dependencies
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).Dependencies
-- uid: System.Collections.Generic.IEnumerable{INotifiable}
-  commentId: T:System.Collections.Generic.IEnumerable{INotifiable}
+- uid: NMF.Expressions.INotifiable.Dependencies
+  commentId: P:NMF.Expressions.INotifiable.Dependencies
+  parent: NMF.Expressions.INotifiable
+  name: Dependencies
+  nameWithType: INotifiable.Dependencies
+  fullName: NMF.Expressions.INotifiable.Dependencies
+- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
+  commentId: T:System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<INotifiable>
   nameWithType: IEnumerable<INotifiable>
-  fullName: System.Collections.Generic.IEnumerable<INotifiable>
+  fullName: System.Collections.Generic.IEnumerable<NMF.Expressions.INotifiable>
   nameWithType.vb: IEnumerable(Of INotifiable)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of INotifiable)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Expressions.INotifiable)
   name.vb: IEnumerable(Of INotifiable)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
@@ -1655,11 +1984,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: INotifiable
+  - uid: NMF.Expressions.INotifiable
     name: INotifiable
     nameWithType: INotifiable
-    fullName: INotifiable
-    isExternal: true
+    fullName: NMF.Expressions.INotifiable
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1672,50 +2000,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: INotifiable
+  - uid: NMF.Expressions.INotifiable
     name: INotifiable
     nameWithType: INotifiable
-    fullName: INotifiable
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+    fullName: NMF.Expressions.INotifiable
   - name: )
     nameWithType: )
     fullName: )
@@ -1726,11 +2014,18 @@ references:
   fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.ExecutionMetaData
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).ExecutionMetaData
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).ExecutionMetaData
-- uid: ExecutionMetaData
-  isExternal: true
+- uid: NMF.Expressions.INotifiable.ExecutionMetaData
+  commentId: P:NMF.Expressions.INotifiable.ExecutionMetaData
+  parent: NMF.Expressions.INotifiable
+  name: ExecutionMetaData
+  nameWithType: INotifiable.ExecutionMetaData
+  fullName: NMF.Expressions.INotifiable.ExecutionMetaData
+- uid: NMF.Expressions.ExecutionMetaData
+  commentId: T:NMF.Expressions.ExecutionMetaData
+  parent: NMF.Expressions
   name: ExecutionMetaData
   nameWithType: ExecutionMetaData
-  fullName: ExecutionMetaData
+  fullName: NMF.Expressions.ExecutionMetaData
 - uid: NMF.Transformations.Linq.TransformationRuleSource`3.Notify*
   commentId: Overload:NMF.Transformations.Linq.TransformationRuleSource`3.Notify
   name: Notify
@@ -1738,15 +2033,77 @@ references:
   fullName: NMF.Transformations.Linq.TransformationRuleSource<TIn1, TIn2, TOut>.Notify
   nameWithType.vb: TransformationRuleSource(Of TIn1, TIn2, TOut).Notify
   fullName.vb: NMF.Transformations.Linq.TransformationRuleSource(Of TIn1, TIn2, TOut).Notify
-- uid: System.Collections.Generic.IList{INotificationResult}
-  commentId: T:System.Collections.Generic.IList{INotificationResult}
+- uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  commentId: M:NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  parent: NMF.Expressions.INotifiable
+  isExternal: true
+  name: Notify(IList<INotificationResult>)
+  nameWithType: INotifiable.Notify(IList<INotificationResult>)
+  fullName: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList<NMF.Expressions.INotificationResult>)
+  nameWithType.vb: INotifiable.Notify(IList(Of INotificationResult))
+  fullName.vb: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult))
+  name.vb: Notify(IList(Of INotificationResult))
+  spec.csharp:
+  - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+    name: Notify
+    nameWithType: INotifiable.Notify
+    fullName: NMF.Expressions.INotifiable.Notify
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.INotificationResult
+    name: INotificationResult
+    nameWithType: INotificationResult
+    fullName: NMF.Expressions.INotificationResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+    name: Notify
+    nameWithType: INotifiable.Notify
+    fullName: NMF.Expressions.INotifiable.Notify
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.INotificationResult
+    name: INotificationResult
+    nameWithType: INotificationResult
+    fullName: NMF.Expressions.INotificationResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList{NMF.Expressions.INotificationResult}
+  commentId: T:System.Collections.Generic.IList{NMF.Expressions.INotificationResult}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IList`1
   name: IList<INotificationResult>
   nameWithType: IList<INotificationResult>
-  fullName: System.Collections.Generic.IList<INotificationResult>
+  fullName: System.Collections.Generic.IList<NMF.Expressions.INotificationResult>
   nameWithType.vb: IList(Of INotificationResult)
-  fullName.vb: System.Collections.Generic.IList(Of INotificationResult)
+  fullName.vb: System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult)
   name.vb: IList(Of INotificationResult)
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
@@ -1757,11 +2114,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: INotificationResult
+  - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
     nameWithType: INotificationResult
-    fullName: INotificationResult
-    isExternal: true
+    fullName: NMF.Expressions.INotificationResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1774,19 +2130,19 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: INotificationResult
+  - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
     nameWithType: INotificationResult
-    fullName: INotificationResult
-    isExternal: true
+    fullName: NMF.Expressions.INotificationResult
   - name: )
     nameWithType: )
     fullName: )
-- uid: INotificationResult
-  isExternal: true
+- uid: NMF.Expressions.INotificationResult
+  commentId: T:NMF.Expressions.INotificationResult
+  parent: NMF.Expressions
   name: INotificationResult
   nameWithType: INotificationResult
-  fullName: INotificationResult
+  fullName: NMF.Expressions.INotificationResult
 - uid: System.Collections.Generic.IList`1
   commentId: T:System.Collections.Generic.IList`1
   isExternal: true
@@ -1826,6 +2182,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
+  commentId: E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
+  parent: System.Collections.Specialized.INotifyCollectionChanged
+  isExternal: true
+  name: CollectionChanged
+  nameWithType: INotifyCollectionChanged.CollectionChanged
+  fullName: System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
 - uid: System.Collections.Specialized.NotifyCollectionChangedEventHandler
   commentId: T:System.Collections.Specialized.NotifyCollectionChangedEventHandler
   parent: System.Collections.Specialized
@@ -1833,9 +2196,3 @@ references:
   name: NotifyCollectionChangedEventHandler
   nameWithType: NotifyCollectionChangedEventHandler
   fullName: System.Collections.Specialized.NotifyCollectionChangedEventHandler
-- uid: System.Collections.Specialized
-  commentId: N:System.Collections.Specialized
-  isExternal: true
-  name: System.Collections.Specialized
-  nameWithType: System.Collections.Specialized
-  fullName: System.Collections.Specialized

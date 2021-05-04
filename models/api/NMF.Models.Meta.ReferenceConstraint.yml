@@ -17,10 +17,10 @@ items:
   - NMF.Models.Meta.ReferenceConstraint.GetCollectionForFeature(System.String)
   - NMF.Models.Meta.ReferenceConstraint.GetExpressionForReference(System.String)
   - NMF.Models.Meta.ReferenceConstraint.GetModelElementForReference(System.String,System.Int32)
-  - NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(ValueChangedEventArgs)
-  - NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(ValueChangedEventArgs)
-  - NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(ValueChangedEventArgs)
-  - NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(ValueChangedEventArgs)
+  - NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.Meta.ReferenceConstraint.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Models.Meta.ReferenceConstraint.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Models.Meta.ReferenceConstraint.ReferencedElements
@@ -63,9 +63,7 @@ items:
       <ModelRepresentationClass("http://nmf.codeplex.com/nmeta/#//ReferenceConstraint")>
 
       Public Class ReferenceConstraint
-
           Inherits ModelElement
-
           Implements IReferenceConstraint, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
   - System.Object
@@ -92,7 +90,7 @@ items:
   - NMF.Models.ModelElement.AbsoluteUri
   - NMF.Models.ModelElement.CreateUriWithFragment(System.String,System.Boolean,NMF.Models.IModelElement)
   - NMF.Models.ModelElement.CreateUriFromGlobalIdentifier(System.String,System.Boolean)
-  - NMF.Models.ModelElement.PropagateNewId(ValueChangedEventArgs)
+  - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
   - NMF.Models.ModelElement.IsIdentified
@@ -111,8 +109,8 @@ items:
   - NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Extensions
   - NMF.Models.ModelElement.GetExtension``1
-  - NMF.Models.ModelElement.OnPropertyChanged(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
-  - NMF.Models.ModelElement.OnPropertyChanging(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  - NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  - NMF.Models.ModelElement.OnPropertyChanging(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
   - NMF.Models.ModelElement.Delete
   - NMF.Models.ModelElement.OnDeleting(NMF.Models.UriChangedEventArgs)
   - NMF.Models.ModelElement.OnDeleted(NMF.Models.UriChangedEventArgs)
@@ -121,7 +119,6 @@ items:
   - NMF.Models.ModelElement.Deleted
   - NMF.Models.ModelElement.Deleting
   - NMF.Models.ModelElement.UriChanged
-  - NMF.Models.ModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute)
   - NMF.Models.ModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
   - NMF.Models.ModelElement.SetReferencedElement(NMF.Models.Meta.IReference,NMF.Models.IModelElement)
   - NMF.Models.ModelElement.GetReferencedElements(NMF.Models.Meta.IReference)
@@ -135,12 +132,14 @@ items:
   - NMF.Models.ModelElement.ParentChanged
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
   - NMF.Models.IModelElement.NMF.Models.ModelExtensions.Descendants
+  - NMF.Models.IModelElement.NMF.Models.ModelExtensions.Ancestors
+  - NMF.Models.IModelElement.NMF.Models.ModelExtensions.AncestorTree
   attributes:
   - type: NMF.Serialization.XmlNamespaceAttribute
     ctor: NMF.Serialization.XmlNamespaceAttribute.#ctor(System.String)
@@ -293,7 +292,7 @@ items:
       public IListExpression<IModelElement> References { get; }
     parameters: []
     return:
-      type: IListExpression{NMF.Models.IModelElement}
+      type: NMF.Expressions.IListExpression{NMF.Models.IModelElement}
     content.vb: >-
       <XmlAttribute(True)>
 
@@ -392,7 +391,7 @@ items:
     content: public override IEnumerableExpression<IModelElement> ReferencedElements { get; }
     parameters: []
     return:
-      type: IEnumerableExpression{NMF.Models.IModelElement}
+      type: NMF.Expressions.IEnumerableExpression{NMF.Models.IModelElement}
     content.vb: Public Overrides ReadOnly Property ReferencedElements As IEnumerableExpression(Of IModelElement)
   overridden: NMF.Models.ModelElement.ReferencedElements
   overload: NMF.Models.Meta.ReferenceConstraint.ReferencedElements*
@@ -472,7 +471,7 @@ items:
   syntax:
     content: public event EventHandler<ValueChangedEventArgs> DeclaringTypeChanging
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Public Event DeclaringTypeChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Meta.IReferenceConstraint.DeclaringTypeChanging
@@ -507,7 +506,7 @@ items:
   syntax:
     content: public event EventHandler<ValueChangedEventArgs> DeclaringTypeChanged
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Public Event DeclaringTypeChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Meta.IReferenceConstraint.DeclaringTypeChanged
@@ -542,7 +541,7 @@ items:
   syntax:
     content: public event EventHandler<ValueChangedEventArgs> ConstrainsChanging
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Public Event ConstrainsChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Meta.IReferenceConstraint.ConstrainsChanging
@@ -577,7 +576,7 @@ items:
   syntax:
     content: public event EventHandler<ValueChangedEventArgs> ConstrainsChanged
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Public Event ConstrainsChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Meta.IReferenceConstraint.ConstrainsChanged
@@ -585,16 +584,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(ValueChangedEventArgs)
-  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(ValueChangedEventArgs)
-  id: OnDeclaringTypeChanging(ValueChangedEventArgs)
+- uid: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnDeclaringTypeChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.Meta.ReferenceConstraint
   langs:
   - csharp
   - vb
   name: OnDeclaringTypeChanging(ValueChangedEventArgs)
   nameWithType: ReferenceConstraint.OnDeclaringTypeChanging(ValueChangedEventArgs)
-  fullName: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(ValueChangedEventArgs)
+  fullName: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
@@ -613,7 +612,7 @@ items:
     content: protected virtual void OnDeclaringTypeChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
-      type: ValueChangedEventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
     content.vb: Protected Overridable Sub OnDeclaringTypeChanging(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging*
@@ -665,16 +664,16 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(ValueChangedEventArgs)
-  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(ValueChangedEventArgs)
-  id: OnDeclaringTypeChanged(ValueChangedEventArgs)
+- uid: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnDeclaringTypeChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.Meta.ReferenceConstraint
   langs:
   - csharp
   - vb
   name: OnDeclaringTypeChanged(ValueChangedEventArgs)
   nameWithType: ReferenceConstraint.OnDeclaringTypeChanged(ValueChangedEventArgs)
-  fullName: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(ValueChangedEventArgs)
+  fullName: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
@@ -693,7 +692,7 @@ items:
     content: protected virtual void OnDeclaringTypeChanged(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
-      type: ValueChangedEventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
     content.vb: Protected Overridable Sub OnDeclaringTypeChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanged*
@@ -745,16 +744,16 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(ValueChangedEventArgs)
-  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(ValueChangedEventArgs)
-  id: OnConstrainsChanging(ValueChangedEventArgs)
+- uid: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnConstrainsChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.Meta.ReferenceConstraint
   langs:
   - csharp
   - vb
   name: OnConstrainsChanging(ValueChangedEventArgs)
   nameWithType: ReferenceConstraint.OnConstrainsChanging(ValueChangedEventArgs)
-  fullName: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(ValueChangedEventArgs)
+  fullName: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
@@ -773,7 +772,7 @@ items:
     content: protected virtual void OnConstrainsChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
-      type: ValueChangedEventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
     content.vb: Protected Overridable Sub OnConstrainsChanging(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanging*
@@ -783,16 +782,16 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-- uid: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(ValueChangedEventArgs)
-  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(ValueChangedEventArgs)
-  id: OnConstrainsChanged(ValueChangedEventArgs)
+- uid: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnConstrainsChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.Meta.ReferenceConstraint
   langs:
   - csharp
   - vb
   name: OnConstrainsChanged(ValueChangedEventArgs)
   nameWithType: ReferenceConstraint.OnConstrainsChanged(ValueChangedEventArgs)
-  fullName: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(ValueChangedEventArgs)
+  fullName: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
@@ -811,7 +810,7 @@ items:
     content: protected virtual void OnConstrainsChanged(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
-      type: ValueChangedEventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
     content.vb: Protected Overridable Sub OnConstrainsChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Meta.ReferenceConstraint.OnConstrainsChanged*
@@ -975,7 +974,7 @@ items:
   summary: "\nGets the property expression for the given reference\n"
   example: []
   syntax:
-    content: protected override Expressions.INotifyExpression<IModelElement> GetExpressionForReference(string reference)
+    content: protected override INotifyExpression<IModelElement> GetExpressionForReference(string reference)
     parameters:
     - id: reference
       type: System.String
@@ -983,7 +982,7 @@ items:
     return:
       type: NMF.Expressions.INotifyExpression{NMF.Models.IModelElement}
       description: An incremental property expression
-    content.vb: Protected Overrides Function GetExpressionForReference(reference As String) As Expressions.INotifyExpression(Of IModelElement)
+    content.vb: Protected Overrides Function GetExpressionForReference(reference As String) As INotifyExpression(Of IModelElement)
   overridden: NMF.Models.ModelElement.GetExpressionForReference(System.String)
   overload: NMF.Models.Meta.ReferenceConstraint.GetExpressionForReference*
   modifiers.csharp:
@@ -1507,42 +1506,39 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Models.ModelElement.PropagateNewId(ValueChangedEventArgs)
-  commentId: M:NMF.Models.ModelElement.PropagateNewId(ValueChangedEventArgs)
+- uid: NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.ModelElement
-  isExternal: true
   name: PropagateNewId(ValueChangedEventArgs)
   nameWithType: ModelElement.PropagateNewId(ValueChangedEventArgs)
-  fullName: NMF.Models.ModelElement.PropagateNewId(ValueChangedEventArgs)
+  fullName: NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   spec.csharp:
-  - uid: NMF.Models.ModelElement.PropagateNewId(ValueChangedEventArgs)
+  - uid: NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
     name: PropagateNewId
     nameWithType: ModelElement.PropagateNewId
     fullName: NMF.Models.ModelElement.PropagateNewId
   - name: (
     nameWithType: (
     fullName: (
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Models.ModelElement.PropagateNewId(ValueChangedEventArgs)
+  - uid: NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
     name: PropagateNewId
     nameWithType: ModelElement.PropagateNewId
     fullName: NMF.Models.ModelElement.PropagateNewId
   - name: (
     nameWithType: (
     fullName: (
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -2086,18 +2082,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Models.ModelElement.OnPropertyChanged(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
-  commentId: M:NMF.Models.ModelElement.OnPropertyChanged(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+- uid: NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  commentId: M:NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
   parent: NMF.Models.ModelElement
   isExternal: true
   name: OnPropertyChanged(String, ValueChangedEventArgs, Lazy<ITypedElement>)
   nameWithType: ModelElement.OnPropertyChanged(String, ValueChangedEventArgs, Lazy<ITypedElement>)
-  fullName: NMF.Models.ModelElement.OnPropertyChanged(System.String, ValueChangedEventArgs, System.Lazy<NMF.Models.Meta.ITypedElement>)
+  fullName: NMF.Models.ModelElement.OnPropertyChanged(System.String, NMF.Expressions.ValueChangedEventArgs, System.Lazy<NMF.Models.Meta.ITypedElement>)
   nameWithType.vb: ModelElement.OnPropertyChanged(String, ValueChangedEventArgs, Lazy(Of ITypedElement))
-  fullName.vb: NMF.Models.ModelElement.OnPropertyChanged(System.String, ValueChangedEventArgs, System.Lazy(Of NMF.Models.Meta.ITypedElement))
+  fullName.vb: NMF.Models.ModelElement.OnPropertyChanged(System.String, NMF.Expressions.ValueChangedEventArgs, System.Lazy(Of NMF.Models.Meta.ITypedElement))
   name.vb: OnPropertyChanged(String, ValueChangedEventArgs, Lazy(Of ITypedElement))
   spec.csharp:
-  - uid: NMF.Models.ModelElement.OnPropertyChanged(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  - uid: NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
     name: OnPropertyChanged
     nameWithType: ModelElement.OnPropertyChanged
     fullName: NMF.Models.ModelElement.OnPropertyChanged
@@ -2112,11 +2108,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2139,7 +2134,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Models.ModelElement.OnPropertyChanged(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  - uid: NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
     name: OnPropertyChanged
     nameWithType: ModelElement.OnPropertyChanged
     fullName: NMF.Models.ModelElement.OnPropertyChanged
@@ -2154,11 +2149,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2180,18 +2174,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Models.ModelElement.OnPropertyChanging(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
-  commentId: M:NMF.Models.ModelElement.OnPropertyChanging(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+- uid: NMF.Models.ModelElement.OnPropertyChanging(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  commentId: M:NMF.Models.ModelElement.OnPropertyChanging(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
   parent: NMF.Models.ModelElement
   isExternal: true
   name: OnPropertyChanging(String, ValueChangedEventArgs, Lazy<ITypedElement>)
   nameWithType: ModelElement.OnPropertyChanging(String, ValueChangedEventArgs, Lazy<ITypedElement>)
-  fullName: NMF.Models.ModelElement.OnPropertyChanging(System.String, ValueChangedEventArgs, System.Lazy<NMF.Models.Meta.ITypedElement>)
+  fullName: NMF.Models.ModelElement.OnPropertyChanging(System.String, NMF.Expressions.ValueChangedEventArgs, System.Lazy<NMF.Models.Meta.ITypedElement>)
   nameWithType.vb: ModelElement.OnPropertyChanging(String, ValueChangedEventArgs, Lazy(Of ITypedElement))
-  fullName.vb: NMF.Models.ModelElement.OnPropertyChanging(System.String, ValueChangedEventArgs, System.Lazy(Of NMF.Models.Meta.ITypedElement))
+  fullName.vb: NMF.Models.ModelElement.OnPropertyChanging(System.String, NMF.Expressions.ValueChangedEventArgs, System.Lazy(Of NMF.Models.Meta.ITypedElement))
   name.vb: OnPropertyChanging(String, ValueChangedEventArgs, Lazy(Of ITypedElement))
   spec.csharp:
-  - uid: NMF.Models.ModelElement.OnPropertyChanging(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  - uid: NMF.Models.ModelElement.OnPropertyChanging(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
     name: OnPropertyChanging
     nameWithType: ModelElement.OnPropertyChanging
     fullName: NMF.Models.ModelElement.OnPropertyChanging
@@ -2206,11 +2200,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2233,7 +2226,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Models.ModelElement.OnPropertyChanging(System.String,ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
+  - uid: NMF.Models.ModelElement.OnPropertyChanging(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
     name: OnPropertyChanging
     nameWithType: ModelElement.OnPropertyChanging
     fullName: NMF.Models.ModelElement.OnPropertyChanging
@@ -2248,11 +2241,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2404,42 +2396,6 @@ references:
   name: UriChanged
   nameWithType: ModelElement.UriChanged
   fullName: NMF.Models.ModelElement.UriChanged
-- uid: NMF.Models.ModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute)
-  commentId: M:NMF.Models.ModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute)
-  parent: NMF.Models.ModelElement
-  name: GetAttributeValue(IAttribute)
-  nameWithType: ModelElement.GetAttributeValue(IAttribute)
-  fullName: NMF.Models.ModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute)
-    name: GetAttributeValue
-    nameWithType: ModelElement.GetAttributeValue
-    fullName: NMF.Models.ModelElement.GetAttributeValue
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Models.Meta.IAttribute
-    name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute)
-    name: GetAttributeValue
-    nameWithType: ModelElement.GetAttributeValue
-    fullName: NMF.Models.ModelElement.GetAttributeValue
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Models.Meta.IAttribute
-    name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.ModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
   parent: NMF.Models.ModelElement
@@ -3055,63 +3011,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
@@ -3205,6 +3104,63 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Models.IModelElement.NMF.Models.ModelExtensions.Descendants
   commentId: M:NMF.Models.ModelExtensions.Descendants(NMF.Models.IModelElement)
   parent: NMF.Models.ModelExtensions
@@ -3228,6 +3184,64 @@ references:
     name: Descendants
     nameWithType: ModelExtensions.Descendants
     fullName: NMF.Models.ModelExtensions.Descendants
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Models.IModelElement.NMF.Models.ModelExtensions.Ancestors
+  commentId: M:NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  parent: NMF.Models.ModelExtensions
+  definition: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  name: Ancestors()
+  nameWithType: ModelExtensions.Ancestors()
+  fullName: NMF.Models.ModelExtensions.Ancestors()
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.Ancestors
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.Ancestors
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Models.IModelElement.NMF.Models.ModelExtensions.AncestorTree
+  commentId: M:NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  parent: NMF.Models.ModelExtensions
+  definition: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  name: AncestorTree()
+  nameWithType: ModelExtensions.AncestorTree()
+  fullName: NMF.Models.ModelExtensions.AncestorTree()
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.AncestorTree
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.AncestorTree
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
   - name: (
     nameWithType: (
     fullName: (
@@ -3292,6 +3306,76 @@ references:
   name: ModelExtensions
   nameWithType: ModelExtensions
   fullName: NMF.Models.ModelExtensions
+- uid: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  commentId: M:NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  name: Ancestors(IModelElement)
+  nameWithType: ModelExtensions.Ancestors(IModelElement)
+  fullName: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  commentId: M:NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  name: AncestorTree(IModelElement)
+  nameWithType: ModelExtensions.AncestorTree(IModelElement)
+  fullName: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Models.Meta.ReferenceConstraint.#ctor*
   commentId: Overload:NMF.Models.Meta.ReferenceConstraint.#ctor
   name: ReferenceConstraint
@@ -3325,21 +3409,21 @@ references:
   name: References
   nameWithType: IReferenceConstraint.References
   fullName: NMF.Models.Meta.IReferenceConstraint.References
-- uid: IListExpression{NMF.Models.IModelElement}
-  commentId: '!:IListExpression{NMF.Models.IModelElement}'
-  definition: IListExpression`1
+- uid: NMF.Expressions.IListExpression{NMF.Models.IModelElement}
+  commentId: T:NMF.Expressions.IListExpression{NMF.Models.IModelElement}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.IListExpression`1
   name: IListExpression<IModelElement>
   nameWithType: IListExpression<IModelElement>
-  fullName: IListExpression<NMF.Models.IModelElement>
+  fullName: NMF.Expressions.IListExpression<NMF.Models.IModelElement>
   nameWithType.vb: IListExpression(Of IModelElement)
-  fullName.vb: IListExpression(Of NMF.Models.IModelElement)
+  fullName.vb: NMF.Expressions.IListExpression(Of NMF.Models.IModelElement)
   name.vb: IListExpression(Of IModelElement)
   spec.csharp:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: <
     nameWithType: <
     fullName: <
@@ -3351,11 +3435,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -3366,44 +3449,47 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IListExpression`1
-  isExternal: true
-  name: IListExpression<>
-  nameWithType: IListExpression<>
-  fullName: IListExpression<>
-  nameWithType.vb: IListExpression(Of )
-  fullName.vb: IListExpression(Of )
-  name.vb: IListExpression(Of )
+- uid: NMF.Expressions.IListExpression`1
+  commentId: T:NMF.Expressions.IListExpression`1
+  name: IListExpression<T>
+  nameWithType: IListExpression<T>
+  fullName: NMF.Expressions.IListExpression<T>
+  nameWithType.vb: IListExpression(Of T)
+  fullName.vb: NMF.Expressions.IListExpression(Of T)
+  name.vb: IListExpression(Of T)
   spec.csharp:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions
 - uid: NMF.Models.Meta.ReferenceConstraint.Constrains*
   commentId: Overload:NMF.Models.Meta.ReferenceConstraint.Constrains
   name: Constrains
@@ -3438,21 +3524,21 @@ references:
   name: ReferencedElements
   nameWithType: IModelElement.ReferencedElements
   fullName: NMF.Models.IModelElement.ReferencedElements
-- uid: IEnumerableExpression{NMF.Models.IModelElement}
-  commentId: '!:IEnumerableExpression{NMF.Models.IModelElement}'
-  definition: IEnumerableExpression`1
+- uid: NMF.Expressions.IEnumerableExpression{NMF.Models.IModelElement}
+  commentId: T:NMF.Expressions.IEnumerableExpression{NMF.Models.IModelElement}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.IEnumerableExpression`1
   name: IEnumerableExpression<IModelElement>
   nameWithType: IEnumerableExpression<IModelElement>
-  fullName: IEnumerableExpression<NMF.Models.IModelElement>
+  fullName: NMF.Expressions.IEnumerableExpression<NMF.Models.IModelElement>
   nameWithType.vb: IEnumerableExpression(Of IModelElement)
-  fullName.vb: IEnumerableExpression(Of NMF.Models.IModelElement)
+  fullName.vb: NMF.Expressions.IEnumerableExpression(Of NMF.Models.IModelElement)
   name.vb: IEnumerableExpression(Of IModelElement)
   spec.csharp:
-  - uid: IEnumerableExpression`1
+  - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
     nameWithType: IEnumerableExpression
-    fullName: IEnumerableExpression
-    isExternal: true
+    fullName: NMF.Expressions.IEnumerableExpression
   - name: <
     nameWithType: <
     fullName: <
@@ -3464,11 +3550,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEnumerableExpression`1
+  - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
     nameWithType: IEnumerableExpression
-    fullName: IEnumerableExpression
-    isExternal: true
+    fullName: NMF.Expressions.IEnumerableExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -3479,41 +3564,39 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEnumerableExpression`1
-  isExternal: true
-  name: IEnumerableExpression<>
-  nameWithType: IEnumerableExpression<>
-  fullName: IEnumerableExpression<>
-  nameWithType.vb: IEnumerableExpression(Of )
-  fullName.vb: IEnumerableExpression(Of )
-  name.vb: IEnumerableExpression(Of )
+- uid: NMF.Expressions.IEnumerableExpression`1
+  commentId: T:NMF.Expressions.IEnumerableExpression`1
+  name: IEnumerableExpression<T>
+  nameWithType: IEnumerableExpression<T>
+  fullName: NMF.Expressions.IEnumerableExpression<T>
+  nameWithType.vb: IEnumerableExpression(Of T)
+  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T)
+  name.vb: IEnumerableExpression(Of T)
   spec.csharp:
-  - uid: IEnumerableExpression`1
+  - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
     nameWithType: IEnumerableExpression
-    fullName: IEnumerableExpression
-    isExternal: true
+    fullName: NMF.Expressions.IEnumerableExpression
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEnumerableExpression`1
+  - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
     nameWithType: IEnumerableExpression
-    fullName: IEnumerableExpression
-    isExternal: true
+    fullName: NMF.Expressions.IEnumerableExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -3528,15 +3611,15 @@ references:
   name: DeclaringTypeChanging
   nameWithType: IReferenceConstraint.DeclaringTypeChanging
   fullName: NMF.Models.Meta.IReferenceConstraint.DeclaringTypeChanging
-- uid: System.EventHandler{ValueChangedEventArgs}
-  commentId: T:System.EventHandler{ValueChangedEventArgs}
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ValueChangedEventArgs>
   nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
   nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
   name.vb: EventHandler(Of ValueChangedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -3547,11 +3630,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -3564,11 +3646,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -3634,11 +3715,12 @@ references:
   name: OnDeclaringTypeChanging
   nameWithType: ReferenceConstraint.OnDeclaringTypeChanging
   fullName: NMF.Models.Meta.ReferenceConstraint.OnDeclaringTypeChanging
-- uid: ValueChangedEventArgs
-  isExternal: true
+- uid: NMF.Expressions.ValueChangedEventArgs
+  commentId: T:NMF.Expressions.ValueChangedEventArgs
+  parent: NMF.Expressions
   name: ValueChangedEventArgs
   nameWithType: ValueChangedEventArgs
-  fullName: ValueChangedEventArgs
+  fullName: NMF.Expressions.ValueChangedEventArgs
 - uid: NMF.Models.ModelElement.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   commentId: M:NMF.Models.ModelElement.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   parent: NMF.Models.ModelElement
@@ -4000,20 +4082,20 @@ references:
   nameWithType: ReferenceConstraint.GetExpressionForReference
   fullName: NMF.Models.Meta.ReferenceConstraint.GetExpressionForReference
 - uid: NMF.Expressions.INotifyExpression{NMF.Models.IModelElement}
-  commentId: '!:NMF.Expressions.INotifyExpression{NMF.Models.IModelElement}'
+  commentId: T:NMF.Expressions.INotifyExpression{NMF.Models.IModelElement}
+  parent: NMF.Expressions
   definition: NMF.Expressions.INotifyExpression`1
-  name: Expressions.INotifyExpression<IModelElement>
-  nameWithType: Expressions.INotifyExpression<IModelElement>
+  name: INotifyExpression<IModelElement>
+  nameWithType: INotifyExpression<IModelElement>
   fullName: NMF.Expressions.INotifyExpression<NMF.Models.IModelElement>
-  nameWithType.vb: Expressions.INotifyExpression(Of IModelElement)
+  nameWithType.vb: INotifyExpression(Of IModelElement)
   fullName.vb: NMF.Expressions.INotifyExpression(Of NMF.Models.IModelElement)
-  name.vb: Expressions.INotifyExpression(Of IModelElement)
+  name.vb: INotifyExpression(Of IModelElement)
   spec.csharp:
   - uid: NMF.Expressions.INotifyExpression`1
-    name: Expressions.INotifyExpression
-    nameWithType: Expressions.INotifyExpression
+    name: INotifyExpression
+    nameWithType: INotifyExpression
     fullName: NMF.Expressions.INotifyExpression
-    isExternal: true
   - name: <
     nameWithType: <
     fullName: <
@@ -4026,10 +4108,9 @@ references:
     fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyExpression`1
-    name: Expressions.INotifyExpression
-    nameWithType: Expressions.INotifyExpression
+    name: INotifyExpression
+    nameWithType: INotifyExpression
     fullName: NMF.Expressions.INotifyExpression
-    isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -4041,40 +4122,38 @@ references:
     nameWithType: )
     fullName: )
 - uid: NMF.Expressions.INotifyExpression`1
-  isExternal: true
-  name: Expressions.INotifyExpression<>
-  nameWithType: Expressions.INotifyExpression<>
-  fullName: NMF.Expressions.INotifyExpression<>
-  nameWithType.vb: Expressions.INotifyExpression(Of )
-  fullName.vb: NMF.Expressions.INotifyExpression(Of )
-  name.vb: Expressions.INotifyExpression(Of )
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
   spec.csharp:
   - uid: NMF.Expressions.INotifyExpression`1
-    name: Expressions.INotifyExpression
-    nameWithType: Expressions.INotifyExpression
+    name: INotifyExpression
+    nameWithType: INotifyExpression
     fullName: NMF.Expressions.INotifyExpression
-    isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyExpression`1
-    name: Expressions.INotifyExpression
-    nameWithType: Expressions.INotifyExpression
+    name: INotifyExpression
+    nameWithType: INotifyExpression
     fullName: NMF.Expressions.INotifyExpression
-    isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

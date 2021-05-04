@@ -49,7 +49,6 @@ items:
       <ModelRepresentationClass("http://nmf.codeplex.com/changes#//OperationCall")>
 
       Public Interface IOperationCall
-
           Inherits IModelElement, IModelChange
   inheritedMembers:
   - NMF.Models.Changes.IModelChange.Apply
@@ -89,6 +88,8 @@ items:
   - System.ComponentModel.INotifyPropertyChanging.PropertyChanging
   extensionMethods:
   - NMF.Models.IModelElement.NMF.Models.ModelExtensions.Descendants
+  - NMF.Models.IModelElement.NMF.Models.ModelExtensions.Ancestors
+  - NMF.Models.IModelElement.NMF.Models.ModelExtensions.AncestorTree
   attributes:
   - type: NMF.Utilities.DefaultImplementationTypeAttribute
     ctor: NMF.Utilities.DefaultImplementationTypeAttribute.#ctor(System.Type)
@@ -254,7 +255,7 @@ items:
       IListExpression<IOperationArgument> Arguments { get; }
     parameters: []
     return:
-      type: IListExpression{NMF.Models.Changes.IOperationArgument}
+      type: NMF.Expressions.IListExpression{NMF.Models.Changes.IOperationArgument}
     content.vb: >-
       <XmlElementName("arguments")>
 
@@ -304,7 +305,7 @@ items:
   syntax:
     content: event EventHandler<ValueChangedEventArgs> OperationChanging
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event OperationChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Models.Changes.IOperationCall.OperationChanged
   commentId: E:NMF.Models.Changes.IOperationCall.OperationChanged
@@ -333,7 +334,7 @@ items:
   syntax:
     content: event EventHandler<ValueChangedEventArgs> OperationChanged
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event OperationChanged As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Models.Changes.IOperationCall.TargetElementChanging
   commentId: E:NMF.Models.Changes.IOperationCall.TargetElementChanging
@@ -362,7 +363,7 @@ items:
   syntax:
     content: event EventHandler<ValueChangedEventArgs> TargetElementChanging
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event TargetElementChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Models.Changes.IOperationCall.TargetElementChanged
   commentId: E:NMF.Models.Changes.IOperationCall.TargetElementChanged
@@ -391,7 +392,7 @@ items:
   syntax:
     content: event EventHandler<ValueChangedEventArgs> TargetElementChanged
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event TargetElementChanged As EventHandler(Of ValueChangedEventArgs)
 references:
 - uid: NMF.Models.Changes
@@ -1244,6 +1245,64 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: NMF.Models.IModelElement.NMF.Models.ModelExtensions.Ancestors
+  commentId: M:NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  parent: NMF.Models.ModelExtensions
+  definition: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  name: Ancestors()
+  nameWithType: ModelExtensions.Ancestors()
+  fullName: NMF.Models.ModelExtensions.Ancestors()
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.Ancestors
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.Ancestors
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Models.IModelElement.NMF.Models.ModelExtensions.AncestorTree
+  commentId: M:NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  parent: NMF.Models.ModelExtensions
+  definition: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  name: AncestorTree()
+  nameWithType: ModelExtensions.AncestorTree()
+  fullName: NMF.Models.ModelExtensions.AncestorTree()
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.AncestorTree
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.AncestorTree
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Models.Changes.IModelChange
   commentId: T:NMF.Models.Changes.IModelChange
   parent: NMF.Models.Changes
@@ -1311,6 +1370,76 @@ references:
   name: ModelExtensions
   nameWithType: ModelExtensions
   fullName: NMF.Models.ModelExtensions
+- uid: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  commentId: M:NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  name: Ancestors(IModelElement)
+  nameWithType: ModelExtensions.Ancestors(IModelElement)
+  fullName: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.Ancestors(NMF.Models.IModelElement)
+    name: Ancestors
+    nameWithType: ModelExtensions.Ancestors
+    fullName: NMF.Models.ModelExtensions.Ancestors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  commentId: M:NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  name: AncestorTree(IModelElement)
+  nameWithType: ModelExtensions.AncestorTree(IModelElement)
+  fullName: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+  spec.csharp:
+  - uid: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Models.ModelExtensions.AncestorTree(NMF.Models.IModelElement)
+    name: AncestorTree
+    nameWithType: ModelExtensions.AncestorTree
+    fullName: NMF.Models.ModelExtensions.AncestorTree
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Models.IModelElement
+    name: IModelElement
+    nameWithType: IModelElement
+    fullName: NMF.Models.IModelElement
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Models
   commentId: N:NMF.Models
   name: NMF.Models
@@ -1348,21 +1477,21 @@ references:
   name: Arguments
   nameWithType: IOperationCall.Arguments
   fullName: NMF.Models.Changes.IOperationCall.Arguments
-- uid: IListExpression{NMF.Models.Changes.IOperationArgument}
-  commentId: '!:IListExpression{NMF.Models.Changes.IOperationArgument}'
-  definition: IListExpression`1
+- uid: NMF.Expressions.IListExpression{NMF.Models.Changes.IOperationArgument}
+  commentId: T:NMF.Expressions.IListExpression{NMF.Models.Changes.IOperationArgument}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.IListExpression`1
   name: IListExpression<IOperationArgument>
   nameWithType: IListExpression<IOperationArgument>
-  fullName: IListExpression<NMF.Models.Changes.IOperationArgument>
+  fullName: NMF.Expressions.IListExpression<NMF.Models.Changes.IOperationArgument>
   nameWithType.vb: IListExpression(Of IOperationArgument)
-  fullName.vb: IListExpression(Of NMF.Models.Changes.IOperationArgument)
+  fullName.vb: NMF.Expressions.IListExpression(Of NMF.Models.Changes.IOperationArgument)
   name.vb: IListExpression(Of IOperationArgument)
   spec.csharp:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: <
     nameWithType: <
     fullName: <
@@ -1374,11 +1503,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1389,53 +1517,56 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IListExpression`1
-  isExternal: true
-  name: IListExpression<>
-  nameWithType: IListExpression<>
-  fullName: IListExpression<>
-  nameWithType.vb: IListExpression(Of )
-  fullName.vb: IListExpression(Of )
-  name.vb: IListExpression(Of )
+- uid: NMF.Expressions.IListExpression`1
+  commentId: T:NMF.Expressions.IListExpression`1
+  name: IListExpression<T>
+  nameWithType: IListExpression<T>
+  fullName: NMF.Expressions.IListExpression<T>
+  nameWithType.vb: IListExpression(Of T)
+  fullName.vb: NMF.Expressions.IListExpression(Of T)
+  name.vb: IListExpression(Of T)
   spec.csharp:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IListExpression`1
+  - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
     nameWithType: IListExpression
-    fullName: IListExpression
-    isExternal: true
+    fullName: NMF.Expressions.IListExpression
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.EventHandler{ValueChangedEventArgs}
-  commentId: T:System.EventHandler{ValueChangedEventArgs}
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ValueChangedEventArgs>
   nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
   nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
   name.vb: EventHandler(Of ValueChangedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -1446,11 +1577,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1463,11 +1593,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
     nameWithType: )
     fullName: )

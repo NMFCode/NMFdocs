@@ -42,7 +42,6 @@ items:
       description: The type of the output
     content.vb: >-
       Public Class TransformationRule(Of TIn1 As Class, TIn2 As Class, TOut As Class)
-
           Inherits TransformationRuleBase(Of TIn1, TIn2, TOut)
   inheritance:
   - System.Object
@@ -50,7 +49,12 @@ items:
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}
   - NMF.Transformations.TransformationRuleBase{{TIn1},{TIn2},{TOut}}
   derivedClasses:
+  - NMF.Models.Meta.Meta2ClassesTransformation.RefinedAttributeCollectionClassGenerator
+  - NMF.Models.Meta.Meta2ClassesTransformation.RefinedAttributeGenerator
+  - NMF.Models.Meta.Meta2ClassesTransformation.RefinedReferenceCollectionClassGenerator
+  - NMF.Models.Meta.Meta2ClassesTransformation.RefinedReferenceGenerator
   - NMF.Transformations.AbstractTransformationRule`3
+  - NMF.Transformations.Tests.UnitTests.TestOutputRuleT2
   inheritedMembers:
   - NMF.Transformations.TransformationRuleBase{{TIn1},{TIn2},{TOut}}.MarkInstantiatingFor``3
   - NMF.Transformations.TransformationRuleBase{{TIn1},{TIn2},{TOut}}.MarkInstantiatingFor``3(System.Func{{TIn1},{TIn2},System.Boolean})
@@ -105,7 +109,7 @@ items:
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.Rule``1
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.InputType
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.WithPattern(NMF.Transformations.ITransformationRulePattern{{TIn1},{TIn2}})
-  - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}})
+  - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}})
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{System.Tuple{{TIn1},{TIn2}}}})
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.RequireByType``2
   - NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.RequireByType``2(System.Func{{TIn1},{TIn2},{TRequiredInput1}},System.Func{{TIn1},{TIn2},{TRequiredInput2}})
@@ -184,13 +188,13 @@ items:
   - NMF.Transformations.Core.GeneralTransformationRule.Call(NMF.Transformations.Core.GeneralTransformationRule)
   - NMF.Transformations.Core.GeneralTransformationRule.MarkInstantiatingFor(NMF.Transformations.Core.GeneralTransformationRule)
   - NMF.Transformations.Core.GeneralTransformationRule.MarkInstantiatingFor(NMF.Transformations.Core.GeneralTransformationRule,System.Predicate{NMF.Transformations.Core.Computation})
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   extensionMethods:
   - NMF.Transformations.TransformationRuleBase{`0,`1,`2}.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``3(NMF.Transformations.Core.ITransformationContext)
   - NMF.Transformations.TransformationRuleBase{`0,`1,`2}.NMF.Transformations.Linq.IncrementalExtensions.ToComputationSource``3(NMF.Transformations.Core.ITransformationContext,System.Boolean)
@@ -10280,18 +10284,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}})
-  commentId: M:NMF.Transformations.GeneralTransformationRule{`0,`1}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+- uid: NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}})
+  commentId: M:NMF.Transformations.GeneralTransformationRule{`0,`1}.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
   parent: NMF.Transformations.GeneralTransformationRule{{TIn1},{TIn2}}
-  definition: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+  definition: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
   name: WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>)
   nameWithType: GeneralTransformationRule<TIn1, TIn2>.WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>)
-  fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<System.Tuple<TIn1, TIn2>>>)
+  fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<System.Tuple<TIn1, TIn2>>>)
   nameWithType.vb: GeneralTransformationRule(Of TIn1, TIn2).WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2))))
-  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2))))
+  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2))))
   name.vb: WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2))))
   spec.csharp:
-  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
     name: WithPattern
     nameWithType: GeneralTransformationRule<TIn1, TIn2>.WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern
@@ -10313,11 +10317,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -10351,7 +10354,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
     name: WithPattern
     nameWithType: GeneralTransformationRule(Of TIn1, TIn2).WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern
@@ -10373,11 +10376,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -20845,37 +20847,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -20954,63 +20925,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -21117,6 +21031,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (
@@ -31610,17 +31612,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
-  commentId: M:NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+- uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
+  commentId: M:NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
   isExternal: true
   name: WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>)
   nameWithType: GeneralTransformationRule<TIn1, TIn2>.WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>)
-  fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<System.Tuple<TIn1, TIn2>>>)
+  fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<System.Tuple<TIn1, TIn2>>>)
   nameWithType.vb: GeneralTransformationRule(Of TIn1, TIn2).WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2))))
-  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2))))
+  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2))))
   name.vb: WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2))))
   spec.csharp:
-  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
     name: WithPattern
     nameWithType: GeneralTransformationRule<TIn1, TIn2>.WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern
@@ -31642,11 +31644,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -31680,7 +31681,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+  - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
     name: WithPattern
     nameWithType: GeneralTransformationRule(Of TIn1, TIn2).WithPattern
     fullName: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern
@@ -31702,11 +31703,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

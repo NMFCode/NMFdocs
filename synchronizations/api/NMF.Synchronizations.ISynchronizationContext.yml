@@ -7,6 +7,7 @@ items:
   children:
   - NMF.Synchronizations.ISynchronizationContext.ChangePropagation
   - NMF.Synchronizations.ISynchronizationContext.Direction
+  - NMF.Synchronizations.ISynchronizationContext.Inconsistencies
   langs:
   - csharp
   - vb
@@ -21,16 +22,30 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ISynchronizationContext
     path: src/Synchronizations/Synchronizations/ISynchronizationContext.cs
-    startLine: 10
+    startLine: 15
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nDenotes a context of a model synchronization run\n"
+  example: []
   syntax:
-    content: 'public interface ISynchronizationContext : ITransformationContext'
+    content: 'public interface ISynchronizationContext : ITransformationEngineContext, ITransformationContext'
     content.vb: >-
       Public Interface ISynchronizationContext
-
-          Inherits ITransformationContext
+          Inherits ITransformationContext, ITransformationEngineContext
+  inheritedMembers:
+  - NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+  - NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+  - NMF.Transformations.Core.ITransformationContext.Bag
+  - NMF.Transformations.Core.ITransformationContext.Data
+  - NMF.Transformations.Core.ITransformationContext.Transformation
+  - NMF.Transformations.Core.ITransformationContext.Computations
+  - NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+  - NMF.Transformations.Core.ITransformationContext.Trace
+  - NMF.Transformations.Core.ITransformationContext.Inputs
+  - NMF.Transformations.Core.ITransformationContext.Input
+  - NMF.Transformations.Core.ITransformationContext.Outputs
+  - NMF.Transformations.Core.ITransformationContext.ComputationCompleted
   modifiers.csharp:
   - public
   - interface
@@ -55,21 +70,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Direction
     path: src/Synchronizations/Synchronizations/ISynchronizationContext.cs
-    startLine: 12
+    startLine: 20
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the direction of the synchronization process\n"
+  example: []
   syntax:
-    content: SynchronizationDirection Direction { get; }
+    content: SynchronizationDirection Direction { get; set; }
     parameters: []
     return:
       type: NMF.Synchronizations.SynchronizationDirection
-    content.vb: ReadOnly Property Direction As SynchronizationDirection
+    content.vb: Property Direction As SynchronizationDirection
   overload: NMF.Synchronizations.ISynchronizationContext.Direction*
   modifiers.csharp:
   - get
-  modifiers.vb:
-  - ReadOnly
+  - set
 - uid: NMF.Synchronizations.ISynchronizationContext.ChangePropagation
   commentId: P:NMF.Synchronizations.ISynchronizationContext.ChangePropagation
   id: ChangePropagation
@@ -88,17 +104,55 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ChangePropagation
     path: src/Synchronizations/Synchronizations/ISynchronizationContext.cs
-    startLine: 14
+    startLine: 25
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the change propagation mode of the model synchronization\n"
+  example: []
   syntax:
     content: ChangePropagationMode ChangePropagation { get; }
     parameters: []
     return:
-      type: ChangePropagationMode
+      type: NMF.Transformations.ChangePropagationMode
     content.vb: ReadOnly Property ChangePropagation As ChangePropagationMode
   overload: NMF.Synchronizations.ISynchronizationContext.ChangePropagation*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+  commentId: P:NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+  id: Inconsistencies
+  parent: NMF.Synchronizations.ISynchronizationContext
+  langs:
+  - csharp
+  - vb
+  name: Inconsistencies
+  nameWithType: ISynchronizationContext.Inconsistencies
+  fullName: NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/ISynchronizationContext.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Inconsistencies
+    path: src/Synchronizations/Synchronizations/ISynchronizationContext.cs
+    startLine: 31
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  summary: "\nGets a collection of inconsistencies found during the synchronization\n"
+  remarks: This property is only used by the synchronization engine if the direction is set to CheckOnly
+  example: []
+  syntax:
+    content: ICollectionExpression<IInconsistency> Inconsistencies { get; }
+    parameters: []
+    return:
+      type: NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
+    content.vb: ReadOnly Property Inconsistencies As ICollectionExpression(Of IInconsistency)
+  overload: NMF.Synchronizations.ISynchronizationContext.Inconsistencies*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -109,6 +163,189 @@ references:
   name: NMF.Synchronizations
   nameWithType: NMF.Synchronizations
   fullName: NMF.Synchronizations
+- uid: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+  commentId: M:NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+  parent: NMF.Transformations.Core.ITransformationEngineContext
+  name: ExecutePending()
+  nameWithType: ITransformationEngineContext.ExecutePending()
+  fullName: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+    name: ExecutePending
+    nameWithType: ITransformationEngineContext.ExecutePending
+    fullName: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+    name: ExecutePending
+    nameWithType: ITransformationEngineContext.ExecutePending
+    fullName: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+  commentId: P:NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: IsThreadSafe
+  nameWithType: ITransformationContext.IsThreadSafe
+  fullName: NMF.Transformations.Core.ITransformationContext.IsThreadSafe
+- uid: NMF.Transformations.Core.ITransformationContext.Bag
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Bag
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Bag
+  nameWithType: ITransformationContext.Bag
+  fullName: NMF.Transformations.Core.ITransformationContext.Bag
+- uid: NMF.Transformations.Core.ITransformationContext.Data
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Data
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Data
+  nameWithType: ITransformationContext.Data
+  fullName: NMF.Transformations.Core.ITransformationContext.Data
+- uid: NMF.Transformations.Core.ITransformationContext.Transformation
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Transformation
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Transformation
+  nameWithType: ITransformationContext.Transformation
+  fullName: NMF.Transformations.Core.ITransformationContext.Transformation
+- uid: NMF.Transformations.Core.ITransformationContext.Computations
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Computations
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Computations
+  nameWithType: ITransformationContext.Computations
+  fullName: NMF.Transformations.Core.ITransformationContext.Computations
+- uid: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+  commentId: M:NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+  parent: NMF.Transformations.Core.ITransformationContext
+  isExternal: true
+  name: CallTransformation(GeneralTransformationRule, Object[], IEnumerable)
+  nameWithType: ITransformationContext.CallTransformation(GeneralTransformationRule, Object[], IEnumerable)
+  fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, System.Object[], System.Collections.IEnumerable)
+  nameWithType.vb: ITransformationContext.CallTransformation(GeneralTransformationRule, Object(), IEnumerable)
+  fullName.vb: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, System.Object(), System.Collections.IEnumerable)
+  name.vb: CallTransformation(GeneralTransformationRule, Object(), IEnumerable)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+    name: CallTransformation
+    nameWithType: ITransformationContext.CallTransformation
+    fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.GeneralTransformationRule
+    name: GeneralTransformationRule
+    nameWithType: GeneralTransformationRule
+    fullName: NMF.Transformations.Core.GeneralTransformationRule
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
+    name: CallTransformation
+    nameWithType: ITransformationContext.CallTransformation
+    fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.GeneralTransformationRule
+    name: GeneralTransformationRule
+    nameWithType: GeneralTransformationRule
+    fullName: NMF.Transformations.Core.GeneralTransformationRule
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.ITransformationContext.Trace
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Trace
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Trace
+  nameWithType: ITransformationContext.Trace
+  fullName: NMF.Transformations.Core.ITransformationContext.Trace
+- uid: NMF.Transformations.Core.ITransformationContext.Inputs
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Inputs
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Inputs
+  nameWithType: ITransformationContext.Inputs
+  fullName: NMF.Transformations.Core.ITransformationContext.Inputs
+- uid: NMF.Transformations.Core.ITransformationContext.Input
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Input
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Input
+  nameWithType: ITransformationContext.Input
+  fullName: NMF.Transformations.Core.ITransformationContext.Input
+- uid: NMF.Transformations.Core.ITransformationContext.Outputs
+  commentId: P:NMF.Transformations.Core.ITransformationContext.Outputs
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: Outputs
+  nameWithType: ITransformationContext.Outputs
+  fullName: NMF.Transformations.Core.ITransformationContext.Outputs
+- uid: NMF.Transformations.Core.ITransformationContext.ComputationCompleted
+  commentId: E:NMF.Transformations.Core.ITransformationContext.ComputationCompleted
+  parent: NMF.Transformations.Core.ITransformationContext
+  name: ComputationCompleted
+  nameWithType: ITransformationContext.ComputationCompleted
+  fullName: NMF.Transformations.Core.ITransformationContext.ComputationCompleted
+- uid: NMF.Transformations.Core.ITransformationEngineContext
+  commentId: T:NMF.Transformations.Core.ITransformationEngineContext
+  parent: NMF.Transformations.Core
+  name: ITransformationEngineContext
+  nameWithType: ITransformationEngineContext
+  fullName: NMF.Transformations.Core.ITransformationEngineContext
+- uid: NMF.Transformations.Core.ITransformationContext
+  commentId: T:NMF.Transformations.Core.ITransformationContext
+  parent: NMF.Transformations.Core
+  name: ITransformationContext
+  nameWithType: ITransformationContext
+  fullName: NMF.Transformations.Core.ITransformationContext
+- uid: NMF.Transformations.Core
+  commentId: N:NMF.Transformations.Core
+  name: NMF.Transformations.Core
+  nameWithType: NMF.Transformations.Core
+  fullName: NMF.Transformations.Core
 - uid: NMF.Synchronizations.ISynchronizationContext.Direction*
   commentId: Overload:NMF.Synchronizations.ISynchronizationContext.Direction
   name: Direction
@@ -125,8 +362,100 @@ references:
   name: ChangePropagation
   nameWithType: ISynchronizationContext.ChangePropagation
   fullName: NMF.Synchronizations.ISynchronizationContext.ChangePropagation
-- uid: ChangePropagationMode
-  isExternal: true
+- uid: NMF.Transformations.ChangePropagationMode
+  commentId: T:NMF.Transformations.ChangePropagationMode
+  parent: NMF.Transformations
   name: ChangePropagationMode
   nameWithType: ChangePropagationMode
-  fullName: ChangePropagationMode
+  fullName: NMF.Transformations.ChangePropagationMode
+- uid: NMF.Transformations
+  commentId: N:NMF.Transformations
+  name: NMF.Transformations
+  nameWithType: NMF.Transformations
+  fullName: NMF.Transformations
+- uid: NMF.Synchronizations.ISynchronizationContext.Inconsistencies*
+  commentId: Overload:NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+  name: Inconsistencies
+  nameWithType: ISynchronizationContext.Inconsistencies
+  fullName: NMF.Synchronizations.ISynchronizationContext.Inconsistencies
+- uid: NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
+  commentId: T:NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.ICollectionExpression`1
+  name: ICollectionExpression<IInconsistency>
+  nameWithType: ICollectionExpression<IInconsistency>
+  fullName: NMF.Expressions.ICollectionExpression<NMF.Synchronizations.Inconsistencies.IInconsistency>
+  nameWithType.vb: ICollectionExpression(Of IInconsistency)
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of NMF.Synchronizations.Inconsistencies.IInconsistency)
+  name.vb: ICollectionExpression(Of IInconsistency)
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Synchronizations.Inconsistencies.IInconsistency
+    name: IInconsistency
+    nameWithType: IInconsistency
+    fullName: NMF.Synchronizations.Inconsistencies.IInconsistency
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Synchronizations.Inconsistencies.IInconsistency
+    name: IInconsistency
+    nameWithType: IInconsistency
+    fullName: NMF.Synchronizations.Inconsistencies.IInconsistency
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.ICollectionExpression`1
+  commentId: T:NMF.Expressions.ICollectionExpression`1
+  name: ICollectionExpression<T>
+  nameWithType: ICollectionExpression<T>
+  fullName: NMF.Expressions.ICollectionExpression<T>
+  nameWithType.vb: ICollectionExpression(Of T)
+  fullName.vb: NMF.Expressions.ICollectionExpression(Of T)
+  name.vb: ICollectionExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: NMF.Expressions.ICollectionExpression`1
+    name: ICollectionExpression
+    nameWithType: ICollectionExpression
+    fullName: NMF.Expressions.ICollectionExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions

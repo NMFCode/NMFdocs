@@ -18,6 +18,7 @@ items:
   - NMF.Serialization.XmlTypeSerializationInfo.ConvertFromString(System.String)
   - NMF.Serialization.XmlTypeSerializationInfo.ConvertToString(System.Object)
   - NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod
+  - NMF.Serialization.XmlTypeSerializationInfo.CreateObject(System.Object[])
   - NMF.Serialization.XmlTypeSerializationInfo.DeclaredAttributeProperties
   - NMF.Serialization.XmlTypeSerializationInfo.DeclaredElementProperties
   - NMF.Serialization.XmlTypeSerializationInfo.DefaultProperty
@@ -25,13 +26,16 @@ items:
   - NMF.Serialization.XmlTypeSerializationInfo.ElementProperties
   - NMF.Serialization.XmlTypeSerializationInfo.HasConstructorParameters
   - NMF.Serialization.XmlTypeSerializationInfo.IdentifierProperty
+  - NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
   - NMF.Serialization.XmlTypeSerializationInfo.IsCollection
   - NMF.Serialization.XmlTypeSerializationInfo.IsIdentified
+  - NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf(System.Object)
   - NMF.Serialization.XmlTypeSerializationInfo.IsStaticCollection
   - NMF.Serialization.XmlTypeSerializationInfo.IsStringConvertible
+  - NMF.Serialization.XmlTypeSerializationInfo.MappedType
   - NMF.Serialization.XmlTypeSerializationInfo.Namespace
   - NMF.Serialization.XmlTypeSerializationInfo.NamespacePrefix
-  - NMF.Serialization.XmlTypeSerializationInfo.NMF#Serialization#ITypeSerializationInfo#BaseTypes
+  - NMF.Serialization.XmlTypeSerializationInfo.ToString
   - NMF.Serialization.XmlTypeSerializationInfo.Type
   langs:
   - csharp
@@ -47,28 +51,28 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: XmlTypeSerializationInfo
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nDenotes the default type serialization info read through reflection\n"
+  example: []
   syntax:
     content: 'public class XmlTypeSerializationInfo : ITypeSerializationInfo'
     content.vb: >-
       Public Class XmlTypeSerializationInfo
-
           Implements ITypeSerializationInfo
   inheritance:
   - System.Object
   implements:
   - NMF.Serialization.ITypeSerializationInfo
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   modifiers.csharp:
   - public
   - class
@@ -93,15 +97,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 22
+    startLine: 29
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nCreates a new instance\n"
+  example: []
   syntax:
     content: public XmlTypeSerializationInfo(Type type)
     parameters:
     - id: type
       type: System.Type
+      description: The type that is read
     content.vb: Public Sub New(type As Type)
   overload: NMF.Serialization.XmlTypeSerializationInfo.#ctor*
   modifiers.csharp:
@@ -126,10 +133,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DeclaredAttributeProperties
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 28
+    startLine: 36
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public List<IPropertySerializationInfo> DeclaredAttributeProperties { get; }
     parameters: []
@@ -161,10 +169,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DeclaredElementProperties
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 36
+    startLine: 45
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public List<IPropertySerializationInfo> DeclaredElementProperties { get; }
     parameters: []
@@ -196,10 +205,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: BaseTypes
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 44
+    startLine: 54
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public List<ITypeSerializationInfo> BaseTypes { get; }
     parameters: []
@@ -231,10 +241,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Type
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 52
+    startLine: 63
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public Type Type { get; }
     parameters: []
@@ -242,8 +253,6 @@ items:
       type: System.Type
     content.vb: Public ReadOnly Property Type As Type
   overload: NMF.Serialization.XmlTypeSerializationInfo.Type*
-  implements:
-  - NMF.Serialization.ITypeSerializationInfo.Type
   modifiers.csharp:
   - public
   - get
@@ -268,10 +277,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ConstructorProperties
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 60
+    startLine: 72
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the properties required for constructor calls\n"
+  example: []
   syntax:
     content: public IPropertySerializationInfo[] ConstructorProperties { get; set; }
     parameters: []
@@ -305,10 +316,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ConstructorParameterCount
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 66
+    startLine: 79
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public int ConstructorParameterCount { get; }
     parameters: []
@@ -340,10 +352,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: HasConstructorParameters
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 74
+    startLine: 88
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public bool HasConstructorParameters { get; }
     parameters: []
@@ -375,10 +388,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Constructor
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 82
+    startLine: 97
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public ConstructorInfo Constructor { get; set; }
     parameters: []
@@ -386,8 +400,6 @@ items:
       type: System.Reflection.ConstructorInfo
     content.vb: Public Property Constructor As ConstructorInfo
   overload: NMF.Serialization.XmlTypeSerializationInfo.Constructor*
-  implements:
-  - NMF.Serialization.ITypeSerializationInfo.Constructor
   modifiers.csharp:
   - public
   - get
@@ -412,10 +424,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ElementName
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 88
+    startLine: 104
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the element name of the type\n"
+  example: []
   syntax:
     content: public string ElementName { get; set; }
     parameters: []
@@ -449,10 +463,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CollectionType
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 94
+    startLine: 111
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public Type CollectionType { get; set; }
     parameters: []
@@ -484,10 +499,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsCollection
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 100
+    startLine: 118
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nTrue, if this type is a collection\n"
+  example: []
   syntax:
     content: public bool IsCollection { get; }
     parameters: []
@@ -521,10 +538,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsStaticCollection
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 108
+    startLine: 127
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public bool IsStaticCollection { get; }
     parameters: []
@@ -556,10 +574,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Namespace
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 116
+    startLine: 136
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the namespace of the type or null\n"
+  example: []
   syntax:
     content: public string Namespace { get; set; }
     parameters: []
@@ -593,10 +613,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NamespacePrefix
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 122
+    startLine: 143
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the namespace prefix of the type or null\n"
+  example: []
   syntax:
     content: public string NamespacePrefix { get; set; }
     parameters: []
@@ -630,10 +652,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsIdentified
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 128
+    startLine: 150
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nTrue, if instances of this type are identified\n"
+  example: []
   syntax:
     content: public bool IsIdentified { get; }
     parameters: []
@@ -667,10 +691,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IdentifierProperty
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 133
+    startLine: 156
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the property used as identifier\n"
+  example: []
   syntax:
     content: public IPropertySerializationInfo IdentifierProperty { get; set; }
     parameters: []
@@ -704,17 +730,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddToCollection
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 142
+    startLine: 166
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nAdds the given item to the collection\n"
+  example: []
   syntax:
     content: public void AddToCollection(object collection, object item)
     parameters:
     - id: collection
       type: System.Object
+      description: the collection
     - id: item
       type: System.Object
+      description: the item to add
     content.vb: Public Sub AddToCollection(collection As Object, item As Object)
   overload: NMF.Serialization.XmlTypeSerializationInfo.AddToCollection*
   implements:
@@ -741,10 +771,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AttributeProperties
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 154
+    startLine: 179
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets a collection of properties serialized as attributes\n"
+  example: []
   syntax:
     content: public IEnumerable<IPropertySerializationInfo> AttributeProperties { get; }
     parameters: []
@@ -778,10 +810,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ElementProperties
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 187
+    startLine: 213
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets a collection of properties serialized as elements\n"
+  example: []
   syntax:
     content: public IEnumerable<IPropertySerializationInfo> ElementProperties { get; }
     parameters: []
@@ -815,10 +849,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CollectionItemType
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 221
+    startLine: 248
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the element type of a collection\n"
+  example: []
   syntax:
     content: public ITypeSerializationInfo CollectionItemType { get; set; }
     parameters: []
@@ -852,10 +888,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CollectionItemRawType
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 227
+    startLine: 255
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public Type CollectionItemRawType { get; set; }
     parameters: []
@@ -887,10 +924,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsStringConvertible
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 230
+    startLine: 259
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nTrue, if the items can be converted to string\n"
+  example: []
   syntax:
     content: public bool IsStringConvertible { get; }
     parameters: []
@@ -924,17 +963,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ConvertFromString
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 235
+    startLine: 265
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nDeserializes the given text into an object\n"
+  example: []
   syntax:
     content: public object ConvertFromString(string text)
     parameters:
     - id: text
       type: System.String
+      description: the textual representation
     return:
       type: System.Object
+      description: The deserialized object
     content.vb: Public Function ConvertFromString(text As String) As Object
   overload: NMF.Serialization.XmlTypeSerializationInfo.ConvertFromString*
   implements:
@@ -961,17 +1004,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ConvertToString
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 240
+    startLine: 271
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nSerializes the given object into a string\n"
+  example: []
   syntax:
     content: public string ConvertToString(object input)
     parameters:
     - id: input
       type: System.Object
+      description: the object
     return:
       type: System.String
+      description: a textual representation
     content.vb: Public Function ConvertToString(input As Object) As String
   overload: NMF.Serialization.XmlTypeSerializationInfo.ConvertToString*
   implements:
@@ -980,44 +1027,6 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: NMF.Serialization.XmlTypeSerializationInfo.NMF#Serialization#ITypeSerializationInfo#BaseTypes
-  commentId: P:NMF.Serialization.XmlTypeSerializationInfo.NMF#Serialization#ITypeSerializationInfo#BaseTypes
-  id: NMF#Serialization#ITypeSerializationInfo#BaseTypes
-  isEii: true
-  parent: NMF.Serialization.XmlTypeSerializationInfo
-  langs:
-  - csharp
-  - vb
-  name: ITypeSerializationInfo.BaseTypes
-  nameWithType: XmlTypeSerializationInfo.ITypeSerializationInfo.BaseTypes
-  fullName: NMF.Serialization.XmlTypeSerializationInfo.NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  type: Property
-  source:
-    remote:
-      path: Models/Serialization/XML/XmlTypeSerializationInfo.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Serialization.ITypeSerializationInfo.BaseTypes
-    path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 246
-  assemblies:
-  - NMF.Serialization
-  namespace: NMF.Serialization
-  syntax:
-    content: IEnumerable<ITypeSerializationInfo> ITypeSerializationInfo.BaseTypes { get; }
-    parameters: []
-    return:
-      type: System.Collections.Generic.IEnumerable{NMF.Serialization.ITypeSerializationInfo}
-    content.vb: ReadOnly WriteOnly Property NMF.Serialization.ITypeSerializationInfo.BaseTypes As IEnumerable(Of ITypeSerializationInfo) Implements ITypeSerializationInfo.BaseTypes
-  overload: NMF.Serialization.XmlTypeSerializationInfo.NMF#Serialization#ITypeSerializationInfo#BaseTypes*
-  implements:
-  - NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  nameWithType.vb: XmlTypeSerializationInfo.NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  name.vb: NMF.Serialization.ITypeSerializationInfo.BaseTypes
 - uid: NMF.Serialization.XmlTypeSerializationInfo.DefaultProperty
   commentId: P:NMF.Serialization.XmlTypeSerializationInfo.DefaultProperty
   id: DefaultProperty
@@ -1036,10 +1045,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DefaultProperty
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 251
+    startLine: 277
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  summary: "\nGets the default property of this type\n"
+  example: []
   syntax:
     content: public IPropertySerializationInfo DefaultProperty { get; set; }
     parameters: []
@@ -1055,6 +1066,45 @@ items:
   - set
   modifiers.vb:
   - Public
+- uid: NMF.Serialization.XmlTypeSerializationInfo.MappedType
+  commentId: P:NMF.Serialization.XmlTypeSerializationInfo.MappedType
+  id: MappedType
+  parent: NMF.Serialization.XmlTypeSerializationInfo
+  langs:
+  - csharp
+  - vb
+  name: MappedType
+  nameWithType: XmlTypeSerializationInfo.MappedType
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.MappedType
+  type: Property
+  source:
+    remote:
+      path: Models/Serialization/XML/XmlTypeSerializationInfo.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: MappedType
+    path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
+    startLine: 280
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: "\nGets the system type this type serialization is mapped to\n"
+  example: []
+  syntax:
+    content: public Type MappedType { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public ReadOnly Property MappedType As Type
+  overload: NMF.Serialization.XmlTypeSerializationInfo.MappedType*
+  implements:
+  - NMF.Serialization.ITypeSerializationInfo.MappedType
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod
   commentId: M:NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod
   id: CreateCollectionAddMethod
@@ -1073,14 +1123,177 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateCollectionAddMethod
     path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
-    startLine: 253
+    startLine: 283
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
+  example: []
   syntax:
     content: public void CreateCollectionAddMethod()
     content.vb: Public Sub CreateCollectionAddMethod
   overload: NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Serialization.XmlTypeSerializationInfo.CreateObject(System.Object[])
+  commentId: M:NMF.Serialization.XmlTypeSerializationInfo.CreateObject(System.Object[])
+  id: CreateObject(System.Object[])
+  parent: NMF.Serialization.XmlTypeSerializationInfo
+  langs:
+  - csharp
+  - vb
+  name: CreateObject(Object[])
+  nameWithType: XmlTypeSerializationInfo.CreateObject(Object[])
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.CreateObject(System.Object[])
+  type: Method
+  source:
+    remote:
+      path: Models/Serialization/XML/XmlTypeSerializationInfo.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateObject
+    path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
+    startLine: 298
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: "\nCreates a new instance\n"
+  example: []
+  syntax:
+    content: public object CreateObject(object[] args)
+    parameters:
+    - id: args
+      type: System.Object[]
+      description: The constructor parameters
+    return:
+      type: System.Object
+      description: ''
+    content.vb: Public Function CreateObject(args As Object()) As Object
+  overload: NMF.Serialization.XmlTypeSerializationInfo.CreateObject*
+  implements:
+  - NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object[])
+  nameWithType.vb: XmlTypeSerializationInfo.CreateObject(Object())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Serialization.XmlTypeSerializationInfo.CreateObject(System.Object())
+  name.vb: CreateObject(Object())
+- uid: NMF.Serialization.XmlTypeSerializationInfo.ToString
+  commentId: M:NMF.Serialization.XmlTypeSerializationInfo.ToString
+  id: ToString
+  parent: NMF.Serialization.XmlTypeSerializationInfo
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: XmlTypeSerializationInfo.ToString()
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.ToString()
+  type: Method
+  source:
+    remote:
+      path: Models/Serialization/XML/XmlTypeSerializationInfo.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: ToString
+    path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
+    startLine: 304
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: NMF.Serialization.XmlTypeSerializationInfo.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  commentId: M:NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  id: IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  parent: NMF.Serialization.XmlTypeSerializationInfo
+  langs:
+  - csharp
+  - vb
+  name: IsAssignableFrom(ITypeSerializationInfo)
+  nameWithType: XmlTypeSerializationInfo.IsAssignableFrom(ITypeSerializationInfo)
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  type: Method
+  source:
+    remote:
+      path: Models/Serialization/XML/XmlTypeSerializationInfo.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsAssignableFrom
+    path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
+    startLine: 310
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: "\nDetermines whether an instance of the given more concrete type can be assigned to this type\n"
+  example: []
+  syntax:
+    content: public bool IsAssignableFrom(ITypeSerializationInfo specializedType)
+    parameters:
+    - id: specializedType
+      type: NMF.Serialization.ITypeSerializationInfo
+      description: the more concrete type
+    return:
+      type: System.Boolean
+      description: True, if the type is assignable, otherwise False
+    content.vb: Public Function IsAssignableFrom(specializedType As ITypeSerializationInfo) As Boolean
+  overload: NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom*
+  implements:
+  - NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf(System.Object)
+  commentId: M:NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf(System.Object)
+  id: IsInstanceOf(System.Object)
+  parent: NMF.Serialization.XmlTypeSerializationInfo
+  langs:
+  - csharp
+  - vb
+  name: IsInstanceOf(Object)
+  nameWithType: XmlTypeSerializationInfo.IsInstanceOf(Object)
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Models/Serialization/XML/XmlTypeSerializationInfo.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsInstanceOf
+    path: src/Models/Serialization/XML/XmlTypeSerializationInfo.cs
+    startLine: 316
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: "\nDetermines whether the given object is an instance of this type\n"
+  example: []
+  syntax:
+    content: public bool IsInstanceOf(object instance)
+    parameters:
+    - id: instance
+      type: System.Object
+      description: the instance
+    return:
+      type: System.Boolean
+      description: True, if the object is an instance of the serialization type, otherwise False
+    content.vb: Public Function IsInstanceOf(instance As Object) As Boolean
+  overload: NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf*
+  implements:
+  - NMF.Serialization.ITypeSerializationInfo.IsInstanceOf(System.Object)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1104,37 +1317,6 @@ references:
   name: ITypeSerializationInfo
   nameWithType: ITypeSerializationInfo
   fullName: NMF.Serialization.ITypeSerializationInfo
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -1213,63 +1395,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -1380,6 +1505,63 @@ references:
   - name: (
     nameWithType: (
     fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -1550,12 +1732,6 @@ references:
   name: Type
   nameWithType: XmlTypeSerializationInfo.Type
   fullName: NMF.Serialization.XmlTypeSerializationInfo.Type
-- uid: NMF.Serialization.ITypeSerializationInfo.Type
-  commentId: P:NMF.Serialization.ITypeSerializationInfo.Type
-  parent: NMF.Serialization.ITypeSerializationInfo
-  name: Type
-  nameWithType: ITypeSerializationInfo.Type
-  fullName: NMF.Serialization.ITypeSerializationInfo.Type
 - uid: NMF.Serialization.XmlTypeSerializationInfo.ConstructorProperties*
   commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.ConstructorProperties
   name: ConstructorProperties
@@ -1620,12 +1796,6 @@ references:
   name: Constructor
   nameWithType: XmlTypeSerializationInfo.Constructor
   fullName: NMF.Serialization.XmlTypeSerializationInfo.Constructor
-- uid: NMF.Serialization.ITypeSerializationInfo.Constructor
-  commentId: P:NMF.Serialization.ITypeSerializationInfo.Constructor
-  parent: NMF.Serialization.ITypeSerializationInfo
-  name: Constructor
-  nameWithType: ITypeSerializationInfo.Constructor
-  fullName: NMF.Serialization.ITypeSerializationInfo.Constructor
 - uid: System.Reflection.ConstructorInfo
   commentId: T:System.Reflection.ConstructorInfo
   parent: System.Reflection
@@ -2006,61 +2176,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: NMF.Serialization.XmlTypeSerializationInfo.NMF#Serialization#ITypeSerializationInfo#BaseTypes*
-  commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.NMF#Serialization#ITypeSerializationInfo#BaseTypes
-  name: ITypeSerializationInfo.BaseTypes
-  nameWithType: XmlTypeSerializationInfo.ITypeSerializationInfo.BaseTypes
-  fullName: NMF.Serialization.XmlTypeSerializationInfo.NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  nameWithType.vb: XmlTypeSerializationInfo.NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  name.vb: NMF.Serialization.ITypeSerializationInfo.BaseTypes
-- uid: NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  commentId: P:NMF.Serialization.ITypeSerializationInfo.BaseTypes
-  parent: NMF.Serialization.ITypeSerializationInfo
-  name: BaseTypes
-  nameWithType: ITypeSerializationInfo.BaseTypes
-  fullName: NMF.Serialization.ITypeSerializationInfo.BaseTypes
-- uid: System.Collections.Generic.IEnumerable{NMF.Serialization.ITypeSerializationInfo}
-  commentId: T:System.Collections.Generic.IEnumerable{NMF.Serialization.ITypeSerializationInfo}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<ITypeSerializationInfo>
-  nameWithType: IEnumerable<ITypeSerializationInfo>
-  fullName: System.Collections.Generic.IEnumerable<NMF.Serialization.ITypeSerializationInfo>
-  nameWithType.vb: IEnumerable(Of ITypeSerializationInfo)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Serialization.ITypeSerializationInfo)
-  name.vb: IEnumerable(Of ITypeSerializationInfo)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: NMF.Serialization.ITypeSerializationInfo
-    name: ITypeSerializationInfo
-    nameWithType: ITypeSerializationInfo
-    fullName: NMF.Serialization.ITypeSerializationInfo
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: NMF.Serialization.ITypeSerializationInfo
-    name: ITypeSerializationInfo
-    nameWithType: ITypeSerializationInfo
-    fullName: NMF.Serialization.ITypeSerializationInfo
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Serialization.XmlTypeSerializationInfo.DefaultProperty*
   commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.DefaultProperty
   name: DefaultProperty
@@ -2072,8 +2187,219 @@ references:
   name: DefaultProperty
   nameWithType: ITypeSerializationInfo.DefaultProperty
   fullName: NMF.Serialization.ITypeSerializationInfo.DefaultProperty
+- uid: NMF.Serialization.XmlTypeSerializationInfo.MappedType*
+  commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.MappedType
+  name: MappedType
+  nameWithType: XmlTypeSerializationInfo.MappedType
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.MappedType
+- uid: NMF.Serialization.ITypeSerializationInfo.MappedType
+  commentId: P:NMF.Serialization.ITypeSerializationInfo.MappedType
+  parent: NMF.Serialization.ITypeSerializationInfo
+  name: MappedType
+  nameWithType: ITypeSerializationInfo.MappedType
+  fullName: NMF.Serialization.ITypeSerializationInfo.MappedType
 - uid: NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod*
   commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod
   name: CreateCollectionAddMethod
   nameWithType: XmlTypeSerializationInfo.CreateCollectionAddMethod
   fullName: NMF.Serialization.XmlTypeSerializationInfo.CreateCollectionAddMethod
+- uid: NMF.Serialization.XmlTypeSerializationInfo.CreateObject*
+  commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.CreateObject
+  name: CreateObject
+  nameWithType: XmlTypeSerializationInfo.CreateObject
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.CreateObject
+- uid: NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object[])
+  commentId: M:NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object[])
+  parent: NMF.Serialization.ITypeSerializationInfo
+  isExternal: true
+  name: CreateObject(Object[])
+  nameWithType: ITypeSerializationInfo.CreateObject(Object[])
+  fullName: NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object[])
+  nameWithType.vb: ITypeSerializationInfo.CreateObject(Object())
+  fullName.vb: NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object())
+  name.vb: CreateObject(Object())
+  spec.csharp:
+  - uid: NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object[])
+    name: CreateObject
+    nameWithType: ITypeSerializationInfo.CreateObject
+    fullName: NMF.Serialization.ITypeSerializationInfo.CreateObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Serialization.ITypeSerializationInfo.CreateObject(System.Object[])
+    name: CreateObject
+    nameWithType: ITypeSerializationInfo.CreateObject
+    fullName: NMF.Serialization.ITypeSerializationInfo.CreateObject
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object[]
+  isExternal: true
+  name: Object[]
+  nameWithType: Object[]
+  fullName: System.Object[]
+  nameWithType.vb: Object()
+  fullName.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Serialization.XmlTypeSerializationInfo.ToString*
+  commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.ToString
+  name: ToString
+  nameWithType: XmlTypeSerializationInfo.ToString
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.ToString
+- uid: NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom*
+  commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom
+  name: IsAssignableFrom
+  nameWithType: XmlTypeSerializationInfo.IsAssignableFrom
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.IsAssignableFrom
+- uid: NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  commentId: M:NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  parent: NMF.Serialization.ITypeSerializationInfo
+  name: IsAssignableFrom(ITypeSerializationInfo)
+  nameWithType: ITypeSerializationInfo.IsAssignableFrom(ITypeSerializationInfo)
+  fullName: NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+  spec.csharp:
+  - uid: NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+    name: IsAssignableFrom
+    nameWithType: ITypeSerializationInfo.IsAssignableFrom
+    fullName: NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom(NMF.Serialization.ITypeSerializationInfo)
+    name: IsAssignableFrom
+    nameWithType: ITypeSerializationInfo.IsAssignableFrom
+    fullName: NMF.Serialization.ITypeSerializationInfo.IsAssignableFrom
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Serialization.ITypeSerializationInfo
+    name: ITypeSerializationInfo
+    nameWithType: ITypeSerializationInfo
+    fullName: NMF.Serialization.ITypeSerializationInfo
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf*
+  commentId: Overload:NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf
+  name: IsInstanceOf
+  nameWithType: XmlTypeSerializationInfo.IsInstanceOf
+  fullName: NMF.Serialization.XmlTypeSerializationInfo.IsInstanceOf
+- uid: NMF.Serialization.ITypeSerializationInfo.IsInstanceOf(System.Object)
+  commentId: M:NMF.Serialization.ITypeSerializationInfo.IsInstanceOf(System.Object)
+  parent: NMF.Serialization.ITypeSerializationInfo
+  isExternal: true
+  name: IsInstanceOf(Object)
+  nameWithType: ITypeSerializationInfo.IsInstanceOf(Object)
+  fullName: NMF.Serialization.ITypeSerializationInfo.IsInstanceOf(System.Object)
+  spec.csharp:
+  - uid: NMF.Serialization.ITypeSerializationInfo.IsInstanceOf(System.Object)
+    name: IsInstanceOf
+    nameWithType: ITypeSerializationInfo.IsInstanceOf
+    fullName: NMF.Serialization.ITypeSerializationInfo.IsInstanceOf
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Serialization.ITypeSerializationInfo.IsInstanceOf(System.Object)
+    name: IsInstanceOf
+    nameWithType: ITypeSerializationInfo.IsInstanceOf
+    fullName: NMF.Serialization.ITypeSerializationInfo.IsInstanceOf
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

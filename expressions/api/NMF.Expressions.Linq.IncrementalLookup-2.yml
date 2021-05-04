@@ -26,21 +26,23 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IncrementalLookup
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 9
+    startLine: 14
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  summary: "\nImplements an incremental lookup\n"
+  example: []
   syntax:
-    content: 'public class IncrementalLookup<TSource, TKey> : ObservableEnumerable<TKey>, INotifyEnumerable<TKey>, INotifyEnumerable, INotifiable, ICollection<TKey>, IEnumerable<TKey>, IEnumerable, INotifyCollectionChanged, IDisposable, INotifyLookup<TSource, TKey>'
+    content: 'public class IncrementalLookup<TSource, TKey> : ObservableEnumerable<TKey>, INotifyEnumerable<TKey>, INotifyEnumerable, INotifiable, ICollection<TKey>, IEnumerable<TKey>, IEnumerable, INotifyCollectionChanged, IDisposable, ISuccessorList, INotifyLookup<TSource, TKey>'
     typeParameters:
     - id: TSource
+      description: The source type of elements
     - id: TKey
+      description: The type along which the elements are grouped
     content.vb: >-
       Public Class IncrementalLookup(Of TSource, TKey)
-
           Inherits ObservableEnumerable(Of TKey)
-
-          Implements INotifyEnumerable(Of TKey), INotifyEnumerable, INotifiable, ICollection(Of TKey), IEnumerable(Of TKey), IEnumerable, INotifyCollectionChanged, IDisposable, INotifyLookup(Of TSource, TKey)
+          Implements INotifyEnumerable(Of TKey), INotifyEnumerable, INotifiable, ICollection(Of TKey), IEnumerable(Of TKey), IEnumerable, INotifyCollectionChanged, IDisposable, ISuccessorList, INotifyLookup(Of TSource, TKey)
   inheritance:
   - System.Object
   - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
@@ -53,6 +55,7 @@ items:
   - System.Collections.IEnumerable
   - System.Collections.Specialized.INotifyCollectionChanged
   - System.IDisposable
+  - NMF.Expressions.ISuccessorList
   - NMF.Expressions.Linq.INotifyLookup{{TSource},{TKey}}
   inheritedMembers:
   - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.OnAddItem({TKey},System.Int32)
@@ -79,16 +82,33 @@ items:
   - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.Count
   - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.Successors
   - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.ExecutionMetaData
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.HasSuccessors
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.IsAttached
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.NMF#Expressions#ISuccessorList#Count
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.AllSuccessors
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.Set(NMF.Expressions.INotifiable)
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.SetDummy
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.UnsetAll
+  - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.GetSuccessor(System.Int32)
   - NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.OnDetach
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   extensionMethods:
   - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.LookupExtensions.ToLookup``2(System.Linq.Expressions.Expression{System.Func{{TKey},{TKey}}})
+  - System.Collections.Generic.IEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}})
+  - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}})
+  - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{{TKey},System.Int32},{TResult}})
+  - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  - System.Collections.Generic.IEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}})
+  - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}})
+  - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{{TKey},{TResult}})
+  - NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
   - System.Collections.Generic.IEnumerable{`1}.NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
   - System.Collections.Generic.ICollection{`1}.NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
   nameWithType.vb: IncrementalLookup(Of TSource, TKey)
@@ -118,17 +138,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 17
+    startLine: 27
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  summary: "\nCreates an incremental lookup\n"
+  example: []
   syntax:
     content: public IncrementalLookup(INotifyEnumerable<TSource> source, ObservingFunc<TSource, TKey> keySelector)
     parameters:
     - id: source
       type: NMF.Expressions.INotifyEnumerable{{TSource}}
+      description: The source of elements
     - id: keySelector
       type: NMF.Expressions.ObservingFunc{{TSource},{TKey}}
+      description: A function that selects the keys for an element
     content.vb: Public Sub New(source As INotifyEnumerable(Of TSource), keySelector As ObservingFunc(Of TSource, TKey))
   overload: NMF.Expressions.Linq.IncrementalLookup`2.#ctor*
   nameWithType.vb: IncrementalLookup(Of TSource, TKey).IncrementalLookup(INotifyEnumerable(Of TSource), ObservingFunc(Of TSource, TKey))
@@ -156,10 +180,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnAttach
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 24
+    startLine: 35
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  example: []
   syntax:
     content: protected override void OnAttach()
     content.vb: Protected Overrides Sub OnAttach
@@ -191,10 +216,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dependencies
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 33
+    startLine: 45
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  example: []
   syntax:
     content: public override IEnumerable<INotifiable> Dependencies { get; }
     parameters: []
@@ -231,10 +257,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Keys
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 41
+    startLine: 54
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  example: []
   syntax:
     content: public INotifyEnumerable<TKey> Keys { get; }
     parameters: []
@@ -270,10 +297,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: this[]
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 46
+    startLine: 60
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  example: []
   syntax:
     content: public INotifyEnumerable<TSource> this[TKey key] { get; }
     parameters:
@@ -312,10 +340,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Notify
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 70
+    startLine: 85
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  example: []
   syntax:
     content: public override INotificationResult Notify(IList<INotificationResult> sources)
     parameters:
@@ -353,10 +382,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Expressions/Expressions.Utilities/IncrementalLookup.cs
-    startLine: 163
+    startLine: 179
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions.Linq
+  example: []
   syntax:
     content: public override IEnumerator<TKey> GetEnumerator()
     return:
@@ -574,6 +604,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: NMF.Expressions.ISuccessorList
+  commentId: T:NMF.Expressions.ISuccessorList
+  parent: NMF.Expressions
+  name: ISuccessorList
+  nameWithType: ISuccessorList
+  fullName: NMF.Expressions.ISuccessorList
 - uid: NMF.Expressions.Linq.INotifyLookup{{TSource},{TKey}}
   commentId: T:NMF.Expressions.Linq.INotifyLookup{`0,`1}
   parent: NMF.Expressions.Linq
@@ -1654,6 +1690,240 @@ references:
   fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.ExecutionMetaData
   nameWithType.vb: ObservableEnumerable(Of TKey).ExecutionMetaData
   fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).ExecutionMetaData
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.HasSuccessors
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable{`1}.HasSuccessors
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.HasSuccessors
+  name: HasSuccessors
+  nameWithType: ObservableEnumerable<TKey>.HasSuccessors
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.HasSuccessors
+  nameWithType.vb: ObservableEnumerable(Of TKey).HasSuccessors
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).HasSuccessors
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.IsAttached
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable{`1}.IsAttached
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.IsAttached
+  name: IsAttached
+  nameWithType: ObservableEnumerable<TKey>.IsAttached
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.IsAttached
+  nameWithType.vb: ObservableEnumerable(Of TKey).IsAttached
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).IsAttached
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.NMF#Expressions#ISuccessorList#Count
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable{`1}.NMF#Expressions#ISuccessorList#Count
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.NMF#Expressions#ISuccessorList#Count
+  name: ISuccessorList.Count
+  nameWithType: ObservableEnumerable<TKey>.ISuccessorList.Count
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.NMF.Expressions.ISuccessorList.Count
+  nameWithType.vb: ObservableEnumerable(Of TKey).NMF.Expressions.ISuccessorList.Count
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).NMF.Expressions.ISuccessorList.Count
+  name.vb: NMF.Expressions.ISuccessorList.Count
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.AllSuccessors
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable{`1}.AllSuccessors
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.AllSuccessors
+  name: AllSuccessors
+  nameWithType: ObservableEnumerable<TKey>.AllSuccessors
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.AllSuccessors
+  nameWithType.vb: ObservableEnumerable(Of TKey).AllSuccessors
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).AllSuccessors
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.Set(NMF.Expressions.INotifiable)
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable{`1}.Set(NMF.Expressions.INotifiable)
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+  name: Set(INotifiable)
+  nameWithType: ObservableEnumerable<TKey>.Set(INotifiable)
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.Set(NMF.Expressions.INotifiable)
+  nameWithType.vb: ObservableEnumerable(Of TKey).Set(INotifiable)
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).Set(NMF.Expressions.INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+    name: Set
+    nameWithType: ObservableEnumerable<TKey>.Set
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.Set
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+    name: Set
+    nameWithType: ObservableEnumerable(Of TKey).Set
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).Set
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.SetDummy
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable{`1}.SetDummy
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+  name: SetDummy()
+  nameWithType: ObservableEnumerable<TKey>.SetDummy()
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.SetDummy()
+  nameWithType.vb: ObservableEnumerable(Of TKey).SetDummy()
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).SetDummy()
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+    name: SetDummy
+    nameWithType: ObservableEnumerable<TKey>.SetDummy
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.SetDummy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+    name: SetDummy
+    nameWithType: ObservableEnumerable(Of TKey).SetDummy
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).SetDummy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable{`1}.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  name: Unset(INotifiable, Boolean)
+  nameWithType: ObservableEnumerable<TKey>.Unset(INotifiable, Boolean)
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.Unset(NMF.Expressions.INotifiable, System.Boolean)
+  nameWithType.vb: ObservableEnumerable(Of TKey).Unset(INotifiable, Boolean)
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).Unset(NMF.Expressions.INotifiable, System.Boolean)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+    name: Unset
+    nameWithType: ObservableEnumerable<TKey>.Unset
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.Unset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+    name: Unset
+    nameWithType: ObservableEnumerable(Of TKey).Unset
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).Unset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.UnsetAll
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable{`1}.UnsetAll
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+  name: UnsetAll()
+  nameWithType: ObservableEnumerable<TKey>.UnsetAll()
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.UnsetAll()
+  nameWithType.vb: ObservableEnumerable(Of TKey).UnsetAll()
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).UnsetAll()
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+    name: UnsetAll
+    nameWithType: ObservableEnumerable<TKey>.UnsetAll
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.UnsetAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+    name: UnsetAll
+    nameWithType: ObservableEnumerable(Of TKey).UnsetAll
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).UnsetAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.GetSuccessor(System.Int32)
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable{`1}.GetSuccessor(System.Int32)
+  parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
+  definition: NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+  name: GetSuccessor(Int32)
+  nameWithType: ObservableEnumerable<TKey>.GetSuccessor(Int32)
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.GetSuccessor(System.Int32)
+  nameWithType.vb: ObservableEnumerable(Of TKey).GetSuccessor(Int32)
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).GetSuccessor(System.Int32)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ObservableEnumerable<TKey>.GetSuccessor
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<TKey>.GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ObservableEnumerable(Of TKey).GetSuccessor
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}.OnDetach
   commentId: M:NMF.Expressions.Linq.ObservableEnumerable{`1}.OnDetach
   parent: NMF.Expressions.Linq.ObservableEnumerable{{TKey}}
@@ -1679,37 +1949,6 @@ references:
     name: OnDetach
     nameWithType: ObservableEnumerable(Of TKey).OnDetach
     fullName: NMF.Expressions.Linq.ObservableEnumerable(Of TKey).OnDetach
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
   - name: (
     nameWithType: (
     fullName: (
@@ -1794,63 +2033,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -1964,6 +2146,94 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.LookupExtensions.ToLookup``2(System.Linq.Expressions.Expression{System.Func{{TKey},{TKey}}})
   commentId: M:NMF.Expressions.Linq.LookupExtensions.ToLookup``2(NMF.Expressions.INotifyEnumerable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: NMF.Expressions.Linq.LookupExtensions
@@ -2055,6 +2325,1304 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  name: ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<TKey, System.Int32>>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of TKey, System.Int32)), System.Int32, TResult))
+  name.vb: ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed<TKey, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed(Of TKey, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  name: ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<TKey, System.Int32>>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of TKey, System.Int32)), System.Int32, TResult))
+  name.vb: ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed<TKey, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed(Of TKey, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{{TKey},System.Int32},{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+  name: ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider<ValueTuple<TKey, Int32>, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider<ValueTuple<TKey, Int32>, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<TKey, System.Int32>>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider<System.ValueTuple<TKey, System.Int32>, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult), IChunkBalancingStrategyProvider(Of ValueTuple(Of TKey, Int32), TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of TKey, System.Int32)), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider(Of System.ValueTuple(Of TKey, System.Int32), TResult))
+  name.vb: ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult), IChunkBalancingStrategyProvider(Of ValueTuple(Of TKey, Int32), TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+    name: ChunkIndexed<TKey, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+    name: ChunkIndexed(Of TKey, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{{TKey},System.Int32}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  name: ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<TKey, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<TKey, System.Int32>>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult), IChunkBalancingStrategyProvider)
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of TKey, System.Int32)), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  name.vb: ChunkIndexed(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of TKey, Int32)), Int32, TResult), IChunkBalancingStrategyProvider)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: ChunkIndexed<TKey, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: ChunkIndexed(Of TKey, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  name: Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>)
+  nameWithType: ChunkExtensions.Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<TKey>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of TKey), System.Int32, TResult))
+  name.vb: Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk<TKey, TResult>
+    nameWithType: ChunkExtensions.Chunk<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk(Of TKey, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  name: Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>)
+  nameWithType: ChunkExtensions.Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<TKey>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of TKey), System.Int32, TResult))
+  name.vb: Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk<TKey, TResult>
+    nameWithType: ChunkExtensions.Chunk<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk(Of TKey, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{{TKey},{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+  name: Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>, IChunkBalancingStrategyProvider<TKey, TResult>)
+  nameWithType: ChunkExtensions.Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>, IChunkBalancingStrategyProvider<TKey, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<TKey>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider<TKey, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult), IChunkBalancingStrategyProvider(Of TKey, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of TKey), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider(Of TKey, TResult))
+  name.vb: Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult), IChunkBalancingStrategyProvider(Of TKey, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+    name: Chunk<TKey, TResult>
+    nameWithType: ChunkExtensions.Chunk<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+    name: Chunk(Of TKey, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifyEnumerable{`1}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{{TKey}},System.Int32,{TResult}},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  name: Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  nameWithType: ChunkExtensions.Chunk<TKey, TResult>(Int32, Func<IEnumerableExpression<TKey>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<TKey>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  nameWithType.vb: ChunkExtensions.Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult), IChunkBalancingStrategyProvider)
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of TKey), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  name.vb: Chunk(Of TKey, TResult)(Int32, Func(Of IEnumerableExpression(Of TKey), Int32, TResult), IChunkBalancingStrategyProvider)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: Chunk<TKey, TResult>
+    nameWithType: ChunkExtensions.Chunk<TKey, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<TKey, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: Chunk(Of TKey, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of TKey, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of TKey, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
   - name: )
     nameWithType: )
     fullName: )
@@ -3342,6 +4910,224 @@ references:
   fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.ExecutionMetaData
   nameWithType.vb: ObservableEnumerable(Of T).ExecutionMetaData
   fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).ExecutionMetaData
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.HasSuccessors
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable`1.HasSuccessors
+  name: HasSuccessors
+  nameWithType: ObservableEnumerable<T>.HasSuccessors
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.HasSuccessors
+  nameWithType.vb: ObservableEnumerable(Of T).HasSuccessors
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).HasSuccessors
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.IsAttached
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable`1.IsAttached
+  name: IsAttached
+  nameWithType: ObservableEnumerable<T>.IsAttached
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.IsAttached
+  nameWithType.vb: ObservableEnumerable(Of T).IsAttached
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).IsAttached
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.NMF#Expressions#ISuccessorList#Count
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable`1.NMF#Expressions#ISuccessorList#Count
+  name: ISuccessorList.Count
+  nameWithType: ObservableEnumerable<T>.ISuccessorList.Count
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.NMF.Expressions.ISuccessorList.Count
+  nameWithType.vb: ObservableEnumerable(Of T).NMF.Expressions.ISuccessorList.Count
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).NMF.Expressions.ISuccessorList.Count
+  name.vb: NMF.Expressions.ISuccessorList.Count
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.AllSuccessors
+  commentId: P:NMF.Expressions.Linq.ObservableEnumerable`1.AllSuccessors
+  name: AllSuccessors
+  nameWithType: ObservableEnumerable<T>.AllSuccessors
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.AllSuccessors
+  nameWithType.vb: ObservableEnumerable(Of T).AllSuccessors
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).AllSuccessors
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+  name: Set(INotifiable)
+  nameWithType: ObservableEnumerable<T>.Set(INotifiable)
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.Set(NMF.Expressions.INotifiable)
+  nameWithType.vb: ObservableEnumerable(Of T).Set(INotifiable)
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).Set(NMF.Expressions.INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+    name: Set
+    nameWithType: ObservableEnumerable<T>.Set
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.Set
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Set(NMF.Expressions.INotifiable)
+    name: Set
+    nameWithType: ObservableEnumerable(Of T).Set
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of T).Set
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+  name: SetDummy()
+  nameWithType: ObservableEnumerable<T>.SetDummy()
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.SetDummy()
+  nameWithType.vb: ObservableEnumerable(Of T).SetDummy()
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).SetDummy()
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+    name: SetDummy
+    nameWithType: ObservableEnumerable<T>.SetDummy
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.SetDummy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.SetDummy
+    name: SetDummy
+    nameWithType: ObservableEnumerable(Of T).SetDummy
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of T).SetDummy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  isExternal: true
+  name: Unset(INotifiable, Boolean)
+  nameWithType: ObservableEnumerable<T>.Unset(INotifiable, Boolean)
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.Unset(NMF.Expressions.INotifiable, System.Boolean)
+  nameWithType.vb: ObservableEnumerable(Of T).Unset(INotifiable, Boolean)
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).Unset(NMF.Expressions.INotifiable, System.Boolean)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+    name: Unset
+    nameWithType: ObservableEnumerable<T>.Unset
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.Unset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+    name: Unset
+    nameWithType: ObservableEnumerable(Of T).Unset
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of T).Unset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+  name: UnsetAll()
+  nameWithType: ObservableEnumerable<T>.UnsetAll()
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.UnsetAll()
+  nameWithType.vb: ObservableEnumerable(Of T).UnsetAll()
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).UnsetAll()
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+    name: UnsetAll
+    nameWithType: ObservableEnumerable<T>.UnsetAll
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.UnsetAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.UnsetAll
+    name: UnsetAll
+    nameWithType: ObservableEnumerable(Of T).UnsetAll
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of T).UnsetAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+  commentId: M:NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+  isExternal: true
+  name: GetSuccessor(Int32)
+  nameWithType: ObservableEnumerable<T>.GetSuccessor(Int32)
+  fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.GetSuccessor(System.Int32)
+  nameWithType.vb: ObservableEnumerable(Of T).GetSuccessor(Int32)
+  fullName.vb: NMF.Expressions.Linq.ObservableEnumerable(Of T).GetSuccessor(System.Int32)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ObservableEnumerable<T>.GetSuccessor
+    fullName: NMF.Expressions.Linq.ObservableEnumerable<T>.GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ObservableEnumerable`1.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ObservableEnumerable(Of T).GetSuccessor
+    fullName: NMF.Expressions.Linq.ObservableEnumerable(Of T).GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Expressions.Linq.ObservableEnumerable`1.OnDetach
   commentId: M:NMF.Expressions.Linq.ObservableEnumerable`1.OnDetach
   name: OnDetach()
@@ -3502,6 +5288,1562 @@ references:
   name: LookupExtensions
   nameWithType: LookupExtensions
   fullName: NMF.Expressions.Linq.LookupExtensions
+- uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  isExternal: true
+  name: ChunkIndexed<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>(System.Collections.Generic.IEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<T, System.Int32>>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)(System.Collections.Generic.IEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of T, System.Int32)), System.Int32, TResult))
+  name.vb: ChunkIndexed(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed<T, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed(Of T, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions
+  commentId: T:NMF.Expressions.Linq.ChunkExtensions
+  parent: NMF.Expressions.Linq
+  name: ChunkExtensions
+  nameWithType: ChunkExtensions
+  fullName: NMF.Expressions.Linq.ChunkExtensions
+- uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  isExternal: true
+  name: ChunkIndexed<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>(NMF.Expressions.INotifyEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<T, System.Int32>>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)(NMF.Expressions.INotifyEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of T, System.Int32)), System.Int32, TResult))
+  name.vb: ChunkIndexed(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed<T, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed(Of T, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+  isExternal: true
+  name: ChunkIndexed<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider<ValueTuple<T, Int32>, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider<ValueTuple<T, Int32>, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>(NMF.Expressions.INotifyEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<T, System.Int32>>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider<System.ValueTuple<T, System.Int32>, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult), IChunkBalancingStrategyProvider(Of ValueTuple(Of T, Int32), TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)(NMF.Expressions.INotifyEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of T, System.Int32)), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider(Of System.ValueTuple(Of T, System.Int32), TResult))
+  name.vb: ChunkIndexed(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult), IChunkBalancingStrategyProvider(Of ValueTuple(Of T, Int32), TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+    name: ChunkIndexed<T, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{System.ValueTuple{``0,System.Int32},``1})
+    name: ChunkIndexed(Of T, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  isExternal: true
+  name: ChunkIndexed<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>(NMF.Expressions.INotifyEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<T, System.Int32>>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult), IChunkBalancingStrategyProvider)
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)(NMF.Expressions.INotifyEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of T, System.Int32)), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  name.vb: ChunkIndexed(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult), IChunkBalancingStrategyProvider)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: ChunkIndexed<T, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: ChunkIndexed(Of T, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  isExternal: true
+  name: Chunk<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>)
+  nameWithType: ChunkExtensions.Chunk<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>(System.Collections.Generic.IEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<T>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)(System.Collections.Generic.IEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of T), System.Int32, TResult))
+  name.vb: Chunk(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk<T, TResult>
+    nameWithType: ChunkExtensions.Chunk<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk(Of T, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  isExternal: true
+  name: Chunk<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>)
+  nameWithType: ChunkExtensions.Chunk<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>(NMF.Expressions.INotifyEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<T>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)(NMF.Expressions.INotifyEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of T), System.Int32, TResult))
+  name.vb: Chunk(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk<T, TResult>
+    nameWithType: ChunkExtensions.Chunk<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk(Of T, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+  isExternal: true
+  name: Chunk<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>, IChunkBalancingStrategyProvider<T, TResult>)
+  nameWithType: ChunkExtensions.Chunk<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>, IChunkBalancingStrategyProvider<T, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>(NMF.Expressions.INotifyEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<T>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider<T, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult), IChunkBalancingStrategyProvider(Of T, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)(NMF.Expressions.INotifyEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of T), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider(Of T, TResult))
+  name.vb: Chunk(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult), IChunkBalancingStrategyProvider(Of T, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+    name: Chunk<T, TResult>
+    nameWithType: ChunkExtensions.Chunk<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider{``0,``1})
+    name: Chunk(Of T, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider`2
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  isExternal: true
+  name: Chunk<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  nameWithType: ChunkExtensions.Chunk<T, TResult>(INotifyEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>, IChunkBalancingStrategyProvider)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>(NMF.Expressions.INotifyEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<T>, System.Int32, TResult>, NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  nameWithType.vb: ChunkExtensions.Chunk(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult), IChunkBalancingStrategyProvider)
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)(NMF.Expressions.INotifyEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of T), System.Int32, TResult), NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+  name.vb: Chunk(Of T, TResult)(INotifyEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult), IChunkBalancingStrategyProvider)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: Chunk<T, TResult>
+    nameWithType: ChunkExtensions.Chunk<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(NMF.Expressions.INotifyEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1},NMF.Expressions.Linq.IChunkBalancingStrategyProvider)
+    name: Chunk(Of T, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifyEnumerable`1
+    name: INotifyEnumerable
+    nameWithType: INotifyEnumerable
+    fullName: NMF.Expressions.INotifyEnumerable
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+    name: IChunkBalancingStrategyProvider
+    nameWithType: IChunkBalancingStrategyProvider
+    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
   commentId: M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
   isExternal: true

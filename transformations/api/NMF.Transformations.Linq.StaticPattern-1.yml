@@ -24,17 +24,19 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: StaticPattern
     path: src/Transformations/Transformations/Linq/StaticPattern.cs
-    startLine: 8
+    startLine: 12
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  summary: "\nDenotes a static pattern used as input for a transformation rule\n"
+  example: []
   syntax:
-    content: 'public class StaticPattern<T> : ITransformationRulePattern<T>, ITransformationRulePattern, ITransformationPattern where T : class'
+    content: 'public class StaticPattern<T> : ITransformationRulePattern<T>, ITransformationRulePattern, ITransformationPattern'
     typeParameters:
     - id: T
+      description: ''
     content.vb: >-
-      Public Class StaticPattern(Of T As Class)
-
+      Public Class StaticPattern(Of T)
           Implements ITransformationRulePattern(Of T), ITransformationRulePattern, ITransformationPattern
   inheritance:
   - System.Object
@@ -43,13 +45,13 @@ items:
   - NMF.Transformations.Core.ITransformationRulePattern
   - NMF.Transformations.Core.ITransformationPattern
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   nameWithType.vb: StaticPattern(Of T)
   modifiers.csharp:
   - public
@@ -77,10 +79,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TargetRule
     path: src/Transformations/Transformations/Linq/StaticPattern.cs
-    startLine: 10
+    startLine: 15
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  example: []
   syntax:
     content: public GeneralTransformationRule<T> TargetRule { get; set; }
     parameters: []
@@ -116,10 +119,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Selector
     path: src/Transformations/Transformations/Linq/StaticPattern.cs
-    startLine: 11
+    startLine: 20
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  summary: "\nGets the function to select inputs for the target rule\n"
+  example: []
   syntax:
     content: public Func<ITransformationContext, IEnumerable<T>> Selector { get; set; }
     parameters: []
@@ -153,15 +158,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Transformations/Transformations/Linq/StaticPattern.cs
-    startLine: 13
+    startLine: 26
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  summary: "\nCreates a new static pattern to fire transformation rule executions\n"
+  example: []
   syntax:
     content: public StaticPattern(Func<ITransformationContext, IEnumerable<T>> selector)
     parameters:
     - id: selector
       type: System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{{T}}}
+      description: A function that selects the inputs for the transformation rule
     content.vb: Public Sub New(selector As Func(Of ITransformationContext, IEnumerable(Of T)))
   overload: NMF.Transformations.Linq.StaticPattern`1.#ctor*
   nameWithType.vb: StaticPattern(Of T).StaticPattern(Func(Of ITransformationContext, IEnumerable(Of T)))
@@ -190,7 +198,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NMF.Transformations.Core.ITransformationRulePattern.TargetRule
     path: src/Transformations/Transformations/Linq/StaticPattern.cs
-    startLine: 18
+    startLine: 31
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
@@ -227,17 +235,21 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreatePattern
     path: src/Transformations/Transformations/Linq/StaticPattern.cs
-    startLine: 30
+    startLine: 44
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations.Linq
+  summary: "\nApplies the current pattern to the given transformation context\n"
+  example: []
   syntax:
     content: public ITransformationPatternContext CreatePattern(ITransformationContext context)
     parameters:
     - id: context
       type: NMF.Transformations.Core.ITransformationContext
+      description: The transformation context in which the pattern should be applied
     return:
       type: NMF.Transformations.Core.ITransformationPatternContext
+      description: A transformation pattern context object that represents the pattern within the given transformation context
     content.vb: Public Function CreatePattern(context As ITransformationContext) As ITransformationPatternContext
   overload: NMF.Transformations.Linq.StaticPattern`1.CreatePattern*
   implements:
@@ -311,37 +323,6 @@ references:
   name: ITransformationPattern
   nameWithType: ITransformationPattern
   fullName: NMF.Transformations.Core.ITransformationPattern
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -420,63 +401,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -583,6 +507,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (

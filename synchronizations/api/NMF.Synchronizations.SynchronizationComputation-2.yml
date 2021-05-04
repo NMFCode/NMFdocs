@@ -5,24 +5,36 @@ items:
   id: SynchronizationComputation`2
   parent: NMF.Synchronizations
   children:
-  - NMF.Synchronizations.SynchronizationComputation`2.#ctor(TransformationRuleBase{`0,`1},TransformationRuleBase{`1,`0},IComputationContext,`0)
+  - NMF.Synchronizations.SynchronizationComputation`2.#ctor(NMF.Transformations.TransformationRuleBase{`0,`1},NMF.Transformations.TransformationRuleBase{`1,`0},NMF.Transformations.Core.IComputationContext,`0)
   - NMF.Synchronizations.SynchronizationComputation`2.AcceptNewOutput(`1)
+  - NMF.Synchronizations.SynchronizationComputation`2.AllSuccessors
+  - NMF.Synchronizations.SynchronizationComputation`2.Count
   - NMF.Synchronizations.SynchronizationComputation`2.Dependencies
   - NMF.Synchronizations.SynchronizationComputation`2.Dispose
   - NMF.Synchronizations.SynchronizationComputation`2.DoWhenOutputIsAvailable(System.Action{`0,`1})
   - NMF.Synchronizations.SynchronizationComputation`2.ExecutionMetaData
   - NMF.Synchronizations.SynchronizationComputation`2.GetInput(System.Int32)
+  - NMF.Synchronizations.SynchronizationComputation`2.GetSuccessor(System.Int32)
+  - NMF.Synchronizations.SynchronizationComputation`2.HasSuccessors
   - NMF.Synchronizations.SynchronizationComputation`2.Input
+  - NMF.Synchronizations.SynchronizationComputation`2.IsAttached
   - NMF.Synchronizations.SynchronizationComputation`2.IsOriginalComputation
-  - NMF.Synchronizations.SynchronizationComputation`2.Notify(System.Collections.Generic.IList{INotificationResult})
+  - NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifiable#Dependencies
+  - NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#Value
+  - NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#ValueChanged
+  - NMF.Synchronizations.SynchronizationComputation`2.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   - NMF.Synchronizations.SynchronizationComputation`2.OmitCandidateSearch
-  - NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged(ValueChangedEventArgs)
+  - NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Synchronizations.SynchronizationComputation`2.Opposite
   - NMF.Synchronizations.SynchronizationComputation`2.OutputChanged
   - NMF.Synchronizations.SynchronizationComputation`2.OutputCore
+  - NMF.Synchronizations.SynchronizationComputation`2.Set(NMF.Expressions.INotifiable)
+  - NMF.Synchronizations.SynchronizationComputation`2.SetDummy
   - NMF.Synchronizations.SynchronizationComputation`2.Successors
   - NMF.Synchronizations.SynchronizationComputation`2.SynchronizationContext
   - NMF.Synchronizations.SynchronizationComputation`2.SynchronizationRule
+  - NMF.Synchronizations.SynchronizationComputation`2.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  - NMF.Synchronizations.SynchronizationComputation`2.UnsetAll
   langs:
   - csharp
   - vb
@@ -37,25 +49,61 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizationComputation
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nDenotes a computation in a synchronization\n"
+  example: []
   syntax:
-    content: 'public abstract class SynchronizationComputation<TIn, TOut> : Computation, INotifyValue<TOut>, IOutputAccept<TOut> where TIn : class where TOut : class'
+    content: 'public abstract class SynchronizationComputation<TIn, TOut> : Computation, IPersistor, ITraceEntry, INotifyValue<TOut>, INotifiable, IDisposable, IOutputAccept<TOut>, ISuccessorList'
     typeParameters:
     - id: TIn
+      description: ''
     - id: TOut
+      description: ''
     content.vb: >-
-      Public MustInherit Class SynchronizationComputation(Of TIn As Class, TOut As Class)
-
+      Public MustInherit Class SynchronizationComputation(Of TIn, TOut)
           Inherits Computation
-
-          Implements INotifyValue(Of TOut), IOutputAccept(Of TOut)
+          Implements IPersistor, ITraceEntry, INotifyValue(Of TOut), INotifiable, IDisposable, IOutputAccept(Of TOut), ISuccessorList
   inheritance:
   - System.Object
+  - NMF.Transformations.Core.Computation
   implements:
-  - INotifyValue{{TOut}}
+  - NMF.Transformations.Core.IPersistor
+  - NMF.Transformations.Core.ITraceEntry
+  - NMF.Expressions.INotifyValue{{TOut}}
+  - NMF.Expressions.INotifiable
+  - System.IDisposable
+  - NMF.Expressions.ISuccessorList
+  inheritedMembers:
+  - NMF.Transformations.Core.Computation.TransformationRule
+  - NMF.Transformations.Core.Computation.TransformationContext
+  - NMF.Transformations.Core.Computation.Context
+  - NMF.Transformations.Core.Computation.InputArguments
+  - NMF.Transformations.Core.Computation.CreateInputArray
+  - NMF.Transformations.Core.Computation.Output
+  - NMF.Transformations.Core.Computation.ThrowDelayedException
+  - NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  - NMF.Transformations.Core.Computation.OutputInitialized
+  - NMF.Transformations.Core.Computation.Computed
+  - NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  - NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  - NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  - NMF.Transformations.Core.Computation.IsDelayed
+  - NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  - NMF.Transformations.Core.Computation.Transform
+  - NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  - NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  - NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  - NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut)
   modifiers.csharp:
   - public
@@ -85,14 +133,16 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OutputChanged
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets raised when the output of this synchronization changed\n"
+  example: []
   syntax:
     content: public event EventHandler<ValueChangedEventArgs> OutputChanged
     return:
-      type: System.EventHandler{ValueChangedEventArgs}
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Public Event OutputChanged As EventHandler(Of ValueChangedEventArgs)
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).OutputChanged
   modifiers.csharp:
@@ -118,10 +168,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OmitCandidateSearch
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 24
+    startLine: 29
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nIndicates whether candidate search can be skipped because the context was newly established\n"
+  example: []
   syntax:
     content: public bool OmitCandidateSearch { get; protected set; }
     parameters: []
@@ -139,16 +191,16 @@ items:
   - Get
   - Protected Set
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).OmitCandidateSearch
-- uid: NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged(ValueChangedEventArgs)
-  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged(ValueChangedEventArgs)
-  id: OnOutputChanged(ValueChangedEventArgs)
+- uid: NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnOutputChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Synchronizations.SynchronizationComputation`2
   langs:
   - csharp
   - vb
   name: OnOutputChanged(ValueChangedEventArgs)
   nameWithType: SynchronizationComputation<TIn, TOut>.OnOutputChanged(ValueChangedEventArgs)
-  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.OnOutputChanged(ValueChangedEventArgs)
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.OnOutputChanged(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
@@ -157,15 +209,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnOutputChanged
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 30
+    startLine: 39
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nFires the event that the output has changed\n"
+  example: []
   syntax:
     content: protected virtual void OnOutputChanged(ValueChangedEventArgs e)
     parameters:
     - id: e
-      type: ValueChangedEventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: ''
     content.vb: Protected Overridable Sub OnOutputChanged(e As ValueChangedEventArgs)
   overload: NMF.Synchronizations.SynchronizationComputation`2.OnOutputChanged*
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).OnOutputChanged(ValueChangedEventArgs)
@@ -175,7 +230,7 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).OnOutputChanged(ValueChangedEventArgs)
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).OnOutputChanged(NMF.Expressions.ValueChangedEventArgs)
 - uid: NMF.Synchronizations.SynchronizationComputation`2.Input
   commentId: P:NMF.Synchronizations.SynchronizationComputation`2.Input
   id: Input
@@ -194,10 +249,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Input
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 35
+    startLine: 47
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the input of this correspondence\n"
+  example: []
   syntax:
     content: public TIn Input { get; set; }
     parameters: []
@@ -231,10 +288,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Opposite
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 66
+    startLine: 81
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the opposite correspondence\n"
+  example: []
   syntax:
     content: public SynchronizationComputation<TOut, TIn> Opposite { get; }
     parameters: []
@@ -250,16 +309,16 @@ items:
   - Public
   - ReadOnly
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Opposite
-- uid: NMF.Synchronizations.SynchronizationComputation`2.#ctor(TransformationRuleBase{`0,`1},TransformationRuleBase{`1,`0},IComputationContext,`0)
-  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.#ctor(TransformationRuleBase{`0,`1},TransformationRuleBase{`1,`0},IComputationContext,`0)
-  id: '#ctor(TransformationRuleBase{`0,`1},TransformationRuleBase{`1,`0},IComputationContext,`0)'
+- uid: NMF.Synchronizations.SynchronizationComputation`2.#ctor(NMF.Transformations.TransformationRuleBase{`0,`1},NMF.Transformations.TransformationRuleBase{`1,`0},NMF.Transformations.Core.IComputationContext,`0)
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.#ctor(NMF.Transformations.TransformationRuleBase{`0,`1},NMF.Transformations.TransformationRuleBase{`1,`0},NMF.Transformations.Core.IComputationContext,`0)
+  id: '#ctor(NMF.Transformations.TransformationRuleBase{`0,`1},NMF.Transformations.TransformationRuleBase{`1,`0},NMF.Transformations.Core.IComputationContext,`0)'
   parent: NMF.Synchronizations.SynchronizationComputation`2
   langs:
   - csharp
   - vb
   name: SynchronizationComputation(TransformationRuleBase<TIn, TOut>, TransformationRuleBase<TOut, TIn>, IComputationContext, TIn)
   nameWithType: SynchronizationComputation<TIn, TOut>.SynchronizationComputation(TransformationRuleBase<TIn, TOut>, TransformationRuleBase<TOut, TIn>, IComputationContext, TIn)
-  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.SynchronizationComputation(TransformationRuleBase<TIn, TOut>, TransformationRuleBase<TOut, TIn>, IComputationContext, TIn)
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.SynchronizationComputation(NMF.Transformations.TransformationRuleBase<TIn, TOut>, NMF.Transformations.TransformationRuleBase<TOut, TIn>, NMF.Transformations.Core.IComputationContext, TIn)
   type: Constructor
   source:
     remote:
@@ -268,21 +327,27 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 68
+    startLine: 90
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nCreates a new instance\n"
+  example: []
   syntax:
     content: public SynchronizationComputation(TransformationRuleBase<TIn, TOut> rule, TransformationRuleBase<TOut, TIn> reverseRule, IComputationContext context, TIn input)
     parameters:
     - id: rule
-      type: TransformationRuleBase{{TIn},{TOut}}
+      type: NMF.Transformations.TransformationRuleBase{{TIn},{TOut}}
+      description: The transformation rule for which this correspondence was created
     - id: reverseRule
-      type: TransformationRuleBase{{TOut},{TIn}}
+      type: NMF.Transformations.TransformationRuleBase{{TOut},{TIn}}
+      description: The reverse transformation rule
     - id: context
-      type: IComputationContext
+      type: NMF.Transformations.Core.IComputationContext
+      description: The context in which the correspondence is created
     - id: input
       type: '{TIn}'
+      description: The input element
     content.vb: Public Sub New(rule As TransformationRuleBase(Of TIn, TOut), reverseRule As TransformationRuleBase(Of TOut, TIn), context As IComputationContext, input As TIn)
   overload: NMF.Synchronizations.SynchronizationComputation`2.#ctor*
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).SynchronizationComputation(TransformationRuleBase(Of TIn, TOut), TransformationRuleBase(Of TOut, TIn), IComputationContext, TIn)
@@ -290,8 +355,41 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).SynchronizationComputation(TransformationRuleBase(Of TIn, TOut), TransformationRuleBase(Of TOut, TIn), IComputationContext, TIn)
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).SynchronizationComputation(NMF.Transformations.TransformationRuleBase(Of TIn, TOut), NMF.Transformations.TransformationRuleBase(Of TOut, TIn), NMF.Transformations.Core.IComputationContext, TIn)
   name.vb: SynchronizationComputation(TransformationRuleBase(Of TIn, TOut), TransformationRuleBase(Of TOut, TIn), IComputationContext, TIn)
+- uid: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#ValueChanged
+  commentId: E:NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#ValueChanged
+  id: NMF#Expressions#INotifyValue{TOut}#ValueChanged
+  isEii: true
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: INotifyValue<TOut>.ValueChanged
+  nameWithType: SynchronizationComputation<TIn, TOut>.INotifyValue<TOut>.ValueChanged
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.NMF.Expressions.INotifyValue<TOut>.ValueChanged
+  type: Event
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: NMF.Expressions.INotifyValue<TOut>.ValueChanged
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 103
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> INotifyValue<TOut>.ValueChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event NMF.Expressions.INotifyValue<TOut>.ValueChanged As EventHandler(Of ValueChangedEventArgs) Implements INotifyValue(Of TOut).ValueChanged
+  implements:
+  - NMF.Expressions.INotifyValue{{TOut}}.ValueChanged
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifyValue<TOut>.ValueChanged
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifyValue<TOut>.ValueChanged
+  name.vb: NMF.Expressions.INotifyValue<TOut>.ValueChanged
 - uid: NMF.Synchronizations.SynchronizationComputation`2.GetInput(System.Int32)
   commentId: M:NMF.Synchronizations.SynchronizationComputation`2.GetInput(System.Int32)
   id: GetInput(System.Int32)
@@ -310,10 +408,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetInput
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 94
+    startLine: 117
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public override object GetInput(int index)
     parameters:
@@ -322,6 +421,7 @@ items:
     return:
       type: System.Object
     content.vb: Public Overrides Function GetInput(index As Integer) As Object
+  overridden: NMF.Transformations.Core.Computation.GetInput(System.Int32)
   overload: NMF.Synchronizations.SynchronizationComputation`2.GetInput*
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).GetInput(Int32)
   modifiers.csharp:
@@ -349,15 +449,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DoWhenOutputIsAvailable
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 106
+    startLine: 133
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nPerforms the given action when the corresponding element of this computation was found\n"
+  example: []
   syntax:
     content: public void DoWhenOutputIsAvailable(Action<TIn, TOut> toPerform)
     parameters:
     - id: toPerform
       type: System.Action{{TIn},{TOut}}
+      description: The action to perform
     content.vb: Public Sub DoWhenOutputIsAvailable(toPerform As Action(Of TIn, TOut))
   overload: NMF.Synchronizations.SynchronizationComputation`2.DoWhenOutputIsAvailable*
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).DoWhenOutputIsAvailable(Action(Of TIn, TOut))
@@ -385,10 +488,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AcceptNewOutput
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 119
+    startLine: 147
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public void AcceptNewOutput(TOut value)
     parameters:
@@ -420,16 +524,18 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OutputCore
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 124
+    startLine: 153
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: protected override sealed object OutputCore { get; set; }
     parameters: []
     return:
       type: System.Object
     content.vb: Protected NotOverridable Overrides Property OutputCore As Object
+  overridden: NMF.Transformations.Core.Computation.OutputCore
   overload: NMF.Synchronizations.SynchronizationComputation`2.OutputCore*
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).OutputCore
   modifiers.csharp:
@@ -461,10 +567,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizationContext
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 136
+    startLine: 168
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nThe context in which the correspondence has been established\n"
+  example: []
   syntax:
     content: public ISynchronizationContext SynchronizationContext { get; }
     parameters: []
@@ -498,10 +606,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsOriginalComputation
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 144
+    startLine: 179
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets whether this correspondence was the original one\n"
+  example: []
   syntax:
     content: public virtual bool IsOriginalComputation { get; }
     parameters: []
@@ -537,10 +647,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizationRule
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 152
+    startLine: 190
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the synchronization rule of this correspondence\n"
+  example: []
   syntax:
     content: public SynchronizationRuleBase SynchronizationRule { get; }
     parameters: []
@@ -556,6 +668,45 @@ items:
   - Public
   - ReadOnly
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).SynchronizationRule
+- uid: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#Value
+  commentId: P:NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#Value
+  id: NMF#Expressions#INotifyValue{TOut}#Value
+  isEii: true
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: INotifyValue<TOut>.Value
+  nameWithType: SynchronizationComputation<TIn, TOut>.INotifyValue<TOut>.Value
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.NMF.Expressions.INotifyValue<TOut>.Value
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: NMF.Expressions.INotifyValue<TOut>.Value
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 198
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  syntax:
+    content: TOut INotifyValue<TOut>.Value { get; }
+    parameters: []
+    return:
+      type: '{TOut}'
+    content.vb: ReadOnly WriteOnly Property NMF.Expressions.INotifyValue<TOut>.Value As TOut Implements INotifyValue(Of TOut).Value
+  overload: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#Value*
+  implements:
+  - NMF.Expressions.INotifyValue{{TOut}}.Value
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifyValue<TOut>.Value
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifyValue<TOut>.Value
+  name.vb: NMF.Expressions.INotifyValue<TOut>.Value
 - uid: NMF.Synchronizations.SynchronizationComputation`2.Dependencies
   commentId: P:NMF.Synchronizations.SynchronizationComputation`2.Dependencies
   id: Dependencies
@@ -574,10 +725,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dependencies
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 168
+    startLine: 209
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nGets the dependencies for this correspondence\n"
+  example: []
   syntax:
     content: public virtual ICollection<IDisposable> Dependencies { get; }
     parameters: []
@@ -613,17 +766,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Successors
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 177
+    startLine: 219
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public ISuccessorList Successors { get; }
     parameters: []
     return:
-      type: ISuccessorList
+      type: NMF.Expressions.ISuccessorList
     content.vb: Public ReadOnly Property Successors As ISuccessorList
   overload: NMF.Synchronizations.SynchronizationComputation`2.Successors*
+  implements:
+  - NMF.Expressions.INotifiable.Successors
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Successors
   modifiers.csharp:
   - public
@@ -632,6 +788,45 @@ items:
   - Public
   - ReadOnly
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Successors
+- uid: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifiable#Dependencies
+  commentId: P:NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifiable#Dependencies
+  id: NMF#Expressions#INotifiable#Dependencies
+  isEii: true
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: INotifiable.Dependencies
+  nameWithType: SynchronizationComputation<TIn, TOut>.INotifiable.Dependencies
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.NMF.Expressions.INotifiable.Dependencies
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: NMF.Expressions.INotifiable.Dependencies
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 221
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  syntax:
+    content: IEnumerable<INotifiable> INotifiable.Dependencies { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
+    content.vb: ReadOnly WriteOnly Property NMF.Expressions.INotifiable.Dependencies As IEnumerable(Of INotifiable) Implements INotifiable.Dependencies
+  overload: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifiable#Dependencies*
+  implements:
+  - NMF.Expressions.INotifiable.Dependencies
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifiable.Dependencies
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifiable.Dependencies
+  name.vb: NMF.Expressions.INotifiable.Dependencies
 - uid: NMF.Synchronizations.SynchronizationComputation`2.ExecutionMetaData
   commentId: P:NMF.Synchronizations.SynchronizationComputation`2.ExecutionMetaData
   id: ExecutionMetaData
@@ -650,17 +845,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecutionMetaData
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 181
+    startLine: 224
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public ExecutionMetaData ExecutionMetaData { get; }
     parameters: []
     return:
-      type: ExecutionMetaData
+      type: NMF.Expressions.ExecutionMetaData
     content.vb: Public ReadOnly Property ExecutionMetaData As ExecutionMetaData
   overload: NMF.Synchronizations.SynchronizationComputation`2.ExecutionMetaData*
+  implements:
+  - NMF.Expressions.INotifiable.ExecutionMetaData
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).ExecutionMetaData
   modifiers.csharp:
   - public
@@ -669,16 +867,16 @@ items:
   - Public
   - ReadOnly
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).ExecutionMetaData
-- uid: NMF.Synchronizations.SynchronizationComputation`2.Notify(System.Collections.Generic.IList{INotificationResult})
-  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.Notify(System.Collections.Generic.IList{INotificationResult})
-  id: Notify(System.Collections.Generic.IList{INotificationResult})
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  id: Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   parent: NMF.Synchronizations.SynchronizationComputation`2
   langs:
   - csharp
   - vb
   name: Notify(IList<INotificationResult>)
   nameWithType: SynchronizationComputation<TIn, TOut>.Notify(IList<INotificationResult>)
-  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Notify(System.Collections.Generic.IList<INotificationResult>)
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Notify(System.Collections.Generic.IList<NMF.Expressions.INotificationResult>)
   type: Method
   source:
     remote:
@@ -687,25 +885,28 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Notify
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 183
+    startLine: 227
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public INotificationResult Notify(IList<INotificationResult> sources)
     parameters:
     - id: sources
-      type: System.Collections.Generic.IList{INotificationResult}
+      type: System.Collections.Generic.IList{NMF.Expressions.INotificationResult}
     return:
-      type: INotificationResult
+      type: NMF.Expressions.INotificationResult
     content.vb: Public Function Notify(sources As IList(Of INotificationResult)) As INotificationResult
   overload: NMF.Synchronizations.SynchronizationComputation`2.Notify*
+  implements:
+  - NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Notify(IList(Of INotificationResult))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Notify(System.Collections.Generic.IList(Of INotificationResult))
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Notify(System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult))
   name.vb: Notify(IList(Of INotificationResult))
 - uid: NMF.Synchronizations.SynchronizationComputation`2.Dispose
   commentId: M:NMF.Synchronizations.SynchronizationComputation`2.Dispose
@@ -725,20 +926,367 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dispose
     path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
-    startLine: 188
+    startLine: 233
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  example: []
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
   overload: NMF.Synchronizations.SynchronizationComputation`2.Dispose*
+  implements:
+  - System.IDisposable.Dispose
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Dispose()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Dispose()
+- uid: NMF.Synchronizations.SynchronizationComputation`2.HasSuccessors
+  commentId: P:NMF.Synchronizations.SynchronizationComputation`2.HasSuccessors
+  id: HasSuccessors
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: HasSuccessors
+  nameWithType: SynchronizationComputation<TIn, TOut>.HasSuccessors
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.HasSuccessors
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: HasSuccessors
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 242
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public bool HasSuccessors { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasSuccessors As Boolean
+  overload: NMF.Synchronizations.SynchronizationComputation`2.HasSuccessors*
+  implements:
+  - NMF.Expressions.ISuccessorList.HasSuccessors
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).HasSuccessors
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).HasSuccessors
+- uid: NMF.Synchronizations.SynchronizationComputation`2.IsAttached
+  commentId: P:NMF.Synchronizations.SynchronizationComputation`2.IsAttached
+  id: IsAttached
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: IsAttached
+  nameWithType: SynchronizationComputation<TIn, TOut>.IsAttached
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.IsAttached
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsAttached
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 245
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public bool IsAttached { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsAttached As Boolean
+  overload: NMF.Synchronizations.SynchronizationComputation`2.IsAttached*
+  implements:
+  - NMF.Expressions.ISuccessorList.IsAttached
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).IsAttached
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).IsAttached
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Count
+  commentId: P:NMF.Synchronizations.SynchronizationComputation`2.Count
+  id: Count
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: SynchronizationComputation<TIn, TOut>.Count
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Count
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Count
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 248
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: NMF.Synchronizations.SynchronizationComputation`2.Count*
+  implements:
+  - NMF.Expressions.ISuccessorList.Count
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Count
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Count
+- uid: NMF.Synchronizations.SynchronizationComputation`2.AllSuccessors
+  commentId: P:NMF.Synchronizations.SynchronizationComputation`2.AllSuccessors
+  id: AllSuccessors
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: AllSuccessors
+  nameWithType: SynchronizationComputation<TIn, TOut>.AllSuccessors
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.AllSuccessors
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: AllSuccessors
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 250
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  syntax:
+    content: public IEnumerable<INotifiable> AllSuccessors { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
+    content.vb: Public ReadOnly Property AllSuccessors As IEnumerable(Of INotifiable)
+  overload: NMF.Synchronizations.SynchronizationComputation`2.AllSuccessors*
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).AllSuccessors
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).AllSuccessors
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Set(NMF.Expressions.INotifiable)
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.Set(NMF.Expressions.INotifiable)
+  id: Set(NMF.Expressions.INotifiable)
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: Set(INotifiable)
+  nameWithType: SynchronizationComputation<TIn, TOut>.Set(INotifiable)
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Set(NMF.Expressions.INotifiable)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Set
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 254
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public void Set(INotifiable node)
+    parameters:
+    - id: node
+      type: NMF.Expressions.INotifiable
+    content.vb: Public Sub Set(node As INotifiable)
+  overload: NMF.Synchronizations.SynchronizationComputation`2.Set*
+  implements:
+  - NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Set(INotifiable)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Set(NMF.Expressions.INotifiable)
+- uid: NMF.Synchronizations.SynchronizationComputation`2.SetDummy
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.SetDummy
+  id: SetDummy
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: SetDummy()
+  nameWithType: SynchronizationComputation<TIn, TOut>.SetDummy()
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.SetDummy()
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: SetDummy
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 268
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public void SetDummy()
+    content.vb: Public Sub SetDummy
+  overload: NMF.Synchronizations.SynchronizationComputation`2.SetDummy*
+  implements:
+  - NMF.Expressions.ISuccessorList.SetDummy
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).SetDummy()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).SetDummy()
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  id: Unset(NMF.Expressions.INotifiable,System.Boolean)
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: Unset(INotifiable, Boolean)
+  nameWithType: SynchronizationComputation<TIn, TOut>.Unset(INotifiable, Boolean)
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Unset(NMF.Expressions.INotifiable, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: Unset
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 278
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public void Unset(INotifiable node, bool leaveDummy = false)
+    parameters:
+    - id: node
+      type: NMF.Expressions.INotifiable
+    - id: leaveDummy
+      type: System.Boolean
+    content.vb: Public Sub Unset(node As INotifiable, leaveDummy As Boolean = False)
+  overload: NMF.Synchronizations.SynchronizationComputation`2.Unset*
+  implements:
+  - NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Unset(INotifiable, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Unset(NMF.Expressions.INotifiable, System.Boolean)
+- uid: NMF.Synchronizations.SynchronizationComputation`2.UnsetAll
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.UnsetAll
+  id: UnsetAll
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: UnsetAll()
+  nameWithType: SynchronizationComputation<TIn, TOut>.UnsetAll()
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.UnsetAll()
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: UnsetAll
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 291
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  example: []
+  syntax:
+    content: public void UnsetAll()
+    content.vb: Public Sub UnsetAll
+  overload: NMF.Synchronizations.SynchronizationComputation`2.UnsetAll*
+  implements:
+  - NMF.Expressions.ISuccessorList.UnsetAll
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).UnsetAll()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).UnsetAll()
+- uid: NMF.Synchronizations.SynchronizationComputation`2.GetSuccessor(System.Int32)
+  commentId: M:NMF.Synchronizations.SynchronizationComputation`2.GetSuccessor(System.Int32)
+  id: GetSuccessor(System.Int32)
+  parent: NMF.Synchronizations.SynchronizationComputation`2
+  langs:
+  - csharp
+  - vb
+  name: GetSuccessor(Int32)
+  nameWithType: SynchronizationComputation<TIn, TOut>.GetSuccessor(Int32)
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.GetSuccessor(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/SynchronizationComputation.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetSuccessor
+    path: src/Synchronizations/Synchronizations/SynchronizationComputation.cs
+    startLine: 300
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations
+  syntax:
+    content: public INotifiable GetSuccessor(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: NMF.Expressions.INotifiable
+    content.vb: Public Function GetSuccessor(index As Integer) As INotifiable
+  overload: NMF.Synchronizations.SynchronizationComputation`2.GetSuccessor*
+  implements:
+  - NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).GetSuccessor(Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).GetSuccessor(System.Int32)
 references:
 - uid: NMF.Synchronizations
   commentId: N:NMF.Synchronizations
@@ -752,21 +1300,39 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: INotifyValue{{TOut}}
-  commentId: '!:INotifyValue{`1}'
-  definition: INotifyValue`1
+- uid: NMF.Transformations.Core.Computation
+  commentId: T:NMF.Transformations.Core.Computation
+  parent: NMF.Transformations.Core
+  name: Computation
+  nameWithType: Computation
+  fullName: NMF.Transformations.Core.Computation
+- uid: NMF.Transformations.Core.IPersistor
+  commentId: T:NMF.Transformations.Core.IPersistor
+  parent: NMF.Transformations.Core
+  name: IPersistor
+  nameWithType: IPersistor
+  fullName: NMF.Transformations.Core.IPersistor
+- uid: NMF.Transformations.Core.ITraceEntry
+  commentId: T:NMF.Transformations.Core.ITraceEntry
+  parent: NMF.Transformations.Core
+  name: ITraceEntry
+  nameWithType: ITraceEntry
+  fullName: NMF.Transformations.Core.ITraceEntry
+- uid: NMF.Expressions.INotifyValue{{TOut}}
+  commentId: T:NMF.Expressions.INotifyValue{`1}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyValue`1
   name: INotifyValue<TOut>
   nameWithType: INotifyValue<TOut>
-  fullName: INotifyValue<TOut>
+  fullName: NMF.Expressions.INotifyValue<TOut>
   nameWithType.vb: INotifyValue(Of TOut)
-  fullName.vb: INotifyValue(Of TOut)
+  fullName.vb: NMF.Expressions.INotifyValue(Of TOut)
   name.vb: INotifyValue(Of TOut)
   spec.csharp:
-  - uid: INotifyValue`1
+  - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
     nameWithType: INotifyValue
-    fullName: INotifyValue
-    isExternal: true
+    fullName: NMF.Expressions.INotifyValue
   - name: <
     nameWithType: <
     fullName: <
@@ -777,17 +1343,824 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: INotifyValue`1
+  - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
     nameWithType: INotifyValue
-    fullName: INotifyValue
-    isExternal: true
+    fullName: NMF.Expressions.INotifyValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
   - name: TOut
     nameWithType: TOut
     fullName: TOut
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifiable
+  commentId: T:NMF.Expressions.INotifiable
+  parent: NMF.Expressions
+  name: INotifiable
+  nameWithType: INotifiable
+  fullName: NMF.Expressions.INotifiable
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: NMF.Expressions.ISuccessorList
+  commentId: T:NMF.Expressions.ISuccessorList
+  parent: NMF.Expressions
+  name: ISuccessorList
+  nameWithType: ISuccessorList
+  fullName: NMF.Expressions.ISuccessorList
+- uid: NMF.Transformations.Core.Computation.TransformationRule
+  commentId: P:NMF.Transformations.Core.Computation.TransformationRule
+  parent: NMF.Transformations.Core.Computation
+  name: TransformationRule
+  nameWithType: Computation.TransformationRule
+  fullName: NMF.Transformations.Core.Computation.TransformationRule
+- uid: NMF.Transformations.Core.Computation.TransformationContext
+  commentId: P:NMF.Transformations.Core.Computation.TransformationContext
+  parent: NMF.Transformations.Core.Computation
+  name: TransformationContext
+  nameWithType: Computation.TransformationContext
+  fullName: NMF.Transformations.Core.Computation.TransformationContext
+- uid: NMF.Transformations.Core.Computation.Context
+  commentId: P:NMF.Transformations.Core.Computation.Context
+  parent: NMF.Transformations.Core.Computation
+  name: Context
+  nameWithType: Computation.Context
+  fullName: NMF.Transformations.Core.Computation.Context
+- uid: NMF.Transformations.Core.Computation.InputArguments
+  commentId: P:NMF.Transformations.Core.Computation.InputArguments
+  parent: NMF.Transformations.Core.Computation
+  name: InputArguments
+  nameWithType: Computation.InputArguments
+  fullName: NMF.Transformations.Core.Computation.InputArguments
+- uid: NMF.Transformations.Core.Computation.CreateInputArray
+  commentId: M:NMF.Transformations.Core.Computation.CreateInputArray
+  parent: NMF.Transformations.Core.Computation
+  name: CreateInputArray()
+  nameWithType: Computation.CreateInputArray()
+  fullName: NMF.Transformations.Core.Computation.CreateInputArray()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.CreateInputArray
+    name: CreateInputArray
+    nameWithType: Computation.CreateInputArray
+    fullName: NMF.Transformations.Core.Computation.CreateInputArray
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.CreateInputArray
+    name: CreateInputArray
+    nameWithType: Computation.CreateInputArray
+    fullName: NMF.Transformations.Core.Computation.CreateInputArray
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.Output
+  commentId: P:NMF.Transformations.Core.Computation.Output
+  parent: NMF.Transformations.Core.Computation
+  name: Output
+  nameWithType: Computation.Output
+  fullName: NMF.Transformations.Core.Computation.Output
+- uid: NMF.Transformations.Core.Computation.ThrowDelayedException
+  commentId: M:NMF.Transformations.Core.Computation.ThrowDelayedException
+  parent: NMF.Transformations.Core.Computation
+  name: ThrowDelayedException()
+  nameWithType: Computation.ThrowDelayedException()
+  fullName: NMF.Transformations.Core.Computation.ThrowDelayedException()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.ThrowDelayedException
+    name: ThrowDelayedException
+    nameWithType: Computation.ThrowDelayedException
+    fullName: NMF.Transformations.Core.Computation.ThrowDelayedException
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.ThrowDelayedException
+    name: ThrowDelayedException
+    nameWithType: Computation.ThrowDelayedException
+    fullName: NMF.Transformations.Core.Computation.ThrowDelayedException
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  commentId: M:NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: MarkRequire(Computation, Boolean, ITransformationRuleDependency)
+  nameWithType: Computation.MarkRequire(Computation, Boolean, ITransformationRuleDependency)
+  fullName: NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation, System.Boolean, NMF.Transformations.Core.ITransformationRuleDependency)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+    name: MarkRequire
+    nameWithType: Computation.MarkRequire
+    fullName: NMF.Transformations.Core.Computation.MarkRequire
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Transformations.Core.ITransformationRuleDependency
+    name: ITransformationRuleDependency
+    nameWithType: ITransformationRuleDependency
+    fullName: NMF.Transformations.Core.ITransformationRuleDependency
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.MarkRequire(NMF.Transformations.Core.Computation,System.Boolean,NMF.Transformations.Core.ITransformationRuleDependency)
+    name: MarkRequire
+    nameWithType: Computation.MarkRequire
+    fullName: NMF.Transformations.Core.Computation.MarkRequire
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: NMF.Transformations.Core.ITransformationRuleDependency
+    name: ITransformationRuleDependency
+    nameWithType: ITransformationRuleDependency
+    fullName: NMF.Transformations.Core.ITransformationRuleDependency
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.OutputInitialized
+  commentId: E:NMF.Transformations.Core.Computation.OutputInitialized
+  parent: NMF.Transformations.Core.Computation
+  name: OutputInitialized
+  nameWithType: Computation.OutputInitialized
+  fullName: NMF.Transformations.Core.Computation.OutputInitialized
+- uid: NMF.Transformations.Core.Computation.Computed
+  commentId: E:NMF.Transformations.Core.Computation.Computed
+  parent: NMF.Transformations.Core.Computation
+  name: Computed
+  nameWithType: Computation.Computed
+  fullName: NMF.Transformations.Core.Computation.Computed
+- uid: NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  commentId: M:NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: DelayOutputAtLeast(Byte)
+  nameWithType: Computation.DelayOutputAtLeast(Byte)
+  fullName: NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+    name: DelayOutputAtLeast
+    nameWithType: Computation.DelayOutputAtLeast
+    fullName: NMF.Transformations.Core.Computation.DelayOutputAtLeast
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.DelayOutputAtLeast(System.Byte)
+    name: DelayOutputAtLeast
+    nameWithType: Computation.DelayOutputAtLeast
+    fullName: NMF.Transformations.Core.Computation.DelayOutputAtLeast
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  commentId: M:NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: DelayTransformationAtLeast(Byte)
+  nameWithType: Computation.DelayTransformationAtLeast(Byte)
+  fullName: NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+    name: DelayTransformationAtLeast
+    nameWithType: Computation.DelayTransformationAtLeast
+    fullName: NMF.Transformations.Core.Computation.DelayTransformationAtLeast
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.DelayTransformationAtLeast(System.Byte)
+    name: DelayTransformationAtLeast
+    nameWithType: Computation.DelayTransformationAtLeast
+    fullName: NMF.Transformations.Core.Computation.DelayTransformationAtLeast
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  commentId: M:NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: OnOutputInitialized(EventArgs)
+  nameWithType: Computation.OnOutputInitialized(EventArgs)
+  fullName: NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+    name: OnOutputInitialized
+    nameWithType: Computation.OnOutputInitialized
+    fullName: NMF.Transformations.Core.Computation.OnOutputInitialized
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.OnOutputInitialized(System.EventArgs)
+    name: OnOutputInitialized
+    nameWithType: Computation.OnOutputInitialized
+    fullName: NMF.Transformations.Core.Computation.OnOutputInitialized
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.IsDelayed
+  commentId: P:NMF.Transformations.Core.Computation.IsDelayed
+  parent: NMF.Transformations.Core.Computation
+  name: IsDelayed
+  nameWithType: Computation.IsDelayed
+  fullName: NMF.Transformations.Core.Computation.IsDelayed
+- uid: NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  commentId: M:NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: OnComputed(EventArgs)
+  nameWithType: Computation.OnComputed(EventArgs)
+  fullName: NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+    name: OnComputed
+    nameWithType: Computation.OnComputed
+    fullName: NMF.Transformations.Core.Computation.OnComputed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.OnComputed(System.EventArgs)
+    name: OnComputed
+    nameWithType: Computation.OnComputed
+    fullName: NMF.Transformations.Core.Computation.OnComputed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.Transform
+  commentId: M:NMF.Transformations.Core.Computation.Transform
+  parent: NMF.Transformations.Core.Computation
+  name: Transform()
+  nameWithType: Computation.Transform()
+  fullName: NMF.Transformations.Core.Computation.Transform()
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.Transform
+    name: Transform
+    nameWithType: Computation.Transform
+    fullName: NMF.Transformations.Core.Computation.Transform
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.Transform
+    name: Transform
+    nameWithType: Computation.Transform
+    fullName: NMF.Transformations.Core.Computation.Transform
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  commentId: M:NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: CreateOutput(IEnumerable)
+  nameWithType: Computation.CreateOutput(IEnumerable)
+  fullName: NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+    name: CreateOutput
+    nameWithType: Computation.CreateOutput
+    fullName: NMF.Transformations.Core.Computation.CreateOutput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.CreateOutput(System.Collections.IEnumerable)
+    name: CreateOutput
+    nameWithType: Computation.CreateOutput
+    fullName: NMF.Transformations.Core.Computation.CreateOutput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  commentId: M:NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: InitializeOutput(Object)
+  nameWithType: Computation.InitializeOutput(Object)
+  fullName: NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+    name: InitializeOutput
+    nameWithType: Computation.InitializeOutput
+    fullName: NMF.Transformations.Core.Computation.InitializeOutput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.InitializeOutput(System.Object)
+    name: InitializeOutput
+    nameWithType: Computation.InitializeOutput
+    fullName: NMF.Transformations.Core.Computation.InitializeOutput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  commentId: M:NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  parent: NMF.Transformations.Core.Computation
+  name: SetBaseComputation(Computation)
+  nameWithType: Computation.SetBaseComputation(Computation)
+  fullName: NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+    name: SetBaseComputation
+    nameWithType: Computation.SetBaseComputation
+    fullName: NMF.Transformations.Core.Computation.SetBaseComputation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.SetBaseComputation(NMF.Transformations.Core.Computation)
+    name: SetBaseComputation
+    nameWithType: Computation.SetBaseComputation
+    fullName: NMF.Transformations.Core.Computation.SetBaseComputation
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Transformations.Core.Computation
+    name: Computation
+    nameWithType: Computation
+    fullName: NMF.Transformations.Core.Computation
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  commentId: M:NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: IPersistor.Persist(Object)
+  nameWithType: Computation.IPersistor.Persist(Object)
+  fullName: NMF.Transformations.Core.Computation.NMF.Transformations.Core.IPersistor.Persist(System.Object)
+  nameWithType.vb: Computation.NMF.Transformations.Core.IPersistor.Persist(Object)
+  name.vb: NMF.Transformations.Core.IPersistor.Persist(Object)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+    name: IPersistor.Persist
+    nameWithType: Computation.IPersistor.Persist
+    fullName: NMF.Transformations.Core.Computation.NMF.Transformations.Core.IPersistor.Persist
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.NMF#Transformations#Core#IPersistor#Persist(System.Object)
+    name: NMF.Transformations.Core.IPersistor.Persist
+    nameWithType: Computation.NMF.Transformations.Core.IPersistor.Persist
+    fullName: NMF.Transformations.Core.Computation.NMF.Transformations.Core.IPersistor.Persist
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -797,53 +2170,61 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: INotifyValue`1
-  isExternal: true
-  name: INotifyValue<>
-  nameWithType: INotifyValue<>
-  fullName: INotifyValue<>
-  nameWithType.vb: INotifyValue(Of )
-  fullName.vb: INotifyValue(Of )
-  name.vb: INotifyValue(Of )
+- uid: NMF.Transformations.Core
+  commentId: N:NMF.Transformations.Core
+  name: NMF.Transformations.Core
+  nameWithType: NMF.Transformations.Core
+  fullName: NMF.Transformations.Core
+- uid: NMF.Expressions.INotifyValue`1
+  commentId: T:NMF.Expressions.INotifyValue`1
+  name: INotifyValue<T>
+  nameWithType: INotifyValue<T>
+  fullName: NMF.Expressions.INotifyValue<T>
+  nameWithType.vb: INotifyValue(Of T)
+  fullName.vb: NMF.Expressions.INotifyValue(Of T)
+  name.vb: INotifyValue(Of T)
   spec.csharp:
-  - uid: INotifyValue`1
+  - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
     nameWithType: INotifyValue
-    fullName: INotifyValue
-    isExternal: true
+    fullName: NMF.Expressions.INotifyValue
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: INotifyValue`1
+  - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
     nameWithType: INotifyValue
-    fullName: INotifyValue
-    isExternal: true
+    fullName: NMF.Expressions.INotifyValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.EventHandler{ValueChangedEventArgs}
-  commentId: T:System.EventHandler{ValueChangedEventArgs}
+- uid: NMF.Expressions
+  commentId: N:NMF.Expressions
+  name: NMF.Expressions
+  nameWithType: NMF.Expressions
+  fullName: NMF.Expressions
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ValueChangedEventArgs>
   nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
   nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
   name.vb: EventHandler(Of ValueChangedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -854,11 +2235,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -871,11 +2251,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: ValueChangedEventArgs
+  - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
     nameWithType: ValueChangedEventArgs
-    fullName: ValueChangedEventArgs
-    isExternal: true
+    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -939,12 +2318,12 @@ references:
   fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.OnOutputChanged
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).OnOutputChanged
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).OnOutputChanged
-- uid: ValueChangedEventArgs
-  commentId: '!:ValueChangedEventArgs'
-  isExternal: true
+- uid: NMF.Expressions.ValueChangedEventArgs
+  commentId: T:NMF.Expressions.ValueChangedEventArgs
+  parent: NMF.Expressions
   name: ValueChangedEventArgs
   nameWithType: ValueChangedEventArgs
-  fullName: ValueChangedEventArgs
+  fullName: NMF.Expressions.ValueChangedEventArgs
 - uid: NMF.Synchronizations.SynchronizationComputation`2.Input*
   commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.Input
   name: Input
@@ -1074,21 +2453,21 @@ references:
   fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.SynchronizationComputation
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).SynchronizationComputation
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).SynchronizationComputation
-- uid: TransformationRuleBase{{TIn},{TOut}}
-  commentId: '!:TransformationRuleBase{`0,`1}'
-  definition: TransformationRuleBase`2
+- uid: NMF.Transformations.TransformationRuleBase{{TIn},{TOut}}
+  commentId: T:NMF.Transformations.TransformationRuleBase{`0,`1}
+  parent: NMF.Transformations
+  definition: NMF.Transformations.TransformationRuleBase`2
   name: TransformationRuleBase<TIn, TOut>
   nameWithType: TransformationRuleBase<TIn, TOut>
-  fullName: TransformationRuleBase<TIn, TOut>
+  fullName: NMF.Transformations.TransformationRuleBase<TIn, TOut>
   nameWithType.vb: TransformationRuleBase(Of TIn, TOut)
-  fullName.vb: TransformationRuleBase(Of TIn, TOut)
+  fullName.vb: NMF.Transformations.TransformationRuleBase(Of TIn, TOut)
   name.vb: TransformationRuleBase(Of TIn, TOut)
   spec.csharp:
-  - uid: TransformationRuleBase`2
+  - uid: NMF.Transformations.TransformationRuleBase`2
     name: TransformationRuleBase
     nameWithType: TransformationRuleBase
-    fullName: TransformationRuleBase
-    isExternal: true
+    fullName: NMF.Transformations.TransformationRuleBase
   - name: <
     nameWithType: <
     fullName: <
@@ -1105,11 +2484,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: TransformationRuleBase`2
+  - uid: NMF.Transformations.TransformationRuleBase`2
     name: TransformationRuleBase
     nameWithType: TransformationRuleBase
-    fullName: TransformationRuleBase
-    isExternal: true
+    fullName: NMF.Transformations.TransformationRuleBase
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1125,21 +2503,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: TransformationRuleBase{{TOut},{TIn}}
-  commentId: '!:TransformationRuleBase{`1,`0}'
-  definition: TransformationRuleBase`2
+- uid: NMF.Transformations.TransformationRuleBase{{TOut},{TIn}}
+  commentId: T:NMF.Transformations.TransformationRuleBase{`1,`0}
+  parent: NMF.Transformations
+  definition: NMF.Transformations.TransformationRuleBase`2
   name: TransformationRuleBase<TOut, TIn>
   nameWithType: TransformationRuleBase<TOut, TIn>
-  fullName: TransformationRuleBase<TOut, TIn>
+  fullName: NMF.Transformations.TransformationRuleBase<TOut, TIn>
   nameWithType.vb: TransformationRuleBase(Of TOut, TIn)
-  fullName.vb: TransformationRuleBase(Of TOut, TIn)
+  fullName.vb: NMF.Transformations.TransformationRuleBase(Of TOut, TIn)
   name.vb: TransformationRuleBase(Of TOut, TIn)
   spec.csharp:
-  - uid: TransformationRuleBase`2
+  - uid: NMF.Transformations.TransformationRuleBase`2
     name: TransformationRuleBase
     nameWithType: TransformationRuleBase
-    fullName: TransformationRuleBase
-    isExternal: true
+    fullName: NMF.Transformations.TransformationRuleBase
   - name: <
     nameWithType: <
     fullName: <
@@ -1156,11 +2534,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: TransformationRuleBase`2
+  - uid: NMF.Transformations.TransformationRuleBase`2
     name: TransformationRuleBase
     nameWithType: TransformationRuleBase
-    fullName: TransformationRuleBase
-    isExternal: true
+    fullName: NMF.Transformations.TransformationRuleBase
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1176,59 +2553,117 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IComputationContext
-  commentId: '!:IComputationContext'
-  isExternal: true
+- uid: NMF.Transformations.Core.IComputationContext
+  commentId: T:NMF.Transformations.Core.IComputationContext
+  parent: NMF.Transformations.Core
   name: IComputationContext
   nameWithType: IComputationContext
-  fullName: IComputationContext
-- uid: TransformationRuleBase`2
-  isExternal: true
-  name: TransformationRuleBase<, >
-  nameWithType: TransformationRuleBase<, >
-  fullName: TransformationRuleBase<, >
-  nameWithType.vb: TransformationRuleBase(Of , )
-  fullName.vb: TransformationRuleBase(Of , )
-  name.vb: TransformationRuleBase(Of , )
+  fullName: NMF.Transformations.Core.IComputationContext
+- uid: NMF.Transformations.TransformationRuleBase`2
+  commentId: T:NMF.Transformations.TransformationRuleBase`2
+  name: TransformationRuleBase<TIn, TOut>
+  nameWithType: TransformationRuleBase<TIn, TOut>
+  fullName: NMF.Transformations.TransformationRuleBase<TIn, TOut>
+  nameWithType.vb: TransformationRuleBase(Of TIn, TOut)
+  fullName.vb: NMF.Transformations.TransformationRuleBase(Of TIn, TOut)
+  name.vb: TransformationRuleBase(Of TIn, TOut)
   spec.csharp:
-  - uid: TransformationRuleBase`2
+  - uid: NMF.Transformations.TransformationRuleBase`2
     name: TransformationRuleBase
     nameWithType: TransformationRuleBase
-    fullName: TransformationRuleBase
-    isExternal: true
+    fullName: NMF.Transformations.TransformationRuleBase
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TIn
+    nameWithType: TIn
+    fullName: TIn
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TOut
+    nameWithType: TOut
+    fullName: TOut
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: TransformationRuleBase`2
+  - uid: NMF.Transformations.TransformationRuleBase`2
     name: TransformationRuleBase
     nameWithType: TransformationRuleBase
-    fullName: TransformationRuleBase
-    isExternal: true
+    fullName: NMF.Transformations.TransformationRuleBase
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TIn
+    nameWithType: TIn
+    fullName: TIn
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TOut
+    nameWithType: TOut
+    fullName: TOut
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Transformations
+  commentId: N:NMF.Transformations
+  name: NMF.Transformations
+  nameWithType: NMF.Transformations
+  fullName: NMF.Transformations
+- uid: NMF.Expressions.INotifyValue{{TOut}}.ValueChanged
+  commentId: E:NMF.Expressions.INotifyValue{`1}.ValueChanged
+  parent: NMF.Expressions.INotifyValue{{TOut}}
+  definition: NMF.Expressions.INotifyValue`1.ValueChanged
+  name: ValueChanged
+  nameWithType: INotifyValue<TOut>.ValueChanged
+  fullName: NMF.Expressions.INotifyValue<TOut>.ValueChanged
+  nameWithType.vb: INotifyValue(Of TOut).ValueChanged
+  fullName.vb: NMF.Expressions.INotifyValue(Of TOut).ValueChanged
+- uid: NMF.Expressions.INotifyValue`1.ValueChanged
+  commentId: E:NMF.Expressions.INotifyValue`1.ValueChanged
+  name: ValueChanged
+  nameWithType: INotifyValue<T>.ValueChanged
+  fullName: NMF.Expressions.INotifyValue<T>.ValueChanged
+  nameWithType.vb: INotifyValue(Of T).ValueChanged
+  fullName.vb: NMF.Expressions.INotifyValue(Of T).ValueChanged
+- uid: NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  commentId: M:NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  parent: NMF.Transformations.Core.Computation
+  isExternal: true
+  name: GetInput(Int32)
+  nameWithType: Computation.GetInput(Int32)
+  fullName: NMF.Transformations.Core.Computation.GetInput(System.Int32)
+  spec.csharp:
+  - uid: NMF.Transformations.Core.Computation.GetInput(System.Int32)
+    name: GetInput
+    nameWithType: Computation.GetInput
+    fullName: NMF.Transformations.Core.Computation.GetInput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Transformations.Core.Computation.GetInput(System.Int32)
+    name: GetInput
+    nameWithType: Computation.GetInput
+    fullName: NMF.Transformations.Core.Computation.GetInput
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -1370,10 +2805,15 @@ references:
   nameWithType: TOut
   fullName: TOut
 - uid: TOut
-  commentId: '!:TOut'
   name: TOut
   nameWithType: TOut
   fullName: TOut
+- uid: NMF.Transformations.Core.Computation.OutputCore
+  commentId: P:NMF.Transformations.Core.Computation.OutputCore
+  parent: NMF.Transformations.Core.Computation
+  name: OutputCore
+  nameWithType: Computation.OutputCore
+  fullName: NMF.Transformations.Core.Computation.OutputCore
 - uid: NMF.Synchronizations.SynchronizationComputation`2.OutputCore*
   commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.OutputCore
   name: OutputCore
@@ -1414,6 +2854,30 @@ references:
   name: SynchronizationRuleBase
   nameWithType: SynchronizationRuleBase
   fullName: NMF.Synchronizations.SynchronizationRuleBase
+- uid: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#Value*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifyValue{TOut}#Value
+  name: INotifyValue<TOut>.Value
+  nameWithType: SynchronizationComputation<TIn, TOut>.INotifyValue<TOut>.Value
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.NMF.Expressions.INotifyValue<TOut>.Value
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifyValue<TOut>.Value
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifyValue<TOut>.Value
+  name.vb: NMF.Expressions.INotifyValue<TOut>.Value
+- uid: NMF.Expressions.INotifyValue{{TOut}}.Value
+  commentId: P:NMF.Expressions.INotifyValue{`1}.Value
+  parent: NMF.Expressions.INotifyValue{{TOut}}
+  definition: NMF.Expressions.INotifyValue`1.Value
+  name: Value
+  nameWithType: INotifyValue<TOut>.Value
+  fullName: NMF.Expressions.INotifyValue<TOut>.Value
+  nameWithType.vb: INotifyValue(Of TOut).Value
+  fullName.vb: NMF.Expressions.INotifyValue(Of TOut).Value
+- uid: NMF.Expressions.INotifyValue`1.Value
+  commentId: P:NMF.Expressions.INotifyValue`1.Value
+  name: Value
+  nameWithType: INotifyValue<T>.Value
+  fullName: NMF.Expressions.INotifyValue<T>.Value
+  nameWithType.vb: INotifyValue(Of T).Value
+  fullName.vb: NMF.Expressions.INotifyValue(Of T).Value
 - uid: NMF.Synchronizations.SynchronizationComputation`2.Dependencies*
   commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.Dependencies
   name: Dependencies
@@ -1517,12 +2981,107 @@ references:
   fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Successors
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Successors
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Successors
-- uid: ISuccessorList
-  commentId: '!:ISuccessorList'
+- uid: NMF.Expressions.INotifiable.Successors
+  commentId: P:NMF.Expressions.INotifiable.Successors
+  parent: NMF.Expressions.INotifiable
+  name: Successors
+  nameWithType: INotifiable.Successors
+  fullName: NMF.Expressions.INotifiable.Successors
+- uid: NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifiable#Dependencies*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.NMF#Expressions#INotifiable#Dependencies
+  name: INotifiable.Dependencies
+  nameWithType: SynchronizationComputation<TIn, TOut>.INotifiable.Dependencies
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.NMF.Expressions.INotifiable.Dependencies
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifiable.Dependencies
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).NMF.Expressions.INotifiable.Dependencies
+  name.vb: NMF.Expressions.INotifiable.Dependencies
+- uid: NMF.Expressions.INotifiable.Dependencies
+  commentId: P:NMF.Expressions.INotifiable.Dependencies
+  parent: NMF.Expressions.INotifiable
+  name: Dependencies
+  nameWithType: INotifiable.Dependencies
+  fullName: NMF.Expressions.INotifiable.Dependencies
+- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
+  commentId: T:System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<INotifiable>
+  nameWithType: IEnumerable<INotifiable>
+  fullName: System.Collections.Generic.IEnumerable<NMF.Expressions.INotifiable>
+  nameWithType.vb: IEnumerable(Of INotifiable)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.Expressions.INotifiable)
+  name.vb: IEnumerable(Of INotifiable)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: ISuccessorList
-  nameWithType: ISuccessorList
-  fullName: ISuccessorList
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Synchronizations.SynchronizationComputation`2.ExecutionMetaData*
   commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.ExecutionMetaData
   name: ExecutionMetaData
@@ -1530,12 +3089,18 @@ references:
   fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.ExecutionMetaData
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).ExecutionMetaData
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).ExecutionMetaData
-- uid: ExecutionMetaData
-  commentId: '!:ExecutionMetaData'
-  isExternal: true
+- uid: NMF.Expressions.INotifiable.ExecutionMetaData
+  commentId: P:NMF.Expressions.INotifiable.ExecutionMetaData
+  parent: NMF.Expressions.INotifiable
+  name: ExecutionMetaData
+  nameWithType: INotifiable.ExecutionMetaData
+  fullName: NMF.Expressions.INotifiable.ExecutionMetaData
+- uid: NMF.Expressions.ExecutionMetaData
+  commentId: T:NMF.Expressions.ExecutionMetaData
+  parent: NMF.Expressions
   name: ExecutionMetaData
   nameWithType: ExecutionMetaData
-  fullName: ExecutionMetaData
+  fullName: NMF.Expressions.ExecutionMetaData
 - uid: NMF.Synchronizations.SynchronizationComputation`2.Notify*
   commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.Notify
   name: Notify
@@ -1543,15 +3108,77 @@ references:
   fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Notify
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Notify
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Notify
-- uid: System.Collections.Generic.IList{INotificationResult}
-  commentId: T:System.Collections.Generic.IList{INotificationResult}
+- uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  commentId: M:NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  parent: NMF.Expressions.INotifiable
+  isExternal: true
+  name: Notify(IList<INotificationResult>)
+  nameWithType: INotifiable.Notify(IList<INotificationResult>)
+  fullName: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList<NMF.Expressions.INotificationResult>)
+  nameWithType.vb: INotifiable.Notify(IList(Of INotificationResult))
+  fullName.vb: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult))
+  name.vb: Notify(IList(Of INotificationResult))
+  spec.csharp:
+  - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+    name: Notify
+    nameWithType: INotifiable.Notify
+    fullName: NMF.Expressions.INotifiable.Notify
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.INotificationResult
+    name: INotificationResult
+    nameWithType: INotificationResult
+    fullName: NMF.Expressions.INotificationResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+    name: Notify
+    nameWithType: INotifiable.Notify
+    fullName: NMF.Expressions.INotifiable.Notify
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.INotificationResult
+    name: INotificationResult
+    nameWithType: INotificationResult
+    fullName: NMF.Expressions.INotificationResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList{NMF.Expressions.INotificationResult}
+  commentId: T:System.Collections.Generic.IList{NMF.Expressions.INotificationResult}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IList`1
   name: IList<INotificationResult>
   nameWithType: IList<INotificationResult>
-  fullName: System.Collections.Generic.IList<INotificationResult>
+  fullName: System.Collections.Generic.IList<NMF.Expressions.INotificationResult>
   nameWithType.vb: IList(Of INotificationResult)
-  fullName.vb: System.Collections.Generic.IList(Of INotificationResult)
+  fullName.vb: System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult)
   name.vb: IList(Of INotificationResult)
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
@@ -1562,11 +3189,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: INotificationResult
+  - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
     nameWithType: INotificationResult
-    fullName: INotificationResult
-    isExternal: true
+    fullName: NMF.Expressions.INotificationResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1579,20 +3205,19 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: INotificationResult
+  - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
     nameWithType: INotificationResult
-    fullName: INotificationResult
-    isExternal: true
+    fullName: NMF.Expressions.INotificationResult
   - name: )
     nameWithType: )
     fullName: )
-- uid: INotificationResult
-  commentId: '!:INotificationResult'
-  isExternal: true
+- uid: NMF.Expressions.INotificationResult
+  commentId: T:NMF.Expressions.INotificationResult
+  parent: NMF.Expressions
   name: INotificationResult
   nameWithType: INotificationResult
-  fullName: INotificationResult
+  fullName: NMF.Expressions.INotificationResult
 - uid: System.Collections.Generic.IList`1
   commentId: T:System.Collections.Generic.IList`1
   isExternal: true
@@ -1639,3 +3264,299 @@ references:
   fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Dispose
   nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Dispose
   fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Synchronizations.SynchronizationComputation`2.HasSuccessors*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.HasSuccessors
+  name: HasSuccessors
+  nameWithType: SynchronizationComputation<TIn, TOut>.HasSuccessors
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.HasSuccessors
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).HasSuccessors
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).HasSuccessors
+- uid: NMF.Expressions.ISuccessorList.HasSuccessors
+  commentId: P:NMF.Expressions.ISuccessorList.HasSuccessors
+  parent: NMF.Expressions.ISuccessorList
+  name: HasSuccessors
+  nameWithType: ISuccessorList.HasSuccessors
+  fullName: NMF.Expressions.ISuccessorList.HasSuccessors
+- uid: NMF.Synchronizations.SynchronizationComputation`2.IsAttached*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.IsAttached
+  name: IsAttached
+  nameWithType: SynchronizationComputation<TIn, TOut>.IsAttached
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.IsAttached
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).IsAttached
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).IsAttached
+- uid: NMF.Expressions.ISuccessorList.IsAttached
+  commentId: P:NMF.Expressions.ISuccessorList.IsAttached
+  parent: NMF.Expressions.ISuccessorList
+  name: IsAttached
+  nameWithType: ISuccessorList.IsAttached
+  fullName: NMF.Expressions.ISuccessorList.IsAttached
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Count*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.Count
+  name: Count
+  nameWithType: SynchronizationComputation<TIn, TOut>.Count
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Count
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Count
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Count
+- uid: NMF.Expressions.ISuccessorList.Count
+  commentId: P:NMF.Expressions.ISuccessorList.Count
+  parent: NMF.Expressions.ISuccessorList
+  name: Count
+  nameWithType: ISuccessorList.Count
+  fullName: NMF.Expressions.ISuccessorList.Count
+- uid: NMF.Synchronizations.SynchronizationComputation`2.AllSuccessors*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.AllSuccessors
+  name: AllSuccessors
+  nameWithType: SynchronizationComputation<TIn, TOut>.AllSuccessors
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.AllSuccessors
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).AllSuccessors
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).AllSuccessors
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Set*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.Set
+  name: Set
+  nameWithType: SynchronizationComputation<TIn, TOut>.Set
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Set
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Set
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Set
+- uid: NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
+  commentId: M:NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
+  parent: NMF.Expressions.ISuccessorList
+  name: Set(INotifiable)
+  nameWithType: ISuccessorList.Set(INotifiable)
+  fullName: NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
+    name: Set
+    nameWithType: ISuccessorList.Set
+    fullName: NMF.Expressions.ISuccessorList.Set
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ISuccessorList.Set(NMF.Expressions.INotifiable)
+    name: Set
+    nameWithType: ISuccessorList.Set
+    fullName: NMF.Expressions.ISuccessorList.Set
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Synchronizations.SynchronizationComputation`2.SetDummy*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.SetDummy
+  name: SetDummy
+  nameWithType: SynchronizationComputation<TIn, TOut>.SetDummy
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.SetDummy
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).SetDummy
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).SetDummy
+- uid: NMF.Expressions.ISuccessorList.SetDummy
+  commentId: M:NMF.Expressions.ISuccessorList.SetDummy
+  parent: NMF.Expressions.ISuccessorList
+  name: SetDummy()
+  nameWithType: ISuccessorList.SetDummy()
+  fullName: NMF.Expressions.ISuccessorList.SetDummy()
+  spec.csharp:
+  - uid: NMF.Expressions.ISuccessorList.SetDummy
+    name: SetDummy
+    nameWithType: ISuccessorList.SetDummy
+    fullName: NMF.Expressions.ISuccessorList.SetDummy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ISuccessorList.SetDummy
+    name: SetDummy
+    nameWithType: ISuccessorList.SetDummy
+    fullName: NMF.Expressions.ISuccessorList.SetDummy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Synchronizations.SynchronizationComputation`2.Unset*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.Unset
+  name: Unset
+  nameWithType: SynchronizationComputation<TIn, TOut>.Unset
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.Unset
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).Unset
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).Unset
+- uid: NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  commentId: M:NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  parent: NMF.Expressions.ISuccessorList
+  isExternal: true
+  name: Unset(INotifiable, Boolean)
+  nameWithType: ISuccessorList.Unset(INotifiable, Boolean)
+  fullName: NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable, System.Boolean)
+  spec.csharp:
+  - uid: NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable,System.Boolean)
+    name: Unset
+    nameWithType: ISuccessorList.Unset
+    fullName: NMF.Expressions.ISuccessorList.Unset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ISuccessorList.Unset(NMF.Expressions.INotifiable,System.Boolean)
+    name: Unset
+    nameWithType: ISuccessorList.Unset
+    fullName: NMF.Expressions.ISuccessorList.Unset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Synchronizations.SynchronizationComputation`2.UnsetAll*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.UnsetAll
+  name: UnsetAll
+  nameWithType: SynchronizationComputation<TIn, TOut>.UnsetAll
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.UnsetAll
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).UnsetAll
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).UnsetAll
+- uid: NMF.Expressions.ISuccessorList.UnsetAll
+  commentId: M:NMF.Expressions.ISuccessorList.UnsetAll
+  parent: NMF.Expressions.ISuccessorList
+  name: UnsetAll()
+  nameWithType: ISuccessorList.UnsetAll()
+  fullName: NMF.Expressions.ISuccessorList.UnsetAll()
+  spec.csharp:
+  - uid: NMF.Expressions.ISuccessorList.UnsetAll
+    name: UnsetAll
+    nameWithType: ISuccessorList.UnsetAll
+    fullName: NMF.Expressions.ISuccessorList.UnsetAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ISuccessorList.UnsetAll
+    name: UnsetAll
+    nameWithType: ISuccessorList.UnsetAll
+    fullName: NMF.Expressions.ISuccessorList.UnsetAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Synchronizations.SynchronizationComputation`2.GetSuccessor*
+  commentId: Overload:NMF.Synchronizations.SynchronizationComputation`2.GetSuccessor
+  name: GetSuccessor
+  nameWithType: SynchronizationComputation<TIn, TOut>.GetSuccessor
+  fullName: NMF.Synchronizations.SynchronizationComputation<TIn, TOut>.GetSuccessor
+  nameWithType.vb: SynchronizationComputation(Of TIn, TOut).GetSuccessor
+  fullName.vb: NMF.Synchronizations.SynchronizationComputation(Of TIn, TOut).GetSuccessor
+- uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  commentId: M:NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  parent: NMF.Expressions.ISuccessorList
+  isExternal: true
+  name: GetSuccessor(Int32)
+  nameWithType: ISuccessorList.GetSuccessor(Int32)
+  fullName: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  spec.csharp:
+  - uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ISuccessorList.GetSuccessor
+    fullName: NMF.Expressions.ISuccessorList.GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ISuccessorList.GetSuccessor
+    fullName: NMF.Expressions.ISuccessorList.GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

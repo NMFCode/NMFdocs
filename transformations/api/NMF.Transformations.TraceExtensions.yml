@@ -67,13 +67,13 @@ items:
   inheritance:
   - System.Object
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - static
@@ -161,10 +161,7 @@ items:
   summary: "\nTrace the output of the computation that transformed the given input with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static TOut ResolveIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, TIn input)
-
-          where TIn : class where TOut : class
+    content: public static TOut ResolveIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, TIn input)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -186,7 +183,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveIn(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), input As TIn) As TOut
+      Public Shared Function ResolveIn(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), input As TIn) As TOut
   overload: NMF.Transformations.TraceExtensions.ResolveIn*
   nameWithType.vb: TraceExtensions.ResolveIn(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut), TIn)
   modifiers.csharp:
@@ -216,17 +213,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 57
+    startLine: 55
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed the given input into a desired output\n"
   example: []
   syntax:
-    content: >-
-      public static TOut Resolve<TIn, TOut>(this ITransformationTrace trace, TIn input)
-
-          where TIn : class where TOut : class
+    content: public static TOut Resolve<TIn, TOut>(this ITransformationTrace trace, TIn input)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -245,7 +239,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function Resolve(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, input As TIn) As TOut
+      Public Shared Function Resolve(Of TIn, TOut)(trace As ITransformationTrace, input As TIn) As TOut
   overload: NMF.Transformations.TraceExtensions.Resolve*
   nameWithType.vb: TraceExtensions.Resolve(Of TIn, TOut)(ITransformationTrace, TIn)
   modifiers.csharp:
@@ -275,17 +269,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 80
+    startLine: 76
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed the given input with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static TOut ResolveIn<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule, TIn1 input1, TIn2 input2)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static TOut ResolveIn<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule, TIn1 input1, TIn2 input2)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -312,7 +303,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveIn(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut), input1 As TIn1, input2 As TIn2) As TOut
+      Public Shared Function ResolveIn(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut), input1 As TIn1, input2 As TIn2) As TOut
   overload: NMF.Transformations.TraceExtensions.ResolveIn*
   nameWithType.vb: TraceExtensions.ResolveIn(Of TIn1, TIn2, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn1, TIn2, TOut), TIn1, TIn2)
   modifiers.csharp:
@@ -342,17 +333,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 102
+    startLine: 95
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed the given input with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static TOut Resolve<TIn1, TIn2, TOut>(this ITransformationTrace trace, TIn1 input1, TIn2 input2)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static TOut Resolve<TIn1, TIn2, TOut>(this ITransformationTrace trace, TIn1 input1, TIn2 input2)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -376,7 +364,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function Resolve(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, input1 As TIn1, input2 As TIn2) As TOut
+      Public Shared Function Resolve(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, input1 As TIn1, input2 As TIn2) As TOut
   overload: NMF.Transformations.TraceExtensions.Resolve*
   nameWithType.vb: TraceExtensions.Resolve(Of TIn1, TIn2, TOut)(ITransformationTrace, TIn1, TIn2)
   modifiers.csharp:
@@ -406,17 +394,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 123
+    startLine: 113
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed the given input with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static TOut ResolveIn<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule, object[] input)
-
-          where TOut : class
+    content: public static TOut ResolveIn<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule, object[] input)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -436,7 +421,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveIn(Of TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TOut), input As Object()) As TOut
+      Public Shared Function ResolveIn(Of TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TOut), input As Object()) As TOut
   overload: NMF.Transformations.TraceExtensions.ResolveIn*
   nameWithType.vb: TraceExtensions.ResolveIn(Of TOut)(ITransformationTrace, TransformationRuleBase(Of TOut), Object())
   modifiers.csharp:
@@ -466,17 +451,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 141
+    startLine: 129
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed the given input with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static TOut Resolve<TOut>(this ITransformationTrace trace, object[] input)
-
-          where TOut : class
+    content: public static TOut Resolve<TOut>(this ITransformationTrace trace, object[] input)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -493,7 +475,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function Resolve(Of TOut As Class)(trace As ITransformationTrace, input As Object()) As TOut
+      Public Shared Function Resolve(Of TOut)(trace As ITransformationTrace, input As Object()) As TOut
   overload: NMF.Transformations.TraceExtensions.Resolve*
   nameWithType.vb: TraceExtensions.Resolve(Of TOut)(ITransformationTrace, Object())
   modifiers.csharp:
@@ -523,17 +505,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 161
+    startLine: 148
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveInWhere<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, Predicate<TIn> filter)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveInWhere<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, Predicate<TIn> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -555,7 +534,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveInWhere(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), filter As Predicate(Of TIn)) As IEnumerable(Of TOut)
+      Public Shared Function ResolveInWhere(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), filter As Predicate(Of TIn)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveInWhere*
   nameWithType.vb: TraceExtensions.ResolveInWhere(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut), Predicate(Of TIn))
   modifiers.csharp:
@@ -585,17 +564,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 182
+    startLine: 166
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter into the desired type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveWhere<TIn, TOut>(this ITransformationTrace trace, Predicate<TIn> filter)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveWhere<TIn, TOut>(this ITransformationTrace trace, Predicate<TIn> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -614,7 +590,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveWhere(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, filter As Predicate(Of TIn)) As IEnumerable(Of TOut)
+      Public Shared Function ResolveWhere(Of TIn, TOut)(trace As ITransformationTrace, filter As Predicate(Of TIn)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveWhere*
   nameWithType.vb: TraceExtensions.ResolveWhere(Of TIn, TOut)(ITransformationTrace, Predicate(Of TIn))
   modifiers.csharp:
@@ -644,17 +620,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveManyIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 203
+    startLine: 185
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveManyIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, TIn input)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveManyIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, TIn input)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -676,7 +649,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveManyIn(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), input As TIn) As IEnumerable(Of TOut)
+      Public Shared Function ResolveManyIn(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), input As TIn) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveManyIn*
   nameWithType.vb: TraceExtensions.ResolveManyIn(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut), TIn)
   modifiers.csharp:
@@ -706,17 +679,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveManyIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 223
+    startLine: 203
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveManyIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, IEnumerable<TIn> list)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveManyIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, IEnumerable<TIn> list)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -738,7 +708,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveManyIn(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), list As IEnumerable(Of TIn)) As IEnumerable(Of TOut)
+      Public Shared Function ResolveManyIn(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), list As IEnumerable(Of TIn)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveManyIn*
   nameWithType.vb: TraceExtensions.ResolveManyIn(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut), IEnumerable(Of TIn))
   modifiers.csharp:
@@ -768,17 +738,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveMany
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 244
+    startLine: 221
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter into the desired type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveMany<TIn, TOut>(this ITransformationTrace trace, IEnumerable<TIn> list)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveMany<TIn, TOut>(this ITransformationTrace trace, IEnumerable<TIn> list)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -797,7 +764,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveMany(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, list As IEnumerable(Of TIn)) As IEnumerable(Of TOut)
+      Public Shared Function ResolveMany(Of TIn, TOut)(trace As ITransformationTrace, list As IEnumerable(Of TIn)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveMany*
   nameWithType.vb: TraceExtensions.ResolveMany(Of TIn, TOut)(ITransformationTrace, IEnumerable(Of TIn))
   modifiers.csharp:
@@ -827,17 +794,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveMany
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 264
+    startLine: 239
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter into the desired type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveMany<TIn, TOut>(this ITransformationTrace trace, TIn input)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveMany<TIn, TOut>(this ITransformationTrace trace, TIn input)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -856,7 +820,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveMany(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, input As TIn) As IEnumerable(Of TOut)
+      Public Shared Function ResolveMany(Of TIn, TOut)(trace As ITransformationTrace, input As TIn) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveMany*
   nameWithType.vb: TraceExtensions.ResolveMany(Of TIn, TOut)(ITransformationTrace, TIn)
   modifiers.csharp:
@@ -886,17 +850,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 283
+    startLine: 256
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveInWhere<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule, Predicate<object[]> filter)
-
-          where TOut : class
+    content: public static IEnumerable<TOut> ResolveInWhere<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule, Predicate<object[]> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -916,7 +877,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveInWhere(Of TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TOut), filter As Predicate(Of Object())) As IEnumerable(Of TOut)
+      Public Shared Function ResolveInWhere(Of TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TOut), filter As Predicate(Of Object())) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveInWhere*
   nameWithType.vb: TraceExtensions.ResolveInWhere(Of TOut)(ITransformationTrace, TransformationRuleBase(Of TOut), Predicate(Of Object()))
   modifiers.csharp:
@@ -946,17 +907,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 303
+    startLine: 274
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveWhere<TOut>(this ITransformationTrace trace, Type[] inputTypes, Predicate<object[]> filter)
-
-          where TOut : class
+    content: public static IEnumerable<TOut> ResolveWhere<TOut>(this ITransformationTrace trace, Type[] inputTypes, Predicate<object[]> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -976,7 +934,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveWhere(Of TOut As Class)(trace As ITransformationTrace, inputTypes As Type(), filter As Predicate(Of Object())) As IEnumerable(Of TOut)
+      Public Shared Function ResolveWhere(Of TOut)(trace As ITransformationTrace, inputTypes As Type(), filter As Predicate(Of Object())) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveWhere*
   nameWithType.vb: TraceExtensions.ResolveWhere(Of TOut)(ITransformationTrace, Type(), Predicate(Of Object()))
   modifiers.csharp:
@@ -1006,17 +964,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 323
+    startLine: 293
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindInWhere<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, Predicate<TOut> filter)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> FindInWhere<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, Predicate<TOut> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1038,7 +993,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindInWhere(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindInWhere(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindInWhere*
   nameWithType.vb: TraceExtensions.FindInWhere(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut), Predicate(Of TOut))
   modifiers.csharp:
@@ -1068,17 +1023,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 341
+    startLine: 308
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nFinds all outputs of computations of from the specified source typpe to the specified target type that match the given filter\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindWhere<TIn, TOut>(this ITransformationTrace trace, Predicate<TOut> filter)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> FindWhere<TIn, TOut>(this ITransformationTrace trace, Predicate<TOut> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1097,7 +1049,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindWhere(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindWhere(Of TIn, TOut)(trace As ITransformationTrace, filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindWhere*
   nameWithType.vb: TraceExtensions.FindWhere(Of TIn, TOut)(ITransformationTrace, Predicate(Of TOut))
   modifiers.csharp:
@@ -1127,17 +1079,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 359
+    startLine: 323
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nFinds all outputs of computations of the given transformation that match the given filter\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindInWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule, Predicate<TOut> filter)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static IEnumerable<TOut> FindInWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule, Predicate<TOut> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1161,7 +1110,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindInWhere(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindInWhere(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindInWhere*
   nameWithType.vb: TraceExtensions.FindInWhere(Of TIn1, TIn2, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn1, TIn2, TOut), Predicate(Of TOut))
   modifiers.csharp:
@@ -1191,17 +1140,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 379
+    startLine: 339
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nFinds all outputs of computations of from the specified source type to the specified target type that match the given filter\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, Predicate<TOut> filter)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static IEnumerable<TOut> FindWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, Predicate<TOut> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1222,7 +1168,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindWhere(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindWhere(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindWhere*
   nameWithType.vb: TraceExtensions.FindWhere(Of TIn1, TIn2, TOut)(ITransformationTrace, Predicate(Of TOut))
   modifiers.csharp:
@@ -1252,17 +1198,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 396
+    startLine: 352
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nFinds all outputs of computations of from the specified source type to the specified target type that match the given filter\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindInWhere<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule, Predicate<TOut> filter)
-
-          where TOut : class
+    content: public static IEnumerable<TOut> FindInWhere<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule, Predicate<TOut> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1282,7 +1225,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindInWhere(Of TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TOut), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindInWhere(Of TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TOut), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindInWhere*
   nameWithType.vb: TraceExtensions.FindInWhere(Of TOut)(ITransformationTrace, TransformationRuleBase(Of TOut), Predicate(Of TOut))
   modifiers.csharp:
@@ -1312,17 +1255,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 413
+    startLine: 367
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nFinds all outputs of computations of from the specified source type to the specified target type that match the given filter\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindWhere<TOut>(this ITransformationTrace trace, Type[] inputTypes, Predicate<TOut> filter)
-
-          where TOut : class
+    content: public static IEnumerable<TOut> FindWhere<TOut>(this ITransformationTrace trace, Type[] inputTypes, Predicate<TOut> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1342,7 +1282,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindWhere(Of TOut As Class)(trace As ITransformationTrace, inputTypes As Type(), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindWhere(Of TOut)(trace As ITransformationTrace, inputTypes As Type(), filter As Predicate(Of TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindWhere*
   nameWithType.vb: TraceExtensions.FindWhere(Of TOut)(ITransformationTrace, Type(), Predicate(Of TOut))
   modifiers.csharp:
@@ -1372,7 +1312,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 429
+    startLine: 382
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1381,7 +1321,6 @@ items:
   syntax:
     content: >-
       public static IEnumerable<ITraceEntry> TraceInWhere<TIn>(this ITransformationTrace trace, GeneralTransformationRule<TIn> rule, Predicate<TIn> filter)
-
           where TIn : class
     parameters:
     - id: trace
@@ -1432,17 +1371,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 448
+    startLine: 400
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTraces all computations with any inputs that math the given filters with the specified transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<ITraceEntry> TraceInWhere<TIn1, TIn2>(this ITransformationTrace trace, GeneralTransformationRule<TIn1, TIn2> rule, Func<TIn1, TIn2, bool> filter)
-
-          where TIn1 : class where TIn2 : class
+    content: public static IEnumerable<ITraceEntry> TraceInWhere<TIn1, TIn2>(this ITransformationTrace trace, GeneralTransformationRule<TIn1, TIn2> rule, Func<TIn1, TIn2, bool> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1464,7 +1400,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function TraceInWhere(Of TIn1 As Class, TIn2 As Class)(trace As ITransformationTrace, rule As GeneralTransformationRule(Of TIn1, TIn2), filter As Func(Of TIn1, TIn2, Boolean)) As IEnumerable(Of ITraceEntry)
+      Public Shared Function TraceInWhere(Of TIn1, TIn2)(trace As ITransformationTrace, rule As GeneralTransformationRule(Of TIn1, TIn2), filter As Func(Of TIn1, TIn2, Boolean)) As IEnumerable(Of ITraceEntry)
   overload: NMF.Transformations.TraceExtensions.TraceInWhere*
   nameWithType.vb: TraceExtensions.TraceInWhere(Of TIn1, TIn2)(ITransformationTrace, GeneralTransformationRule(Of TIn1, TIn2), Func(Of TIn1, TIn2, Boolean))
   modifiers.csharp:
@@ -1494,7 +1430,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TraceInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 467
+    startLine: 416
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1548,7 +1484,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 483
+    startLine: 432
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1602,7 +1538,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindAllIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 499
+    startLine: 448
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1611,7 +1547,6 @@ items:
   syntax:
     content: >-
       public static IEnumerable<TOut> FindAllIn<TOut>(this ITransformationTrace trace, TransformationRuleBase<TOut> rule)
-
           where TOut : class
     parameters:
     - id: trace
@@ -1658,17 +1593,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindAllIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 514
+    startLine: 462
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTraces all computations with any inputs that math the given filters with the specified transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindAllIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> FindAllIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1685,7 +1617,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindAllIn(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindAllIn(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindAllIn*
   nameWithType.vb: TraceExtensions.FindAllIn(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut))
   modifiers.csharp:
@@ -1715,17 +1647,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindAllIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 531
+    startLine: 476
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTraces all computations with any inputs that math the given filters with the specified transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindAllIn<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static IEnumerable<TOut> FindAllIn<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1743,7 +1672,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindAllIn(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut)) As IEnumerable(Of TOut)
+      Public Shared Function FindAllIn(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindAllIn*
   nameWithType.vb: TraceExtensions.FindAllIn(Of TIn1, TIn2, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn1, TIn2, TOut))
   modifiers.csharp:
@@ -1773,17 +1702,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveInWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 549
+    startLine: 490
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTraces all computations with any inputs that math the given filters with the specified transformation rule\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveInWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule, Func<TIn1, TIn2, bool> filter)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveInWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn1, TIn2, TOut> rule, Func<TIn1, TIn2, bool> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1804,7 +1730,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveInWhere(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut), filter As Func(Of TIn1, TIn2, Boolean)) As IEnumerable(Of TOut)
+      Public Shared Function ResolveInWhere(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn1, TIn2, TOut), filter As Func(Of TIn1, TIn2, Boolean)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveInWhere*
   nameWithType.vb: TraceExtensions.ResolveInWhere(Of TIn1, TIn2, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn1, TIn2, TOut), Func(Of TIn1, TIn2, Boolean))
   modifiers.csharp:
@@ -1834,17 +1760,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveWhere
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 568
+    startLine: 505
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, Func<TIn1, TIn2, bool> filter)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveWhere<TIn1, TIn2, TOut>(this ITransformationTrace trace, Func<TIn1, TIn2, bool> filter)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1862,7 +1785,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveWhere(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace, filter As Func(Of TIn1, TIn2, Boolean)) As IEnumerable(Of TOut)
+      Public Shared Function ResolveWhere(Of TIn1, TIn2, TOut)(trace As ITransformationTrace, filter As Func(Of TIn1, TIn2, Boolean)) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveWhere*
   nameWithType.vb: TraceExtensions.ResolveWhere(Of TIn1, TIn2, TOut)(ITransformationTrace, Func(Of TIn1, TIn2, Boolean))
   modifiers.csharp:
@@ -1892,17 +1815,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindAll
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 589
+    startLine: 523
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindAll<TOut>(this ITransformationTrace trace, Type[] inputTypes)
-
-          where TOut : class
+    content: public static IEnumerable<TOut> FindAll<TOut>(this ITransformationTrace trace, Type[] inputTypes)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1919,7 +1839,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindAll(Of TOut As Class)(trace As ITransformationTrace, inputTypes As Type()) As IEnumerable(Of TOut)
+      Public Shared Function FindAll(Of TOut)(trace As ITransformationTrace, inputTypes As Type()) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindAll*
   nameWithType.vb: TraceExtensions.FindAll(Of TOut)(ITransformationTrace, Type())
   modifiers.csharp:
@@ -1949,17 +1869,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindAll
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 606
+    startLine: 539
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindAll<TIn, TOut>(this ITransformationTrace trace)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> FindAll<TIn, TOut>(this ITransformationTrace trace)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -1975,7 +1892,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindAll(Of TIn As Class, TOut As Class)(trace As ITransformationTrace) As IEnumerable(Of TOut)
+      Public Shared Function FindAll(Of TIn, TOut)(trace As ITransformationTrace) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindAll*
   nameWithType.vb: TraceExtensions.FindAll(Of TIn, TOut)(ITransformationTrace)
   modifiers.csharp:
@@ -2005,17 +1922,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FindAll
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 625
+    startLine: 555
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> FindAll<TIn1, TIn2, TOut>(this ITransformationTrace trace)
-
-          where TIn1 : class where TIn2 : class where TOut : class
+    content: public static IEnumerable<TOut> FindAll<TIn1, TIn2, TOut>(this ITransformationTrace trace)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -2033,7 +1947,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function FindAll(Of TIn1 As Class, TIn2 As Class, TOut As Class)(trace As ITransformationTrace) As IEnumerable(Of TOut)
+      Public Shared Function FindAll(Of TIn1, TIn2, TOut)(trace As ITransformationTrace) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.FindAll*
   nameWithType.vb: TraceExtensions.FindAll(Of TIn1, TIn2, TOut)(ITransformationTrace)
   modifiers.csharp:
@@ -2063,17 +1977,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveManyIn
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 646
+    startLine: 572
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter with the given transformation type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveManyIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, params TIn[] list)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveManyIn<TIn, TOut>(this ITransformationTrace trace, TransformationRuleBase<TIn, TOut> rule, params TIn[] list)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -2095,7 +2006,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveManyIn(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), ParamArray list As TIn()) As IEnumerable(Of TOut)
+      Public Shared Function ResolveManyIn(Of TIn, TOut)(trace As ITransformationTrace, rule As TransformationRuleBase(Of TIn, TOut), ParamArray list As TIn()) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveManyIn*
   nameWithType.vb: TraceExtensions.ResolveManyIn(Of TIn, TOut)(ITransformationTrace, TransformationRuleBase(Of TIn, TOut), TIn())
   modifiers.csharp:
@@ -2125,17 +2036,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveMany
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 661
+    startLine: 585
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nTrace the output of the computation that transformed any input that matches the filter into the desired type\n"
   example: []
   syntax:
-    content: >-
-      public static IEnumerable<TOut> ResolveMany<TIn, TOut>(this ITransformationTrace trace, params TIn[] list)
-
-          where TIn : class where TOut : class
+    content: public static IEnumerable<TOut> ResolveMany<TIn, TOut>(this ITransformationTrace trace, params TIn[] list)
     parameters:
     - id: trace
       type: NMF.Transformations.Core.ITransformationTrace
@@ -2154,7 +2062,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ResolveMany(Of TIn As Class, TOut As Class)(trace As ITransformationTrace, ParamArray list As TIn()) As IEnumerable(Of TOut)
+      Public Shared Function ResolveMany(Of TIn, TOut)(trace As ITransformationTrace, ParamArray list As TIn()) As IEnumerable(Of TOut)
   overload: NMF.Transformations.TraceExtensions.ResolveMany*
   nameWithType.vb: TraceExtensions.ResolveMany(Of TIn, TOut)(ITransformationTrace, TIn())
   modifiers.csharp:
@@ -2184,17 +2092,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetOrCreateUserItem
     path: src/Transformations/Transformations/NTL/TraceExtensions.cs
-    startLine: 678
+    startLine: 600
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
   summary: "\nGets or creates the user item with the specified key\n"
   example: []
   syntax:
-    content: >-
-      public static TValue GetOrCreateUserItem<TValue>(this ITransformationContext context, object key, Func<TValue> valueCreator = null)
-
-          where TValue : class
+    content: public static TValue GetOrCreateUserItem<TValue>(this ITransformationContext context, object key, Func<TValue> valueCreator = null)
     parameters:
     - id: context
       type: NMF.Transformations.Core.ITransformationContext
@@ -2214,7 +2119,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GetOrCreateUserItem(Of TValue As Class)(context As ITransformationContext, key As Object, valueCreator As Func(Of TValue) = Nothing) As TValue
+      Public Shared Function GetOrCreateUserItem(Of TValue)(context As ITransformationContext, key As Object, valueCreator As Func(Of TValue) = Nothing) As TValue
   overload: NMF.Transformations.TraceExtensions.GetOrCreateUserItem*
   nameWithType.vb: TraceExtensions.GetOrCreateUserItem(Of TValue)(ITransformationContext, Object, Func(Of TValue))
   modifiers.csharp:
@@ -2238,37 +2143,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -2347,63 +2221,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -2510,6 +2327,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (
@@ -3826,7 +3731,6 @@ references:
     nameWithType: )
     fullName: )
 - uid: TValue
-  commentId: '!:TValue'
   name: TValue
   nameWithType: TValue
   fullName: TValue

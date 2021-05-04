@@ -53,25 +53,26 @@ items:
     content: 'public abstract class Computation : IPersistor, ITraceEntry'
     content.vb: >-
       Public MustInherit Class Computation
-
           Implements IPersistor, ITraceEntry
   inheritance:
   - System.Object
   derivedClasses:
+  - NMF.Synchronizations.SynchronizationComputation`2
   - NMF.Transformations.ComputationBase
   - NMF.Transformations.ComputationBase`1
   - NMF.Transformations.ComputationBase`2
+  - NMF.Transformations.Tests.MockComputation
   implements:
   - NMF.Transformations.Core.IPersistor
   - NMF.Transformations.Core.ITraceEntry
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   extensionMethods:
   - NMF.Transformations.Core.ITraceEntry.NMF.Transformations.Core.TraceEntryExtensions.CreateInputArray
   modifiers.csharp:
@@ -410,7 +411,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ThrowDelayedException
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 93
+    startLine: 92
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -444,7 +445,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MarkRequire
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 106
+    startLine: 105
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -489,7 +490,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OutputCore
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 120
+    startLine: 119
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -528,7 +529,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OutputInitialized
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 125
+    startLine: 124
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -561,7 +562,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Computed
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 131
+    startLine: 130
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -594,7 +595,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DelayOutputAtLeast
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 137
+    startLine: 136
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -630,7 +631,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DelayTransformationAtLeast
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 146
+    startLine: 145
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -666,7 +667,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnOutputInitialized
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 155
+    startLine: 154
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -704,7 +705,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsDelayed
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 189
+    startLine: 185
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -741,7 +742,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnComputed
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 195
+    startLine: 191
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -779,7 +780,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Transform
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 208
+    startLine: 201
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -814,7 +815,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateOutput
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 215
+    startLine: 208
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -855,7 +856,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InitializeOutput
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 221
+    startLine: 214
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -891,15 +892,19 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetBaseComputation
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 228
+    startLine: 226
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
+  summary: "\nSets the provided computation as the base computation\n"
+  remarks: By default, this method is blank.
+  example: []
   syntax:
     content: public virtual void SetBaseComputation(Computation baseComputation)
     parameters:
     - id: baseComputation
       type: NMF.Transformations.Core.Computation
+      description: The base computation
     content.vb: Public Overridable Sub SetBaseComputation(baseComputation As Computation)
   overload: NMF.Transformations.Core.Computation.SetBaseComputation*
   modifiers.csharp:
@@ -927,7 +932,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NMF.Transformations.Core.IPersistor.Persist
     path: src/Transformations/Transformations.Core/Core/Computation.cs
-    startLine: 230
+    startLine: 228
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -967,37 +972,6 @@ references:
   name: ITraceEntry
   nameWithType: ITraceEntry
   fullName: NMF.Transformations.Core.ITraceEntry
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -1076,63 +1050,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -1239,6 +1156,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (

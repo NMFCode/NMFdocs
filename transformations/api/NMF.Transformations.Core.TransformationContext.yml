@@ -52,21 +52,25 @@ items:
     content: 'public class TransformationContext : ITransformationEngineContext, ITransformationContext'
     content.vb: >-
       Public Class TransformationContext
-
           Implements ITransformationEngineContext, ITransformationContext
   inheritance:
   - System.Object
+  derivedClasses:
+  - NMF.Synchronizations.SynchronizationContext
+  - NMF.Transformations.Parallel.ParallelTransformationContext2
+  - NMF.Transformations.Parallel.Tasks.TaskParallelTransformationContext2
+  - NMF.Transformations.Trace.TracingTransformationContext
   implements:
   - NMF.Transformations.Core.ITransformationEngineContext
   - NMF.Transformations.Core.ITransformationContext
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   extensionMethods:
   - NMF.Transformations.Core.ITransformationContext.NMF.Transformations.TraceExtensions.GetOrCreateUserItem``1(System.Object,System.Func{{TValue}})
   - NMF.Transformations.Core.ITransformationContext.NMF.Transformations.Core.TransformationContextExtensions.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[])
@@ -219,19 +223,24 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateComputationContext
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 229
+    startLine: 235
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
+  summary: "\nCreates a computation context for the given input with the given transformation rule\n"
+  example: []
   syntax:
     content: protected virtual ComputationContext CreateComputationContext(object[] input, GeneralTransformationRule rule)
     parameters:
     - id: input
       type: System.Object[]
+      description: The inputs
     - id: rule
       type: NMF.Transformations.Core.GeneralTransformationRule
+      description: The transformation rule to process these inputs
     return:
       type: NMF.Transformations.Core.ComputationContext
+      description: A computation context
     content.vb: Protected Overridable Function CreateComputationContext(input As Object(), rule As GeneralTransformationRule) As ComputationContext
   overload: NMF.Transformations.Core.TransformationContext.CreateComputationContext*
   nameWithType.vb: TransformationContext.CreateComputationContext(Object(), GeneralTransformationRule)
@@ -261,7 +270,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddTraceEntry
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 288
+    startLine: 294
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -300,7 +309,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecutePendingComputations
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 367
+    startLine: 372
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -332,7 +341,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecuteLevel
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 392
+    startLine: 397
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -373,7 +382,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateDelayedOutputs
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 417
+    startLine: 422
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -405,7 +414,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRules
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 450
+    startLine: 455
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -450,7 +459,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRule
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 461
+    startLine: 466
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -495,7 +504,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Bag
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 477
+    startLine: 482
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -535,7 +544,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Data
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 486
+    startLine: 491
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -574,7 +583,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecutePending
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 707
+    startLine: 712
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -608,10 +617,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallPendingDependencies
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 714
+    startLine: 722
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
+  summary: "\nCalls dependencies of transformations executed so far\n"
+  example: []
   syntax:
     content: public void CallPendingDependencies()
     content.vb: Public Sub CallPendingDependencies
@@ -638,7 +649,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Computations
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 725
+    startLine: 733
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -677,7 +688,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Trace
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 733
+    startLine: 741
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -716,7 +727,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Input
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 742
+    startLine: 750
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -756,7 +767,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Inputs
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 756
+    startLine: 763
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -795,7 +806,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Output
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 765
+    startLine: 772
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -833,7 +844,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Outputs
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 773
+    startLine: 780
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -872,7 +883,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnComputationCompleted
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 782
+    startLine: 789
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -910,7 +921,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ComputationCompleted
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 790
+    startLine: 797
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -946,7 +957,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NMF.Transformations.Core.ITransformationContext.IsThreadSafe
     path: src/Transformations/Transformations.Core/Core/TransformationContext.cs
-    startLine: 795
+    startLine: 802
   assemblies:
   - NMF.Transformations.Core
   namespace: NMF.Transformations.Core
@@ -992,37 +1003,6 @@ references:
   name: ITransformationContext
   nameWithType: ITransformationContext
   fullName: NMF.Transformations.Core.ITransformationContext
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -1101,63 +1081,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -1264,6 +1187,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (

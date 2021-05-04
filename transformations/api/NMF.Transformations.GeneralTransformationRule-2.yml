@@ -71,7 +71,7 @@ items:
   - NMF.Transformations.GeneralTransformationRule`2.Rule``1
   - NMF.Transformations.GeneralTransformationRule`2.ToString
   - NMF.Transformations.GeneralTransformationRule`2.WithPattern(NMF.Transformations.ITransformationRulePattern{`0,`1})
-  - NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+  - NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
   - NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{System.Tuple{`0,`1}}})
   langs:
   - csharp
@@ -94,15 +94,14 @@ items:
   summary: "\nDefines a transformation rule of a transformation that has one input argument\n"
   example: []
   syntax:
-    content: 'public abstract class GeneralTransformationRule<TIn1, TIn2> : GeneralTransformationRule where TIn1 : class where TIn2 : class'
+    content: 'public abstract class GeneralTransformationRule<TIn1, TIn2> : GeneralTransformationRule'
     typeParameters:
     - id: TIn1
       description: The type of the first input argument
     - id: TIn2
       description: The type of the second input argument
     content.vb: >-
-      Public MustInherit Class GeneralTransformationRule(Of TIn1 As Class, TIn2 As Class)
-
+      Public MustInherit Class GeneralTransformationRule(Of TIn1, TIn2)
           Inherits GeneralTransformationRule
   inheritance:
   - System.Object
@@ -129,10 +128,10 @@ items:
   - NMF.Transformations.Core.GeneralTransformationRule.MarkInstantiatingFor(NMF.Transformations.Core.GeneralTransformationRule,System.Predicate{NMF.Transformations.Core.Computation})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType.vb: GeneralTransformationRule(Of TIn1, TIn2)
   modifiers.csharp:
   - public
@@ -162,7 +161,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MarkInstantiatingFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 30
+    startLine: 28
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -204,7 +203,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Rule
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 57
+    startLine: 55
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -213,7 +212,6 @@ items:
   syntax:
     content: >-
       public TRule Rule<TRule>()
-
           where TRule : GeneralTransformationRule
     typeParameters:
     - id: TRule
@@ -248,7 +246,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InputType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 66
+    startLine: 64
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -292,7 +290,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: WithPattern
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 77
+    startLine: 75
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -313,16 +311,16 @@ items:
   - Public
   fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(NMF.Transformations.ITransformationRulePattern(Of TIn1, TIn2))
   name.vb: WithPattern(ITransformationRulePattern(Of TIn1, TIn2))
-- uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
-  commentId: M:NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
-  id: WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}})
+- uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
+  commentId: M:NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
+  id: WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}})
   parent: NMF.Transformations.GeneralTransformationRule`2
   langs:
   - csharp
   - vb
   name: WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>)
   nameWithType: GeneralTransformationRule<TIn1, TIn2>.WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>)
-  fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<System.Tuple<TIn1, TIn2>>>)
+  fullName: NMF.Transformations.GeneralTransformationRule<TIn1, TIn2>.WithPattern(System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<System.Tuple<TIn1, TIn2>>>)
   type: Method
   source:
     remote:
@@ -331,7 +329,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: WithPattern
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 90
+    startLine: 88
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -341,7 +339,7 @@ items:
     content: public void WithPattern(Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>> patternCreator)
     parameters:
     - id: patternCreator
-      type: System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}}
+      type: System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}}
       description: The relation pattern that should be applied on the current transformation rule
     content.vb: Public Sub WithPattern(patternCreator As Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2))))
   overload: NMF.Transformations.GeneralTransformationRule`2.WithPattern*
@@ -350,7 +348,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2))))
+  fullName.vb: NMF.Transformations.GeneralTransformationRule(Of TIn1, TIn2).WithPattern(System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2))))
   name.vb: WithPattern(Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2))))
 - uid: NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{System.Tuple{`0,`1}}})
   commentId: M:NMF.Transformations.GeneralTransformationRule`2.WithPattern(System.Func{NMF.Transformations.Core.ITransformationContext,System.Collections.Generic.IEnumerable{System.Tuple{`0,`1}}})
@@ -370,7 +368,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: WithPattern
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 99
+    startLine: 97
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -409,7 +407,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 110
+    startLine: 108
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -419,7 +417,6 @@ items:
   syntax:
     content: >-
       public void RequireByType<TRequiredInput1, TRequiredInput2>()
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     typeParameters:
     - id: TRequiredInput1
@@ -453,7 +450,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 135
+    startLine: 132
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -462,7 +459,6 @@ items:
   syntax:
     content: >-
       public void RequireByType<TRequiredInput1, TRequiredInput2>(Func<TIn1, TIn2, TRequiredInput1> selector1, Func<TIn1, TIn2, TRequiredInput2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: selector1
@@ -510,7 +506,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 158
+    startLine: 154
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -519,7 +515,6 @@ items:
   syntax:
     content: >-
       public void RequireByType<TRequiredInput>(Func<TIn1, TIn2, TRequiredInput> selector)
-
           where TRequiredInput : class
     parameters:
     - id: selector
@@ -559,7 +554,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 178
+    startLine: 173
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -601,7 +596,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 200
+    startLine: 194
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -610,7 +605,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency Require<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn1, TIn2, TRequiredInput1> selector1, Func<TIn1, TIn2, TRequiredInput2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -666,7 +660,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 221
+    startLine: 214
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -675,7 +669,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency Require<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn1, TIn2, TRequiredInput> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -723,7 +716,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Require
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 239
+    startLine: 231
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -774,7 +767,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 253
+    startLine: 245
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -783,7 +776,6 @@ items:
   syntax:
     content: >-
       public void RequireManyByType<TRequiredInput1, TRequiredInput2>(Func<TIn1, TIn2, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: selector
@@ -825,7 +817,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 274
+    startLine: 265
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -834,7 +826,6 @@ items:
   syntax:
     content: >-
       public void RequireManyByType<TRequiredInput>(Func<TIn1, TIn2, IEnumerable<TRequiredInput>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: selector
@@ -874,7 +865,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 297
+    startLine: 287
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -883,7 +874,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency RequireMany<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn1, TIn2, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -933,7 +923,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 317
+    startLine: 306
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -942,7 +932,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency RequireMany<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn1, TIn2, IEnumerable<TRequiredInput>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -990,7 +979,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 333
+    startLine: 321
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -999,7 +988,6 @@ items:
   syntax:
     content: >-
       public void CallByType<TRequiredInput1, TRequiredInput2>()
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     typeParameters:
     - id: TRequiredInput1
@@ -1033,7 +1021,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 348
+    startLine: 335
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1042,7 +1030,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -1086,7 +1073,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 364
+    startLine: 351
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1095,7 +1082,6 @@ items:
   syntax:
     content: >-
       public void CallByType<TRequiredInput1, TRequiredInput2>(Func<TIn1, TIn2, TRequiredInput1> selector1, Func<TIn1, TIn2, TRequiredInput2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: selector1
@@ -1143,7 +1129,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 384
+    startLine: 370
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1152,7 +1138,6 @@ items:
   syntax:
     content: >-
       public void CallByType<TRequiredInput>(Func<TIn1, TIn2, TRequiredInput> selector)
-
           where TRequiredInput : class
     parameters:
     - id: selector
@@ -1192,7 +1177,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 407
+    startLine: 392
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1201,7 +1186,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency Call<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn1, TIn2, TRequiredInput1> selector1, Func<TIn1, TIn2, TRequiredInput2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -1257,7 +1241,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 424
+    startLine: 408
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1299,7 +1283,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 444
+    startLine: 427
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1308,7 +1292,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency Call<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn1, TIn2, TRequiredInput> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -1356,7 +1339,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 460
+    startLine: 442
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1365,7 +1348,6 @@ items:
   syntax:
     content: >-
       public void CallManyByType<TRequiredInput1, TRequiredInput2>(Func<TIn1, TIn2, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: selector
@@ -1407,7 +1389,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallManyByType
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 479
+    startLine: 460
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1416,7 +1398,6 @@ items:
   syntax:
     content: >-
       public void CallManyByType<TRequiredInput>(Func<TIn1, TIn2, IEnumerable<TRequiredInput>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: selector
@@ -1456,7 +1437,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 499
+    startLine: 479
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1465,7 +1446,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency CallMany<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TIn1, TIn2, IEnumerable<Tuple<TRequiredInput1, TRequiredInput2>>> selector)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -1515,7 +1495,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 519
+    startLine: 498
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1524,7 +1504,6 @@ items:
   syntax:
     content: >-
       public ITransformationRuleDependency CallMany<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TIn1, TIn2, IEnumerable<TRequiredInput>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -1572,7 +1551,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 539
+    startLine: 517
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1581,7 +1560,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput1, TRequiredInput2>(Func<TRequiredInput1, TRequiredInput2, TIn1> selector1, Func<TRequiredInput1, TRequiredInput2, TIn2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: selector1
@@ -1629,7 +1607,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 557
+    startLine: 534
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1638,7 +1616,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput1, TRequiredInput2>(Func<TRequiredInput1, TRequiredInput2, TIn1> selector1, Func<TRequiredInput1, TRequiredInput2, TIn2> selector2, Func<TRequiredInput1, TRequiredInput2, bool> filter)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: selector1
@@ -1689,7 +1666,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 584
+    startLine: 560
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1698,7 +1675,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, TIn1> selector1, Func<TRequiredInput1, TRequiredInput2, TIn2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -1752,7 +1728,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 603
+    startLine: 579
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1761,7 +1737,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, TIn1> selector1, Func<TRequiredInput1, TRequiredInput2, TIn2> selector2, Func<TRequiredInput1, TRequiredInput2, bool> filter)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -1818,7 +1793,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 628
+    startLine: 603
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1870,7 +1845,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 643
+    startLine: 617
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1925,7 +1900,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 668
+    startLine: 641
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1934,7 +1909,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, TIn1> selector1, Func<TRequiredInput, TIn2> selector2)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -1986,7 +1960,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 685
+    startLine: 658
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -1995,7 +1969,6 @@ items:
   syntax:
     content: >-
       public void CallFor<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, TIn1> selector1, Func<TRequiredInput, TIn2> selector2, Func<TRequiredInput, bool> filter)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -2050,7 +2023,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 711
+    startLine: 683
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2106,7 +2079,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 728
+    startLine: 699
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2165,7 +2138,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 755
+    startLine: 725
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2174,7 +2147,6 @@ items:
   syntax:
     content: >-
       public void CallForOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn1> selector1, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn2> selector2)
-
           where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -2230,7 +2202,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 776
+    startLine: 746
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2239,7 +2211,6 @@ items:
   syntax:
     content: >-
       public void CallForOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn1> selector1, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, TIn2> selector2, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, bool> filter)
-
           where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -2298,7 +2269,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 803
+    startLine: 772
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2352,7 +2323,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 819
+    startLine: 787
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2409,7 +2380,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 845
+    startLine: 812
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2418,7 +2389,6 @@ items:
   syntax:
     content: >-
       public void CallForOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, TIn1> selector1, Func<TRequiredInput, TRequiredOutput, TIn2> selector2)
-
           where TRequiredInput : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -2472,7 +2442,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 864
+    startLine: 831
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2481,7 +2451,6 @@ items:
   syntax:
     content: >-
       public void CallForOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, TIn1> selector1, Func<TRequiredInput, TRequiredOutput, TIn2> selector2, Func<TRequiredInput, TRequiredOutput, bool> filter)
-
           where TRequiredInput : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -2538,7 +2507,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 888
+    startLine: 854
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2586,7 +2555,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 901
+    startLine: 867
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2637,7 +2606,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 922
+    startLine: 888
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2646,7 +2615,6 @@ items:
   syntax:
     content: >-
       public void CallForEach<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<Tuple<TIn1, TIn2>>> selector)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -2694,7 +2662,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 939
+    startLine: 905
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2703,7 +2671,6 @@ items:
   syntax:
     content: >-
       public void CallForEach<TRequiredInput1, TRequiredInput2>(GeneralTransformationRule<TRequiredInput1, TRequiredInput2> rule, Func<TRequiredInput1, TRequiredInput2, IEnumerable<Tuple<TIn1, TIn2>>> selector, Func<TRequiredInput1, TRequiredInput2, bool> filter)
-
           where TRequiredInput1 : class where TRequiredInput2 : class
     parameters:
     - id: rule
@@ -2754,7 +2721,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 961
+    startLine: 926
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2800,7 +2767,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 973
+    startLine: 938
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2849,7 +2816,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 993
+    startLine: 958
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2858,7 +2825,6 @@ items:
   syntax:
     content: >-
       public void CallForEach<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, IEnumerable<Tuple<TIn1, TIn2>>> selector)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -2904,7 +2870,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1008
+    startLine: 973
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -2913,7 +2879,6 @@ items:
   syntax:
     content: >-
       public void CallForEach<TRequiredInput>(GeneralTransformationRule<TRequiredInput> rule, Func<TRequiredInput, IEnumerable<Tuple<TIn1, TIn2>>> selector, Func<TRequiredInput, bool> filter)
-
           where TRequiredInput : class
     parameters:
     - id: rule
@@ -2962,7 +2927,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1030
+    startLine: 994
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3012,7 +2977,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1044
+    startLine: 1008
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3065,7 +3030,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1066
+    startLine: 1030
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3074,7 +3039,6 @@ items:
   syntax:
     content: >-
       public void CallForEachOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable<Tuple<TIn1, TIn2>>> selector)
-
           where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -3124,7 +3088,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1085
+    startLine: 1049
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3133,7 +3097,6 @@ items:
   syntax:
     content: >-
       public void CallForEachOutputSensitive<TRequiredInput1, TRequiredInput2, TRequiredOutput>(TransformationRuleBase<TRequiredInput1, TRequiredInput2, TRequiredOutput> rule, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, IEnumerable<Tuple<TIn1, TIn2>>> selector, Func<TRequiredInput1, TRequiredInput2, TRequiredOutput, bool> filter)
-
           where TRequiredInput1 : class where TRequiredInput2 : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -3186,7 +3149,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1109
+    startLine: 1072
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3234,7 +3197,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1122
+    startLine: 1085
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3285,7 +3248,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1143
+    startLine: 1106
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3294,7 +3257,6 @@ items:
   syntax:
     content: >-
       public void CallForEachOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, IEnumerable<Tuple<TIn1, TIn2>>> selector)
-
           where TRequiredInput : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -3342,7 +3304,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEachOutputSensitive
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1160
+    startLine: 1123
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3351,7 +3313,6 @@ items:
   syntax:
     content: >-
       public void CallForEachOutputSensitive<TRequiredInput, TRequiredOutput>(TransformationRuleBase<TRequiredInput, TRequiredOutput> rule, Func<TRequiredInput, TRequiredOutput, IEnumerable<Tuple<TIn1, TIn2>>> selector, Func<TRequiredInput, TRequiredOutput, bool> filter)
-
           where TRequiredInput : class where TRequiredOutput : class
     parameters:
     - id: rule
@@ -3402,7 +3363,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1185
+    startLine: 1147
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3454,7 +3415,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallFor
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1199
+    startLine: 1161
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3509,7 +3470,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1216
+    startLine: 1178
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3561,7 +3522,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallForEach
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1230
+    startLine: 1192
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3616,7 +3577,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RequireMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1245
+    startLine: 1207
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3667,7 +3628,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Call
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1258
+    startLine: 1220
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3718,7 +3679,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CallMany
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1272
+    startLine: 1234
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -3769,7 +3730,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ToString
     path: src/Transformations/Transformations/NTL/GeneralTransformationRuleBaseT2.cs
-    startLine: 1531
+    startLine: 1493
   assemblies:
   - NMF.Transformations
   namespace: NMF.Transformations
@@ -4302,63 +4263,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
@@ -4449,6 +4353,63 @@ references:
   - name: (
     nameWithType: (
     fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -4762,15 +4723,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}}
-  commentId: T:System.Func{NMF.Transformations.Core.ITransformationContext,INotifyEnumerable{System.Tuple{`0,`1}}}
+- uid: System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{{TIn1},{TIn2}}}}
+  commentId: T:System.Func{NMF.Transformations.Core.ITransformationContext,NMF.Expressions.INotifyEnumerable{System.Tuple{`0,`1}}}
   parent: System
   definition: System.Func`2
   name: Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>
   nameWithType: Func<ITransformationContext, INotifyEnumerable<Tuple<TIn1, TIn2>>>
-  fullName: System.Func<NMF.Transformations.Core.ITransformationContext, INotifyEnumerable<System.Tuple<TIn1, TIn2>>>
+  fullName: System.Func<NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable<System.Tuple<TIn1, TIn2>>>
   nameWithType.vb: Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2)))
-  fullName.vb: System.Func(Of NMF.Transformations.Core.ITransformationContext, INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2)))
+  fullName.vb: System.Func(Of NMF.Transformations.Core.ITransformationContext, NMF.Expressions.INotifyEnumerable(Of System.Tuple(Of TIn1, TIn2)))
   name.vb: Func(Of ITransformationContext, INotifyEnumerable(Of Tuple(Of TIn1, TIn2)))
   spec.csharp:
   - uid: System.Func`2
@@ -4788,11 +4749,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
     nameWithType: <
     fullName: <
@@ -4838,11 +4798,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: INotifyEnumerable`1
+  - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
     nameWithType: INotifyEnumerable
-    fullName: INotifyEnumerable
-    isExternal: true
+    fullName: NMF.Expressions.INotifyEnumerable
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

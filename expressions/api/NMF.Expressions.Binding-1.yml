@@ -21,25 +21,28 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Binding
     path: src/Expressions/Expressions.Utilities/Binding.cs
-    startLine: 7
+    startLine: 11
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions
+  summary: "\nHelper class to create bindings\n"
+  example: []
   syntax:
     content: public static class Binding<T>
     typeParameters:
     - id: T
+      description: The type of bindings
     content.vb: Public Module Binding(Of T)
   inheritance:
   - System.Object
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   nameWithType.vb: Binding(Of T)
   modifiers.csharp:
   - public
@@ -68,21 +71,27 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Create
     path: src/Expressions/Expressions.Utilities/Binding.cs
-    startLine: 10
+    startLine: 20
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions
+  summary: "\nCreates a new binding for the type T\n"
+  example: []
   syntax:
     content: public static Binding<T, TMember> Create<TMember>(Expression<Func<T, TMember>> func, Expression<Func<T, TMember>> member)
     parameters:
     - id: func
       type: System.Linq.Expressions.Expression{System.Func{{T},{TMember}}}
+      description: The function the member should be bound to
     - id: member
       type: System.Linq.Expressions.Expression{System.Func{{T},{TMember}}}
+      description: The member that should be bound
     typeParameters:
     - id: TMember
+      description: The type of the member that should be bound
     return:
       type: NMF.Expressions.Binding{{T},{TMember}}
+      description: A binding
     content.vb: Public Shared Function Create(Of TMember)(func As Expression(Of Func(Of T, TMember)), member As Expression(Of Func(Of T, TMember))) As Binding(Of T, TMember)
   overload: NMF.Expressions.Binding`1.Create*
   nameWithType.vb: Binding(Of T).Create(Of TMember)(Expression(Of Func(Of T, TMember)), Expression(Of Func(Of T, TMember)))
@@ -112,21 +121,27 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Create
     path: src/Expressions/Expressions.Utilities/Binding.cs
-    startLine: 16
+    startLine: 33
   assemblies:
   - NMF.Expressions.Utilities
   namespace: NMF.Expressions
+  summary: "\nCreates a new binding for the type T\n"
+  example: []
   syntax:
     content: public static Binding<T, TMember> Create<TMember>(Expression<Func<T, TMember>> func, Action<T, TMember> setter)
     parameters:
     - id: func
       type: System.Linq.Expressions.Expression{System.Func{{T},{TMember}}}
+      description: The function the member should be bound to
     - id: setter
       type: System.Action{{T},{TMember}}
+      description: The setter function for the member
     typeParameters:
     - id: TMember
+      description: The type of the member that should be bound
     return:
       type: NMF.Expressions.Binding{{T},{TMember}}
+      description: A binding
     content.vb: Public Shared Function Create(Of TMember)(func As Expression(Of Func(Of T, TMember)), setter As Action(Of T, TMember)) As Binding(Of T, TMember)
   overload: NMF.Expressions.Binding`1.Create*
   nameWithType.vb: Binding(Of T).Create(Of TMember)(Expression(Of Func(Of T, TMember)), Action(Of T, TMember))
@@ -151,37 +166,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -260,63 +244,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -423,6 +350,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (

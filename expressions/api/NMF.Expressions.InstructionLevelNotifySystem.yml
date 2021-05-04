@@ -10,7 +10,6 @@ items:
   - NMF.Expressions.InstructionLevelNotifySystem.CreateExpression``1(System.Linq.Expressions.Expression,System.Collections.Generic.IEnumerable{System.Linq.Expressions.ParameterExpression},System.Collections.Generic.IDictionary{System.String,System.Object})
   - NMF.Expressions.InstructionLevelNotifySystem.CreateLocal``2(NMF.Expressions.INotifyExpression{``0},NMF.Expressions.INotifyExpression{``1},System.String@)
   - NMF.Expressions.InstructionLevelNotifySystem.CreateReversableExpression``1(System.Linq.Expressions.Expression,System.Collections.Generic.IEnumerable{System.Linq.Expressions.ParameterExpression},System.Collections.Generic.IDictionary{System.String,System.Object})
-  - NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList
   - NMF.Expressions.InstructionLevelNotifySystem.Instance
   langs:
   - csharp
@@ -36,20 +35,21 @@ items:
     content: 'public class InstructionLevelNotifySystem : INotifySystem'
     content.vb: >-
       Public Class InstructionLevelNotifySystem
-
           Implements INotifySystem
   inheritance:
   - System.Object
+  derivedClasses:
+  - NMF.Expressions.ModelNotifySystem
   implements:
   - NMF.Expressions.INotifySystem
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -74,10 +74,12 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 16
+    startLine: 19
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: "\nCreates a new instance\n"
+  example: []
   syntax:
     content: public InstructionLevelNotifySystem()
     content.vb: Public Sub New
@@ -104,7 +106,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Instance
     path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 29
+    startLine: 32
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -143,7 +145,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateLocal
     path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 46
+    startLine: 49
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -196,7 +198,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateExpression
     path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 62
+    startLine: 65
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -249,7 +251,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateReversableExpression
     path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 86
+    startLine: 89
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -302,7 +304,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateExpression
     path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 113
+    startLine: 115
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -334,40 +336,6 @@ items:
   - Public
   fullName.vb: NMF.Expressions.InstructionLevelNotifySystem.CreateExpression(System.Linq.Expressions.Expression, System.Collections.Generic.IEnumerable(Of System.Linq.Expressions.ParameterExpression), System.Collections.Generic.IDictionary(Of System.String, System.Object))
   name.vb: CreateExpression(Expression, IEnumerable(Of ParameterExpression), IDictionary(Of String, Object))
-- uid: NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList
-  commentId: M:NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList
-  id: CreateSuccessorList
-  parent: NMF.Expressions.InstructionLevelNotifySystem
-  langs:
-  - csharp
-  - vb
-  name: CreateSuccessorList()
-  nameWithType: InstructionLevelNotifySystem.CreateSuccessorList()
-  fullName: NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList()
-  type: Method
-  source:
-    remote:
-      path: Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: CreateSuccessorList
-    path: src/Expressions/Expressions/Public/InstructionLevelNotifySystem.cs
-    startLine: 128
-  assemblies:
-  - NMF.Expressions
-  namespace: NMF.Expressions
-  syntax:
-    content: public ISuccessorList CreateSuccessorList()
-    return:
-      type: NMF.Expressions.ISuccessorList
-    content.vb: Public Function CreateSuccessorList As ISuccessorList
-  overload: NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList*
-  implements:
-  - NMF.Expressions.INotifySystem.CreateSuccessorList
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 references:
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
@@ -387,37 +355,6 @@ references:
   name: INotifySystem
   nameWithType: INotifySystem
   fullName: NMF.Expressions.INotifySystem
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -496,63 +433,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -659,6 +539,94 @@ references:
     name: MemberwiseClone
     nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
     isExternal: true
   - name: (
     nameWithType: (
@@ -1305,7 +1273,7 @@ references:
     nameWithType: )
     fullName: )
 - uid: NMF.Expressions.INotifyReversableExpression{{T}}
-  commentId: T:NMF.Expressions.INotifyReversableExpression{``0}
+  commentId: T:NMF.Expressions.INotifyReversableExpression{`0}
   parent: NMF.Expressions
   definition: NMF.Expressions.INotifyReversableExpression`1
   name: INotifyReversableExpression<T>
@@ -1518,42 +1486,3 @@ references:
   name: INotifyExpression
   nameWithType: INotifyExpression
   fullName: NMF.Expressions.INotifyExpression
-- uid: NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList*
-  commentId: Overload:NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList
-  name: CreateSuccessorList
-  nameWithType: InstructionLevelNotifySystem.CreateSuccessorList
-  fullName: NMF.Expressions.InstructionLevelNotifySystem.CreateSuccessorList
-- uid: NMF.Expressions.INotifySystem.CreateSuccessorList
-  commentId: M:NMF.Expressions.INotifySystem.CreateSuccessorList
-  parent: NMF.Expressions.INotifySystem
-  name: CreateSuccessorList()
-  nameWithType: INotifySystem.CreateSuccessorList()
-  fullName: NMF.Expressions.INotifySystem.CreateSuccessorList()
-  spec.csharp:
-  - uid: NMF.Expressions.INotifySystem.CreateSuccessorList
-    name: CreateSuccessorList
-    nameWithType: INotifySystem.CreateSuccessorList
-    fullName: NMF.Expressions.INotifySystem.CreateSuccessorList
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.INotifySystem.CreateSuccessorList
-    name: CreateSuccessorList
-    nameWithType: INotifySystem.CreateSuccessorList
-    fullName: NMF.Expressions.INotifySystem.CreateSuccessorList
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.ISuccessorList
-  commentId: T:NMF.Expressions.ISuccessorList
-  parent: NMF.Expressions
-  name: ISuccessorList
-  nameWithType: ISuccessorList
-  fullName: NMF.Expressions.ISuccessorList

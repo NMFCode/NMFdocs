@@ -5,13 +5,14 @@ items:
   id: SingleSuccessorList
   parent: NMF.Expressions
   children:
+  - NMF.Expressions.SingleSuccessorList.AllSuccessors
   - NMF.Expressions.SingleSuccessorList.Attached
   - NMF.Expressions.SingleSuccessorList.Count
   - NMF.Expressions.SingleSuccessorList.Detached
   - NMF.Expressions.SingleSuccessorList.GetEnumerator
+  - NMF.Expressions.SingleSuccessorList.GetSuccessor(System.Int32)
   - NMF.Expressions.SingleSuccessorList.HasSuccessors
   - NMF.Expressions.SingleSuccessorList.IsAttached
-  - NMF.Expressions.SingleSuccessorList.Item(System.Int32)
   - NMF.Expressions.SingleSuccessorList.Set(NMF.Expressions.INotifiable)
   - NMF.Expressions.SingleSuccessorList.SetDummy
   - NMF.Expressions.SingleSuccessorList.System#Collections#IEnumerable#GetEnumerator
@@ -39,7 +40,6 @@ items:
     content: 'public class SingleSuccessorList : ISuccessorList, IEnumerable<INotifiable>, IEnumerable'
     content.vb: >-
       Public Class SingleSuccessorList
-
           Implements ISuccessorList, IEnumerable(Of INotifiable), IEnumerable
   inheritance:
   - System.Object
@@ -48,14 +48,16 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
   - System.Collections.IEnumerable
   inheritedMembers:
-  - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   extensionMethods:
+  - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{NMF.Expressions.INotifiable,System.Int32}},System.Int32,{TResult}})
+  - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{NMF.Expressions.INotifiable},System.Int32,{TResult}})
   - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
   modifiers.csharp:
   - public
@@ -63,48 +65,6 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: NMF.Expressions.SingleSuccessorList.Item(System.Int32)
-  commentId: P:NMF.Expressions.SingleSuccessorList.Item(System.Int32)
-  id: Item(System.Int32)
-  parent: NMF.Expressions.SingleSuccessorList
-  langs:
-  - csharp
-  - vb
-  name: Item[Int32]
-  nameWithType: SingleSuccessorList.Item[Int32]
-  fullName: NMF.Expressions.SingleSuccessorList.Item[System.Int32]
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions/Public/SingleSuccessorList.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: this[]
-    path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 16
-  assemblies:
-  - NMF.Expressions
-  namespace: NMF.Expressions
-  syntax:
-    content: public INotifiable this[int index] { get; }
-    parameters:
-    - id: index
-      type: System.Int32
-    return:
-      type: NMF.Expressions.INotifiable
-    content.vb: Public ReadOnly Property Item(index As Integer) As INotifiable
-  overload: NMF.Expressions.SingleSuccessorList.Item*
-  implements:
-  - NMF.Expressions.ISuccessorList.Item(System.Int32)
-  nameWithType.vb: SingleSuccessorList.Item(Int32)
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-  fullName.vb: NMF.Expressions.SingleSuccessorList.Item(System.Int32)
-  name.vb: Item(Int32)
 - uid: NMF.Expressions.SingleSuccessorList.HasSuccessors
   commentId: P:NMF.Expressions.SingleSuccessorList.HasSuccessors
   id: HasSuccessors
@@ -123,7 +83,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: HasSuccessors
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 26
+    startLine: 16
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -160,7 +120,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsAttached
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 28
+    startLine: 18
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -197,7 +157,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 30
+    startLine: 20
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -210,6 +170,41 @@ items:
   overload: NMF.Expressions.SingleSuccessorList.Count*
   implements:
   - NMF.Expressions.ISuccessorList.Count
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NMF.Expressions.SingleSuccessorList.AllSuccessors
+  commentId: P:NMF.Expressions.SingleSuccessorList.AllSuccessors
+  id: AllSuccessors
+  parent: NMF.Expressions.SingleSuccessorList
+  langs:
+  - csharp
+  - vb
+  name: AllSuccessors
+  nameWithType: SingleSuccessorList.AllSuccessors
+  fullName: NMF.Expressions.SingleSuccessorList.AllSuccessors
+  type: Property
+  source:
+    remote:
+      path: Expressions/Expressions/Public/SingleSuccessorList.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: AllSuccessors
+    path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
+    startLine: 22
+  assemblies:
+  - NMF.Expressions
+  namespace: NMF.Expressions
+  syntax:
+    content: public IEnumerable<INotifiable> AllSuccessors { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
+    content.vb: Public ReadOnly Property AllSuccessors As IEnumerable(Of INotifiable)
+  overload: NMF.Expressions.SingleSuccessorList.AllSuccessors*
   modifiers.csharp:
   - public
   - get
@@ -234,7 +229,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Attached
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 32
+    startLine: 24
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -243,8 +238,6 @@ items:
     return:
       type: System.EventHandler
     content.vb: Public Event Attached As EventHandler
-  implements:
-  - NMF.Expressions.ISuccessorList.Attached
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -267,7 +260,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Detached
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 33
+    startLine: 25
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -276,8 +269,6 @@ items:
     return:
       type: System.EventHandler
     content.vb: Public Event Detached As EventHandler
-  implements:
-  - NMF.Expressions.ISuccessorList.Detached
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -300,7 +291,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 35
+    startLine: 27
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -312,6 +303,43 @@ items:
   overload: NMF.Expressions.SingleSuccessorList.GetEnumerator*
   implements:
   - System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.GetEnumerator
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NMF.Expressions.SingleSuccessorList.GetSuccessor(System.Int32)
+  commentId: M:NMF.Expressions.SingleSuccessorList.GetSuccessor(System.Int32)
+  id: GetSuccessor(System.Int32)
+  parent: NMF.Expressions.SingleSuccessorList
+  langs:
+  - csharp
+  - vb
+  name: GetSuccessor(Int32)
+  nameWithType: SingleSuccessorList.GetSuccessor(Int32)
+  fullName: NMF.Expressions.SingleSuccessorList.GetSuccessor(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions/Public/SingleSuccessorList.cs
+      branch: master
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetSuccessor
+    path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
+    startLine: 32
+  assemblies:
+  - NMF.Expressions
+  namespace: NMF.Expressions
+  syntax:
+    content: public INotifiable GetSuccessor(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: NMF.Expressions.INotifiable
+    content.vb: Public Function GetSuccessor(index As Integer) As INotifiable
+  overload: NMF.Expressions.SingleSuccessorList.GetSuccessor*
+  implements:
+  - NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -334,7 +362,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Set
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -369,7 +397,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetDummy
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 54
+    startLine: 53
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -401,7 +429,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Unset
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 63
+    startLine: 62
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -438,7 +466,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UnsetAll
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 75
+    startLine: 74
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -471,7 +499,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: System.Collections.IEnumerable.GetEnumerator
     path: src/Expressions/Expressions/Public/SingleSuccessorList.cs
-    startLine: 85
+    startLine: 84
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -553,37 +581,6 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -662,63 +659,6 @@ references:
     name: Equals
     nameWithType: Object.Equals
     fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
     nameWithType: (
@@ -832,6 +772,384 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{NMF.Expressions.INotifiable,System.Int32}},System.Int32,{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  name: ChunkIndexed<INotifiable, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<INotifiable, Int32>>, Int32, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<INotifiable, TResult>(Int32, Func<IEnumerableExpression<ValueTuple<INotifiable, Int32>>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<NMF.Expressions.INotifiable, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<NMF.Expressions.INotifiable, System.Int32>>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of INotifiable, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of INotifiable, Int32)), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of NMF.Expressions.INotifiable, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of NMF.Expressions.INotifiable, System.Int32)), System.Int32, TResult))
+  name.vb: ChunkIndexed(Of INotifiable, TResult)(Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of INotifiable, Int32)), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed<INotifiable, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<INotifiable, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<NMF.Expressions.INotifiable, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed(Of INotifiable, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of INotifiable, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of NMF.Expressions.INotifiable, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{NMF.Expressions.INotifiable},System.Int32,{TResult}})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  parent: NMF.Expressions.Linq.ChunkExtensions
+  definition: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  name: Chunk<INotifiable, TResult>(Int32, Func<IEnumerableExpression<INotifiable>, Int32, TResult>)
+  nameWithType: ChunkExtensions.Chunk<INotifiable, TResult>(Int32, Func<IEnumerableExpression<INotifiable>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<NMF.Expressions.INotifiable, TResult>(System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<NMF.Expressions.INotifiable>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of INotifiable, TResult)(Int32, Func(Of IEnumerableExpression(Of INotifiable), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of NMF.Expressions.INotifiable, TResult)(System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of NMF.Expressions.INotifiable), System.Int32, TResult))
+  name.vb: Chunk(Of INotifiable, TResult)(Int32, Func(Of IEnumerableExpression(Of INotifiable), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk<INotifiable, TResult>
+    nameWithType: ChunkExtensions.Chunk<INotifiable, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<NMF.Expressions.INotifiable, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk(Of INotifiable, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of INotifiable, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of NMF.Expressions.INotifiable, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    nameWithType: INotifiable
+    fullName: NMF.Expressions.INotifiable
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}.NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1
   commentId: M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
   parent: NMF.Expressions.Linq.ObservableExtensions
@@ -921,6 +1239,364 @@ references:
   name: System.Collections
   nameWithType: System.Collections
   fullName: System.Collections
+- uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+  isExternal: true
+  name: ChunkIndexed<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>)
+  nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<ValueTuple<T, Int32>>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>(System.Collections.Generic.IEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<System.ValueTuple<T, System.Int32>>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.ChunkIndexed(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)(System.Collections.Generic.IEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of System.ValueTuple(Of T, System.Int32)), System.Int32, TResult))
+  name.vb: ChunkIndexed(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of ValueTuple(Of T, Int32)), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed<T, TResult>
+    nameWithType: ChunkExtensions.ChunkIndexed<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{System.ValueTuple{``0,System.Int32}},System.Int32,``1})
+    name: ChunkIndexed(Of T, TResult)
+    nameWithType: ChunkExtensions.ChunkIndexed(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.ChunkIndexed(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.Linq.ChunkExtensions
+  commentId: T:NMF.Expressions.Linq.ChunkExtensions
+  parent: NMF.Expressions.Linq
+  name: ChunkExtensions
+  nameWithType: ChunkExtensions
+  fullName: NMF.Expressions.Linq.ChunkExtensions
+- uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  commentId: M:NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+  isExternal: true
+  name: Chunk<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>)
+  nameWithType: ChunkExtensions.Chunk<T, TResult>(IEnumerable<T>, Int32, Func<IEnumerableExpression<T>, Int32, TResult>)
+  fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>(System.Collections.Generic.IEnumerable<T>, System.Int32, System.Func<NMF.Expressions.IEnumerableExpression<T>, System.Int32, TResult>)
+  nameWithType.vb: ChunkExtensions.Chunk(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult))
+  fullName.vb: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)(System.Collections.Generic.IEnumerable(Of T), System.Int32, System.Func(Of NMF.Expressions.IEnumerableExpression(Of T), System.Int32, TResult))
+  name.vb: Chunk(Of T, TResult)(IEnumerable(Of T), Int32, Func(Of IEnumerableExpression(Of T), Int32, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk<T, TResult>
+    nameWithType: ChunkExtensions.Chunk<T, TResult>
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk<T, TResult>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ChunkExtensions.Chunk``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{NMF.Expressions.IEnumerableExpression{``0},System.Int32,``1})
+    name: Chunk(Of T, TResult)
+    nameWithType: ChunkExtensions.Chunk(Of T, TResult)
+    fullName: NMF.Expressions.Linq.ChunkExtensions.Chunk(Of T, TResult)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`3
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+    nameWithType: IEnumerableExpression
+    fullName: NMF.Expressions.IEnumerableExpression
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
   commentId: M:NMF.Expressions.Linq.ObservableExtensions.WithUpdates``1(System.Collections.Generic.IEnumerable{``0})
   isExternal: true
@@ -991,66 +1667,6 @@ references:
   name: NMF.Expressions.Linq
   nameWithType: NMF.Expressions.Linq
   fullName: NMF.Expressions.Linq
-- uid: NMF.Expressions.SingleSuccessorList.Item*
-  commentId: Overload:NMF.Expressions.SingleSuccessorList.Item
-  name: Item
-  nameWithType: SingleSuccessorList.Item
-  fullName: NMF.Expressions.SingleSuccessorList.Item
-- uid: NMF.Expressions.ISuccessorList.Item(System.Int32)
-  commentId: P:NMF.Expressions.ISuccessorList.Item(System.Int32)
-  parent: NMF.Expressions.ISuccessorList
-  isExternal: true
-  name: Item[Int32]
-  nameWithType: ISuccessorList.Item[Int32]
-  fullName: NMF.Expressions.ISuccessorList.Item[System.Int32]
-  nameWithType.vb: ISuccessorList.Item(Int32)
-  fullName.vb: NMF.Expressions.ISuccessorList.Item(System.Int32)
-  name.vb: Item(Int32)
-  spec.csharp:
-  - uid: NMF.Expressions.ISuccessorList.Item(System.Int32)
-    name: Item
-    nameWithType: ISuccessorList.Item
-    fullName: NMF.Expressions.ISuccessorList.Item
-  - name: '['
-    nameWithType: '['
-    fullName: '['
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ']'
-    nameWithType: ']'
-    fullName: ']'
-  spec.vb:
-  - uid: NMF.Expressions.ISuccessorList.Item(System.Int32)
-    name: Item
-    nameWithType: ISuccessorList.Item
-    fullName: NMF.Expressions.ISuccessorList.Item
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: NMF.Expressions.INotifiable
-  commentId: T:NMF.Expressions.INotifiable
-  parent: NMF.Expressions
-  name: INotifiable
-  nameWithType: INotifiable
-  fullName: NMF.Expressions.INotifiable
 - uid: NMF.Expressions.SingleSuccessorList.HasSuccessors*
   commentId: Overload:NMF.Expressions.SingleSuccessorList.HasSuccessors
   name: HasSuccessors
@@ -1091,12 +1707,18 @@ references:
   name: Count
   nameWithType: ISuccessorList.Count
   fullName: NMF.Expressions.ISuccessorList.Count
-- uid: NMF.Expressions.ISuccessorList.Attached
-  commentId: E:NMF.Expressions.ISuccessorList.Attached
-  parent: NMF.Expressions.ISuccessorList
-  name: Attached
-  nameWithType: ISuccessorList.Attached
-  fullName: NMF.Expressions.ISuccessorList.Attached
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NMF.Expressions.SingleSuccessorList.AllSuccessors*
+  commentId: Overload:NMF.Expressions.SingleSuccessorList.AllSuccessors
+  name: AllSuccessors
+  nameWithType: SingleSuccessorList.AllSuccessors
+  fullName: NMF.Expressions.SingleSuccessorList.AllSuccessors
 - uid: System.EventHandler
   commentId: T:System.EventHandler
   parent: System
@@ -1104,12 +1726,6 @@ references:
   name: EventHandler
   nameWithType: EventHandler
   fullName: System.EventHandler
-- uid: NMF.Expressions.ISuccessorList.Detached
-  commentId: E:NMF.Expressions.ISuccessorList.Detached
-  parent: NMF.Expressions.ISuccessorList
-  name: Detached
-  nameWithType: ISuccessorList.Detached
-  fullName: NMF.Expressions.ISuccessorList.Detached
 - uid: NMF.Expressions.SingleSuccessorList.GetEnumerator*
   commentId: Overload:NMF.Expressions.SingleSuccessorList.GetEnumerator
   name: GetEnumerator
@@ -1261,6 +1877,56 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: NMF.Expressions.SingleSuccessorList.GetSuccessor*
+  commentId: Overload:NMF.Expressions.SingleSuccessorList.GetSuccessor
+  name: GetSuccessor
+  nameWithType: SingleSuccessorList.GetSuccessor
+  fullName: NMF.Expressions.SingleSuccessorList.GetSuccessor
+- uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  commentId: M:NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  parent: NMF.Expressions.ISuccessorList
+  isExternal: true
+  name: GetSuccessor(Int32)
+  nameWithType: ISuccessorList.GetSuccessor(Int32)
+  fullName: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+  spec.csharp:
+  - uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ISuccessorList.GetSuccessor
+    fullName: NMF.Expressions.ISuccessorList.GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NMF.Expressions.ISuccessorList.GetSuccessor(System.Int32)
+    name: GetSuccessor
+    nameWithType: ISuccessorList.GetSuccessor
+    fullName: NMF.Expressions.ISuccessorList.GetSuccessor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NMF.Expressions.INotifiable
+  commentId: T:NMF.Expressions.INotifiable
+  parent: NMF.Expressions
+  name: INotifiable
+  nameWithType: INotifiable
+  fullName: NMF.Expressions.INotifiable
 - uid: NMF.Expressions.SingleSuccessorList.Set*
   commentId: Overload:NMF.Expressions.SingleSuccessorList.Set
   name: Set
