@@ -11,14 +11,6 @@ items:
   - NMF.Expressions.Linq.ObservableAggregate`3.Attach
   - NMF.Expressions.Linq.ObservableAggregate`3.Dependencies
   - NMF.Expressions.Linq.ObservableAggregate`3.Detach
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Changed
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#FreeReference
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#IncreaseReferences(System.Int32)
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Source
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#NewValue
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#OldValue
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue
-  - NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue
   - NMF.Expressions.Linq.ObservableAggregate`3.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   - NMF.Expressions.Linq.ObservableAggregate`3.RemoveItem(`0)
   - NMF.Expressions.Linq.ObservableAggregate`3.ResetAccumulator
@@ -47,10 +39,7 @@ items:
     - id: TSource
     - id: TAccumulator
     - id: TResult
-    content.vb: >-
-      Public MustInherit Class ObservableAggregate(Of TSource, TAccumulator, TResult)
-          Inherits NotifyValue(Of TResult)
-          Implements INotifyValue(Of TResult), INotifiable, IDisposable, ISuccessorList, IValueChangedNotificationResult(Of TResult), IValueChangedNotificationResult, INotificationResult
+    content.vb: Public MustInherit Class ObservableAggregate(Of TSource, TAccumulator, TResult) Inherits NotifyValue(Of TResult) Implements INotifyValue(Of TResult), INotifiable, IDisposable, ISuccessorList, IValueChangedNotificationResult(Of TResult), IValueChangedNotificationResult, INotificationResult
   inheritance:
   - System.Object
   - NMF.Expressions.NotifyValue{{TResult}}
@@ -87,17 +76,11 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   extensionMethods:
-  - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
   - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
+  - NMF.Expressions.INotifyValue{`2}.NMF.Expressions.ReversableExtensions.AsReversable``1(System.Action{{TResult}})
+  - NMF.Expressions.Linq.ObservableAggregate`3.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult)
-  modifiers.csharp:
-  - public
-  - abstract
-  - class
-  modifiers.vb:
-  - Public
-  - MustInherit
-  - Class
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult)
   name.vb: ObservableAggregate(Of TSource, TAccumulator, TResult)
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Accumulator
@@ -130,12 +113,6 @@ items:
     content.vb: Protected Property Accumulator As TAccumulator
   overload: NMF.Expressions.Linq.ObservableAggregate`3.Accumulator*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).Accumulator
-  modifiers.csharp:
-  - protected
-  - get
-  - set
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).Accumulator
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.#ctor(NMF.Expressions.INotifyEnumerable{`0},`1)
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.#ctor(NMF.Expressions.INotifyEnumerable{`0},`1)
@@ -168,13 +145,9 @@ items:
       type: '{TAccumulator}'
     content.vb: Protected Sub New(source As INotifyEnumerable(Of TSource), accumulator As TAccumulator)
   overload: NMF.Expressions.Linq.ObservableAggregate`3.#ctor*
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).ObservableAggregate(INotifyEnumerable(Of TSource), TAccumulator)
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).ObservableAggregate(NMF.Expressions.INotifyEnumerable(Of TSource), TAccumulator)
-  name.vb: ObservableAggregate(INotifyEnumerable(Of TSource), TAccumulator)
+  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).New(INotifyEnumerable(Of TSource), TAccumulator)
+  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).New(NMF.Expressions.INotifyEnumerable(Of TSource), TAccumulator)
+  name.vb: New(INotifyEnumerable(Of TSource), TAccumulator)
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Source
   commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.Source
   id: Source
@@ -205,12 +178,6 @@ items:
     content.vb: Protected ReadOnly Property Source As INotifyEnumerable(Of TSource)
   overload: NMF.Expressions.Linq.ObservableAggregate`3.Source*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).Source
-  modifiers.csharp:
-  - protected
-  - get
-  modifiers.vb:
-  - Protected
-  - ReadOnly
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).Source
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.ResetAccumulator
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.ResetAccumulator
@@ -236,15 +203,9 @@ items:
   namespace: NMF.Expressions.Linq
   syntax:
     content: protected abstract void ResetAccumulator()
-    content.vb: Protected MustOverride Sub ResetAccumulator
+    content.vb: Protected MustOverride Sub ResetAccumulator()
   overload: NMF.Expressions.Linq.ObservableAggregate`3.ResetAccumulator*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).ResetAccumulator()
-  modifiers.csharp:
-  - protected
-  - abstract
-  modifiers.vb:
-  - Protected
-  - MustOverride
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).ResetAccumulator()
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.RemoveItem(`0)
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.RemoveItem(`0)
@@ -276,12 +237,6 @@ items:
     content.vb: Protected MustOverride Sub RemoveItem(item As TSource)
   overload: NMF.Expressions.Linq.ObservableAggregate`3.RemoveItem*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).RemoveItem(TSource)
-  modifiers.csharp:
-  - protected
-  - abstract
-  modifiers.vb:
-  - Protected
-  - MustOverride
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).RemoveItem(TSource)
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.AddItem(`0)
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.AddItem(`0)
@@ -313,12 +268,6 @@ items:
     content.vb: Protected MustOverride Sub AddItem(item As TSource)
   overload: NMF.Expressions.Linq.ObservableAggregate`3.AddItem*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).AddItem(TSource)
-  modifiers.csharp:
-  - protected
-  - abstract
-  modifiers.vb:
-  - Protected
-  - MustOverride
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).AddItem(TSource)
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Attach
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.Attach
@@ -344,16 +293,10 @@ items:
   namespace: NMF.Expressions.Linq
   syntax:
     content: protected override void Attach()
-    content.vb: Protected Overrides Sub Attach
+    content.vb: Protected Overrides Sub Attach()
   overridden: NMF.Expressions.NotifyValue{{TResult}}.Attach
   overload: NMF.Expressions.Linq.ObservableAggregate`3.Attach*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).Attach()
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).Attach()
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Detach
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.Detach
@@ -379,16 +322,10 @@ items:
   namespace: NMF.Expressions.Linq
   syntax:
     content: protected override void Detach()
-    content.vb: Protected Overrides Sub Detach
+    content.vb: Protected Overrides Sub Detach()
   overridden: NMF.Expressions.NotifyValue{{TResult}}.Detach
   overload: NMF.Expressions.Linq.ObservableAggregate`3.Detach*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).Detach()
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).Detach()
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
@@ -423,12 +360,6 @@ items:
   overridden: NMF.Expressions.NotifyValue{{TResult}}.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   overload: NMF.Expressions.Linq.ObservableAggregate`3.Notify*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).Notify(IList(Of INotificationResult))
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).Notify(System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult))
   name.vb: Notify(IList(Of INotificationResult))
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Dependencies
@@ -462,329 +393,41 @@ items:
   overridden: NMF.Expressions.NotifyValue{{TResult}}.Dependencies
   overload: NMF.Expressions.Linq.ObservableAggregate`3.Dependencies*
   nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).Dependencies
-  modifiers.csharp:
-  - public
-  - override
-  - get
-  modifiers.vb:
-  - Public
-  - Overrides
-  - ReadOnly
   fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).Dependencies
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue
-  commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue
-  id: NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: IValueChangedNotificationResult<TResult>.OldValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult<TResult>.OldValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 93
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: TResult IValueChangedNotificationResult<TResult>.OldValue { get; }
-    parameters: []
-    return:
-      type: '{TResult}'
-    content.vb: ReadOnly WriteOnly Property NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue As TResult Implements IValueChangedNotificationResult(Of TResult).OldValue
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue*
-  implements:
-  - NMF.Expressions.IValueChangedNotificationResult{{TResult}}.OldValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue
-  commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue
-  id: NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: IValueChangedNotificationResult<TResult>.NewValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult<TResult>.NewValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 95
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: TResult IValueChangedNotificationResult<TResult>.NewValue { get; }
-    parameters: []
-    return:
-      type: '{TResult}'
-    content.vb: ReadOnly WriteOnly Property NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue As TResult Implements IValueChangedNotificationResult(Of TResult).NewValue
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue*
-  implements:
-  - NMF.Expressions.IValueChangedNotificationResult{{TResult}}.NewValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#OldValue
-  commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#OldValue
-  id: NMF#Expressions#IValueChangedNotificationResult#OldValue
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: IValueChangedNotificationResult.OldValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult.OldValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult.OldValue
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.IValueChangedNotificationResult.OldValue
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 97
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: object IValueChangedNotificationResult.OldValue { get; }
-    parameters: []
-    return:
-      type: System.Object
-    content.vb: ReadOnly WriteOnly Property NMF.Expressions.IValueChangedNotificationResult.OldValue As Object Implements IValueChangedNotificationResult.OldValue
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#OldValue*
-  implements:
-  - NMF.Expressions.IValueChangedNotificationResult.OldValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.OldValue
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.OldValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult.OldValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#NewValue
-  commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#NewValue
-  id: NMF#Expressions#IValueChangedNotificationResult#NewValue
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: IValueChangedNotificationResult.NewValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult.NewValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult.NewValue
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.IValueChangedNotificationResult.NewValue
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 99
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: object IValueChangedNotificationResult.NewValue { get; }
-    parameters: []
-    return:
-      type: System.Object
-    content.vb: ReadOnly WriteOnly Property NMF.Expressions.IValueChangedNotificationResult.NewValue As Object Implements IValueChangedNotificationResult.NewValue
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#NewValue*
-  implements:
-  - NMF.Expressions.IValueChangedNotificationResult.NewValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.NewValue
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.NewValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult.NewValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Source
-  commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Source
-  id: NMF#Expressions#INotificationResult#Source
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: INotificationResult.Source
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.Source
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.Source
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.INotificationResult.Source
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 101
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: INotifiable INotificationResult.Source { get; }
-    parameters: []
-    return:
-      type: NMF.Expressions.INotifiable
-    content.vb: ReadOnly WriteOnly Property NMF.Expressions.INotificationResult.Source As INotifiable Implements INotificationResult.Source
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Source*
-  implements:
-  - NMF.Expressions.INotificationResult.Source
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Source
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Source
-  name.vb: NMF.Expressions.INotificationResult.Source
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Changed
-  commentId: P:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Changed
-  id: NMF#Expressions#INotificationResult#Changed
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: INotificationResult.Changed
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.Changed
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.Changed
-  type: Property
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.INotificationResult.Changed
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 103
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: bool INotificationResult.Changed { get; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: ReadOnly WriteOnly Property NMF.Expressions.INotificationResult.Changed As Boolean Implements INotificationResult.Changed
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Changed*
-  implements:
-  - NMF.Expressions.INotificationResult.Changed
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Changed
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Changed
-  name.vb: NMF.Expressions.INotificationResult.Changed
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#IncreaseReferences(System.Int32)
-  commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#IncreaseReferences(System.Int32)
-  id: NMF#Expressions#INotificationResult#IncreaseReferences(System.Int32)
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: INotificationResult.IncreaseReferences(Int32)
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.IncreaseReferences(Int32)
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-  type: Method
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.INotificationResult.IncreaseReferences
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 105
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: void INotificationResult.IncreaseReferences(int references)
-    parameters:
-    - id: references
-      type: System.Int32
-    content.vb: Sub NMF.Expressions.INotificationResult.IncreaseReferences(references As Integer) Implements INotificationResult.IncreaseReferences
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#IncreaseReferences*
-  implements:
-  - NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.IncreaseReferences(Int32)
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-  name.vb: NMF.Expressions.INotificationResult.IncreaseReferences(Int32)
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#FreeReference
-  commentId: M:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#FreeReference
-  id: NMF#Expressions#INotificationResult#FreeReference
-  isEii: true
-  parent: NMF.Expressions.Linq.ObservableAggregate`3
-  langs:
-  - csharp
-  - vb
-  name: INotificationResult.FreeReference()
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.FreeReference()
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.FreeReference()
-  type: Method
-  source:
-    remote:
-      path: Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.INotificationResult.FreeReference
-    path: src/Expressions/Expressions.Linq/Linq/ObservableAggregate.cs
-    startLine: 107
-  assemblies:
-  - NMF.Expressions.Linq
-  namespace: NMF.Expressions.Linq
-  syntax:
-    content: void INotificationResult.FreeReference()
-    content.vb: Sub NMF.Expressions.INotificationResult.FreeReference Implements INotificationResult.FreeReference
-  overload: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#FreeReference*
-  implements:
-  - NMF.Expressions.INotificationResult.FreeReference
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.FreeReference()
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.FreeReference()
-  name.vb: NMF.Expressions.INotificationResult.FreeReference()
 references:
 - uid: NMF.Expressions.Linq
   commentId: N:NMF.Expressions.Linq
   name: NMF.Expressions.Linq
   nameWithType: NMF.Expressions.Linq
   fullName: NMF.Expressions.Linq
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: NMF.Expressions.NotifyValue{{TResult}}
   commentId: T:NMF.Expressions.NotifyValue{`2}
   parent: NMF.Expressions
@@ -798,31 +441,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1
     name: NotifyValue
-    nameWithType: NotifyValue
-    fullName: NMF.Expressions.NotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1
     name: NotifyValue
-    nameWithType: NotifyValue
-    fullName: NMF.Expressions.NotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyValue{{TResult}}
   commentId: T:NMF.Expressions.INotifyValue{`1}
   parent: NMF.Expressions
@@ -836,31 +465,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable
   commentId: T:NMF.Expressions.INotifiable
   parent: NMF.Expressions
@@ -893,31 +508,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.IValueChangedNotificationResult`1
     name: IValueChangedNotificationResult
-    nameWithType: IValueChangedNotificationResult
-    fullName: NMF.Expressions.IValueChangedNotificationResult
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.IValueChangedNotificationResult`1
     name: IValueChangedNotificationResult
-    nameWithType: IValueChangedNotificationResult
-    fullName: NMF.Expressions.IValueChangedNotificationResult
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.IValueChangedNotificationResult
   commentId: T:NMF.Expressions.IValueChangedNotificationResult
   parent: NMF.Expressions
@@ -976,35 +577,19 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).OnValueChanged(ValueChangedEventArgs)
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  - uid: NMF.Expressions.NotifyValue{`2}.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnValueChanged
-    nameWithType: NotifyValue<TResult>.OnValueChanged
-    fullName: NMF.Expressions.NotifyValue<TResult>.OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
-    nameWithType: ValueChangedEventArgs
-    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  - uid: NMF.Expressions.NotifyValue{`2}.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnValueChanged
-    nameWithType: NotifyValue(Of TResult).OnValueChanged
-    fullName: NMF.Expressions.NotifyValue(Of TResult).OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
-    nameWithType: ValueChangedEventArgs
-    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.OnValueChanged({TResult},{TResult})
   commentId: M:NMF.Expressions.NotifyValue{`2}.OnValueChanged(`2,`2)
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -1015,45 +600,23 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).OnValueChanged(TResult, TResult)
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).OnValueChanged(TResult, TResult)
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(`0,`0)
+  - uid: NMF.Expressions.NotifyValue{`2}.OnValueChanged(`2,`2)
     name: OnValueChanged
-    nameWithType: NotifyValue<TResult>.OnValueChanged
-    fullName: NMF.Expressions.NotifyValue<TResult>.OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(`0,`0)
+  - uid: NMF.Expressions.NotifyValue{`2}.OnValueChanged(`2,`2)
     name: OnValueChanged
-    nameWithType: NotifyValue(Of TResult).OnValueChanged
-    fullName: NMF.Expressions.NotifyValue(Of TResult).OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.Dispose
   commentId: M:NMF.Expressions.NotifyValue{`2}.Dispose
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -1064,27 +627,15 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).Dispose()
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Dispose()
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.Dispose
+  - uid: NMF.Expressions.NotifyValue{`2}.Dispose
     name: Dispose
-    nameWithType: NotifyValue<TResult>.Dispose
-    fullName: NMF.Expressions.NotifyValue<TResult>.Dispose
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.Dispose
+  - uid: NMF.Expressions.NotifyValue{`2}.Dispose
     name: Dispose
-    nameWithType: NotifyValue(Of TResult).Dispose
-    fullName: NMF.Expressions.NotifyValue(Of TResult).Dispose
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.HasSuccessors
   commentId: P:NMF.Expressions.NotifyValue{`2}.HasSuccessors
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -1131,35 +682,19 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).Set(INotifiable)
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Set(NMF.Expressions.INotifiable)
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.Set(NMF.Expressions.INotifiable)
+  - uid: NMF.Expressions.NotifyValue{`2}.Set(NMF.Expressions.INotifiable)
     name: Set
-    nameWithType: NotifyValue<TResult>.Set
-    fullName: NMF.Expressions.NotifyValue<TResult>.Set
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.Set(NMF.Expressions.INotifiable)
+  - uid: NMF.Expressions.NotifyValue{`2}.Set(NMF.Expressions.INotifiable)
     name: Set
-    nameWithType: NotifyValue(Of TResult).Set
-    fullName: NMF.Expressions.NotifyValue(Of TResult).Set
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.SetDummy
   commentId: M:NMF.Expressions.NotifyValue{`2}.SetDummy
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -1170,82 +705,49 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).SetDummy()
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).SetDummy()
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.SetDummy
+  - uid: NMF.Expressions.NotifyValue{`2}.SetDummy
     name: SetDummy
-    nameWithType: NotifyValue<TResult>.SetDummy
-    fullName: NMF.Expressions.NotifyValue<TResult>.SetDummy
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.SetDummy
+  - uid: NMF.Expressions.NotifyValue{`2}.SetDummy
     name: SetDummy
-    nameWithType: NotifyValue(Of TResult).SetDummy
-    fullName: NMF.Expressions.NotifyValue(Of TResult).SetDummy
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.Unset(NMF.Expressions.INotifiable,System.Boolean)
   commentId: M:NMF.Expressions.NotifyValue{`2}.Unset(NMF.Expressions.INotifiable,System.Boolean)
   parent: NMF.Expressions.NotifyValue{{TResult}}
   definition: NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
-  name: Unset(INotifiable, Boolean)
-  nameWithType: NotifyValue<TResult>.Unset(INotifiable, Boolean)
-  fullName: NMF.Expressions.NotifyValue<TResult>.Unset(NMF.Expressions.INotifiable, System.Boolean)
+  name: Unset(INotifiable, bool)
+  nameWithType: NotifyValue<TResult>.Unset(INotifiable, bool)
+  fullName: NMF.Expressions.NotifyValue<TResult>.Unset(NMF.Expressions.INotifiable, bool)
   nameWithType.vb: NotifyValue(Of TResult).Unset(INotifiable, Boolean)
-  fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Unset(NMF.Expressions.INotifiable, System.Boolean)
+  fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Unset(NMF.Expressions.INotifiable, Boolean)
+  name.vb: Unset(INotifiable, Boolean)
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  - uid: NMF.Expressions.NotifyValue{`2}.Unset(NMF.Expressions.INotifiable,System.Boolean)
     name: Unset
-    nameWithType: NotifyValue<TResult>.Unset
-    fullName: NMF.Expressions.NotifyValue<TResult>.Unset
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
+  - uid: NMF.Expressions.NotifyValue{`2}.Unset(NMF.Expressions.INotifiable,System.Boolean)
     name: Unset
-    nameWithType: NotifyValue(Of TResult).Unset
-    fullName: NMF.Expressions.NotifyValue(Of TResult).Unset
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.UnsetAll
   commentId: M:NMF.Expressions.NotifyValue{`2}.UnsetAll
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -1256,415 +758,416 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).UnsetAll()
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).UnsetAll()
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.UnsetAll
+  - uid: NMF.Expressions.NotifyValue{`2}.UnsetAll
     name: UnsetAll
-    nameWithType: NotifyValue<TResult>.UnsetAll
-    fullName: NMF.Expressions.NotifyValue<TResult>.UnsetAll
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.UnsetAll
+  - uid: NMF.Expressions.NotifyValue{`2}.UnsetAll
     name: UnsetAll
-    nameWithType: NotifyValue(Of TResult).UnsetAll
-    fullName: NMF.Expressions.NotifyValue(Of TResult).UnsetAll
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.GetSuccessor(System.Int32)
   commentId: M:NMF.Expressions.NotifyValue{`2}.GetSuccessor(System.Int32)
   parent: NMF.Expressions.NotifyValue{{TResult}}
   definition: NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
-  name: GetSuccessor(Int32)
-  nameWithType: NotifyValue<TResult>.GetSuccessor(Int32)
-  fullName: NMF.Expressions.NotifyValue<TResult>.GetSuccessor(System.Int32)
-  nameWithType.vb: NotifyValue(Of TResult).GetSuccessor(Int32)
-  fullName.vb: NMF.Expressions.NotifyValue(Of TResult).GetSuccessor(System.Int32)
+  name: GetSuccessor(int)
+  nameWithType: NotifyValue<TResult>.GetSuccessor(int)
+  fullName: NMF.Expressions.NotifyValue<TResult>.GetSuccessor(int)
+  nameWithType.vb: NotifyValue(Of TResult).GetSuccessor(Integer)
+  fullName.vb: NMF.Expressions.NotifyValue(Of TResult).GetSuccessor(Integer)
+  name.vb: GetSuccessor(Integer)
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
+  - uid: NMF.Expressions.NotifyValue{`2}.GetSuccessor(System.Int32)
     name: GetSuccessor
-    nameWithType: NotifyValue<TResult>.GetSuccessor
-    fullName: NMF.Expressions.NotifyValue<TResult>.GetSuccessor
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
+  - uid: NMF.Expressions.NotifyValue{`2}.GetSuccessor(System.Int32)
     name: GetSuccessor
-    nameWithType: NotifyValue(Of TResult).GetSuccessor
-    fullName: NMF.Expressions.NotifyValue(Of TResult).GetSuccessor
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
-  commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
-  parent: NMF.Expressions.Debug.DebugExtensions
-  definition: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
-  name: Visualize()
-  nameWithType: DebugExtensions.Visualize()
-  fullName: NMF.Expressions.Debug.DebugExtensions.Visualize()
-  spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize
-    name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize
-    name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
   commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
   parent: NMF.Expressions.Debug.DebugExtensions
   definition: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  name: ExportToDgml(String)
-  nameWithType: DebugExtensions.ExportToDgml(String)
-  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  name: ExportToDgml(INotifiable, string)
+  nameWithType: DebugExtensions.ExportToDgml(INotifiable, string)
+  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, string)
+  nameWithType.vb: DebugExtensions.ExportToDgml(INotifiable, String)
+  fullName.vb: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, String)
+  name.vb: ExportToDgml(INotifiable, String)
   spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
     name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
     name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
+  commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  parent: NMF.Expressions.Debug.DebugExtensions
+  definition: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  name: Visualize(INotifiable)
+  nameWithType: DebugExtensions.Visualize(INotifiable)
+  fullName: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+    name: Visualize
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+    name: Visualize
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+- uid: NMF.Expressions.INotifyValue{`2}.NMF.Expressions.ReversableExtensions.AsReversable``1(System.Action{{TResult}})
+  commentId: M:NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
+  parent: NMF.Expressions.ReversableExtensions
+  definition: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
+  name: AsReversable<TResult>(INotifyValue<TResult>, Action<TResult>)
+  nameWithType: ReversableExtensions.AsReversable<TResult>(INotifyValue<TResult>, Action<TResult>)
+  fullName: NMF.Expressions.ReversableExtensions.AsReversable<TResult>(NMF.Expressions.INotifyValue<TResult>, System.Action<TResult>)
+  nameWithType.vb: ReversableExtensions.AsReversable(Of TResult)(INotifyValue(Of TResult), Action(Of TResult))
+  fullName.vb: NMF.Expressions.ReversableExtensions.AsReversable(Of TResult)(NMF.Expressions.INotifyValue(Of TResult), System.Action(Of TResult))
+  name.vb: AsReversable(Of TResult)(INotifyValue(Of TResult), Action(Of TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{`2},System.Action{`2})
+    name: AsReversable
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: <
+  - name: TResult
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{`2},System.Action{`2})
+    name: AsReversable
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  parent: NMF.Expressions.Linq.ExpressionExtensions
+  definition: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<ObservableAggregate<TSource, TAccumulator, TResult>>(ObservableAggregate<TSource, TAccumulator, TResult>)
+  nameWithType: ExpressionExtensions.AsOne<ObservableAggregate<TSource, TAccumulator, TResult>>(ObservableAggregate<TSource, TAccumulator, TResult>)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>>(NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of ObservableAggregate(Of TSource, TAccumulator, TResult))(ObservableAggregate(Of TSource, TAccumulator, TResult))
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult))(NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult))
+  name.vb: AsOne(Of ObservableAggregate(Of TSource, TAccumulator, TResult))(ObservableAggregate(Of TSource, TAccumulator, TResult))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.Linq.ObservableAggregate{`0,`1,`2})
+    name: AsOne
+  - name: <
+  - uid: NMF.Expressions.Linq.ObservableAggregate`3
+    name: ObservableAggregate
+  - name: <
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TAccumulator
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.Linq.ObservableAggregate`3
+    name: ObservableAggregate
+  - name: <
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TAccumulator
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.Linq.ObservableAggregate{`0,`1,`2})
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.Linq.ObservableAggregate`3
+    name: ObservableAggregate
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TAccumulator
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.Linq.ObservableAggregate`3
+    name: ObservableAggregate
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSource
+  - name: ','
+  - name: " "
+  - name: TAccumulator
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -1682,36 +1185,34 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1
     name: NotifyValue
-    nameWithType: NotifyValue
-    fullName: NMF.Expressions.NotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1
     name: NotifyValue
-    nameWithType: NotifyValue
-    fullName: NMF.Expressions.NotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
 - uid: NMF.Expressions.INotifyValue`1
   commentId: T:NMF.Expressions.INotifyValue`1
   name: INotifyValue<T>
@@ -1723,31 +1224,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.IValueChangedNotificationResult`1
   commentId: T:NMF.Expressions.IValueChangedNotificationResult`1
   name: IValueChangedNotificationResult<T>
@@ -1759,31 +1246,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.IValueChangedNotificationResult`1
     name: IValueChangedNotificationResult
-    nameWithType: IValueChangedNotificationResult
-    fullName: NMF.Expressions.IValueChangedNotificationResult
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.IValueChangedNotificationResult`1
     name: IValueChangedNotificationResult
-    nameWithType: IValueChangedNotificationResult
-    fullName: NMF.Expressions.IValueChangedNotificationResult
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.Value
   commentId: P:NMF.Expressions.NotifyValue`1.Value
   name: Value
@@ -1822,33 +1295,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnValueChanged
-    nameWithType: NotifyValue<T>.OnValueChanged
-    fullName: NMF.Expressions.NotifyValue<T>.OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
-    nameWithType: ValueChangedEventArgs
-    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnValueChanged
-    nameWithType: NotifyValue(Of T).OnValueChanged
-    fullName: NMF.Expressions.NotifyValue(Of T).OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
-    nameWithType: ValueChangedEventArgs
-    fullName: NMF.Expressions.ValueChangedEventArgs
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(`0,`0)
   commentId: M:NMF.Expressions.NotifyValue`1.OnValueChanged(`0,`0)
   name: OnValueChanged(T, T)
@@ -1859,43 +1316,21 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(`0,`0)
     name: OnValueChanged
-    nameWithType: NotifyValue<T>.OnValueChanged
-    fullName: NMF.Expressions.NotifyValue<T>.OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.OnValueChanged(`0,`0)
     name: OnValueChanged
-    nameWithType: NotifyValue(Of T).OnValueChanged
-    fullName: NMF.Expressions.NotifyValue(Of T).OnValueChanged
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.Dispose
   commentId: M:NMF.Expressions.NotifyValue`1.Dispose
   name: Dispose()
@@ -1906,25 +1341,13 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.Dispose
     name: Dispose
-    nameWithType: NotifyValue<T>.Dispose
-    fullName: NMF.Expressions.NotifyValue<T>.Dispose
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.Dispose
     name: Dispose
-    nameWithType: NotifyValue(Of T).Dispose
-    fullName: NMF.Expressions.NotifyValue(Of T).Dispose
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.HasSuccessors
   commentId: P:NMF.Expressions.NotifyValue`1.HasSuccessors
   name: HasSuccessors
@@ -1963,33 +1386,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.Set(NMF.Expressions.INotifiable)
     name: Set
-    nameWithType: NotifyValue<T>.Set
-    fullName: NMF.Expressions.NotifyValue<T>.Set
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.Set(NMF.Expressions.INotifiable)
     name: Set
-    nameWithType: NotifyValue(Of T).Set
-    fullName: NMF.Expressions.NotifyValue(Of T).Set
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.SetDummy
   commentId: M:NMF.Expressions.NotifyValue`1.SetDummy
   name: SetDummy()
@@ -2000,79 +1407,46 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.SetDummy
     name: SetDummy
-    nameWithType: NotifyValue<T>.SetDummy
-    fullName: NMF.Expressions.NotifyValue<T>.SetDummy
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.SetDummy
     name: SetDummy
-    nameWithType: NotifyValue(Of T).SetDummy
-    fullName: NMF.Expressions.NotifyValue(Of T).SetDummy
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
   commentId: M:NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
   isExternal: true
-  name: Unset(INotifiable, Boolean)
-  nameWithType: NotifyValue<T>.Unset(INotifiable, Boolean)
-  fullName: NMF.Expressions.NotifyValue<T>.Unset(NMF.Expressions.INotifiable, System.Boolean)
+  name: Unset(INotifiable, bool)
+  nameWithType: NotifyValue<T>.Unset(INotifiable, bool)
+  fullName: NMF.Expressions.NotifyValue<T>.Unset(NMF.Expressions.INotifiable, bool)
   nameWithType.vb: NotifyValue(Of T).Unset(INotifiable, Boolean)
-  fullName.vb: NMF.Expressions.NotifyValue(Of T).Unset(NMF.Expressions.INotifiable, System.Boolean)
+  fullName.vb: NMF.Expressions.NotifyValue(Of T).Unset(NMF.Expressions.INotifiable, Boolean)
+  name.vb: Unset(INotifiable, Boolean)
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
     name: Unset
-    nameWithType: NotifyValue<T>.Unset
-    fullName: NMF.Expressions.NotifyValue<T>.Unset
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.Unset(NMF.Expressions.INotifiable,System.Boolean)
     name: Unset
-    nameWithType: NotifyValue(Of T).Unset
-    fullName: NMF.Expressions.NotifyValue(Of T).Unset
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.UnsetAll
   commentId: M:NMF.Expressions.NotifyValue`1.UnsetAll
   name: UnsetAll()
@@ -2083,65 +1457,77 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.UnsetAll
     name: UnsetAll
-    nameWithType: NotifyValue<T>.UnsetAll
-    fullName: NMF.Expressions.NotifyValue<T>.UnsetAll
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.UnsetAll
     name: UnsetAll
-    nameWithType: NotifyValue(Of T).UnsetAll
-    fullName: NMF.Expressions.NotifyValue(Of T).UnsetAll
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
   commentId: M:NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
   isExternal: true
-  name: GetSuccessor(Int32)
-  nameWithType: NotifyValue<T>.GetSuccessor(Int32)
-  fullName: NMF.Expressions.NotifyValue<T>.GetSuccessor(System.Int32)
-  nameWithType.vb: NotifyValue(Of T).GetSuccessor(Int32)
-  fullName.vb: NMF.Expressions.NotifyValue(Of T).GetSuccessor(System.Int32)
+  name: GetSuccessor(int)
+  nameWithType: NotifyValue<T>.GetSuccessor(int)
+  fullName: NMF.Expressions.NotifyValue<T>.GetSuccessor(int)
+  nameWithType.vb: NotifyValue(Of T).GetSuccessor(Integer)
+  fullName.vb: NMF.Expressions.NotifyValue(Of T).GetSuccessor(Integer)
+  name.vb: GetSuccessor(Integer)
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
     name: GetSuccessor
-    nameWithType: NotifyValue<T>.GetSuccessor
-    fullName: NMF.Expressions.NotifyValue<T>.GetSuccessor
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.GetSuccessor(System.Int32)
     name: GetSuccessor
-    nameWithType: NotifyValue(Of T).GetSuccessor
-    fullName: NMF.Expressions.NotifyValue(Of T).GetSuccessor
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+  commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+  isExternal: true
+  name: ExportToDgml(INotifiable, string)
+  nameWithType: DebugExtensions.ExportToDgml(INotifiable, string)
+  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, string)
+  nameWithType.vb: DebugExtensions.ExportToDgml(INotifiable, String)
+  fullName.vb: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, String)
+  name.vb: ExportToDgml(INotifiable, String)
+  spec.csharp:
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+    name: ExportToDgml
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+    name: ExportToDgml
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: NMF.Expressions.Debug.DebugExtensions
+  commentId: T:NMF.Expressions.Debug.DebugExtensions
+  parent: NMF.Expressions.Debug
+  name: DebugExtensions
+  nameWithType: DebugExtensions
+  fullName: NMF.Expressions.Debug.DebugExtensions
 - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
   commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
   name: Visualize(INotifiable)
@@ -2150,96 +1536,137 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
     name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
     name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.Debug.DebugExtensions
-  commentId: T:NMF.Expressions.Debug.DebugExtensions
-  parent: NMF.Expressions.Debug
-  name: DebugExtensions
-  nameWithType: DebugExtensions
-  fullName: NMF.Expressions.Debug.DebugExtensions
-- uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+- uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
+  commentId: M:NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
   isExternal: true
-  name: ExportToDgml(INotifiable, String)
-  nameWithType: DebugExtensions.ExportToDgml(INotifiable, String)
-  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, System.String)
+  name: AsReversable<T>(INotifyValue<T>, Action<T>)
+  nameWithType: ReversableExtensions.AsReversable<T>(INotifyValue<T>, Action<T>)
+  fullName: NMF.Expressions.ReversableExtensions.AsReversable<T>(NMF.Expressions.INotifyValue<T>, System.Action<T>)
+  nameWithType.vb: ReversableExtensions.AsReversable(Of T)(INotifyValue(Of T), Action(Of T))
+  fullName.vb: NMF.Expressions.ReversableExtensions.AsReversable(Of T)(NMF.Expressions.INotifyValue(Of T), System.Action(Of T))
+  name.vb: AsReversable(Of T)(INotifyValue(Of T), Action(Of T))
   spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-    name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
+  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
+    name: AsReversable
+  - name: <
+  - name: T
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
     isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-    name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
+  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
+    name: AsReversable
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
+  - name: Of
+  - name: " "
+  - name: T
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: NMF.Expressions.ReversableExtensions
+  commentId: T:NMF.Expressions.ReversableExtensions
+  parent: NMF.Expressions
+  name: ReversableExtensions
+  nameWithType: ReversableExtensions
+  fullName: NMF.Expressions.ReversableExtensions
+- uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<T>(T)
+  nameWithType: ExpressionExtensions.AsOne<T>(T)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<T>(T)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of T)(T)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of T)(T)
+  name.vb: AsOne(Of T)(T)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: NMF.Expressions.Linq.ExpressionExtensions
+  commentId: T:NMF.Expressions.Linq.ExpressionExtensions
+  parent: NMF.Expressions.Linq
+  name: ExpressionExtensions
+  nameWithType: ExpressionExtensions
+  fullName: NMF.Expressions.Linq.ExpressionExtensions
 - uid: NMF.Expressions.Debug
   commentId: N:NMF.Expressions.Debug
   name: NMF.Expressions.Debug
   nameWithType: NMF.Expressions.Debug
   fullName: NMF.Expressions.Debug
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Debug
+    name: Debug
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Debug
+    name: Debug
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Accumulator*
   commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.Accumulator
   name: Accumulator
@@ -2262,8 +1689,9 @@ references:
   name: ObservableAggregate
   nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.ObservableAggregate
   fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.ObservableAggregate
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).ObservableAggregate
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).ObservableAggregate
+  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).New
+  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).New
+  name.vb: New
 - uid: NMF.Expressions.INotifyEnumerable{{TSource}}
   commentId: T:NMF.Expressions.INotifyEnumerable{``0}
   parent: NMF.Expressions
@@ -2277,31 +1705,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TSource
-    nameWithType: TSource
-    fullName: TSource
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TSource
-    nameWithType: TSource
-    fullName: TSource
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyEnumerable`1
   commentId: T:NMF.Expressions.INotifyEnumerable`1
   name: INotifyEnumerable<T>
@@ -2313,31 +1727,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyEnumerable`1
     name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Source*
   commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.Source
   name: Source
@@ -2386,27 +1786,15 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).Attach()
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Attach()
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.Attach
+  - uid: NMF.Expressions.NotifyValue{`2}.Attach
     name: Attach
-    nameWithType: NotifyValue<TResult>.Attach
-    fullName: NMF.Expressions.NotifyValue<TResult>.Attach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.Attach
+  - uid: NMF.Expressions.NotifyValue{`2}.Attach
     name: Attach
-    nameWithType: NotifyValue(Of TResult).Attach
-    fullName: NMF.Expressions.NotifyValue(Of TResult).Attach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Attach*
   commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.Attach
   name: Attach
@@ -2424,25 +1812,13 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.Attach
     name: Attach
-    nameWithType: NotifyValue<T>.Attach
-    fullName: NMF.Expressions.NotifyValue<T>.Attach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.Attach
     name: Attach
-    nameWithType: NotifyValue(Of T).Attach
-    fullName: NMF.Expressions.NotifyValue(Of T).Attach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.Detach
   commentId: M:NMF.Expressions.NotifyValue{`2}.Detach
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -2453,27 +1829,15 @@ references:
   nameWithType.vb: NotifyValue(Of TResult).Detach()
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Detach()
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.Detach
+  - uid: NMF.Expressions.NotifyValue{`2}.Detach
     name: Detach
-    nameWithType: NotifyValue<TResult>.Detach
-    fullName: NMF.Expressions.NotifyValue<TResult>.Detach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.Detach
+  - uid: NMF.Expressions.NotifyValue{`2}.Detach
     name: Detach
-    nameWithType: NotifyValue(Of TResult).Detach
-    fullName: NMF.Expressions.NotifyValue(Of TResult).Detach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Detach*
   commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.Detach
   name: Detach
@@ -2491,25 +1855,13 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.Detach
     name: Detach
-    nameWithType: NotifyValue<T>.Detach
-    fullName: NMF.Expressions.NotifyValue<T>.Detach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.Detach
     name: Detach
-    nameWithType: NotifyValue(Of T).Detach
-    fullName: NMF.Expressions.NotifyValue(Of T).Detach
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue{{TResult}}.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   commentId: M:NMF.Expressions.NotifyValue{`2}.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -2521,57 +1873,31 @@ references:
   fullName.vb: NMF.Expressions.NotifyValue(Of TResult).Notify(System.Collections.Generic.IList(Of NMF.Expressions.INotificationResult))
   name.vb: Notify(IList(Of INotificationResult))
   spec.csharp:
-  - uid: NMF.Expressions.NotifyValue`1.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  - uid: NMF.Expressions.NotifyValue{`2}.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
     name: Notify
-    nameWithType: NotifyValue<TResult>.Notify
-    fullName: NMF.Expressions.NotifyValue<TResult>.Notify
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.NotifyValue`1.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
+  - uid: NMF.Expressions.NotifyValue{`2}.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
     name: Notify
-    nameWithType: NotifyValue(Of TResult).Notify
-    fullName: NMF.Expressions.NotifyValue(Of TResult).Notify
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.ObservableAggregate`3.Notify*
   commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.Notify
   name: Notify
@@ -2592,35 +1918,21 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   commentId: M:NMF.Expressions.NotifyValue`1.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   isExternal: true
@@ -2633,55 +1945,29 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.NotifyValue`1.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
     name: Notify
-    nameWithType: NotifyValue<T>.Notify
-    fullName: NMF.Expressions.NotifyValue<T>.Notify
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.NotifyValue`1.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
     name: Notify
-    nameWithType: NotifyValue(Of T).Notify
-    fullName: NMF.Expressions.NotifyValue(Of T).Notify
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IList`1
   commentId: T:System.Collections.Generic.IList`1
   isExternal: true
@@ -2694,39 +1980,49 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
 - uid: NMF.Expressions.NotifyValue{{TResult}}.Dependencies
   commentId: P:NMF.Expressions.NotifyValue{`2}.Dependencies
   parent: NMF.Expressions.NotifyValue{{TResult}}
@@ -2756,35 +2052,21 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.NotifyValue`1.Dependencies
   commentId: P:NMF.Expressions.NotifyValue`1.Dependencies
   name: Dependencies
@@ -2804,241 +2086,16 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#OldValue
-  name: IValueChangedNotificationResult<TResult>.OldValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult<TResult>.OldValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-- uid: NMF.Expressions.IValueChangedNotificationResult{{TResult}}.OldValue
-  commentId: P:NMF.Expressions.IValueChangedNotificationResult{`2}.OldValue
-  parent: NMF.Expressions.IValueChangedNotificationResult{{TResult}}
-  definition: NMF.Expressions.IValueChangedNotificationResult`1.OldValue
-  name: OldValue
-  nameWithType: IValueChangedNotificationResult<TResult>.OldValue
-  fullName: NMF.Expressions.IValueChangedNotificationResult<TResult>.OldValue
-  nameWithType.vb: IValueChangedNotificationResult(Of TResult).OldValue
-  fullName.vb: NMF.Expressions.IValueChangedNotificationResult(Of TResult).OldValue
-- uid: '{TResult}'
-  commentId: '!:TResult'
-  definition: TResult
-  name: TResult
-  nameWithType: TResult
-  fullName: TResult
-- uid: NMF.Expressions.IValueChangedNotificationResult`1.OldValue
-  commentId: P:NMF.Expressions.IValueChangedNotificationResult`1.OldValue
-  name: OldValue
-  nameWithType: IValueChangedNotificationResult<T>.OldValue
-  fullName: NMF.Expressions.IValueChangedNotificationResult<T>.OldValue
-  nameWithType.vb: IValueChangedNotificationResult(Of T).OldValue
-  fullName.vb: NMF.Expressions.IValueChangedNotificationResult(Of T).OldValue
-- uid: TResult
-  name: TResult
-  nameWithType: TResult
-  fullName: TResult
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult{TResult}#NewValue
-  name: IValueChangedNotificationResult<TResult>.NewValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult<TResult>.NewValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-- uid: NMF.Expressions.IValueChangedNotificationResult{{TResult}}.NewValue
-  commentId: P:NMF.Expressions.IValueChangedNotificationResult{`2}.NewValue
-  parent: NMF.Expressions.IValueChangedNotificationResult{{TResult}}
-  definition: NMF.Expressions.IValueChangedNotificationResult`1.NewValue
-  name: NewValue
-  nameWithType: IValueChangedNotificationResult<TResult>.NewValue
-  fullName: NMF.Expressions.IValueChangedNotificationResult<TResult>.NewValue
-  nameWithType.vb: IValueChangedNotificationResult(Of TResult).NewValue
-  fullName.vb: NMF.Expressions.IValueChangedNotificationResult(Of TResult).NewValue
-- uid: NMF.Expressions.IValueChangedNotificationResult`1.NewValue
-  commentId: P:NMF.Expressions.IValueChangedNotificationResult`1.NewValue
-  name: NewValue
-  nameWithType: IValueChangedNotificationResult<T>.NewValue
-  fullName: NMF.Expressions.IValueChangedNotificationResult<T>.NewValue
-  nameWithType.vb: IValueChangedNotificationResult(Of T).NewValue
-  fullName.vb: NMF.Expressions.IValueChangedNotificationResult(Of T).NewValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#OldValue*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#OldValue
-  name: IValueChangedNotificationResult.OldValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult.OldValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult.OldValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.OldValue
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.OldValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult.OldValue
-- uid: NMF.Expressions.IValueChangedNotificationResult.OldValue
-  commentId: P:NMF.Expressions.IValueChangedNotificationResult.OldValue
-  parent: NMF.Expressions.IValueChangedNotificationResult
-  name: OldValue
-  nameWithType: IValueChangedNotificationResult.OldValue
-  fullName: NMF.Expressions.IValueChangedNotificationResult.OldValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#NewValue*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#IValueChangedNotificationResult#NewValue
-  name: IValueChangedNotificationResult.NewValue
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.IValueChangedNotificationResult.NewValue
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.IValueChangedNotificationResult.NewValue
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.NewValue
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.IValueChangedNotificationResult.NewValue
-  name.vb: NMF.Expressions.IValueChangedNotificationResult.NewValue
-- uid: NMF.Expressions.IValueChangedNotificationResult.NewValue
-  commentId: P:NMF.Expressions.IValueChangedNotificationResult.NewValue
-  parent: NMF.Expressions.IValueChangedNotificationResult
-  name: NewValue
-  nameWithType: IValueChangedNotificationResult.NewValue
-  fullName: NMF.Expressions.IValueChangedNotificationResult.NewValue
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Source*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Source
-  name: INotificationResult.Source
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.Source
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.Source
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Source
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Source
-  name.vb: NMF.Expressions.INotificationResult.Source
-- uid: NMF.Expressions.INotificationResult.Source
-  commentId: P:NMF.Expressions.INotificationResult.Source
-  parent: NMF.Expressions.INotificationResult
-  name: Source
-  nameWithType: INotificationResult.Source
-  fullName: NMF.Expressions.INotificationResult.Source
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Changed*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#Changed
-  name: INotificationResult.Changed
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.Changed
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.Changed
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Changed
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.Changed
-  name.vb: NMF.Expressions.INotificationResult.Changed
-- uid: NMF.Expressions.INotificationResult.Changed
-  commentId: P:NMF.Expressions.INotificationResult.Changed
-  parent: NMF.Expressions.INotificationResult
-  name: Changed
-  nameWithType: INotificationResult.Changed
-  fullName: NMF.Expressions.INotificationResult.Changed
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#IncreaseReferences*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#IncreaseReferences
-  name: INotificationResult.IncreaseReferences
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.IncreaseReferences
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.IncreaseReferences
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.IncreaseReferences
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.IncreaseReferences
-  name.vb: NMF.Expressions.INotificationResult.IncreaseReferences
-- uid: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-  commentId: M:NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-  parent: NMF.Expressions.INotificationResult
-  isExternal: true
-  name: IncreaseReferences(Int32)
-  nameWithType: INotificationResult.IncreaseReferences(Int32)
-  fullName: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-  spec.csharp:
-  - uid: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-    name: IncreaseReferences
-    nameWithType: INotificationResult.IncreaseReferences
-    fullName: NMF.Expressions.INotificationResult.IncreaseReferences
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
-    name: IncreaseReferences
-    nameWithType: INotificationResult.IncreaseReferences
-    fullName: NMF.Expressions.INotificationResult.IncreaseReferences
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#FreeReference*
-  commentId: Overload:NMF.Expressions.Linq.ObservableAggregate`3.NMF#Expressions#INotificationResult#FreeReference
-  name: INotificationResult.FreeReference
-  nameWithType: ObservableAggregate<TSource, TAccumulator, TResult>.INotificationResult.FreeReference
-  fullName: NMF.Expressions.Linq.ObservableAggregate<TSource, TAccumulator, TResult>.NMF.Expressions.INotificationResult.FreeReference
-  nameWithType.vb: ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.FreeReference
-  fullName.vb: NMF.Expressions.Linq.ObservableAggregate(Of TSource, TAccumulator, TResult).NMF.Expressions.INotificationResult.FreeReference
-  name.vb: NMF.Expressions.INotificationResult.FreeReference
-- uid: NMF.Expressions.INotificationResult.FreeReference
-  commentId: M:NMF.Expressions.INotificationResult.FreeReference
-  parent: NMF.Expressions.INotificationResult
-  name: FreeReference()
-  nameWithType: INotificationResult.FreeReference()
-  fullName: NMF.Expressions.INotificationResult.FreeReference()
-  spec.csharp:
-  - uid: NMF.Expressions.INotificationResult.FreeReference
-    name: FreeReference
-    nameWithType: INotificationResult.FreeReference
-    fullName: NMF.Expressions.INotificationResult.FreeReference
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.INotificationResult.FreeReference
-    name: FreeReference
-    nameWithType: INotificationResult.FreeReference
-    fullName: NMF.Expressions.INotificationResult.FreeReference
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )

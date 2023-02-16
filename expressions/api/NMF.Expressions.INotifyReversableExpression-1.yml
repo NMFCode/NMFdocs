@@ -30,9 +30,7 @@ items:
     typeParameters:
     - id: T
       description: The expression type
-    content.vb: >-
-      Public Interface INotifyReversableExpression(Of T)
-          Inherits INotifyExpression(Of T), INotifyReversableValue(Of T)
+    content.vb: Public Interface INotifyReversableExpression(Of T) Inherits INotifyExpression(Of T), INotifyExpression, INotifyReversableValue(Of T), INotifyValue(Of T), INotifiable, IDisposable
   inheritedMembers:
   - NMF.Expressions.INotifyExpression{{T}}.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
   - NMF.Expressions.INotifyExpression{{T}}.Reduce
@@ -49,16 +47,11 @@ items:
   - NMF.Expressions.INotifiable.ExecutionMetaData
   - System.IDisposable.Dispose
   extensionMethods:
-  - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
   - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
+  - NMF.Expressions.INotifyReversableExpression`1.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
   - NMF.Expressions.INotifyValue{`0}.NMF.Expressions.ReversableExtensions.AsReversable``1(System.Action{{T}})
   nameWithType.vb: INotifyReversableExpression(Of T)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
   fullName.vb: NMF.Expressions.INotifyReversableExpression(Of T)
   name.vb: INotifyReversableExpression(Of T)
 references:
@@ -67,136 +60,94 @@ references:
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
 - uid: NMF.Expressions.INotifyExpression{{T}}.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
   commentId: M:NMF.Expressions.INotifyExpression{`0}.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
   parent: NMF.Expressions.INotifyExpression{{T}}
   definition: NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
-  name: ApplyParameters(IDictionary<String, Object>, IDictionary<INotifiable, INotifiable>)
-  nameWithType: INotifyExpression<T>.ApplyParameters(IDictionary<String, Object>, IDictionary<INotifiable, INotifiable>)
-  fullName: NMF.Expressions.INotifyExpression<T>.ApplyParameters(System.Collections.Generic.IDictionary<System.String, System.Object>, System.Collections.Generic.IDictionary<NMF.Expressions.INotifiable, NMF.Expressions.INotifiable>)
+  name: ApplyParameters(IDictionary<string, object>, IDictionary<INotifiable, INotifiable>)
+  nameWithType: INotifyExpression<T>.ApplyParameters(IDictionary<string, object>, IDictionary<INotifiable, INotifiable>)
+  fullName: NMF.Expressions.INotifyExpression<T>.ApplyParameters(System.Collections.Generic.IDictionary<string, object>, System.Collections.Generic.IDictionary<NMF.Expressions.INotifiable, NMF.Expressions.INotifiable>)
   nameWithType.vb: INotifyExpression(Of T).ApplyParameters(IDictionary(Of String, Object), IDictionary(Of INotifiable, INotifiable))
-  fullName.vb: NMF.Expressions.INotifyExpression(Of T).ApplyParameters(System.Collections.Generic.IDictionary(Of System.String, System.Object), System.Collections.Generic.IDictionary(Of NMF.Expressions.INotifiable, NMF.Expressions.INotifiable))
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T).ApplyParameters(System.Collections.Generic.IDictionary(Of String, Object), System.Collections.Generic.IDictionary(Of NMF.Expressions.INotifiable, NMF.Expressions.INotifiable))
   name.vb: ApplyParameters(IDictionary(Of String, Object), IDictionary(Of INotifiable, INotifiable))
   spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
+  - uid: NMF.Expressions.INotifyExpression{`0}.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
     name: ApplyParameters
-    nameWithType: INotifyExpression<T>.ApplyParameters
-    fullName: NMF.Expressions.INotifyExpression<T>.ApplyParameters
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
+  - uid: NMF.Expressions.INotifyExpression{`0}.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
     name: ApplyParameters
-    nameWithType: INotifyExpression(Of T).ApplyParameters
-    fullName: NMF.Expressions.INotifyExpression(Of T).ApplyParameters
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyExpression{{T}}.Reduce
   commentId: M:NMF.Expressions.INotifyExpression{`0}.Reduce
   parent: NMF.Expressions.INotifyExpression{{T}}
@@ -207,27 +158,15 @@ references:
   nameWithType.vb: INotifyExpression(Of T).Reduce()
   fullName.vb: NMF.Expressions.INotifyExpression(Of T).Reduce()
   spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1.Reduce
+  - uid: NMF.Expressions.INotifyExpression{`0}.Reduce
     name: Reduce
-    nameWithType: INotifyExpression<T>.Reduce
-    fullName: NMF.Expressions.INotifyExpression<T>.Reduce
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1.Reduce
+  - uid: NMF.Expressions.INotifyExpression{`0}.Reduce
     name: Reduce
-    nameWithType: INotifyExpression(Of T).Reduce
-    fullName: NMF.Expressions.INotifyExpression(Of T).Reduce
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyExpression.CanBeConstant
   commentId: P:NMF.Expressions.INotifyExpression.CanBeConstant
   parent: NMF.Expressions.INotifyExpression
@@ -304,55 +243,29 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
     name: Notify
-    nameWithType: INotifiable.Notify
-    fullName: NMF.Expressions.INotifiable.Notify
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
     name: Notify
-    nameWithType: INotifiable.Notify
-    fullName: NMF.Expressions.INotifiable.Notify
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable.ExecutionMetaData
   commentId: P:NMF.Expressions.INotifiable.ExecutionMetaData
   parent: NMF.Expressions.INotifiable
@@ -369,284 +282,253 @@ references:
   spec.csharp:
   - uid: System.IDisposable.Dispose
     name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.IDisposable.Dispose
     name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
-  commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
-  parent: NMF.Expressions.Debug.DebugExtensions
-  definition: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
-  name: Visualize()
-  nameWithType: DebugExtensions.Visualize()
-  fullName: NMF.Expressions.Debug.DebugExtensions.Visualize()
-  spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize
-    name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize
-    name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
   commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
   parent: NMF.Expressions.Debug.DebugExtensions
   definition: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  name: ExportToDgml(String)
-  nameWithType: DebugExtensions.ExportToDgml(String)
-  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  name: ExportToDgml(INotifiable, string)
+  nameWithType: DebugExtensions.ExportToDgml(INotifiable, string)
+  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, string)
+  nameWithType.vb: DebugExtensions.ExportToDgml(INotifiable, String)
+  fullName.vb: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, String)
+  name.vb: ExportToDgml(INotifiable, String)
   spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
     name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
     name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
+  commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  parent: NMF.Expressions.Debug.DebugExtensions
+  definition: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  name: Visualize(INotifiable)
+  nameWithType: DebugExtensions.Visualize(INotifiable)
+  fullName: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+    name: Visualize
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+    name: Visualize
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+- uid: NMF.Expressions.INotifyReversableExpression`1.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  parent: NMF.Expressions.Linq.ExpressionExtensions
+  definition: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<INotifyReversableExpression<T>>(INotifyReversableExpression<T>)
+  nameWithType: ExpressionExtensions.AsOne<INotifyReversableExpression<T>>(INotifyReversableExpression<T>)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<NMF.Expressions.INotifyReversableExpression<T>>(NMF.Expressions.INotifyReversableExpression<T>)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of INotifyReversableExpression(Of T))(INotifyReversableExpression(Of T))
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of NMF.Expressions.INotifyReversableExpression(Of T))(NMF.Expressions.INotifyReversableExpression(Of T))
+  name.vb: AsOne(Of INotifyReversableExpression(Of T))(INotifyReversableExpression(Of T))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.INotifyReversableExpression{`0})
+    name: AsOne
+  - name: <
+  - uid: NMF.Expressions.INotifyReversableExpression`1
+    name: INotifyReversableExpression
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.INotifyReversableExpression`1
+    name: INotifyReversableExpression
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.INotifyReversableExpression{`0})
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.INotifyReversableExpression`1
+    name: INotifyReversableExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.INotifyReversableExpression`1
+    name: INotifyReversableExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
 - uid: NMF.Expressions.INotifyValue{`0}.NMF.Expressions.ReversableExtensions.AsReversable``1(System.Action{{T}})
   commentId: M:NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
   parent: NMF.Expressions.ReversableExtensions
   definition: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
-  name: AsReversable<T>(Action<T>)
-  nameWithType: ReversableExtensions.AsReversable<T>(Action<T>)
-  fullName: NMF.Expressions.ReversableExtensions.AsReversable<T>(System.Action<T>)
-  nameWithType.vb: ReversableExtensions.AsReversable(Of T)(Action(Of T))
-  fullName.vb: NMF.Expressions.ReversableExtensions.AsReversable(Of T)(System.Action(Of T))
-  name.vb: AsReversable(Of T)(Action(Of T))
+  name: AsReversable<T>(INotifyValue<T>, Action<T>)
+  nameWithType: ReversableExtensions.AsReversable<T>(INotifyValue<T>, Action<T>)
+  fullName: NMF.Expressions.ReversableExtensions.AsReversable<T>(NMF.Expressions.INotifyValue<T>, System.Action<T>)
+  nameWithType.vb: ReversableExtensions.AsReversable(Of T)(INotifyValue(Of T), Action(Of T))
+  fullName.vb: NMF.Expressions.ReversableExtensions.AsReversable(Of T)(NMF.Expressions.INotifyValue(Of T), System.Action(Of T))
+  name.vb: AsReversable(Of T)(INotifyValue(Of T), Action(Of T))
   spec.csharp:
-  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(System.Action{``0})
-    name: AsReversable<T>
-    nameWithType: ReversableExtensions.AsReversable<T>
-    fullName: NMF.Expressions.ReversableExtensions.AsReversable<T>
+  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{`0},System.Action{`0})
+    name: AsReversable
+  - name: <
+  - name: T
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(System.Action{``0})
-    name: AsReversable(Of T)
-    nameWithType: ReversableExtensions.AsReversable(Of T)
-    fullName: NMF.Expressions.ReversableExtensions.AsReversable(Of T)
+  - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{`0},System.Action{`0})
+    name: AsReversable
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
   commentId: M:NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
   isExternal: true
-  name: ApplyParameters(IDictionary<String, Object>, IDictionary<INotifiable, INotifiable>)
-  nameWithType: INotifyExpression<T>.ApplyParameters(IDictionary<String, Object>, IDictionary<INotifiable, INotifiable>)
-  fullName: NMF.Expressions.INotifyExpression<T>.ApplyParameters(System.Collections.Generic.IDictionary<System.String, System.Object>, System.Collections.Generic.IDictionary<NMF.Expressions.INotifiable, NMF.Expressions.INotifiable>)
+  name: ApplyParameters(IDictionary<string, object>, IDictionary<INotifiable, INotifiable>)
+  nameWithType: INotifyExpression<T>.ApplyParameters(IDictionary<string, object>, IDictionary<INotifiable, INotifiable>)
+  fullName: NMF.Expressions.INotifyExpression<T>.ApplyParameters(System.Collections.Generic.IDictionary<string, object>, System.Collections.Generic.IDictionary<NMF.Expressions.INotifiable, NMF.Expressions.INotifiable>)
   nameWithType.vb: INotifyExpression(Of T).ApplyParameters(IDictionary(Of String, Object), IDictionary(Of INotifiable, INotifiable))
-  fullName.vb: NMF.Expressions.INotifyExpression(Of T).ApplyParameters(System.Collections.Generic.IDictionary(Of System.String, System.Object), System.Collections.Generic.IDictionary(Of NMF.Expressions.INotifiable, NMF.Expressions.INotifiable))
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T).ApplyParameters(System.Collections.Generic.IDictionary(Of String, Object), System.Collections.Generic.IDictionary(Of NMF.Expressions.INotifiable, NMF.Expressions.INotifiable))
   name.vb: ApplyParameters(IDictionary(Of String, Object), IDictionary(Of INotifiable, INotifiable))
   spec.csharp:
   - uid: NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
     name: ApplyParameters
-    nameWithType: INotifyExpression<T>.ApplyParameters
-    fullName: NMF.Expressions.INotifyExpression<T>.ApplyParameters
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.INotifyExpression`1.ApplyParameters(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{NMF.Expressions.INotifiable,NMF.Expressions.INotifiable})
     name: ApplyParameters
-    nameWithType: INotifyExpression(Of T).ApplyParameters
-    fullName: NMF.Expressions.INotifyExpression(Of T).ApplyParameters
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Collections.Generic.IDictionary`2
     name: IDictionary
-    nameWithType: IDictionary
-    fullName: System.Collections.Generic.IDictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyExpression{{T}}
   commentId: T:NMF.Expressions.INotifyExpression{`0}
   parent: NMF.Expressions
@@ -660,31 +542,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyExpression`1
     name: INotifyExpression
-    nameWithType: INotifyExpression
-    fullName: NMF.Expressions.INotifyExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyExpression`1
     name: INotifyExpression
-    nameWithType: INotifyExpression
-    fullName: NMF.Expressions.INotifyExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyExpression`1.Reduce
   commentId: M:NMF.Expressions.INotifyExpression`1.Reduce
   name: Reduce()
@@ -695,25 +563,13 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyExpression`1.Reduce
     name: Reduce
-    nameWithType: INotifyExpression<T>.Reduce
-    fullName: NMF.Expressions.INotifyExpression<T>.Reduce
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.INotifyExpression`1.Reduce
     name: Reduce
-    nameWithType: INotifyExpression(Of T).Reduce
-    fullName: NMF.Expressions.INotifyExpression(Of T).Reduce
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyExpression
   commentId: T:NMF.Expressions.INotifyExpression
   parent: NMF.Expressions
@@ -740,31 +596,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyReversableValue`1
     name: INotifyReversableValue
-    nameWithType: INotifyReversableValue
-    fullName: NMF.Expressions.INotifyReversableValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyReversableValue`1
     name: INotifyReversableValue
-    nameWithType: INotifyReversableValue
-    fullName: NMF.Expressions.INotifyReversableValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyReversableValue`1.IsReversable
   commentId: P:NMF.Expressions.INotifyReversableValue`1.IsReversable
   name: IsReversable
@@ -792,31 +634,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable
   commentId: T:NMF.Expressions.INotifiable
   parent: NMF.Expressions
@@ -830,6 +658,45 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+  commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+  isExternal: true
+  name: ExportToDgml(INotifiable, string)
+  nameWithType: DebugExtensions.ExportToDgml(INotifiable, string)
+  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, string)
+  nameWithType.vb: DebugExtensions.ExportToDgml(INotifiable, String)
+  fullName.vb: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, String)
+  name.vb: ExportToDgml(INotifiable, String)
+  spec.csharp:
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+    name: ExportToDgml
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+    name: ExportToDgml
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: NMF.Expressions.Debug.DebugExtensions
+  commentId: T:NMF.Expressions.Debug.DebugExtensions
+  parent: NMF.Expressions.Debug
+  name: DebugExtensions
+  nameWithType: DebugExtensions
+  fullName: NMF.Expressions.Debug.DebugExtensions
 - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
   commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
   name: Visualize(INotifiable)
@@ -838,91 +705,51 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
     name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
     name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.Debug.DebugExtensions
-  commentId: T:NMF.Expressions.Debug.DebugExtensions
-  parent: NMF.Expressions.Debug
-  name: DebugExtensions
-  nameWithType: DebugExtensions
-  fullName: NMF.Expressions.Debug.DebugExtensions
-- uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  isExternal: true
-  name: ExportToDgml(INotifiable, String)
-  nameWithType: DebugExtensions.ExportToDgml(INotifiable, String)
-  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, System.String)
+- uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<T>(T)
+  nameWithType: ExpressionExtensions.AsOne<T>(T)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<T>(T)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of T)(T)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of T)(T)
+  name.vb: AsOne(Of T)(T)
   spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-    name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: <
+  - name: T
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
+  - name: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-    name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
+  - name: Of
+  - name: " "
+  - name: T
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: T
+  - name: )
+- uid: NMF.Expressions.Linq.ExpressionExtensions
+  commentId: T:NMF.Expressions.Linq.ExpressionExtensions
+  parent: NMF.Expressions.Linq
+  name: ExpressionExtensions
+  nameWithType: ExpressionExtensions
+  fullName: NMF.Expressions.Linq.ExpressionExtensions
 - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
   commentId: M:NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
   isExternal: true
@@ -934,86 +761,52 @@ references:
   name.vb: AsReversable(Of T)(INotifyValue(Of T), Action(Of T))
   spec.csharp:
   - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
-    name: AsReversable<T>
-    nameWithType: ReversableExtensions.AsReversable<T>
-    fullName: NMF.Expressions.ReversableExtensions.AsReversable<T>
+    name: AsReversable
+  - name: <
+  - name: T
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.ReversableExtensions.AsReversable``1(NMF.Expressions.INotifyValue{``0},System.Action{``0})
-    name: AsReversable(Of T)
-    nameWithType: ReversableExtensions.AsReversable(Of T)
-    fullName: NMF.Expressions.ReversableExtensions.AsReversable(Of T)
+    name: AsReversable
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.ReversableExtensions
   commentId: T:NMF.Expressions.ReversableExtensions
   parent: NMF.Expressions
@@ -1032,31 +825,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyExpression`1
     name: INotifyExpression
-    nameWithType: INotifyExpression
-    fullName: NMF.Expressions.INotifyExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyExpression`1
     name: INotifyExpression
-    nameWithType: INotifyExpression
-    fullName: NMF.Expressions.INotifyExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyReversableValue`1
   commentId: T:NMF.Expressions.INotifyReversableValue`1
   name: INotifyReversableValue<T>
@@ -1068,31 +847,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyReversableValue`1
     name: INotifyReversableValue
-    nameWithType: INotifyReversableValue
-    fullName: NMF.Expressions.INotifyReversableValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyReversableValue`1
     name: INotifyReversableValue
-    nameWithType: INotifyReversableValue
-    fullName: NMF.Expressions.INotifyReversableValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyValue`1
   commentId: T:NMF.Expressions.INotifyValue`1
   name: INotifyValue<T>
@@ -1104,31 +869,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -1140,3 +891,44 @@ references:
   name: NMF.Expressions.Debug
   nameWithType: NMF.Expressions.Debug
   fullName: NMF.Expressions.Debug
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Debug
+    name: Debug
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Debug
+    name: Debug
+- uid: NMF.Expressions.Linq
+  commentId: N:NMF.Expressions.Linq
+  name: NMF.Expressions.Linq
+  nameWithType: NMF.Expressions.Linq
+  fullName: NMF.Expressions.Linq
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq

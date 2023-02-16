@@ -1,6 +1,12 @@
 Journal Articles
 ---
 
+### 2022
+G. Hinkel, A. Garcia-Dominguez, R. SchÃ¶ne, A. Boronat, M. Tisi, T. Calvar, F. Jouault, J. Marton, T. NyÃ­ri, J. Antal, M. Elekes, and G. SzÃ¡rnyas: **[A cross-technology benchmark for incremental graph queries](https://doi.org/10.1007/s10270-021-00927-5)** in _Software and Systems Modeling_, vol. 21, no. 2, pp. 755-804, 2022
+**DOI:** [10.1007/s10270-021-00927-5](https://dx.doi.org/10.1007/s10270-021-00927-5)  
+
+
+
 ### 2019
 G. Hinkel, T. Goldschmidt, E. Burger, and R. Reussner: **[Using internal domain-specific languages to inherit tool support and
 modularity for model transformations](http://sdqweb.ipd.kit.edu/publications/pdfs/hinkel2017b.pdf)** in _Software and Systems Modeling_, vol. 18, no. 1, pp. 129-155, 2019

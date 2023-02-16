@@ -1,6 +1,31 @@
 Transformtion Tool Contest
 ---
 
+### 2021
+G. Hinkel: **[Incremental recompilation of laboratory workflows](http://ceur-ws.org/Vol-3089/ttc21_paper6_labflow_Hinkel_case.pdf)** in _TTC 2020/2021 - Joint Proceedings of the 13th and 14th Tool Transformation
+Contests. The TTC pandemic proceedings with CEUR-WS co-located
+with Software Technologies: Applications and Foundations (STAF 2021),
+Virtual Event, Bergen, Norway, July 17, 2020 and June 25, 2021_, 2021
+
+G. Hinkel: **[An NMF solution to the TTC2021 incremental recompilation of laboratory
+workflows case](http://ceur-ws.org/Vol-3089/ttc21_paper9_labflow_Hinkel_solution.pdf)** in _TTC 2020/2021 - Joint Proceedings of the 13th and 14th Tool Transformation
+Contests. The TTC pandemic proceedings with CEUR-WS co-located
+with Software Technologies: Applications and Foundations (STAF 2021),
+Virtual Event, Bergen, Norway, July 17, 2020 and June 25, 2021_, 2021
+
+G. Hinkel: **[An NMF solution to the TTC 2021 OCL to SQL case](http://ceur-ws.org/Vol-3089/ttc21_paper13_ocl2sql_Hinkel_solution.pdf)** in _TTC 2020/2021 - Joint Proceedings of the 13th and 14th Tool Transformation
+Contests. The TTC pandemic proceedings with CEUR-WS co-located
+with Software Technologies: Applications and Foundations (STAF 2021),
+Virtual Event, Bergen, Norway, July 17, 2020 and June 25, 2021_, 2021
+
+
+### 2020
+G. Hinkel: **[An NMF solution to the TTC 2020 roundtrip engineering case](http://ceur-ws.org/Vol-3089/ttc20_paper4_Hinkel.pdf)** in _TTC 2020/2021 - Joint Proceedings of the 13th and 14th Tool Transformation
+Contests. The TTC pandemic proceedings with CEUR-WS co-located
+with Software Technologies: Applications and Foundations (STAF 2021),
+Virtual Event, Bergen, Norway, July 17, 2020 and June 25, 2021_, 2020
+
+
 ### 2018
 G. Hinkel: **[The TTC 2018 Social Media Case](http://ceur-ws.org/Vol-2310/paper5.pdf)** in _Proceedings of the 11th Transformation Tool Contest, co-located with
 the 2018 Software Technologies: Applications and Foundations, TTC@STAF

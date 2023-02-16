@@ -33,9 +33,7 @@ items:
     typeParameters:
     - id: T
       description: The type of elements
-    content.vb: >-
-      Public Interface ICollectionChangedNotificationResult(Of T)
-          Inherits ICollectionChangedNotificationResult
+    content.vb: Public Interface ICollectionChangedNotificationResult(Of T) Inherits ICollectionChangedNotificationResult, INotificationResult
   inheritedMembers:
   - NMF.Expressions.ICollectionChangedNotificationResult.IsReset
   - NMF.Expressions.ICollectionChangedNotificationResult.OldItemsStartIndex
@@ -44,13 +42,9 @@ items:
   - NMF.Expressions.INotificationResult.Changed
   - NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
   - NMF.Expressions.INotificationResult.FreeReference
+  extensionMethods:
+  - NMF.Expressions.ICollectionChangedNotificationResult`1.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
   nameWithType.vb: ICollectionChangedNotificationResult(Of T)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
   fullName.vb: NMF.Expressions.ICollectionChangedNotificationResult(Of T)
   name.vb: ICollectionChangedNotificationResult(Of T)
 - uid: NMF.Expressions.ICollectionChangedNotificationResult`1.AddedItems
@@ -85,10 +79,6 @@ items:
     content.vb: ReadOnly Property AddedItems As List(Of T)
   overload: NMF.Expressions.ICollectionChangedNotificationResult`1.AddedItems*
   nameWithType.vb: ICollectionChangedNotificationResult(Of T).AddedItems
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
   fullName.vb: NMF.Expressions.ICollectionChangedNotificationResult(Of T).AddedItems
 - uid: NMF.Expressions.ICollectionChangedNotificationResult`1.MovedItems
   commentId: P:NMF.Expressions.ICollectionChangedNotificationResult`1.MovedItems
@@ -122,10 +112,6 @@ items:
     content.vb: ReadOnly Property MovedItems As List(Of T)
   overload: NMF.Expressions.ICollectionChangedNotificationResult`1.MovedItems*
   nameWithType.vb: ICollectionChangedNotificationResult(Of T).MovedItems
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
   fullName.vb: NMF.Expressions.ICollectionChangedNotificationResult(Of T).MovedItems
 - uid: NMF.Expressions.ICollectionChangedNotificationResult`1.RemovedItems
   commentId: P:NMF.Expressions.ICollectionChangedNotificationResult`1.RemovedItems
@@ -159,10 +145,6 @@ items:
     content.vb: ReadOnly Property RemovedItems As List(Of T)
   overload: NMF.Expressions.ICollectionChangedNotificationResult`1.RemovedItems*
   nameWithType.vb: ICollectionChangedNotificationResult(Of T).RemovedItems
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
   fullName.vb: NMF.Expressions.ICollectionChangedNotificationResult(Of T).RemovedItems
 references:
 - uid: NMF.Expressions
@@ -170,6 +152,18 @@ references:
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
 - uid: NMF.Expressions.ICollectionChangedNotificationResult.IsReset
   commentId: P:NMF.Expressions.ICollectionChangedNotificationResult.IsReset
   parent: NMF.Expressions.ICollectionChangedNotificationResult
@@ -204,41 +198,28 @@ references:
   commentId: M:NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
   parent: NMF.Expressions.INotificationResult
   isExternal: true
-  name: IncreaseReferences(Int32)
-  nameWithType: INotificationResult.IncreaseReferences(Int32)
-  fullName: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
+  name: IncreaseReferences(int)
+  nameWithType: INotificationResult.IncreaseReferences(int)
+  fullName: NMF.Expressions.INotificationResult.IncreaseReferences(int)
+  nameWithType.vb: INotificationResult.IncreaseReferences(Integer)
+  fullName.vb: NMF.Expressions.INotificationResult.IncreaseReferences(Integer)
+  name.vb: IncreaseReferences(Integer)
   spec.csharp:
   - uid: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
     name: IncreaseReferences
-    nameWithType: INotificationResult.IncreaseReferences
-    fullName: NMF.Expressions.INotificationResult.IncreaseReferences
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.INotificationResult.IncreaseReferences(System.Int32)
     name: IncreaseReferences
-    nameWithType: INotificationResult.IncreaseReferences
-    fullName: NMF.Expressions.INotificationResult.IncreaseReferences
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotificationResult.FreeReference
   commentId: M:NMF.Expressions.INotificationResult.FreeReference
   parent: NMF.Expressions.INotificationResult
@@ -248,25 +229,63 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotificationResult.FreeReference
     name: FreeReference
-    nameWithType: INotificationResult.FreeReference
-    fullName: NMF.Expressions.INotificationResult.FreeReference
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.INotificationResult.FreeReference
     name: FreeReference
-    nameWithType: INotificationResult.FreeReference
-    fullName: NMF.Expressions.INotificationResult.FreeReference
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: NMF.Expressions.ICollectionChangedNotificationResult`1.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  parent: NMF.Expressions.Linq.ExpressionExtensions
+  definition: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<ICollectionChangedNotificationResult<T>>(ICollectionChangedNotificationResult<T>)
+  nameWithType: ExpressionExtensions.AsOne<ICollectionChangedNotificationResult<T>>(ICollectionChangedNotificationResult<T>)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<NMF.Expressions.ICollectionChangedNotificationResult<T>>(NMF.Expressions.ICollectionChangedNotificationResult<T>)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of ICollectionChangedNotificationResult(Of T))(ICollectionChangedNotificationResult(Of T))
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of NMF.Expressions.ICollectionChangedNotificationResult(Of T))(NMF.Expressions.ICollectionChangedNotificationResult(Of T))
+  name.vb: AsOne(Of ICollectionChangedNotificationResult(Of T))(ICollectionChangedNotificationResult(Of T))
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.ICollectionChangedNotificationResult{`0})
+    name: AsOne
+  - name: <
+  - uid: NMF.Expressions.ICollectionChangedNotificationResult`1
+    name: ICollectionChangedNotificationResult
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.ICollectionChangedNotificationResult`1
+    name: ICollectionChangedNotificationResult
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.ICollectionChangedNotificationResult{`0})
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.ICollectionChangedNotificationResult`1
+    name: ICollectionChangedNotificationResult
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.ICollectionChangedNotificationResult`1
+    name: ICollectionChangedNotificationResult
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
 - uid: NMF.Expressions.ICollectionChangedNotificationResult
   commentId: T:NMF.Expressions.ICollectionChangedNotificationResult
   parent: NMF.Expressions
@@ -279,6 +298,63 @@ references:
   name: INotificationResult
   nameWithType: INotificationResult
   fullName: NMF.Expressions.INotificationResult
+- uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<T>(T)
+  nameWithType: ExpressionExtensions.AsOne<T>(T)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<T>(T)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of T)(T)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of T)(T)
+  name.vb: AsOne(Of T)(T)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: NMF.Expressions.Linq.ExpressionExtensions
+  commentId: T:NMF.Expressions.Linq.ExpressionExtensions
+  parent: NMF.Expressions.Linq
+  name: ExpressionExtensions
+  nameWithType: ExpressionExtensions
+  fullName: NMF.Expressions.Linq.ExpressionExtensions
+- uid: NMF.Expressions.Linq
+  commentId: N:NMF.Expressions.Linq
+  name: NMF.Expressions.Linq
+  nameWithType: NMF.Expressions.Linq
+  fullName: NMF.Expressions.Linq
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
 - uid: NMF.Expressions.ICollectionChangedNotificationResult`1.AddedItems*
   commentId: Overload:NMF.Expressions.ICollectionChangedNotificationResult`1.AddedItems
   name: AddedItems
@@ -299,33 +375,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
@@ -338,39 +400,49 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
 - uid: NMF.Expressions.ICollectionChangedNotificationResult`1.MovedItems*
   commentId: Overload:NMF.Expressions.ICollectionChangedNotificationResult`1.MovedItems
   name: MovedItems

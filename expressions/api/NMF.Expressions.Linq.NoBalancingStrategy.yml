@@ -28,9 +28,7 @@ items:
   example: []
   syntax:
     content: 'public sealed class NoBalancingStrategy : IChunkBalancingStrategyProvider'
-    content.vb: >-
-      Public NotInheritable Class NoBalancingStrategy
-          Implements IChunkBalancingStrategyProvider
+    content.vb: Public NotInheritable Class NoBalancingStrategy Implements IChunkBalancingStrategyProvider
   inheritance:
   - System.Object
   implements:
@@ -40,17 +38,10 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
-  - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - sealed
-  - class
-  modifiers.vb:
-  - Public
-  - NotInheritable
-  - Class
+  extensionMethods:
+  - NMF.Expressions.Linq.NoBalancingStrategy.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
 - uid: NMF.Expressions.Linq.NoBalancingStrategy.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
   commentId: M:NMF.Expressions.Linq.NoBalancingStrategy.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
   id: CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
@@ -73,26 +64,27 @@ items:
   assemblies:
   - NMF.Expressions.Chunk
   namespace: NMF.Expressions.Linq
+  summary: "\nCreate a strategy for the given observable chunk collection\n"
   example: []
   syntax:
     content: public IChunkBalancingStrategy<T, TChunk> CreateStrategy<T, TChunk>(IObservableChunk<T, TChunk> observableChunk)
     parameters:
     - id: observableChunk
       type: NMF.Expressions.Linq.IObservableChunk{{T},{TChunk}}
+      description: The observable chunk collection
     typeParameters:
     - id: T
+      description: The type of items
     - id: TChunk
+      description: The type of the chunks
     return:
       type: NMF.Expressions.Linq.IChunkBalancingStrategy{{T},{TChunk}}
+      description: A chunk balancing strategy
     content.vb: Public Function CreateStrategy(Of T, TChunk)(observableChunk As IObservableChunk(Of T, TChunk)) As IChunkBalancingStrategy(Of T, TChunk)
   overload: NMF.Expressions.Linq.NoBalancingStrategy.CreateStrategy*
   implements:
   - NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{{T},{TChunk}})
   nameWithType.vb: NoBalancingStrategy.CreateStrategy(Of T, TChunk)(IObservableChunk(Of T, TChunk))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: NMF.Expressions.Linq.NoBalancingStrategy.CreateStrategy(Of T, TChunk)(NMF.Expressions.Linq.IObservableChunk(Of T, TChunk))
   name.vb: CreateStrategy(Of T, TChunk)(IObservableChunk(Of T, TChunk))
 references:
@@ -101,13 +93,34 @@ references:
   name: NMF.Expressions.Linq
   nameWithType: NMF.Expressions.Linq
   fullName: NMF.Expressions.Linq
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider
   commentId: T:NMF.Expressions.Linq.IChunkBalancingStrategyProvider
   parent: NMF.Expressions.Linq
@@ -118,287 +131,243 @@ references:
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: NMF.Expressions.Linq.NoBalancingStrategy.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  parent: NMF.Expressions.Linq.ExpressionExtensions
+  definition: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<NoBalancingStrategy>(NoBalancingStrategy)
+  nameWithType: ExpressionExtensions.AsOne<NoBalancingStrategy>(NoBalancingStrategy)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<NMF.Expressions.Linq.NoBalancingStrategy>(NMF.Expressions.Linq.NoBalancingStrategy)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of NoBalancingStrategy)(NoBalancingStrategy)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of NMF.Expressions.Linq.NoBalancingStrategy)(NMF.Expressions.Linq.NoBalancingStrategy)
+  name.vb: AsOne(Of NoBalancingStrategy)(NoBalancingStrategy)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.Linq.NoBalancingStrategy)
+    name: AsOne
+  - name: <
+  - uid: NMF.Expressions.Linq.NoBalancingStrategy
+    name: NoBalancingStrategy
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.Linq.NoBalancingStrategy
+    name: NoBalancingStrategy
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.Linq.NoBalancingStrategy)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.Linq.NoBalancingStrategy
+    name: NoBalancingStrategy
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.Linq.NoBalancingStrategy
+    name: NoBalancingStrategy
+  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<T>(T)
+  nameWithType: ExpressionExtensions.AsOne<T>(T)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<T>(T)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of T)(T)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of T)(T)
+  name.vb: AsOne(Of T)(T)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: NMF.Expressions.Linq.ExpressionExtensions
+  commentId: T:NMF.Expressions.Linq.ExpressionExtensions
+  parent: NMF.Expressions.Linq
+  name: ExpressionExtensions
+  nameWithType: ExpressionExtensions
+  fullName: NMF.Expressions.Linq.ExpressionExtensions
 - uid: NMF.Expressions.Linq.NoBalancingStrategy.CreateStrategy*
   commentId: Overload:NMF.Expressions.Linq.NoBalancingStrategy.CreateStrategy
   name: CreateStrategy
@@ -416,64 +385,46 @@ references:
   name.vb: CreateStrategy(Of T, TChunk)(IObservableChunk(Of T, TChunk))
   spec.csharp:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
-    name: CreateStrategy<T, TChunk>
-    nameWithType: IChunkBalancingStrategyProvider.CreateStrategy<T, TChunk>
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy<T, TChunk>
+    name: CreateStrategy
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TChunk
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
-    name: CreateStrategy(Of T, TChunk)
-    nameWithType: IChunkBalancingStrategyProvider.CreateStrategy(Of T, TChunk)
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy(Of T, TChunk)
+    name: CreateStrategy
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TChunk
+  - name: )
+  - name: (
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.IObservableChunk{{T},{TChunk}}
   commentId: T:NMF.Expressions.Linq.IObservableChunk{``0,``1}
   parent: NMF.Expressions.Linq
@@ -487,43 +438,23 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.IChunkBalancingStrategy{{T},{TChunk}}
   commentId: T:NMF.Expressions.Linq.IChunkBalancingStrategy{``0,``1}
   parent: NMF.Expressions.Linq
@@ -537,43 +468,23 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategy`2
     name: IChunkBalancingStrategy
-    nameWithType: IChunkBalancingStrategy
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategy
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategy`2
     name: IChunkBalancingStrategy
-    nameWithType: IChunkBalancingStrategy
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategy
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
   commentId: M:NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
   name: CreateStrategy<T, TChunk>(IObservableChunk<T, TChunk>)
@@ -584,64 +495,46 @@ references:
   name.vb: CreateStrategy(Of T, TChunk)(IObservableChunk(Of T, TChunk))
   spec.csharp:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
-    name: CreateStrategy<T, TChunk>
-    nameWithType: IChunkBalancingStrategyProvider.CreateStrategy<T, TChunk>
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy<T, TChunk>
+    name: CreateStrategy
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TChunk
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy``2(NMF.Expressions.Linq.IObservableChunk{``0,``1})
-    name: CreateStrategy(Of T, TChunk)
-    nameWithType: IChunkBalancingStrategyProvider.CreateStrategy(Of T, TChunk)
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategyProvider.CreateStrategy(Of T, TChunk)
+    name: CreateStrategy
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TChunk
+  - name: )
+  - name: (
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.IObservableChunk`2
   commentId: T:NMF.Expressions.Linq.IObservableChunk`2
   name: IObservableChunk<T, TChunk>
@@ -653,43 +546,23 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.Linq.IObservableChunk`2
     name: IObservableChunk
-    nameWithType: IObservableChunk
-    fullName: NMF.Expressions.Linq.IObservableChunk
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.Linq.IChunkBalancingStrategy`2
   commentId: T:NMF.Expressions.Linq.IChunkBalancingStrategy`2
   name: IChunkBalancingStrategy<T, TChunk>
@@ -701,40 +574,20 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategy`2
     name: IChunkBalancingStrategy
-    nameWithType: IChunkBalancingStrategy
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategy
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.Linq.IChunkBalancingStrategy`2
     name: IChunkBalancingStrategy
-    nameWithType: IChunkBalancingStrategy
-    fullName: NMF.Expressions.Linq.IChunkBalancingStrategy
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TChunk
-    nameWithType: TChunk
-    fullName: TChunk
   - name: )
-    nameWithType: )
-    fullName: )

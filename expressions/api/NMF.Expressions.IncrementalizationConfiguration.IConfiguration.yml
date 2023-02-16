@@ -38,8 +38,7 @@ items:
 
       <XmlDefaultImplementationType(GetType(Configuration))>
 
-      Public Interface IConfiguration
-          Inherits IModelElement
+      Public Interface IConfiguration Inherits IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritedMembers:
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
@@ -74,6 +73,8 @@ items:
   - NMF.Models.IModelElement.BubbledChange
   - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
   - System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+  extensionMethods:
+  - NMF.Expressions.IncrementalizationConfiguration.IConfiguration.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
   attributes:
   - type: NMF.Utilities.DefaultImplementationTypeAttribute
     ctor: NMF.Utilities.DefaultImplementationTypeAttribute.#ctor(System.Type)
@@ -85,12 +86,6 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Expressions.IncrementalizationConfiguration.Configuration
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations
   commentId: P:NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations
   id: MethodConfigurations
@@ -122,16 +117,30 @@ items:
       type: NMF.Expressions.IListExpression{NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration}
     content.vb: ReadOnly Property MethodConfigurations As IListExpression(Of IMethodConfiguration)
   overload: NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 references:
 - uid: NMF.Expressions.IncrementalizationConfiguration
   commentId: N:NMF.Expressions.IncrementalizationConfiguration
   name: NMF.Expressions.IncrementalizationConfiguration
   nameWithType: NMF.Expressions.IncrementalizationConfiguration
   fullName: NMF.Expressions.IncrementalizationConfiguration
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.IncrementalizationConfiguration
+    name: IncrementalizationConfiguration
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.IncrementalizationConfiguration
+    name: IncrementalizationConfiguration
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement
@@ -141,25 +150,13 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.Delete
     name: Delete
-    nameWithType: IModelElement.Delete
-    fullName: NMF.Models.IModelElement.Delete
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.Delete
     name: Delete
-    nameWithType: IModelElement.Delete
-    fullName: NMF.Models.IModelElement.Delete
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.Deleted
   commentId: E:NMF.Models.IModelElement.Deleted
   parent: NMF.Models.IModelElement
@@ -187,25 +184,13 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.ToIdentifierString
     name: ToIdentifierString
-    nameWithType: IModelElement.ToIdentifierString
-    fullName: NMF.Models.IModelElement.ToIdentifierString
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.ToIdentifierString
     name: ToIdentifierString
-    nameWithType: IModelElement.ToIdentifierString
-    fullName: NMF.Models.IModelElement.ToIdentifierString
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.RelativeUri
   commentId: P:NMF.Models.IModelElement.RelativeUri
   parent: NMF.Models.IModelElement
@@ -228,88 +213,55 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.Resolve(System.Uri)
     name: Resolve
-    nameWithType: IModelElement.Resolve
-    fullName: NMF.Models.IModelElement.Resolve
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Uri
     name: Uri
-    nameWithType: Uri
-    fullName: System.Uri
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.Resolve(System.Uri)
     name: Resolve
-    nameWithType: IModelElement.Resolve
-    fullName: NMF.Models.IModelElement.Resolve
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Uri
     name: Uri
-    nameWithType: Uri
-    fullName: System.Uri
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement,System.Int32@)
   commentId: M:NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement,System.Int32@)
   parent: NMF.Models.IModelElement
   isExternal: true
-  name: GetContainerReference(IModelElement, Int32)
-  nameWithType: IModelElement.GetContainerReference(IModelElement, Int32)
-  fullName: NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement, System.Int32)
+  name: GetContainerReference(IModelElement, out int)
+  nameWithType: IModelElement.GetContainerReference(IModelElement, out int)
+  fullName: NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement, out int)
+  nameWithType.vb: IModelElement.GetContainerReference(IModelElement, Integer)
+  fullName.vb: NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement, Integer)
+  name.vb: GetContainerReference(IModelElement, Integer)
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement,System.Int32@)
     name: GetContainerReference
-    nameWithType: IModelElement.GetContainerReference
-    fullName: NMF.Models.IModelElement.GetContainerReference
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-    nameWithType: IModelElement
-    fullName: NMF.Models.IModelElement
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetContainerReference(NMF.Models.IModelElement,System.Int32@)
     name: GetContainerReference
-    nameWithType: IModelElement.GetContainerReference
-    fullName: NMF.Models.IModelElement.GetContainerReference
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-    nameWithType: IModelElement
-    fullName: NMF.Models.IModelElement
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.Model
   commentId: P:NMF.Models.IModelElement.Model
   parent: NMF.Models.IModelElement
@@ -357,26 +309,22 @@ references:
   name.vb: GetExtension(Of T)()
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetExtension``1
-    name: GetExtension<T>
-    nameWithType: IModelElement.GetExtension<T>
-    fullName: NMF.Models.IModelElement.GetExtension<T>
+    name: GetExtension
+  - name: <
+  - name: T
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetExtension``1
-    name: GetExtension(Of T)
-    nameWithType: IModelElement.GetExtension(Of T)
-    fullName: NMF.Models.IModelElement.GetExtension(Of T)
+    name: GetExtension
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: T
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: )
 - uid: NMF.Models.IModelElement.GetClass
   commentId: M:NMF.Models.IModelElement.GetClass
   parent: NMF.Models.IModelElement
@@ -386,78 +334,47 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetClass
     name: GetClass
-    nameWithType: IModelElement.GetClass
-    fullName: NMF.Models.IModelElement.GetClass
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetClass
     name: GetClass
-    nameWithType: IModelElement.GetClass
-    fullName: NMF.Models.IModelElement.GetClass
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute,System.Int32)
   commentId: M:NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute,System.Int32)
   parent: NMF.Models.IModelElement
   isExternal: true
-  name: GetAttributeValue(IAttribute, Int32)
-  nameWithType: IModelElement.GetAttributeValue(IAttribute, Int32)
-  fullName: NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute, System.Int32)
+  name: GetAttributeValue(IAttribute, int)
+  nameWithType: IModelElement.GetAttributeValue(IAttribute, int)
+  fullName: NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute, int)
+  nameWithType.vb: IModelElement.GetAttributeValue(IAttribute, Integer)
+  fullName.vb: NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute, Integer)
+  name.vb: GetAttributeValue(IAttribute, Integer)
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute,System.Int32)
     name: GetAttributeValue
-    nameWithType: IModelElement.GetAttributeValue
-    fullName: NMF.Models.IModelElement.GetAttributeValue
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IAttribute
     name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetAttributeValue(NMF.Models.Meta.IAttribute,System.Int32)
     name: GetAttributeValue
-    nameWithType: IModelElement.GetAttributeValue
-    fullName: NMF.Models.IModelElement.GetAttributeValue
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IAttribute
     name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.GetAttributeValues(NMF.Models.Meta.IAttribute)
   commentId: M:NMF.Models.IModelElement.GetAttributeValues(NMF.Models.Meta.IAttribute)
   parent: NMF.Models.IModelElement
@@ -467,148 +384,93 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetAttributeValues(NMF.Models.Meta.IAttribute)
     name: GetAttributeValues
-    nameWithType: IModelElement.GetAttributeValues
-    fullName: NMF.Models.IModelElement.GetAttributeValues
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IAttribute
     name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetAttributeValues(NMF.Models.Meta.IAttribute)
     name: GetAttributeValues
-    nameWithType: IModelElement.GetAttributeValues
-    fullName: NMF.Models.IModelElement.GetAttributeValues
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IAttribute
     name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   commentId: M:NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   parent: NMF.Models.IModelElement
   isExternal: true
-  name: CallOperation(IOperation, Object[])
-  nameWithType: IModelElement.CallOperation(IOperation, Object[])
-  fullName: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation, System.Object[])
-  nameWithType.vb: IModelElement.CallOperation(IOperation, Object())
-  fullName.vb: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation, System.Object())
-  name.vb: CallOperation(IOperation, Object())
+  name: CallOperation(IOperation, params object[])
+  nameWithType: IModelElement.CallOperation(IOperation, params object[])
+  fullName: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation, params object[])
+  nameWithType.vb: IModelElement.CallOperation(IOperation, ParamArray Object())
+  fullName.vb: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation, ParamArray Object())
+  name.vb: CallOperation(IOperation, ParamArray Object())
   spec.csharp:
   - uid: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
     name: CallOperation
-    nameWithType: IModelElement.CallOperation
-    fullName: NMF.Models.IModelElement.CallOperation
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IOperation
     name: IOperation
-    nameWithType: IOperation
-    fullName: NMF.Models.Meta.IOperation
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
+  - name: params
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
     name: CallOperation
-    nameWithType: IModelElement.CallOperation
-    fullName: NMF.Models.IModelElement.CallOperation
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IOperation
     name: IOperation
-    nameWithType: IOperation
-    fullName: NMF.Models.Meta.IOperation
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
+  - name: ParamArray
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: )
 - uid: NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
   commentId: M:NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
   parent: NMF.Models.IModelElement
   isExternal: true
-  name: GetReferencedElement(IReference, Int32)
-  nameWithType: IModelElement.GetReferencedElement(IReference, Int32)
-  fullName: NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference, System.Int32)
+  name: GetReferencedElement(IReference, int)
+  nameWithType: IModelElement.GetReferencedElement(IReference, int)
+  fullName: NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference, int)
+  nameWithType.vb: IModelElement.GetReferencedElement(IReference, Integer)
+  fullName.vb: NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference, Integer)
+  name.vb: GetReferencedElement(IReference, Integer)
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
     name: GetReferencedElement
-    nameWithType: IModelElement.GetReferencedElement
-    fullName: NMF.Models.IModelElement.GetReferencedElement
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IReference
     name: IReference
-    nameWithType: IReference
-    fullName: NMF.Models.Meta.IReference
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetReferencedElement(NMF.Models.Meta.IReference,System.Int32)
     name: GetReferencedElement
-    nameWithType: IModelElement.GetReferencedElement
-    fullName: NMF.Models.IModelElement.GetReferencedElement
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IReference
     name: IReference
-    nameWithType: IReference
-    fullName: NMF.Models.Meta.IReference
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.SetReferencedElement(NMF.Models.Meta.IReference,NMF.Models.IModelElement)
   commentId: M:NMF.Models.IModelElement.SetReferencedElement(NMF.Models.Meta.IReference,NMF.Models.IModelElement)
   parent: NMF.Models.IModelElement
@@ -618,47 +480,25 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.SetReferencedElement(NMF.Models.Meta.IReference,NMF.Models.IModelElement)
     name: SetReferencedElement
-    nameWithType: IModelElement.SetReferencedElement
-    fullName: NMF.Models.IModelElement.SetReferencedElement
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IReference
     name: IReference
-    nameWithType: IReference
-    fullName: NMF.Models.Meta.IReference
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Models.IModelElement
     name: IModelElement
-    nameWithType: IModelElement
-    fullName: NMF.Models.IModelElement
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.SetReferencedElement(NMF.Models.Meta.IReference,NMF.Models.IModelElement)
     name: SetReferencedElement
-    nameWithType: IModelElement.SetReferencedElement
-    fullName: NMF.Models.IModelElement.SetReferencedElement
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IReference
     name: IReference
-    nameWithType: IReference
-    fullName: NMF.Models.Meta.IReference
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Models.IModelElement
     name: IModelElement
-    nameWithType: IModelElement
-    fullName: NMF.Models.IModelElement
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.GetReferencedElements(NMF.Models.Meta.IReference)
   commentId: M:NMF.Models.IModelElement.GetReferencedElements(NMF.Models.Meta.IReference)
   parent: NMF.Models.IModelElement
@@ -668,86 +508,51 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.GetReferencedElements(NMF.Models.Meta.IReference)
     name: GetReferencedElements
-    nameWithType: IModelElement.GetReferencedElements
-    fullName: NMF.Models.IModelElement.GetReferencedElements
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IReference
     name: IReference
-    nameWithType: IReference
-    fullName: NMF.Models.Meta.IReference
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.GetReferencedElements(NMF.Models.Meta.IReference)
     name: GetReferencedElements
-    nameWithType: IModelElement.GetReferencedElements
-    fullName: NMF.Models.IModelElement.GetReferencedElements
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IReference
     name: IReference
-    nameWithType: IReference
-    fullName: NMF.Models.Meta.IReference
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute,System.Object)
   commentId: M:NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute,System.Object)
   parent: NMF.Models.IModelElement
   isExternal: true
-  name: SetAttributeValue(IAttribute, Object)
-  nameWithType: IModelElement.SetAttributeValue(IAttribute, Object)
-  fullName: NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute, System.Object)
+  name: SetAttributeValue(IAttribute, object)
+  nameWithType: IModelElement.SetAttributeValue(IAttribute, object)
+  fullName: NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute, object)
+  nameWithType.vb: IModelElement.SetAttributeValue(IAttribute, Object)
+  fullName.vb: NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute, Object)
+  name.vb: SetAttributeValue(IAttribute, Object)
   spec.csharp:
   - uid: NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute,System.Object)
     name: SetAttributeValue
-    nameWithType: IModelElement.SetAttributeValue
-    fullName: NMF.Models.IModelElement.SetAttributeValue
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IAttribute
     name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.SetAttributeValue(NMF.Models.Meta.IAttribute,System.Object)
     name: SetAttributeValue
-    nameWithType: IModelElement.SetAttributeValue
-    fullName: NMF.Models.IModelElement.SetAttributeValue
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Models.Meta.IAttribute
     name: IAttribute
-    nameWithType: IAttribute
-    fullName: NMF.Models.Meta.IAttribute
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.Freeze
   commentId: M:NMF.Models.IModelElement.Freeze
   parent: NMF.Models.IModelElement
@@ -757,25 +562,13 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.Freeze
     name: Freeze
-    nameWithType: IModelElement.Freeze
-    fullName: NMF.Models.IModelElement.Freeze
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.Freeze
     name: Freeze
-    nameWithType: IModelElement.Freeze
-    fullName: NMF.Models.IModelElement.Freeze
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.Lock
   commentId: M:NMF.Models.IModelElement.Lock
   parent: NMF.Models.IModelElement
@@ -785,25 +578,13 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.Lock
     name: Lock
-    nameWithType: IModelElement.Lock
-    fullName: NMF.Models.IModelElement.Lock
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.Lock
     name: Lock
-    nameWithType: IModelElement.Lock
-    fullName: NMF.Models.IModelElement.Lock
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.Unlock
   commentId: M:NMF.Models.IModelElement.Unlock
   parent: NMF.Models.IModelElement
@@ -813,25 +594,13 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.Unlock
     name: Unlock
-    nameWithType: IModelElement.Unlock
-    fullName: NMF.Models.IModelElement.Unlock
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.Unlock
     name: Unlock
-    nameWithType: IModelElement.Unlock
-    fullName: NMF.Models.IModelElement.Unlock
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.TryUnlock
   commentId: M:NMF.Models.IModelElement.TryUnlock
   parent: NMF.Models.IModelElement
@@ -841,25 +610,13 @@ references:
   spec.csharp:
   - uid: NMF.Models.IModelElement.TryUnlock
     name: TryUnlock
-    nameWithType: IModelElement.TryUnlock
-    fullName: NMF.Models.IModelElement.TryUnlock
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Models.IModelElement.TryUnlock
     name: TryUnlock
-    nameWithType: IModelElement.TryUnlock
-    fullName: NMF.Models.IModelElement.TryUnlock
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Models.IModelElement.IsFrozen
   commentId: P:NMF.Models.IModelElement.IsFrozen
   parent: NMF.Models.IModelElement
@@ -892,6 +649,40 @@ references:
   name: PropertyChanging
   nameWithType: INotifyPropertyChanging.PropertyChanging
   fullName: System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+- uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  parent: NMF.Expressions.Linq.ExpressionExtensions
+  definition: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<IConfiguration>(IConfiguration)
+  nameWithType: ExpressionExtensions.AsOne<IConfiguration>(IConfiguration)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<NMF.Expressions.IncrementalizationConfiguration.IConfiguration>(NMF.Expressions.IncrementalizationConfiguration.IConfiguration)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of IConfiguration)(IConfiguration)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of NMF.Expressions.IncrementalizationConfiguration.IConfiguration)(NMF.Expressions.IncrementalizationConfiguration.IConfiguration)
+  name.vb: AsOne(Of IConfiguration)(IConfiguration)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.IncrementalizationConfiguration.IConfiguration)
+    name: AsOne
+  - name: <
+  - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration
+    name: IConfiguration
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration
+    name: IConfiguration
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.IncrementalizationConfiguration.IConfiguration)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration
+    name: IConfiguration
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration
+    name: IConfiguration
+  - name: )
 - uid: NMF.Models.IModelElement
   commentId: T:NMF.Models.IModelElement
   parent: NMF.Models
@@ -912,17 +703,102 @@ references:
   name: INotifyPropertyChanging
   nameWithType: INotifyPropertyChanging
   fullName: System.ComponentModel.INotifyPropertyChanging
+- uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<T>(T)
+  nameWithType: ExpressionExtensions.AsOne<T>(T)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<T>(T)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of T)(T)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of T)(T)
+  name.vb: AsOne(Of T)(T)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: NMF.Expressions.Linq.ExpressionExtensions
+  commentId: T:NMF.Expressions.Linq.ExpressionExtensions
+  parent: NMF.Expressions.Linq
+  name: ExpressionExtensions
+  nameWithType: ExpressionExtensions
+  fullName: NMF.Expressions.Linq.ExpressionExtensions
 - uid: NMF.Models
   commentId: N:NMF.Models
   name: NMF.Models
   nameWithType: NMF.Models
   fullName: NMF.Models
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Models
+    name: Models
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Models
+    name: Models
 - uid: System.ComponentModel
   commentId: N:System.ComponentModel
   isExternal: true
   name: System.ComponentModel
   nameWithType: System.ComponentModel
   fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+- uid: NMF.Expressions.Linq
+  commentId: N:NMF.Expressions.Linq
+  name: NMF.Expressions.Linq
+  nameWithType: NMF.Expressions.Linq
+  fullName: NMF.Expressions.Linq
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
 - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations*
   commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations
   name: MethodConfigurations
@@ -941,33 +817,19 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
-    nameWithType: IListExpression
-    fullName: NMF.Expressions.IListExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
     name: IMethodConfiguration
-    nameWithType: IMethodConfiguration
-    fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
-    nameWithType: IListExpression
-    fullName: NMF.Expressions.IListExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
     name: IMethodConfiguration
-    nameWithType: IMethodConfiguration
-    fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.IListExpression`1
   commentId: T:NMF.Expressions.IListExpression`1
   name: IListExpression<T>
@@ -979,33 +841,31 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
-    nameWithType: IListExpression
-    fullName: NMF.Expressions.IListExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.IListExpression`1
     name: IListExpression
-    nameWithType: IListExpression
-    fullName: NMF.Expressions.IListExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions

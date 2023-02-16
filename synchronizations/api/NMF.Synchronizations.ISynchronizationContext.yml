@@ -30,9 +30,7 @@ items:
   example: []
   syntax:
     content: 'public interface ISynchronizationContext : ITransformationEngineContext, ITransformationContext'
-    content.vb: >-
-      Public Interface ISynchronizationContext
-          Inherits ITransformationContext, ITransformationEngineContext
+    content.vb: Public Interface ISynchronizationContext Inherits ITransformationEngineContext, ITransformationContext
   inheritedMembers:
   - NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
   - NMF.Transformations.Core.ITransformationContext.IsThreadSafe
@@ -46,12 +44,11 @@ items:
   - NMF.Transformations.Core.ITransformationContext.Input
   - NMF.Transformations.Core.ITransformationContext.Outputs
   - NMF.Transformations.Core.ITransformationContext.ComputationCompleted
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
+  extensionMethods:
+  - NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},{TLeft})
+  - NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},NMF.Expressions.IEnumerableExpression{{TLeft}})
+  - NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},{TRight})
+  - NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},NMF.Expressions.IEnumerableExpression{{TRight}})
 - uid: NMF.Synchronizations.ISynchronizationContext.Direction
   commentId: P:NMF.Synchronizations.ISynchronizationContext.Direction
   id: Direction
@@ -83,9 +80,6 @@ items:
       type: NMF.Synchronizations.SynchronizationDirection
     content.vb: Property Direction As SynchronizationDirection
   overload: NMF.Synchronizations.ISynchronizationContext.Direction*
-  modifiers.csharp:
-  - get
-  - set
 - uid: NMF.Synchronizations.ISynchronizationContext.ChangePropagation
   commentId: P:NMF.Synchronizations.ISynchronizationContext.ChangePropagation
   id: ChangePropagation
@@ -117,10 +111,6 @@ items:
       type: NMF.Transformations.ChangePropagationMode
     content.vb: ReadOnly Property ChangePropagation As ChangePropagationMode
   overload: NMF.Synchronizations.ISynchronizationContext.ChangePropagation*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: NMF.Synchronizations.ISynchronizationContext.Inconsistencies
   commentId: P:NMF.Synchronizations.ISynchronizationContext.Inconsistencies
   id: Inconsistencies
@@ -153,16 +143,24 @@ items:
       type: NMF.Expressions.ICollectionExpression{NMF.Synchronizations.Inconsistencies.IInconsistency}
     content.vb: ReadOnly Property Inconsistencies As ICollectionExpression(Of IInconsistency)
   overload: NMF.Synchronizations.ISynchronizationContext.Inconsistencies*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 references:
 - uid: NMF.Synchronizations
   commentId: N:NMF.Synchronizations
   name: NMF.Synchronizations
   nameWithType: NMF.Synchronizations
   fullName: NMF.Synchronizations
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Synchronizations
+    name: Synchronizations
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Synchronizations
+    name: Synchronizations
 - uid: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
   commentId: M:NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
   parent: NMF.Transformations.Core.ITransformationEngineContext
@@ -172,25 +170,13 @@ references:
   spec.csharp:
   - uid: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
     name: ExecutePending
-    nameWithType: ITransformationEngineContext.ExecutePending
-    fullName: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
     name: ExecutePending
-    nameWithType: ITransformationEngineContext.ExecutePending
-    fullName: NMF.Transformations.Core.ITransformationEngineContext.ExecutePending
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Transformations.Core.ITransformationContext.IsThreadSafe
   commentId: P:NMF.Transformations.Core.ITransformationContext.IsThreadSafe
   parent: NMF.Transformations.Core.ITransformationContext
@@ -225,80 +211,50 @@ references:
   commentId: M:NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
   parent: NMF.Transformations.Core.ITransformationContext
   isExternal: true
-  name: CallTransformation(GeneralTransformationRule, Object[], IEnumerable)
-  nameWithType: ITransformationContext.CallTransformation(GeneralTransformationRule, Object[], IEnumerable)
-  fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, System.Object[], System.Collections.IEnumerable)
+  name: CallTransformation(GeneralTransformationRule, object[], IEnumerable)
+  nameWithType: ITransformationContext.CallTransformation(GeneralTransformationRule, object[], IEnumerable)
+  fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, object[], System.Collections.IEnumerable)
   nameWithType.vb: ITransformationContext.CallTransformation(GeneralTransformationRule, Object(), IEnumerable)
-  fullName.vb: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, System.Object(), System.Collections.IEnumerable)
+  fullName.vb: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule, Object(), System.Collections.IEnumerable)
   name.vb: CallTransformation(GeneralTransformationRule, Object(), IEnumerable)
   spec.csharp:
   - uid: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
     name: CallTransformation
-    nameWithType: ITransformationContext.CallTransformation
-    fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Transformations.Core.GeneralTransformationRule
     name: GeneralTransformationRule
-    nameWithType: GeneralTransformationRule
-    fullName: NMF.Transformations.Core.GeneralTransformationRule
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
   - uid: System.Collections.IEnumerable
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.IEnumerable
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Transformations.Core.ITransformationContext.CallTransformation(NMF.Transformations.Core.GeneralTransformationRule,System.Object[],System.Collections.IEnumerable)
     name: CallTransformation
-    nameWithType: ITransformationContext.CallTransformation
-    fullName: NMF.Transformations.Core.ITransformationContext.CallTransformation
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Transformations.Core.GeneralTransformationRule
     name: GeneralTransformationRule
-    nameWithType: GeneralTransformationRule
-    fullName: NMF.Transformations.Core.GeneralTransformationRule
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
   - uid: System.Collections.IEnumerable
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.IEnumerable
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Transformations.Core.ITransformationContext.Trace
   commentId: P:NMF.Transformations.Core.ITransformationContext.Trace
   parent: NMF.Transformations.Core.ITransformationContext
@@ -329,6 +285,290 @@ references:
   name: ComputationCompleted
   nameWithType: ITransformationContext.ComputationCompleted
   fullName: NMF.Transformations.Core.ITransformationContext.ComputationCompleted
+- uid: NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},{TLeft})
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+  parent: NMF.Synchronizations.SynchronizationContextExtensions
+  definition: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+  name: MapLeft<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TLeft)
+  nameWithType: SynchronizationContextExtensions.MapLeft<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TLeft)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, TLeft)
+  nameWithType.vb: SynchronizationContextExtensions.MapLeft(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TLeft)
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), TLeft)
+  name.vb: MapLeft(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TLeft)
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+    name: MapLeft
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: TLeft
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+    name: MapLeft
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - name: TLeft
+  - name: )
+- uid: NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},NMF.Expressions.IEnumerableExpression{{TLeft}})
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+  parent: NMF.Synchronizations.SynchronizationContextExtensions
+  definition: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+  name: MapLefts<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TLeft>)
+  nameWithType: SynchronizationContextExtensions.MapLefts<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TLeft>)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, NMF.Expressions.IEnumerableExpression<TLeft>)
+  nameWithType.vb: SynchronizationContextExtensions.MapLefts(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TLeft))
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), NMF.Expressions.IEnumerableExpression(Of TLeft))
+  name.vb: MapLefts(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TLeft))
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+    name: MapLefts
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: <
+  - name: TLeft
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+    name: MapLefts
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: )
+  - name: )
+- uid: NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},{TRight})
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+  parent: NMF.Synchronizations.SynchronizationContextExtensions
+  definition: NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+  name: MapRight<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TRight)
+  nameWithType: SynchronizationContextExtensions.MapRight<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TRight)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapRight<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, TRight)
+  nameWithType.vb: SynchronizationContextExtensions.MapRight(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TRight)
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapRight(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), TRight)
+  name.vb: MapRight(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TRight)
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+    name: MapRight
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+    name: MapRight
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+- uid: NMF.Transformations.Core.ITransformationContext.NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Synchronizations.SynchronizationRule{{TLeft},{TRight}},NMF.Expressions.IEnumerableExpression{{TRight}})
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+  parent: NMF.Synchronizations.SynchronizationContextExtensions
+  definition: NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+  name: MapRights<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TRight>)
+  nameWithType: SynchronizationContextExtensions.MapRights<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TRight>)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapRights<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, NMF.Expressions.IEnumerableExpression<TRight>)
+  nameWithType.vb: SynchronizationContextExtensions.MapRights(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TRight))
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapRights(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), NMF.Expressions.IEnumerableExpression(Of TRight))
+  name.vb: MapRights(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TRight))
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+    name: MapRights
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: <
+  - name: TRight
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+    name: MapRights
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: )
 - uid: NMF.Transformations.Core.ITransformationEngineContext
   commentId: T:NMF.Transformations.Core.ITransformationEngineContext
   parent: NMF.Transformations.Core
@@ -341,11 +581,311 @@ references:
   name: ITransformationContext
   nameWithType: ITransformationContext
   fullName: NMF.Transformations.Core.ITransformationContext
+- uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+  name: MapLeft<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TLeft)
+  nameWithType: SynchronizationContextExtensions.MapLeft<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TLeft)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, TLeft)
+  nameWithType.vb: SynchronizationContextExtensions.MapLeft(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TLeft)
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), TLeft)
+  name.vb: MapLeft(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TLeft)
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+    name: MapLeft
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: TLeft
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLeft``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``0)
+    name: MapLeft
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - name: TLeft
+  - name: )
+- uid: NMF.Synchronizations.SynchronizationContextExtensions
+  commentId: T:NMF.Synchronizations.SynchronizationContextExtensions
+  parent: NMF.Synchronizations
+  name: SynchronizationContextExtensions
+  nameWithType: SynchronizationContextExtensions
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions
+- uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+  name: MapLefts<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TLeft>)
+  nameWithType: SynchronizationContextExtensions.MapLefts<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TLeft>)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, NMF.Expressions.IEnumerableExpression<TLeft>)
+  nameWithType.vb: SynchronizationContextExtensions.MapLefts(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TLeft))
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), NMF.Expressions.IEnumerableExpression(Of TLeft))
+  name.vb: MapLefts(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TLeft))
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+    name: MapLefts
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: <
+  - name: TLeft
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapLefts``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``0})
+    name: MapLefts
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: )
+  - name: )
+- uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+  name: MapRight<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TRight)
+  nameWithType: SynchronizationContextExtensions.MapRight<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, TRight)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapRight<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, TRight)
+  nameWithType.vb: SynchronizationContextExtensions.MapRight(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TRight)
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapRight(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), TRight)
+  name.vb: MapRight(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), TRight)
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+    name: MapRight
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRight``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},``1)
+    name: MapRight
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+- uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+  commentId: M:NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+  name: MapRights<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TRight>)
+  nameWithType: SynchronizationContextExtensions.MapRights<TLeft, TRight>(ITransformationContext, SynchronizationRule<TLeft, TRight>, IEnumerableExpression<TRight>)
+  fullName: NMF.Synchronizations.SynchronizationContextExtensions.MapRights<TLeft, TRight>(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule<TLeft, TRight>, NMF.Expressions.IEnumerableExpression<TRight>)
+  nameWithType.vb: SynchronizationContextExtensions.MapRights(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TRight))
+  fullName.vb: NMF.Synchronizations.SynchronizationContextExtensions.MapRights(Of TLeft, TRight)(NMF.Transformations.Core.ITransformationContext, NMF.Synchronizations.SynchronizationRule(Of TLeft, TRight), NMF.Expressions.IEnumerableExpression(Of TRight))
+  name.vb: MapRights(Of TLeft, TRight)(ITransformationContext, SynchronizationRule(Of TLeft, TRight), IEnumerableExpression(Of TRight))
+  spec.csharp:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+    name: MapRights
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: <
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: <
+  - name: TRight
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.Synchronizations.SynchronizationContextExtensions.MapRights``2(NMF.Transformations.Core.ITransformationContext,NMF.Synchronizations.SynchronizationRule{``0,``1},NMF.Expressions.IEnumerableExpression{``1})
+    name: MapRights
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: (
+  - uid: NMF.Transformations.Core.ITransformationContext
+    name: ITransformationContext
+  - name: ','
+  - name: " "
+  - uid: NMF.Synchronizations.SynchronizationRule`2
+    name: SynchronizationRule
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TLeft
+  - name: ','
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.Expressions.IEnumerableExpression`1
+    name: IEnumerableExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRight
+  - name: )
+  - name: )
 - uid: NMF.Transformations.Core
   commentId: N:NMF.Transformations.Core
   name: NMF.Transformations.Core
   nameWithType: NMF.Transformations.Core
   fullName: NMF.Transformations.Core
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Transformations
+    name: Transformations
+  - name: .
+  - uid: NMF.Transformations.Core
+    name: Core
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Transformations
+    name: Transformations
+  - name: .
+  - uid: NMF.Transformations.Core
+    name: Core
 - uid: NMF.Synchronizations.ISynchronizationContext.Direction*
   commentId: Overload:NMF.Synchronizations.ISynchronizationContext.Direction
   name: Direction
@@ -373,6 +913,18 @@ references:
   name: NMF.Transformations
   nameWithType: NMF.Transformations
   fullName: NMF.Transformations
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Transformations
+    name: Transformations
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Transformations
+    name: Transformations
 - uid: NMF.Synchronizations.ISynchronizationContext.Inconsistencies*
   commentId: Overload:NMF.Synchronizations.ISynchronizationContext.Inconsistencies
   name: Inconsistencies
@@ -391,33 +943,19 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Synchronizations.Inconsistencies.IInconsistency
     name: IInconsistency
-    nameWithType: IInconsistency
-    fullName: NMF.Synchronizations.Inconsistencies.IInconsistency
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Synchronizations.Inconsistencies.IInconsistency
     name: IInconsistency
-    nameWithType: IInconsistency
-    fullName: NMF.Synchronizations.Inconsistencies.IInconsistency
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.ICollectionExpression`1
   commentId: T:NMF.Expressions.ICollectionExpression`1
   name: ICollectionExpression<T>
@@ -429,33 +967,31 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions

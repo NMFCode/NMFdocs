@@ -34,10 +34,7 @@ items:
       description: The LHS type
     - id: TRight
       description: The RHS type
-    content.vb: >-
-      Public Class LeftGuardedSynchronizationJob(Of TLeft, TRight)
-          Inherits GuardedSynchronizationJob(Of TLeft, TRight)
-          Implements ISynchronizationJob(Of TLeft, TRight)
+    content.vb: Public Class LeftGuardedSynchronizationJob(Of TLeft, TRight) Inherits GuardedSynchronizationJob(Of TLeft, TRight) Implements ISynchronizationJob(Of TLeft, TRight)
   inheritance:
   - System.Object
   - NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}
@@ -55,12 +52,6 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   nameWithType.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight)
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
   fullName.vb: NMF.Synchronizations.LeftGuardedSynchronizationJob(Of TLeft, TRight)
   name.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight)
 - uid: NMF.Synchronizations.LeftGuardedSynchronizationJob`2.#ctor(NMF.Synchronizations.ISynchronizationJob{`0,`1},NMF.Expressions.ObservingFunc{`0,System.Boolean})
@@ -70,9 +61,9 @@ items:
   langs:
   - csharp
   - vb
-  name: LeftGuardedSynchronizationJob(ISynchronizationJob<TLeft, TRight>, ObservingFunc<TLeft, Boolean>)
-  nameWithType: LeftGuardedSynchronizationJob<TLeft, TRight>.LeftGuardedSynchronizationJob(ISynchronizationJob<TLeft, TRight>, ObservingFunc<TLeft, Boolean>)
-  fullName: NMF.Synchronizations.LeftGuardedSynchronizationJob<TLeft, TRight>.LeftGuardedSynchronizationJob(NMF.Synchronizations.ISynchronizationJob<TLeft, TRight>, NMF.Expressions.ObservingFunc<TLeft, System.Boolean>)
+  name: LeftGuardedSynchronizationJob(ISynchronizationJob<TLeft, TRight>, ObservingFunc<TLeft, bool>)
+  nameWithType: LeftGuardedSynchronizationJob<TLeft, TRight>.LeftGuardedSynchronizationJob(ISynchronizationJob<TLeft, TRight>, ObservingFunc<TLeft, bool>)
+  fullName: NMF.Synchronizations.LeftGuardedSynchronizationJob<TLeft, TRight>.LeftGuardedSynchronizationJob(NMF.Synchronizations.ISynchronizationJob<TLeft, TRight>, NMF.Expressions.ObservingFunc<TLeft, bool>)
   type: Constructor
   source:
     remote:
@@ -98,13 +89,9 @@ items:
       description: The guard function
     content.vb: Public Sub New(inner As ISynchronizationJob(Of TLeft, TRight), guard As ObservingFunc(Of TLeft, Boolean))
   overload: NMF.Synchronizations.LeftGuardedSynchronizationJob`2.#ctor*
-  nameWithType.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight).LeftGuardedSynchronizationJob(ISynchronizationJob(Of TLeft, TRight), ObservingFunc(Of TLeft, Boolean))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: NMF.Synchronizations.LeftGuardedSynchronizationJob(Of TLeft, TRight).LeftGuardedSynchronizationJob(NMF.Synchronizations.ISynchronizationJob(Of TLeft, TRight), NMF.Expressions.ObservingFunc(Of TLeft, System.Boolean))
-  name.vb: LeftGuardedSynchronizationJob(ISynchronizationJob(Of TLeft, TRight), ObservingFunc(Of TLeft, Boolean))
+  nameWithType.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight).New(ISynchronizationJob(Of TLeft, TRight), ObservingFunc(Of TLeft, Boolean))
+  fullName.vb: NMF.Synchronizations.LeftGuardedSynchronizationJob(Of TLeft, TRight).New(NMF.Synchronizations.ISynchronizationJob(Of TLeft, TRight), NMF.Expressions.ObservingFunc(Of TLeft, Boolean))
+  name.vb: New(ISynchronizationJob(Of TLeft, TRight), ObservingFunc(Of TLeft, Boolean))
 - uid: NMF.Synchronizations.LeftGuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
   commentId: M:NMF.Synchronizations.LeftGuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
   id: CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
@@ -127,24 +114,21 @@ items:
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations
+  summary: "\nCreates a tracker for the given computation\n"
   example: []
   syntax:
     content: protected override INotifyValue<bool> CreateTracker(SynchronizationComputation<TLeft, TRight> computation)
     parameters:
     - id: computation
       type: NMF.Synchronizations.SynchronizationComputation{{TLeft},{TRight}}
+      description: The computation that shall be tracked
     return:
       type: NMF.Expressions.INotifyValue{System.Boolean}
+      description: ''
     content.vb: Protected Overrides Function CreateTracker(computation As SynchronizationComputation(Of TLeft, TRight)) As INotifyValue(Of Boolean)
   overridden: NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}.CreateTracker(NMF.Synchronizations.SynchronizationComputation{{TLeft},{TRight}})
   overload: NMF.Synchronizations.LeftGuardedSynchronizationJob`2.CreateTracker*
   nameWithType.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight).CreateTracker(SynchronizationComputation(Of TLeft, TRight))
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
   fullName.vb: NMF.Synchronizations.LeftGuardedSynchronizationJob(Of TLeft, TRight).CreateTracker(NMF.Synchronizations.SynchronizationComputation(Of TLeft, TRight))
   name.vb: CreateTracker(SynchronizationComputation(Of TLeft, TRight))
 references:
@@ -153,13 +137,28 @@ references:
   name: NMF.Synchronizations
   nameWithType: NMF.Synchronizations
   fullName: NMF.Synchronizations
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Synchronizations
+    name: Synchronizations
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Synchronizations
+    name: Synchronizations
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}
   commentId: T:NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}
   parent: NMF.Synchronizations
@@ -173,43 +172,23 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2
     name: GuardedSynchronizationJob
-    nameWithType: GuardedSynchronizationJob
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2
     name: GuardedSynchronizationJob
-    nameWithType: GuardedSynchronizationJob
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.ISynchronizationJob{{TLeft},{TRight}}
   commentId: T:NMF.Synchronizations.ISynchronizationJob{`0,`1}
   parent: NMF.Synchronizations
@@ -223,43 +202,23 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.ISynchronizationJob`2
     name: ISynchronizationJob
-    nameWithType: ISynchronizationJob
-    fullName: NMF.Synchronizations.ISynchronizationJob
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Synchronizations.ISynchronizationJob`2
     name: ISynchronizationJob
-    nameWithType: ISynchronizationJob
-    fullName: NMF.Synchronizations.ISynchronizationJob
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}.IsEarly
   commentId: P:NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}.IsEarly
   parent: NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}
@@ -280,93 +239,49 @@ references:
   fullName.vb: NMF.Synchronizations.GuardedSynchronizationJob(Of TLeft, TRight).Perform(NMF.Synchronizations.SynchronizationComputation(Of TLeft, TRight), NMF.Synchronizations.SynchronizationDirection, NMF.Synchronizations.ISynchronizationContext)
   name.vb: Perform(SynchronizationComputation(Of TLeft, TRight), SynchronizationDirection, ISynchronizationContext)
   spec.csharp:
-  - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.Perform(NMF.Synchronizations.SynchronizationComputation{`0,`1},NMF.Synchronizations.SynchronizationDirection,NMF.Synchronizations.ISynchronizationContext)
+  - uid: NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}.Perform(NMF.Synchronizations.SynchronizationComputation{`0,`1},NMF.Synchronizations.SynchronizationDirection,NMF.Synchronizations.ISynchronizationContext)
     name: Perform
-    nameWithType: GuardedSynchronizationJob<TLeft, TRight>.Perform
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob<TLeft, TRight>.Perform
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.SynchronizationDirection
     name: SynchronizationDirection
-    nameWithType: SynchronizationDirection
-    fullName: NMF.Synchronizations.SynchronizationDirection
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.ISynchronizationContext
     name: ISynchronizationContext
-    nameWithType: ISynchronizationContext
-    fullName: NMF.Synchronizations.ISynchronizationContext
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.Perform(NMF.Synchronizations.SynchronizationComputation{`0,`1},NMF.Synchronizations.SynchronizationDirection,NMF.Synchronizations.ISynchronizationContext)
+  - uid: NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}.Perform(NMF.Synchronizations.SynchronizationComputation{`0,`1},NMF.Synchronizations.SynchronizationDirection,NMF.Synchronizations.ISynchronizationContext)
     name: Perform
-    nameWithType: GuardedSynchronizationJob(Of TLeft, TRight).Perform
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob(Of TLeft, TRight).Perform
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.SynchronizationDirection
     name: SynchronizationDirection
-    nameWithType: SynchronizationDirection
-    fullName: NMF.Synchronizations.SynchronizationDirection
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.ISynchronizationContext
     name: ISynchronizationContext
-    nameWithType: ISynchronizationContext
-    fullName: NMF.Synchronizations.ISynchronizationContext
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}.CreateTracker(NMF.Synchronizations.SynchronizationComputation{{TLeft},{TRight}})
   commentId: M:NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
   parent: NMF.Synchronizations.GuardedSynchronizationJob{{TLeft},{TRight}}
@@ -378,344 +293,221 @@ references:
   fullName.vb: NMF.Synchronizations.GuardedSynchronizationJob(Of TLeft, TRight).CreateTracker(NMF.Synchronizations.SynchronizationComputation(Of TLeft, TRight))
   name.vb: CreateTracker(SynchronizationComputation(Of TLeft, TRight))
   spec.csharp:
-  - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
+  - uid: NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
     name: CreateTracker
-    nameWithType: GuardedSynchronizationJob<TLeft, TRight>.CreateTracker
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob<TLeft, TRight>.CreateTracker
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
+  - uid: NMF.Synchronizations.GuardedSynchronizationJob{`0,`1}.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
     name: CreateTracker
-    nameWithType: GuardedSynchronizationJob(Of TLeft, TRight).CreateTracker
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob(Of TLeft, TRight).CreateTracker
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -733,43 +525,23 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2
     name: GuardedSynchronizationJob
-    nameWithType: GuardedSynchronizationJob
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2
     name: GuardedSynchronizationJob
-    nameWithType: GuardedSynchronizationJob
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.ISynchronizationJob`2
   commentId: T:NMF.Synchronizations.ISynchronizationJob`2
   name: ISynchronizationJob<TLeft, TRight>
@@ -781,43 +553,23 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.ISynchronizationJob`2
     name: ISynchronizationJob
-    nameWithType: ISynchronizationJob
-    fullName: NMF.Synchronizations.ISynchronizationJob
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Synchronizations.ISynchronizationJob`2
     name: ISynchronizationJob
-    nameWithType: ISynchronizationJob
-    fullName: NMF.Synchronizations.ISynchronizationJob
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.IsEarly
   commentId: P:NMF.Synchronizations.GuardedSynchronizationJob`2.IsEarly
   name: IsEarly
@@ -836,91 +588,47 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.Perform(NMF.Synchronizations.SynchronizationComputation{`0,`1},NMF.Synchronizations.SynchronizationDirection,NMF.Synchronizations.ISynchronizationContext)
     name: Perform
-    nameWithType: GuardedSynchronizationJob<TLeft, TRight>.Perform
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob<TLeft, TRight>.Perform
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.SynchronizationDirection
     name: SynchronizationDirection
-    nameWithType: SynchronizationDirection
-    fullName: NMF.Synchronizations.SynchronizationDirection
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.ISynchronizationContext
     name: ISynchronizationContext
-    nameWithType: ISynchronizationContext
-    fullName: NMF.Synchronizations.ISynchronizationContext
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.Perform(NMF.Synchronizations.SynchronizationComputation{`0,`1},NMF.Synchronizations.SynchronizationDirection,NMF.Synchronizations.ISynchronizationContext)
     name: Perform
-    nameWithType: GuardedSynchronizationJob(Of TLeft, TRight).Perform
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob(Of TLeft, TRight).Perform
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.SynchronizationDirection
     name: SynchronizationDirection
-    nameWithType: SynchronizationDirection
-    fullName: NMF.Synchronizations.SynchronizationDirection
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: NMF.Synchronizations.ISynchronizationContext
     name: ISynchronizationContext
-    nameWithType: ISynchronizationContext
-    fullName: NMF.Synchronizations.ISynchronizationContext
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
   commentId: M:NMF.Synchronizations.GuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
   name: CreateTracker(SynchronizationComputation<TLeft, TRight>)
@@ -932,124 +640,73 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
     name: CreateTracker
-    nameWithType: GuardedSynchronizationJob<TLeft, TRight>.CreateTracker
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob<TLeft, TRight>.CreateTracker
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Synchronizations.GuardedSynchronizationJob`2.CreateTracker(NMF.Synchronizations.SynchronizationComputation{`0,`1})
     name: CreateTracker
-    nameWithType: GuardedSynchronizationJob(Of TLeft, TRight).CreateTracker
-    fullName: NMF.Synchronizations.GuardedSynchronizationJob(Of TLeft, TRight).CreateTracker
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.LeftGuardedSynchronizationJob`2.#ctor*
   commentId: Overload:NMF.Synchronizations.LeftGuardedSynchronizationJob`2.#ctor
   name: LeftGuardedSynchronizationJob
   nameWithType: LeftGuardedSynchronizationJob<TLeft, TRight>.LeftGuardedSynchronizationJob
   fullName: NMF.Synchronizations.LeftGuardedSynchronizationJob<TLeft, TRight>.LeftGuardedSynchronizationJob
-  nameWithType.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight).LeftGuardedSynchronizationJob
-  fullName.vb: NMF.Synchronizations.LeftGuardedSynchronizationJob(Of TLeft, TRight).LeftGuardedSynchronizationJob
+  nameWithType.vb: LeftGuardedSynchronizationJob(Of TLeft, TRight).New
+  fullName.vb: NMF.Synchronizations.LeftGuardedSynchronizationJob(Of TLeft, TRight).New
+  name.vb: New
 - uid: NMF.Expressions.ObservingFunc{{TLeft},System.Boolean}
   commentId: T:NMF.Expressions.ObservingFunc{`0,System.Boolean}
   parent: NMF.Expressions
   definition: NMF.Expressions.ObservingFunc`2
-  name: ObservingFunc<TLeft, Boolean>
-  nameWithType: ObservingFunc<TLeft, Boolean>
-  fullName: NMF.Expressions.ObservingFunc<TLeft, System.Boolean>
+  name: ObservingFunc<TLeft, bool>
+  nameWithType: ObservingFunc<TLeft, bool>
+  fullName: NMF.Expressions.ObservingFunc<TLeft, bool>
   nameWithType.vb: ObservingFunc(Of TLeft, Boolean)
-  fullName.vb: NMF.Expressions.ObservingFunc(Of TLeft, System.Boolean)
+  fullName.vb: NMF.Expressions.ObservingFunc(Of TLeft, Boolean)
   name.vb: ObservingFunc(Of TLeft, Boolean)
   spec.csharp:
   - uid: NMF.Expressions.ObservingFunc`2
     name: ObservingFunc
-    nameWithType: ObservingFunc
-    fullName: NMF.Expressions.ObservingFunc
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ObservingFunc`2
     name: ObservingFunc
-    nameWithType: ObservingFunc
-    fullName: NMF.Expressions.ObservingFunc
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.ObservingFunc`2
   commentId: T:NMF.Expressions.ObservingFunc`2
   name: ObservingFunc<T1, TResult>
@@ -1061,48 +718,40 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ObservingFunc`2
     name: ObservingFunc
-    nameWithType: ObservingFunc
-    fullName: NMF.Expressions.ObservingFunc
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ObservingFunc`2
     name: ObservingFunc
-    nameWithType: ObservingFunc
-    fullName: NMF.Expressions.ObservingFunc
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
 - uid: NMF.Synchronizations.LeftGuardedSynchronizationJob`2.CreateTracker*
   commentId: Overload:NMF.Synchronizations.LeftGuardedSynchronizationJob`2.CreateTracker
   name: CreateTracker
@@ -1123,85 +772,51 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TLeft
-    nameWithType: TLeft
-    fullName: TLeft
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TRight
-    nameWithType: TRight
-    fullName: TRight
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyValue{System.Boolean}
   commentId: T:NMF.Expressions.INotifyValue{System.Boolean}
   parent: NMF.Expressions
   definition: NMF.Expressions.INotifyValue`1
-  name: INotifyValue<Boolean>
-  nameWithType: INotifyValue<Boolean>
-  fullName: NMF.Expressions.INotifyValue<System.Boolean>
+  name: INotifyValue<bool>
+  nameWithType: INotifyValue<bool>
+  fullName: NMF.Expressions.INotifyValue<bool>
   nameWithType.vb: INotifyValue(Of Boolean)
-  fullName.vb: NMF.Expressions.INotifyValue(Of System.Boolean)
+  fullName.vb: NMF.Expressions.INotifyValue(Of Boolean)
   name.vb: INotifyValue(Of Boolean)
   spec.csharp:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Synchronizations.SynchronizationComputation`2
   commentId: T:NMF.Synchronizations.SynchronizationComputation`2
   name: SynchronizationComputation<TIn, TOut>
@@ -1213,43 +828,23 @@ references:
   spec.csharp:
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TOut
-    nameWithType: TOut
-    fullName: TOut
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Synchronizations.SynchronizationComputation`2
     name: SynchronizationComputation
-    nameWithType: SynchronizationComputation
-    fullName: NMF.Synchronizations.SynchronizationComputation
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TIn
-    nameWithType: TIn
-    fullName: TIn
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TOut
-    nameWithType: TOut
-    fullName: TOut
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyValue`1
   commentId: T:NMF.Expressions.INotifyValue`1
   name: INotifyValue<T>
@@ -1261,28 +856,14 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyValue`1
     name: INotifyValue
-    nameWithType: INotifyValue
-    fullName: NMF.Expressions.INotifyValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )

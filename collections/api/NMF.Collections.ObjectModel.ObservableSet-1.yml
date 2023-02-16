@@ -10,8 +10,6 @@ items:
   - NMF.Collections.ObjectModel.ObservableSet`1.Clear
   - NMF.Collections.ObjectModel.ObservableSet`1.CollectionChanged
   - NMF.Collections.ObjectModel.ObservableSet`1.CollectionChanging
-  - NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
-  - NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
   - NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   - NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanging(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   - NMF.Collections.ObjectModel.ObservableSet`1.OnPropertyChanged(System.String)
@@ -21,6 +19,7 @@ items:
   - NMF.Collections.ObjectModel.ObservableSet`1.SilentAdd(`0)
   - NMF.Collections.ObjectModel.ObservableSet`1.SilentClear
   - NMF.Collections.ObjectModel.ObservableSet`1.SilentRemove(`0)
+  - NMF.Collections.ObjectModel.ObservableSet`1.ToString
   langs:
   - csharp
   - vb
@@ -43,10 +42,7 @@ items:
     content: 'public class ObservableSet<T> : DecoratedSet<T>, IList, ICollection, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, ISetExpression<T>, ISet<T>, ICollectionExpression<T>, IEnumerableExpression<T>, IEnumerableExpression, ICollection<T>, IEnumerable<T>, IEnumerable'
     typeParameters:
     - id: T
-    content.vb: >-
-      Public Class ObservableSet(Of T)
-          Inherits DecoratedSet(Of T)
-          Implements IList, ICollection, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, ISetExpression(Of T), ISet(Of T), ICollectionExpression(Of T), IEnumerableExpression(Of T), IEnumerableExpression, ICollection(Of T), IEnumerable(Of T), IEnumerable
+    content.vb: Public Class ObservableSet(Of T) Inherits DecoratedSet(Of T) Implements IList, ICollection, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, ISetExpression(Of T), ISet(Of T), ICollectionExpression(Of T), IEnumerableExpression(Of T), IEnumerableExpression, ICollection(Of T), IEnumerable(Of T), IEnumerable
   inheritance:
   - System.Object
   - NMF.Collections.Generic.DecoratedSet{{T}}
@@ -78,40 +74,17 @@ items:
   - NMF.Collections.Generic.DecoratedSet{{T}}.SetEquals(System.Collections.Generic.IEnumerable{{T}})
   - NMF.Collections.Generic.DecoratedSet{{T}}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{{T}})
   - NMF.Collections.Generic.DecoratedSet{{T}}.UnionWith(System.Collections.Generic.IEnumerable{{T}})
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#Generic#ICollection{T}#Add({T})
   - NMF.Collections.Generic.DecoratedSet{{T}}.Contains({T})
   - NMF.Collections.Generic.DecoratedSet{{T}}.CopyTo({T}[],System.Int32)
   - NMF.Collections.Generic.DecoratedSet{{T}}.Count
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#Generic#ICollection{T}#IsReadOnly
   - NMF.Collections.Generic.DecoratedSet{{T}}.GetEnumerator
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IEnumerable#GetEnumerator
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Add(System.Object)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Contains(System.Object)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Clear
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#IndexOf(System.Object)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Insert(System.Int32,System.Object)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Remove(System.Object)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#RemoveAt(System.Int32)
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#ICollection#IsSynchronized
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#ICollection#SyncRoot
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#IsReadOnly
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#IsFixedSize
-  - NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Item(System.Int32)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   nameWithType.vb: ObservableSet(Of T)
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T)
   name.vb: ObservableSet(Of T)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.Add(`0)
@@ -149,12 +122,6 @@ items:
   implements:
   - System.Collections.Generic.ISet{{T}}.Add({T})
   nameWithType.vb: ObservableSet(Of T).Add(T)
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).Add(T)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.RequireEvents
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.RequireEvents
@@ -182,13 +149,9 @@ items:
     content: protected bool RequireEvents()
     return:
       type: System.Boolean
-    content.vb: Protected Function RequireEvents As Boolean
+    content.vb: Protected Function RequireEvents() As Boolean
   overload: NMF.Collections.ObjectModel.ObservableSet`1.RequireEvents*
   nameWithType.vb: ObservableSet(Of T).RequireEvents()
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).RequireEvents()
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.SilentAdd(`0)
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.SilentAdd(`0)
@@ -222,10 +185,6 @@ items:
     content.vb: Protected Function SilentAdd(item As T) As Boolean
   overload: NMF.Collections.ObjectModel.ObservableSet`1.SilentAdd*
   nameWithType.vb: ObservableSet(Of T).SilentAdd(T)
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).SilentAdd(T)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.Clear
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.Clear
@@ -251,18 +210,12 @@ items:
   namespace: NMF.Collections.ObjectModel
   syntax:
     content: public override void Clear()
-    content.vb: Public Overrides Sub Clear
+    content.vb: Public Overrides Sub Clear()
   overridden: NMF.Collections.Generic.DecoratedSet{{T}}.Clear
   overload: NMF.Collections.ObjectModel.ObservableSet`1.Clear*
   implements:
   - System.Collections.Generic.ICollection{{T}}.Clear
   nameWithType.vb: ObservableSet(Of T).Clear()
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).Clear()
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.SilentClear
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.SilentClear
@@ -288,13 +241,9 @@ items:
   namespace: NMF.Collections.ObjectModel
   syntax:
     content: protected void SilentClear()
-    content.vb: Protected Sub SilentClear
+    content.vb: Protected Sub SilentClear()
   overload: NMF.Collections.ObjectModel.ObservableSet`1.SilentClear*
   nameWithType.vb: ObservableSet(Of T).SilentClear()
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).SilentClear()
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.Remove(`0)
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.Remove(`0)
@@ -331,12 +280,6 @@ items:
   implements:
   - System.Collections.Generic.ICollection{{T}}.Remove({T})
   nameWithType.vb: ObservableSet(Of T).Remove(T)
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).Remove(T)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.SilentRemove(`0)
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.SilentRemove(`0)
@@ -370,10 +313,6 @@ items:
     content.vb: Protected Function SilentRemove(item As T) As Boolean
   overload: NMF.Collections.ObjectModel.ObservableSet`1.SilentRemove*
   nameWithType.vb: ObservableSet(Of T).SilentRemove(T)
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).SilentRemove(T)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.CollectionChanged
   commentId: E:NMF.Collections.ObjectModel.ObservableSet`1.CollectionChanged
@@ -405,10 +344,6 @@ items:
   implements:
   - System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged
   nameWithType.vb: ObservableSet(Of T).CollectionChanged
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).CollectionChanged
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.CollectionChanging
   commentId: E:NMF.Collections.ObjectModel.ObservableSet`1.CollectionChanging
@@ -440,10 +375,6 @@ items:
   implements:
   - NMF.Collections.ObjectModel.INotifyCollectionChanging.CollectionChanging
   nameWithType.vb: ObservableSet(Of T).CollectionChanging
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).CollectionChanging
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.OnPropertyChanged(System.String)
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.OnPropertyChanged(System.String)
@@ -452,9 +383,9 @@ items:
   langs:
   - csharp
   - vb
-  name: OnPropertyChanged(String)
-  nameWithType: ObservableSet<T>.OnPropertyChanged(String)
-  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.OnPropertyChanged(System.String)
+  name: OnPropertyChanged(string)
+  nameWithType: ObservableSet<T>.OnPropertyChanged(string)
+  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.OnPropertyChanged(string)
   type: Method
   source:
     remote:
@@ -472,14 +403,11 @@ items:
     parameters:
     - id: property
       type: System.String
-    content.vb: Protected Sub OnPropertyChanged(property As String)
+    content.vb: Protected Sub OnPropertyChanged([property] As String)
   overload: NMF.Collections.ObjectModel.ObservableSet`1.OnPropertyChanged*
   nameWithType.vb: ObservableSet(Of T).OnPropertyChanged(String)
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).OnPropertyChanged(System.String)
+  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).OnPropertyChanged(String)
+  name.vb: OnPropertyChanged(String)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   id: OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
@@ -510,10 +438,6 @@ items:
     content.vb: Protected Sub OnCollectionChanged(e As NotifyCollectionChangedEventArgs)
   overload: NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanged*
   nameWithType.vb: ObservableSet(Of T).OnCollectionChanged(NotifyCollectionChangedEventArgs)
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanging(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanging(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
@@ -545,10 +469,6 @@ items:
     content.vb: Protected Sub OnCollectionChanging(e As NotifyCollectionChangedEventArgs)
   overload: NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanging*
   nameWithType.vb: ObservableSet(Of T).OnCollectionChanging(NotifyCollectionChangedEventArgs)
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).OnCollectionChanging(System.Collections.Specialized.NotifyCollectionChangedEventArgs)
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.PropertyChanged
   commentId: E:NMF.Collections.ObjectModel.ObservableSet`1.PropertyChanged
@@ -580,10 +500,6 @@ items:
   implements:
   - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
   nameWithType.vb: ObservableSet(Of T).PropertyChanged
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).PropertyChanged
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.AsNotifiable
   commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.AsNotifiable
@@ -611,97 +527,77 @@ items:
     content: public INotifyCollection<T> AsNotifiable()
     return:
       type: NMF.Expressions.INotifyCollection{{T}}
-    content.vb: Public Function AsNotifiable As INotifyCollection(Of T)
+    content.vb: Public Function AsNotifiable() As INotifyCollection(Of T)
   overload: NMF.Collections.ObjectModel.ObservableSet`1.AsNotifiable*
   implements:
   - NMF.Expressions.ICollectionExpression{{T}}.AsNotifiable
   nameWithType.vb: ObservableSet(Of T).AsNotifiable()
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).AsNotifiable()
-- uid: NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
-  commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
-  id: NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
-  isEii: true
+- uid: NMF.Collections.ObjectModel.ObservableSet`1.ToString
+  commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.ToString
+  id: ToString
   parent: NMF.Collections.ObjectModel.ObservableSet`1
   langs:
   - csharp
   - vb
-  name: IEnumerableExpression<T>.AsNotifiable()
-  nameWithType: ObservableSet<T>.IEnumerableExpression<T>.AsNotifiable()
-  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
+  name: ToString()
+  nameWithType: ObservableSet<T>.ToString()
+  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.ToString()
   type: Method
   source:
     remote:
       path: Collections/Collections/ObjectModel/ObservableSet.cs
       branch: master
       repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+    id: ToString
     path: src/Collections/Collections/ObjectModel/ObservableSet.cs
-    startLine: 119
+    startLine: 129
   assemblies:
   - NMF.Collections
   namespace: NMF.Collections.ObjectModel
   syntax:
-    content: INotifyEnumerable<T> IEnumerableExpression<T>.AsNotifiable()
+    content: public override string ToString()
     return:
-      type: NMF.Expressions.INotifyEnumerable{{T}}
-    content.vb: Function NMF.Expressions.IEnumerableExpression<T>.AsNotifiable As INotifyEnumerable(Of T) Implements IEnumerableExpression(Of T).AsNotifiable
-  overload: NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable*
-  implements:
-  - NMF.Expressions.IEnumerableExpression{{T}}.AsNotifiable
-  nameWithType.vb: ObservableSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
-  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
-  name.vb: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
-- uid: NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
-  commentId: M:NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
-  id: NMF#Expressions#IEnumerableExpression#AsNotifiable
-  isEii: true
-  parent: NMF.Collections.ObjectModel.ObservableSet`1
-  langs:
-  - csharp
-  - vb
-  name: IEnumerableExpression.AsNotifiable()
-  nameWithType: ObservableSet<T>.IEnumerableExpression.AsNotifiable()
-  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.NMF.Expressions.IEnumerableExpression.AsNotifiable()
-  type: Method
-  source:
-    remote:
-      path: Collections/Collections/ObjectModel/ObservableSet.cs
-      branch: master
-      repo: https://github.com/NMFCode/NMF.git
-    id: NMF.Expressions.IEnumerableExpression.AsNotifiable
-    path: src/Collections/Collections/ObjectModel/ObservableSet.cs
-    startLine: 124
-  assemblies:
-  - NMF.Collections
-  namespace: NMF.Collections.ObjectModel
-  syntax:
-    content: INotifyEnumerable IEnumerableExpression.AsNotifiable()
-    return:
-      type: NMF.Expressions.INotifyEnumerable
-    content.vb: Function NMF.Expressions.IEnumerableExpression.AsNotifiable As INotifyEnumerable Implements IEnumerableExpression.AsNotifiable
-  overload: NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable*
-  implements:
-  - NMF.Expressions.IEnumerableExpression.AsNotifiable
-  nameWithType.vb: ObservableSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable()
-  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable()
-  name.vb: NMF.Expressions.IEnumerableExpression.AsNotifiable()
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: NMF.Collections.ObjectModel.ObservableSet`1.ToString*
+  nameWithType.vb: ObservableSet(Of T).ToString()
+  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).ToString()
 references:
 - uid: NMF.Collections.ObjectModel
   commentId: N:NMF.Collections.ObjectModel
   name: NMF.Collections.ObjectModel
   nameWithType: NMF.Collections.ObjectModel
   fullName: NMF.Collections.ObjectModel
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Collections
+    name: Collections
+  - name: .
+  - uid: NMF.Collections.ObjectModel
+    name: ObjectModel
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Collections
+    name: Collections
+  - name: .
+  - uid: NMF.Collections.ObjectModel
+    name: ObjectModel
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}
   commentId: T:NMF.Collections.Generic.DecoratedSet{`0}
   parent: NMF.Collections.Generic
@@ -715,31 +611,17 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1
     name: DecoratedSet
-    nameWithType: DecoratedSet
-    fullName: NMF.Collections.Generic.DecoratedSet
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1
     name: DecoratedSet
-    nameWithType: DecoratedSet
-    fullName: NMF.Collections.Generic.DecoratedSet
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.IList
   commentId: T:System.Collections.IList
   parent: System.Collections
@@ -787,31 +669,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
-    nameWithType: ISetExpression
-    fullName: NMF.Expressions.ISetExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
-    nameWithType: ISetExpression
-    fullName: NMF.Expressions.ISetExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.ISet{{T}}
   commentId: T:System.Collections.Generic.ISet{`0}
   parent: System.Collections.Generic
@@ -825,33 +693,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ISet`1
     name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.ISet`1
     name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.ICollectionExpression{{T}}
   commentId: T:NMF.Expressions.ICollectionExpression{`0}
   parent: NMF.Expressions
@@ -865,31 +719,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.IEnumerableExpression{{T}}
   commentId: T:NMF.Expressions.IEnumerableExpression{`0}
   parent: NMF.Expressions
@@ -903,31 +743,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
-    nameWithType: IEnumerableExpression
-    fullName: NMF.Expressions.IEnumerableExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
-    nameWithType: IEnumerableExpression
-    fullName: NMF.Expressions.IEnumerableExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.IEnumerableExpression
   commentId: T:NMF.Expressions.IEnumerableExpression
   parent: NMF.Expressions
@@ -947,33 +773,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ICollection`1
     name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.ICollection`1
     name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IEnumerable{{T}}
   commentId: T:System.Collections.Generic.IEnumerable{`0}
   parent: System.Collections.Generic
@@ -987,33 +799,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.IEnumerable
   commentId: T:System.Collections.IEnumerable
   parent: System.Collections
@@ -1041,55 +839,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).ExceptWith(System.Collections.Generic.IEnumerable(Of T))
   name.vb: ExceptWith(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.ExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: ExceptWith
-    nameWithType: DecoratedSet<T>.ExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.ExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.ExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: ExceptWith
-    nameWithType: DecoratedSet(Of T).ExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).ExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.IntersectWith(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.IntersectWith(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1101,55 +873,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).IntersectWith(System.Collections.Generic.IEnumerable(Of T))
   name.vb: IntersectWith(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IntersectWith(System.Collections.Generic.IEnumerable{`0})
     name: IntersectWith
-    nameWithType: DecoratedSet<T>.IntersectWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IntersectWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IntersectWith(System.Collections.Generic.IEnumerable{`0})
     name: IntersectWith
-    nameWithType: DecoratedSet(Of T).IntersectWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IntersectWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1161,55 +907,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).IsProperSubsetOf(System.Collections.Generic.IEnumerable(Of T))
   name.vb: IsProperSubsetOf(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSubsetOf
-    nameWithType: DecoratedSet<T>.IsProperSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsProperSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSubsetOf
-    nameWithType: DecoratedSet(Of T).IsProperSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsProperSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1221,55 +941,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).IsProperSupersetOf(System.Collections.Generic.IEnumerable(Of T))
   name.vb: IsProperSupersetOf(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSupersetOf
-    nameWithType: DecoratedSet<T>.IsProperSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsProperSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSupersetOf
-    nameWithType: DecoratedSet(Of T).IsProperSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsProperSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.IsSubsetOf(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1281,55 +975,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).IsSubsetOf(System.Collections.Generic.IEnumerable(Of T))
   name.vb: IsSubsetOf(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSubsetOf
-    nameWithType: DecoratedSet<T>.IsSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSubsetOf
-    nameWithType: DecoratedSet(Of T).IsSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.IsSupersetOf(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1341,55 +1009,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).IsSupersetOf(System.Collections.Generic.IEnumerable(Of T))
   name.vb: IsSupersetOf(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSupersetOf
-    nameWithType: DecoratedSet<T>.IsSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSupersetOf
-    nameWithType: DecoratedSet(Of T).IsSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.Overlaps(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.Overlaps(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1401,55 +1043,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Overlaps(System.Collections.Generic.IEnumerable(Of T))
   name.vb: Overlaps(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Overlaps(System.Collections.Generic.IEnumerable{`0})
     name: Overlaps
-    nameWithType: DecoratedSet<T>.Overlaps
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Overlaps
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Overlaps(System.Collections.Generic.IEnumerable{`0})
     name: Overlaps
-    nameWithType: DecoratedSet(Of T).Overlaps
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Overlaps
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.SetEquals(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.SetEquals(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1461,55 +1077,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).SetEquals(System.Collections.Generic.IEnumerable(Of T))
   name.vb: SetEquals(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.SetEquals(System.Collections.Generic.IEnumerable{`0})
     name: SetEquals
-    nameWithType: DecoratedSet<T>.SetEquals
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.SetEquals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.SetEquals(System.Collections.Generic.IEnumerable{`0})
     name: SetEquals
-    nameWithType: DecoratedSet(Of T).SetEquals
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).SetEquals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1521,55 +1111,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).SymmetricExceptWith(System.Collections.Generic.IEnumerable(Of T))
   name.vb: SymmetricExceptWith(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: SymmetricExceptWith
-    nameWithType: DecoratedSet<T>.SymmetricExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.SymmetricExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: SymmetricExceptWith
-    nameWithType: DecoratedSet(Of T).SymmetricExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).SymmetricExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.UnionWith(System.Collections.Generic.IEnumerable{{T}})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.UnionWith(System.Collections.Generic.IEnumerable{`0})
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1581,93 +1145,29 @@ references:
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).UnionWith(System.Collections.Generic.IEnumerable(Of T))
   name.vb: UnionWith(IEnumerable(Of T))
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.UnionWith(System.Collections.Generic.IEnumerable{`0})
     name: UnionWith
-    nameWithType: DecoratedSet<T>.UnionWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.UnionWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.UnionWith(System.Collections.Generic.IEnumerable{`0})
     name: UnionWith
-    nameWithType: DecoratedSet(Of T).UnionWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).UnionWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#Generic#ICollection{T}#Add({T})
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#Generic#ICollection{T}#Add(`0)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-  name: ICollection<T>.Add(T)
-  nameWithType: DecoratedSet<T>.ICollection<T>.Add(T)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.Generic.ICollection<T>.Add(T)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add(T)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add(T)
-  name.vb: System.Collections.Generic.ICollection<T>.Add(T)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-    name: ICollection<T>.Add
-    nameWithType: DecoratedSet<T>.ICollection<T>.Add
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.Generic.ICollection<T>.Add
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-    name: System.Collections.Generic.ICollection<T>.Add
-    nameWithType: DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.Contains({T})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.Contains(`0)
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1678,93 +1178,53 @@ references:
   nameWithType.vb: DecoratedSet(Of T).Contains(T)
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Contains(T)
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Contains(`0)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Contains(`0)
     name: Contains
-    nameWithType: DecoratedSet<T>.Contains
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Contains
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Contains(`0)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Contains(`0)
     name: Contains
-    nameWithType: DecoratedSet(Of T).Contains
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Contains
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.CopyTo({T}[],System.Int32)
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.CopyTo(`0[],System.Int32)
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
   definition: NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
-  name: CopyTo(T[], Int32)
-  nameWithType: DecoratedSet<T>.CopyTo(T[], Int32)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.CopyTo(T[], System.Int32)
-  nameWithType.vb: DecoratedSet(Of T).CopyTo(T(), Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).CopyTo(T(), System.Int32)
-  name.vb: CopyTo(T(), Int32)
+  name: CopyTo(T[], int)
+  nameWithType: DecoratedSet<T>.CopyTo(T[], int)
+  fullName: NMF.Collections.Generic.DecoratedSet<T>.CopyTo(T[], int)
+  nameWithType.vb: DecoratedSet(Of T).CopyTo(T(), Integer)
+  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).CopyTo(T(), Integer)
+  name.vb: CopyTo(T(), Integer)
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.CopyTo(`0[],System.Int32)
     name: CopyTo
-    nameWithType: DecoratedSet<T>.CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.CopyTo
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.CopyTo(`0[],System.Int32)
     name: CopyTo
-    nameWithType: DecoratedSet(Of T).CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).CopyTo
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.Count
   commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.Count
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1774,16 +1234,6 @@ references:
   fullName: NMF.Collections.Generic.DecoratedSet<T>.Count
   nameWithType.vb: DecoratedSet(Of T).Count
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Count
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#Generic#ICollection{T}#IsReadOnly
-  commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#Generic#ICollection{T}#IsReadOnly
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#IsReadOnly
-  name: ICollection<T>.IsReadOnly
-  nameWithType: DecoratedSet<T>.ICollection<T>.IsReadOnly
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.Generic.ICollection<T>.IsReadOnly
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.IsReadOnly
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.IsReadOnly
-  name.vb: System.Collections.Generic.ICollection<T>.IsReadOnly
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.GetEnumerator
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.GetEnumerator
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -1794,778 +1244,182 @@ references:
   nameWithType.vb: DecoratedSet(Of T).GetEnumerator()
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).GetEnumerator()
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.GetEnumerator
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.GetEnumerator
     name: GetEnumerator
-    nameWithType: DecoratedSet<T>.GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.GetEnumerator
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.GetEnumerator
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.GetEnumerator
     name: GetEnumerator
-    nameWithType: DecoratedSet(Of T).GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).GetEnumerator
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IEnumerable#GetEnumerator
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IEnumerable#GetEnumerator
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-  name: IEnumerable.GetEnumerator()
-  nameWithType: DecoratedSet<T>.IEnumerable.GetEnumerator()
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IEnumerable.GetEnumerator()
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator()
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator()
-  name.vb: System.Collections.IEnumerable.GetEnumerator()
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-    name: IEnumerable.GetEnumerator
-    nameWithType: DecoratedSet<T>.IEnumerable.GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IEnumerable.GetEnumerator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-    name: System.Collections.IEnumerable.GetEnumerator
-    nameWithType: DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-  name: ICollection.CopyTo(Array, Int32)
-  nameWithType: DecoratedSet<T>.ICollection.CopyTo(Array, Int32)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.CopyTo(System.Array, System.Int32)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.ICollection.CopyTo(Array, Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.CopyTo(System.Array, System.Int32)
-  name.vb: System.Collections.ICollection.CopyTo(Array, Int32)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-    name: ICollection.CopyTo
-    nameWithType: DecoratedSet<T>.ICollection.CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.CopyTo
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Array
-    name: Array
-    nameWithType: Array
-    fullName: System.Array
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-    name: System.Collections.ICollection.CopyTo
-    nameWithType: DecoratedSet(Of T).System.Collections.ICollection.CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.CopyTo
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Array
-    name: Array
-    nameWithType: Array
-    fullName: System.Array
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Add(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#Add(System.Object)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-  name: IList.Add(Object)
-  nameWithType: DecoratedSet<T>.IList.Add(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Add(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Add(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Add(System.Object)
-  name.vb: System.Collections.IList.Add(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-    name: IList.Add
-    nameWithType: DecoratedSet<T>.IList.Add
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Add
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-    name: System.Collections.IList.Add
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Add
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Add
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Contains(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#Contains(System.Object)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-  name: IList.Contains(Object)
-  nameWithType: DecoratedSet<T>.IList.Contains(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Contains(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Contains(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Contains(System.Object)
-  name.vb: System.Collections.IList.Contains(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-    name: IList.Contains
-    nameWithType: DecoratedSet<T>.IList.Contains
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Contains
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-    name: System.Collections.IList.Contains
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Contains
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Contains
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Clear
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#Clear
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-  name: IList.Clear()
-  nameWithType: DecoratedSet<T>.IList.Clear()
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Clear()
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Clear()
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Clear()
-  name.vb: System.Collections.IList.Clear()
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-    name: IList.Clear
-    nameWithType: DecoratedSet<T>.IList.Clear
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Clear
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-    name: System.Collections.IList.Clear
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Clear
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Clear
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#IndexOf(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#IndexOf(System.Object)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-  name: IList.IndexOf(Object)
-  nameWithType: DecoratedSet<T>.IList.IndexOf(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IndexOf(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.IndexOf(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IndexOf(System.Object)
-  name.vb: System.Collections.IList.IndexOf(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-    name: IList.IndexOf
-    nameWithType: DecoratedSet<T>.IList.IndexOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IndexOf
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-    name: System.Collections.IList.IndexOf
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.IndexOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IndexOf
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Insert(System.Int32,System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#Insert(System.Int32,System.Object)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-  name: IList.Insert(Int32, Object)
-  nameWithType: DecoratedSet<T>.IList.Insert(Int32, Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Insert(System.Int32, System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Insert(Int32, Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Insert(System.Int32, System.Object)
-  name.vb: System.Collections.IList.Insert(Int32, Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-    name: IList.Insert
-    nameWithType: DecoratedSet<T>.IList.Insert
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Insert
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-    name: System.Collections.IList.Insert
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Insert
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Insert
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Remove(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#Remove(System.Object)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-  name: IList.Remove(Object)
-  nameWithType: DecoratedSet<T>.IList.Remove(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Remove(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Remove(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Remove(System.Object)
-  name.vb: System.Collections.IList.Remove(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-    name: IList.Remove
-    nameWithType: DecoratedSet<T>.IList.Remove
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Remove
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-    name: System.Collections.IList.Remove
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Remove
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Remove
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#RemoveAt(System.Int32)
-  commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#RemoveAt(System.Int32)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-  name: IList.RemoveAt(Int32)
-  nameWithType: DecoratedSet<T>.IList.RemoveAt(Int32)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.RemoveAt(System.Int32)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.RemoveAt(Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.RemoveAt(System.Int32)
-  name.vb: System.Collections.IList.RemoveAt(Int32)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-    name: IList.RemoveAt
-    nameWithType: DecoratedSet<T>.IList.RemoveAt
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.RemoveAt
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-    name: System.Collections.IList.RemoveAt
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.RemoveAt
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.RemoveAt
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#ICollection#IsSynchronized
-  commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#ICollection#IsSynchronized
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#IsSynchronized
-  name: ICollection.IsSynchronized
-  nameWithType: DecoratedSet<T>.ICollection.IsSynchronized
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.IsSynchronized
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.ICollection.IsSynchronized
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.IsSynchronized
-  name.vb: System.Collections.ICollection.IsSynchronized
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#ICollection#SyncRoot
-  commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#ICollection#SyncRoot
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#SyncRoot
-  name: ICollection.SyncRoot
-  nameWithType: DecoratedSet<T>.ICollection.SyncRoot
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.SyncRoot
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.ICollection.SyncRoot
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.SyncRoot
-  name.vb: System.Collections.ICollection.SyncRoot
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#IsReadOnly
-  commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#IsReadOnly
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IsReadOnly
-  name: IList.IsReadOnly
-  nameWithType: DecoratedSet<T>.IList.IsReadOnly
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IsReadOnly
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.IsReadOnly
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IsReadOnly
-  name.vb: System.Collections.IList.IsReadOnly
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#IsFixedSize
-  commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#IsFixedSize
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IsFixedSize
-  name: IList.IsFixedSize
-  nameWithType: DecoratedSet<T>.IList.IsFixedSize
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IsFixedSize
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.IsFixedSize
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IsFixedSize
-  name.vb: System.Collections.IList.IsFixedSize
-- uid: NMF.Collections.Generic.DecoratedSet{{T}}.System#Collections#IList#Item(System.Int32)
-  commentId: P:NMF.Collections.Generic.DecoratedSet{`0}.System#Collections#IList#Item(System.Int32)
-  parent: NMF.Collections.Generic.DecoratedSet{{T}}
-  definition: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-  name: IList.Item[Int32]
-  nameWithType: DecoratedSet<T>.IList.Item[Int32]
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Item[System.Int32]
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Item(Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Item(System.Int32)
-  name.vb: System.Collections.IList.Item(Int32)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-    name: IList.Item
-    nameWithType: DecoratedSet<T>.IList.Item
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Item
-  - name: '['
-    nameWithType: '['
-    fullName: '['
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ']'
-    nameWithType: ']'
-    fullName: ']'
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-    name: System.Collections.IList.Item
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Item
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Item
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
@@ -2583,54 +1437,114 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1
     name: DecoratedSet
-    nameWithType: DecoratedSet
-    fullName: NMF.Collections.Generic.DecoratedSet
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1
     name: DecoratedSet
-    nameWithType: DecoratedSet
-    fullName: NMF.Collections.Generic.DecoratedSet
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic
   commentId: N:NMF.Collections.Generic
   name: NMF.Collections.Generic
   nameWithType: NMF.Collections.Generic
   fullName: NMF.Collections.Generic
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Collections
+    name: Collections
+  - name: .
+  - uid: NMF.Collections.Generic
+    name: Generic
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Collections
+    name: Collections
+  - name: .
+  - uid: NMF.Collections.Generic
+    name: Generic
 - uid: System.Collections
   commentId: N:System.Collections
   isExternal: true
   name: System.Collections
   nameWithType: System.Collections
   fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
 - uid: System.Collections.Specialized
   commentId: N:System.Collections.Specialized
   isExternal: true
   name: System.Collections.Specialized
   nameWithType: System.Collections.Specialized
   fullName: System.Collections.Specialized
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Specialized
+    name: Specialized
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Specialized
+    name: Specialized
+    isExternal: true
 - uid: System.ComponentModel
   commentId: N:System.ComponentModel
   isExternal: true
   name: System.ComponentModel
   nameWithType: System.ComponentModel
   fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
 - uid: NMF.Expressions.ISetExpression`1
   commentId: T:NMF.Expressions.ISetExpression`1
   name: ISetExpression<T>
@@ -2642,36 +1556,34 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
-    nameWithType: ISetExpression
-    fullName: NMF.Expressions.ISetExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ISetExpression`1
     name: ISetExpression
-    nameWithType: ISetExpression
-    fullName: NMF.Expressions.ISetExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
 - uid: System.Collections.Generic.ISet`1
   commentId: T:System.Collections.Generic.ISet`1
   isExternal: true
@@ -2684,39 +1596,49 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ISet`1
     name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.ISet`1
     name: ISet
-    nameWithType: ISet
-    fullName: System.Collections.Generic.ISet
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
 - uid: NMF.Expressions.ICollectionExpression`1
   commentId: T:NMF.Expressions.ICollectionExpression`1
   name: ICollectionExpression<T>
@@ -2728,31 +1650,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.ICollectionExpression`1
     name: ICollectionExpression
-    nameWithType: ICollectionExpression
-    fullName: NMF.Expressions.ICollectionExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.IEnumerableExpression`1
   commentId: T:NMF.Expressions.IEnumerableExpression`1
   name: IEnumerableExpression<T>
@@ -2764,31 +1672,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
-    nameWithType: IEnumerableExpression
-    fullName: NMF.Expressions.IEnumerableExpression
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.IEnumerableExpression`1
     name: IEnumerableExpression
-    nameWithType: IEnumerableExpression
-    fullName: NMF.Expressions.IEnumerableExpression
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.ICollection`1
   commentId: T:System.Collections.Generic.ICollection`1
   isExternal: true
@@ -2801,33 +1695,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ICollection`1
     name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.ICollection`1
     name: ICollection
-    nameWithType: ICollection
-    fullName: System.Collections.Generic.ICollection
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
@@ -2840,33 +1720,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.Items
   commentId: P:NMF.Collections.Generic.DecoratedSet`1.Items
   name: Items
@@ -2886,53 +1752,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: ExceptWith
-    nameWithType: DecoratedSet<T>.ExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.ExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: ExceptWith
-    nameWithType: DecoratedSet(Of T).ExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).ExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -2945,53 +1785,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
     name: IntersectWith
-    nameWithType: DecoratedSet<T>.IntersectWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IntersectWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
     name: IntersectWith
-    nameWithType: DecoratedSet(Of T).IntersectWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IntersectWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3004,53 +1818,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSubsetOf
-    nameWithType: DecoratedSet<T>.IsProperSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsProperSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSubsetOf
-    nameWithType: DecoratedSet(Of T).IsProperSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsProperSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3063,53 +1851,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSupersetOf
-    nameWithType: DecoratedSet<T>.IsProperSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsProperSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsProperSupersetOf
-    nameWithType: DecoratedSet(Of T).IsProperSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsProperSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3122,53 +1884,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSubsetOf
-    nameWithType: DecoratedSet<T>.IsSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSubsetOf
-    nameWithType: DecoratedSet(Of T).IsSubsetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsSubsetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3181,53 +1917,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSupersetOf
-    nameWithType: DecoratedSet<T>.IsSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.IsSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
     name: IsSupersetOf
-    nameWithType: DecoratedSet(Of T).IsSupersetOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).IsSupersetOf
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3240,53 +1950,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
     name: Overlaps
-    nameWithType: DecoratedSet<T>.Overlaps
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Overlaps
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
     name: Overlaps
-    nameWithType: DecoratedSet(Of T).Overlaps
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Overlaps
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3299,53 +1983,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
     name: SetEquals
-    nameWithType: DecoratedSet<T>.SetEquals
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.SetEquals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
     name: SetEquals
-    nameWithType: DecoratedSet(Of T).SetEquals
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).SetEquals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3358,53 +2016,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: SymmetricExceptWith
-    nameWithType: DecoratedSet<T>.SymmetricExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.SymmetricExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
     name: SymmetricExceptWith
-    nameWithType: DecoratedSet(Of T).SymmetricExceptWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).SymmetricExceptWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
   isExternal: true
@@ -3417,89 +2049,27 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
     name: UnionWith
-    nameWithType: DecoratedSet<T>.UnionWith
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.UnionWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
     name: UnionWith
-    nameWithType: DecoratedSet(Of T).UnionWith
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).UnionWith
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-  name: ICollection<T>.Add(T)
-  nameWithType: DecoratedSet<T>.ICollection<T>.Add(T)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.Generic.ICollection<T>.Add(T)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add(T)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add(T)
-  name.vb: System.Collections.Generic.ICollection<T>.Add(T)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-    name: ICollection<T>.Add
-    nameWithType: DecoratedSet<T>.ICollection<T>.Add
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.Generic.ICollection<T>.Add
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#Add(`0)
-    name: System.Collections.Generic.ICollection<T>.Add
-    nameWithType: DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.Add
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.Contains(`0)
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.Contains(`0)
   name: Contains(T)
@@ -3510,90 +2080,50 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Contains(`0)
     name: Contains
-    nameWithType: DecoratedSet<T>.Contains
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Contains
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Contains(`0)
     name: Contains
-    nameWithType: DecoratedSet(Of T).Contains
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Contains
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
   isExternal: true
-  name: CopyTo(T[], Int32)
-  nameWithType: DecoratedSet<T>.CopyTo(T[], Int32)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.CopyTo(T[], System.Int32)
-  nameWithType.vb: DecoratedSet(Of T).CopyTo(T(), Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).CopyTo(T(), System.Int32)
-  name.vb: CopyTo(T(), Int32)
+  name: CopyTo(T[], int)
+  nameWithType: DecoratedSet<T>.CopyTo(T[], int)
+  fullName: NMF.Collections.Generic.DecoratedSet<T>.CopyTo(T[], int)
+  nameWithType.vb: DecoratedSet(Of T).CopyTo(T(), Integer)
+  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).CopyTo(T(), Integer)
+  name.vb: CopyTo(T(), Integer)
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
     name: CopyTo
-    nameWithType: DecoratedSet<T>.CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.CopyTo
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.CopyTo(`0[],System.Int32)
     name: CopyTo
-    nameWithType: DecoratedSet(Of T).CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).CopyTo
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.Count
   commentId: P:NMF.Collections.Generic.DecoratedSet`1.Count
   name: Count
@@ -3601,14 +2131,6 @@ references:
   fullName: NMF.Collections.Generic.DecoratedSet<T>.Count
   nameWithType.vb: DecoratedSet(Of T).Count
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Count
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#IsReadOnly
-  commentId: P:NMF.Collections.Generic.DecoratedSet`1.System#Collections#Generic#ICollection{T}#IsReadOnly
-  name: ICollection<T>.IsReadOnly
-  nameWithType: DecoratedSet<T>.ICollection<T>.IsReadOnly
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.Generic.ICollection<T>.IsReadOnly
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.IsReadOnly
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.Generic.ICollection<T>.IsReadOnly
-  name.vb: System.Collections.Generic.ICollection<T>.IsReadOnly
 - uid: NMF.Collections.Generic.DecoratedSet`1.GetEnumerator
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.GetEnumerator
   name: GetEnumerator()
@@ -3619,477 +2141,13 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.GetEnumerator
     name: GetEnumerator
-    nameWithType: DecoratedSet<T>.GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.GetEnumerator
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.GetEnumerator
     name: GetEnumerator
-    nameWithType: DecoratedSet(Of T).GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).GetEnumerator
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-  name: IEnumerable.GetEnumerator()
-  nameWithType: DecoratedSet<T>.IEnumerable.GetEnumerator()
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IEnumerable.GetEnumerator()
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator()
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator()
-  name.vb: System.Collections.IEnumerable.GetEnumerator()
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-    name: IEnumerable.GetEnumerator
-    nameWithType: DecoratedSet<T>.IEnumerable.GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IEnumerable.GetEnumerator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IEnumerable#GetEnumerator
-    name: System.Collections.IEnumerable.GetEnumerator
-    nameWithType: DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IEnumerable.GetEnumerator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-  isExternal: true
-  name: ICollection.CopyTo(Array, Int32)
-  nameWithType: DecoratedSet<T>.ICollection.CopyTo(Array, Int32)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.CopyTo(System.Array, System.Int32)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.ICollection.CopyTo(Array, Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.CopyTo(System.Array, System.Int32)
-  name.vb: System.Collections.ICollection.CopyTo(Array, Int32)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-    name: ICollection.CopyTo
-    nameWithType: DecoratedSet<T>.ICollection.CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.CopyTo
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Array
-    name: Array
-    nameWithType: Array
-    fullName: System.Array
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
-    name: System.Collections.ICollection.CopyTo
-    nameWithType: DecoratedSet(Of T).System.Collections.ICollection.CopyTo
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.CopyTo
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Array
-    name: Array
-    nameWithType: Array
-    fullName: System.Array
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-  isExternal: true
-  name: IList.Add(Object)
-  nameWithType: DecoratedSet<T>.IList.Add(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Add(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Add(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Add(System.Object)
-  name.vb: System.Collections.IList.Add(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-    name: IList.Add
-    nameWithType: DecoratedSet<T>.IList.Add
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Add
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Add(System.Object)
-    name: System.Collections.IList.Add
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Add
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Add
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-  isExternal: true
-  name: IList.Contains(Object)
-  nameWithType: DecoratedSet<T>.IList.Contains(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Contains(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Contains(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Contains(System.Object)
-  name.vb: System.Collections.IList.Contains(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-    name: IList.Contains
-    nameWithType: DecoratedSet<T>.IList.Contains
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Contains
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Contains(System.Object)
-    name: System.Collections.IList.Contains
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Contains
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Contains
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-  name: IList.Clear()
-  nameWithType: DecoratedSet<T>.IList.Clear()
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Clear()
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Clear()
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Clear()
-  name.vb: System.Collections.IList.Clear()
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-    name: IList.Clear
-    nameWithType: DecoratedSet<T>.IList.Clear
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Clear
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Clear
-    name: System.Collections.IList.Clear
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Clear
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Clear
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-  isExternal: true
-  name: IList.IndexOf(Object)
-  nameWithType: DecoratedSet<T>.IList.IndexOf(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IndexOf(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.IndexOf(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IndexOf(System.Object)
-  name.vb: System.Collections.IList.IndexOf(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-    name: IList.IndexOf
-    nameWithType: DecoratedSet<T>.IList.IndexOf
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IndexOf
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IndexOf(System.Object)
-    name: System.Collections.IList.IndexOf
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.IndexOf
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IndexOf
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-  isExternal: true
-  name: IList.Insert(Int32, Object)
-  nameWithType: DecoratedSet<T>.IList.Insert(Int32, Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Insert(System.Int32, System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Insert(Int32, Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Insert(System.Int32, System.Object)
-  name.vb: System.Collections.IList.Insert(Int32, Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-    name: IList.Insert
-    nameWithType: DecoratedSet<T>.IList.Insert
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Insert
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Insert(System.Int32,System.Object)
-    name: System.Collections.IList.Insert
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Insert
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Insert
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-  isExternal: true
-  name: IList.Remove(Object)
-  nameWithType: DecoratedSet<T>.IList.Remove(Object)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Remove(System.Object)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Remove(Object)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Remove(System.Object)
-  name.vb: System.Collections.IList.Remove(Object)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-    name: IList.Remove
-    nameWithType: DecoratedSet<T>.IList.Remove
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Remove
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Remove(System.Object)
-    name: System.Collections.IList.Remove
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Remove
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Remove
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-  commentId: M:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-  isExternal: true
-  name: IList.RemoveAt(Int32)
-  nameWithType: DecoratedSet<T>.IList.RemoveAt(Int32)
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.RemoveAt(System.Int32)
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.RemoveAt(Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.RemoveAt(System.Int32)
-  name.vb: System.Collections.IList.RemoveAt(Int32)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-    name: IList.RemoveAt
-    nameWithType: DecoratedSet<T>.IList.RemoveAt
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.RemoveAt
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#RemoveAt(System.Int32)
-    name: System.Collections.IList.RemoveAt
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.RemoveAt
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.RemoveAt
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#IsSynchronized
-  commentId: P:NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#IsSynchronized
-  name: ICollection.IsSynchronized
-  nameWithType: DecoratedSet<T>.ICollection.IsSynchronized
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.IsSynchronized
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.ICollection.IsSynchronized
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.IsSynchronized
-  name.vb: System.Collections.ICollection.IsSynchronized
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#SyncRoot
-  commentId: P:NMF.Collections.Generic.DecoratedSet`1.System#Collections#ICollection#SyncRoot
-  name: ICollection.SyncRoot
-  nameWithType: DecoratedSet<T>.ICollection.SyncRoot
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.ICollection.SyncRoot
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.ICollection.SyncRoot
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.ICollection.SyncRoot
-  name.vb: System.Collections.ICollection.SyncRoot
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IsReadOnly
-  commentId: P:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IsReadOnly
-  name: IList.IsReadOnly
-  nameWithType: DecoratedSet<T>.IList.IsReadOnly
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IsReadOnly
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.IsReadOnly
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IsReadOnly
-  name.vb: System.Collections.IList.IsReadOnly
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IsFixedSize
-  commentId: P:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#IsFixedSize
-  name: IList.IsFixedSize
-  nameWithType: DecoratedSet<T>.IList.IsFixedSize
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.IsFixedSize
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.IsFixedSize
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.IsFixedSize
-  name.vb: System.Collections.IList.IsFixedSize
-- uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-  commentId: P:NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-  isExternal: true
-  name: IList.Item[Int32]
-  nameWithType: DecoratedSet<T>.IList.Item[Int32]
-  fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Item[System.Int32]
-  nameWithType.vb: DecoratedSet(Of T).System.Collections.IList.Item(Int32)
-  fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Item(System.Int32)
-  name.vb: System.Collections.IList.Item(Int32)
-  spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-    name: IList.Item
-    nameWithType: DecoratedSet<T>.IList.Item
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.System.Collections.IList.Item
-  - name: '['
-    nameWithType: '['
-    fullName: '['
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ']'
-    nameWithType: ']'
-    fullName: ']'
-  spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.System#Collections#IList#Item(System.Int32)
-    name: System.Collections.IList.Item
-    nameWithType: DecoratedSet(Of T).System.Collections.IList.Item
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).System.Collections.IList.Item
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet{{T}}.Add({T})
   commentId: M:NMF.Collections.Generic.DecoratedSet{`0}.Add(`0)
   parent: NMF.Collections.Generic.DecoratedSet{{T}}
@@ -4100,33 +2158,17 @@ references:
   nameWithType.vb: DecoratedSet(Of T).Add(T)
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Add(T)
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Add(`0)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Add(`0)
     name: Add
-    nameWithType: DecoratedSet<T>.Add
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Add
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Add(`0)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Add(`0)
     name: Add
-    nameWithType: DecoratedSet(Of T).Add
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Add
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.Add*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.Add
   name: Add
@@ -4144,35 +2186,19 @@ references:
   nameWithType.vb: ISet(Of T).Add(T)
   fullName.vb: System.Collections.Generic.ISet(Of T).Add(T)
   spec.csharp:
-  - uid: System.Collections.Generic.ISet`1.Add(`0)
+  - uid: System.Collections.Generic.ISet{`0}.Add(`0)
     name: Add
-    nameWithType: ISet<T>.Add
-    fullName: System.Collections.Generic.ISet<T>.Add
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: System.Collections.Generic.ISet`1.Add(`0)
+  - uid: System.Collections.Generic.ISet{`0}.Add(`0)
     name: Add
-    nameWithType: ISet(Of T).Add
-    fullName: System.Collections.Generic.ISet(Of T).Add
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: '{T}'
   commentId: '!:T'
   definition: T
@@ -4183,9 +2209,12 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: NMF.Collections.Generic.DecoratedSet`1.Add(`0)
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.Add(`0)
   name: Add(T)
@@ -4196,31 +2225,15 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Add(`0)
     name: Add
-    nameWithType: DecoratedSet<T>.Add
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Add
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Add(`0)
     name: Add
-    nameWithType: DecoratedSet(Of T).Add
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Add
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.ISet`1.Add(`0)
   commentId: M:System.Collections.Generic.ISet`1.Add(`0)
   isExternal: true
@@ -4232,33 +2245,17 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ISet`1.Add(`0)
     name: Add
-    nameWithType: ISet<T>.Add
-    fullName: System.Collections.Generic.ISet<T>.Add
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Collections.Generic.ISet`1.Add(`0)
     name: Add
-    nameWithType: ISet(Of T).Add
-    fullName: System.Collections.Generic.ISet(Of T).Add
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: T
   name: T
   nameWithType: T
@@ -4287,27 +2284,15 @@ references:
   nameWithType.vb: DecoratedSet(Of T).Clear()
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Clear()
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Clear
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Clear
     name: Clear
-    nameWithType: DecoratedSet<T>.Clear
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Clear
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Clear
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Clear
     name: Clear
-    nameWithType: DecoratedSet(Of T).Clear
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Clear
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.Clear*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.Clear
   name: Clear
@@ -4325,29 +2310,17 @@ references:
   nameWithType.vb: ICollection(Of T).Clear()
   fullName.vb: System.Collections.Generic.ICollection(Of T).Clear()
   spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Clear
+  - uid: System.Collections.Generic.ICollection{`0}.Clear
     name: Clear
-    nameWithType: ICollection<T>.Clear
-    fullName: System.Collections.Generic.ICollection<T>.Clear
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Clear
+  - uid: System.Collections.Generic.ICollection{`0}.Clear
     name: Clear
-    nameWithType: ICollection(Of T).Clear
-    fullName: System.Collections.Generic.ICollection(Of T).Clear
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.Clear
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.Clear
   name: Clear()
@@ -4358,25 +2331,13 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Clear
     name: Clear
-    nameWithType: DecoratedSet<T>.Clear
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Clear
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Clear
     name: Clear
-    nameWithType: DecoratedSet(Of T).Clear
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Clear
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.ICollection`1.Clear
   commentId: M:System.Collections.Generic.ICollection`1.Clear
   isExternal: true
@@ -4388,27 +2349,15 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ICollection`1.Clear
     name: Clear
-    nameWithType: ICollection<T>.Clear
-    fullName: System.Collections.Generic.ICollection<T>.Clear
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Collections.Generic.ICollection`1.Clear
     name: Clear
-    nameWithType: ICollection(Of T).Clear
-    fullName: System.Collections.Generic.ICollection(Of T).Clear
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.SilentClear*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.SilentClear
   name: SilentClear
@@ -4426,33 +2375,17 @@ references:
   nameWithType.vb: DecoratedSet(Of T).Remove(T)
   fullName.vb: NMF.Collections.Generic.DecoratedSet(Of T).Remove(T)
   spec.csharp:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Remove(`0)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Remove(`0)
     name: Remove
-    nameWithType: DecoratedSet<T>.Remove
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Remove
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Collections.Generic.DecoratedSet`1.Remove(`0)
+  - uid: NMF.Collections.Generic.DecoratedSet{`0}.Remove(`0)
     name: Remove
-    nameWithType: DecoratedSet(Of T).Remove
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Remove
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.Remove*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.Remove
   name: Remove
@@ -4470,35 +2403,19 @@ references:
   nameWithType.vb: ICollection(Of T).Remove(T)
   fullName.vb: System.Collections.Generic.ICollection(Of T).Remove(T)
   spec.csharp:
-  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+  - uid: System.Collections.Generic.ICollection{`0}.Remove(`0)
     name: Remove
-    nameWithType: ICollection<T>.Remove
-    fullName: System.Collections.Generic.ICollection<T>.Remove
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+  - uid: System.Collections.Generic.ICollection{`0}.Remove(`0)
     name: Remove
-    nameWithType: ICollection(Of T).Remove
-    fullName: System.Collections.Generic.ICollection(Of T).Remove
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.Generic.DecoratedSet`1.Remove(`0)
   commentId: M:NMF.Collections.Generic.DecoratedSet`1.Remove(`0)
   name: Remove(T)
@@ -4509,31 +2426,15 @@ references:
   spec.csharp:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Remove(`0)
     name: Remove
-    nameWithType: DecoratedSet<T>.Remove
-    fullName: NMF.Collections.Generic.DecoratedSet<T>.Remove
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Collections.Generic.DecoratedSet`1.Remove(`0)
     name: Remove
-    nameWithType: DecoratedSet(Of T).Remove
-    fullName: NMF.Collections.Generic.DecoratedSet(Of T).Remove
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.ICollection`1.Remove(`0)
   commentId: M:System.Collections.Generic.ICollection`1.Remove(`0)
   isExternal: true
@@ -4545,33 +2446,17 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.ICollection`1.Remove(`0)
     name: Remove
-    nameWithType: ICollection<T>.Remove
-    fullName: System.Collections.Generic.ICollection<T>.Remove
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Collections.Generic.ICollection`1.Remove(`0)
     name: Remove
-    nameWithType: ICollection(Of T).Remove
-    fullName: System.Collections.Generic.ICollection(Of T).Remove
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.SilentRemove*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.SilentRemove
   name: SilentRemove
@@ -4612,37 +2497,23 @@ references:
   spec.csharp:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
-    fullName: System.EventHandler
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     name: NotifyCollectionChangedEventArgs
-    nameWithType: NotifyCollectionChangedEventArgs
-    fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
-    fullName: System.EventHandler
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     name: NotifyCollectionChangedEventArgs
-    nameWithType: NotifyCollectionChangedEventArgs
-    fullName: System.Collections.Specialized.NotifyCollectionChangedEventArgs
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.EventHandler`1
   commentId: T:System.EventHandler`1
   isExternal: true
@@ -4655,33 +2526,19 @@ references:
   spec.csharp:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
-    fullName: System.EventHandler
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TEventArgs
-    nameWithType: TEventArgs
-    fullName: TEventArgs
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
-    fullName: System.EventHandler
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TEventArgs
-    nameWithType: TEventArgs
-    fullName: TEventArgs
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.OnPropertyChanged*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.OnPropertyChanged
   name: OnPropertyChanged
@@ -4693,9 +2550,12 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanged*
   commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.OnCollectionChanged
   name: OnCollectionChanged
@@ -4748,27 +2608,15 @@ references:
   nameWithType.vb: ICollectionExpression(Of T).AsNotifiable()
   fullName.vb: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable()
   spec.csharp:
-  - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+  - uid: NMF.Expressions.ICollectionExpression{`0}.AsNotifiable
     name: AsNotifiable
-    nameWithType: ICollectionExpression<T>.AsNotifiable
-    fullName: NMF.Expressions.ICollectionExpression<T>.AsNotifiable
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
+  - uid: NMF.Expressions.ICollectionExpression{`0}.AsNotifiable
     name: AsNotifiable
-    nameWithType: ICollectionExpression(Of T).AsNotifiable
-    fullName: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyCollection{{T}}
   commentId: T:NMF.Expressions.INotifyCollection{`0}
   parent: NMF.Expressions
@@ -4782,31 +2630,17 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
-    nameWithType: INotifyCollection
-    fullName: NMF.Expressions.INotifyCollection
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
-    nameWithType: INotifyCollection
-    fullName: NMF.Expressions.INotifyCollection
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
   commentId: M:NMF.Expressions.ICollectionExpression`1.AsNotifiable
   name: AsNotifiable()
@@ -4817,25 +2651,13 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
     name: AsNotifiable
-    nameWithType: ICollectionExpression<T>.AsNotifiable
-    fullName: NMF.Expressions.ICollectionExpression<T>.AsNotifiable
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.ICollectionExpression`1.AsNotifiable
     name: AsNotifiable
-    nameWithType: ICollectionExpression(Of T).AsNotifiable
-    fullName: NMF.Expressions.ICollectionExpression(Of T).AsNotifiable
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifyCollection`1
   commentId: T:NMF.Expressions.INotifyCollection`1
   name: INotifyCollection<T>
@@ -4847,212 +2669,42 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
-    nameWithType: INotifyCollection
-    fullName: NMF.Expressions.INotifyCollection
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: NMF.Expressions.INotifyCollection`1
     name: INotifyCollection
-    nameWithType: INotifyCollection
-    fullName: NMF.Expressions.INotifyCollection
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable*
-  commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression{T}#AsNotifiable
-  name: IEnumerableExpression<T>.AsNotifiable
-  nameWithType: ObservableSet<T>.IEnumerableExpression<T>.AsNotifiable
-  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
-  nameWithType.vb: ObservableSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
-  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
-  name.vb: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
-- uid: NMF.Expressions.IEnumerableExpression{{T}}.AsNotifiable
-  commentId: M:NMF.Expressions.IEnumerableExpression{`0}.AsNotifiable
-  parent: NMF.Expressions.IEnumerableExpression{{T}}
-  definition: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-  name: AsNotifiable()
-  nameWithType: IEnumerableExpression<T>.AsNotifiable()
-  fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
-  nameWithType.vb: IEnumerableExpression(Of T).AsNotifiable()
-  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable()
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
-  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-    name: AsNotifiable
-    nameWithType: IEnumerableExpression<T>.AsNotifiable
-    fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-    name: AsNotifiable
-    nameWithType: IEnumerableExpression(Of T).AsNotifiable
-    fullName: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.INotifyEnumerable{{T}}
-  commentId: T:NMF.Expressions.INotifyEnumerable{`0}
-  parent: NMF.Expressions
-  definition: NMF.Expressions.INotifyEnumerable`1
-  name: INotifyEnumerable<T>
-  nameWithType: INotifyEnumerable<T>
-  fullName: NMF.Expressions.INotifyEnumerable<T>
-  nameWithType.vb: INotifyEnumerable(Of T)
-  fullName.vb: NMF.Expressions.INotifyEnumerable(Of T)
-  name.vb: INotifyEnumerable(Of T)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyEnumerable`1
-    name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyEnumerable`1
-    name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-  commentId: M:NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-  name: AsNotifiable()
-  nameWithType: IEnumerableExpression<T>.AsNotifiable()
-  fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable()
-  nameWithType.vb: IEnumerableExpression(Of T).AsNotifiable()
-  fullName.vb: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable()
-  spec.csharp:
-  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-    name: AsNotifiable
-    nameWithType: IEnumerableExpression<T>.AsNotifiable
-    fullName: NMF.Expressions.IEnumerableExpression<T>.AsNotifiable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.IEnumerableExpression`1.AsNotifiable
-    name: AsNotifiable
-    nameWithType: IEnumerableExpression(Of T).AsNotifiable
-    fullName: NMF.Expressions.IEnumerableExpression(Of T).AsNotifiable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.INotifyEnumerable`1
-  commentId: T:NMF.Expressions.INotifyEnumerable`1
-  name: INotifyEnumerable<T>
-  nameWithType: INotifyEnumerable<T>
-  fullName: NMF.Expressions.INotifyEnumerable<T>
-  nameWithType.vb: INotifyEnumerable(Of T)
-  fullName.vb: NMF.Expressions.INotifyEnumerable(Of T)
-  name.vb: INotifyEnumerable(Of T)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyEnumerable`1
-    name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyEnumerable`1
-    name: INotifyEnumerable
-    nameWithType: INotifyEnumerable
-    fullName: NMF.Expressions.INotifyEnumerable
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable*
-  commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.NMF#Expressions#IEnumerableExpression#AsNotifiable
-  name: IEnumerableExpression.AsNotifiable
-  nameWithType: ObservableSet<T>.IEnumerableExpression.AsNotifiable
-  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.NMF.Expressions.IEnumerableExpression.AsNotifiable
-  nameWithType.vb: ObservableSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable
-  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).NMF.Expressions.IEnumerableExpression.AsNotifiable
-  name.vb: NMF.Expressions.IEnumerableExpression.AsNotifiable
-- uid: NMF.Expressions.IEnumerableExpression.AsNotifiable
-  commentId: M:NMF.Expressions.IEnumerableExpression.AsNotifiable
-  parent: NMF.Expressions.IEnumerableExpression
-  name: AsNotifiable()
-  nameWithType: IEnumerableExpression.AsNotifiable()
-  fullName: NMF.Expressions.IEnumerableExpression.AsNotifiable()
-  spec.csharp:
-  - uid: NMF.Expressions.IEnumerableExpression.AsNotifiable
-    name: AsNotifiable
-    nameWithType: IEnumerableExpression.AsNotifiable
-    fullName: NMF.Expressions.IEnumerableExpression.AsNotifiable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.IEnumerableExpression.AsNotifiable
-    name: AsNotifiable
-    nameWithType: IEnumerableExpression.AsNotifiable
-    fullName: NMF.Expressions.IEnumerableExpression.AsNotifiable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.INotifyEnumerable
-  commentId: T:NMF.Expressions.INotifyEnumerable
-  parent: NMF.Expressions
-  name: INotifyEnumerable
-  nameWithType: INotifyEnumerable
-  fullName: NMF.Expressions.INotifyEnumerable
+- uid: NMF.Collections.ObjectModel.ObservableSet`1.ToString*
+  commentId: Overload:NMF.Collections.ObjectModel.ObservableSet`1.ToString
+  name: ToString
+  nameWithType: ObservableSet<T>.ToString
+  fullName: NMF.Collections.ObjectModel.ObservableSet<T>.ToString
+  nameWithType.vb: ObservableSet(Of T).ToString
+  fullName.vb: NMF.Collections.ObjectModel.ObservableSet(Of T).ToString

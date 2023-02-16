@@ -31,20 +31,13 @@ items:
   example: []
   syntax:
     content: 'public interface INotifiable : IDisposable'
-    content.vb: >-
-      Public Interface INotifiable
-          Inherits IDisposable
+    content.vb: Public Interface INotifiable Inherits IDisposable
   inheritedMembers:
   - System.IDisposable.Dispose
   extensionMethods:
-  - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
   - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
+  - NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
+  - NMF.Expressions.INotifiable.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
 - uid: NMF.Expressions.INotifiable.Successors
   commentId: P:NMF.Expressions.INotifiable.Successors
   id: Successors
@@ -76,10 +69,6 @@ items:
       type: NMF.Expressions.ISuccessorList
     content.vb: ReadOnly Property Successors As ISuccessorList
   overload: NMF.Expressions.INotifiable.Successors*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: NMF.Expressions.INotifiable.Dependencies
   commentId: P:NMF.Expressions.INotifiable.Dependencies
   id: Dependencies
@@ -111,10 +100,6 @@ items:
       type: System.Collections.Generic.IEnumerable{NMF.Expressions.INotifiable}
     content.vb: ReadOnly Property Dependencies As IEnumerable(Of INotifiable)
   overload: NMF.Expressions.INotifiable.Dependencies*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   commentId: M:NMF.Expressions.INotifiable.Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
   id: Notify(System.Collections.Generic.IList{NMF.Expressions.INotificationResult})
@@ -184,16 +169,24 @@ items:
       type: NMF.Expressions.ExecutionMetaData
     content.vb: ReadOnly Property ExecutionMetaData As ExecutionMetaData
   overload: NMF.Expressions.INotifiable.ExecutionMetaData*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 references:
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
   name: NMF.Expressions
   nameWithType: NMF.Expressions
   fullName: NMF.Expressions
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -204,95 +197,104 @@ references:
   spec.csharp:
   - uid: System.IDisposable.Dispose
     name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.IDisposable.Dispose
     name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
     isExternal: true
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
-  commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
-  parent: NMF.Expressions.Debug.DebugExtensions
-  definition: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
-  name: Visualize()
-  nameWithType: DebugExtensions.Visualize()
-  fullName: NMF.Expressions.Debug.DebugExtensions.Visualize()
-  spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize
-    name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize
-    name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
   commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
   parent: NMF.Expressions.Debug.DebugExtensions
   definition: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  name: ExportToDgml(String)
-  nameWithType: DebugExtensions.ExportToDgml(String)
-  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  name: ExportToDgml(INotifiable, string)
+  nameWithType: DebugExtensions.ExportToDgml(INotifiable, string)
+  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, string)
+  nameWithType.vb: DebugExtensions.ExportToDgml(INotifiable, String)
+  fullName.vb: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, String)
+  name.vb: ExportToDgml(INotifiable, String)
   spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
     name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(System.String)
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
     name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: NMF.Expressions.INotifiable.NMF.Expressions.Debug.DebugExtensions.Visualize
+  commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  parent: NMF.Expressions.Debug.DebugExtensions
+  definition: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  name: Visualize(INotifiable)
+  nameWithType: DebugExtensions.Visualize(INotifiable)
+  fullName: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+    name: Visualize
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
+    name: Visualize
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+- uid: NMF.Expressions.INotifiable.NMF.Expressions.Linq.ExpressionExtensions.AsOne``1
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  parent: NMF.Expressions.Linq.ExpressionExtensions
+  definition: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<INotifiable>(INotifiable)
+  nameWithType: ExpressionExtensions.AsOne<INotifiable>(INotifiable)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<NMF.Expressions.INotifiable>(NMF.Expressions.INotifiable)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of INotifiable)(INotifiable)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of NMF.Expressions.INotifiable)(NMF.Expressions.INotifiable)
+  name.vb: AsOne(Of INotifiable)(INotifiable)
+  spec.csharp:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.INotifiable)
+    name: AsOne
+  - name: <
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '>'
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(NMF.Expressions.INotifiable)
+    name: AsOne
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: )
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -300,6 +302,45 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+  commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+  isExternal: true
+  name: ExportToDgml(INotifiable, string)
+  nameWithType: DebugExtensions.ExportToDgml(INotifiable, string)
+  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, string)
+  nameWithType.vb: DebugExtensions.ExportToDgml(INotifiable, String)
+  fullName.vb: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, String)
+  name.vb: ExportToDgml(INotifiable, String)
+  spec.csharp:
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+    name: ExportToDgml
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
+    name: ExportToDgml
+  - name: (
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+  - name: )
+- uid: NMF.Expressions.Debug.DebugExtensions
+  commentId: T:NMF.Expressions.Debug.DebugExtensions
+  parent: NMF.Expressions.Debug
+  name: DebugExtensions
+  nameWithType: DebugExtensions
+  fullName: NMF.Expressions.Debug.DebugExtensions
 - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
   commentId: M:NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
   name: Visualize(INotifiable)
@@ -308,91 +349,51 @@ references:
   spec.csharp:
   - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
     name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: NMF.Expressions.Debug.DebugExtensions.Visualize(NMF.Expressions.INotifiable)
     name: Visualize
-    nameWithType: DebugExtensions.Visualize
-    fullName: NMF.Expressions.Debug.DebugExtensions.Visualize
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: NMF.Expressions.Debug.DebugExtensions
-  commentId: T:NMF.Expressions.Debug.DebugExtensions
-  parent: NMF.Expressions.Debug
-  name: DebugExtensions
-  nameWithType: DebugExtensions
-  fullName: NMF.Expressions.Debug.DebugExtensions
-- uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  commentId: M:NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-  isExternal: true
-  name: ExportToDgml(INotifiable, String)
-  nameWithType: DebugExtensions.ExportToDgml(INotifiable, String)
-  fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable, System.String)
+- uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  commentId: M:NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+  name: AsOne<T>(T)
+  nameWithType: ExpressionExtensions.AsOne<T>(T)
+  fullName: NMF.Expressions.Linq.ExpressionExtensions.AsOne<T>(T)
+  nameWithType.vb: ExpressionExtensions.AsOne(Of T)(T)
+  fullName.vb: NMF.Expressions.Linq.ExpressionExtensions.AsOne(Of T)(T)
+  name.vb: AsOne(Of T)(T)
   spec.csharp:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-    name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
+  - name: <
+  - name: T
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
+  - name: T
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: NMF.Expressions.Debug.DebugExtensions.ExportToDgml(NMF.Expressions.INotifiable,System.String)
-    name: ExportToDgml
-    nameWithType: DebugExtensions.ExportToDgml
-    fullName: NMF.Expressions.Debug.DebugExtensions.ExportToDgml
+  - uid: NMF.Expressions.Linq.ExpressionExtensions.AsOne``1(``0)
+    name: AsOne
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NMF.Expressions.INotifiable
-    name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
+  - name: Of
+  - name: " "
+  - name: T
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: T
+  - name: )
+- uid: NMF.Expressions.Linq.ExpressionExtensions
+  commentId: T:NMF.Expressions.Linq.ExpressionExtensions
+  parent: NMF.Expressions.Linq
+  name: ExpressionExtensions
+  nameWithType: ExpressionExtensions
+  fullName: NMF.Expressions.Linq.ExpressionExtensions
 - uid: System
   commentId: N:System
   isExternal: true
@@ -404,6 +405,47 @@ references:
   name: NMF.Expressions.Debug
   nameWithType: NMF.Expressions.Debug
   fullName: NMF.Expressions.Debug
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Debug
+    name: Debug
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Debug
+    name: Debug
+- uid: NMF.Expressions.Linq
+  commentId: N:NMF.Expressions.Linq
+  name: NMF.Expressions.Linq
+  nameWithType: NMF.Expressions.Linq
+  fullName: NMF.Expressions.Linq
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Expressions
+    name: Expressions
+  - name: .
+  - uid: NMF.Expressions.Linq
+    name: Linq
 - uid: NMF.Expressions.INotifiable.Successors*
   commentId: Overload:NMF.Expressions.INotifiable.Successors
   name: Successors
@@ -433,35 +475,21 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotifiable
     name: INotifiable
-    nameWithType: INotifiable
-    fullName: NMF.Expressions.INotifiable
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
@@ -474,39 +502,49 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
 - uid: NMF.Expressions.INotifiable.Notify*
   commentId: Overload:NMF.Expressions.INotifiable.Notify
   name: Notify
@@ -525,35 +563,21 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NMF.Expressions.INotificationResult
     name: INotificationResult
-    nameWithType: INotificationResult
-    fullName: NMF.Expressions.INotificationResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotificationResult
   commentId: T:NMF.Expressions.INotificationResult
   parent: NMF.Expressions
@@ -572,33 +596,19 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IList`1
     name: IList
-    nameWithType: IList
-    fullName: System.Collections.Generic.IList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: NMF.Expressions.INotifiable.ExecutionMetaData*
   commentId: Overload:NMF.Expressions.INotifiable.ExecutionMetaData
   name: ExecutionMetaData
