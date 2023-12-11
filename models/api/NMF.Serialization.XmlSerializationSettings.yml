@@ -6,12 +6,16 @@ items:
   parent: NMF.Serialization
   children:
   - NMF.Serialization.XmlSerializationSettings.CaseSensitive
+  - NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings
   - NMF.Serialization.XmlSerializationSettings.Default
   - NMF.Serialization.XmlSerializationSettings.DefaultNamespace
   - NMF.Serialization.XmlSerializationSettings.Encoding
+  - NMF.Serialization.XmlSerializationSettings.Fix
   - NMF.Serialization.XmlSerializationSettings.GetPersistanceString(System.String)
   - NMF.Serialization.XmlSerializationSettings.Indent
   - NMF.Serialization.XmlSerializationSettings.NameCase
+  - NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues
+  - NMF.Serialization.XmlSerializationSettings.isFixed
   langs:
   - csharp
   - vb
@@ -21,16 +25,16 @@ items:
   type: Class
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: XmlSerializationSettings
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
     startLine: 10
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nClass to represent the serialization settings for a XmlSerializer\n"
+  summary: Class to represent the serialization settings for a XmlSerializer
   example: []
   syntax:
     content: public class XmlSerializationSettings
@@ -45,6 +49,35 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: NMF.Serialization.XmlSerializationSettings.isFixed
+  commentId: F:NMF.Serialization.XmlSerializationSettings.isFixed
+  id: isFixed
+  parent: NMF.Serialization.XmlSerializationSettings
+  langs:
+  - csharp
+  - vb
+  name: isFixed
+  nameWithType: XmlSerializationSettings.isFixed
+  fullName: NMF.Serialization.XmlSerializationSettings.isFixed
+  type: Field
+  source:
+    remote:
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+      branch: master
+      repo: git@github.com:NMFCode/NMFdocs.git
+    id: isFixed
+    path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+    startLine: 24
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: Denotes whether the settings object is fixed and therefore any property change should be disallowed
+  example: []
+  syntax:
+    content: protected bool isFixed
+    return:
+      type: System.Boolean
+    content.vb: Protected isFixed As Boolean
 - uid: NMF.Serialization.XmlSerializationSettings.Default
   commentId: P:NMF.Serialization.XmlSerializationSettings.Default
   id: Default
@@ -58,16 +91,16 @@ items:
   type: Property
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: Default
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 24
+    startLine: 29
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nDefault settings used for the XmlSerializer\n"
+  summary: Default settings used for the XmlSerializer
   example: []
   syntax:
     content: public static XmlSerializationSettings Default { get; }
@@ -76,6 +109,68 @@ items:
       type: NMF.Serialization.XmlSerializationSettings
     content.vb: Public Shared ReadOnly Property [Default] As XmlSerializationSettings
   overload: NMF.Serialization.XmlSerializationSettings.Default*
+- uid: NMF.Serialization.XmlSerializationSettings.Fix
+  commentId: M:NMF.Serialization.XmlSerializationSettings.Fix
+  id: Fix
+  parent: NMF.Serialization.XmlSerializationSettings
+  langs:
+  - csharp
+  - vb
+  name: Fix()
+  nameWithType: XmlSerializationSettings.Fix()
+  fullName: NMF.Serialization.XmlSerializationSettings.Fix()
+  type: Method
+  source:
+    remote:
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+      branch: master
+      repo: git@github.com:NMFCode/NMFdocs.git
+    id: Fix
+    path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+    startLine: 38
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: Create a fixed version of these settings
+  example: []
+  syntax:
+    content: public virtual XmlSerializationSettings Fix()
+    return:
+      type: NMF.Serialization.XmlSerializationSettings
+      description: A new instance of serialization settings where changes are not allowed any more
+    content.vb: Public Overridable Function Fix() As XmlSerializationSettings
+  overload: NMF.Serialization.XmlSerializationSettings.Fix*
+- uid: NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings
+  commentId: M:NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings
+  id: CreateXmlWriterSettings
+  parent: NMF.Serialization.XmlSerializationSettings
+  langs:
+  - csharp
+  - vb
+  name: CreateXmlWriterSettings()
+  nameWithType: XmlSerializationSettings.CreateXmlWriterSettings()
+  fullName: NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings()
+  type: Method
+  source:
+    remote:
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+      branch: master
+      repo: git@github.com:NMFCode/NMFdocs.git
+    id: CreateXmlWriterSettings
+    path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+    startLine: 57
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: Creates the settings to write XML documents
+  example: []
+  syntax:
+    content: protected virtual XmlWriterSettings CreateXmlWriterSettings()
+    return:
+      type: System.Xml.XmlWriterSettings
+      description: An instance of XmlWriterSettings
+    content.vb: Protected Overridable Function CreateXmlWriterSettings() As XmlWriterSettings
+  overload: NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings*
 - uid: NMF.Serialization.XmlSerializationSettings.Encoding
   commentId: P:NMF.Serialization.XmlSerializationSettings.Encoding
   id: Encoding
@@ -89,16 +184,16 @@ items:
   type: Property
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: Encoding
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 37
+    startLine: 65
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nGets or sets the encoding of the Xml file\n"
+  summary: Gets or sets the encoding of the Xml file
   example: []
   syntax:
     content: public Encoding Encoding { get; set; }
@@ -120,16 +215,16 @@ items:
   type: Property
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: DefaultNamespace
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 46
+    startLine: 87
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nGets or sets the default location\n"
+  summary: Gets or sets the default location
   example: []
   syntax:
     content: public string DefaultNamespace { get; set; }
@@ -151,16 +246,16 @@ items:
   type: Property
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: Indent
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 55
+    startLine: 96
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nIndicates whether the XmlSerializer should indent new Xml elements for more readable formatting\n"
+  summary: Indicates whether the XmlSerializer should indent new Xml elements for more readable formatting
   example: []
   syntax:
     content: public bool Indent { get; set; }
@@ -182,16 +277,16 @@ items:
   type: Property
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: CaseSensitive
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 64
+    startLine: 105
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nIndicates whether the deserialization is case sensitive\n"
+  summary: Indicates whether the deserialization is case sensitive
   example: []
   syntax:
     content: public bool CaseSensitive { get; set; }
@@ -200,6 +295,37 @@ items:
       type: System.Boolean
     content.vb: Public Property CaseSensitive As Boolean
   overload: NMF.Serialization.XmlSerializationSettings.CaseSensitive*
+- uid: NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues
+  commentId: P:NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues
+  id: SerializeDefaultValues
+  parent: NMF.Serialization.XmlSerializationSettings
+  langs:
+  - csharp
+  - vb
+  name: SerializeDefaultValues
+  nameWithType: XmlSerializationSettings.SerializeDefaultValues
+  fullName: NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues
+  type: Property
+  source:
+    remote:
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+      branch: master
+      repo: git@github.com:NMFCode/NMFdocs.git
+    id: SerializeDefaultValues
+    path: src/Models/Serialization/XML/XmlSerializationSettings.cs
+    startLine: 114
+  assemblies:
+  - NMF.Serialization
+  namespace: NMF.Serialization
+  summary: Indicates whether properties should be serialized even if the values match the defaults
+  example: []
+  syntax:
+    content: public bool SerializeDefaultValues { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property SerializeDefaultValues As Boolean
+  overload: NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues*
 - uid: NMF.Serialization.XmlSerializationSettings.NameCase
   commentId: P:NMF.Serialization.XmlSerializationSettings.NameCase
   id: NameCase
@@ -213,16 +339,16 @@ items:
   type: Property
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: NameCase
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 73
+    startLine: 126
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nThe strategy for converting character cases for serialization\n"
+  summary: The strategy for converting character cases for serialization
   example: []
   syntax:
     content: public XmlCaseType NameCase { get; set; }
@@ -244,16 +370,16 @@ items:
   type: Method
   source:
     remote:
-      path: Models/Serialization/XML/XmlSerializationSettings.cs
+      path: src/Models/Serialization/XML/XmlSerializationSettings.cs
       branch: master
-      repo: https://github.com/NMFCode/NMF.git
+      repo: git@github.com:NMFCode/NMFdocs.git
     id: GetPersistanceString
     path: src/Models/Serialization/XML/XmlSerializationSettings.cs
-    startLine: 84
+    startLine: 140
   assemblies:
   - NMF.Serialization
   namespace: NMF.Serialization
-  summary: "\nGets the persistance form of the given identifier\n"
+  summary: Gets the persistance form of the given identifier
   example: []
   syntax:
     content: public string GetPersistanceString(string input)
@@ -272,25 +398,31 @@ items:
 references:
 - uid: NMF.Serialization
   commentId: N:NMF.Serialization
+  href: NMF.html
   name: NMF.Serialization
   nameWithType: NMF.Serialization
   fullName: NMF.Serialization
   spec.csharp:
   - uid: NMF
     name: NMF
+    href: NMF.html
   - name: .
   - uid: NMF.Serialization
     name: Serialization
+    href: NMF.Serialization.html
   spec.vb:
   - uid: NMF
     name: NMF
+    href: NMF.html
   - name: .
   - uid: NMF.Serialization
     name: Serialization
+    href: NMF.Serialization.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
   name: object
   nameWithType: object
   fullName: object
@@ -301,6 +433,7 @@ references:
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   name: Equals(object)
   nameWithType: object.Equals(object)
   fullName: object.Equals(object)
@@ -311,24 +444,29 @@ references:
   - uid: System.Object.Equals(System.Object)
     name: Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
   - uid: System.Object
     name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
   - uid: System.Object
     name: Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   name: Equals(object, object)
   nameWithType: object.Equals(object, object)
   fullName: object.Equals(object, object)
@@ -339,34 +477,41 @@ references:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
   - uid: System.Object
     name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: ','
   - name: " "
   - uid: System.Object
     name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
   - uid: System.Object
     name: Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: ','
   - name: " "
   - uid: System.Object
     name: Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
   nameWithType: object.GetHashCode()
   fullName: object.GetHashCode()
@@ -376,18 +521,21 @@ references:
   - uid: System.Object.GetHashCode
     name: GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
   nameWithType: object.GetType()
   fullName: object.GetType()
@@ -397,18 +545,21 @@ references:
   - uid: System.Object.GetType
     name: GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
   - name: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
   - name: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
   nameWithType: object.MemberwiseClone()
   fullName: object.MemberwiseClone()
@@ -418,18 +569,21 @@ references:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
   - name: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
   - name: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   name: ReferenceEquals(object, object)
   nameWithType: object.ReferenceEquals(object, object)
   fullName: object.ReferenceEquals(object, object)
@@ -440,34 +594,41 @@ references:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
   - uid: System.Object
     name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: ','
   - name: " "
   - uid: System.Object
     name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
   - uid: System.Object
     name: Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: ','
   - name: " "
   - uid: System.Object
     name: Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
   nameWithType: object.ToString()
   fullName: object.ToString()
@@ -477,33 +638,97 @@ references:
   - uid: System.Object.ToString
     name: ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: NMF.Serialization.XmlSerializationSettings.Default*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.Default
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_Default
   name: Default
   nameWithType: XmlSerializationSettings.Default
   fullName: NMF.Serialization.XmlSerializationSettings.Default
 - uid: NMF.Serialization.XmlSerializationSettings
   commentId: T:NMF.Serialization.XmlSerializationSettings
   parent: NMF.Serialization
+  href: NMF.Serialization.XmlSerializationSettings.html
   name: XmlSerializationSettings
   nameWithType: XmlSerializationSettings
   fullName: NMF.Serialization.XmlSerializationSettings
+- uid: NMF.Serialization.XmlSerializationSettings.Fix*
+  commentId: Overload:NMF.Serialization.XmlSerializationSettings.Fix
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_Fix
+  name: Fix
+  nameWithType: XmlSerializationSettings.Fix
+  fullName: NMF.Serialization.XmlSerializationSettings.Fix
+- uid: NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings*
+  commentId: Overload:NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_CreateXmlWriterSettings
+  name: CreateXmlWriterSettings
+  nameWithType: XmlSerializationSettings.CreateXmlWriterSettings
+  fullName: NMF.Serialization.XmlSerializationSettings.CreateXmlWriterSettings
+- uid: System.Xml.XmlWriterSettings
+  commentId: T:System.Xml.XmlWriterSettings
+  parent: System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.xmlwritersettings
+  name: XmlWriterSettings
+  nameWithType: XmlWriterSettings
+  fullName: System.Xml.XmlWriterSettings
+- uid: System.Xml
+  commentId: N:System.Xml
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml
+  nameWithType: System.Xml
+  fullName: System.Xml
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
 - uid: NMF.Serialization.XmlSerializationSettings.Encoding*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.Encoding
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_Encoding
   name: Encoding
   nameWithType: XmlSerializationSettings.Encoding
   fullName: NMF.Serialization.XmlSerializationSettings.Encoding
@@ -511,12 +736,14 @@ references:
   commentId: T:System.Text.Encoding
   parent: System.Text
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.encoding
   name: Encoding
   nameWithType: Encoding
   fullName: System.Text.Encoding
 - uid: System.Text
   commentId: N:System.Text
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Text
   nameWithType: System.Text
   fullName: System.Text
@@ -524,20 +751,25 @@ references:
   - uid: System
     name: System
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
   - uid: System.Text
     name: Text
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
   spec.vb:
   - uid: System
     name: System
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
   - uid: System.Text
     name: Text
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
 - uid: NMF.Serialization.XmlSerializationSettings.DefaultNamespace*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.DefaultNamespace
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_DefaultNamespace
   name: DefaultNamespace
   nameWithType: XmlSerializationSettings.DefaultNamespace
   fullName: NMF.Serialization.XmlSerializationSettings.DefaultNamespace
@@ -545,6 +777,7 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
   name: string
   nameWithType: string
   fullName: string
@@ -553,37 +786,38 @@ references:
   name.vb: String
 - uid: NMF.Serialization.XmlSerializationSettings.Indent*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.Indent
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_Indent
   name: Indent
   nameWithType: XmlSerializationSettings.Indent
   fullName: NMF.Serialization.XmlSerializationSettings.Indent
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
 - uid: NMF.Serialization.XmlSerializationSettings.CaseSensitive*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.CaseSensitive
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_CaseSensitive
   name: CaseSensitive
   nameWithType: XmlSerializationSettings.CaseSensitive
   fullName: NMF.Serialization.XmlSerializationSettings.CaseSensitive
+- uid: NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues*
+  commentId: Overload:NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_SerializeDefaultValues
+  name: SerializeDefaultValues
+  nameWithType: XmlSerializationSettings.SerializeDefaultValues
+  fullName: NMF.Serialization.XmlSerializationSettings.SerializeDefaultValues
 - uid: NMF.Serialization.XmlSerializationSettings.NameCase*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.NameCase
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_NameCase
   name: NameCase
   nameWithType: XmlSerializationSettings.NameCase
   fullName: NMF.Serialization.XmlSerializationSettings.NameCase
 - uid: NMF.Serialization.XmlCaseType
   commentId: T:NMF.Serialization.XmlCaseType
   parent: NMF.Serialization
+  href: NMF.Serialization.XmlCaseType.html
   name: XmlCaseType
   nameWithType: XmlCaseType
   fullName: NMF.Serialization.XmlCaseType
 - uid: NMF.Serialization.XmlSerializationSettings.GetPersistanceString*
   commentId: Overload:NMF.Serialization.XmlSerializationSettings.GetPersistanceString
+  href: NMF.Serialization.XmlSerializationSettings.html#NMF_Serialization_XmlSerializationSettings_GetPersistanceString_System_String_
   name: GetPersistanceString
   nameWithType: XmlSerializationSettings.GetPersistanceString
   fullName: NMF.Serialization.XmlSerializationSettings.GetPersistanceString

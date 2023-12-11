@@ -8,6 +8,8 @@ of NMeta is clearly defined through a mapping to category theory. Though there
 is a high semantic overlap with the Essential Meta Object Facility (EMOF) standard, there are also some features that do not have a counterpart in NMeta, in
 particular factories and generic types.
 
+![NMeta as class diagram](NMeta_nMeta.PNG)
+
 However, since Ecore is the meta-metamodel most often used in MDE, NMF
 contains a model transformation from Ecore to NMeta. This transformation is
 based on the extensible Model Transformation Language [NTL](../transformations/index.md) and thus support for other types can be easily extended.
@@ -24,12 +26,14 @@ Model are the only ones with a custom implementation, the implementation of
 all other classes originate directly from the code generator.
 
 The most distinguishing features of NMeta are:
+
 * Builtin addressing scheme (every model element has an absolute and a relative Uri)
 * Metamodel extensions through the _Extension_ metaclass and the reference to model element extensions
 * Explicit modeling of events
 * Deep modeling (classes can instantiate other classes)
 
 To get more details, the following wiki pages contain more details:
+
 * [ModelElement](ModelElement.md)
 * [MetaElement](MetaElement.md)
 
