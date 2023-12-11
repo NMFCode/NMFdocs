@@ -50,4 +50,4 @@ NMF has been the PhD project of Georg Hinkel. Further development is done at the
 
 ## Contribute
 
-Developers are dear welcome to contribute to NMF in various ways. Please just write an Email to [Georg Hinkel](mailto:georg.hinkel@gmail.com).
+Developers are dear welcome to contribute to NMF in various ways. Please just write an Email to [Georg Hinkel](mailto:georg.hinkel@hs-rm.de).
