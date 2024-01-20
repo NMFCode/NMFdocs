@@ -1,4 +1,4 @@
-# Setting up your first NMF project
+# NMF Setup
 
 ## SDK Setup
 Before we download the NMF-Basics package, our application first needs the correct .Net SDK version. This would be all .Net SDK 6 versions. To check if you have the right versions installed enter the command: 
@@ -60,7 +60,8 @@ The project .csproj file should then have the following package reference:
       <PackageReference Include="NMF-Basics" Version="2.0.193" />
     </ItemGroup>
 
-</Project>```
+</Project>
+```
 
 For all those who do not have a PackageManager Console (Mac users), you must download the Ecore2Code command separately for model generation:
 ```bash
