@@ -13,6 +13,8 @@ Before we download the NMF-Basics package, our application first needs the corre
 > 6.0.100 [/usr/local/share/dotnet/sdk]
 > ```
 
+If you do not have .Net installed plz check out the official website:
+[install the .net sdk](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
 To ensure that your application uses the correct .NET SDK version, create a `global.json` file in the root directory of your project. Open a text editor and add the following content to the `global.json` file:
 
@@ -28,10 +30,10 @@ An example of the folder structure would be: In the directory
 `'/Users/hsrm/VisualStudioProjects/NMFDemo'` is where we want our application to run, then we also save our `global.json` file in this directory.
 
 
-## installing the right packages via nuget
+## Installing the right packages via nuget
 Next, we create the application. For initialization, we create a simple ConsoleApplication with a simple main method: 
 `'/Users/hsrm/VisualStudioProjects/NMFDemo/Program.cs'`
-![Alt Text](images/Program.png)
+![Installing the packages via nuget](images/Program.png)
 
 Then we load the corresponding package via nuget Package Manager, `NMF-Basics`. 
 <aside class="note">
@@ -43,7 +45,7 @@ If you are working with a Mac, you have to download the Nuget Package Manager se
 
 </aside>
 
-![Alt Text](images/NMF-Basic.png)
+![NMF-Basic package](images/NMF-Basic.png)
 
 The project .csproj file should then have the following package reference:
 ```xml
@@ -63,7 +65,7 @@ The project .csproj file should then have the following package reference:
 </Project>
 ```
 
-For all those who do not have a PackageManager Console (Mac users), you must download the Ecore2Code command separately for model generation:
+For all those who do not have a PackageManager Console, you must download the Ecore2Code command separately for model generation:
 ```bash
 dotnet tool install --global NMF-Ecore2Code --version 2.0.193
 ```

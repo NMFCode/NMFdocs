@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>NMF Setup </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="NMF Setup ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="nmf-setup">NMF Setup</h1>
+
+<h2 id="sdk-setup">SDK Setup</h2>
+<p>Before we download the NMF-Basics package, our application first needs the correct .Net SDK version. This would be all .Net SDK 6 versions. To check if you have the right versions installed enter the command:</p>
+<blockquote>
+<pre><code class="lang-bash">dotnet --list-sdks
+</code></pre>
+<p>The command should show you the following output:</p>
+<pre><code class="lang-plaintext">6.0.100 [/usr/local/share/dotnet/sdk]
+</code></pre>
+</blockquote>
+<p>To ensure that your application uses the correct .NET SDK version, create a <code>global.json</code> file in the root directory of your project. Open a text editor and add the following content to the <code>global.json</code> file:</p>
+<pre><code class="lang-json">{
+  &quot;sdk&quot;: {
+    &quot;version&quot;: &quot;6.0.100&quot;
+  }
+}
+</code></pre>
+<p>An example of the folder structure would be: In the directory
+<code>'/Users/hsrm/VisualStudioProjects/NMFDemo'</code> is where we want our application to run, then we also save our <code>global.json</code> file in this directory.</p>
+<h2 id="installing-the-right-packages-via-nuget">installing the right packages via nuget</h2>
+<p>Next, we create the application. For initialization, we create a simple ConsoleApplication with a simple main method:
+<code>'/Users/hsrm/VisualStudioProjects/NMFDemo/Program.cs'</code>
+<img src="images/Program.png" alt="Alt Text"></p>
+<p>Then we load the corresponding package via nuget Package Manager, <code>NMF-Basics</code>.</p>
+<aside class="note">
+<p><strong>Note:</strong></p>
+<p>If you are working with a Mac, you have to download the Nuget Package Manager separately as a plugin
+via the Visulastudio Marketplace.</p>
+</aside>
+<p><img src="images/NMF-Basic.png" alt="Alt Text"></p>
+<p>The project .csproj file should then have the following package reference:</p>
+<pre><code class="lang-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+
+    &lt;PropertyGroup&gt;
+        &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+        &lt;TargetFramework&gt;net6.0&lt;/TargetFramework&gt;
+        &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+        &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;/PropertyGroup&gt;
+
+    &lt;ItemGroup&gt;
+      &lt;PackageReference Include=&quot;NMF-Basics&quot; Version=&quot;2.0.193&quot; /&gt;
+    &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
+</code></pre>
+<p>For all those who do not have a PackageManager Console (Mac users), you must download the Ecore2Code command separately for model generation:</p>
+<pre><code class="lang-bash">dotnet tool install --global NMF-Ecore2Code --version 2.0.193
+</code></pre>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NMFCode/NMFdocs/blob/tutorial-setup/setup/index.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
