@@ -11,7 +11,7 @@ As for the command itself, it copies the ecore file and creates a new file with 
 ```bash
 Ecore2Code -f -n NMFDemo -o metaModel -m company.nmf company.ecore 
 ```
-For further explanation checkout this link:
+For further information, find an explanation of the command-line parameters here:
 [Link to the code generation statement](./Ecore2Code.md)
 
 <aside class="note">

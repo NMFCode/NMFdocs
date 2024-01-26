@@ -13,7 +13,7 @@ Before we download the NMF-Basics package, our application first needs the corre
 > 6.0.100 [/usr/local/share/dotnet/sdk]
 > ```
 
-If you do not have .Net installed plz check out the official website:
+If you do not have .Net installed please check out the official website:
 [install the .net sdk](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
 To ensure that your application uses the correct .NET SDK version, create a `global.json` file in the root directory of your project. Open a text editor and add the following content to the `global.json` file:
