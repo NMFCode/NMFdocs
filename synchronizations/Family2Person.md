@@ -23,6 +23,205 @@ We generate the corresponding Ecore files from the two class diagrams shown abov
 We then generate the NMF models and classes, configure our .csproj file and load our models into the Program.cs file analogous to 
 [Starting our first project](../models/FirstNmfProject.md)
 
+We have to add a file named `Families2PersonsSynchronization.cs` that looks like this:
+```csharp
+class Families2PersonsSynchronization : ReflectiveSynchronization
+    {
+        public class FamilyRegisterToPersonRegister : SynchronizationRule<FamilyRegister, PersonRegister>
+        {
+            // Synchronization Block
+            public override void DeclareSynchronization()
+            {
+                SynchronizeMany(SyncRule<MemberToMember>(),
+                    fam => new FamilyMemberCollection(fam),
+                    persons => persons.Persons);
+            }
+        }
+
+        public class MemberToMember : SynchronizationRule<IFamilyMember, IPerson>
+        {
+            public override void DeclareSynchronization()
+            {
+                Synchronize(m => m.GetFullName(), p => p.Name);
+            }
+        }
+
+        public class MemberToMale : SynchronizationRule<IFamilyMember, IMale>
+        {
+            public override void DeclareSynchronization()
+            {
+                MarkInstantiatingFor(SyncRule<MemberToMember>(), leftPredicate: m => m.FatherInverse != null || m.SonsInverse != null);
+            }
+
+            protected override IFamilyMember CreateLeftOutput(IMale input, IEnumerable<IFamilyMember> candidates, ISynchronizationContext context, out bool existing)
+            {
+                var member = base.CreateLeftOutput(input, candidates, context, out existing);
+                member.Extensions.Add(new TemporaryStereotype(member)
+                {
+                    IsMale = true,
+                    LastName = input.Name.Substring(0, input.Name.IndexOf(','))
+                });
+                return member;
+            }
+        }
+
+        public class MemberToFemale : SynchronizationRule<IFamilyMember, IFemale>
+        {
+            public override void DeclareSynchronization()
+            {
+                MarkInstantiatingFor(SyncRule<MemberToMember>(), leftPredicate: m => m.MotherInverse != null || m.DaughtersInverse != null);
+            }
+
+            protected override IFamilyMember CreateLeftOutput(IFemale input, IEnumerable<IFamilyMember> candidates, ISynchronizationContext context, out bool existing)
+            {
+                var member = base.CreateLeftOutput(input, candidates, context, out existing);
+                member.Extensions.Add(new TemporaryStereotype(member)
+                {
+                    IsMale = false,
+                    LastName = input.Name.Substring(0, input.Name.IndexOf(','))
+                });
+                return member;
+            }
+
+            // should this two model elements be linked, if so define a rule for shared attributes like name, ...
+            public override bool ShouldCorrespond(IFamilyMember left, IFemale right, ISynchronizationContext context)
+            {
+                if (left.Name == right.Name) {
+                    return true;
+                } 
+                return false;
+            }
+        }
+
+        private class FamilyMemberCollection : CustomCollection<IFamilyMember>
+        {
+            public FamilyRegister Register { get; private set; }
+
+            public FamilyMemberCollection(FamilyRegister register)
+                : base(register.Families.SelectMany(fam => fam.Children.OfType<IFamilyMember>()))
+            {
+                Register = register;
+            }
+
+            public override void Add(IFamilyMember item)
+            {
+                var temp = item.GetExtension<TemporaryStereotype>();
+                item.AddToFamily(Register, temp.IsMale, temp.LastName);
+                item.Extensions.Remove(temp);
+            }
+
+            public override void Clear()
+            {
+                Register.Families.Clear();
+            }
+
+            public override bool Remove(IFamilyMember item)
+            {
+                item.Delete();
+                return true;
+            }
+        }
+    }
+
+    public class TemporaryStereotype : ModelElementExtension
+    {
+        public bool IsMale { get; set; }
+
+        public string LastName { get; set; }
+
+        public TemporaryStereotype(IFamilyMember parent)
+        {
+            parent.Extensions.Add(this);
+        }
+
+        public override IExtension GetExtension() { return null; }
+    }
+
+    public static class Helpers
+    {
+        public static bool PreferCreatingParentToChild = true;
+        public static bool PreferExistingFamilyToNew = true;
+
+        private static ObservingFunc<IFamilyMember, string> fullName = new ObservingFunc<IFamilyMember, string>(
+            m => m.Name == null ? null : ((IFamily)m.Parent).Name + ", " + m.Name);
+        
+        [LensPut(typeof(Helpers), "SetFullName")]
+        [ObservableProxy(typeof(Helpers), "GetFullNameInc")]
+        public static string GetFullName(this IFamilyMember member)
+        {
+            return fullName.Evaluate(member);
+        }
+
+        public static INotifyValue<string> GetFullNameInc(this IFamilyMember member)
+        {
+            return fullName.Observe(member);
+        }
+
+        public static void AddToFamily(this IFamilyMember item, IFamilyRegister register, bool isMale, string name)
+        {
+            IFamily family = null;
+            if (PreferExistingFamilyToNew)
+            {
+                IEnumerable<IFamily> candidateFamilies = register.Families.AsEnumerable().Where(fam => fam.Name == name);
+                if (PreferCreatingParentToChild)
+                {
+                    if (isMale)
+                    {
+                        family = candidateFamilies.Where(fam => fam.Father == null).FirstOrDefault();
+                    }
+                    else
+                    {
+                        family = candidateFamilies.Where(fam => fam.Mother == null).FirstOrDefault();
+                    }
+                }
+                family = family ?? candidateFamilies.FirstOrDefault();
+            }
+            if (family == null)
+            {
+                family = new Family { Name = name };
+                register.Families.Add(family);
+            }
+            if (isMale)
+            {
+                if (family.Father == null && PreferCreatingParentToChild)
+                {
+                    family.Father = item;
+                }
+                else
+                {
+                    family.Sons.Add(item);
+                }
+            }
+            else
+            {
+                if (family.Mother == null && PreferCreatingParentToChild)
+                {
+                    family.Mother = item;
+                }
+                else
+                {
+                    family.Daughters.Add(item);
+                }
+            }
+        }
+
+        public static void SetFullName(this IFamilyMember member, string newName)
+        {
+            var family = member.Parent as IFamily;
+            var separator = newName.IndexOf(", ");
+            var lastName = newName.Substring(0, separator);
+            var firstName = newName.Substring(separator + 2);
+            member.Name = firstName;
+            if (family != null && family.Name != lastName)
+            {
+                var isMale = member.FatherInverse != null || member.SonsInverse != null;
+                member.AddToFamily(family.FamiliesInverse, isMale, lastName);
+            }
+        }
+    }
+```
+This file defines our Synchronization logic between the 2 models. A further explanation will follow with some examples in the next part of the tutorial. 
+
 We modify the Program.cs as follows:
 ```csharp
 class Program
@@ -60,7 +259,6 @@ class Program
         {
         }
     }
-}
 ```
 A short explanation to the code. 
 1. Attributes
@@ -109,3 +307,49 @@ registrations.
     -   It synchronizes the result of calling `m.GetFullName()` on the left side to `p.Name` on the right side.
     -   Summary: In summary, the synchronization process involves calling the Synchronize method on the synchronization instance, using specific synchronization rules (FamilyRegisterToPersonRegister and MemberToMember) to synchronize data between instances of FamilyRegister, PersonRegister, IFamilyMember, and IPerson. The synchronization is bidirectional and prioritizes changes from the left model (familyRegister).
 - The rest of the constructor is equivalent to the FirstNmfProject initialization. Adding the registry classes as RootElements and Adding the empty Models.
+
+
+
+To get a better understanding of synchronization, let's illustrate the whole thing with an example. The example looks like this:
+```csharp
+static void Main(string[] args)
+        {
+            // 1. First case Bidirectional synchronization.
+            var program = new Program();
+            program.familyRegister.Families.Add(new Family {
+                Father = new FamilyMember {
+                    Name = "Marx"
+                }, 
+                Name = "Mustermann"
+            });
+
+            var fatherFirstName = program.familyRegister.Families.First().Father;
+            var familyName = program.familyRegister.Families.First().Name;
+            
+            var person = program.personRegister.Persons.First().Name;
+
+            Console.WriteLine(fatherFirstName); // FamilyMember 'Marx'
+            Console.WriteLine(familyName); // Mustermann
+            Console.WriteLine(person); // Mustermann, Marx
+        }
+```
+But how does this happen? The answer is:  
+When `FamilyRegisterToPersonRegister` is invoked, it synchronizes the members of each family to persons.
+Since you're using `SynchronizeMany`, it synchronizes each member of the family to a person.
+Each `FamilyMember` in `FamilyRegister` is synchronized with an `IPerson` in `PersonRegister` based on their full names.
+So, when you add a Family to familyRegister, each FamilyMember within that family gets synchronized and added to personRegister as a Person with the corresponding name.
+
+The same works the other way around:
+```csharp
+            // 2. synchronization from person to family.
+            program.personRegister.Persons.Add(new Male{
+                Name = "Smith, John"
+            });
+
+            var smith = program.familyRegister.Families.Reverse().First().Name;
+            var john = program.familyRegister.Families.Reverse().First().Father;
+            Console.WriteLine(smith); // Smith
+            Console.WriteLine(john); // FamilyMember 'John'
+```
+We can see from the definition of the synchronization rule that the newly added person also gets registered as a new family with the name Smith and their members.
+
