@@ -1,6 +1,6 @@
 # Finite States to Petri Nets with NTL
 
-This tutorial shows how to transform [finite state machines to Petri Nets](FiniteStateMachines2PetriNets.md) using NTL.
+This tutorial shows how to transform [finite state machines to Petri Nets](~/synchronizations/FiniteStateMachines2PetriNets.md) using NTL.
 
 ## Setting up the environment
 

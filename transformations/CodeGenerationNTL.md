@@ -10,7 +10,7 @@ NMF Transformations does not have any restrictions regarding the input or output
 * F#
 * JavaScript.NET
 
-Thus, it is not by chance that these languages are exactly the languages supported by [Ecore2Code](../models/Ecore2Code.md), the code generator for Ecore metamodels provided by [EcoreInterop](../interop/EcoreInterop/index.md). 
+Thus, it is not by chance that these languages are exactly the languages supported by [Ecore2Code](../models/Ecore2Code.md), the code generator for Ecore metamodels provided by [EcoreInterop](../interop/EcoreInterop.md). 
 
 To specify such a code generator, one simply has to write a model transformation that transforms a model into a _System.CodeDOM_ model and then transform this model into code by using a suitable predefined code generator.
 

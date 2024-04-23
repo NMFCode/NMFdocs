@@ -18,7 +18,7 @@ Be aware that attaching a model change recorder to a model will set an internal 
 
 ## Extracting model change sequences
 
-The extraction of a model change sequence is supported through the method **GetModelChanges** or its asynchronous cousin **GetModelChangesAsync**. In this process, the captured events will be processed and a model change sequence is reconstructed. The result is a **[ModelChangeSet](api/NMF.Models.Changes.ModelchangeSet.yml)** model element that is already encapsulated in a model.
+The extraction of a model change sequence is supported through the method **GetModelChanges** or its asynchronous cousin **GetModelChangesAsync**. In this process, the captured events will be processed and a model change sequence is reconstructed. The result is a **[ModelChangeSet](api/NMF.Models.Changes.ModelChangeSet.yml)** model element that is already encapsulated in a model.
 
 This works very well, if the captured events are complete. This is the case if all model elements that have been subject to changes have been under the scope of a tracked model element or have been newly created. It does not work as well, if model elements are moved outside the scope of tracked model elements and then changed outside this boundary, because the model change recorder does not fully understand what change sequence is going on. However, the extraction logic of model change sequences has some reconstruction logic built in that will detect a range of problems of this kind.
 

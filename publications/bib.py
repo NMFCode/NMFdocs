@@ -283,7 +283,7 @@ def main(argv):
                 year = ref["year"]
                 if year != pubyear:
                     pubyear = year
-                    write_year = '\n### {}\n'.format(year)
+                    write_year = '\n### {}\n\n'.format(year)
                     out_file.write(write_year)
 
                 out_file.write(format_entry(ref, faname))
