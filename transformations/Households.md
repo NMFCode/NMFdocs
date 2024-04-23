@@ -8,7 +8,6 @@ In the scenario of Persons and FamilyRelations, suppose you want to find househo
 
 To implement this with NTL Relations, add the following code:
 
-
 >
 ```csharp
 public class Households : TransformationRule<Ps.Person, Ps.Person, Households>

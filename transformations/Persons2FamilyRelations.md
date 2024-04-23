@@ -20,7 +20,6 @@ Suppose one of the metamodels is the metamodel in your application, but you get 
 
 Create a new project, **[download the metamodels](Persons to FamilyRelations_metamodels.zip)** and add them to the project, add references to **NMF.Transformations.Core.dll** and **NMF.Transformations.dll** and create a new file _Persons2FamilyRelations.cs_ for the transformation from the Person metamodel to the FamilyRelations metamodel. Add the using statements
 
-
 >
 ```csharp
 using NMF.Transformations;
@@ -30,7 +29,6 @@ using NMF.Transformations.Core;
 ## Tranforming the roots
 
 Since the roots do not contain any information, just add a new empty rule.
-
 
 >
 ```csharp
@@ -58,7 +56,7 @@ public class Person2Person : AbstractTransformationRule<Ps.Person, Fam.Person>
 
 This transforms Person model elements of the _Persons_ metamodel to Person model elements of the _FamilyRelations_ metamodel. However, the latter is marked as abstract. Currently, NTL has no way to find out which classes to use and thus, the runtime would throw an exception if we did not add further rules to specify which concrete classes to use in this case.
 
-These further rules then specify additional semantics what metaclass will be instantiated to create the output of the _Person2Person_ rule. Thus, the concept that we use here is called **Transformation Rule Instantiation**, as the instantiating rule instantiates the output of, in this case _Person2Person_. Instantiating rules can also have predicates and are allowed to have a slightly different signature (more specific input and and output types). 
+These further rules then specify additional semantics what metaclass will be instantiated to create the output of the _Person2Person_ rule. Thus, the concept that we use here is called **Transformation Rule Instantiation**, as the instantiating rule instantiates the output of, in this case _Person2Person_. Instantiating rules can also have predicates and are allowed to have a slightly different signature (more specific input and and output types).
 
 However, transforming Person model elements also has a common behavior. At very least, we need to copy the first names and last names. Thus, add a _Transform_ method similar to the following to _Person2Person_:
 
@@ -74,7 +72,6 @@ public override void Transform(Ps.Person input, Fam.Person output, ITransformati
 ## Transforming males and females
 
 Thus, add the two following transformation rules.
-
 
 >
 ```csharp
@@ -115,14 +112,13 @@ Thus, add the two following transformation rules.
         }
 ```
 
-These two rules specify how Person model elements should be transformed. In case the _Gender_ attribute is set to Female, the _Person2Female_ rule is called and creates a new _Female_ model element. This element is then also used as the output of _Person2Person_, so if the Person model element is resolved for the _Person2Person_ rule somewhere in the code, it will find the _Female_ model element created by _Person2Female_. 
+These two rules specify how Person model elements should be transformed. In case the _Gender_ attribute is set to Female, the _Person2Female_ rule is called and creates a new _Female_ model element. This element is then also used as the output of _Person2Person_, so if the Person model element is resolved for the _Person2Person_ rule somewhere in the code, it will find the _Female_ model element created by _Person2Female_.
 
 The code in _Person2Male_ and _Person2Female_ also already sets the Mother and Father references, as well as Wife and Husband.
 
 ## Sisters and Brothers
 
 It is not trivial to obtain the brothers and sisters of a person, especially if solitaries with children are considered that can either be male or female. To solve this, we use the model representation of brothers and sisters as sets, where the collection implementation makes sure that it does not contain duplicate entries. Thus, it is a good idea to put the code also in _Person2Person_. Add the following code to the _Transform_ method:
-
 
 >
 ```csharp
