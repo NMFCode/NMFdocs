@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Family 2 Person </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Family 2 Person ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="family-2-person">Family 2 Person</h1>
+
+<h2 id="introduction-to-biderictional-transformations">Introduction to biderictional transformations</h2>
+<p>Bidirectional transformations (bx) are transformations that can be executed both from the source to the target and vice versa. This means that not only is one data structure transformed into another, but there is also the capability to restore the original structure through the reverse transformation. Bidirectional transformations are crucial in various applications, especially when data needs to be exchanged between different representations or models. Examples of scenarios where bidirectional transformations are relevant include bidirectional data converters, round-trip engineering in software development, or view updates in databases. The use of bidirectional transformations enables consistent and complete synchronization between different data representations.</p>
+<p><code>Example</code>: Imagine you have an online calendar on your computer and another one on your smartphone. Bidirectional transformation allows appointments and events to seamlessly transfer between your computer and smartphone, ensuring both calendars stay updated.</p>
+<p>For example, when you add an appointment on your computer, it automatically syncs to your smartphone. Likewise, if you edit an appointment on your smartphone, the change is mirrored on your computer. Bidirectional transformation ensures synchronization in both directions, keeping your schedule consistent and current across both devices.</p>
+<h2 id="use-case">Use Case</h2>
+<p><img src="images/Family2PersonDiagram.png" alt="Visualization of Family 2 Persons"></p>
+<p>The models assume a unique root in each model, where a family register stores families, and a person register maintains a flat collection of individuals. The metamodel specifies roles, allowing for at most one father and one mother, along with an arbitrary number of daughters and sons. The models lack key property assumptions, permitting multiple families with the same name, clashes within a family, and multiple persons with the same name and birthday. All collections are assumed to be unordered.</p>
+<p>Consistency between the families and persons models is defined by a bijective mapping, ensuring mothers/daughters and fathers/sons are paired with females/males. After a transformation, this consistency must be maintained. For batch transformations, a forward transformation maps family members to persons based on gender, while the backward transformation introduces configurability through boolean parameters, controlling mappings to parents or children and preference for existing families or new ones.</p>
+<p>In incremental transformations, various updates are considered. Forward updates involve the insertion, deletion, renaming, or moving of families and members. Backward updates, affected by dynamic configuration parameters, include deletion, insertion, and changes in name, but not birthdays. These transformations exemplify a round-trip engineering scenario, requiring bidirectional updates.
+<a href="https://sdq.kastel.kit.edu/publications/pdfs/hinkel2017f.pdf">Click here to see the complete TTC solution</a></p>
+<h2 id="tutorial">Tutorial</h2>
+<p><img src="images/EMFDiagrams.png" alt="EMF Diagrams"></p>
+<p>We generate the corresponding Ecore files from the two class diagrams shown above. One for the family model and one for the person model.
+We then generate the NMF models and classes, configure our .csproj file and load our models into the Program.cs file analogous to
+<a href="../models/FirstNmfProject.html">Starting our first project</a></p>
+<p>We have to add a file named <code>Families2PersonsSynchronization.cs</code> that looks like this:</p>
+<pre><code class="lang-csharp">class Families2PersonsSynchronization : ReflectiveSynchronization
+    {
+        public class FamilyRegisterToPersonRegister : SynchronizationRule&lt;FamilyRegister, PersonRegister&gt;
+        {
+            // Synchronization Block
+            public override void DeclareSynchronization()
+            {
+                SynchronizeMany(SyncRule&lt;MemberToMember&gt;(),
+                    fam =&gt; new FamilyMemberCollection(fam),
+                    persons =&gt; persons.Persons);
+            }
+        }
+
+        public class MemberToMember : SynchronizationRule&lt;IFamilyMember, IPerson&gt;
+        {
+            public override void DeclareSynchronization()
+            {
+                Synchronize(m =&gt; m.GetFullName(), p =&gt; p.Name);
+            }
+        }
+
+        public class MemberToMale : SynchronizationRule&lt;IFamilyMember, IMale&gt;
+        {
+            public override void DeclareSynchronization()
+            {
+                MarkInstantiatingFor(SyncRule&lt;MemberToMember&gt;(), leftPredicate: m =&gt; m.FatherInverse != null || m.SonsInverse != null);
+            }
+
+            protected override IFamilyMember CreateLeftOutput(IMale input, IEnumerable&lt;IFamilyMember&gt; candidates, ISynchronizationContext context, out bool existing)
+            {
+                var member = base.CreateLeftOutput(input, candidates, context, out existing);
+                member.Extensions.Add(new TemporaryStereotype(member)
+                {
+                    IsMale = true,
+                    LastName = input.Name.Substring(0, input.Name.IndexOf(','))
+                });
+                return member;
+            }
+        }
+
+        public class MemberToFemale : SynchronizationRule&lt;IFamilyMember, IFemale&gt;
+        {
+            public override void DeclareSynchronization()
+            {
+                MarkInstantiatingFor(SyncRule&lt;MemberToMember&gt;(), leftPredicate: m =&gt; m.MotherInverse != null || m.DaughtersInverse != null);
+            }
+
+            protected override IFamilyMember CreateLeftOutput(IFemale input, IEnumerable&lt;IFamilyMember&gt; candidates, ISynchronizationContext context, out bool existing)
+            {
+                var member = base.CreateLeftOutput(input, candidates, context, out existing);
+                member.Extensions.Add(new TemporaryStereotype(member)
+                {
+                    IsMale = false,
+                    LastName = input.Name.Substring(0, input.Name.IndexOf(','))
+                });
+                return member;
+            }
+
+            // should this two model elements be linked, if so define a rule for shared attributes like name, ...
+            public override bool ShouldCorrespond(IFamilyMember left, IFemale right, ISynchronizationContext context)
+            {
+                if (left.Name == right.Name) {
+                    return true;
+                } 
+                return false;
+            }
+        }
+
+        private class FamilyMemberCollection : CustomCollection&lt;IFamilyMember&gt;
+        {
+            public FamilyRegister Register { get; private set; }
+
+            public FamilyMemberCollection(FamilyRegister register)
+                : base(register.Families.SelectMany(fam =&gt; fam.Children.OfType&lt;IFamilyMember&gt;()))
+            {
+                Register = register;
+            }
+
+            public override void Add(IFamilyMember item)
+            {
+                var temp = item.GetExtension&lt;TemporaryStereotype&gt;();
+                item.AddToFamily(Register, temp.IsMale, temp.LastName);
+                item.Extensions.Remove(temp);
+            }
+
+            public override void Clear()
+            {
+                Register.Families.Clear();
+            }
+
+            public override bool Remove(IFamilyMember item)
+            {
+                item.Delete();
+                return true;
+            }
+        }
+    }
+
+    public class TemporaryStereotype : ModelElementExtension
+    {
+        public bool IsMale { get; set; }
+
+        public string LastName { get; set; }
+
+        public TemporaryStereotype(IFamilyMember parent)
+        {
+            parent.Extensions.Add(this);
+        }
+
+        public override IExtension GetExtension() { return null; }
+    }
+
+    public static class Helpers
+    {
+        public static bool PreferCreatingParentToChild = true;
+        public static bool PreferExistingFamilyToNew = true;
+
+        private static ObservingFunc&lt;IFamilyMember, string&gt; fullName = new ObservingFunc&lt;IFamilyMember, string&gt;(
+            m =&gt; m.Name == null ? null : ((IFamily)m.Parent).Name + &quot;, &quot; + m.Name);
+        
+        [LensPut(typeof(Helpers), &quot;SetFullName&quot;)]
+        [ObservableProxy(typeof(Helpers), &quot;GetFullNameInc&quot;)]
+        public static string GetFullName(this IFamilyMember member)
+        {
+            return fullName.Evaluate(member);
+        }
+
+        public static INotifyValue&lt;string&gt; GetFullNameInc(this IFamilyMember member)
+        {
+            return fullName.Observe(member);
+        }
+
+        public static void AddToFamily(this IFamilyMember item, IFamilyRegister register, bool isMale, string name)
+        {
+            IFamily family = null;
+            if (PreferExistingFamilyToNew)
+            {
+                IEnumerable&lt;IFamily&gt; candidateFamilies = register.Families.AsEnumerable().Where(fam =&gt; fam.Name == name);
+                if (PreferCreatingParentToChild)
+                {
+                    if (isMale)
+                    {
+                        family = candidateFamilies.Where(fam =&gt; fam.Father == null).FirstOrDefault();
+                    }
+                    else
+                    {
+                        family = candidateFamilies.Where(fam =&gt; fam.Mother == null).FirstOrDefault();
+                    }
+                }
+                family = family ?? candidateFamilies.FirstOrDefault();
+            }
+            if (family == null)
+            {
+                family = new Family { Name = name };
+                register.Families.Add(family);
+            }
+            if (isMale)
+            {
+                if (family.Father == null &amp;&amp; PreferCreatingParentToChild)
+                {
+                    family.Father = item;
+                }
+                else
+                {
+                    family.Sons.Add(item);
+                }
+            }
+            else
+            {
+                if (family.Mother == null &amp;&amp; PreferCreatingParentToChild)
+                {
+                    family.Mother = item;
+                }
+                else
+                {
+                    family.Daughters.Add(item);
+                }
+            }
+        }
+
+        public static void SetFullName(this IFamilyMember member, string newName)
+        {
+            var family = member.Parent as IFamily;
+            var separator = newName.IndexOf(&quot;, &quot;);
+            var lastName = newName.Substring(0, separator);
+            var firstName = newName.Substring(separator + 2);
+            member.Name = firstName;
+            if (family != null &amp;&amp; family.Name != lastName)
+            {
+                var isMale = member.FatherInverse != null || member.SonsInverse != null;
+                member.AddToFamily(family.FamiliesInverse, isMale, lastName);
+            }
+        }
+    }
+</code></pre>
+<p>This file defines our Synchronization logic between the 2 models. A further explanation will follow with some examples in the next part of the tutorial.</p>
+<p>We modify the Program.cs as follows:</p>
+<pre><code class="lang-csharp">class Program
+    {
+        private FamilyRegister familyRegister;
+        private PersonRegister personRegister;
+
+        private ModelRepository repository = new ModelRepository();
+
+        private Families2PersonsSynchronization synchronization = new Families2PersonsSynchronization();
+
+        public Program()
+        {
+            var familyRootModel = new Model();
+            var personRootModel = new Model();
+
+            familyRegister = new FamilyRegister();
+            personRegister = new PersonRegister();
+
+            synchronization.Synchronize(
+                synchronization.SynchronizationRule&lt;Families2PersonsSynchronization.FamilyRegisterToPersonRegister&gt;(),
+                ref familyRegister, // Familyregister is the left model
+                ref personRegister, // Personregister is the right model
+                SynchronizationDirection.LeftWins, // prioritizes the left synchronization of left model (without shouldCorrespond it has no impact)
+                ChangePropagationMode.TwoWay); // TwoWay means Bidirectional synchronization 
+
+            familyRootModel.RootElements.Add(familyRegister);
+            personRootModel.RootElements.Add(personRegister);
+
+            repository.Models.Add(new Uri(&quot;ttc:source&quot;), familyRootModel);
+            repository.Models.Add(new Uri(&quot;ttc:target&quot;), personRootModel);
+        }
+
+        static void Main(string[] args)
+        {
+        }
+    }
+</code></pre>
+<p>A short explanation to the code.</p>
+<ol>
+<li>Attributes</li>
+</ol>
+<ul>
+<li><code>familyRegister</code> and <code>personRegister</code> are private class members representing instances of classes, used for managing family and person
+registrations.</li>
+<li><code>repository</code> is an instance of the <a href="../models/api/NMF.Models.Repository.ModelRepository.html">ModelRepository</a> class, responsible for managing models.</li>
+<li><code>synchronization</code> is an instance of the <code>Families2PersonsSynchronization</code> class, designed for synchronizing data between family and person registers.</li>
+</ul>
+<ol start="2">
+<li>Constructor</li>
+</ol>
+<ul>
+<li>Two instances of the Model class (<code>familyRootModel</code> and <code>personRootModel</code>) are created. These will serve as root models for family and person registers.</li>
+<li>Instances of classes (<code>FamilyRegister</code> and <code>PersonRegister</code>) are created and assigned to <code>familyRegister</code> and <code>personRegister</code>.</li>
+<li><h2 id="synchonization">Synchonization:</h2>
+<ul>
+<li>The <a href="api/NMF.Synchronizations.Synchronization.html">Synchronize</a> method is called on the <code>synchronization</code> instance.</li>
+<li>It uses the synchronization rule <code>Families2PersonsSynchronization.FamilyRegisterToPersonRegister</code>.</li>
+<li><code>ref familyRegister</code> represents the left model, and <code>ref personRegister</code> represents the right model.</li>
+<li><code>SynchronizationDirection.LeftWins</code> <a href="api/NMF.Synchronizations.SynchronizationDirection.html">Synchronization Api</a> is used, prioritizing changes from the left model (familyRegister) in case of conflicts. (without shouldCorrespond it has no impact)</li>
+<li><code>ChangePropagationMode.TwoWay</code> <a href="../transformations/api/NMF.Transformations.ChangePropagationMode.html">Transformation Api</a> indicates bidirectional (two-way) synchronization, allowing changes in both directions.</li>
+<li><code>FamilyRegisterToPersonRegister</code> Class:
+<pre><code class="lang-csharp">public class FamilyRegisterToPersonRegister : SynchronizationRule&lt;FamilyRegister, PersonRegister&gt;
+{
+    // Synchronization Block
+    public override void DeclareSynchronization()
+    {
+        SynchronizeMany(SyncRule&lt;MemberToMember&gt;(),
+            fam =&gt; new FamilyMemberCollection(fam),
+            persons =&gt; persons.Persons);
+    }
+}
+</code></pre>
+</li>
+<li>This class extends <code>SynchronizationRule&lt;FamilyRegister, PersonRegister&gt;</code> <a href="api/NMF.Synchronizations.SynchronizationRule-2.html">Synchronization Rules</a> and is designed for synchronizing instances of <code>FamilyRegister</code> to <code>PersonRegister</code>.</li>
+<li>The <code>DeclareSynchronization</code> method is overridden, and it declares synchronization instructions using <code>SynchronizeMany</code> <a href="api/NMF.Synchronizations.SynchronizationRule-2.html">Synchronization Rules</a></li>
+<li><code>MemberToMember</code> Class:
+<pre><code class="lang-csharp">public class MemberToMember : SynchronizationRule&lt;IFamilyMember, IPerson&gt;
+{
+    public override void DeclareSynchronization()
+    {
+        Synchronize(m =&gt; m.GetFullName(), p =&gt; p.Name);
+    }
+}
+</code></pre>
+</li>
+<li>This class extends <code>SynchronizationRule&lt;IFamilyMember, IPerson&gt;</code> <a href="api/NMF.Synchronizations.SynchronizationRule-2.html">Synchronization Rules</a> and is designed for synchronizing instances of types implementing <code>IFamilyMember</code> to <code>IPerson</code></li>
+<li>The <code>DeclareSynchronization</code> method is overridden, and it declares <code>synchronization</code> instructions using <code>Synchronize</code>.</li>
+<li>It synchronizes the result of calling <code>m.GetFullName()</code> on the left side to <code>p.Name</code> on the right side.</li>
+</ul>
+<pre><code class="lang-csharp">public static string GetFullName(this IFamilyMember member)
+        {
+            return fullName.Evaluate(member);
+        }
+</code></pre>
+<ul>
+<li>This method returns the full name of a family member.</li>
+<li>It accesses the static variable fullName, which is a function of the type <code>ObservingFunc&lt;IFamilyMember, string&gt;</code> <a href="../expressions/api/NMF.Expressions.ObservingFunc-10.html">Expression</a>.</li>
+<li>The fullName function is used to create the full name of the member. The name is composed of the member's name and the name of their family, separated by a comma.</li>
+<li>If the member's name is null, null is returned.</li>
+<li>The <code>GetFullName()</code> method is defined as an extension method for objects of type IFamilyMember.</li>
+<li>The Evaluate function returns an observable value that keeps track of any changes</li>
+<li>Summary: In summary, the synchronization process involves calling the Synchronize method on the synchronization instance, using specific synchronization rules (FamilyRegisterToPersonRegister and MemberToMember) to synchronize data between instances of FamilyRegister, PersonRegister, IFamilyMember, and IPerson. The synchronization is bidirectional and prioritizes changes from the left model (familyRegister).</li>
+</ul>
+</li>
+<li>The rest of the constructor is equivalent to the FirstNmfProject initialization. Adding the registry classes as RootElements and Adding the empty Models.</li>
+</ul>
+<p>To get a better understanding of synchronization, let's illustrate the whole thing with an example. The example looks like this:</p>
+<pre><code class="lang-csharp">static void Main(string[] args)
+        {
+            // 1. First case Bidirectional synchronization.
+            var program = new Program();
+            program.familyRegister.Families.Add(new Family {
+                Father = new FamilyMember {
+                    Name = &quot;Marx&quot;
+                }, 
+                Name = &quot;Mustermann&quot;
+            });
+
+            var fatherFirstName = program.familyRegister.Families.First().Father;
+            var familyName = program.familyRegister.Families.First().Name;
+            
+            var person = program.personRegister.Persons.First().Name;
+
+            Console.WriteLine(fatherFirstName); // FamilyMember 'Marx'
+            Console.WriteLine(familyName); // Mustermann
+            Console.WriteLine(person); // Mustermann, Marx
+        }
+</code></pre>
+<p>But how does this happen? The answer is:<br>
+When <code>FamilyRegisterToPersonRegister</code> is invoked, it synchronizes the members of each family to persons.
+Since you're using <code>SynchronizeMany</code> <a href="api/NMF.Synchronizations.SynchronizationRule-2.html">Synchronization Rules</a>, it synchronizes each member of the family to a person.
+Each <code>FamilyMember</code> in <code>FamilyRegister</code> is synchronized with an <code>IPerson</code> in <code>PersonRegister</code> based on their full names.
+So, when you add a Family to familyRegister, each FamilyMember within that family gets synchronized and added to personRegister as a Person with the corresponding name.</p>
+<p>The same works the other way around:</p>
+<pre><code class="lang-csharp">            // 2. synchronization from person to family.
+            program.personRegister.Persons.Add(new Male{
+                Name = &quot;Smith, John&quot;
+            });
+
+            var smith = program.familyRegister.Families.Reverse().First().Name;
+            var john = program.familyRegister.Families.Reverse().First().Father;
+            Console.WriteLine(smith); // Smith
+            Console.WriteLine(john); // FamilyMember 'John'
+</code></pre>
+<p>We can see from the definition of the synchronization rule that the newly added person also gets registered as a new family with the name Smith and their members.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NMFCode/NMFdocs/blob/synchro-tutorial/synchronizations/Family2Person.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

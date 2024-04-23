@@ -1,6 +1,6 @@
 # More relatives: Adding aunts and uncles
 
-**This tutorial assumes that you have already finished the [Persons to FamilyRelations](Persons-to-FamilyRelations) tutorial. If not, you may do so now as this tutorial depends on the first.**
+**This tutorial assumes that you have already finished the [Persons to FamilyRelations](Persons2FamilyRelations.md) tutorial. If not, you may do so now as this tutorial depends on the first.**
 
 Consider that the _FamilyRelations_ metamodel also had a reference to uncles and aunts. While this information is completely redundant, it is also slightly difficult to obtain from the Persons metamodel and could be saved in a reference of each person object.
 
@@ -10,7 +10,7 @@ Thus, this tutorial is mainly about how transformation rules can be delayed.
 
 ## SetRelatives: An in-place transformation rule
 
-Unlike the [Persons to FamilyRelations](Persons-to-FamilyRelations) tutorial, we don't need to transform model elements. We just need code to be executed. Transformations like this are called **in-place transformations** and are thus represented in NTL by classes derived from **InPlaceTransformationRule**. To implement this scenario, just add the following transformation rule:
+Unlike the [Persons to FamilyRelations](Persons2FamilyRelations.md) tutorial, we don't need to transform model elements. We just need code to be executed. Transformations like this are called **in-place transformations** and are thus represented in NTL by classes derived from **InPlaceTransformationRule**. To implement this scenario, just add the following transformation rule:
 
 >
 ```csharp

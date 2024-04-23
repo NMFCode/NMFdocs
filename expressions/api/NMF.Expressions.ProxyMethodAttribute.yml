@@ -17,16 +17,14 @@ items:
   fullName: NMF.Expressions.ProxyMethodAttribute
   type: Class
   source:
-    remote:
-      path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-      branch: master
-      repo: git@github.com:NMFCode/NMFdocs.git
     id: ProxyMethodAttribute
-    path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-    startLine: 8
+    path: C:\Users\hinkel\source\repos\NMFdocs\src\Expressions\Expressions\ExpressionRewriter\ProxyMethodAttribute.cs
+    startLine: 11
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: Denotes an attribute that denotes the definition of a proxy method
+  example: []
   syntax:
     content: 'public abstract class ProxyMethodAttribute : Attribute'
     content.vb: Public MustInherit Class ProxyMethodAttribute Inherits Attribute
@@ -95,24 +93,24 @@ items:
   fullName: NMF.Expressions.ProxyMethodAttribute.ProxyMethodAttribute(System.Type, string)
   type: Constructor
   source:
-    remote:
-      path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-      branch: master
-      repo: git@github.com:NMFCode/NMFdocs.git
     id: .ctor
-    path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-    startLine: 10
+    path: C:\Users\hinkel\source\repos\NMFdocs\src\Expressions\Expressions\ExpressionRewriter\ProxyMethodAttribute.cs
+    startLine: 18
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: Creates a new instance
+  example: []
   syntax:
-    content: public ProxyMethodAttribute(Type proxyType, string methodName)
+    content: protected ProxyMethodAttribute(Type proxyType, string methodName)
     parameters:
     - id: proxyType
       type: System.Type
+      description: The type of the proxy
     - id: methodName
       type: System.String
-    content.vb: Public Sub New(proxyType As Type, methodName As String)
+      description: The name of the method
+    content.vb: Protected Sub New(proxyType As Type, methodName As String)
   overload: NMF.Expressions.ProxyMethodAttribute.#ctor*
   nameWithType.vb: ProxyMethodAttribute.New(Type, String)
   fullName.vb: NMF.Expressions.ProxyMethodAttribute.New(System.Type, String)
@@ -129,29 +127,35 @@ items:
   fullName: NMF.Expressions.ProxyMethodAttribute.InitializeProxyMethod(System.Reflection.MethodInfo, System.Type[], out System.Reflection.MethodInfo)
   type: Method
   source:
-    remote:
-      path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-      branch: master
-      repo: git@github.com:NMFCode/NMFdocs.git
     id: InitializeProxyMethod
-    path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-    startLine: 16
+    path: C:\Users\hinkel\source\repos\NMFdocs\src\Expressions\Expressions\ExpressionRewriter\ProxyMethodAttribute.cs
+    startLine: 32
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: Finds the proxy method for the given source method
+  example: []
   syntax:
-    content: public bool InitializeProxyMethod(MethodInfo sourceMethod, Type[] types, out MethodInfo proxyMethod)
+    content: public bool InitializeProxyMethod(MethodInfo sourceMethod, Type[] parameterTypes, out MethodInfo proxyMethod)
     parameters:
     - id: sourceMethod
       type: System.Reflection.MethodInfo
-    - id: types
+      description: The method for which a proxy is needed
+    - id: parameterTypes
       type: System.Type[]
+      description: The desired parameter types
     - id: proxyMethod
       type: System.Reflection.MethodInfo
+      description: The proxy method
     return:
       type: System.Boolean
-    content.vb: Public Function InitializeProxyMethod(sourceMethod As MethodInfo, types As Type(), proxyMethod As MethodInfo) As Boolean
+      description: True, if a suitable method was found, otherwise False
+    content.vb: Public Function InitializeProxyMethod(sourceMethod As MethodInfo, parameterTypes As Type(), proxyMethod As MethodInfo) As Boolean
   overload: NMF.Expressions.ProxyMethodAttribute.InitializeProxyMethod*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if parameterTypes is null
   nameWithType.vb: ProxyMethodAttribute.InitializeProxyMethod(MethodInfo, Type(), MethodInfo)
   fullName.vb: NMF.Expressions.ProxyMethodAttribute.InitializeProxyMethod(System.Reflection.MethodInfo, System.Type(), System.Reflection.MethodInfo)
   name.vb: InitializeProxyMethod(MethodInfo, Type(), MethodInfo)
@@ -167,16 +171,14 @@ items:
   fullName: NMF.Expressions.ProxyMethodAttribute.ProxyType
   type: Property
   source:
-    remote:
-      path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-      branch: master
-      repo: git@github.com:NMFCode/NMFdocs.git
     id: ProxyType
-    path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-    startLine: 72
+    path: C:\Users\hinkel\source\repos\NMFdocs\src\Expressions\Expressions\ExpressionRewriter\ProxyMethodAttribute.cs
+    startLine: 116
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: The type in which the proxy method is defined
+  example: []
   syntax:
     content: public Type ProxyType { get; }
     parameters: []
@@ -196,16 +198,14 @@ items:
   fullName: NMF.Expressions.ProxyMethodAttribute.MethodName
   type: Property
   source:
-    remote:
-      path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-      branch: master
-      repo: git@github.com:NMFCode/NMFdocs.git
     id: MethodName
-    path: src/Expressions/Expressions/ExpressionRewriter/ProxyMethodAttribute.cs
-    startLine: 74
+    path: C:\Users\hinkel\source\repos\NMFdocs\src\Expressions\Expressions\ExpressionRewriter\ProxyMethodAttribute.cs
+    startLine: 121
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
+  summary: The name of the method used as a proxy
+  example: []
   syntax:
     content: public string MethodName { get; }
     parameters: []
@@ -2167,6 +2167,13 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentnullexception
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
 - uid: NMF.Expressions.ProxyMethodAttribute.InitializeProxyMethod*
   commentId: Overload:NMF.Expressions.ProxyMethodAttribute.InitializeProxyMethod
   href: NMF.Expressions.ProxyMethodAttribute.html#NMF_Expressions_ProxyMethodAttribute_InitializeProxyMethod_System_Reflection_MethodInfo_System_Type___System_Reflection_MethodInfo__

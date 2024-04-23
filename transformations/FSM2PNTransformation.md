@@ -21,6 +21,7 @@ using NMF.Transformations.Core;
 ```
 
 ## Create a new transformation class
+
 Our transformation will use the default behavior and simply inherit from **ReflectiveTransformation**. As a consequence, NTL will infere the rules of our transformation by the public nested classes. So, add the following class:
 
 >
@@ -33,6 +34,7 @@ public class FSM2PN : ReflectiveTransformation
 Of course, you can embrace the transformation class in a namespace as you wish. It is also perfectly legal to make the transformation class itself internal.
 
 ## Transforming Finite State Machines to Petri Nets
+
 We start by adding a rule to transform finite state machines to Petri Nets. Add the following code as nested class inside the previous _FSM2PN_ class:
 
 >
@@ -49,8 +51,8 @@ We start by adding a rule to transform finite state machines to Petri Nets. Add 
 This tells NTL how to transform finite state machines to Petri Nets. By inheriting from **TransformationRule**, we tell NTL that this class is a transformation rule and what this rule takes as input and output. In the **Transform** method, we specify what shall be done, if a state machine is transformed to a Petri Net. Here, we only copy the ID. However, this is not really suprising and would be better done without NTL, so far. Thus, we go ahead and add rules to transform places and transitions.
 
 ## Transforming states
-To transform states to places, just add the following lines of code as another nested class of **FSM2PN**:
 
+To transform states to places, just add the following lines of code as another nested class of **FSM2PN**:
 
 >
 ```csharp
@@ -78,7 +80,6 @@ In the **Transform** method, we again just copy the very simplest data from the 
 
 However, if we called our new transformation to transform a finite state machine to a Petri Net, NTL would not know when to use the new rule _State2Place_. Thus, we need to add a dependency. We can do so on two spots: Either in _Automata2Net_ to specify what other rules should be called (forward dependency) or in _State2Place_ to specify when it will be called (reversed dependency). In this tutorial, we will use a reversed dependency. In that way, the code belonging to the transformation of states is all stored in _State2Place_. Dependencies are generally specified in the **RegisterDependencies** method. Thus, add the following method in the _State2Place_ rule:
 
-
 >
 ```csharp
             public override void RegisterDependencies()
@@ -96,7 +97,6 @@ As you can see, dependencies can have a row of lambda expressions, specifying th
 ## Transforming Transitions
 
 Now, we have transformed the places of our state machine. However, we still need to transform the transitions. Thus, add the following code as a new nested class of _FSM2PN_:
-
 
 >
 ```csharp
@@ -116,12 +116,11 @@ Now, we have transformed the places of our state machine. However, we still need
         }
 ```
 
-Again, we have a rule how transistions are transformed to transitions of the Petri Net. We copy the inputs and create a reversed dependency to let NTL know which transitions to transform and add the transformed transitions to the Transitions collection of the Petri Net. 
+Again, we have a rule how transistions are transformed to transitions of the Petri Net. We copy the inputs and create a reversed dependency to let NTL know which transitions to transform and add the transformed transitions to the Transitions collection of the Petri Net.
 
 What is left is to fill the transitions start and end places. So if a state machine transition has had a start state, we want the Petri Net transition to have exactly the output of the _State2Place_ added to the From collection. The same holds for the target state and the To collection.
 
 To do this, just add the following code next to the existing reversed dependency in _Transition2Transition_:
-
 
 >
 ```csharp
@@ -148,7 +147,6 @@ This will do. We specify that _Transition2Transition_ needs the start state even
 
 Finally, we still need to transform the information that some states are end states. Thus, we add a new transformation rule that transforms end states to transitions.
 
-
 >
 ```csharp
         public class EndStateToTransition : TransformationRule<FSM.State, PN.Transition>
@@ -171,7 +169,6 @@ Now, the created transition currently is not starting from the place correspondi
 
 For such circumstances, NTL provides a trace. The trace allows to look up the corresponding model elements for certain elements directly. The trace is exposed through the **Trace** property of the transformation context that comes as argument to the **Transform** method. Thus, in the **Transform** method of the _EndState2Transition_ rule, add the following lines:
 
-
 >
 ```csharp
                 var from = context.Trace.ResolveIn(Rule<StateToPlace>(), input);
@@ -182,7 +179,6 @@ For such circumstances, NTL provides a trace. The trace allows to look up the co
 ## Triggering the transformation
 
 We are done with our transformation, so let's try it out! The simplest way to do this is by using the **TransformationEngine** class. Anywhere in your client, just call add the following line:
-
 
 >
 ```csharp

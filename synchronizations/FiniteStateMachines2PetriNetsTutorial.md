@@ -1,12 +1,12 @@
 # Synchronizing finite state machines with Petri Nets
 
-**If you have not already done so, it might be a good idea to start by reading the scenario, [transforming finite state machines to Petri Nets](FiniteStateMachines2PetriNets).** 
+**If you have not already done so, it might be a good idea to start by reading the scenario, [transforming finite state machines to Petri Nets](FiniteStateMachines2PetriNets.md).**
 
 ## Setting up the environment
 
 Currently, there is no NuGet package for NMF Synchronization, as it is still in incubation. Thus, you will have to download the code through SVN and compile it to get the assemblies necessary for NMF Synchronizations.
 
-If you have done so, create a new project and add the **NMF.Synchronizations.dll** as well as its dependencies. Furthermore, add the metamodels. These are different to [the NTL ones](FSM2PNTransformation), as the model representation needs to support the view model interfaces _INotifyPropertyChanged_ and _INotifyCollectionChanged_. 
+If you have done so, create a new project and add the **NMF.Synchronizations.dll** as well as its dependencies. Furthermore, add the metamodels. These are different to [the NTL ones](~/transformations/FSM2PNTransformation.md), as the model representation needs to support the view model interfaces _INotifyPropertyChanged_ and _INotifyCollectionChanged_.
 
 ## Creating a new synchronization
 
@@ -22,7 +22,7 @@ using NMF.Synchronizations;
 using NMF.Transformations;
 ```
 
-As indicated by the using statements, NMF Synchronization basically combines the two projects [Transformations](Transformations) and [Expressions](Expressions) to obtain a synchronization language. We will see how the benefits of both projects are used in NMF Synchronizations.
+As indicated by the using statements, NMF Synchronization basically combines the two projects [Transformations](~/transformations/index.md) and [Expressions](~/expressions/index.md) to obtain a synchronization language. We will see how the benefits of both projects are used in NMF Synchronizations.
 
 ## Synchronizing machines
 
@@ -45,7 +45,7 @@ We start by defining a synchronization rule for the automata itself. Again, sync
         }
 ```
 
-The method **ShouldCorrespond** decides whether a correspondence link between the given finite state machine and the Petri Net should be established within the given synchronization context. The synchronization context is basically a transformation context with a [change propagation mode](ChangePropagationMode) and a [synchronization direction](SynchronizationDirection).
+The method **ShouldCorrespond** decides whether a correspondence link between the given finite state machine and the Petri Net should be established within the given synchronization context. The synchronization context is basically a transformation context with a [change propagation mode](ChangePropagationMode.md) and a [synchronization direction](SynchronizationDirection.md).
 
 The **DeclareSynchronization** method specifies the body of the synchronization rule. In this case, the ids of the finite state machine and the Petri Net should be synchronized. Whether the id from the finite state machine is written to the Petri Net or vice versa, or how updates of either property are propagated is up to the synchronization engine and this is dependent on the mode, in which the synchronization is run.
 
@@ -85,7 +85,7 @@ This statement tells NMF Synchronization, that the states of a state machine sho
 
 The dependency also gives a hint to NMF Synchronizations where to look for candidates. The dependency is only executed when the correspondence of a state machine and a Petri Net is already clear. Then, each state in the States collection has to correspond to a Place in the Places collection. Thus, the synchronization engine will try to match the existing entries. However, this also means that the dependency limits the candidates for corresponding places for a state that is contained in the States collection of the state machine to the places contained in the Places collection, at least unless there is already a correspondence known.
 
-Internally, NMF Synchronization creates two transformation rules, one for either main [synchronization direction](SynchronizationDirection). What _SynchronizeMany_ called with a synchronization rule does is basically to wire up transformation rules underneath and add dependencies. However, it is also possible to directly specify the dependencies of the underneath transformation rules directly, if you wish to add more complex synchronization topologies. If one has a synchronization rule object (like the _this_ pointer in within a _DeclareSynchronization_ method for instance), the transformation rules for the synchronization directions are stored in the properties _LeftToRight_ and _RightToLeft_.
+Internally, NMF Synchronization creates two transformation rules, one for either main [synchronization direction](SynchronizationDirection.md). What _SynchronizeMany_ called with a synchronization rule does is basically to wire up transformation rules underneath and add dependencies. However, it is also possible to directly specify the dependencies of the underneath transformation rules directly, if you wish to add more complex synchronization topologies. If one has a synchronization rule object (like the _this_ pointer in within a _DeclareSynchronization_ method for instance), the transformation rules for the synchronization directions are stored in the properties _LeftToRight_ and _RightToLeft_.
 
 **Note:** We rely on the _LeftToRight_ transformation rule here, independent of the synchronization direction the synchronization process is executed. This is possible because an established correspondence link between two model elements always results in trace entries for both directions, i.e. the synchronization direction does not matter for tracing purposes.
 
@@ -126,7 +126,7 @@ Now, the **DeclareSynchronization** method seems to be pretty much OK, since we 
 
 The direction from right to left is pretty much self-explanatory, we just take the first target place that is available assign the corresponding state to the target state of the corresponding transition.
 
-The other way round is more complicated. What we are actually doing is to assign the corresponding place to the target state of the transition to - to the first or default of the target places? In fact, yes, we do. This is perfectly fine, because the extension method _FirstOrDefault_ has a decorator attribute that is used by [Expressions](Expressions) to make the expression that we see a reversable expression. Thus, if FirstOrDefault is assigned a value, then the reverse expression makes sure that this element is in fact contained in the collection (if not, it is added). If the assigned value is the default value, then the collection is cleared.
+The other way round is more complicated. What we are actually doing is to assign the corresponding place to the target state of the transition to - to the first or default of the target places? In fact, yes, we do. This is perfectly fine, because the extension method _FirstOrDefault_ has a decorator attribute that is used by [Expressions](~/expressions/index.md) to make the expression that we see a reversable expression. Thus, if FirstOrDefault is assigned a value, then the reverse expression makes sure that this element is in fact contained in the collection (if not, it is added). If the assigned value is the default value, then the collection is cleared.
 
 The **ShouldCorrespond** basically states that we want to have a correspondence link between transitions, if and only if we already have a correspondence link between the source and target state (or place, respectively). For this, it uses the trace functionality of the synchronization context, querying the LeftToRight transformation rule of the _StateToPlace_ synchronization rule.
 
@@ -143,7 +143,7 @@ The reason that this line must be added **after** the synchronization of _StateT
 
 ## End states
 
-Similar to the [transformation](FSM2PNTransformation) of finite state machines to Petri Nets, we use a synchronization rule to synchronize end states with swallowing transitions of the Petri Net. Thus, add the following rule to the synchronization specification:
+Similar to the [transformation](~/transformations/FSM2PNTransformation.md) of finite state machines to Petri Nets, we use a synchronization rule to synchronize end states with swallowing transitions of the Petri Net. Thus, add the following rule to the synchronization specification:
 
 >
 ```csharp
@@ -162,7 +162,6 @@ SynchronizeMany(SyncRule<EndStateToTransition>(),
 ```
 
 Thus, we only consider transitions of the Petri Net that have no target place. We can thus identify correspondence by the first and only source place of a transition. Thus, add the **ShouldCorrespond** method to **EndStateToTransition** as follows:
-
 
 >
 ```csharp
@@ -220,6 +219,6 @@ protected override FSM.State CreateLeftOutput(PN.Transition transition, IEnumera
 
 ## Limitations
 
-The example of Petri Nets and state charts shows some limitations of NMF Synchronizations. The problem is exactly with the transitions. Once a correspondence is determined, it is currently fixed. This assumption is necessary for tracing purposes. In this scenario, it means that NMF Synchrionizations is unable to register that a transition can be used in multiple roles, either as a representation of finite state machine transitions or as a characterization of end states. 
+The example of Petri Nets and state charts shows some limitations of NMF Synchronizations. The problem is exactly with the transitions. Once a correspondence is determined, it is currently fixed. This assumption is necessary for tracing purposes. In this scenario, it means that NMF Synchrionizations is unable to register that a transition can be used in multiple roles, either as a representation of finite state machine transitions or as a characterization of end states.
 
 However, NMF Synchronizations is still in incubation, so this limitation might eventually cease.
