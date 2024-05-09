@@ -317,6 +317,27 @@ registrations.
     -   If the member's name is null, null is returned.
     -   The `GetFullName()` method is defined as an extension method for objects of type IFamilyMember.
     -   The Evaluate function returns an observable value that keeps track of any changes
+    ```csharp
+    public static void SetFullName(this IFamilyMember member, string newName)
+        {
+            var family = member.Parent as IFamily;
+            var separator = newName.IndexOf(", ");
+            var lastName = newName.Substring(0, separator);
+            var firstName = newName.Substring(separator + 2);
+            member.Name = firstName;
+            if (family != null && family.Name != lastName)
+            {
+                var isMale = member.FatherInverse != null || member.SonsInverse != null;
+                member.AddToFamily(family.FamiliesInverse, isMale, lastName);
+            }
+        }
+    ```
+    -   Extension Method: This method extends objects that implement the IFamilyMember interface.
+    -   Retrieve Family Information:It retrieves the family information associated with the member by accessing its Parent property, assuming it implements IFamily.
+    -   Parse Full Name: It parses the full name passed as a parameter (newName) by finding the index of the separator (", ") to split the string into last name and first name.
+    -   Set First Name: It sets the first name of the member to the parsed first name.
+    -   Check and Update Family Information:If the family is not null and the last name extracted from the full name does not match the family's name, it implies the member is associated with a different family.
+    -   Add Member to Correct Family: If necessary, it determines whether the member is male based on whether it has a father or sons, and then adds the member to the correct family by invoking the AddToFamily method with appropriate parameters.
     -   Summary: In summary, the synchronization process involves calling the Synchronize method on the synchronization instance, using specific synchronization rules (FamilyRegisterToPersonRegister and MemberToMember) to synchronize data between instances of FamilyRegister, PersonRegister, IFamilyMember, and IPerson. The synchronization is bidirectional and prioritizes changes from the left model (familyRegister).
 - The rest of the constructor is equivalent to the FirstNmfProject initialization. Adding the registry classes as RootElements and Adding the empty Models.
 
