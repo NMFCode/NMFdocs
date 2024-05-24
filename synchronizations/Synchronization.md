@@ -196,7 +196,7 @@ This expression defines a static field `fullName` of type `ObservingFunc<IFamily
 
 ```csharp
 [LensPut(typeof(Helpers), "SetFullName")] // is called when GetFullName is called
-[ObservableProxy(typeof(Helpers), "GetFullNameInc")] // connected mit INotifyValue
+[ObservableProxy(typeof(Helpers), "GetFullNameInc")] // connected with INotifyValue
 ```   
 `ObservableProxy`:
     The annotations indicate that the `fullName` variable is constantly observed. This means that through the `GetFullNameInc` function with the parameter type `INotifyValue`, the `fullName` of the family member is continuously monitored. Upon any changes, the family member is notified, and the changes are propagated in real-time.
@@ -220,4 +220,4 @@ public static void SetFullName(this IFamilyMember member, string newName)
 ```
 The `SetFullName` method is an extension method designed for objects implementing the `IFamilyMember` interface. When invoked, it first retrieves the associated family of the member. Assuming the full name is structured as "Last Name, First Name", it parses the `newName` parameter to extract the last and first names accordingly. Subsequently, it updates the member's Name property with the extracted first name. Additionally, if the associated family exists and its name differs from the extracted last name, it determines the member's gender based on familial relationships and adds the member to the family's collection, specifying the gender and the extracted last name. This method effectively manages the synchronization of the full name and family association of a family member.
 
-## Github Tutorial: [hier](https://github.com/Cemtk6246/Family2Person)
+## Github Tutorial: [here](https://github.com/Cemtk6246/Family2Person)
