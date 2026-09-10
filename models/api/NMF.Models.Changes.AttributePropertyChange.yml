@@ -108,6 +108,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -221,7 +222,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NewValue
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 62
+    startLine: 64
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -275,7 +276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OldValue
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 90
+    startLine: 92
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -329,7 +330,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 118
+    startLine: 120
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -342,37 +343,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Models.Changes.AttributePropertyChange.ClassInstance*
-- uid: NMF.Models.Changes.AttributePropertyChange.NewValueChanging
-  commentId: E:NMF.Models.Changes.AttributePropertyChange.NewValueChanging
-  id: NewValueChanging
-  parent: NMF.Models.Changes.AttributePropertyChange
-  langs:
-  - csharp
-  - vb
-  name: NewValueChanging
-  nameWithType: AttributePropertyChange.NewValueChanging
-  fullName: NMF.Models.Changes.AttributePropertyChange.NewValueChanging
-  type: Event
-  source:
-    remote:
-      path: Models/Models/Changes/AttributePropertyChange.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: NewValueChanging
-    path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 133
-  assemblies:
-  - NMF.Models
-  namespace: NMF.Models.Changes
-  summary: Gets fired before the NewValue property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> NewValueChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event NewValueChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
 - uid: NMF.Models.Changes.AttributePropertyChange.NewValueChanged
   commentId: E:NMF.Models.Changes.AttributePropertyChange.NewValueChanged
   id: NewValueChanged
@@ -391,7 +361,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NewValueChanged
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 138
+    startLine: 135
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -404,37 +374,37 @@ items:
     content.vb: Public Event NewValueChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
-- uid: NMF.Models.Changes.AttributePropertyChange.OldValueChanging
-  commentId: E:NMF.Models.Changes.AttributePropertyChange.OldValueChanging
-  id: OldValueChanging
+- uid: NMF.Models.Changes.AttributePropertyChange.NewValueChanging
+  commentId: E:NMF.Models.Changes.AttributePropertyChange.NewValueChanging
+  id: NewValueChanging
   parent: NMF.Models.Changes.AttributePropertyChange
   langs:
   - csharp
   - vb
-  name: OldValueChanging
-  nameWithType: AttributePropertyChange.OldValueChanging
-  fullName: NMF.Models.Changes.AttributePropertyChange.OldValueChanging
+  name: NewValueChanging
+  nameWithType: AttributePropertyChange.NewValueChanging
+  fullName: NMF.Models.Changes.AttributePropertyChange.NewValueChanging
   type: Event
   source:
     remote:
       path: Models/Models/Changes/AttributePropertyChange.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OldValueChanging
+    id: NewValueChanging
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 143
+    startLine: 140
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Gets fired before the OldValue property changes its value
+  summary: Gets fired before the NewValue property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> OldValueChanging
+    content: public event EventHandler<ValueChangedEventArgs> NewValueChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event OldValueChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event NewValueChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
+  - NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
 - uid: NMF.Models.Changes.AttributePropertyChange.OldValueChanged
   commentId: E:NMF.Models.Changes.AttributePropertyChange.OldValueChanged
   id: OldValueChanged
@@ -453,7 +423,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OldValueChanged
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 148
+    startLine: 145
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -466,38 +436,37 @@ items:
     content.vb: Public Event OldValueChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Changes.IAttributePropertyChange.OldValueChanged
-- uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Models.Changes.AttributePropertyChange.OldValueChanging
+  commentId: E:NMF.Models.Changes.AttributePropertyChange.OldValueChanging
+  id: OldValueChanging
   parent: NMF.Models.Changes.AttributePropertyChange
   langs:
   - csharp
   - vb
-  name: OnNewValueChanging(ValueChangedEventArgs)
-  nameWithType: AttributePropertyChange.OnNewValueChanging(ValueChangedEventArgs)
-  fullName: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
+  name: OldValueChanging
+  nameWithType: AttributePropertyChange.OldValueChanging
+  fullName: NMF.Models.Changes.AttributePropertyChange.OldValueChanging
+  type: Event
   source:
     remote:
       path: Models/Models/Changes/AttributePropertyChange.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnNewValueChanging
+    id: OldValueChanging
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 159
+    startLine: 150
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Raises the NewValueChanging event
+  summary: Gets fired before the OldValue property changes its value
   example: []
   syntax:
-    content: protected virtual void OnNewValueChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnNewValueChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging*
+    content: public event EventHandler<ValueChangedEventArgs> OldValueChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event OldValueChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
 - uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnNewValueChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -516,7 +485,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnNewValueChanged
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 172
+    startLine: 161
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -530,38 +499,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnNewValueChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged*
-- uid: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.Changes.AttributePropertyChange
   langs:
   - csharp
   - vb
-  name: OnOldValueChanging(ValueChangedEventArgs)
-  nameWithType: AttributePropertyChange.OnOldValueChanging(ValueChangedEventArgs)
-  fullName: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnNewValueChanging(ValueChangedEventArgs)
+  nameWithType: AttributePropertyChange.OnNewValueChanging(ValueChangedEventArgs)
+  fullName: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Models/Models/Changes/AttributePropertyChange.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnOldValueChanging
+    id: OnNewValueChanging
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 190
+    startLine: 174
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Raises the OldValueChanging event
+  summary: Raises the NewValueChanging event
   example: []
   syntax:
-    content: protected virtual void OnOldValueChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnNewValueChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnOldValueChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging*
+    content.vb: Protected Overridable Sub OnNewValueChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging*
 - uid: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Models.Changes.AttributePropertyChange.OnOldValueChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnOldValueChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -580,7 +549,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnOldValueChanged
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 203
+    startLine: 192
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -594,6 +563,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnOldValueChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanged*
+- uid: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Models.Changes.AttributePropertyChange
+  langs:
+  - csharp
+  - vb
+  name: OnOldValueChanging(ValueChangedEventArgs)
+  nameWithType: AttributePropertyChange.OnOldValueChanging(ValueChangedEventArgs)
+  fullName: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Models/Models/Changes/AttributePropertyChange.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnOldValueChanging
+    path: src/Models/Models/Changes/AttributePropertyChange.cs
+    startLine: 205
+  assemblies:
+  - NMF.Models
+  namespace: NMF.Models.Changes
+  summary: Raises the OldValueChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnOldValueChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnOldValueChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging*
 - uid: NMF.Models.Changes.AttributePropertyChange.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.Changes.AttributePropertyChange.GetAttributeValue(System.String,System.Int32)
   id: GetAttributeValue(System.String,System.Int32)
@@ -612,7 +613,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 218
+    startLine: 220
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -654,7 +655,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 236
+    startLine: 238
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -693,7 +694,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForAttribute
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 256
+    startLine: 258
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -732,7 +733,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Models/Models/Changes/AttributePropertyChange.cs
-    startLine: 272
+    startLine: 274
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -1558,6 +1559,13 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  href: NMF.Models.ModelElement.html#NMF_Models_ModelElement_RaiseDeletionEvents
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -3090,13 +3098,13 @@ references:
   - uid: NMF.Models.Meta
     name: Meta
     href: NMF.Models.Meta.html
-- uid: NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
-  commentId: E:NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
+- uid: NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
+  commentId: E:NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
   parent: NMF.Models.Changes.IAttributePropertyChange
-  href: NMF.Models.Changes.IAttributePropertyChange.html#NMF_Models_Changes_IAttributePropertyChange_NewValueChanging
-  name: NewValueChanging
-  nameWithType: IAttributePropertyChange.NewValueChanging
-  fullName: NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
+  href: NMF.Models.Changes.IAttributePropertyChange.html#NMF_Models_Changes_IAttributePropertyChange_NewValueChanged
+  name: NewValueChanged
+  nameWithType: IAttributePropertyChange.NewValueChanged
+  fullName: NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -3156,20 +3164,13 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
-  commentId: E:NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
+- uid: NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
+  commentId: E:NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
   parent: NMF.Models.Changes.IAttributePropertyChange
-  href: NMF.Models.Changes.IAttributePropertyChange.html#NMF_Models_Changes_IAttributePropertyChange_NewValueChanged
-  name: NewValueChanged
-  nameWithType: IAttributePropertyChange.NewValueChanged
-  fullName: NMF.Models.Changes.IAttributePropertyChange.NewValueChanged
-- uid: NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
-  commentId: E:NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
-  parent: NMF.Models.Changes.IAttributePropertyChange
-  href: NMF.Models.Changes.IAttributePropertyChange.html#NMF_Models_Changes_IAttributePropertyChange_OldValueChanging
-  name: OldValueChanging
-  nameWithType: IAttributePropertyChange.OldValueChanging
-  fullName: NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
+  href: NMF.Models.Changes.IAttributePropertyChange.html#NMF_Models_Changes_IAttributePropertyChange_NewValueChanging
+  name: NewValueChanging
+  nameWithType: IAttributePropertyChange.NewValueChanging
+  fullName: NMF.Models.Changes.IAttributePropertyChange.NewValueChanging
 - uid: NMF.Models.Changes.IAttributePropertyChange.OldValueChanged
   commentId: E:NMF.Models.Changes.IAttributePropertyChange.OldValueChanged
   parent: NMF.Models.Changes.IAttributePropertyChange
@@ -3177,12 +3178,19 @@ references:
   name: OldValueChanged
   nameWithType: IAttributePropertyChange.OldValueChanged
   fullName: NMF.Models.Changes.IAttributePropertyChange.OldValueChanged
-- uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging*
-  commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging
-  href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnNewValueChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNewValueChanging
-  nameWithType: AttributePropertyChange.OnNewValueChanging
-  fullName: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging
+- uid: NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
+  commentId: E:NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
+  parent: NMF.Models.Changes.IAttributePropertyChange
+  href: NMF.Models.Changes.IAttributePropertyChange.html#NMF_Models_Changes_IAttributePropertyChange_OldValueChanging
+  name: OldValueChanging
+  nameWithType: IAttributePropertyChange.OldValueChanging
+  fullName: NMF.Models.Changes.IAttributePropertyChange.OldValueChanging
+- uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged*
+  commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged
+  href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnNewValueChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNewValueChanged
+  nameWithType: AttributePropertyChange.OnNewValueChanged
+  fullName: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged
 - uid: NMF.Expressions.ValueChangedEventArgs
   commentId: T:NMF.Expressions.ValueChangedEventArgs
   parent: NMF.Expressions
@@ -3206,24 +3214,24 @@ references:
   - name: .
   - uid: NMF.Expressions
     name: Expressions
-- uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged*
-  commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged
-  href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnNewValueChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNewValueChanged
-  nameWithType: AttributePropertyChange.OnNewValueChanged
-  fullName: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanged
-- uid: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging*
-  commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging
-  href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnOldValueChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnOldValueChanging
-  nameWithType: AttributePropertyChange.OnOldValueChanging
-  fullName: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging
+- uid: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging*
+  commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging
+  href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnNewValueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNewValueChanging
+  nameWithType: AttributePropertyChange.OnNewValueChanging
+  fullName: NMF.Models.Changes.AttributePropertyChange.OnNewValueChanging
 - uid: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanged*
   commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnOldValueChanged
   href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnOldValueChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnOldValueChanged
   nameWithType: AttributePropertyChange.OnOldValueChanged
   fullName: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanged
+- uid: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging*
+  commentId: Overload:NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging
+  href: NMF.Models.Changes.AttributePropertyChange.html#NMF_Models_Changes_AttributePropertyChange_OnOldValueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnOldValueChanging
+  nameWithType: AttributePropertyChange.OnOldValueChanging
+  fullName: NMF.Models.Changes.AttributePropertyChange.OnOldValueChanging
 - uid: NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Models.ModelElement

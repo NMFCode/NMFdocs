@@ -85,7 +85,7 @@
 
 
   <h1 id="NMF_AnyText_SynchronizingLspServer" data-uid="NMF.AnyText.SynchronizingLspServer" class="text-break">
-Class SynchronizingLspServer  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class SynchronizingLspServer  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -167,9 +167,6 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
       <a class="xref" href="NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidChange_Newtonsoft_Json_Linq_JToken_">LspServer.DidChange(JToken)</a>
     </div>
     <div>
-      <a class="xref" href="NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OnDocumentUpdate_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_NMF_AnyText_TextEdit__System_String_">LspServer.OnDocumentUpdate(Parser, IEnumerable&lt;TextEdit&gt;, string)</a>
-    </div>
-    <div>
       <a class="xref" href="NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidSave_LspTypes_TextDocumentIdentifier_System_String_">LspServer.DidSave(TextDocumentIdentifier, string)</a>
     </div>
     <div>
@@ -186,6 +183,9 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
     </div>
     <div>
       <a class="xref" href="NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendLogMessageAsync_NMF_AnyText_MessageType_System_String_System_Boolean_">LspServer.SendLogMessageAsync(MessageType, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_">LspServer.SendDiagnosticsAsync(ParseContext, string)</a>
     </div>
     <div>
       <a class="xref" href="NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentHighlights_Newtonsoft_Json_Linq_JToken_">LspServer.QueryDocumentHighlights(JToken)</a>
@@ -283,7 +283,7 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
 
   <h3 id="NMF_AnyText_SynchronizingLspServer__ctor_System_Collections_Generic_IEnumerable_NMF_AnyText_Grammars_Grammar__NMF_Models_Services_IModelServer_NMF_AnyText_IModelSynchronization___" data-uid="NMF.AnyText.SynchronizingLspServer.#ctor(System.Collections.Generic.IEnumerable{NMF.AnyText.Grammars.Grammar},NMF.Models.Services.IModelServer,NMF.AnyText.IModelSynchronization[])">
   SynchronizingLspServer(IEnumerable&lt;Grammar&gt;, IModelServer, params IModelSynchronization[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new instance</p>
@@ -322,7 +322,7 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
 
   <h3 id="NMF_AnyText_SynchronizingLspServer__ctor_System_Collections_Generic_IEnumerable_NMF_AnyText_Grammars_Grammar__NMF_Models_Services_IModelServer_System_Collections_Generic_IEnumerable_NMF_AnyText_IModelSynchronization__" data-uid="NMF.AnyText.SynchronizingLspServer.#ctor(System.Collections.Generic.IEnumerable{NMF.AnyText.Grammars.Grammar},NMF.Models.Services.IModelServer,System.Collections.Generic.IEnumerable{NMF.AnyText.IModelSynchronization})">
   SynchronizingLspServer(IEnumerable&lt;Grammar&gt;, IModelServer, IEnumerable&lt;IModelSynchronization&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new instance</p>
@@ -357,15 +357,93 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="NMF_AnyText_SynchronizingLspServer_SystemCommands_" data-uid="NMF.AnyText.SynchronizingLspServer.SystemCommands*"></a>
+
+  <h3 id="NMF_AnyText_SynchronizingLspServer_SystemCommands" data-uid="NMF.AnyText.SynchronizingLspServer.SystemCommands">
+  SystemCommands
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a collection of available system commands</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override IEnumerable&lt;string&gt; SystemCommands { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="NMF_AnyText_SynchronizingLspServer_CodeLensesForDocument_" data-uid="NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument*"></a>
+
+  <h3 id="NMF_AnyText_SynchronizingLspServer_CodeLensesForDocument_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CodeLens__" data-uid="NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})">
+  CodeLensesForDocument(Parser, IEnumerable&lt;CodeLens&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the code lenses for the given document</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override IEnumerable&lt;CodeLens&gt; CodeLensesForDocument(Parser document, IEnumerable&lt;CodeLens&gt; codeLenses)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>document</code> <a class="xref" href="NMF.AnyText.Parser.html">Parser</a></dt>
+    <dd><p>the document for which to calculate code lenses</p>
+</dd>
+    <dt><code>codeLenses</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<span class="xref">CodeLens</span>&gt;</dt>
+    <dd><p>the code lenses obtained from the document</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<span class="xref">CodeLens</span>&gt;</dt>
+    <dd><p>A collection of code lenses</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
 
 
   <a id="NMF_AnyText_SynchronizingLspServer_HandleExtensionCommand_" data-uid="NMF.AnyText.SynchronizingLspServer.HandleExtensionCommand*"></a>
 
   <h3 id="NMF_AnyText_SynchronizingLspServer_HandleExtensionCommand_System_String_System_Object___" data-uid="NMF.AnyText.SynchronizingLspServer.HandleExtensionCommand(System.String,System.Object[])">
   HandleExtensionCommand(string, object[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Allows derived classes to handle an extension command</p>
@@ -403,11 +481,50 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
 
 
 
+  <a id="NMF_AnyText_SynchronizingLspServer_OnDocumentUpdate_" data-uid="NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate*"></a>
+
+  <h3 id="NMF_AnyText_SynchronizingLspServer_OnDocumentUpdate_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_NMF_AnyText_TextEdit__System_String_" data-uid="NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)">
+  OnDocumentUpdate(Parser, IEnumerable&lt;TextEdit&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L217"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets called when a document should be updated</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnDocumentUpdate(Parser document, IEnumerable&lt;TextEdit&gt; edits, string uri)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>document</code> <a class="xref" href="NMF.AnyText.Parser.html">Parser</a></dt>
+    <dd><p>the parsed document</p>
+</dd>
+    <dt><code>edits</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="NMF.AnyText.TextEdit.html">TextEdit</a>&gt;</dt>
+    <dd><p>the edits that should be performed</p>
+</dd>
+    <dt><code>uri</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the URI of the document</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="NMF_AnyText_SynchronizingLspServer_OpenNewDocument_" data-uid="NMF.AnyText.SynchronizingLspServer.OpenNewDocument*"></a>
 
   <h3 id="NMF_AnyText_SynchronizingLspServer_OpenNewDocument_NMF_AnyText_Parser_" data-uid="NMF.AnyText.SynchronizingLspServer.OpenNewDocument(NMF.AnyText.Parser)">
   OpenNewDocument(Parser)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets called when a new document is opened</p>
@@ -440,7 +557,7 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
 
   <h3 id="NMF_AnyText_SynchronizingLspServer_PostProcessCompletions_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CompletionItem__" data-uid="NMF.AnyText.SynchronizingLspServer.PostProcessCompletions(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CompletionItem})">
   PostProcessCompletions(Parser, IEnumerable&lt;CompletionItem&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs a post-processing on the given completion collection</p>
@@ -482,7 +599,7 @@ Class SynchronizingLspServer  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

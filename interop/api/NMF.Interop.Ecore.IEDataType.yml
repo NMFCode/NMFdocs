@@ -22,7 +22,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEDataType
     path: src/Interop/EcoreInterop/Model/IEDataType.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -34,28 +34,44 @@ items:
 
       [XmlDefaultImplementationType(typeof(EDataType))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EDataType")]
+
       public interface IEDataType : IEClassifier, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EDataType))>
 
       <XmlDefaultImplementationType(GetType(EDataType))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EDataType")>
+
       Public Interface IEDataType Inherits IEClassifier, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EDataType
+  - NMF.Interop.Ecore.EEnum
   inheritedMembers:
   - NMF.Interop.Ecore.IEClassifier.InstanceClassName
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeName
   - NMF.Interop.Ecore.IEClassifier.EPackage
   - NMF.Interop.Ecore.IEClassifier.ETypeParameters
-  - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  - NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+  - NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
   - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
-  - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
+  - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
   - NMF.Interop.Ecore.IEClassifier.EPackageChanging
   - NMF.Interop.Ecore.IEClassifier.EPackageChanged
+  - NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierID
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -103,6 +119,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EDataType
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EDataType
 - uid: NMF.Interop.Ecore.IEDataType.Serializable
   commentId: P:NMF.Interop.Ecore.IEDataType.Serializable
   id: Serializable
@@ -121,48 +142,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Serializable
     path: src/Interop/EcoreInterop/Model/IEDataType.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The serializable property
   example: []
   syntax:
-    content: bool? Serializable { get; set; }
+    content: >-
+      [XmlElementName("serializable")]
+
+      [XmlAttribute(true)]
+
+      bool? Serializable { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
-    content.vb: Property Serializable As Boolean?
+    content.vb: >-
+      <XmlElementName("serializable")>
+
+      <XmlAttribute(True)>
+
+      Property Serializable As Boolean?
   overload: NMF.Interop.Ecore.IEDataType.Serializable*
-- uid: NMF.Interop.Ecore.IEDataType.SerializableChanging
-  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanging
-  id: SerializableChanging
-  parent: NMF.Interop.Ecore.IEDataType
-  langs:
-  - csharp
-  - vb
-  name: SerializableChanging
-  nameWithType: IEDataType.SerializableChanging
-  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/IEDataType.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SerializableChanging
-    path: src/Interop/EcoreInterop/Model/IEDataType.cs
-    startLine: 53
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Serializable property changes its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> SerializableChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event SerializableChanging As EventHandler(Of ValueChangedEventArgs)
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: serializable
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEDataType.SerializableChanged
   commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanged
   id: SerializableChanged
@@ -181,7 +194,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SerializableChanged
     path: src/Interop/EcoreInterop/Model/IEDataType.cs
-    startLine: 58
+    startLine: 60
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -192,6 +205,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event SerializableChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEDataType.SerializableChanging
+  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanging
+  id: SerializableChanging
+  parent: NMF.Interop.Ecore.IEDataType
+  langs:
+  - csharp
+  - vb
+  name: SerializableChanging
+  nameWithType: IEDataType.SerializableChanging
+  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEDataType.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SerializableChanging
+    path: src/Interop/EcoreInterop/Model/IEDataType.cs
+    startLine: 65
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the Serializable property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> SerializableChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event SerializableChanging As EventHandler(Of ValueChangedEventArgs)
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -251,13 +293,34 @@ references:
   name: ETypeParameters
   nameWithType: IEClassifier.ETypeParameters
   fullName: NMF.Interop.Ecore.IEClassifier.ETypeParameters
-- uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
-  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+  commentId: E:NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
   parent: NMF.Interop.Ecore.IEClassifier
-  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceClassNameChanging
-  name: InstanceClassNameChanging
-  nameWithType: IEClassifier.InstanceClassNameChanging
-  fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstanceCalling
+  name: IsInstanceCalling
+  nameWithType: IEClassifier.IsInstanceCalling
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  commentId: E:NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstanceCalled
+  name: IsInstanceCalled
+  nameWithType: IEClassifier.IsInstanceCalled
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  commentId: E:NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierIDCalling
+  name: GetClassifierIDCalling
+  nameWithType: IEClassifier.GetClassifierIDCalling
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  commentId: E:NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierIDCalled
+  name: GetClassifierIDCalled
+  nameWithType: IEClassifier.GetClassifierIDCalled
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   parent: NMF.Interop.Ecore.IEClassifier
@@ -265,13 +328,13 @@ references:
   name: InstanceClassNameChanged
   nameWithType: IEClassifier.InstanceClassNameChanged
   fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
-- uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
-  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+- uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
   parent: NMF.Interop.Ecore.IEClassifier
-  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceTypeNameChanging
-  name: InstanceTypeNameChanging
-  nameWithType: IEClassifier.InstanceTypeNameChanging
-  fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceClassNameChanging
+  name: InstanceClassNameChanging
+  nameWithType: IEClassifier.InstanceClassNameChanging
+  fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   parent: NMF.Interop.Ecore.IEClassifier
@@ -279,6 +342,13 @@ references:
   name: InstanceTypeNameChanged
   nameWithType: IEClassifier.InstanceTypeNameChanged
   fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
+- uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceTypeNameChanging
+  name: InstanceTypeNameChanging
+  nameWithType: IEClassifier.InstanceTypeNameChanging
+  fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
 - uid: NMF.Interop.Ecore.IEClassifier.EPackageChanging
   commentId: E:NMF.Interop.Ecore.IEClassifier.EPackageChanging
   parent: NMF.Interop.Ecore.IEClassifier
@@ -293,6 +363,56 @@ references:
   name: EPackageChanged
   nameWithType: IEClassifier.EPackageChanged
   fullName: NMF.Interop.Ecore.IEClassifier.EPackageChanged
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  commentId: M:NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  parent: NMF.Interop.Ecore.IEClassifier
+  isExternal: true
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  name: IsInstance(object)
+  nameWithType: IEClassifier.IsInstance(object)
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstance(object)
+  nameWithType.vb: IEClassifier.IsInstance(Object)
+  fullName.vb: NMF.Interop.Ecore.IEClassifier.IsInstance(Object)
+  name.vb: IsInstance(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+    name: IsInstance
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+    name: IsInstance
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  commentId: M:NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  name: GetClassifierID()
+  nameWithType: IEClassifier.GetClassifierID()
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierID()
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+    name: GetClassifierID
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+    name: GetClassifierID
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  - name: (
+  - name: )
 - uid: NMF.Interop.Ecore.IENamedElement.Name
   commentId: P:NMF.Interop.Ecore.IENamedElement.Name
   parent: NMF.Interop.Ecore.IENamedElement
@@ -300,13 +420,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -314,6 +427,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -321,6 +441,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement

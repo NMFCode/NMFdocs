@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.#ctor(NMF.Interop.Cmof.Argument)
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Clear
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Count
-  - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore
+  - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.GetEnumerator
   - NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ArgumentReferencedElementsCollection
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 292
+    startLine: 368
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 300
+    startLine: 376
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 308
+    startLine: 384
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -137,64 +138,38 @@ items:
   overload: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore
-  commentId: M:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: Argument.ArgumentReferencedElementsCollection.AttachCore()
-  fullName: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: Argument.ArgumentReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Interop/UMLInterop/Cmof/Argument.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 324
+    startLine: 401
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
-  summary: Registers event hooks to keep the collection up to date
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore*
-- uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore
-  commentId: M:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: Argument.ArgumentReferencedElementsCollection.DetachCore()
-  fullName: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Interop/UMLInterop/Cmof/Argument.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 332
-  assemblies:
-  - NMF.UMLInterop
-  namespace: NMF.Interop.Cmof
-  summary: Unregisters all event hooks registered by AttachCore
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies*
 - uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 341
+    startLine: 411
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 357
+    startLine: 427
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 367
+    startLine: 437
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 381
+    startLine: 451
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 395
+    startLine: 465
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 409
+    startLine: 479
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore
-  href: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.html#NMF_Interop_Cmof_Argument_ArgumentReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: Argument.ArgumentReferencedElementsCollection.AttachCore
-  fullName: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies
+  href: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.html#NMF_Interop_Cmof_Argument_ArgumentReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: Argument.ArgumentReferencedElementsCollection.CreateDependencies
+  fullName: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore
-  href: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.html#NMF_Interop_Cmof_Argument_ArgumentReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: Argument.ArgumentReferencedElementsCollection.DetachCore
-  fullName: NMF.Interop.Cmof.Argument.ArgumentReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

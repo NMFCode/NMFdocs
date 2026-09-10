@@ -7,12 +7,11 @@ items:
   children:
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.#ctor(NMF.AnyText.Metamodel.UnaryParserExpression)
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Clear
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Count
-  - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore
+  - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.GetEnumerator
   - NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -137,64 +138,38 @@ items:
   overload: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore
-  commentId: M:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies
+  commentId: M:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore()
-  fullName: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies()
+  fullName: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: AnyText/AnyText/Metamodel/UnaryParserExpression.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 345
+    startLine: 346
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
-  summary: Registers event hooks to keep the collection up to date
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore*
-- uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore
-  commentId: M:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore()
-  fullName: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 353
-  assemblies:
-  - NMF.AnyText
-  namespace: NMF.AnyText.Metamodel
-  summary: Unregisters all event hooks registered by AttachCore
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies*
 - uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 362
+    startLine: 356
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 378
+    startLine: 372
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 388
+    startLine: 382
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 402
+    startLine: 396
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 416
+    startLine: 410
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/AnyText/AnyText/Metamodel/UnaryParserExpression.cs
-    startLine: 430
+    startLine: 424
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore*
-  commentId: Overload:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore
-  href: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.html#NMF_AnyText_Metamodel_UnaryParserExpression_UnaryParserExpressionChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore
-  fullName: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies
+  href: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.html#NMF_AnyText_Metamodel_UnaryParserExpression_UnaryParserExpressionChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies
+  fullName: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore*
-  commentId: Overload:NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore
-  href: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.html#NMF_AnyText_Metamodel_UnaryParserExpression_UnaryParserExpressionChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore
-  fullName: NMF.AnyText.Metamodel.UnaryParserExpression.UnaryParserExpressionChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

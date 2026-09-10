@@ -13,6 +13,9 @@ items:
   - NMF.Interop.Ecore.IEPackage.ESuperPackage
   - NMF.Interop.Ecore.IEPackage.ESuperPackageChanged
   - NMF.Interop.Ecore.IEPackage.ESuperPackageChanging
+  - NMF.Interop.Ecore.IEPackage.GetEClassifier(System.String)
+  - NMF.Interop.Ecore.IEPackage.GetEClassifierCalled
+  - NMF.Interop.Ecore.IEPackage.GetEClassifierCalling
   - NMF.Interop.Ecore.IEPackage.NsPrefix
   - NMF.Interop.Ecore.IEPackage.NsPrefixChanged
   - NMF.Interop.Ecore.IEPackage.NsPrefixChanging
@@ -33,7 +36,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEPackage
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -45,18 +48,27 @@ items:
 
       [XmlDefaultImplementationType(typeof(EPackage))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EPackage")]
+
       public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EPackage))>
 
       <XmlDefaultImplementationType(GetType(EPackage))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EPackage")>
+
       Public Interface IEPackage Inherits IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EPackage
   inheritedMembers:
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -104,6 +116,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EPackage
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EPackage
 - uid: NMF.Interop.Ecore.IEPackage.NsURI
   commentId: P:NMF.Interop.Ecore.IEPackage.NsURI
   id: NsURI
@@ -122,19 +139,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NsURI
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The nsURI property
   example: []
   syntax:
-    content: string NsURI { get; set; }
+    content: >-
+      [XmlElementName("nsURI")]
+
+      [XmlAttribute(true)]
+
+      string NsURI { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property NsURI As String
+    content.vb: >-
+      <XmlElementName("nsURI")>
+
+      <XmlAttribute(True)>
+
+      Property NsURI As String
   overload: NMF.Interop.Ecore.IEPackage.NsURI*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: nsURI
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEPackage.NsPrefix
   commentId: P:NMF.Interop.Ecore.IEPackage.NsPrefix
   id: NsPrefix
@@ -153,19 +191,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NsPrefix
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 53
+    startLine: 59
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The nsPrefix property
   example: []
   syntax:
-    content: string NsPrefix { get; set; }
+    content: >-
+      [XmlElementName("nsPrefix")]
+
+      [XmlAttribute(true)]
+
+      string NsPrefix { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property NsPrefix As String
+    content.vb: >-
+      <XmlElementName("nsPrefix")>
+
+      <XmlAttribute(True)>
+
+      Property NsPrefix As String
   overload: NMF.Interop.Ecore.IEPackage.NsPrefix*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: nsPrefix
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEPackage.EFactoryInstance
   commentId: P:NMF.Interop.Ecore.IEPackage.EFactoryInstance
   id: EFactoryInstance
@@ -184,19 +243,49 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EFactoryInstance
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 62
+    startLine: 72
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eFactoryInstance property
   example: []
   syntax:
-    content: IEFactory EFactoryInstance { get; set; }
+    content: >-
+      [XmlElementName("eFactoryInstance")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("ePackage")]
+
+      IEFactory EFactoryInstance { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEFactory
-    content.vb: Property EFactoryInstance As IEFactory
+    content.vb: >-
+      <XmlElementName("eFactoryInstance")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("ePackage")>
+
+      Property EFactoryInstance As IEFactory
   overload: NMF.Interop.Ecore.IEPackage.EFactoryInstance*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eFactoryInstance
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: ePackage
 - uid: NMF.Interop.Ecore.IEPackage.EClassifiers
   commentId: P:NMF.Interop.Ecore.IEPackage.EClassifiers
   id: EClassifiers
@@ -215,19 +304,65 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifiers
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 71
+    startLine: 86
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eClassifiers property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEClassifier> EClassifiers { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eClassifiers")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      [XmlOpposite("ePackage")]
+
+      IOrderedSetExpression<IEClassifier> EClassifiers { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEClassifier}
-    content.vb: ReadOnly Property EClassifiers As IOrderedSetExpression(Of IEClassifier)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eClassifiers")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      <XmlOpposite("ePackage")>
+
+      ReadOnly Property EClassifiers As IOrderedSetExpression(Of IEClassifier)
   overload: NMF.Interop.Ecore.IEPackage.EClassifiers*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eClassifiers
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: ePackage
 - uid: NMF.Interop.Ecore.IEPackage.ESubpackages
   commentId: P:NMF.Interop.Ecore.IEPackage.ESubpackages
   id: ESubpackages
@@ -246,19 +381,65 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ESubpackages
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 79
+    startLine: 101
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eSubpackages property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEPackage> ESubpackages { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eSubpackages")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      [XmlOpposite("eSuperPackage")]
+
+      IOrderedSetExpression<IEPackage> ESubpackages { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEPackage}
-    content.vb: ReadOnly Property ESubpackages As IOrderedSetExpression(Of IEPackage)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eSubpackages")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      <XmlOpposite("eSuperPackage")>
+
+      ReadOnly Property ESubpackages As IOrderedSetExpression(Of IEPackage)
   overload: NMF.Interop.Ecore.IEPackage.ESubpackages*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eSubpackages
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eSuperPackage
 - uid: NMF.Interop.Ecore.IEPackage.ESuperPackage
   commentId: P:NMF.Interop.Ecore.IEPackage.ESuperPackage
   id: ESuperPackage
@@ -277,48 +458,116 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ESuperPackage
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 87
+    startLine: 116
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eSuperPackage property
   example: []
   syntax:
-    content: IEPackage ESuperPackage { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eSuperPackage")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("eSubpackages")]
+
+      IEPackage ESuperPackage { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEPackage
-    content.vb: Property ESuperPackage As IEPackage
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eSuperPackage")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("eSubpackages")>
+
+      Property ESuperPackage As IEPackage
   overload: NMF.Interop.Ecore.IEPackage.ESuperPackage*
-- uid: NMF.Interop.Ecore.IEPackage.NsURIChanging
-  commentId: E:NMF.Interop.Ecore.IEPackage.NsURIChanging
-  id: NsURIChanging
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eSuperPackage
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eSubpackages
+- uid: NMF.Interop.Ecore.IEPackage.GetEClassifierCalling
+  commentId: E:NMF.Interop.Ecore.IEPackage.GetEClassifierCalling
+  id: GetEClassifierCalling
   parent: NMF.Interop.Ecore.IEPackage
   langs:
   - csharp
   - vb
-  name: NsURIChanging
-  nameWithType: IEPackage.NsURIChanging
-  fullName: NMF.Interop.Ecore.IEPackage.NsURIChanging
+  name: GetEClassifierCalling
+  nameWithType: IEPackage.GetEClassifierCalling
+  fullName: NMF.Interop.Ecore.IEPackage.GetEClassifierCalling
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEPackage.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: NsURIChanging
+    id: GetEClassifierCalling
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 96
+    startLine: 130
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the NsURI property changes its value
+  summary: Gets fired before the operation getEClassifier gets called
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> NsURIChanging
+    content: event EventHandler<OperationCallEventArgs> GetEClassifierCalling
     return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event NsURIChanging As EventHandler(Of ValueChangedEventArgs)
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEClassifierCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEPackage.GetEClassifierCalled
+  commentId: E:NMF.Interop.Ecore.IEPackage.GetEClassifierCalled
+  id: GetEClassifierCalled
+  parent: NMF.Interop.Ecore.IEPackage
+  langs:
+  - csharp
+  - vb
+  name: GetEClassifierCalled
+  nameWithType: IEPackage.GetEClassifierCalled
+  fullName: NMF.Interop.Ecore.IEPackage.GetEClassifierCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEPackage.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEClassifierCalled
+    path: src/Interop/EcoreInterop/Model/IEPackage.cs
+    startLine: 135
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getEClassifier got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEClassifierCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEClassifierCalled As EventHandler(Of OperationCallEventArgs)
 - uid: NMF.Interop.Ecore.IEPackage.NsURIChanged
   commentId: E:NMF.Interop.Ecore.IEPackage.NsURIChanged
   id: NsURIChanged
@@ -337,7 +586,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NsURIChanged
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 101
+    startLine: 140
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -348,35 +597,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event NsURIChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEPackage.NsPrefixChanging
-  commentId: E:NMF.Interop.Ecore.IEPackage.NsPrefixChanging
-  id: NsPrefixChanging
+- uid: NMF.Interop.Ecore.IEPackage.NsURIChanging
+  commentId: E:NMF.Interop.Ecore.IEPackage.NsURIChanging
+  id: NsURIChanging
   parent: NMF.Interop.Ecore.IEPackage
   langs:
   - csharp
   - vb
-  name: NsPrefixChanging
-  nameWithType: IEPackage.NsPrefixChanging
-  fullName: NMF.Interop.Ecore.IEPackage.NsPrefixChanging
+  name: NsURIChanging
+  nameWithType: IEPackage.NsURIChanging
+  fullName: NMF.Interop.Ecore.IEPackage.NsURIChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEPackage.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: NsPrefixChanging
+    id: NsURIChanging
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 106
+    startLine: 145
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the NsPrefix property changes its value
+  summary: Gets fired before the NsURI property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> NsPrefixChanging
+    content: event EventHandler<ValueChangedEventArgs> NsURIChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event NsPrefixChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event NsURIChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEPackage.NsPrefixChanged
   commentId: E:NMF.Interop.Ecore.IEPackage.NsPrefixChanged
   id: NsPrefixChanged
@@ -395,7 +644,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NsPrefixChanged
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 111
+    startLine: 150
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -406,6 +655,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event NsPrefixChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEPackage.NsPrefixChanging
+  commentId: E:NMF.Interop.Ecore.IEPackage.NsPrefixChanging
+  id: NsPrefixChanging
+  parent: NMF.Interop.Ecore.IEPackage
+  langs:
+  - csharp
+  - vb
+  name: NsPrefixChanging
+  nameWithType: IEPackage.NsPrefixChanging
+  fullName: NMF.Interop.Ecore.IEPackage.NsPrefixChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEPackage.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: NsPrefixChanging
+    path: src/Interop/EcoreInterop/Model/IEPackage.cs
+    startLine: 155
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the NsPrefix property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> NsPrefixChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event NsPrefixChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEPackage.EFactoryInstanceChanging
   commentId: E:NMF.Interop.Ecore.IEPackage.EFactoryInstanceChanging
   id: EFactoryInstanceChanging
@@ -424,7 +702,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EFactoryInstanceChanging
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 116
+    startLine: 160
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -453,7 +731,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EFactoryInstanceChanged
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 121
+    startLine: 165
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -482,7 +760,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ESuperPackageChanging
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 126
+    startLine: 170
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -511,7 +789,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ESuperPackageChanged
     path: src/Interop/EcoreInterop/Model/IEPackage.cs
-    startLine: 131
+    startLine: 175
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -522,6 +800,43 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event ESuperPackageChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEPackage.GetEClassifier(System.String)
+  commentId: M:NMF.Interop.Ecore.IEPackage.GetEClassifier(System.String)
+  id: GetEClassifier(System.String)
+  parent: NMF.Interop.Ecore.IEPackage
+  langs:
+  - csharp
+  - vb
+  name: GetEClassifier(string)
+  nameWithType: IEPackage.GetEClassifier(string)
+  fullName: NMF.Interop.Ecore.IEPackage.GetEClassifier(string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEPackage.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEClassifier
+    path: src/Interop/EcoreInterop/Model/IEPackage.cs
+    startLine: 181
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: IEClassifier GetEClassifier(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: ''
+    return:
+      type: NMF.Interop.Ecore.IEClassifier
+    content.vb: Function GetEClassifier(name As String) As IEClassifier
+  overload: NMF.Interop.Ecore.IEPackage.GetEClassifier*
+  nameWithType.vb: IEPackage.GetEClassifier(String)
+  fullName.vb: NMF.Interop.Ecore.IEPackage.GetEClassifier(String)
+  name.vb: GetEClassifier(String)
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -560,13 +875,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -574,6 +882,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -581,6 +896,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement
@@ -1401,6 +1761,65 @@ references:
   name: IEPackage
   nameWithType: IEPackage
   fullName: NMF.Interop.Ecore.IEPackage
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -1432,31 +1851,16 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
+- uid: NMF.Interop.Ecore.IEPackage.GetEClassifier*
+  commentId: Overload:NMF.Interop.Ecore.IEPackage.GetEClassifier
+  href: NMF.Interop.Ecore.IEPackage.html#NMF_Interop_Ecore_IEPackage_GetEClassifier_System_String_
+  name: GetEClassifier
+  nameWithType: IEPackage.GetEClassifier
+  fullName: NMF.Interop.Ecore.IEPackage.GetEClassifier
+- uid: NMF.Interop.Ecore.IEClassifier
+  commentId: T:NMF.Interop.Ecore.IEClassifier
+  parent: NMF.Interop.Ecore
+  href: NMF.Interop.Ecore.IEClassifier.html
+  name: IEClassifier
+  nameWithType: IEClassifier
+  fullName: NMF.Interop.Ecore.IEClassifier

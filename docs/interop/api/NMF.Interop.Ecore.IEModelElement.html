@@ -85,7 +85,7 @@
 
 
   <h1 id="NMF_Interop_Ecore_IEModelElement" data-uid="NMF.Interop.Ecore.IEModelElement" class="text-break">
-Interface IEModelElement  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Interface IEModelElement  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -100,6 +100,7 @@ Interface IEModelElement  <a class="header-action link-secondary" title="View so
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[DefaultImplementationType(typeof(EModelElement))]
 [XmlDefaultImplementationType(typeof(EModelElement))]
+[ModelRepresentationClass(&quot;http://www.eclipse.org/emf/2002/Ecore#//EModelElement&quot;)]
 public interface IEModelElement : IModelElement, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
@@ -235,7 +236,7 @@ public interface IEModelElement : IModelElement, INotifyPropertyChanged, INotify
 
   <h3 id="NMF_Interop_Ecore_IEModelElement_EAnnotations" data-uid="NMF.Interop.Ecore.IEModelElement.EAnnotations">
   EAnnotations
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eAnnotations property</p>
@@ -243,7 +244,12 @@ public interface IEModelElement : IModelElement, INotifyPropertyChanged, INotify
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IOrderedSetExpression&lt;IEAnnotation&gt; EAnnotations { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Browsable(false)]
+[XmlElementName(&quot;eAnnotations&quot;)]
+[XmlAttribute(false)]
+[Containment]
+[XmlOpposite(&quot;eModelElement&quot;)]
+IOrderedSetExpression&lt;IEAnnotation&gt; EAnnotations { get; }</code></pre>
   </div>
 
 
@@ -263,11 +269,117 @@ public interface IEModelElement : IModelElement, INotifyPropertyChanged, INotify
 
 
 
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="NMF_Interop_Ecore_IEModelElement_GetEAnnotation_" data-uid="NMF.Interop.Ecore.IEModelElement.GetEAnnotation*"></a>
+
+  <h3 id="NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_" data-uid="NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)">
+  GetEAnnotation(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEAnnotation GetEAnnotation(string source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NMF.Interop.Ecore.IEAnnotation.html">IEAnnotation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled" data-uid="NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled">
+  GetEAnnotationCalled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired after the operation getEAnnotation got called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; GetEAnnotationCalled</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling" data-uid="NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling">
+  GetEAnnotationCalling
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired before the operation getEAnnotation gets called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; GetEAnnotationCalling</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEModelElement.cs/#L38" class="edit-link">Edit this page</a>
         </div>
 
 

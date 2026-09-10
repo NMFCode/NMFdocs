@@ -25,7 +25,7 @@ items:
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
-  summary: Denotes a collection type for extensions of model elements
+  summary: Denotes a class to implement the Extensions reference
   example: []
   syntax:
     content: 'public class ModelElementExtensionsCollection : ObservableOppositeList<IModelElement, IModelElementExtension>, IReadOnlyList<IModelElementExtension>, IReadOnlyCollection<IModelElementExtension>, IList, ICollection, INotifyCollectionChanging, INotifyPropertyChanged, INotifyCollectionChanged, IListExpression<IModelElementExtension>, IList<IModelElementExtension>, ICollectionExpression<IModelElementExtension>, IEnumerableExpression<IModelElementExtension>, IEnumerableExpression, ICollection<IModelElementExtension>, IEnumerable<IModelElementExtension>, IEnumerable'
@@ -120,7 +120,7 @@ items:
     parameters:
     - id: parent
       type: NMF.Models.IModelElement
-      description: the parent element
+      description: the parent ModelElement
     content.vb: Public Sub New(parent As IModelElement)
   overload: NMF.Models.Meta.ModelElementExtensionsCollection.#ctor*
   nameWithType.vb: ModelElementExtensionsCollection.New(IModelElement)
@@ -144,21 +144,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetOpposite
     path: src/Models/Models/Meta/ModelElementExtensionsCollection.cs
-    startLine: 58
+    startLine: 62
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
-  summary: Sets the opposite element
+  summary: Sets the opposite of the given item
   example: []
   syntax:
-    content: protected override void SetOpposite(IModelElementExtension item, IModelElement parent)
+    content: protected override void SetOpposite(IModelElementExtension item, IModelElement newParent)
     parameters:
     - id: item
       type: NMF.Models.IModelElementExtension
-      description: The item for which the opposite should be set
-    - id: parent
+      description: the item
+    - id: newParent
       type: NMF.Models.IModelElement
-    content.vb: Protected Overrides Sub SetOpposite(item As IModelElementExtension, parent As IModelElement)
+      description: the new parent or null, if the item is removed from the collection
+    content.vb: Protected Overrides Sub SetOpposite(item As IModelElementExtension, newParent As IModelElement)
   overridden: NMF.Collections.ObjectModel.ObservableOppositeList{NMF.Models.IModelElement,NMF.Models.IModelElementExtension}.SetOpposite(NMF.Models.IModelElementExtension,NMF.Models.IModelElement)
   overload: NMF.Models.Meta.ModelElementExtensionsCollection.SetOpposite*
 references:

@@ -8,6 +8,7 @@ items:
   - NMF.Interop.Ecore.EDataType.ClassInstance
   - NMF.Interop.Ecore.EDataType.GetAttributeValue(System.String,System.Int32)
   - NMF.Interop.Ecore.EDataType.GetClass
+  - NMF.Interop.Ecore.EDataType.GetExpressionForAttribute(System.String)
   - NMF.Interop.Ecore.EDataType.OnSerializableChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EDataType.Serializable
@@ -28,7 +29,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EDataType
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -40,7 +41,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EDataType/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EDataType")]
 
       public class EDataType : EClassifier, IEDataType, IEClassifier, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -48,7 +49,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EDataType/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EDataType")>
 
       Public Class EDataType Inherits EClassifier Implements IEDataType, IEClassifier, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -74,16 +75,26 @@ items:
   - NMF.Interop.Ecore.EClassifier.ETypeParameters
   - NMF.Interop.Ecore.EClassifier.Children
   - NMF.Interop.Ecore.EClassifier.ReferencedElements
-  - NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
+  - NMF.Interop.Ecore.EClassifier.IsInstanceCalling
+  - NMF.Interop.Ecore.EClassifier.IsInstanceCalled
+  - NMF.Interop.Ecore.EClassifier.GetClassifierIDCalling
+  - NMF.Interop.Ecore.EClassifier.GetClassifierIDCalled
   - NMF.Interop.Ecore.EClassifier.InstanceClassNameChanged
-  - NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
+  - NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
   - NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanged
+  - NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
   - NMF.Interop.Ecore.EClassifier.EPackageChanging
   - NMF.Interop.Ecore.EClassifier.EPackageChanged
-  - NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.EClassifier.IsInstance(System.Object)
+  - NMF.Interop.Ecore.EClassifier.OnIsInstanceCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EClassifier.OnIsInstanceCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EClassifier.GetClassifierID
+  - NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EClassifier.OnEPackageChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EClassifier.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Interop.Ecore.EClassifier.OnEPackageChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -91,16 +102,21 @@ items:
   - NMF.Interop.Ecore.EClassifier.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   - NMF.Interop.Ecore.EClassifier.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Ecore.EClassifier.GetCollectionForFeature(System.String)
-  - NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
   - NMF.Interop.Ecore.EClassifier.GetExpressionForReference(System.String)
+  - NMF.Interop.Ecore.EClassifier.GetCompositionName(System.Object)
   - NMF.Interop.Ecore.ENamedElement.Name
   - NMF.Interop.Ecore.ENamedElement.IsIdentified
-  - NMF.Interop.Ecore.ENamedElement.NameChanging
   - NMF.Interop.Ecore.ENamedElement.NameChanged
-  - NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ENamedElement.NameChanging
   - NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ENamedElement.ToIdentifierString
   - NMF.Interop.Ecore.EModelElement.EAnnotations
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
   - NMF.Models.ModelElement.Lock
@@ -119,6 +135,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.ToString
   - NMF.Models.ModelElement.IdentifierString
   - NMF.Models.ModelElement.ClassName
@@ -127,7 +144,6 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   - NMF.Models.ModelElement.Extensions
@@ -174,7 +190,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//EDataType/
+      value: http://www.eclipse.org/emf/2002/Ecore#//EDataType
 - uid: NMF.Interop.Ecore.EDataType.Serializable
   commentId: P:NMF.Interop.Ecore.EDataType.Serializable
   id: Serializable
@@ -193,7 +209,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Serializable
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 53
+    startLine: 57
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -205,7 +221,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual bool? Serializable { get; set; }
+      public bool? Serializable { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
@@ -214,7 +230,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Serializable As Boolean?
+      Public Property Serializable As Boolean?
   overload: NMF.Interop.Ecore.EDataType.Serializable*
   implements:
   - NMF.Interop.Ecore.IEDataType.Serializable
@@ -247,7 +263,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 80
+    startLine: 86
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -260,37 +276,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Ecore.EDataType.ClassInstance*
-- uid: NMF.Interop.Ecore.EDataType.SerializableChanging
-  commentId: E:NMF.Interop.Ecore.EDataType.SerializableChanging
-  id: SerializableChanging
-  parent: NMF.Interop.Ecore.EDataType
-  langs:
-  - csharp
-  - vb
-  name: SerializableChanging
-  nameWithType: EDataType.SerializableChanging
-  fullName: NMF.Interop.Ecore.EDataType.SerializableChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/EDataType.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SerializableChanging
-    path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 95
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Serializable property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> SerializableChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event SerializableChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Interop.Ecore.IEDataType.SerializableChanging
 - uid: NMF.Interop.Ecore.EDataType.SerializableChanged
   commentId: E:NMF.Interop.Ecore.EDataType.SerializableChanged
   id: SerializableChanged
@@ -309,7 +294,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SerializableChanged
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 100
+    startLine: 101
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -322,38 +307,37 @@ items:
     content.vb: Public Event SerializableChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IEDataType.SerializableChanged
-- uid: NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.EDataType.SerializableChanging
+  commentId: E:NMF.Interop.Ecore.EDataType.SerializableChanging
+  id: SerializableChanging
   parent: NMF.Interop.Ecore.EDataType
   langs:
   - csharp
   - vb
-  name: OnSerializableChanging(ValueChangedEventArgs)
-  nameWithType: EDataType.OnSerializableChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
+  name: SerializableChanging
+  nameWithType: EDataType.SerializableChanging
+  fullName: NMF.Interop.Ecore.EDataType.SerializableChanging
+  type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/EDataType.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnSerializableChanging
+    id: SerializableChanging
     path: src/Interop/EcoreInterop/Model/EDataType.cs
     startLine: 106
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the SerializableChanging event
+  summary: Gets fired before the Serializable property changes its value
   example: []
   syntax:
-    content: protected virtual void OnSerializableChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnSerializableChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.EDataType.OnSerializableChanging*
+    content: public event EventHandler<ValueChangedEventArgs> SerializableChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event SerializableChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEDataType.SerializableChanging
 - uid: NMF.Interop.Ecore.EDataType.OnSerializableChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.EDataType.OnSerializableChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnSerializableChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -372,7 +356,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnSerializableChanged
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 119
+    startLine: 117
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -386,6 +370,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnSerializableChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.EDataType.OnSerializableChanged*
+- uid: NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.EDataType
+  langs:
+  - csharp
+  - vb
+  name: OnSerializableChanging(ValueChangedEventArgs)
+  nameWithType: EDataType.OnSerializableChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.EDataType.OnSerializableChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EDataType.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnSerializableChanging
+    path: src/Interop/EcoreInterop/Model/EDataType.cs
+    startLine: 130
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the SerializableChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnSerializableChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnSerializableChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.EDataType.OnSerializableChanging*
 - uid: NMF.Interop.Ecore.EDataType.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Interop.Ecore.EDataType.GetAttributeValue(System.String,System.Int32)
   id: GetAttributeValue(System.String,System.Int32)
@@ -404,7 +420,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 134
+    startLine: 145
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -446,7 +462,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 148
+    startLine: 159
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -467,6 +483,45 @@ items:
   nameWithType.vb: EDataType.SetFeature(String, Object)
   fullName.vb: NMF.Interop.Ecore.EDataType.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
+- uid: NMF.Interop.Ecore.EDataType.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Interop.Ecore.EDataType.GetExpressionForAttribute(System.String)
+  id: GetExpressionForAttribute(System.String)
+  parent: NMF.Interop.Ecore.EDataType
+  langs:
+  - csharp
+  - vb
+  name: GetExpressionForAttribute(string)
+  nameWithType: EDataType.GetExpressionForAttribute(string)
+  fullName: NMF.Interop.Ecore.EDataType.GetExpressionForAttribute(string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EDataType.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetExpressionForAttribute
+    path: src/Interop/EcoreInterop/Model/EDataType.cs
+    startLine: 174
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets the property expression for the given attribute
+  example: []
+  syntax:
+    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
+    parameters:
+    - id: attribute
+      type: System.String
+      description: The requested attribute in upper case
+    return:
+      type: NMF.Expressions.INotifyExpression{System.Object}
+      description: An incremental property expression
+    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
+  overridden: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
+  overload: NMF.Interop.Ecore.EDataType.GetExpressionForAttribute*
+  nameWithType.vb: EDataType.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Interop.Ecore.EDataType.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Interop.Ecore.EDataType.GetClass
   commentId: M:NMF.Interop.Ecore.EDataType.GetClass
   id: GetClass
@@ -485,7 +540,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/EDataType.cs
-    startLine: 161
+    startLine: 186
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -661,13 +716,34 @@ references:
   name: ReferencedElements
   nameWithType: EClassifier.ReferencedElements
   fullName: NMF.Interop.Ecore.EClassifier.ReferencedElements
-- uid: NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
-  commentId: E:NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
+- uid: NMF.Interop.Ecore.EClassifier.IsInstanceCalling
+  commentId: E:NMF.Interop.Ecore.EClassifier.IsInstanceCalling
   parent: NMF.Interop.Ecore.EClassifier
-  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_InstanceClassNameChanging
-  name: InstanceClassNameChanging
-  nameWithType: EClassifier.InstanceClassNameChanging
-  fullName: NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_IsInstanceCalling
+  name: IsInstanceCalling
+  nameWithType: EClassifier.IsInstanceCalling
+  fullName: NMF.Interop.Ecore.EClassifier.IsInstanceCalling
+- uid: NMF.Interop.Ecore.EClassifier.IsInstanceCalled
+  commentId: E:NMF.Interop.Ecore.EClassifier.IsInstanceCalled
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_IsInstanceCalled
+  name: IsInstanceCalled
+  nameWithType: EClassifier.IsInstanceCalled
+  fullName: NMF.Interop.Ecore.EClassifier.IsInstanceCalled
+- uid: NMF.Interop.Ecore.EClassifier.GetClassifierIDCalling
+  commentId: E:NMF.Interop.Ecore.EClassifier.GetClassifierIDCalling
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetClassifierIDCalling
+  name: GetClassifierIDCalling
+  nameWithType: EClassifier.GetClassifierIDCalling
+  fullName: NMF.Interop.Ecore.EClassifier.GetClassifierIDCalling
+- uid: NMF.Interop.Ecore.EClassifier.GetClassifierIDCalled
+  commentId: E:NMF.Interop.Ecore.EClassifier.GetClassifierIDCalled
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetClassifierIDCalled
+  name: GetClassifierIDCalled
+  nameWithType: EClassifier.GetClassifierIDCalled
+  fullName: NMF.Interop.Ecore.EClassifier.GetClassifierIDCalled
 - uid: NMF.Interop.Ecore.EClassifier.InstanceClassNameChanged
   commentId: E:NMF.Interop.Ecore.EClassifier.InstanceClassNameChanged
   parent: NMF.Interop.Ecore.EClassifier
@@ -675,13 +751,13 @@ references:
   name: InstanceClassNameChanged
   nameWithType: EClassifier.InstanceClassNameChanged
   fullName: NMF.Interop.Ecore.EClassifier.InstanceClassNameChanged
-- uid: NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
-  commentId: E:NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
+- uid: NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
+  commentId: E:NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
   parent: NMF.Interop.Ecore.EClassifier
-  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_InstanceTypeNameChanging
-  name: InstanceTypeNameChanging
-  nameWithType: EClassifier.InstanceTypeNameChanging
-  fullName: NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_InstanceClassNameChanging
+  name: InstanceClassNameChanging
+  nameWithType: EClassifier.InstanceClassNameChanging
+  fullName: NMF.Interop.Ecore.EClassifier.InstanceClassNameChanging
 - uid: NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanged
   commentId: E:NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanged
   parent: NMF.Interop.Ecore.EClassifier
@@ -689,6 +765,13 @@ references:
   name: InstanceTypeNameChanged
   nameWithType: EClassifier.InstanceTypeNameChanged
   fullName: NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanged
+- uid: NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
+  commentId: E:NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_InstanceTypeNameChanging
+  name: InstanceTypeNameChanging
+  nameWithType: EClassifier.InstanceTypeNameChanging
+  fullName: NMF.Interop.Ecore.EClassifier.InstanceTypeNameChanging
 - uid: NMF.Interop.Ecore.EClassifier.EPackageChanging
   commentId: E:NMF.Interop.Ecore.EClassifier.EPackageChanging
   parent: NMF.Interop.Ecore.EClassifier
@@ -703,28 +786,147 @@ references:
   name: EPackageChanged
   nameWithType: EClassifier.EPackageChanged
   fullName: NMF.Interop.Ecore.EClassifier.EPackageChanged
-- uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.EClassifier.IsInstance(System.Object)
+  commentId: M:NMF.Interop.Ecore.EClassifier.IsInstance(System.Object)
   parent: NMF.Interop.Ecore.EClassifier
-  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceClassNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnInstanceClassNameChanging(ValueChangedEventArgs)
-  nameWithType: EClassifier.OnInstanceClassNameChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  isExternal: true
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_IsInstance_System_Object_
+  name: IsInstance(object)
+  nameWithType: EClassifier.IsInstance(object)
+  fullName: NMF.Interop.Ecore.EClassifier.IsInstance(object)
+  nameWithType.vb: EClassifier.IsInstance(Object)
+  fullName.vb: NMF.Interop.Ecore.EClassifier.IsInstance(Object)
+  name.vb: IsInstance(Object)
   spec.csharp:
-  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnInstanceClassNameChanging
-    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceClassNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.EClassifier.IsInstance(System.Object)
+    name: IsInstance
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_IsInstance_System_Object_
   - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
   spec.vb:
-  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnInstanceClassNameChanging
-    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceClassNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.EClassifier.IsInstance(System.Object)
+    name: IsInstance
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_IsInstance_System_Object_
   - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EClassifier.OnIsInstanceCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnIsInstanceCalling_NMF_Models_OperationCallEventArgs_
+  name: OnIsInstanceCalling(OperationCallEventArgs)
+  nameWithType: EClassifier.OnIsInstanceCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalling(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceCalling
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnIsInstanceCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalling(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceCalling
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnIsInstanceCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EClassifier.OnIsInstanceCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnIsInstanceCalled_NMF_Models_OperationCallEventArgs_
+  name: OnIsInstanceCalled(OperationCallEventArgs)
+  nameWithType: EClassifier.OnIsInstanceCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalled(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceCalled
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnIsInstanceCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.OnIsInstanceCalled(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceCalled
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnIsInstanceCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EClassifier.GetClassifierID
+  commentId: M:NMF.Interop.Ecore.EClassifier.GetClassifierID
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetClassifierID
+  name: GetClassifierID()
+  nameWithType: EClassifier.GetClassifierID()
+  fullName: NMF.Interop.Ecore.EClassifier.GetClassifierID()
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.GetClassifierID
+    name: GetClassifierID
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetClassifierID
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.GetClassifierID
+    name: GetClassifierID
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetClassifierID
+  - name: (
+  - name: )
+- uid: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnGetClassifierIDCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetClassifierIDCalling(OperationCallEventArgs)
+  nameWithType: EClassifier.OnGetClassifierIDCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetClassifierIDCalling
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnGetClassifierIDCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetClassifierIDCalling
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnGetClassifierIDCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnGetClassifierIDCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetClassifierIDCalled(OperationCallEventArgs)
+  nameWithType: EClassifier.OnGetClassifierIDCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetClassifierIDCalled
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnGetClassifierIDCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.OnGetClassifierIDCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetClassifierIDCalled
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnGetClassifierIDCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -749,25 +951,25 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.EClassifier
-  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnInstanceTypeNameChanging(ValueChangedEventArgs)
-  nameWithType: EClassifier.OnInstanceTypeNameChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceClassNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnInstanceClassNameChanging(ValueChangedEventArgs)
+  nameWithType: EClassifier.OnInstanceClassNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
   spec.csharp:
-  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnInstanceTypeNameChanging
-    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnInstanceClassNameChanging
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceClassNameChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
   spec.vb:
-  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnInstanceTypeNameChanging
-    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceClassNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnInstanceClassNameChanging
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceClassNameChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -791,6 +993,29 @@ references:
   - uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnInstanceTypeNameChanged
     href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanged_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.EClassifier
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnInstanceTypeNameChanging(ValueChangedEventArgs)
+  nameWithType: EClassifier.OnInstanceTypeNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnInstanceTypeNameChanging
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.OnInstanceTypeNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnInstanceTypeNameChanging
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_OnInstanceTypeNameChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1000,37 +1225,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-- uid: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
-  parent: NMF.Interop.Ecore.EClassifier
-  isExternal: true
-  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetExpressionForAttribute_System_String_
-  name: GetExpressionForAttribute(string)
-  nameWithType: EClassifier.GetExpressionForAttribute(string)
-  fullName: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(string)
-  nameWithType.vb: EClassifier.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetExpressionForAttribute_System_String_
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetExpressionForAttribute_System_String_
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
 - uid: NMF.Interop.Ecore.EClassifier.GetExpressionForReference(System.String)
   commentId: M:NMF.Interop.Ecore.EClassifier.GetExpressionForReference(System.String)
   parent: NMF.Interop.Ecore.EClassifier
@@ -1062,6 +1256,37 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
+- uid: NMF.Interop.Ecore.EClassifier.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EClassifier.GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EClassifier
+  isExternal: true
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetCompositionName_System_Object_
+  name: GetCompositionName(object)
+  nameWithType: EClassifier.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EClassifier.GetCompositionName(object)
+  nameWithType.vb: EClassifier.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EClassifier.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
 - uid: NMF.Interop.Ecore.ENamedElement.Name
   commentId: P:NMF.Interop.Ecore.ENamedElement.Name
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1076,13 +1301,6 @@ references:
   name: IsIdentified
   nameWithType: ENamedElement.IsIdentified
   fullName: NMF.Interop.Ecore.ENamedElement.IsIdentified
-- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.ENamedElement
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: ENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanged
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1090,29 +1308,13 @@ references:
   name: NameChanged
   nameWithType: ENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.ENamedElement.NameChanged
-- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
   parent: NMF.Interop.Ecore.ENamedElement
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNameChanging(ValueChangedEventArgs)
-  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnNameChanging
-    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnNameChanging
-    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: ENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1132,6 +1334,29 @@ references:
   - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnNameChanged
     href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanged_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.ENamedElement
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanging(ValueChangedEventArgs)
+  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnNameChanging
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnNameChanging
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1162,6 +1387,97 @@ references:
   name: EAnnotations
   nameWithType: EModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.EModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: EModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: EModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: EModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotation(string)
+  nameWithType.vb: EModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalling(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalled(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Models.ModelElement.Model
   commentId: P:NMF.Models.ModelElement.Model
   parent: NMF.Models.ModelElement
@@ -1479,6 +1795,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.ToString
   commentId: M:NMF.Models.ModelElement.ToString
   parent: NMF.Models.ModelElement
@@ -1621,35 +1943,6 @@ references:
   - name: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-  - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
@@ -2640,13 +2933,13 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
-- uid: NMF.Interop.Ecore.IEDataType.SerializableChanging
-  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanging
+- uid: NMF.Interop.Ecore.IEDataType.SerializableChanged
+  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanged
   parent: NMF.Interop.Ecore.IEDataType
-  href: NMF.Interop.Ecore.IEDataType.html#NMF_Interop_Ecore_IEDataType_SerializableChanging
-  name: SerializableChanging
-  nameWithType: IEDataType.SerializableChanging
-  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanging
+  href: NMF.Interop.Ecore.IEDataType.html#NMF_Interop_Ecore_IEDataType_SerializableChanged
+  name: SerializableChanged
+  nameWithType: IEDataType.SerializableChanged
+  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -2706,19 +2999,19 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.IEDataType.SerializableChanged
-  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanged
+- uid: NMF.Interop.Ecore.IEDataType.SerializableChanging
+  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanging
   parent: NMF.Interop.Ecore.IEDataType
-  href: NMF.Interop.Ecore.IEDataType.html#NMF_Interop_Ecore_IEDataType_SerializableChanged
-  name: SerializableChanged
-  nameWithType: IEDataType.SerializableChanged
-  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanged
-- uid: NMF.Interop.Ecore.EDataType.OnSerializableChanging*
-  commentId: Overload:NMF.Interop.Ecore.EDataType.OnSerializableChanging
-  href: NMF.Interop.Ecore.EDataType.html#NMF_Interop_Ecore_EDataType_OnSerializableChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSerializableChanging
-  nameWithType: EDataType.OnSerializableChanging
-  fullName: NMF.Interop.Ecore.EDataType.OnSerializableChanging
+  href: NMF.Interop.Ecore.IEDataType.html#NMF_Interop_Ecore_IEDataType_SerializableChanging
+  name: SerializableChanging
+  nameWithType: IEDataType.SerializableChanging
+  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanging
+- uid: NMF.Interop.Ecore.EDataType.OnSerializableChanged*
+  commentId: Overload:NMF.Interop.Ecore.EDataType.OnSerializableChanged
+  href: NMF.Interop.Ecore.EDataType.html#NMF_Interop_Ecore_EDataType_OnSerializableChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnSerializableChanged
+  nameWithType: EDataType.OnSerializableChanged
+  fullName: NMF.Interop.Ecore.EDataType.OnSerializableChanged
 - uid: NMF.Expressions.ValueChangedEventArgs
   commentId: T:NMF.Expressions.ValueChangedEventArgs
   parent: NMF.Expressions
@@ -2742,12 +3035,12 @@ references:
   - name: .
   - uid: NMF.Expressions
     name: Expressions
-- uid: NMF.Interop.Ecore.EDataType.OnSerializableChanged*
-  commentId: Overload:NMF.Interop.Ecore.EDataType.OnSerializableChanged
-  href: NMF.Interop.Ecore.EDataType.html#NMF_Interop_Ecore_EDataType_OnSerializableChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSerializableChanged
-  nameWithType: EDataType.OnSerializableChanged
-  fullName: NMF.Interop.Ecore.EDataType.OnSerializableChanged
+- uid: NMF.Interop.Ecore.EDataType.OnSerializableChanging*
+  commentId: Overload:NMF.Interop.Ecore.EDataType.OnSerializableChanging
+  href: NMF.Interop.Ecore.EDataType.html#NMF_Interop_Ecore_EDataType_OnSerializableChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnSerializableChanging
+  nameWithType: EDataType.OnSerializableChanging
+  fullName: NMF.Interop.Ecore.EDataType.OnSerializableChanging
 - uid: NMF.Interop.Ecore.EClassifier.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Interop.Ecore.EClassifier.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Interop.Ecore.EClassifier
@@ -2868,6 +3161,96 @@ references:
   name: SetFeature
   nameWithType: EDataType.SetFeature
   fullName: NMF.Interop.Ecore.EDataType.SetFeature
+- uid: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
+  parent: NMF.Interop.Ecore.EClassifier
+  isExternal: true
+  href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetExpressionForAttribute_System_String_
+  name: GetExpressionForAttribute(string)
+  nameWithType: EClassifier.GetExpressionForAttribute(string)
+  fullName: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(string)
+  nameWithType.vb: EClassifier.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetExpressionForAttribute_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EClassifier.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+    href: NMF.Interop.Ecore.EClassifier.html#NMF_Interop_Ecore_EClassifier_GetExpressionForAttribute_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EDataType.GetExpressionForAttribute*
+  commentId: Overload:NMF.Interop.Ecore.EDataType.GetExpressionForAttribute
+  href: NMF.Interop.Ecore.EDataType.html#NMF_Interop_Ecore_EDataType_GetExpressionForAttribute_System_String_
+  name: GetExpressionForAttribute
+  nameWithType: EDataType.GetExpressionForAttribute
+  fullName: NMF.Interop.Ecore.EDataType.GetExpressionForAttribute
+- uid: NMF.Expressions.INotifyExpression{System.Object}
+  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyExpression`1
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: INotifyExpression<object>
+  nameWithType: INotifyExpression<object>
+  fullName: NMF.Expressions.INotifyExpression<object>
+  nameWithType.vb: INotifyExpression(Of Object)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
+  name.vb: INotifyExpression(Of Object)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: NMF.Interop.Ecore.EClassifier.GetClass
   commentId: M:NMF.Interop.Ecore.EClassifier.GetClass
   parent: NMF.Interop.Ecore.EClassifier

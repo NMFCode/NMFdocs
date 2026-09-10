@@ -21,11 +21,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackageEClassifiersCollection
     path: src/Interop/EcoreInterop/Model/EPackageEClassifiersCollection.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Denotes a collection type for classifiers of packages
+  summary: Denotes a class to implement the eClassifiers reference
   example: []
   syntax:
     content: 'public class EPackageEClassifiersCollection : ObservableOppositeOrderedSet<IEPackage, IEClassifier>, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<IEClassifier>, IListExpression<IEClassifier>, ISetExpression<IEClassifier>, ICollectionExpression<IEClassifier>, IEnumerableExpression<IEClassifier>, IOrderedSet<IEClassifier>, IList<IEClassifier>, ISet<IEClassifier>, ICollection<IEClassifier>, IEnumerable<IEClassifier>, ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable'
@@ -127,7 +127,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EPackageEClassifiersCollection.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -138,7 +138,7 @@ items:
     parameters:
     - id: parent
       type: NMF.Interop.Ecore.IEPackage
-      description: the parent element
+      description: the parent EPackage
     content.vb: Public Sub New(parent As IEPackage)
   overload: NMF.Interop.Ecore.EPackageEClassifiersCollection.#ctor*
   nameWithType.vb: EPackageEClassifiersCollection.New(IEPackage)
@@ -162,21 +162,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetOpposite
     path: src/Interop/EcoreInterop/Model/EPackageEClassifiersCollection.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Sets the opposite value
+  summary: Sets the opposite of the given item
   example: []
   syntax:
-    content: protected override void SetOpposite(IEClassifier item, IEPackage parent)
+    content: protected override void SetOpposite(IEClassifier item, IEPackage newParent)
     parameters:
     - id: item
       type: NMF.Interop.Ecore.IEClassifier
-      description: The item to set the opposite
-    - id: parent
+      description: the item
+    - id: newParent
       type: NMF.Interop.Ecore.IEPackage
-    content.vb: Protected Overrides Sub SetOpposite(item As IEClassifier, parent As IEPackage)
+      description: the new parent or null, if the item is removed from the collection
+    content.vb: Protected Overrides Sub SetOpposite(item As IEClassifier, newParent As IEPackage)
   overridden: NMF.Collections.ObjectModel.ObservableOppositeOrderedSet{NMF.Interop.Ecore.IEPackage,NMF.Interop.Ecore.IEClassifier}.SetOpposite(NMF.Interop.Ecore.IEClassifier,NMF.Interop.Ecore.IEPackage)
   overload: NMF.Interop.Ecore.EPackageEClassifiersCollection.SetOpposite*
 references:

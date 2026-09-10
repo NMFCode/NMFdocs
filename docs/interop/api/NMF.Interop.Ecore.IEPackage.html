@@ -85,7 +85,7 @@
 
 
   <h1 id="NMF_Interop_Ecore_IEPackage" data-uid="NMF.Interop.Ecore.IEPackage" class="text-break">
-Interface IEPackage  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Interface IEPackage  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -100,6 +100,7 @@ Interface IEPackage  <a class="header-action link-secondary" title="View source"
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[DefaultImplementationType(typeof(EPackage))]
 [XmlDefaultImplementationType(typeof(EPackage))]
+[ModelRepresentationClass(&quot;http://www.eclipse.org/emf/2002/Ecore#//EPackage&quot;)]
 public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
@@ -116,13 +117,22 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
       <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_Name">IENamedElement.Name</a>
     </div>
     <div>
-      <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging">IENamedElement.NameChanging</a>
-    </div>
-    <div>
       <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanged">IENamedElement.NameChanged</a>
     </div>
     <div>
+      <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging">IENamedElement.NameChanging</a>
+    </div>
+    <div>
       <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_EAnnotations">IEModelElement.EAnnotations</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling">IEModelElement.GetEAnnotationCalling</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled">IEModelElement.GetEAnnotationCalled</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_">IEModelElement.GetEAnnotation(string)</a>
     </div>
     <div>
       <a class="xref" href="../../models/api/NMF.Models.IModelElement.html#NMF_Models_IModelElement_Delete">IModelElement.Delete()</a>
@@ -247,7 +257,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_EClassifiers" data-uid="NMF.Interop.Ecore.IEPackage.EClassifiers">
   EClassifiers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eClassifiers property</p>
@@ -255,7 +265,12 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IOrderedSetExpression&lt;IEClassifier&gt; EClassifiers { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Browsable(false)]
+[XmlElementName(&quot;eClassifiers&quot;)]
+[XmlAttribute(false)]
+[Containment]
+[XmlOpposite(&quot;ePackage&quot;)]
+IOrderedSetExpression&lt;IEClassifier&gt; EClassifiers { get; }</code></pre>
   </div>
 
 
@@ -279,7 +294,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_EFactoryInstance" data-uid="NMF.Interop.Ecore.IEPackage.EFactoryInstance">
   EFactoryInstance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eFactoryInstance property</p>
@@ -287,7 +302,10 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEFactory EFactoryInstance { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;eFactoryInstance&quot;)]
+[XmlAttribute(true)]
+[XmlOpposite(&quot;ePackage&quot;)]
+IEFactory EFactoryInstance { get; set; }</code></pre>
   </div>
 
 
@@ -311,7 +329,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_ESubpackages" data-uid="NMF.Interop.Ecore.IEPackage.ESubpackages">
   ESubpackages
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eSubpackages property</p>
@@ -319,7 +337,12 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IOrderedSetExpression&lt;IEPackage&gt; ESubpackages { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Browsable(false)]
+[XmlElementName(&quot;eSubpackages&quot;)]
+[XmlAttribute(false)]
+[Containment]
+[XmlOpposite(&quot;eSuperPackage&quot;)]
+IOrderedSetExpression&lt;IEPackage&gt; ESubpackages { get; }</code></pre>
   </div>
 
 
@@ -343,7 +366,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_ESuperPackage" data-uid="NMF.Interop.Ecore.IEPackage.ESuperPackage">
   ESuperPackage
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eSuperPackage property</p>
@@ -351,7 +374,11 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEPackage ESuperPackage { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Browsable(false)]
+[XmlElementName(&quot;eSuperPackage&quot;)]
+[XmlAttribute(true)]
+[XmlOpposite(&quot;eSubpackages&quot;)]
+IEPackage ESuperPackage { get; set; }</code></pre>
   </div>
 
 
@@ -375,7 +402,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_NsPrefix" data-uid="NMF.Interop.Ecore.IEPackage.NsPrefix">
   NsPrefix
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The nsPrefix property</p>
@@ -383,7 +410,9 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string NsPrefix { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;nsPrefix&quot;)]
+[XmlAttribute(true)]
+string NsPrefix { get; set; }</code></pre>
   </div>
 
 
@@ -407,7 +436,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_NsURI" data-uid="NMF.Interop.Ecore.IEPackage.NsURI">
   NsURI
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The nsURI property</p>
@@ -415,7 +444,9 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string NsURI { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;nsURI&quot;)]
+[XmlAttribute(true)]
+string NsURI { get; set; }</code></pre>
   </div>
 
 
@@ -435,6 +466,46 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
 
 
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="NMF_Interop_Ecore_IEPackage_GetEClassifier_" data-uid="NMF.Interop.Ecore.IEPackage.GetEClassifier*"></a>
+
+  <h3 id="NMF_Interop_Ecore_IEPackage_GetEClassifier_System_String_" data-uid="NMF.Interop.Ecore.IEPackage.GetEClassifier(System.String)">
+  GetEClassifier(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEClassifier GetEClassifier(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NMF.Interop.Ecore.IEClassifier.html">IEClassifier</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="events">Events
 </h2>
 
@@ -442,7 +513,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_EFactoryInstanceChanged" data-uid="NMF.Interop.Ecore.IEPackage.EFactoryInstanceChanged">
   EFactoryInstanceChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the EFactoryInstance property changed its value</p>
@@ -473,7 +544,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_EFactoryInstanceChanging" data-uid="NMF.Interop.Ecore.IEPackage.EFactoryInstanceChanging">
   EFactoryInstanceChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the EFactoryInstance property changes its value</p>
@@ -504,7 +575,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_ESuperPackageChanged" data-uid="NMF.Interop.Ecore.IEPackage.ESuperPackageChanged">
   ESuperPackageChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the ESuperPackage property changed its value</p>
@@ -535,7 +606,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_ESuperPackageChanging" data-uid="NMF.Interop.Ecore.IEPackage.ESuperPackageChanging">
   ESuperPackageChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L171"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the ESuperPackage property changes its value</p>
@@ -564,9 +635,71 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
 
 
+  <h3 id="NMF_Interop_Ecore_IEPackage_GetEClassifierCalled" data-uid="NMF.Interop.Ecore.IEPackage.GetEClassifierCalled">
+  GetEClassifierCalled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired after the operation getEClassifier got called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; GetEClassifierCalled</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEPackage_GetEClassifierCalling" data-uid="NMF.Interop.Ecore.IEPackage.GetEClassifierCalling">
+  GetEClassifierCalling
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired before the operation getEClassifier gets called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; GetEClassifierCalling</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h3 id="NMF_Interop_Ecore_IEPackage_NsPrefixChanged" data-uid="NMF.Interop.Ecore.IEPackage.NsPrefixChanged">
   NsPrefixChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the NsPrefix property changed its value</p>
@@ -597,7 +730,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_NsPrefixChanging" data-uid="NMF.Interop.Ecore.IEPackage.NsPrefixChanging">
   NsPrefixChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L156"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the NsPrefix property changes its value</p>
@@ -628,7 +761,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_NsURIChanged" data-uid="NMF.Interop.Ecore.IEPackage.NsURIChanged">
   NsURIChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the NsURI property changed its value</p>
@@ -659,7 +792,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 
   <h3 id="NMF_Interop_Ecore_IEPackage_NsURIChanging" data-uid="NMF.Interop.Ecore.IEPackage.NsURIChanging">
   NsURIChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the NsURI property changes its value</p>
@@ -691,7 +824,7 @@ public interface IEPackage : IENamedElement, IEModelElement, IModelElement, INot
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEPackage.cs/#L38" class="edit-link">Edit this page</a>
         </div>
 
 

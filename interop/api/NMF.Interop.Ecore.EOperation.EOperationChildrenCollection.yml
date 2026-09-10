@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.#ctor(NMF.Interop.Ecore.EOperation)
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Clear
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Count
-  - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore
+  - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.GetEnumerator
   - NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EOperationChildrenCollection
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 510
+    startLine: 714
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 518
+    startLine: 722
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 526
+    startLine: 730
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -137,64 +138,38 @@ items:
   overload: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore
-  commentId: M:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies
+  commentId: M:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: EOperation.EOperationChildrenCollection.AttachCore()
-  fullName: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: EOperation.EOperationChildrenCollection.CreateDependencies()
+  fullName: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Interop/EcoreInterop/Model/EOperation.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 539
+    startLine: 746
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore*
-- uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore
-  commentId: M:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: EOperation.EOperationChildrenCollection.DetachCore()
-  fullName: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/EOperation.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 547
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies*
 - uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 558
+    startLine: 758
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 580
+    startLine: 780
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 592
+    startLine: 792
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 614
+    startLine: 814
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 668
+    startLine: 868
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 695
+    startLine: 895
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore*
-  commentId: Overload:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore
-  href: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.html#NMF_Interop_Ecore_EOperation_EOperationChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: EOperation.EOperationChildrenCollection.AttachCore
-  fullName: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies
+  href: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.html#NMF_Interop_Ecore_EOperation_EOperationChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: EOperation.EOperationChildrenCollection.CreateDependencies
+  fullName: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore*
-  commentId: Overload:NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore
-  href: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.html#NMF_Interop_Ecore_EOperation_EOperationChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: EOperation.EOperationChildrenCollection.DetachCore
-  fullName: NMF.Interop.Ecore.EOperation.EOperationChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

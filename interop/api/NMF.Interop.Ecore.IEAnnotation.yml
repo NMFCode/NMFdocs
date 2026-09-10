@@ -28,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEAnnotation
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -40,15 +40,24 @@ items:
 
       [XmlDefaultImplementationType(typeof(EAnnotation))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EAnnotation")]
+
       public interface IEAnnotation : IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EAnnotation))>
 
       <XmlDefaultImplementationType(GetType(EAnnotation))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EAnnotation")>
+
       Public Interface IEAnnotation Inherits IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EAnnotation
   inheritedMembers:
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -96,6 +105,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EAnnotation
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EAnnotation
 - uid: NMF.Interop.Ecore.IEAnnotation.Source
   commentId: P:NMF.Interop.Ecore.IEAnnotation.Source
   id: Source
@@ -114,19 +128,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Source
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The source property
   example: []
   syntax:
-    content: string Source { get; set; }
+    content: >-
+      [XmlElementName("source")]
+
+      [XmlAttribute(true)]
+
+      string Source { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property Source As String
+    content.vb: >-
+      <XmlElementName("source")>
+
+      <XmlAttribute(True)>
+
+      Property Source As String
   overload: NMF.Interop.Ecore.IEAnnotation.Source*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: source
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEAnnotation.Details
   commentId: P:NMF.Interop.Ecore.IEAnnotation.Details
   id: Details
@@ -145,19 +180,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Details
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 53
+    startLine: 59
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The details property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEStringToStringMapEntry> Details { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("details")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IOrderedSetExpression<IEStringToStringMapEntry> Details { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEStringToStringMapEntry}
-    content.vb: ReadOnly Property Details As IOrderedSetExpression(Of IEStringToStringMapEntry)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("details")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property Details As IOrderedSetExpression(Of IEStringToStringMapEntry)
   overload: NMF.Interop.Ecore.IEAnnotation.Details*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: details
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 - uid: NMF.Interop.Ecore.IEAnnotation.EModelElement
   commentId: P:NMF.Interop.Ecore.IEAnnotation.EModelElement
   id: EModelElement
@@ -176,19 +248,58 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EModelElement
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 61
+    startLine: 73
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eModelElement property
   example: []
   syntax:
-    content: IEModelElement EModelElement { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eModelElement")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("eAnnotations")]
+
+      IEModelElement EModelElement { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEModelElement
-    content.vb: Property EModelElement As IEModelElement
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eModelElement")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("eAnnotations")>
+
+      Property EModelElement As IEModelElement
   overload: NMF.Interop.Ecore.IEAnnotation.EModelElement*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eModelElement
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eAnnotations
 - uid: NMF.Interop.Ecore.IEAnnotation.Contents
   commentId: P:NMF.Interop.Ecore.IEAnnotation.Contents
   id: Contents
@@ -207,19 +318,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contents
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 70
+    startLine: 87
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The contents property
   example: []
   syntax:
-    content: IOrderedSetExpression<IModelElement> Contents { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("contents")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IOrderedSetExpression<IModelElement> Contents { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Models.IModelElement}
-    content.vb: ReadOnly Property Contents As IOrderedSetExpression(Of IModelElement)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("contents")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property Contents As IOrderedSetExpression(Of IModelElement)
   overload: NMF.Interop.Ecore.IEAnnotation.Contents*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: contents
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 - uid: NMF.Interop.Ecore.IEAnnotation.References
   commentId: P:NMF.Interop.Ecore.IEAnnotation.References
   id: References
@@ -238,48 +386,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: References
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 78
+    startLine: 101
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The references property
   example: []
   syntax:
-    content: IOrderedSetExpression<IModelElement> References { get; }
+    content: >-
+      [XmlElementName("references")]
+
+      [XmlAttribute(true)]
+
+      IOrderedSetExpression<IModelElement> References { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Models.IModelElement}
-    content.vb: ReadOnly Property References As IOrderedSetExpression(Of IModelElement)
+    content.vb: >-
+      <XmlElementName("references")>
+
+      <XmlAttribute(True)>
+
+      ReadOnly Property References As IOrderedSetExpression(Of IModelElement)
   overload: NMF.Interop.Ecore.IEAnnotation.References*
-- uid: NMF.Interop.Ecore.IEAnnotation.SourceChanging
-  commentId: E:NMF.Interop.Ecore.IEAnnotation.SourceChanging
-  id: SourceChanging
-  parent: NMF.Interop.Ecore.IEAnnotation
-  langs:
-  - csharp
-  - vb
-  name: SourceChanging
-  nameWithType: IEAnnotation.SourceChanging
-  fullName: NMF.Interop.Ecore.IEAnnotation.SourceChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/IEAnnotation.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SourceChanging
-    path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 86
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Source property changes its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> SourceChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event SourceChanging As EventHandler(Of ValueChangedEventArgs)
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: references
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEAnnotation.SourceChanged
   commentId: E:NMF.Interop.Ecore.IEAnnotation.SourceChanged
   id: SourceChanged
@@ -298,7 +438,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SourceChanged
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 91
+    startLine: 115
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -309,6 +449,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event SourceChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEAnnotation.SourceChanging
+  commentId: E:NMF.Interop.Ecore.IEAnnotation.SourceChanging
+  id: SourceChanging
+  parent: NMF.Interop.Ecore.IEAnnotation
+  langs:
+  - csharp
+  - vb
+  name: SourceChanging
+  nameWithType: IEAnnotation.SourceChanging
+  fullName: NMF.Interop.Ecore.IEAnnotation.SourceChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEAnnotation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SourceChanging
+    path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
+    startLine: 120
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the Source property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> SourceChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event SourceChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEAnnotation.EModelElementChanging
   commentId: E:NMF.Interop.Ecore.IEAnnotation.EModelElementChanging
   id: EModelElementChanging
@@ -327,7 +496,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EModelElementChanging
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 96
+    startLine: 125
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -356,7 +525,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EModelElementChanged
     path: src/Interop/EcoreInterop/Model/IEAnnotation.cs
-    startLine: 101
+    startLine: 130
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -405,6 +574,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement

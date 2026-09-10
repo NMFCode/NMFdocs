@@ -189,6 +189,9 @@ public class Model : ModelElement, IModel, IModelElement, INotifyPropertyChanged
       <a class="xref" href="NMF.Models.ModelElement.html#NMF_Models_ModelElement_PreferIdentifiers">ModelElement.PreferIdentifiers</a>
     </div>
     <div>
+      <a class="xref" href="NMF.Models.ModelElement.html#NMF_Models_ModelElement_RaiseDeletionEvents">ModelElement.RaiseDeletionEvents</a>
+    </div>
+    <div>
       <a class="xref" href="NMF.Models.ModelElement.html#NMF_Models_ModelElement_IsIdentified">ModelElement.IsIdentified</a>
     </div>
     <div>
@@ -629,7 +632,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_CreateUriForElement_NMF_Models_IModelElement_" data-uid="NMF.Models.Model.CreateUriForElement(NMF.Models.IModelElement)">
   CreateUriForElement(IModelElement)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L714"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L737"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -710,7 +713,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_EnsureAllElementsContained" data-uid="NMF.Models.Model.EnsureAllElementsContained">
   EnsureAllElementsContained()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L842"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L879"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -930,7 +933,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_GetRelativePathForChild_NMF_Models_IModelElement_" data-uid="NMF.Models.Model.GetRelativePathForChild(NMF.Models.IModelElement)">
   GetRelativePathForChild(IModelElement)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L832"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L869"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the relative Uri for the given child element</p>
@@ -1008,7 +1011,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_OnBubbledChange_NMF_Models_BubbledChangeEventArgs_" data-uid="NMF.Models.Model.OnBubbledChange(NMF.Models.BubbledChangeEventArgs)">
   OnBubbledChange(BubbledChangeEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L878"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L915"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Fires the BubbledChange event</p>
@@ -1149,7 +1152,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_Resolve_System_String_" data-uid="NMF.Models.Model.Resolve(System.String)">
   Resolve(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L764"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L802"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resolves the given path starting from the current element</p>
@@ -1188,7 +1191,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_ResolveGlobal_System_String_" data-uid="NMF.Models.Model.ResolveGlobal(System.String)">
   ResolveGlobal(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L753"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L776"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resolves the given global ID</p>
@@ -1223,11 +1226,55 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
 
 
+  <a id="NMF_Models_Model_ResolveGlobal_" data-uid="NMF.Models.Model.ResolveGlobal*"></a>
+
+  <h3 id="NMF_Models_Model_ResolveGlobal__1_System_String_" data-uid="NMF.Models.Model.ResolveGlobal``1(System.String)">
+  ResolveGlobal&lt;T&gt;(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L791"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resolves the given global ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T ResolveGlobal&lt;T&gt;(string id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The given global id</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The model element with the given id or null, if no such element is found</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="NMF_Models_Model_SerializeAsReference_" data-uid="NMF.Models.Model.SerializeAsReference*"></a>
 
   <h3 id="NMF_Models_Model_SerializeAsReference_NMF_Models_IModelElement_" data-uid="NMF.Models.Model.SerializeAsReference(NMF.Models.IModelElement)">
   SerializeAsReference(IModelElement)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L866"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L903"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the given reference should be serialized as a reference</p>
@@ -1300,7 +1347,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_SimplifyUri_System_Uri_" data-uid="NMF.Models.Model.SimplifyUri(System.Uri)">
   SimplifyUri(Uri)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L729"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L752"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1336,7 +1383,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_UnregisterId_System_String_" data-uid="NMF.Models.Model.UnregisterId(System.String)">
   UnregisterId(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L700"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L723"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Unregister the given identifier</p>
@@ -1351,6 +1398,48 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>The identifier</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True, if the identifier is removed. False denotes that this identifier was not registered</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NMF_Models_Model_UnregisterId_" data-uid="NMF.Models.Model.UnregisterId*"></a>
+
+  <h3 id="NMF_Models_Model_UnregisterId_System_String_NMF_Models_ModelElement_" data-uid="NMF.Models.Model.UnregisterId(System.String,NMF.Models.ModelElement)">
+  UnregisterId(string, ModelElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L699"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unregister the given identifier</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UnregisterId(string id, ModelElement element)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier</p>
+</dd>
+    <dt><code>element</code> <a class="xref" href="NMF.Models.ModelElement.html">ModelElement</a></dt>
+    <dd><p>the element that should be unregistered</p>
 </dd>
   </dl>
 
@@ -1440,7 +1529,7 @@ public IOrderedSetExpression&lt;IModelElement&gt; RootElements { get; }</code></
 
   <h3 id="NMF_Models_Model_UnlockRequested" data-uid="NMF.Models.Model.UnlockRequested">
   UnlockRequested
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L874"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Models/Models/Model.cs/#L911"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Raised when an unlock was requested for the model</p>

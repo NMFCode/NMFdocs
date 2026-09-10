@@ -21,11 +21,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackageESubpackagesCollection
     path: src/Interop/EcoreInterop/Model/EPackageESubpackagesCollection.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Denotes a collection type for subpackages pf packages
+  summary: Denotes a class to implement the eSubpackages reference
   example: []
   syntax:
     content: 'public class EPackageESubpackagesCollection : ObservableOppositeOrderedSet<IEPackage, IEPackage>, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<IEPackage>, IListExpression<IEPackage>, ISetExpression<IEPackage>, ICollectionExpression<IEPackage>, IEnumerableExpression<IEPackage>, IOrderedSet<IEPackage>, IList<IEPackage>, ISet<IEPackage>, ICollection<IEPackage>, IEnumerable<IEPackage>, ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable'
@@ -127,7 +127,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EPackageESubpackagesCollection.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -138,7 +138,7 @@ items:
     parameters:
     - id: parent
       type: NMF.Interop.Ecore.IEPackage
-      description: the parent element
+      description: the parent EPackage
     content.vb: Public Sub New(parent As IEPackage)
   overload: NMF.Interop.Ecore.EPackageESubpackagesCollection.#ctor*
   nameWithType.vb: EPackageESubpackagesCollection.New(IEPackage)
@@ -162,21 +162,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetOpposite
     path: src/Interop/EcoreInterop/Model/EPackageESubpackagesCollection.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Sets the opposite value
+  summary: Sets the opposite of the given item
   example: []
   syntax:
-    content: protected override void SetOpposite(IEPackage item, IEPackage parent)
+    content: protected override void SetOpposite(IEPackage item, IEPackage newParent)
     parameters:
     - id: item
       type: NMF.Interop.Ecore.IEPackage
-      description: The item to set the opposite
-    - id: parent
+      description: the item
+    - id: newParent
       type: NMF.Interop.Ecore.IEPackage
-    content.vb: Protected Overrides Sub SetOpposite(item As IEPackage, parent As IEPackage)
+      description: the new parent or null, if the item is removed from the collection
+    content.vb: Protected Overrides Sub SetOpposite(item As IEPackage, newParent As IEPackage)
   overridden: NMF.Collections.ObjectModel.ObservableOppositeOrderedSet{NMF.Interop.Ecore.IEPackage,NMF.Interop.Ecore.IEPackage}.SetOpposite(NMF.Interop.Ecore.IEPackage,NMF.Interop.Ecore.IEPackage)
   overload: NMF.Interop.Ecore.EPackageESubpackagesCollection.SetOpposite*
 references:

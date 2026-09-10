@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.#ctor(NMF.Expressions.IncrementalizationConfiguration.Configuration)
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Clear
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Count
-  - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore
+  - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.GetEnumerator
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ConfigurationChildrenCollection
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 198
+    startLine: 222
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -190,7 +191,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 206
+    startLine: 230
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -224,7 +225,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 214
+    startLine: 238
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -240,64 +241,38 @@ items:
   overload: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore
-  commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies
+  commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: Configuration.ConfigurationChildrenCollection.AttachCore()
-  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: Configuration.ConfigurationChildrenCollection.CreateDependencies()
+  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 225
+    startLine: 252
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore*
-- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore
-  commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: Configuration.ConfigurationChildrenCollection.DetachCore()
-  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 231
-  assemblies:
-  - NMF.Expressions.Configuration
-  namespace: NMF.Expressions.IncrementalizationConfiguration
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies*
 - uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -316,7 +291,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 240
+    startLine: 262
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -351,7 +326,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 252
+    startLine: 274
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -382,7 +357,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 262
+    startLine: 284
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -420,7 +395,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 276
+    startLine: 298
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -461,7 +436,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 300
+    startLine: 322
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -499,7 +474,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 315
+    startLine: 337
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -730,6 +705,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -21836,50 +21843,49 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore*
-  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore
-  href: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.html#NMF_Expressions_IncrementalizationConfiguration_Configuration_ConfigurationChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: Configuration.ConfigurationChildrenCollection.AttachCore
-  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies
+  href: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.html#NMF_Expressions_IncrementalizationConfiguration_Configuration_ConfigurationChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: Configuration.ConfigurationChildrenCollection.CreateDependencies
+  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  href: NMF.Expressions.INotifiable.html
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    href: NMF.Expressions.INotifiable.html
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+    href: NMF.Expressions.INotifiable.html
   - name: (
   - name: )
-- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore*
-  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore
-  href: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.html#NMF_Expressions_IncrementalizationConfiguration_Configuration_ConfigurationChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: Configuration.ConfigurationChildrenCollection.DetachCore
-  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.ConfigurationChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

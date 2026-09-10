@@ -6,12 +6,27 @@ items:
   parent: NMF.Interop.Ecore
   children:
   - NMF.Interop.Ecore.EFactory.ClassInstance
+  - NMF.Interop.Ecore.EFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  - NMF.Interop.Ecore.EFactory.ConvertToStringCalled
+  - NMF.Interop.Ecore.EFactory.ConvertToStringCalling
+  - NMF.Interop.Ecore.EFactory.Create(NMF.Interop.Ecore.IEClass)
+  - NMF.Interop.Ecore.EFactory.CreateCalled
+  - NMF.Interop.Ecore.EFactory.CreateCalling
+  - NMF.Interop.Ecore.EFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  - NMF.Interop.Ecore.EFactory.CreateFromStringCalled
+  - NMF.Interop.Ecore.EFactory.CreateFromStringCalling
   - NMF.Interop.Ecore.EFactory.EPackage
   - NMF.Interop.Ecore.EFactory.EPackageChanged
   - NMF.Interop.Ecore.EFactory.EPackageChanging
   - NMF.Interop.Ecore.EFactory.GetClass
-  - NMF.Interop.Ecore.EFactory.GetExpressionForAttribute(System.String)
   - NMF.Interop.Ecore.EFactory.GetExpressionForReference(System.String)
+  - NMF.Interop.Ecore.EFactory.GetModelElementForReference(System.String,System.Int32)
+  - NMF.Interop.Ecore.EFactory.OnConvertToStringCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EFactory.OnConvertToStringCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EFactory.OnCreateCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EFactory.OnCreateCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Ecore.EFactory.OnEPackageChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EFactory.OnEPackageChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EFactory.ReferencedElements
@@ -30,7 +45,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EFactory
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -42,7 +57,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EFactory/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EFactory")]
 
       public class EFactory : EModelElement, IEFactory, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -50,7 +65,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EFactory/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EFactory")>
 
       Public Class EFactory Inherits EModelElement Implements IEFactory, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -66,9 +81,14 @@ items:
   inheritedMembers:
   - NMF.Interop.Ecore.EModelElement.EAnnotations
   - NMF.Interop.Ecore.EModelElement.Children
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Ecore.EModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
-  - NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
+  - NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
   - NMF.Models.ModelElement.Lock
@@ -89,6 +109,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -99,10 +120,10 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
+  - NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Extensions
   - NMF.Models.ModelElement.GetExtension``1
   - NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
@@ -147,7 +168,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//EFactory/
+      value: http://www.eclipse.org/emf/2002/Ecore#//EFactory
 - uid: NMF.Interop.Ecore.EFactory.EPackage
   commentId: P:NMF.Interop.Ecore.EFactory.EPackage
   id: EPackage
@@ -166,7 +187,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackage
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 52
+    startLine: 62
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -180,7 +201,7 @@ items:
 
       [XmlOpposite("eFactoryInstance")]
 
-      public virtual IEPackage EPackage { get; set; }
+      public IEPackage EPackage { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEPackage
@@ -191,7 +212,7 @@ items:
 
       <XmlOpposite("eFactoryInstance")>
 
-      Public Overridable Property EPackage As IEPackage
+      Public Property EPackage As IEPackage
   overload: NMF.Interop.Ecore.EFactory.EPackage*
   implements:
   - NMF.Interop.Ecore.IEFactory.EPackage
@@ -229,7 +250,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 89
+    startLine: 101
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -263,7 +284,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 100
+    startLine: 112
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -276,6 +297,192 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Ecore.EFactory.ClassInstance*
+- uid: NMF.Interop.Ecore.EFactory.CreateCalling
+  commentId: E:NMF.Interop.Ecore.EFactory.CreateCalling
+  id: CreateCalling
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateCalling
+  nameWithType: EFactory.CreateCalling
+  fullName: NMF.Interop.Ecore.EFactory.CreateCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateCalling
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 127
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation create gets called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> CreateCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event CreateCalling As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEFactory.CreateCalling
+- uid: NMF.Interop.Ecore.EFactory.CreateCalled
+  commentId: E:NMF.Interop.Ecore.EFactory.CreateCalled
+  id: CreateCalled
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateCalled
+  nameWithType: EFactory.CreateCalled
+  fullName: NMF.Interop.Ecore.EFactory.CreateCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateCalled
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 132
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation create got called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> CreateCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event CreateCalled As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEFactory.CreateCalled
+- uid: NMF.Interop.Ecore.EFactory.CreateFromStringCalling
+  commentId: E:NMF.Interop.Ecore.EFactory.CreateFromStringCalling
+  id: CreateFromStringCalling
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateFromStringCalling
+  nameWithType: EFactory.CreateFromStringCalling
+  fullName: NMF.Interop.Ecore.EFactory.CreateFromStringCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateFromStringCalling
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 137
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation createFromString gets called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> CreateFromStringCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event CreateFromStringCalling As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEFactory.CreateFromStringCalling
+- uid: NMF.Interop.Ecore.EFactory.CreateFromStringCalled
+  commentId: E:NMF.Interop.Ecore.EFactory.CreateFromStringCalled
+  id: CreateFromStringCalled
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateFromStringCalled
+  nameWithType: EFactory.CreateFromStringCalled
+  fullName: NMF.Interop.Ecore.EFactory.CreateFromStringCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateFromStringCalled
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 142
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation createFromString got called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> CreateFromStringCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event CreateFromStringCalled As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEFactory.CreateFromStringCalled
+- uid: NMF.Interop.Ecore.EFactory.ConvertToStringCalling
+  commentId: E:NMF.Interop.Ecore.EFactory.ConvertToStringCalling
+  id: ConvertToStringCalling
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: ConvertToStringCalling
+  nameWithType: EFactory.ConvertToStringCalling
+  fullName: NMF.Interop.Ecore.EFactory.ConvertToStringCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ConvertToStringCalling
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 147
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation convertToString gets called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> ConvertToStringCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event ConvertToStringCalling As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEFactory.ConvertToStringCalling
+- uid: NMF.Interop.Ecore.EFactory.ConvertToStringCalled
+  commentId: E:NMF.Interop.Ecore.EFactory.ConvertToStringCalled
+  id: ConvertToStringCalled
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: ConvertToStringCalled
+  nameWithType: EFactory.ConvertToStringCalled
+  fullName: NMF.Interop.Ecore.EFactory.ConvertToStringCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ConvertToStringCalled
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 152
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation convertToString got called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> ConvertToStringCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event ConvertToStringCalled As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEFactory.ConvertToStringCalled
 - uid: NMF.Interop.Ecore.EFactory.EPackageChanging
   commentId: E:NMF.Interop.Ecore.EFactory.EPackageChanging
   id: EPackageChanging
@@ -294,7 +501,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackageChanging
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 115
+    startLine: 157
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -325,7 +532,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackageChanged
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 120
+    startLine: 162
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -338,6 +545,318 @@ items:
     content.vb: Public Event EPackageChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IEFactory.EPackageChanged
+- uid: NMF.Interop.Ecore.EFactory.Create(NMF.Interop.Ecore.IEClass)
+  commentId: M:NMF.Interop.Ecore.EFactory.Create(NMF.Interop.Ecore.IEClass)
+  id: Create(NMF.Interop.Ecore.IEClass)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: Create(IEClass)
+  nameWithType: EFactory.Create(IEClass)
+  fullName: NMF.Interop.Ecore.EFactory.Create(NMF.Interop.Ecore.IEClass)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: Create
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 168
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: public IEObject Create(IEClass eClass)
+    parameters:
+    - id: eClass
+      type: NMF.Interop.Ecore.IEClass
+      description: ''
+    return:
+      type: NMF.Interop.Ecore.IEObject
+    content.vb: Public Function Create(eClass As IEClass) As IEObject
+  overload: NMF.Interop.Ecore.EFactory.Create*
+  implements:
+  - NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)
+- uid: NMF.Interop.Ecore.EFactory.OnCreateCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EFactory.OnCreateCalling(NMF.Models.OperationCallEventArgs)
+  id: OnCreateCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: OnCreateCalling(OperationCallEventArgs)
+  nameWithType: EFactory.OnCreateCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateCalling(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnCreateCalling
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 198
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the CreateCalling event
+  example: []
+  syntax:
+    content: protected virtual void OnCreateCalling(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnCreateCalling(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EFactory.OnCreateCalling*
+- uid: NMF.Interop.Ecore.EFactory.OnCreateCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EFactory.OnCreateCalled(NMF.Models.OperationCallEventArgs)
+  id: OnCreateCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: OnCreateCalled(OperationCallEventArgs)
+  nameWithType: EFactory.OnCreateCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateCalled(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnCreateCalled
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 211
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the CreateCalled event
+  example: []
+  syntax:
+    content: protected virtual void OnCreateCalled(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnCreateCalled(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EFactory.OnCreateCalled*
+- uid: NMF.Interop.Ecore.EFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  commentId: M:NMF.Interop.Ecore.EFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  id: CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateFromString(IEDataType, string)
+  nameWithType: EFactory.CreateFromString(IEDataType, string)
+  fullName: NMF.Interop.Ecore.EFactory.CreateFromString(NMF.Interop.Ecore.IEDataType, string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateFromString
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 225
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: public object CreateFromString(IEDataType eDataType, string literalValue)
+    parameters:
+    - id: eDataType
+      type: NMF.Interop.Ecore.IEDataType
+      description: ''
+    - id: literalValue
+      type: System.String
+      description: ''
+    return:
+      type: System.Object
+    content.vb: Public Function CreateFromString(eDataType As IEDataType, literalValue As String) As Object
+  overload: NMF.Interop.Ecore.EFactory.CreateFromString*
+  implements:
+  - NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  nameWithType.vb: EFactory.CreateFromString(IEDataType, String)
+  fullName.vb: NMF.Interop.Ecore.EFactory.CreateFromString(NMF.Interop.Ecore.IEDataType, String)
+  name.vb: CreateFromString(IEDataType, String)
+- uid: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling(NMF.Models.OperationCallEventArgs)
+  id: OnCreateFromStringCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: OnCreateFromStringCalling(OperationCallEventArgs)
+  nameWithType: EFactory.OnCreateFromStringCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnCreateFromStringCalling
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 255
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the CreateFromStringCalling event
+  example: []
+  syntax:
+    content: protected virtual void OnCreateFromStringCalling(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnCreateFromStringCalling(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling*
+- uid: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled(NMF.Models.OperationCallEventArgs)
+  id: OnCreateFromStringCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: OnCreateFromStringCalled(OperationCallEventArgs)
+  nameWithType: EFactory.OnCreateFromStringCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnCreateFromStringCalled
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 268
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the CreateFromStringCalled event
+  example: []
+  syntax:
+    content: protected virtual void OnCreateFromStringCalled(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnCreateFromStringCalled(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled*
+- uid: NMF.Interop.Ecore.EFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  commentId: M:NMF.Interop.Ecore.EFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  id: ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: ConvertToString(IEDataType, object)
+  nameWithType: EFactory.ConvertToString(IEDataType, object)
+  fullName: NMF.Interop.Ecore.EFactory.ConvertToString(NMF.Interop.Ecore.IEDataType, object)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ConvertToString
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 282
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: public string ConvertToString(IEDataType eDataType, object instanceValue)
+    parameters:
+    - id: eDataType
+      type: NMF.Interop.Ecore.IEDataType
+      description: ''
+    - id: instanceValue
+      type: System.Object
+      description: ''
+    return:
+      type: System.String
+    content.vb: Public Function ConvertToString(eDataType As IEDataType, instanceValue As Object) As String
+  overload: NMF.Interop.Ecore.EFactory.ConvertToString*
+  implements:
+  - NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  nameWithType.vb: EFactory.ConvertToString(IEDataType, Object)
+  fullName.vb: NMF.Interop.Ecore.EFactory.ConvertToString(NMF.Interop.Ecore.IEDataType, Object)
+  name.vb: ConvertToString(IEDataType, Object)
+- uid: NMF.Interop.Ecore.EFactory.OnConvertToStringCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EFactory.OnConvertToStringCalling(NMF.Models.OperationCallEventArgs)
+  id: OnConvertToStringCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: OnConvertToStringCalling(OperationCallEventArgs)
+  nameWithType: EFactory.OnConvertToStringCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EFactory.OnConvertToStringCalling(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnConvertToStringCalling
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 312
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the ConvertToStringCalling event
+  example: []
+  syntax:
+    content: protected virtual void OnConvertToStringCalling(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnConvertToStringCalling(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EFactory.OnConvertToStringCalling*
+- uid: NMF.Interop.Ecore.EFactory.OnConvertToStringCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EFactory.OnConvertToStringCalled(NMF.Models.OperationCallEventArgs)
+  id: OnConvertToStringCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: OnConvertToStringCalled(OperationCallEventArgs)
+  nameWithType: EFactory.OnConvertToStringCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EFactory.OnConvertToStringCalled(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnConvertToStringCalled
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 325
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the ConvertToStringCalled event
+  example: []
+  syntax:
+    content: protected virtual void OnConvertToStringCalled(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnConvertToStringCalled(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EFactory.OnConvertToStringCalled*
 - uid: NMF.Interop.Ecore.EFactory.OnEPackageChanging(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.EFactory.OnEPackageChanging(NMF.Expressions.ValueChangedEventArgs)
   id: OnEPackageChanging(NMF.Expressions.ValueChangedEventArgs)
@@ -356,7 +875,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEPackageChanging
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 126
+    startLine: 343
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -388,7 +907,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEPackageChanged
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 139
+    startLine: 356
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -402,6 +921,48 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnEPackageChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.EFactory.OnEPackageChanged*
+- uid: NMF.Interop.Ecore.EFactory.GetModelElementForReference(System.String,System.Int32)
+  commentId: M:NMF.Interop.Ecore.EFactory.GetModelElementForReference(System.String,System.Int32)
+  id: GetModelElementForReference(System.String,System.Int32)
+  parent: NMF.Interop.Ecore.EFactory
+  langs:
+  - csharp
+  - vb
+  name: GetModelElementForReference(string, int)
+  nameWithType: EFactory.GetModelElementForReference(string, int)
+  fullName: NMF.Interop.Ecore.EFactory.GetModelElementForReference(string, int)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetModelElementForReference
+    path: src/Interop/EcoreInterop/Model/EFactory.cs
+    startLine: 384
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Resolves the given URI to a child model element
+  example: []
+  syntax:
+    content: protected override IModelElement GetModelElementForReference(string reference, int index)
+    parameters:
+    - id: reference
+      type: System.String
+      description: The requested reference name
+    - id: index
+      type: System.Int32
+      description: The index of this reference
+    return:
+      type: NMF.Models.IModelElement
+      description: The model element or null if it could not be found
+    content.vb: Protected Overrides Function GetModelElementForReference(reference As String, index As Integer) As IModelElement
+  overridden: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
+  overload: NMF.Interop.Ecore.EFactory.GetModelElementForReference*
+  nameWithType.vb: EFactory.GetModelElementForReference(String, Integer)
+  fullName.vb: NMF.Interop.Ecore.EFactory.GetModelElementForReference(String, Integer)
+  name.vb: GetModelElementForReference(String, Integer)
 - uid: NMF.Interop.Ecore.EFactory.SetFeature(System.String,System.Object)
   commentId: M:NMF.Interop.Ecore.EFactory.SetFeature(System.String,System.Object)
   id: SetFeature(System.String,System.Object)
@@ -420,7 +981,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 163
+    startLine: 398
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -441,45 +1002,6 @@ items:
   nameWithType.vb: EFactory.SetFeature(String, Object)
   fullName.vb: NMF.Interop.Ecore.EFactory.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
-- uid: NMF.Interop.Ecore.EFactory.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Interop.Ecore.EFactory.GetExpressionForAttribute(System.String)
-  id: GetExpressionForAttribute(System.String)
-  parent: NMF.Interop.Ecore.EFactory
-  langs:
-  - csharp
-  - vb
-  name: GetExpressionForAttribute(string)
-  nameWithType: EFactory.GetExpressionForAttribute(string)
-  fullName: NMF.Interop.Ecore.EFactory.GetExpressionForAttribute(string)
-  type: Method
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/EFactory.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: GetExpressionForAttribute
-    path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 178
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets the property expression for the given attribute
-  example: []
-  syntax:
-    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
-    parameters:
-    - id: attribute
-      type: System.String
-      description: The requested attribute in upper case
-    return:
-      type: NMF.Expressions.INotifyExpression{System.Object}
-      description: An incremental property expression
-    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
-  overridden: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  overload: NMF.Interop.Ecore.EFactory.GetExpressionForAttribute*
-  nameWithType.vb: EFactory.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Interop.Ecore.EFactory.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Interop.Ecore.EFactory.GetExpressionForReference(System.String)
   commentId: M:NMF.Interop.Ecore.EFactory.GetExpressionForReference(System.String)
   id: GetExpressionForReference(System.String)
@@ -498,7 +1020,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 192
+    startLine: 413
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -537,7 +1059,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/EFactory.cs
-    startLine: 204
+    startLine: 425
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -657,6 +1179,97 @@ references:
   name: Children
   nameWithType: EModelElement.Children
   fullName: NMF.Interop.Ecore.EModelElement.Children
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: EModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: EModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: EModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotation(string)
+  nameWithType.vb: EModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalling(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalled(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Ecore.EModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Ecore.EModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   parent: NMF.Interop.Ecore.EModelElement
@@ -679,49 +1292,6 @@ references:
   - name: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-  - name: )
-- uid: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
-  commentId: M:NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
-  parent: NMF.Interop.Ecore.EModelElement
-  isExternal: true
-  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetModelElementForReference_System_String_System_Int32_
-  name: GetModelElementForReference(string, int)
-  nameWithType: EModelElement.GetModelElementForReference(string, int)
-  fullName: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(string, int)
-  nameWithType.vb: EModelElement.GetModelElementForReference(String, Integer)
-  fullName.vb: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(String, Integer)
-  name.vb: GetModelElementForReference(String, Integer)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
-    name: GetModelElementForReference
-    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetModelElementForReference_System_String_System_Int32_
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
-    name: GetModelElementForReference
-    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetModelElementForReference_System_String_System_Int32_
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
 - uid: NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
   commentId: M:NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
@@ -753,6 +1323,37 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  name: GetCompositionName(object)
+  nameWithType: EModelElement.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EModelElement.GetCompositionName(object)
+  nameWithType.vb: EModelElement.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.Model
   commentId: P:NMF.Models.ModelElement.Model
@@ -1127,6 +1728,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -1292,35 +1899,6 @@ references:
   - uid: NMF.Models.IModelElement
     name: IModelElement
   - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   parent: NMF.Models.ModelElement
@@ -1431,6 +2009,35 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: (
   - name: )
+  - name: )
+- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: GetExpressionForAttribute(string)
+  nameWithType: ModelElement.GetExpressionForAttribute(string)
+  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: NMF.Models.ModelElement.Extensions
   commentId: P:NMF.Models.ModelElement.Extensions
@@ -2391,6 +2998,107 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
+- uid: NMF.Interop.Ecore.IEFactory.CreateCalling
+  commentId: E:NMF.Interop.Ecore.IEFactory.CreateCalling
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateCalling
+  name: CreateCalling
+  nameWithType: IEFactory.CreateCalling
+  fullName: NMF.Interop.Ecore.IEFactory.CreateCalling
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.IEFactory.CreateCalled
+  commentId: E:NMF.Interop.Ecore.IEFactory.CreateCalled
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateCalled
+  name: CreateCalled
+  nameWithType: IEFactory.CreateCalled
+  fullName: NMF.Interop.Ecore.IEFactory.CreateCalled
+- uid: NMF.Interop.Ecore.IEFactory.CreateFromStringCalling
+  commentId: E:NMF.Interop.Ecore.IEFactory.CreateFromStringCalling
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateFromStringCalling
+  name: CreateFromStringCalling
+  nameWithType: IEFactory.CreateFromStringCalling
+  fullName: NMF.Interop.Ecore.IEFactory.CreateFromStringCalling
+- uid: NMF.Interop.Ecore.IEFactory.CreateFromStringCalled
+  commentId: E:NMF.Interop.Ecore.IEFactory.CreateFromStringCalled
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateFromStringCalled
+  name: CreateFromStringCalled
+  nameWithType: IEFactory.CreateFromStringCalled
+  fullName: NMF.Interop.Ecore.IEFactory.CreateFromStringCalled
+- uid: NMF.Interop.Ecore.IEFactory.ConvertToStringCalling
+  commentId: E:NMF.Interop.Ecore.IEFactory.ConvertToStringCalling
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_ConvertToStringCalling
+  name: ConvertToStringCalling
+  nameWithType: IEFactory.ConvertToStringCalling
+  fullName: NMF.Interop.Ecore.IEFactory.ConvertToStringCalling
+- uid: NMF.Interop.Ecore.IEFactory.ConvertToStringCalled
+  commentId: E:NMF.Interop.Ecore.IEFactory.ConvertToStringCalled
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_ConvertToStringCalled
+  name: ConvertToStringCalled
+  nameWithType: IEFactory.ConvertToStringCalled
+  fullName: NMF.Interop.Ecore.IEFactory.ConvertToStringCalled
 - uid: NMF.Interop.Ecore.IEFactory.EPackageChanging
   commentId: E:NMF.Interop.Ecore.IEFactory.EPackageChanging
   parent: NMF.Interop.Ecore.IEFactory
@@ -2429,34 +3137,6 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
 - uid: NMF.Interop.Ecore.IEFactory.EPackageChanged
   commentId: E:NMF.Interop.Ecore.IEFactory.EPackageChanged
   parent: NMF.Interop.Ecore.IEFactory
@@ -2464,6 +3144,205 @@ references:
   name: EPackageChanged
   nameWithType: IEFactory.EPackageChanged
   fullName: NMF.Interop.Ecore.IEFactory.EPackageChanged
+- uid: NMF.Interop.Ecore.EFactory.Create*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.Create
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_Create_NMF_Interop_Ecore_IEClass_
+  name: Create
+  nameWithType: EFactory.Create
+  fullName: NMF.Interop.Ecore.EFactory.Create
+- uid: NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)
+  commentId: M:NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)
+  parent: NMF.Interop.Ecore.IEFactory
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_Create_NMF_Interop_Ecore_IEClass_
+  name: Create(IEClass)
+  nameWithType: IEFactory.Create(IEClass)
+  fullName: NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)
+    name: Create
+    href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_Create_NMF_Interop_Ecore_IEClass_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEClass
+    name: IEClass
+    href: NMF.Interop.Ecore.IEClass.html
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)
+    name: Create
+    href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_Create_NMF_Interop_Ecore_IEClass_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEClass
+    name: IEClass
+    href: NMF.Interop.Ecore.IEClass.html
+  - name: )
+- uid: NMF.Interop.Ecore.IEClass
+  commentId: T:NMF.Interop.Ecore.IEClass
+  parent: NMF.Interop.Ecore
+  href: NMF.Interop.Ecore.IEClass.html
+  name: IEClass
+  nameWithType: IEClass
+  fullName: NMF.Interop.Ecore.IEClass
+- uid: NMF.Interop.Ecore.IEObject
+  commentId: T:NMF.Interop.Ecore.IEObject
+  parent: NMF.Interop.Ecore
+  href: NMF.Interop.Ecore.IEObject.html
+  name: IEObject
+  nameWithType: IEObject
+  fullName: NMF.Interop.Ecore.IEObject
+- uid: NMF.Interop.Ecore.EFactory.OnCreateCalling*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.OnCreateCalling
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnCreateCalling_NMF_Models_OperationCallEventArgs_
+  name: OnCreateCalling
+  nameWithType: EFactory.OnCreateCalling
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateCalling
+- uid: NMF.Models.OperationCallEventArgs
+  commentId: T:NMF.Models.OperationCallEventArgs
+  parent: NMF.Models
+  name: OperationCallEventArgs
+  nameWithType: OperationCallEventArgs
+  fullName: NMF.Models.OperationCallEventArgs
+- uid: NMF.Interop.Ecore.EFactory.OnCreateCalled*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.OnCreateCalled
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnCreateCalled_NMF_Models_OperationCallEventArgs_
+  name: OnCreateCalled
+  nameWithType: EFactory.OnCreateCalled
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateCalled
+- uid: NMF.Interop.Ecore.EFactory.CreateFromString*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.CreateFromString
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_CreateFromString_NMF_Interop_Ecore_IEDataType_System_String_
+  name: CreateFromString
+  nameWithType: EFactory.CreateFromString
+  fullName: NMF.Interop.Ecore.EFactory.CreateFromString
+- uid: NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  commentId: M:NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+  parent: NMF.Interop.Ecore.IEFactory
+  isExternal: true
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateFromString_NMF_Interop_Ecore_IEDataType_System_String_
+  name: CreateFromString(IEDataType, string)
+  nameWithType: IEFactory.CreateFromString(IEDataType, string)
+  fullName: NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType, string)
+  nameWithType.vb: IEFactory.CreateFromString(IEDataType, String)
+  fullName.vb: NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType, String)
+  name.vb: CreateFromString(IEDataType, String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+    name: CreateFromString
+    href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateFromString_NMF_Interop_Ecore_IEDataType_System_String_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEDataType
+    name: IEDataType
+    href: NMF.Interop.Ecore.IEDataType.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)
+    name: CreateFromString
+    href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_CreateFromString_NMF_Interop_Ecore_IEDataType_System_String_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEDataType
+    name: IEDataType
+    href: NMF.Interop.Ecore.IEDataType.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.IEDataType
+  commentId: T:NMF.Interop.Ecore.IEDataType
+  parent: NMF.Interop.Ecore
+  href: NMF.Interop.Ecore.IEDataType.html
+  name: IEDataType
+  nameWithType: IEDataType
+  fullName: NMF.Interop.Ecore.IEDataType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnCreateFromStringCalling_NMF_Models_OperationCallEventArgs_
+  name: OnCreateFromStringCalling
+  nameWithType: EFactory.OnCreateFromStringCalling
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalling
+- uid: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnCreateFromStringCalled_NMF_Models_OperationCallEventArgs_
+  name: OnCreateFromStringCalled
+  nameWithType: EFactory.OnCreateFromStringCalled
+  fullName: NMF.Interop.Ecore.EFactory.OnCreateFromStringCalled
+- uid: NMF.Interop.Ecore.EFactory.ConvertToString*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.ConvertToString
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_ConvertToString_NMF_Interop_Ecore_IEDataType_System_Object_
+  name: ConvertToString
+  nameWithType: EFactory.ConvertToString
+  fullName: NMF.Interop.Ecore.EFactory.ConvertToString
+- uid: NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  commentId: M:NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+  parent: NMF.Interop.Ecore.IEFactory
+  isExternal: true
+  href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_ConvertToString_NMF_Interop_Ecore_IEDataType_System_Object_
+  name: ConvertToString(IEDataType, object)
+  nameWithType: IEFactory.ConvertToString(IEDataType, object)
+  fullName: NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType, object)
+  nameWithType.vb: IEFactory.ConvertToString(IEDataType, Object)
+  fullName.vb: NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType, Object)
+  name.vb: ConvertToString(IEDataType, Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+    name: ConvertToString
+    href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_ConvertToString_NMF_Interop_Ecore_IEDataType_System_Object_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEDataType
+    name: IEDataType
+    href: NMF.Interop.Ecore.IEDataType.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)
+    name: ConvertToString
+    href: NMF.Interop.Ecore.IEFactory.html#NMF_Interop_Ecore_IEFactory_ConvertToString_NMF_Interop_Ecore_IEDataType_System_Object_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEDataType
+    name: IEDataType
+    href: NMF.Interop.Ecore.IEDataType.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Ecore.EFactory.OnConvertToStringCalling*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.OnConvertToStringCalling
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnConvertToStringCalling_NMF_Models_OperationCallEventArgs_
+  name: OnConvertToStringCalling
+  nameWithType: EFactory.OnConvertToStringCalling
+  fullName: NMF.Interop.Ecore.EFactory.OnConvertToStringCalling
+- uid: NMF.Interop.Ecore.EFactory.OnConvertToStringCalled*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.OnConvertToStringCalled
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnConvertToStringCalled_NMF_Models_OperationCallEventArgs_
+  name: OnConvertToStringCalled
+  nameWithType: EFactory.OnConvertToStringCalled
+  fullName: NMF.Interop.Ecore.EFactory.OnConvertToStringCalled
 - uid: NMF.Interop.Ecore.EFactory.OnEPackageChanging*
   commentId: Overload:NMF.Interop.Ecore.EFactory.OnEPackageChanging
   href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_OnEPackageChanging_NMF_Expressions_ValueChangedEventArgs_
@@ -2482,6 +3361,66 @@ references:
   name: OnEPackageChanged
   nameWithType: EFactory.OnEPackageChanged
   fullName: NMF.Interop.Ecore.EFactory.OnEPackageChanged
+- uid: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetModelElementForReference_System_String_System_Int32_
+  name: GetModelElementForReference(string, int)
+  nameWithType: EModelElement.GetModelElementForReference(string, int)
+  fullName: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(string, int)
+  nameWithType.vb: EModelElement.GetModelElementForReference(String, Integer)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(String, Integer)
+  name.vb: GetModelElementForReference(String, Integer)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
+    name: GetModelElementForReference
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetModelElementForReference_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
+    name: GetModelElementForReference
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetModelElementForReference_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: NMF.Interop.Ecore.EFactory.GetModelElementForReference*
+  commentId: Overload:NMF.Interop.Ecore.EFactory.GetModelElementForReference
+  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_GetModelElementForReference_System_String_System_Int32_
+  name: GetModelElementForReference
+  nameWithType: EFactory.GetModelElementForReference
+  fullName: NMF.Interop.Ecore.EFactory.GetModelElementForReference
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: NMF.Models.ModelElement.SetFeature(System.String,System.Object)
   commentId: M:NMF.Models.ModelElement.SetFeature(System.String,System.Object)
   parent: NMF.Models.ModelElement
@@ -2529,105 +3468,6 @@ references:
   name: SetFeature
   nameWithType: EFactory.SetFeature
   fullName: NMF.Interop.Ecore.EFactory.SetFeature
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: GetExpressionForAttribute(string)
-  nameWithType: ModelElement.GetExpressionForAttribute(string)
-  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: NMF.Interop.Ecore.EFactory.GetExpressionForAttribute*
-  commentId: Overload:NMF.Interop.Ecore.EFactory.GetExpressionForAttribute
-  href: NMF.Interop.Ecore.EFactory.html#NMF_Interop_Ecore_EFactory_GetExpressionForAttribute_System_String_
-  name: GetExpressionForAttribute
-  nameWithType: EFactory.GetExpressionForAttribute
-  fullName: NMF.Interop.Ecore.EFactory.GetExpressionForAttribute
-- uid: NMF.Expressions.INotifyExpression{System.Object}
-  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
-  parent: NMF.Expressions
-  definition: NMF.Expressions.INotifyExpression`1
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: INotifyExpression<object>
-  nameWithType: INotifyExpression<object>
-  fullName: NMF.Expressions.INotifyExpression<object>
-  nameWithType.vb: INotifyExpression(Of Object)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
-  name.vb: INotifyExpression(Of Object)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: <
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: NMF.Expressions.INotifyExpression`1
-  commentId: T:NMF.Expressions.INotifyExpression`1
-  name: INotifyExpression<T>
-  nameWithType: INotifyExpression<T>
-  fullName: NMF.Expressions.INotifyExpression<T>
-  nameWithType.vb: INotifyExpression(Of T)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
-  name.vb: INotifyExpression(Of T)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: NMF.Models.ModelElement.GetExpressionForReference(System.String)
   commentId: M:NMF.Models.ModelElement.GetExpressionForReference(System.String)
   parent: NMF.Models.ModelElement
@@ -2688,6 +3528,28 @@ references:
   - name: " "
   - uid: NMF.Models.IModelElement
     name: IModelElement
+  - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
   - name: )
 - uid: NMF.Interop.Ecore.EModelElement.GetClass
   commentId: M:NMF.Interop.Ecore.EModelElement.GetClass

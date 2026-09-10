@@ -32,6 +32,7 @@ items:
   - NMF.AnyText.ILspServer.QuerySemanticTokens(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.ILspServer.QuerySemanticTokensDelta(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.ILspServer.QuerySemanticTokensRange(Newtonsoft.Json.Linq.JToken)
+  - NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.ILspServer.SetRpc(StreamJsonRpc.JsonRpc)
   - NMF.AnyText.ILspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.ILspServer.Shutdown
@@ -58,6 +59,9 @@ items:
   syntax:
     content: public interface ILspServer
     content.vb: Public Interface ILspServer
+  derivedClasses:
+  - NMF.AnyText.LspServer
+  - NMF.AnyText.SynchronizingLspServer
 - uid: NMF.AnyText.ILspServer.ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit,System.String)
   commentId: M:NMF.AnyText.ILspServer.ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit,System.String)
   id: ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit,System.String)
@@ -257,7 +261,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetRpc
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -289,7 +293,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidChange
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -333,7 +337,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidClose
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -377,7 +381,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidOpen
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -421,7 +425,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidSave
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -471,7 +475,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Exit
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 53
+    startLine: 54
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -511,7 +515,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Initialize
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 69
+    startLine: 70
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -585,7 +589,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Initialized
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 83
+    startLine: 84
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -625,7 +629,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Shutdown
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 89
+    startLine: 90
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -665,7 +669,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetTrace
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 96
+    startLine: 97
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -709,7 +713,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: HandleCompletion
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 104
+    startLine: 105
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -756,7 +760,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExecuteCommand
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 112
+    startLine: 113
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -803,7 +807,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ProvideInlayHints
     path: src/AnyText/AnyText.Lsp/ILspServer.cs
-    startLine: 120
+    startLine: 121
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -832,6 +836,47 @@ items:
     arguments:
     - type: System.String
       value: textDocument/inlayHint
+- uid: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  commentId: M:NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  id: SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  parent: NMF.AnyText.ILspServer
+  langs:
+  - csharp
+  - vb
+  name: SendDiagnosticsAsync(ParseContext, string)
+  nameWithType: ILspServer.SendDiagnosticsAsync(ParseContext, string)
+  fullName: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, string)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Lsp/ILspServer.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SendDiagnosticsAsync
+    path: src/AnyText/AnyText.Lsp/ILspServer.cs
+    startLine: 130
+  assemblies:
+  - NMF.AnyText.Lsp
+  namespace: NMF.AnyText
+  summary: Updates diagnostics information for the given Uri
+  example: []
+  syntax:
+    content: Task SendDiagnosticsAsync(ParseContext context, string uri)
+    parameters:
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context with errors
+    - id: uri
+      type: System.String
+      description: the uri of the document
+    return:
+      type: System.Threading.Tasks.Task
+      description: a task that completes when sending diagnostics completed
+    content.vb: Function SendDiagnosticsAsync(context As ParseContext, uri As String) As Task
+  overload: NMF.AnyText.ILspServer.SendDiagnosticsAsync*
+  nameWithType.vb: ILspServer.SendDiagnosticsAsync(ParseContext, String)
+  fullName.vb: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, String)
+  name.vb: SendDiagnosticsAsync(ParseContext, String)
 - uid: NMF.AnyText.ILspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.ILspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   id: QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
@@ -2049,6 +2094,27 @@ references:
     href: NMF.AnyText.InlayClasses.InlayHint.html
   - name: (
   - name: )
+- uid: NMF.AnyText.ILspServer.SendDiagnosticsAsync*
+  commentId: Overload:NMF.AnyText.ILspServer.SendDiagnosticsAsync
+  href: NMF.AnyText.ILspServer.html#NMF_AnyText_ILspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  name: SendDiagnosticsAsync
+  nameWithType: ILspServer.SendDiagnosticsAsync
+  fullName: NMF.AnyText.ILspServer.SendDiagnosticsAsync
+- uid: NMF.AnyText.ParseContext
+  commentId: T:NMF.AnyText.ParseContext
+  parent: NMF.AnyText
+  href: NMF.AnyText.ParseContext.html
+  name: ParseContext
+  nameWithType: ParseContext
+  fullName: NMF.AnyText.ParseContext
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
 - uid: LspTypes.DocumentHighlight
   commentId: T:LspTypes.DocumentHighlight
   isExternal: true

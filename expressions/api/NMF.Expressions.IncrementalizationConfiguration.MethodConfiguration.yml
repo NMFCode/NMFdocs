@@ -11,6 +11,7 @@ items:
   - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetAttributeValue(System.String,System.Int32)
   - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetClass
   - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetCollectionForFeature(System.String)
+  - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute(System.String)
   - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifier
   - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanged
   - NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
@@ -36,7 +37,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MethodConfiguration
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -48,7 +49,7 @@ items:
 
       [XmlNamespacePrefix("conf")]
 
-      [ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//MethodConfiguration/")]
+      [ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//MethodConfiguration")]
 
       public class MethodConfiguration : ModelElement, IMethodConfiguration, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -56,7 +57,7 @@ items:
 
       <XmlNamespacePrefix("conf")>
 
-      <ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//MethodConfiguration/")>
+      <ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//MethodConfiguration")>
 
       Public Class MethodConfiguration Inherits ModelElement Implements IMethodConfiguration, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -89,6 +90,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -105,7 +107,6 @@ items:
   - NMF.Models.ModelElement.GetModelElementForReference(System.String,System.Int32)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   - NMF.Models.ModelElement.GetExpressionForReference(System.String)
-  - NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Extensions
   - NMF.Models.ModelElement.GetExtension``1
   - NMF.Models.ModelElement.ReferencedElements
@@ -153,7 +154,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://nmf.codeplex.com/incrementalizationConfig#//MethodConfiguration/
+      value: http://nmf.codeplex.com/incrementalizationConfig#//MethodConfiguration
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.#ctor
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.#ctor
   id: '#ctor'
@@ -172,7 +173,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 63
+    startLine: 72
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -203,7 +204,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MethodIdentifier
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 73
+    startLine: 82
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -215,7 +216,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual string MethodIdentifier { get; set; }
+      public string MethodIdentifier { get; set; }
     parameters: []
     return:
       type: System.String
@@ -224,7 +225,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property MethodIdentifier As String
+      Public Property MethodIdentifier As String
   overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifier*
   implements:
   - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifier
@@ -257,7 +258,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Strategy
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 99
+    startLine: 110
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -269,7 +270,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual IncrementalizationStrategy Strategy { get; set; }
+      public IncrementalizationStrategy Strategy { get; set; }
     parameters: []
     return:
       type: NMF.Expressions.IncrementalizationConfiguration.IncrementalizationStrategy
@@ -278,7 +279,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Strategy As IncrementalizationStrategy
+      Public Property Strategy As IncrementalizationStrategy
   overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.Strategy*
   implements:
   - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.Strategy
@@ -311,7 +312,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AllowedStrategies
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 125
+    startLine: 138
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -325,7 +326,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual IListExpression<IncrementalizationStrategy> AllowedStrategies { get; }
+      public IListExpression<IncrementalizationStrategy> AllowedStrategies { get; }
     parameters: []
     return:
       type: NMF.Expressions.IListExpression{NMF.Expressions.IncrementalizationConfiguration.IncrementalizationStrategy}
@@ -336,7 +337,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable ReadOnly Property AllowedStrategies As IListExpression(Of IncrementalizationStrategy)
+      Public ReadOnly Property AllowedStrategies As IListExpression(Of IncrementalizationStrategy)
   overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.AllowedStrategies*
   implements:
   - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.AllowedStrategies
@@ -374,7 +375,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 141
+    startLine: 156
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -387,37 +388,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.ClassInstance*
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
-  commentId: E:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
-  id: MethodIdentifierChanging
-  parent: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration
-  langs:
-  - csharp
-  - vb
-  name: MethodIdentifierChanging
-  nameWithType: MethodConfiguration.MethodIdentifierChanging
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
-  type: Event
-  source:
-    remote:
-      path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: MethodIdentifierChanging
-    path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 156
-  assemblies:
-  - NMF.Expressions.Configuration
-  namespace: NMF.Expressions.IncrementalizationConfiguration
-  summary: Gets fired before the MethodIdentifier property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> MethodIdentifierChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event MethodIdentifierChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanged
   commentId: E:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanged
   id: MethodIdentifierChanged
@@ -436,7 +406,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MethodIdentifierChanged
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 161
+    startLine: 171
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -449,37 +419,37 @@ items:
     content.vb: Public Event MethodIdentifierChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanging
-  commentId: E:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanging
-  id: StrategyChanging
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
+  commentId: E:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
+  id: MethodIdentifierChanging
   parent: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration
   langs:
   - csharp
   - vb
-  name: StrategyChanging
-  nameWithType: MethodConfiguration.StrategyChanging
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanging
+  name: MethodIdentifierChanging
+  nameWithType: MethodConfiguration.MethodIdentifierChanging
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.MethodIdentifierChanging
   type: Event
   source:
     remote:
       path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: StrategyChanging
+    id: MethodIdentifierChanging
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 166
+    startLine: 176
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
-  summary: Gets fired before the Strategy property changes its value
+  summary: Gets fired before the MethodIdentifier property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> StrategyChanging
+    content: public event EventHandler<ValueChangedEventArgs> MethodIdentifierChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event StrategyChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event MethodIdentifierChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
+  - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanged
   commentId: E:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanged
   id: StrategyChanged
@@ -498,7 +468,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: StrategyChanged
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 171
+    startLine: 181
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -511,38 +481,37 @@ items:
     content.vb: Public Event StrategyChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanged
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanging
+  commentId: E:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanging
+  id: StrategyChanging
   parent: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration
   langs:
   - csharp
   - vb
-  name: OnMethodIdentifierChanging(ValueChangedEventArgs)
-  nameWithType: MethodConfiguration.OnMethodIdentifierChanging(ValueChangedEventArgs)
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
+  name: StrategyChanging
+  nameWithType: MethodConfiguration.StrategyChanging
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.StrategyChanging
+  type: Event
   source:
     remote:
       path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnMethodIdentifierChanging
+    id: StrategyChanging
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 177
+    startLine: 186
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
-  summary: Raises the MethodIdentifierChanging event
+  summary: Gets fired before the Strategy property changes its value
   example: []
   syntax:
-    content: protected virtual void OnMethodIdentifierChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnMethodIdentifierChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging*
+    content: public event EventHandler<ValueChangedEventArgs> StrategyChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event StrategyChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnMethodIdentifierChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -561,7 +530,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnMethodIdentifierChanged
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 190
+    startLine: 197
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -575,38 +544,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnMethodIdentifierChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged*
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration
   langs:
   - csharp
   - vb
-  name: OnStrategyChanging(ValueChangedEventArgs)
-  nameWithType: MethodConfiguration.OnStrategyChanging(ValueChangedEventArgs)
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnMethodIdentifierChanging(ValueChangedEventArgs)
+  nameWithType: MethodConfiguration.OnMethodIdentifierChanging(ValueChangedEventArgs)
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnStrategyChanging
+    id: OnMethodIdentifierChanging
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 203
+    startLine: 210
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
-  summary: Raises the StrategyChanging event
+  summary: Raises the MethodIdentifierChanging event
   example: []
   syntax:
-    content: protected virtual void OnStrategyChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnMethodIdentifierChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnStrategyChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging*
+    content.vb: Protected Overridable Sub OnMethodIdentifierChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging*
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnStrategyChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -625,7 +594,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnStrategyChanged
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 216
+    startLine: 228
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -639,6 +608,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnStrategyChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanged*
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration
+  langs:
+  - csharp
+  - vb
+  name: OnStrategyChanging(ValueChangedEventArgs)
+  nameWithType: MethodConfiguration.OnStrategyChanging(ValueChangedEventArgs)
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnStrategyChanging
+    path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
+    startLine: 241
+  assemblies:
+  - NMF.Expressions.Configuration
+  namespace: NMF.Expressions.IncrementalizationConfiguration
+  summary: Raises the StrategyChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnStrategyChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnStrategyChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging*
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetAttributeValue(System.String,System.Int32)
   id: GetAttributeValue(System.String,System.Int32)
@@ -657,7 +658,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 251
+    startLine: 281
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -699,7 +700,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 280
+    startLine: 310
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -738,7 +739,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 294
+    startLine: 324
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -759,6 +760,45 @@ items:
   nameWithType.vb: MethodConfiguration.SetFeature(String, Object)
   fullName.vb: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute(System.String)
+  id: GetExpressionForAttribute(System.String)
+  parent: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration
+  langs:
+  - csharp
+  - vb
+  name: GetExpressionForAttribute(string)
+  nameWithType: MethodConfiguration.GetExpressionForAttribute(string)
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute(string)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetExpressionForAttribute
+    path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
+    startLine: 344
+  assemblies:
+  - NMF.Expressions.Configuration
+  namespace: NMF.Expressions.IncrementalizationConfiguration
+  summary: Gets the property expression for the given attribute
+  example: []
+  syntax:
+    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
+    parameters:
+    - id: attribute
+      type: System.String
+      description: The requested attribute in upper case
+    return:
+      type: NMF.Expressions.INotifyExpression{System.Object}
+      description: An incremental property expression
+    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
+  overridden: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  overload: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute*
+  nameWithType.vb: MethodConfiguration.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetClass
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetClass
   id: GetClass
@@ -777,7 +817,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/MethodConfiguration.cs
-    startLine: 312
+    startLine: 360
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -1251,6 +1291,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -1605,35 +1651,6 @@ references:
   spec.vb:
   - uid: NMF.Models.ModelElement.GetExpressionForReference(System.String)
     name: GetExpressionForReference
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: GetExpressionForAttribute(string)
-  nameWithType: ModelElement.GetExpressionForAttribute(string)
-  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
   - name: (
   - uid: System.String
     name: String
@@ -2758,13 +2775,13 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
-- uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
-  commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
+- uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
+  commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
   parent: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
-  href: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_IMethodConfiguration_MethodIdentifierChanging
-  name: MethodIdentifierChanging
-  nameWithType: IMethodConfiguration.MethodIdentifierChanging
-  fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
+  href: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_IMethodConfiguration_MethodIdentifierChanged
+  name: MethodIdentifierChanged
+  nameWithType: IMethodConfiguration.MethodIdentifierChanged
+  fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -2826,20 +2843,13 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
-  commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
+- uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
+  commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
   parent: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
-  href: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_IMethodConfiguration_MethodIdentifierChanged
-  name: MethodIdentifierChanged
-  nameWithType: IMethodConfiguration.MethodIdentifierChanged
-  fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanged
-- uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
-  commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
-  parent: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
-  href: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_IMethodConfiguration_StrategyChanging
-  name: StrategyChanging
-  nameWithType: IMethodConfiguration.StrategyChanging
-  fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
+  href: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_IMethodConfiguration_MethodIdentifierChanging
+  name: MethodIdentifierChanging
+  nameWithType: IMethodConfiguration.MethodIdentifierChanging
+  fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.MethodIdentifierChanging
 - uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanged
   commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanged
   parent: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
@@ -2847,12 +2857,19 @@ references:
   name: StrategyChanged
   nameWithType: IMethodConfiguration.StrategyChanged
   fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanged
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging*
-  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging
-  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnMethodIdentifierChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnMethodIdentifierChanging
-  nameWithType: MethodConfiguration.OnMethodIdentifierChanging
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging
+- uid: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
+  commentId: E:NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
+  parent: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration
+  href: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_IMethodConfiguration_StrategyChanging
+  name: StrategyChanging
+  nameWithType: IMethodConfiguration.StrategyChanging
+  fullName: NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration.StrategyChanging
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged*
+  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged
+  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnMethodIdentifierChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnMethodIdentifierChanged
+  nameWithType: MethodConfiguration.OnMethodIdentifierChanged
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged
 - uid: NMF.Expressions.ValueChangedEventArgs
   commentId: T:NMF.Expressions.ValueChangedEventArgs
   parent: NMF.Expressions
@@ -2860,24 +2877,24 @@ references:
   name: ValueChangedEventArgs
   nameWithType: ValueChangedEventArgs
   fullName: NMF.Expressions.ValueChangedEventArgs
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged*
-  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged
-  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnMethodIdentifierChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnMethodIdentifierChanged
-  nameWithType: MethodConfiguration.OnMethodIdentifierChanged
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanged
-- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging*
-  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging
-  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnStrategyChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnStrategyChanging
-  nameWithType: MethodConfiguration.OnStrategyChanging
-  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging*
+  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging
+  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnMethodIdentifierChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnMethodIdentifierChanging
+  nameWithType: MethodConfiguration.OnMethodIdentifierChanging
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnMethodIdentifierChanging
 - uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanged*
   commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanged
   href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnStrategyChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnStrategyChanged
   nameWithType: MethodConfiguration.OnStrategyChanged
   fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanged
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging*
+  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging
+  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_OnStrategyChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnStrategyChanging
+  nameWithType: MethodConfiguration.OnStrategyChanging
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.OnStrategyChanging
 - uid: NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Models.ModelElement
@@ -3053,6 +3070,100 @@ references:
   name: SetFeature
   nameWithType: MethodConfiguration.SetFeature
   fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.SetFeature
+- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: GetExpressionForAttribute(string)
+  nameWithType: ModelElement.GetExpressionForAttribute(string)
+  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute*
+  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute
+  href: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.html#NMF_Expressions_IncrementalizationConfiguration_MethodConfiguration_GetExpressionForAttribute_System_String_
+  name: GetExpressionForAttribute
+  nameWithType: MethodConfiguration.GetExpressionForAttribute
+  fullName: NMF.Expressions.IncrementalizationConfiguration.MethodConfiguration.GetExpressionForAttribute
+- uid: NMF.Expressions.INotifyExpression{System.Object}
+  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyExpression`1
+  href: NMF.Expressions.INotifyExpression-1.html
+  name: INotifyExpression<object>
+  nameWithType: INotifyExpression<object>
+  fullName: NMF.Expressions.INotifyExpression<object>
+  nameWithType.vb: INotifyExpression(Of Object)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
+  name.vb: INotifyExpression(Of Object)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  parent: NMF.Expressions
+  href: NMF.Expressions.INotifyExpression-1.html
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: NMF.Models.ModelElement.GetClass
   commentId: M:NMF.Models.ModelElement.GetClass
   parent: NMF.Models.ModelElement

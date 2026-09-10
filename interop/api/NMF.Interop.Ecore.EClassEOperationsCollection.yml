@@ -21,11 +21,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassEOperationsCollection
     path: src/Interop/EcoreInterop/Model/EClassEOperationsCollection.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Denotes a collection type for operations of classes
+  summary: Denotes a class to implement the eOperations reference
   example: []
   syntax:
     content: 'public class EClassEOperationsCollection : ObservableOppositeOrderedSet<IEClass, IEOperation>, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<IEOperation>, IListExpression<IEOperation>, ISetExpression<IEOperation>, ICollectionExpression<IEOperation>, IEnumerableExpression<IEOperation>, IOrderedSet<IEOperation>, IList<IEOperation>, ISet<IEOperation>, ICollection<IEOperation>, IEnumerable<IEOperation>, ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable'
@@ -127,7 +127,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EClassEOperationsCollection.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -138,7 +138,7 @@ items:
     parameters:
     - id: parent
       type: NMF.Interop.Ecore.IEClass
-      description: the parent element
+      description: the parent EClass
     content.vb: Public Sub New(parent As IEClass)
   overload: NMF.Interop.Ecore.EClassEOperationsCollection.#ctor*
   nameWithType.vb: EClassEOperationsCollection.New(IEClass)
@@ -162,21 +162,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetOpposite
     path: src/Interop/EcoreInterop/Model/EClassEOperationsCollection.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Sets the opposite value
+  summary: Sets the opposite of the given item
   example: []
   syntax:
-    content: protected override void SetOpposite(IEOperation item, IEClass parent)
+    content: protected override void SetOpposite(IEOperation item, IEClass newParent)
     parameters:
     - id: item
       type: NMF.Interop.Ecore.IEOperation
-      description: The item to set the opposite
-    - id: parent
+      description: the item
+    - id: newParent
       type: NMF.Interop.Ecore.IEClass
-    content.vb: Protected Overrides Sub SetOpposite(item As IEOperation, parent As IEClass)
+      description: the new parent or null, if the item is removed from the collection
+    content.vb: Protected Overrides Sub SetOpposite(item As IEOperation, newParent As IEClass)
   overridden: NMF.Collections.ObjectModel.ObservableOppositeOrderedSet{NMF.Interop.Ecore.IEClass,NMF.Interop.Ecore.IEOperation}.SetOpposite(NMF.Interop.Ecore.IEOperation,NMF.Interop.Ecore.IEClass)
   overload: NMF.Interop.Ecore.EClassEOperationsCollection.SetOpposite*
 references:

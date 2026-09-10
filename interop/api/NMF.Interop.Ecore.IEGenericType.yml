@@ -32,7 +32,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEGenericType
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -44,13 +44,19 @@ items:
 
       [XmlDefaultImplementationType(typeof(EGenericType))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EGenericType")]
+
       public interface IEGenericType : IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EGenericType))>
 
       <XmlDefaultImplementationType(GetType(EGenericType))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EGenericType")>
+
       Public Interface IEGenericType Inherits IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EGenericType
   inheritedMembers:
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
@@ -99,6 +105,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EGenericType
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EGenericType
 - uid: NMF.Interop.Ecore.IEGenericType.EUpperBound
   commentId: P:NMF.Interop.Ecore.IEGenericType.EUpperBound
   id: EUpperBound
@@ -117,19 +128,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EUpperBound
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eUpperBound property
   example: []
   syntax:
-    content: IEGenericType EUpperBound { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eUpperBound")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IEGenericType EUpperBound { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEGenericType
-    content.vb: Property EUpperBound As IEGenericType
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eUpperBound")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      Property EUpperBound As IEGenericType
   overload: NMF.Interop.Ecore.IEGenericType.EUpperBound*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eUpperBound
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 - uid: NMF.Interop.Ecore.IEGenericType.ETypeArguments
   commentId: P:NMF.Interop.Ecore.IEGenericType.ETypeArguments
   id: ETypeArguments
@@ -148,19 +196,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeArguments
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 53
+    startLine: 59
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eTypeArguments property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEGenericType> ETypeArguments { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eTypeArguments")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IOrderedSetExpression<IEGenericType> ETypeArguments { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEGenericType}
-    content.vb: ReadOnly Property ETypeArguments As IOrderedSetExpression(Of IEGenericType)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eTypeArguments")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property ETypeArguments As IOrderedSetExpression(Of IEGenericType)
   overload: NMF.Interop.Ecore.IEGenericType.ETypeArguments*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eTypeArguments
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 - uid: NMF.Interop.Ecore.IEGenericType.ELowerBound
   commentId: P:NMF.Interop.Ecore.IEGenericType.ELowerBound
   id: ELowerBound
@@ -179,19 +264,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELowerBound
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 61
+    startLine: 73
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eLowerBound property
   example: []
   syntax:
-    content: IEGenericType ELowerBound { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eLowerBound")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IEGenericType ELowerBound { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEGenericType
-    content.vb: Property ELowerBound As IEGenericType
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eLowerBound")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      Property ELowerBound As IEGenericType
   overload: NMF.Interop.Ecore.IEGenericType.ELowerBound*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eLowerBound
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 - uid: NMF.Interop.Ecore.IEGenericType.ETypeParameter
   commentId: P:NMF.Interop.Ecore.IEGenericType.ETypeParameter
   id: ETypeParameter
@@ -210,19 +332,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameter
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 70
+    startLine: 86
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eTypeParameter property
   example: []
   syntax:
-    content: IETypeParameter ETypeParameter { get; set; }
+    content: >-
+      [XmlElementName("eTypeParameter")]
+
+      [XmlAttribute(true)]
+
+      IETypeParameter ETypeParameter { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IETypeParameter
-    content.vb: Property ETypeParameter As IETypeParameter
+    content.vb: >-
+      <XmlElementName("eTypeParameter")>
+
+      <XmlAttribute(True)>
+
+      Property ETypeParameter As IETypeParameter
   overload: NMF.Interop.Ecore.IEGenericType.ETypeParameter*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eTypeParameter
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEGenericType.EClassifier
   commentId: P:NMF.Interop.Ecore.IEGenericType.EClassifier
   id: EClassifier
@@ -241,19 +384,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifier
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 79
+    startLine: 99
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eClassifier property
   example: []
   syntax:
-    content: IEClassifier EClassifier { get; set; }
+    content: >-
+      [XmlElementName("eClassifier")]
+
+      [XmlAttribute(true)]
+
+      IEClassifier EClassifier { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEClassifier
-    content.vb: Property EClassifier As IEClassifier
+    content.vb: >-
+      <XmlElementName("eClassifier")>
+
+      <XmlAttribute(True)>
+
+      Property EClassifier As IEClassifier
   overload: NMF.Interop.Ecore.IEGenericType.EClassifier*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eClassifier
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEGenericType.EUpperBoundChanging
   commentId: E:NMF.Interop.Ecore.IEGenericType.EUpperBoundChanging
   id: EUpperBoundChanging
@@ -272,7 +436,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EUpperBoundChanging
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 88
+    startLine: 112
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -301,7 +465,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EUpperBoundChanged
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 93
+    startLine: 117
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -330,7 +494,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELowerBoundChanging
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 98
+    startLine: 122
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -359,7 +523,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELowerBoundChanged
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 103
+    startLine: 127
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -388,7 +552,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameterChanging
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 108
+    startLine: 132
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -417,7 +581,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameterChanged
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 113
+    startLine: 137
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -446,7 +610,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifierChanging
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 118
+    startLine: 142
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -475,7 +639,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifierChanged
     path: src/Interop/EcoreInterop/Model/IEGenericType.cs
-    startLine: 123
+    startLine: 147
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore

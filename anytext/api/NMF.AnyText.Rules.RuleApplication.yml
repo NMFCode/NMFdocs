@@ -16,6 +16,7 @@ items:
   - NMF.AnyText.Rules.RuleApplication.CodeLenses(System.Predicate{NMF.AnyText.CodeLensApplication})
   - NMF.AnyText.Rules.RuleApplication.Comments
   - NMF.AnyText.Rules.RuleApplication.ContextElement
+  - NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.CurrentPosition
   - NMF.AnyText.Rules.RuleApplication.Deactivate(NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.DiagnosticItems
@@ -28,19 +29,27 @@ items:
   - NMF.AnyText.Rules.RuleApplication.GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
   - NMF.AnyText.Rules.RuleApplication.GetValue(NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.IsActive
+  - NMF.AnyText.Rules.RuleApplication.IsMemoized
   - NMF.AnyText.Rules.RuleApplication.IsPositive
   - NMF.AnyText.Rules.RuleApplication.IsRecovered
   - NMF.AnyText.Rules.RuleApplication.IsStack(System.Collections.Generic.Stack{NMF.AnyText.Rules.Rule})
   - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication})
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
   - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},System.Boolean)
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
   - NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0)
   - NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0,System.Boolean)
   - NMF.AnyText.Rules.RuleApplication.Length
+  - NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.OnValueChange(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.RuleApplication.Parent
   - NMF.AnyText.Rules.RuleApplication.PotentialError
   - NMF.AnyText.Rules.RuleApplication.Recover(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.ParsePosition@)
-  - NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.Rule
   - NMF.AnyText.Rules.RuleApplication.ScopeLength
   - NMF.AnyText.Rules.RuleApplication.SemanticElement
@@ -74,6 +83,8 @@ items:
   - System.Object
   derivedClasses:
   - NMF.AnyText.Rules.LiteralRuleApplication
+  - NMF.AnyText.Rules.MultiRuleApplication
+  - NMF.AnyText.Rules.SingleRuleApplication
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -565,16 +576,16 @@ items:
       description: The rule application for the literal rule representing the identifier
     content.vb: Public Overridable Function GetIdentifier() As RuleApplication
   overload: NMF.AnyText.Rules.RuleApplication.GetIdentifier*
-- uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
-  commentId: M:NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
-  id: ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
+- uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
+  id: ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   parent: NMF.AnyText.Rules.RuleApplication
   langs:
   - csharp
   - vb
-  name: ReplaceChild(RuleApplication, RuleApplication)
-  nameWithType: RuleApplication.ReplaceChild(RuleApplication, RuleApplication)
-  fullName: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.Rules.RuleApplication)
+  name: ReplaceChild(RuleApplication, RuleApplication, ParseContext)
+  nameWithType: RuleApplication.ReplaceChild(RuleApplication, RuleApplication, ParseContext)
+  fullName: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext)
   type: Method
   source:
     remote:
@@ -583,14 +594,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReplaceChild
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 235
+    startLine: 236
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
   summary: Replaces the given child rule application with the given new child
   example: []
   syntax:
-    content: public virtual void ReplaceChild(RuleApplication childApplication, RuleApplication newChild)
+    content: public virtual void ReplaceChild(RuleApplication childApplication, RuleApplication newChild, ParseContext context)
     parameters:
     - id: childApplication
       type: NMF.AnyText.Rules.RuleApplication
@@ -598,7 +609,10 @@ items:
     - id: newChild
       type: NMF.AnyText.Rules.RuleApplication
       description: a new child
-    content.vb: Public Overridable Sub ReplaceChild(childApplication As RuleApplication, newChild As RuleApplication)
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the context in which the child is replaced
+    content.vb: Public Overridable Sub ReplaceChild(childApplication As RuleApplication, newChild As RuleApplication, context As ParseContext)
   overload: NMF.AnyText.Rules.RuleApplication.ReplaceChild*
 - uid: NMF.AnyText.Rules.RuleApplication.Rule
   commentId: P:NMF.AnyText.Rules.RuleApplication.Rule
@@ -618,7 +632,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Rule
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 273
+    startLine: 274
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -649,7 +663,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Comments
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 278
+    startLine: 279
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -680,7 +694,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Length
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 283
+    startLine: 284
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -711,7 +725,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExaminedTo
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 288
+    startLine: 289
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -742,7 +756,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ScopeLength
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 294
+    startLine: 295
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -774,7 +788,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsActive
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 299
+    startLine: 300
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -787,6 +801,37 @@ items:
       type: System.Boolean
     content.vb: Public Property IsActive As Boolean
   overload: NMF.AnyText.Rules.RuleApplication.IsActive*
+- uid: NMF.AnyText.Rules.RuleApplication.IsMemoized
+  commentId: P:NMF.AnyText.Rules.RuleApplication.IsMemoized
+  id: IsMemoized
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IsMemoized
+  nameWithType: RuleApplication.IsMemoized
+  fullName: NMF.AnyText.Rules.RuleApplication.IsMemoized
+  type: Property
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsMemoized
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 305
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: True, if the rule application is currently active in the memoization table, otherwise false
+  example: []
+  syntax:
+    content: public bool IsMemoized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsMemoized As Boolean
+  overload: NMF.AnyText.Rules.RuleApplication.IsMemoized*
 - uid: NMF.AnyText.Rules.RuleApplication.CurrentPosition
   commentId: P:NMF.AnyText.Rules.RuleApplication.CurrentPosition
   id: CurrentPosition
@@ -805,7 +850,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CurrentPosition
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 304
+    startLine: 310
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -836,7 +881,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Activate
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 332
+    startLine: 340
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -874,7 +919,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Deactivate
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 345
+    startLine: 353
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -906,7 +951,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CalculateIndex
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 359
+    startLine: 367
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -941,7 +986,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CalculateIndex
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 374
+    startLine: 382
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -982,7 +1027,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsStack
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 389
+    startLine: 397
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1020,7 +1065,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Parent
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 394
+    startLine: 402
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1051,7 +1096,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddParseErrors
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 400
+    startLine: 424
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1083,7 +1128,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: PotentialError
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 405
+    startLine: 429
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1114,7 +1159,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CodeLenses
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 412
+    startLine: 436
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1152,7 +1197,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnValueChange
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 439
+    startLine: 463
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1172,6 +1217,47 @@ items:
       description: the rule application with the old value
     content.vb: Protected Overridable Sub OnValueChange(changedChild As RuleApplication, context As ParseContext, oldValueApplication As RuleApplication)
   overload: NMF.AnyText.Rules.RuleApplication.OnValueChange*
+- uid: NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+  id: OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: OnContextChange(object, object, ParseContext)
+  nameWithType: RuleApplication.OnContextChange(object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.RuleApplication.OnContextChange(object, object, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnContextChange
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 477
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Gets called when the context of this rule application changes
+  example: []
+  syntax:
+    content: protected virtual void OnContextChange(object oldContext, object newContext, ParseContext context)
+    parameters:
+    - id: oldContext
+      type: System.Object
+      description: the old context element
+    - id: newContext
+      type: System.Object
+      description: the new context element
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context
+    content.vb: Protected Overridable Sub OnContextChange(oldContext As Object, newContext As Object, context As ParseContext)
+  overload: NMF.AnyText.Rules.RuleApplication.OnContextChange*
+  nameWithType.vb: RuleApplication.OnContextChange(Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.OnContextChange(Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChange(Object, Object, ParseContext)
 - uid: NMF.AnyText.Rules.RuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Rules.RuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   id: ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
@@ -1190,7 +1276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ApplyTo
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 453
+    startLine: 487
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1228,7 +1314,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetLiteralAt
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 461
+    startLine: 495
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1269,7 +1355,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IterateLiterals
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 467
+    startLine: 501
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1304,7 +1390,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IterateLiterals
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 474
+    startLine: 508
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1324,6 +1410,251 @@ items:
   nameWithType.vb: RuleApplication.IterateLiterals(Action(Of LiteralRuleApplication), Boolean)
   fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication), Boolean)
   name.vb: IterateLiterals(Action(Of LiteralRuleApplication), Boolean)
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  id: IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 514
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public bool IterateLiterals(Func<LiteralRuleApplication, bool> action)
+    parameters:
+    - id: action
+      type: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+      description: the action that should be performed for all literals
+    return:
+      type: System.Boolean
+    content.vb: Public Function IterateLiterals(action As Func(Of LiteralRuleApplication, Boolean)) As Boolean
+  overload: NMF.AnyText.Rules.RuleApplication.IterateLiterals*
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean))
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean))
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean))
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  id: IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, bool)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, bool)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, bool)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 521
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public abstract bool IterateLiterals(Func<LiteralRuleApplication, bool> action, bool includeFailures)
+    parameters:
+    - id: action
+      type: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+      description: the action that should be performed for all literals
+    - id: includeFailures
+      type: System.Boolean
+      description: true, if failed rule applications should be considered, otherwise false
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride Function IterateLiterals(action As Func(Of LiteralRuleApplication, Boolean), includeFailures As Boolean) As Boolean
+  overload: NMF.AnyText.Rules.RuleApplication.IterateLiterals*
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), Boolean)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), Boolean)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), Boolean)
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  id: IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, NMF.AnyText.ParsePosition)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 528
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public bool IterateLiterals(Func<LiteralRuleApplication, bool> action, ParsePosition from)
+    parameters:
+    - id: action
+      type: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+      description: the action that should be performed for all literals
+    - id: from
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position from which the literals should be iterated
+    return:
+      type: System.Boolean
+    content.vb: Public Function IterateLiterals(action As Func(Of LiteralRuleApplication, Boolean), from As ParsePosition) As Boolean
+  overload: NMF.AnyText.Rules.RuleApplication.IterateLiterals*
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), NMF.AnyText.ParsePosition)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition)
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  id: IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition, bool)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition, bool)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, NMF.AnyText.ParsePosition, bool)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 536
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public abstract bool IterateLiterals(Func<LiteralRuleApplication, bool> action, ParsePosition from, bool includeFailures)
+    parameters:
+    - id: action
+      type: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+      description: the action that should be performed for all literals
+    - id: from
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position from which the literals should be iterated
+    - id: includeFailures
+      type: System.Boolean
+      description: true, if failed rule applications should be considered, otherwise false
+    return:
+      type: System.Boolean
+    content.vb: Public MustOverride Function IterateLiterals(action As Func(Of LiteralRuleApplication, Boolean), from As ParsePosition, includeFailures As Boolean) As Boolean
+  overload: NMF.AnyText.Rules.RuleApplication.IterateLiterals*
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition, Boolean)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), NMF.AnyText.ParsePosition, Boolean)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition, Boolean)
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+  id: IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition)
+  nameWithType: RuleApplication.IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action<NMF.AnyText.Rules.LiteralRuleApplication>, NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 544
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public void IterateLiterals(Action<LiteralRuleApplication> action, ParsePosition from, ParsePosition to)
+    parameters:
+    - id: action
+      type: System.Action{NMF.AnyText.Rules.LiteralRuleApplication}
+      description: the action that should be performed for all literals
+    - id: from
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position from which the literals should be iterated
+    - id: to
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position to which the literals should be iterated
+    content.vb: Public Sub IterateLiterals(action As Action(Of LiteralRuleApplication), from As ParsePosition, [to] As ParsePosition)
+  overload: NMF.AnyText.Rules.RuleApplication.IterateLiterals*
+  nameWithType.vb: RuleApplication.IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication), NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition)
+  name.vb: IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition)
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  id: IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition, bool)
+  nameWithType: RuleApplication.IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition, bool)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action<NMF.AnyText.Rules.LiteralRuleApplication>, NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition, bool)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 553
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public abstract void IterateLiterals(Action<LiteralRuleApplication> action, ParsePosition from, ParsePosition to, bool includeFailures)
+    parameters:
+    - id: action
+      type: System.Action{NMF.AnyText.Rules.LiteralRuleApplication}
+      description: the action that should be performed for all literals
+    - id: from
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position from which the literals should be iterated
+    - id: to
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position to which the literals should be iterated
+    - id: includeFailures
+      type: System.Boolean
+      description: true, if failed rule applications should be considered, otherwise false
+    content.vb: Public MustOverride Sub IterateLiterals(action As Action(Of LiteralRuleApplication), from As ParsePosition, [to] As ParsePosition, includeFailures As Boolean)
+  overload: NMF.AnyText.Rules.RuleApplication.IterateLiterals*
+  nameWithType.vb: RuleApplication.IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition, Boolean)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication), NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition, Boolean)
+  name.vb: IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition, Boolean)
 - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0)
   commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0)
   id: IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0)
@@ -1342,7 +1673,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IterateLiterals
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 482
+    startLine: 561
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1383,7 +1714,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IterateLiterals
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 491
+    startLine: 570
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1427,7 +1758,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetFirstInnerLiteral
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 498
+    startLine: 577
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1458,7 +1789,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetLastInnerLiteral
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 504
+    startLine: 583
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1489,7 +1820,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Write
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 511
+    startLine: 590
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1506,6 +1837,47 @@ items:
       description: the parse context
     content.vb: Public MustOverride Sub Write(writer As PrettyPrintWriter, context As ParseContext)
   overload: NMF.AnyText.Rules.RuleApplication.Write*
+- uid: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  id: ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.RuleApplication
+  langs:
+  - csharp
+  - vb
+  name: ContinueToNextToken(RuleApplication, PrettyPrintWriter, ParseContext)
+  nameWithType: RuleApplication.ContinueToNextToken(RuleApplication, PrettyPrintWriter, ParseContext)
+  fullName: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.PrettyPrinting.PrettyPrintWriter, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/RuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ContinueToNextToken
+    path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
+    startLine: 599
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Writes white spaces until the next token
+  example: []
+  syntax:
+    content: public abstract bool ContinueToNextToken(RuleApplication childRuleApplication, PrettyPrintWriter writer, ParseContext context)
+    parameters:
+    - id: childRuleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the child rule application that was written last
+    - id: writer
+      type: NMF.AnyText.PrettyPrinting.PrettyPrintWriter
+      description: the pretty print writer to write to
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context
+    return:
+      type: System.Boolean
+      description: true, if a token was produced, otherwise false
+    content.vb: Public MustOverride Function ContinueToNextToken(childRuleApplication As RuleApplication, writer As PrettyPrintWriter, context As ParseContext) As Boolean
+  overload: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken*
 - uid: NMF.AnyText.Rules.RuleApplication.SetupPrettyPrinter(NMF.AnyText.PrettyPrinting.PrettyPrintWriter)
   commentId: M:NMF.AnyText.Rules.RuleApplication.SetupPrettyPrinter(NMF.AnyText.PrettyPrinting.PrettyPrintWriter)
   id: SetupPrettyPrinter(NMF.AnyText.PrettyPrinting.PrettyPrintWriter)
@@ -1524,7 +1896,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetupPrettyPrinter
     path: src/AnyText/AnyText.Core/Rules/RuleApplication.cs
-    startLine: 517
+    startLine: 605
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -2195,7 +2567,7 @@ references:
   fullName: NMF.AnyText.Rules.RuleApplication.GetIdentifier
 - uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild*
   commentId: Overload:NMF.AnyText.Rules.RuleApplication.ReplaceChild
-  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_
   name: ReplaceChild
   nameWithType: RuleApplication.ReplaceChild
   fullName: NMF.AnyText.Rules.RuleApplication.ReplaceChild
@@ -2296,6 +2668,12 @@ references:
   name: IsActive
   nameWithType: RuleApplication.IsActive
   fullName: NMF.AnyText.Rules.RuleApplication.IsActive
+- uid: NMF.AnyText.Rules.RuleApplication.IsMemoized*
+  commentId: Overload:NMF.AnyText.Rules.RuleApplication.IsMemoized
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IsMemoized
+  name: IsMemoized
+  nameWithType: RuleApplication.IsMemoized
+  fullName: NMF.AnyText.Rules.RuleApplication.IsMemoized
 - uid: NMF.AnyText.Rules.RuleApplication.CurrentPosition*
   commentId: Overload:NMF.AnyText.Rules.RuleApplication.CurrentPosition
   href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_CurrentPosition
@@ -2522,6 +2900,12 @@ references:
   name: OnValueChange
   nameWithType: RuleApplication.OnValueChange
   fullName: NMF.AnyText.Rules.RuleApplication.OnValueChange
+- uid: NMF.AnyText.Rules.RuleApplication.OnContextChange*
+  commentId: Overload:NMF.AnyText.Rules.RuleApplication.OnContextChange
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_OnContextChange_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChange
+  nameWithType: RuleApplication.OnContextChange
+  fullName: NMF.AnyText.Rules.RuleApplication.OnContextChange
 - uid: NMF.AnyText.Rules.RuleApplication.ApplyTo*
   commentId: Overload:NMF.AnyText.Rules.RuleApplication.ApplyTo
   href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ApplyTo_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_
@@ -2600,6 +2984,85 @@ references:
   - name: Of
   - name: " "
   - name: T
+  - name: )
+- uid: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+  commentId: T:System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<LiteralRuleApplication, bool>
+  nameWithType: Func<LiteralRuleApplication, bool>
+  fullName: System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>
+  nameWithType.vb: Func(Of LiteralRuleApplication, Boolean)
+  fullName.vb: System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean)
+  name.vb: Func(Of LiteralRuleApplication, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
   - name: )
 - uid: System.Action{NMF.AnyText.Rules.LiteralRuleApplication,{T}}
   commentId: T:System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0}
@@ -2746,6 +3209,12 @@ references:
   - uid: NMF.AnyText.PrettyPrinting
     name: PrettyPrinting
     href: NMF.AnyText.PrettyPrinting.html
+- uid: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken*
+  commentId: Overload:NMF.AnyText.Rules.RuleApplication.ContinueToNextToken
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ContinueToNextToken_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_PrettyPrinting_PrettyPrintWriter_NMF_AnyText_ParseContext_
+  name: ContinueToNextToken
+  nameWithType: RuleApplication.ContinueToNextToken
+  fullName: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken
 - uid: NMF.AnyText.Rules.RuleApplication.SetupPrettyPrinter*
   commentId: Overload:NMF.AnyText.Rules.RuleApplication.SetupPrettyPrinter
   href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_SetupPrettyPrinter_NMF_AnyText_PrettyPrinting_PrettyPrintWriter_

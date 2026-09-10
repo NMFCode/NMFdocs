@@ -21,11 +21,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EOperationEParametersCollection
     path: src/Interop/EcoreInterop/Model/EOperationEParametersCollection.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Denotes a collection type for parameters of operations
+  summary: Denotes a class to implement the eParameters reference
   example: []
   syntax:
     content: 'public class EOperationEParametersCollection : ObservableOppositeOrderedSet<IEOperation, IEParameter>, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<IEParameter>, IListExpression<IEParameter>, ISetExpression<IEParameter>, ICollectionExpression<IEParameter>, IEnumerableExpression<IEParameter>, IOrderedSet<IEParameter>, IList<IEParameter>, ISet<IEParameter>, ICollection<IEParameter>, IEnumerable<IEParameter>, ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable'
@@ -127,7 +127,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EOperationEParametersCollection.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -138,7 +138,7 @@ items:
     parameters:
     - id: parent
       type: NMF.Interop.Ecore.IEOperation
-      description: the parent element
+      description: the parent EOperation
     content.vb: Public Sub New(parent As IEOperation)
   overload: NMF.Interop.Ecore.EOperationEParametersCollection.#ctor*
   nameWithType.vb: EOperationEParametersCollection.New(IEOperation)
@@ -162,21 +162,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetOpposite
     path: src/Interop/EcoreInterop/Model/EOperationEParametersCollection.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Sets the opposite value
+  summary: Sets the opposite of the given item
   example: []
   syntax:
-    content: protected override void SetOpposite(IEParameter item, IEOperation parent)
+    content: protected override void SetOpposite(IEParameter item, IEOperation newParent)
     parameters:
     - id: item
       type: NMF.Interop.Ecore.IEParameter
-      description: The item to set the opposite
-    - id: parent
+      description: the item
+    - id: newParent
       type: NMF.Interop.Ecore.IEOperation
-    content.vb: Protected Overrides Sub SetOpposite(item As IEParameter, parent As IEOperation)
+      description: the new parent or null, if the item is removed from the collection
+    content.vb: Protected Overrides Sub SetOpposite(item As IEParameter, newParent As IEOperation)
   overridden: NMF.Collections.ObjectModel.ObservableOppositeOrderedSet{NMF.Interop.Ecore.IEOperation,NMF.Interop.Ecore.IEParameter}.SetOpposite(NMF.Interop.Ecore.IEParameter,NMF.Interop.Ecore.IEOperation)
   overload: NMF.Interop.Ecore.EOperationEParametersCollection.SetOpposite*
 references:

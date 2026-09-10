@@ -20,7 +20,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IConfiguration
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/IConfiguration.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -32,13 +32,19 @@ items:
 
       [XmlDefaultImplementationType(typeof(Configuration))]
 
+      [ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//Configuration")]
+
       public interface IConfiguration : IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(Configuration))>
 
       <XmlDefaultImplementationType(GetType(Configuration))>
 
+      <ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//Configuration")>
+
       Public Interface IConfiguration Inherits IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Expressions.IncrementalizationConfiguration.Configuration
   inheritedMembers:
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
@@ -89,6 +95,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Expressions.IncrementalizationConfiguration.Configuration
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://nmf.codeplex.com/incrementalizationConfig#//Configuration
 - uid: NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations
   commentId: P:NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations
   id: MethodConfigurations
@@ -107,19 +118,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MethodConfigurations
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/IConfiguration.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
   summary: The methodConfigurations property
   example: []
   syntax:
-    content: IListExpression<IMethodConfiguration> MethodConfigurations { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("methodConfigurations")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IListExpression<IMethodConfiguration> MethodConfigurations { get; }
     parameters: []
     return:
       type: NMF.Expressions.IListExpression{NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration}
-    content.vb: ReadOnly Property MethodConfigurations As IListExpression(Of IMethodConfiguration)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("methodConfigurations")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property MethodConfigurations As IListExpression(Of IMethodConfiguration)
   overload: NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: methodConfigurations
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 references:
 - uid: NMF.Expressions.IncrementalizationConfiguration
   commentId: N:NMF.Expressions.IncrementalizationConfiguration

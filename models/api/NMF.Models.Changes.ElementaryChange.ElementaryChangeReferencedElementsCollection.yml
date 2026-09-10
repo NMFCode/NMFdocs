@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.#ctor(NMF.Models.Changes.ElementaryChange)
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Clear
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Count
-  - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore
+  - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.GetEnumerator
   - NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ElementaryChangeReferencedElementsCollection
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 331
+    startLine: 339
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 339
+    startLine: 347
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 347
+    startLine: 355
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -137,64 +138,38 @@ items:
   overload: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore
-  commentId: M:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore()
-  fullName: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Models/Models/Changes/ElementaryChange.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 365
+    startLine: 376
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore*
-- uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore
-  commentId: M:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore()
-  fullName: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Models/Models/Changes/ElementaryChange.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 372
-  assemblies:
-  - NMF.Models
-  namespace: NMF.Models.Changes
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies*
 - uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 382
+    startLine: 387
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 403
+    startLine: 408
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 414
+    startLine: 419
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 432
+    startLine: 437
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 451
+    startLine: 456
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Models/Models/Changes/ElementaryChange.cs
-    startLine: 470
+    startLine: 475
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -631,6 +606,44 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1398,56 +1411,49 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore
-  href: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.html#NMF_Models_Changes_ElementaryChange_ElementaryChangeReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore
-  fullName: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies
+  href: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.html#NMF_Models_Changes_ElementaryChange_ElementaryChangeReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies
+  fullName: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore
-  href: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.html#NMF_Models_Changes_ElementaryChange_ElementaryChangeReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore
-  fullName: NMF.Models.Changes.ElementaryChange.ElementaryChangeReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

@@ -108,6 +108,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -221,7 +222,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Index
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 62
+    startLine: 64
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -275,7 +276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddedValue
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 90
+    startLine: 92
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -329,7 +330,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 118
+    startLine: 120
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -342,37 +343,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Models.Changes.AttributeListInsertion.ClassInstance*
-- uid: NMF.Models.Changes.AttributeListInsertion.IndexChanging
-  commentId: E:NMF.Models.Changes.AttributeListInsertion.IndexChanging
-  id: IndexChanging
-  parent: NMF.Models.Changes.AttributeListInsertion
-  langs:
-  - csharp
-  - vb
-  name: IndexChanging
-  nameWithType: AttributeListInsertion.IndexChanging
-  fullName: NMF.Models.Changes.AttributeListInsertion.IndexChanging
-  type: Event
-  source:
-    remote:
-      path: Models/Models/Changes/AttributeListInsertion.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: IndexChanging
-    path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 133
-  assemblies:
-  - NMF.Models
-  namespace: NMF.Models.Changes
-  summary: Gets fired before the Index property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> IndexChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event IndexChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Models.Changes.IAttributeListInsertion.IndexChanging
 - uid: NMF.Models.Changes.AttributeListInsertion.IndexChanged
   commentId: E:NMF.Models.Changes.AttributeListInsertion.IndexChanged
   id: IndexChanged
@@ -391,7 +361,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IndexChanged
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 138
+    startLine: 135
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -404,37 +374,37 @@ items:
     content.vb: Public Event IndexChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Changes.IAttributeListInsertion.IndexChanged
-- uid: NMF.Models.Changes.AttributeListInsertion.AddedValueChanging
-  commentId: E:NMF.Models.Changes.AttributeListInsertion.AddedValueChanging
-  id: AddedValueChanging
+- uid: NMF.Models.Changes.AttributeListInsertion.IndexChanging
+  commentId: E:NMF.Models.Changes.AttributeListInsertion.IndexChanging
+  id: IndexChanging
   parent: NMF.Models.Changes.AttributeListInsertion
   langs:
   - csharp
   - vb
-  name: AddedValueChanging
-  nameWithType: AttributeListInsertion.AddedValueChanging
-  fullName: NMF.Models.Changes.AttributeListInsertion.AddedValueChanging
+  name: IndexChanging
+  nameWithType: AttributeListInsertion.IndexChanging
+  fullName: NMF.Models.Changes.AttributeListInsertion.IndexChanging
   type: Event
   source:
     remote:
       path: Models/Models/Changes/AttributeListInsertion.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AddedValueChanging
+    id: IndexChanging
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 143
+    startLine: 140
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Gets fired before the AddedValue property changes its value
+  summary: Gets fired before the Index property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> AddedValueChanging
+    content: public event EventHandler<ValueChangedEventArgs> IndexChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event AddedValueChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event IndexChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
+  - NMF.Models.Changes.IAttributeListInsertion.IndexChanging
 - uid: NMF.Models.Changes.AttributeListInsertion.AddedValueChanged
   commentId: E:NMF.Models.Changes.AttributeListInsertion.AddedValueChanged
   id: AddedValueChanged
@@ -453,7 +423,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddedValueChanged
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 148
+    startLine: 145
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -466,38 +436,37 @@ items:
     content.vb: Public Event AddedValueChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Models.Changes.IAttributeListInsertion.AddedValueChanged
-- uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Models.Changes.AttributeListInsertion.OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Models.Changes.AttributeListInsertion.AddedValueChanging
+  commentId: E:NMF.Models.Changes.AttributeListInsertion.AddedValueChanging
+  id: AddedValueChanging
   parent: NMF.Models.Changes.AttributeListInsertion
   langs:
   - csharp
   - vb
-  name: OnIndexChanging(ValueChangedEventArgs)
-  nameWithType: AttributeListInsertion.OnIndexChanging(ValueChangedEventArgs)
-  fullName: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
+  name: AddedValueChanging
+  nameWithType: AttributeListInsertion.AddedValueChanging
+  fullName: NMF.Models.Changes.AttributeListInsertion.AddedValueChanging
+  type: Event
   source:
     remote:
       path: Models/Models/Changes/AttributeListInsertion.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnIndexChanging
+    id: AddedValueChanging
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 159
+    startLine: 150
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Raises the IndexChanging event
+  summary: Gets fired before the AddedValue property changes its value
   example: []
   syntax:
-    content: protected virtual void OnIndexChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnIndexChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging*
+    content: public event EventHandler<ValueChangedEventArgs> AddedValueChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event AddedValueChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
 - uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Models.Changes.AttributeListInsertion.OnIndexChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnIndexChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -516,7 +485,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnIndexChanged
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 172
+    startLine: 161
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -530,38 +499,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnIndexChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Changes.AttributeListInsertion.OnIndexChanged*
-- uid: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Changes.AttributeListInsertion.OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Models.Changes.AttributeListInsertion
   langs:
   - csharp
   - vb
-  name: OnAddedValueChanging(ValueChangedEventArgs)
-  nameWithType: AttributeListInsertion.OnAddedValueChanging(ValueChangedEventArgs)
-  fullName: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnIndexChanging(ValueChangedEventArgs)
+  nameWithType: AttributeListInsertion.OnIndexChanging(ValueChangedEventArgs)
+  fullName: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Models/Models/Changes/AttributeListInsertion.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnAddedValueChanging
+    id: OnIndexChanging
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 190
+    startLine: 174
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Raises the AddedValueChanging event
+  summary: Raises the IndexChanging event
   example: []
   syntax:
-    content: protected virtual void OnAddedValueChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnIndexChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnAddedValueChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging*
+    content.vb: Protected Overridable Sub OnIndexChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging*
 - uid: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnAddedValueChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -580,7 +549,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnAddedValueChanged
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 203
+    startLine: 192
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -594,6 +563,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnAddedValueChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanged*
+- uid: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Models.Changes.AttributeListInsertion
+  langs:
+  - csharp
+  - vb
+  name: OnAddedValueChanging(ValueChangedEventArgs)
+  nameWithType: AttributeListInsertion.OnAddedValueChanging(ValueChangedEventArgs)
+  fullName: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Models/Models/Changes/AttributeListInsertion.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnAddedValueChanging
+    path: src/Models/Models/Changes/AttributeListInsertion.cs
+    startLine: 205
+  assemblies:
+  - NMF.Models
+  namespace: NMF.Models.Changes
+  summary: Raises the AddedValueChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnAddedValueChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnAddedValueChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging*
 - uid: NMF.Models.Changes.AttributeListInsertion.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.Changes.AttributeListInsertion.GetAttributeValue(System.String,System.Int32)
   id: GetAttributeValue(System.String,System.Int32)
@@ -612,7 +613,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 218
+    startLine: 220
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -654,7 +655,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 236
+    startLine: 238
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -693,7 +694,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForAttribute
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 256
+    startLine: 258
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -732,7 +733,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Models/Models/Changes/AttributeListInsertion.cs
-    startLine: 272
+    startLine: 274
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -1558,6 +1559,13 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  href: NMF.Models.ModelElement.html#NMF_Models_ModelElement_RaiseDeletionEvents
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -3101,13 +3109,13 @@ references:
   - uid: NMF.Models.Meta
     name: Meta
     href: NMF.Models.Meta.html
-- uid: NMF.Models.Changes.IAttributeListInsertion.IndexChanging
-  commentId: E:NMF.Models.Changes.IAttributeListInsertion.IndexChanging
+- uid: NMF.Models.Changes.IAttributeListInsertion.IndexChanged
+  commentId: E:NMF.Models.Changes.IAttributeListInsertion.IndexChanged
   parent: NMF.Models.Changes.IAttributeListInsertion
-  href: NMF.Models.Changes.IAttributeListInsertion.html#NMF_Models_Changes_IAttributeListInsertion_IndexChanging
-  name: IndexChanging
-  nameWithType: IAttributeListInsertion.IndexChanging
-  fullName: NMF.Models.Changes.IAttributeListInsertion.IndexChanging
+  href: NMF.Models.Changes.IAttributeListInsertion.html#NMF_Models_Changes_IAttributeListInsertion_IndexChanged
+  name: IndexChanged
+  nameWithType: IAttributeListInsertion.IndexChanged
+  fullName: NMF.Models.Changes.IAttributeListInsertion.IndexChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -3167,20 +3175,13 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Models.Changes.IAttributeListInsertion.IndexChanged
-  commentId: E:NMF.Models.Changes.IAttributeListInsertion.IndexChanged
+- uid: NMF.Models.Changes.IAttributeListInsertion.IndexChanging
+  commentId: E:NMF.Models.Changes.IAttributeListInsertion.IndexChanging
   parent: NMF.Models.Changes.IAttributeListInsertion
-  href: NMF.Models.Changes.IAttributeListInsertion.html#NMF_Models_Changes_IAttributeListInsertion_IndexChanged
-  name: IndexChanged
-  nameWithType: IAttributeListInsertion.IndexChanged
-  fullName: NMF.Models.Changes.IAttributeListInsertion.IndexChanged
-- uid: NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
-  commentId: E:NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
-  parent: NMF.Models.Changes.IAttributeListInsertion
-  href: NMF.Models.Changes.IAttributeListInsertion.html#NMF_Models_Changes_IAttributeListInsertion_AddedValueChanging
-  name: AddedValueChanging
-  nameWithType: IAttributeListInsertion.AddedValueChanging
-  fullName: NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
+  href: NMF.Models.Changes.IAttributeListInsertion.html#NMF_Models_Changes_IAttributeListInsertion_IndexChanging
+  name: IndexChanging
+  nameWithType: IAttributeListInsertion.IndexChanging
+  fullName: NMF.Models.Changes.IAttributeListInsertion.IndexChanging
 - uid: NMF.Models.Changes.IAttributeListInsertion.AddedValueChanged
   commentId: E:NMF.Models.Changes.IAttributeListInsertion.AddedValueChanged
   parent: NMF.Models.Changes.IAttributeListInsertion
@@ -3188,12 +3189,19 @@ references:
   name: AddedValueChanged
   nameWithType: IAttributeListInsertion.AddedValueChanged
   fullName: NMF.Models.Changes.IAttributeListInsertion.AddedValueChanged
-- uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging*
-  commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnIndexChanging
-  href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnIndexChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnIndexChanging
-  nameWithType: AttributeListInsertion.OnIndexChanging
-  fullName: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging
+- uid: NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
+  commentId: E:NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
+  parent: NMF.Models.Changes.IAttributeListInsertion
+  href: NMF.Models.Changes.IAttributeListInsertion.html#NMF_Models_Changes_IAttributeListInsertion_AddedValueChanging
+  name: AddedValueChanging
+  nameWithType: IAttributeListInsertion.AddedValueChanging
+  fullName: NMF.Models.Changes.IAttributeListInsertion.AddedValueChanging
+- uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanged*
+  commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnIndexChanged
+  href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnIndexChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnIndexChanged
+  nameWithType: AttributeListInsertion.OnIndexChanged
+  fullName: NMF.Models.Changes.AttributeListInsertion.OnIndexChanged
 - uid: NMF.Expressions.ValueChangedEventArgs
   commentId: T:NMF.Expressions.ValueChangedEventArgs
   parent: NMF.Expressions
@@ -3217,24 +3225,24 @@ references:
   - name: .
   - uid: NMF.Expressions
     name: Expressions
-- uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanged*
-  commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnIndexChanged
-  href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnIndexChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnIndexChanged
-  nameWithType: AttributeListInsertion.OnIndexChanged
-  fullName: NMF.Models.Changes.AttributeListInsertion.OnIndexChanged
-- uid: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging*
-  commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging
-  href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnAddedValueChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnAddedValueChanging
-  nameWithType: AttributeListInsertion.OnAddedValueChanging
-  fullName: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging
+- uid: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging*
+  commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnIndexChanging
+  href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnIndexChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnIndexChanging
+  nameWithType: AttributeListInsertion.OnIndexChanging
+  fullName: NMF.Models.Changes.AttributeListInsertion.OnIndexChanging
 - uid: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanged*
   commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanged
   href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnAddedValueChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnAddedValueChanged
   nameWithType: AttributeListInsertion.OnAddedValueChanged
   fullName: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanged
+- uid: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging*
+  commentId: Overload:NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging
+  href: NMF.Models.Changes.AttributeListInsertion.html#NMF_Models_Changes_AttributeListInsertion_OnAddedValueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnAddedValueChanging
+  nameWithType: AttributeListInsertion.OnAddedValueChanging
+  fullName: NMF.Models.Changes.AttributeListInsertion.OnAddedValueChanging
 - uid: NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Models.ModelElement

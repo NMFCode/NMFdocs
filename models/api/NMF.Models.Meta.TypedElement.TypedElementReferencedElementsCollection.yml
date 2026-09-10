@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.#ctor(NMF.Models.Meta.TypedElement)
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Clear
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Count
-  - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore
+  - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.GetEnumerator
   - NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TypedElementReferencedElementsCollection
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 605
+    startLine: 604
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 613
+    startLine: 612
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 621
+    startLine: 620
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -137,64 +138,38 @@ items:
   overload: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore
-  commentId: M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: TypedElement.TypedElementReferencedElementsCollection.AttachCore()
-  fullName: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: TypedElement.TypedElementReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Models/Models/Meta/TypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Models/Models/Meta/TypedElement.cs
     startLine: 637
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
-  summary: Registers event hooks to keep the collection up to date
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore*
-- uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore
-  commentId: M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: TypedElement.TypedElementReferencedElementsCollection.DetachCore()
-  fullName: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Models/Models/Meta/TypedElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 645
-  assemblies:
-  - NMF.Models
-  namespace: NMF.Models.Meta
-  summary: Unregisters all event hooks registered by AttachCore
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies*
 - uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 654
+    startLine: 647
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 670
+    startLine: 663
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 680
+    startLine: 673
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 694
+    startLine: 687
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 708
+    startLine: 701
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Models/Models/Meta/TypedElement.cs
-    startLine: 722
+    startLine: 715
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Meta
@@ -631,6 +606,44 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1398,56 +1411,49 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore
-  href: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.html#NMF_Models_Meta_TypedElement_TypedElementReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: TypedElement.TypedElementReferencedElementsCollection.AttachCore
-  fullName: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies
+  href: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.html#NMF_Models_Meta_TypedElement_TypedElementReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: TypedElement.TypedElementReferencedElementsCollection.CreateDependencies
+  fullName: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore
-  href: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.html#NMF_Models_Meta_TypedElement_TypedElementReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: TypedElement.TypedElementReferencedElementsCollection.DetachCore
-  fullName: NMF.Models.Meta.TypedElement.TypedElementReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

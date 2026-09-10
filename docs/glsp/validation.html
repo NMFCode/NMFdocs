@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Validation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Validation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/NMFCode/NMFCode.github.io/blob/main/glsp/validation.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="validation">Validation</h1>
+
+<p>NMF GLSP supports model validation to provide feedback about semantic errors and warnings in a diagram. Validation rules are registered as part of a graphical language and are evaluated by the framework to create markers that are displayed in the editor.</p>
+<p>The framework distinguishes between two kinds of validation:</p>
+<ul>
+<li><strong>Batch validation</strong>, which is executed when validation is explicitly requested by the user.</li>
+<li><strong>Live validation</strong>, which automatically re-evaluates validation rules whenever the underlying model changes.</li>
+</ul>
+<h2 id="batch-validation">Batch Validation</h2>
+<p>Batch validation is intended for validations that should only be executed on demand, for example when the user presses a <em>Validate</em> button. During batch validation, all registered validation rules are evaluated and the resulting <em><a href="api/NMF.Glsp.Protocol.Validation.Marker.html">markers</a></em> are sent to the client.</p>
+<p>Validation rules are registered in the <em><a href="api/NMF.Glsp.Language.NodeDescriptor-1.html">descriptor</a></em> that represents the corresponding semantic model element.</p>
+<pre><code class="lang-csharp">public class SensorDescriptor : NodeDescriptor&lt;ISensor&gt;
+{
+    protected override void DefineLayout()
+    {
+        Validate(sensor =&gt; sensor.Pin &gt;= 0,
+            &quot;Pins must not be negative.&quot;);
+    }
+}
+</code></pre>
+<p>The framework supports three different return types for validation rules.</p>
+<h3 id="boolean-validation"><a class="xref" href="api/NMF.Glsp.Language.NodeDescriptor-1.html#NMF_Glsp_Language_NodeDescriptor_1_Validate_System_Func__0_System_Boolean__System_String_System_String_System_String_">Boolean Validation</a></h3>
+<p>The simplest form of validation returns a boolean value.</p>
+<pre><code class="lang-csharp">Validate(
+    sensor =&gt; sensor.Pin &gt;= 0,
+    &quot;Invalid pin&quot;,
+    &quot;Pins must not be negative.&quot;,
+    MarkerKind.Error);
+</code></pre>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validator</code></td>
+<td>A function returning a <code>bool</code>. <code>true</code> indicates a valid element, while <code>false</code> reports a marker.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The short label shown for the marker.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>A detailed description of the validation result.</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>The marker severity. Defaults to <code>MarkerKind.Error</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>If the validator returns <code>false</code>, the framework creates a <em><a href="api/NMF.Glsp.Protocol.Validation.Marker.html">marker</a></em> using the supplied label, description and severity.</p>
+<p>Boolean validation is recommended whenever the validation message is constant.</p>
+<h3 id="string-validation"><a class="xref" href="api/NMF.Glsp.Language.NodeDescriptor-1.html#NMF_Glsp_Language_NodeDescriptor_1_Validate_System_Func__0_System_String__System_String_">String Validation</a></h3>
+<p>Validation rules may also return a string.</p>
+<pre><code class="lang-csharp">Validate(
+    sensor =&gt;
+    {
+        if (sensor.Pin &lt; 0)
+        {
+            return &quot;Pins must not be negative.&quot;;
+        }
+
+        return null;
+    },
+    MarkerKind.Error);
+</code></pre>
+<h4 id="parameters-1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validator</code></td>
+<td>A function returning a <code>string</code>. Returning <code>null</code> indicates that the element is valid. Any non-null string becomes the marker description.</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>The marker severity. Defaults to <code>MarkerKind.Error</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>This form is useful whenever the validation message depends on the current model state.</p>
+<h3 id="marker-validation"><a class="xref" href="api/NMF.Glsp.Language.NodeDescriptor-1.html#NMF_Glsp_Language_NodeDescriptor_1_Validate_System_Func__0_NMF_Glsp_Protocol_Validation_Marker__">Marker Validation</a></h3>
+<p>For full control over the reported <em><a href="api/NMF.Glsp.Protocol.Validation.Marker.html">marker</a></em>, validation rules may directly return a <code>Marker</code>.</p>
+<pre><code class="lang-csharp">Validate(sensor =&gt;
+{
+    if (sensor.Pin &gt; 13)
+    {
+        return new Marker
+        {
+            Label = &quot;Invalid pin&quot;,
+            Description = &quot;Pins must be between 0 and 13.&quot;,
+            Kind = MarkerKind.Warning
+        };
+    }
+
+    return null;
+});
+</code></pre>
+<h4 id="parameters-2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validator</code></td>
+<td>A function returning a <code>Marker</code>. Returning <code>null</code> indicates that no marker should be reported.</td>
+</tr>
+</tbody>
+</table>
+<p>Returning a <code>Marker</code> allows complete control over the reported validation result.</p>
+<h2 id="live-validation"><a class="xref" href="api/NMF.Glsp.Language.NodeDescriptor-1.html#NMF_Glsp_Language_NodeDescriptor_1_ValidateLive_">Live Validation</a></h2>
+<p>Live validation continuously evaluates validation rules while the user edits the model. Instead of waiting for a manual validation request, <em><a href="api/NMF.Glsp.Protocol.Validation.Marker.html">markers</a></em> are updated automatically whenever the observed semantic element changes.</p>
+<p>The same return types are supported as for batch validation:</p>
+<ul>
+<li><code>bool</code></li>
+<li><code>string</code></li>
+<li><code>Marker</code></li>
+</ul>
+<p>Unlike batch validation, live validation rules must be written as <strong>single lambda expressions</strong>. Statement bodies (<code>{ ... }</code>) are not supported.</p>
+<p>For example, the following validation is <strong>not</strong> valid:</p>
+<pre><code class="lang-csharp">ValidateLive(x =&gt;
+{
+    if (x.Pin &gt; 13)
+        return $&quot;Pin {x.Pin} is outside the valid range.&quot;;
+
+    return null;
+}, MarkerKind.Warning);
+</code></pre>
+<p>Instead, rewrite the validation as a single expression using the conditional (<code>?:</code>) operator:</p>
+<pre><code class="lang-csharp">ValidateLive(
+    x =&gt; x.Pin &gt; 13
+        ? $&quot;Pin {x.Pin} is outside the valid range.&quot;
+        : null,
+    MarkerKind.Warning);
+</code></pre>
+<h2 id="validation-scope">Validation Scope</h2>
+<p>Validation rules are registered on the <em><a href="api/NMF.Glsp.Language.NodeDescriptor-1.html">descriptor</a></em> that represents a semantic model element.</p>
+<p>When validation is declared inside nested layout elements such as <em><a href="NMF.Glsp.Language.NodeDescriptor%601.Compartment(System.String,NMF.Glsp.Language.Layouting.LayoutStrategy,System.Linq.Expressions.Expression%7BSystem.Func%7B%600,System.Boolean%7D%7D)">compartments</a></em>, the rule is automatically associated with the corresponding skeleton. This allows different parts of a graphical element to define independent validation rules while keeping the implementation type-safe.</p>
+<h2 id="choosing-a-return-type">Choosing a Return Type</h2>
+<table>
+<thead>
+<tr>
+<th>Return type</th>
+<th>Recommended usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>Simple validation with a fixed error message</td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td>Validation with dynamically generated messages</td>
+</tr>
+<tr>
+<td><code>Marker</code></td>
+<td>Full control over the reported marker</td>
+</tr>
+</tbody>
+</table>
+<h2 id="batch-vs-live-validation">Batch vs. Live Validation</h2>
+<table>
+<thead>
+<tr>
+<th>Batch Validation</th>
+<th>Live Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executed on user request</td>
+<td>Executed automatically</td>
+</tr>
+<tr>
+<td>Validates entire model</td>
+<td>Validates changed element</td>
+</tr>
+<tr>
+<td>Suitable for expensive consistency checks</td>
+<td>Should remain lightweight</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li>Use <strong>boolean validation</strong> whenever the validation message is constant.</li>
+<li>Use <strong>string validation</strong> when the message depends on the model.</li>
+<li>Use <strong>marker validation</strong> only if additional control over the <em><a href="api/NMF.Glsp.Protocol.Validation.Marker.html">marker</a></em> is required.</li>
+<li>Prefer <strong>live validation</strong> for fast, local consistency checks.</li>
+<li>Reserve butterfly validations for <strong>batch validation</strong>, i.e. validations that change with many triggers.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/NMFCode/NMFCode.github.io/blob/main/glsp/validation.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

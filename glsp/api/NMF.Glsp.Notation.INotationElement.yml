@@ -6,11 +6,7 @@ items:
   parent: NMF.Glsp.Notation
   children:
   - NMF.Glsp.Notation.INotationElement.Id
-  - NMF.Glsp.Notation.INotationElement.IdChanged
-  - NMF.Glsp.Notation.INotationElement.IdChanging
   - NMF.Glsp.Notation.INotationElement.SemanticElement
-  - NMF.Glsp.Notation.INotationElement.SemanticElementChanged
-  - NMF.Glsp.Notation.INotationElement.SemanticElementChanging
   langs:
   - csharp
   - vb
@@ -48,6 +44,11 @@ items:
       <ModelRepresentationClass("http://www.eclipse.org/glsp/notation#//NotationElement")>
 
       Public Interface INotationElement Inherits IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Glsp.Notation.Diagram
+  - NMF.Glsp.Notation.Edge
+  - NMF.Glsp.Notation.NotationElement
+  - NMF.Glsp.Notation.Shape
   inheritedMembers:
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
@@ -205,122 +206,6 @@ items:
     arguments:
     - type: System.Boolean
       value: true
-- uid: NMF.Glsp.Notation.INotationElement.IdChanging
-  commentId: E:NMF.Glsp.Notation.INotationElement.IdChanging
-  id: IdChanging
-  parent: NMF.Glsp.Notation.INotationElement
-  langs:
-  - csharp
-  - vb
-  name: IdChanging
-  nameWithType: INotationElement.IdChanging
-  fullName: NMF.Glsp.Notation.INotationElement.IdChanging
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/INotationElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: IdChanging
-    path: src/Glsp/Glsp/Notation/INotationElement.cs
-    startLine: 72
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired before the Id property changes its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> IdChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event IdChanging As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Glsp.Notation.INotationElement.IdChanged
-  commentId: E:NMF.Glsp.Notation.INotationElement.IdChanged
-  id: IdChanged
-  parent: NMF.Glsp.Notation.INotationElement
-  langs:
-  - csharp
-  - vb
-  name: IdChanged
-  nameWithType: INotationElement.IdChanged
-  fullName: NMF.Glsp.Notation.INotationElement.IdChanged
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/INotationElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: IdChanged
-    path: src/Glsp/Glsp/Notation/INotationElement.cs
-    startLine: 77
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired when the Id property changed its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> IdChanged
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event IdChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Glsp.Notation.INotationElement.SemanticElementChanging
-  commentId: E:NMF.Glsp.Notation.INotationElement.SemanticElementChanging
-  id: SemanticElementChanging
-  parent: NMF.Glsp.Notation.INotationElement
-  langs:
-  - csharp
-  - vb
-  name: SemanticElementChanging
-  nameWithType: INotationElement.SemanticElementChanging
-  fullName: NMF.Glsp.Notation.INotationElement.SemanticElementChanging
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/INotationElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SemanticElementChanging
-    path: src/Glsp/Glsp/Notation/INotationElement.cs
-    startLine: 82
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired before the SemanticElement property changes its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> SemanticElementChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event SemanticElementChanging As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Glsp.Notation.INotationElement.SemanticElementChanged
-  commentId: E:NMF.Glsp.Notation.INotationElement.SemanticElementChanged
-  id: SemanticElementChanged
-  parent: NMF.Glsp.Notation.INotationElement
-  langs:
-  - csharp
-  - vb
-  name: SemanticElementChanged
-  nameWithType: INotationElement.SemanticElementChanged
-  fullName: NMF.Glsp.Notation.INotationElement.SemanticElementChanged
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/INotationElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SemanticElementChanged
-    path: src/Glsp/Glsp/Notation/INotationElement.cs
-    startLine: 87
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired when the SemanticElement property changed its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> SemanticElementChanged
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event SemanticElementChanged As EventHandler(Of ValueChangedEventArgs)
 references:
 - uid: NMF.Glsp.Notation
   commentId: N:NMF.Glsp.Notation
@@ -1017,62 +902,3 @@ references:
   name: SemanticElement
   nameWithType: INotationElement.SemanticElement
   fullName: NMF.Glsp.Notation.INotationElement.SemanticElement
-- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  parent: System
-  definition: System.EventHandler`1
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<ValueChangedEventArgs>
-  nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
-  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
-  name.vb: EventHandler(Of ValueChangedEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )

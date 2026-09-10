@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.#ctor(NMF.Glsp.Notation.Diagram)
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Clear
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Count
-  - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore
+  - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.GetEnumerator
   - NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DiagramReferencedElementsCollection
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 469
+    startLine: 429
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 477
+    startLine: 437
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 485
+    startLine: 445
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -137,64 +138,38 @@ items:
   overload: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore
-  commentId: M:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: Diagram.DiagramReferencedElementsCollection.AttachCore()
-  fullName: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: Diagram.DiagramReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Glsp/Glsp/Notation/Diagram.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 496
+    startLine: 459
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore*
-- uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore
-  commentId: M:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: Diagram.DiagramReferencedElementsCollection.DetachCore()
-  fullName: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Diagram.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 502
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies*
 - uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 511
+    startLine: 469
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 523
+    startLine: 481
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 533
+    startLine: 491
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 547
+    startLine: 505
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 571
+    startLine: 529
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 586
+    startLine: 544
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore
-  href: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.html#NMF_Glsp_Notation_Diagram_DiagramReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: Diagram.DiagramReferencedElementsCollection.AttachCore
-  fullName: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies
+  href: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.html#NMF_Glsp_Notation_Diagram_DiagramReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: Diagram.DiagramReferencedElementsCollection.CreateDependencies
+  fullName: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore
-  href: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.html#NMF_Glsp_Notation_Diagram_DiagramReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: Diagram.DiagramReferencedElementsCollection.DetachCore
-  fullName: NMF.Glsp.Notation.Diagram.DiagramReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

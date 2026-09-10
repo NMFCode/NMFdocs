@@ -10,6 +10,7 @@ items:
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.ClassInstance
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.GetClass
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCollectionForFeature(System.String)
+  - NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName(System.Object)
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.GetModelElementForReference(System.String,System.Int32)
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   - NMF.Expressions.IncrementalizationConfiguration.Configuration.MethodConfigurations
@@ -28,7 +29,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Configuration
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -40,7 +41,7 @@ items:
 
       [XmlNamespacePrefix("conf")]
 
-      [ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//Configuration/")]
+      [ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//Configuration")]
 
       public class Configuration : ModelElement, IConfiguration, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -48,7 +49,7 @@ items:
 
       <XmlNamespacePrefix("conf")>
 
-      <ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//Configuration/")>
+      <ModelRepresentationClass("http://nmf.codeplex.com/incrementalizationConfig#//Configuration")>
 
       Public Class Configuration Inherits ModelElement Implements IConfiguration, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -80,6 +81,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -90,7 +92,6 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   - NMF.Models.ModelElement.SetFeature(System.String,System.Object)
@@ -146,7 +147,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://nmf.codeplex.com/incrementalizationConfig#//Configuration/
+      value: http://nmf.codeplex.com/incrementalizationConfig#//Configuration
 - uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.#ctor
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.#ctor
   id: '#ctor'
@@ -165,7 +166,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 52
+    startLine: 56
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -196,7 +197,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MethodConfigurations
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 62
+    startLine: 66
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -204,28 +205,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("methodConfigurations")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IListExpression<IMethodConfiguration> MethodConfigurations { get; }
+      public IListExpression<IMethodConfiguration> MethodConfigurations { get; }
     parameters: []
     return:
       type: NMF.Expressions.IListExpression{NMF.Expressions.IncrementalizationConfiguration.IMethodConfiguration}
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("methodConfigurations")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable ReadOnly Property MethodConfigurations As IListExpression(Of IMethodConfiguration)
+      Public ReadOnly Property MethodConfigurations As IListExpression(Of IMethodConfiguration)
   overload: NMF.Expressions.IncrementalizationConfiguration.Configuration.MethodConfigurations*
   implements:
   - NMF.Expressions.IncrementalizationConfiguration.IConfiguration.MethodConfigurations
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -257,7 +267,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 78
+    startLine: 83
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -291,7 +301,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 89
+    startLine: 94
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -325,7 +335,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 100
+    startLine: 105
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -356,7 +366,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 137
+    startLine: 147
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -392,7 +402,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 153
+    startLine: 163
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -434,7 +444,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 174
+    startLine: 184
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -455,6 +465,45 @@ items:
   nameWithType.vb: Configuration.GetCollectionForFeature(String)
   fullName.vb: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCollectionForFeature(String)
   name.vb: GetCollectionForFeature(String)
+- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName(System.Object)
+  commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName(System.Object)
+  id: GetCompositionName(System.Object)
+  parent: NMF.Expressions.IncrementalizationConfiguration.Configuration
+  langs:
+  - csharp
+  - vb
+  name: GetCompositionName(object)
+  nameWithType: Configuration.GetCompositionName(object)
+  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName(object)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetCompositionName
+    path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
+    startLine: 198
+  assemblies:
+  - NMF.Expressions.Configuration
+  namespace: NMF.Expressions.IncrementalizationConfiguration
+  summary: Gets the property name for the given container
+  example: []
+  syntax:
+    content: protected override string GetCompositionName(object container)
+    parameters:
+    - id: container
+      type: System.Object
+      description: The container object
+    return:
+      type: System.String
+      description: The name of the respective container reference
+    content.vb: Protected Overrides Function GetCompositionName(container As Object) As String
+  overridden: NMF.Models.ModelElement.GetCompositionName(System.Object)
+  overload: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName*
+  nameWithType.vb: Configuration.GetCompositionName(Object)
+  fullName.vb: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
 - uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetClass
   commentId: M:NMF.Expressions.IncrementalizationConfiguration.Configuration.GetClass
   id: GetClass
@@ -473,7 +522,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Expressions/Expressions.Configuration/IncrementalizationConfiguration/Configuration.cs
-    startLine: 186
+    startLine: 210
   assemblies:
   - NMF.Expressions.Configuration
   namespace: NMF.Expressions.IncrementalizationConfiguration
@@ -941,6 +990,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -1111,35 +1166,6 @@ references:
   - name: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-  - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
@@ -2831,6 +2857,41 @@ references:
     name: Collections
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
+  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: GetCompositionName(object)
+  nameWithType: ModelElement.GetCompositionName(object)
+  fullName: NMF.Models.ModelElement.GetCompositionName(object)
+  nameWithType.vb: ModelElement.GetCompositionName(Object)
+  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName*
+  commentId: Overload:NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName
+  href: NMF.Expressions.IncrementalizationConfiguration.Configuration.html#NMF_Expressions_IncrementalizationConfiguration_Configuration_GetCompositionName_System_Object_
+  name: GetCompositionName
+  nameWithType: Configuration.GetCompositionName
+  fullName: NMF.Expressions.IncrementalizationConfiguration.Configuration.GetCompositionName
 - uid: NMF.Models.ModelElement.GetClass
   commentId: M:NMF.Models.ModelElement.GetClass
   parent: NMF.Models.ModelElement

@@ -31,7 +31,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEEnumLiteral
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -43,18 +43,27 @@ items:
 
       [XmlDefaultImplementationType(typeof(EEnumLiteral))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral")]
+
       public interface IEEnumLiteral : IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EEnumLiteral))>
 
       <XmlDefaultImplementationType(GetType(EEnumLiteral))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral")>
+
       Public Interface IEEnumLiteral Inherits IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EEnumLiteral
   inheritedMembers:
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -102,6 +111,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EEnumLiteral
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral
 - uid: NMF.Interop.Ecore.IEEnumLiteral.Value
   commentId: P:NMF.Interop.Ecore.IEEnumLiteral.Value
   id: Value
@@ -120,19 +134,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Value
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The value property
   example: []
   syntax:
-    content: int? Value { get; set; }
+    content: >-
+      [XmlElementName("value")]
+
+      [XmlAttribute(true)]
+
+      int? Value { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Int32}
-    content.vb: Property Value As Integer?
+    content.vb: >-
+      <XmlElementName("value")>
+
+      <XmlAttribute(True)>
+
+      Property Value As Integer?
   overload: NMF.Interop.Ecore.IEEnumLiteral.Value*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: value
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEEnumLiteral.Instance
   commentId: P:NMF.Interop.Ecore.IEEnumLiteral.Instance
   id: Instance
@@ -151,19 +186,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Instance
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 53
+    startLine: 59
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The instance property
   example: []
   syntax:
-    content: object Instance { get; set; }
+    content: >-
+      [XmlElementName("instance")]
+
+      [XmlAttribute(true)]
+
+      object Instance { get; set; }
     parameters: []
     return:
       type: System.Object
-    content.vb: Property Instance As Object
+    content.vb: >-
+      <XmlElementName("instance")>
+
+      <XmlAttribute(True)>
+
+      Property Instance As Object
   overload: NMF.Interop.Ecore.IEEnumLiteral.Instance*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: instance
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEEnumLiteral.Literal
   commentId: P:NMF.Interop.Ecore.IEEnumLiteral.Literal
   id: Literal
@@ -182,19 +238,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Literal
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 62
+    startLine: 72
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The literal property
   example: []
   syntax:
-    content: string Literal { get; set; }
+    content: >-
+      [XmlElementName("literal")]
+
+      [XmlAttribute(true)]
+
+      string Literal { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property Literal As String
+    content.vb: >-
+      <XmlElementName("literal")>
+
+      <XmlAttribute(True)>
+
+      Property Literal As String
   overload: NMF.Interop.Ecore.IEEnumLiteral.Literal*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: literal
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEEnumLiteral.EEnum
   commentId: P:NMF.Interop.Ecore.IEEnumLiteral.EEnum
   id: EEnum
@@ -213,48 +290,58 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EEnum
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 71
+    startLine: 85
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eEnum property
   example: []
   syntax:
-    content: IEEnum EEnum { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eEnum")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("eLiterals")]
+
+      IEEnum EEnum { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEEnum
-    content.vb: Property EEnum As IEEnum
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eEnum")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("eLiterals")>
+
+      Property EEnum As IEEnum
   overload: NMF.Interop.Ecore.IEEnumLiteral.EEnum*
-- uid: NMF.Interop.Ecore.IEEnumLiteral.ValueChanging
-  commentId: E:NMF.Interop.Ecore.IEEnumLiteral.ValueChanging
-  id: ValueChanging
-  parent: NMF.Interop.Ecore.IEEnumLiteral
-  langs:
-  - csharp
-  - vb
-  name: ValueChanging
-  nameWithType: IEEnumLiteral.ValueChanging
-  fullName: NMF.Interop.Ecore.IEEnumLiteral.ValueChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/IEEnumLiteral.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: ValueChanging
-    path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 80
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Value property changes its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> ValueChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event ValueChanging As EventHandler(Of ValueChangedEventArgs)
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eEnum
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eLiterals
 - uid: NMF.Interop.Ecore.IEEnumLiteral.ValueChanged
   commentId: E:NMF.Interop.Ecore.IEEnumLiteral.ValueChanged
   id: ValueChanged
@@ -273,7 +360,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ValueChanged
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 85
+    startLine: 99
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -284,35 +371,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event ValueChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEEnumLiteral.InstanceChanging
-  commentId: E:NMF.Interop.Ecore.IEEnumLiteral.InstanceChanging
-  id: InstanceChanging
+- uid: NMF.Interop.Ecore.IEEnumLiteral.ValueChanging
+  commentId: E:NMF.Interop.Ecore.IEEnumLiteral.ValueChanging
+  id: ValueChanging
   parent: NMF.Interop.Ecore.IEEnumLiteral
   langs:
   - csharp
   - vb
-  name: InstanceChanging
-  nameWithType: IEEnumLiteral.InstanceChanging
-  fullName: NMF.Interop.Ecore.IEEnumLiteral.InstanceChanging
+  name: ValueChanging
+  nameWithType: IEEnumLiteral.ValueChanging
+  fullName: NMF.Interop.Ecore.IEEnumLiteral.ValueChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEEnumLiteral.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: InstanceChanging
+    id: ValueChanging
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 90
+    startLine: 104
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Instance property changes its value
+  summary: Gets fired before the Value property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> InstanceChanging
+    content: event EventHandler<ValueChangedEventArgs> ValueChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event InstanceChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event ValueChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEEnumLiteral.InstanceChanged
   commentId: E:NMF.Interop.Ecore.IEEnumLiteral.InstanceChanged
   id: InstanceChanged
@@ -331,7 +418,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InstanceChanged
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 95
+    startLine: 109
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -342,35 +429,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event InstanceChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEEnumLiteral.LiteralChanging
-  commentId: E:NMF.Interop.Ecore.IEEnumLiteral.LiteralChanging
-  id: LiteralChanging
+- uid: NMF.Interop.Ecore.IEEnumLiteral.InstanceChanging
+  commentId: E:NMF.Interop.Ecore.IEEnumLiteral.InstanceChanging
+  id: InstanceChanging
   parent: NMF.Interop.Ecore.IEEnumLiteral
   langs:
   - csharp
   - vb
-  name: LiteralChanging
-  nameWithType: IEEnumLiteral.LiteralChanging
-  fullName: NMF.Interop.Ecore.IEEnumLiteral.LiteralChanging
+  name: InstanceChanging
+  nameWithType: IEEnumLiteral.InstanceChanging
+  fullName: NMF.Interop.Ecore.IEEnumLiteral.InstanceChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEEnumLiteral.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: LiteralChanging
+    id: InstanceChanging
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 100
+    startLine: 114
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Literal property changes its value
+  summary: Gets fired before the Instance property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> LiteralChanging
+    content: event EventHandler<ValueChangedEventArgs> InstanceChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event LiteralChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event InstanceChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEEnumLiteral.LiteralChanged
   commentId: E:NMF.Interop.Ecore.IEEnumLiteral.LiteralChanged
   id: LiteralChanged
@@ -389,7 +476,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LiteralChanged
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 105
+    startLine: 119
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -400,6 +487,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event LiteralChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEEnumLiteral.LiteralChanging
+  commentId: E:NMF.Interop.Ecore.IEEnumLiteral.LiteralChanging
+  id: LiteralChanging
+  parent: NMF.Interop.Ecore.IEEnumLiteral
+  langs:
+  - csharp
+  - vb
+  name: LiteralChanging
+  nameWithType: IEEnumLiteral.LiteralChanging
+  fullName: NMF.Interop.Ecore.IEEnumLiteral.LiteralChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnumLiteral.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: LiteralChanging
+    path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
+    startLine: 124
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the Literal property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> LiteralChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event LiteralChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEEnumLiteral.EEnumChanging
   commentId: E:NMF.Interop.Ecore.IEEnumLiteral.EEnumChanging
   id: EEnumChanging
@@ -418,7 +534,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EEnumChanging
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 110
+    startLine: 129
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -447,7 +563,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EEnumChanged
     path: src/Interop/EcoreInterop/Model/IEEnumLiteral.cs
-    startLine: 115
+    startLine: 134
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -496,13 +612,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -510,6 +619,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -517,6 +633,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement

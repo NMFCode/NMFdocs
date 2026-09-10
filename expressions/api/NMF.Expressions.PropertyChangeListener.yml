@@ -5,10 +5,11 @@ items:
   id: PropertyChangeListener
   parent: NMF.Expressions
   children:
-  - NMF.Expressions.PropertyChangeListener.#ctor(NMF.Expressions.INotifiable)
+  - NMF.Expressions.PropertyChangeListener.#ctor(NMF.Expressions.INotifiable,System.String)
   - NMF.Expressions.PropertyChangeListener.AggregateChanges
+  - NMF.Expressions.PropertyChangeListener.MemberName
   - NMF.Expressions.PropertyChangeListener.Node
-  - NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged,System.String)
+  - NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged)
   - NMF.Expressions.PropertyChangeListener.Unsubscribe
   langs:
   - csharp
@@ -80,16 +81,16 @@ items:
   overload: NMF.Expressions.PropertyChangeListener.Node*
   implements:
   - NMF.Expressions.IChangeListener.Node
-- uid: NMF.Expressions.PropertyChangeListener.#ctor(NMF.Expressions.INotifiable)
-  commentId: M:NMF.Expressions.PropertyChangeListener.#ctor(NMF.Expressions.INotifiable)
-  id: '#ctor(NMF.Expressions.INotifiable)'
+- uid: NMF.Expressions.PropertyChangeListener.#ctor(NMF.Expressions.INotifiable,System.String)
+  commentId: M:NMF.Expressions.PropertyChangeListener.#ctor(NMF.Expressions.INotifiable,System.String)
+  id: '#ctor(NMF.Expressions.INotifiable,System.String)'
   parent: NMF.Expressions.PropertyChangeListener
   langs:
   - csharp
   - vb
-  name: PropertyChangeListener(INotifiable)
-  nameWithType: PropertyChangeListener.PropertyChangeListener(INotifiable)
-  fullName: NMF.Expressions.PropertyChangeListener.PropertyChangeListener(NMF.Expressions.INotifiable)
+  name: PropertyChangeListener(INotifiable, string)
+  nameWithType: PropertyChangeListener.PropertyChangeListener(INotifiable, string)
+  fullName: NMF.Expressions.PropertyChangeListener.PropertyChangeListener(NMF.Expressions.INotifiable, string)
   type: Constructor
   source:
     remote:
@@ -98,33 +99,36 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Expressions/Expressions/Execution/PropertyChangeListener.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
   summary: Creates a new instance
   example: []
   syntax:
-    content: public PropertyChangeListener(INotifiable node)
+    content: public PropertyChangeListener(INotifiable node, string propertyName)
     parameters:
     - id: node
       type: NMF.Expressions.INotifiable
       description: The target node
-    content.vb: Public Sub New(node As INotifiable)
+    - id: propertyName
+      type: System.String
+      description: The property name
+    content.vb: Public Sub New(node As INotifiable, propertyName As String)
   overload: NMF.Expressions.PropertyChangeListener.#ctor*
-  nameWithType.vb: PropertyChangeListener.New(INotifiable)
-  fullName.vb: NMF.Expressions.PropertyChangeListener.New(NMF.Expressions.INotifiable)
-  name.vb: New(INotifiable)
-- uid: NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged,System.String)
-  commentId: M:NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged,System.String)
-  id: Subscribe(System.ComponentModel.INotifyPropertyChanged,System.String)
+  nameWithType.vb: PropertyChangeListener.New(INotifiable, String)
+  fullName.vb: NMF.Expressions.PropertyChangeListener.New(NMF.Expressions.INotifiable, String)
+  name.vb: New(INotifiable, String)
+- uid: NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged)
+  commentId: M:NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged)
+  id: Subscribe(System.ComponentModel.INotifyPropertyChanged)
   parent: NMF.Expressions.PropertyChangeListener
   langs:
   - csharp
   - vb
-  name: Subscribe(INotifyPropertyChanged, string)
-  nameWithType: PropertyChangeListener.Subscribe(INotifyPropertyChanged, string)
-  fullName: NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged, string)
+  name: Subscribe(INotifyPropertyChanged)
+  nameWithType: PropertyChangeListener.Subscribe(INotifyPropertyChanged)
+  fullName: NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged)
   type: Method
   source:
     remote:
@@ -133,26 +137,20 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subscribe
     path: src/Expressions/Expressions/Execution/PropertyChangeListener.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
   summary: Subscribe to the property change events
   example: []
   syntax:
-    content: public void Subscribe(INotifyPropertyChanged element, string propertyName)
+    content: public void Subscribe(INotifyPropertyChanged element)
     parameters:
     - id: element
       type: System.ComponentModel.INotifyPropertyChanged
-      description: The element
-    - id: propertyName
-      type: System.String
-      description: The property name
-    content.vb: Public Sub Subscribe(element As INotifyPropertyChanged, propertyName As String)
+      description: The _element
+    content.vb: Public Sub Subscribe(element As INotifyPropertyChanged)
   overload: NMF.Expressions.PropertyChangeListener.Subscribe*
-  nameWithType.vb: PropertyChangeListener.Subscribe(INotifyPropertyChanged, String)
-  fullName.vb: NMF.Expressions.PropertyChangeListener.Subscribe(System.ComponentModel.INotifyPropertyChanged, String)
-  name.vb: Subscribe(INotifyPropertyChanged, String)
 - uid: NMF.Expressions.PropertyChangeListener.Unsubscribe
   commentId: M:NMF.Expressions.PropertyChangeListener.Unsubscribe
   id: Unsubscribe
@@ -199,7 +197,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AggregateChanges
     path: src/Expressions/Expressions/Execution/PropertyChangeListener.cs
-    startLine: 56
+    startLine: 55
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -214,6 +212,37 @@ items:
   overload: NMF.Expressions.PropertyChangeListener.AggregateChanges*
   implements:
   - NMF.Expressions.IChangeListener.AggregateChanges
+- uid: NMF.Expressions.PropertyChangeListener.MemberName
+  commentId: P:NMF.Expressions.PropertyChangeListener.MemberName
+  id: MemberName
+  parent: NMF.Expressions.PropertyChangeListener
+  langs:
+  - csharp
+  - vb
+  name: MemberName
+  nameWithType: PropertyChangeListener.MemberName
+  fullName: NMF.Expressions.PropertyChangeListener.MemberName
+  type: Property
+  source:
+    remote:
+      path: Expressions/Expressions/Execution/PropertyChangeListener.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: MemberName
+    path: src/Expressions/Expressions/Execution/PropertyChangeListener.cs
+    startLine: 64
+  assemblies:
+  - NMF.Expressions
+  namespace: NMF.Expressions
+  summary: The name of the property to listen to
+  example: []
+  syntax:
+    content: public string MemberName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property MemberName As String
+  overload: NMF.Expressions.PropertyChangeListener.MemberName*
 references:
 - uid: NMF.Expressions
   commentId: N:NMF.Expressions
@@ -612,27 +641,13 @@ references:
   fullName: NMF.Expressions.INotifiable
 - uid: NMF.Expressions.PropertyChangeListener.#ctor*
   commentId: Overload:NMF.Expressions.PropertyChangeListener.#ctor
-  href: NMF.Expressions.PropertyChangeListener.html#NMF_Expressions_PropertyChangeListener__ctor_NMF_Expressions_INotifiable_
+  href: NMF.Expressions.PropertyChangeListener.html#NMF_Expressions_PropertyChangeListener__ctor_NMF_Expressions_INotifiable_System_String_
   name: PropertyChangeListener
   nameWithType: PropertyChangeListener.PropertyChangeListener
   fullName: NMF.Expressions.PropertyChangeListener.PropertyChangeListener
   nameWithType.vb: PropertyChangeListener.New
   fullName.vb: NMF.Expressions.PropertyChangeListener.New
   name.vb: New
-- uid: NMF.Expressions.PropertyChangeListener.Subscribe*
-  commentId: Overload:NMF.Expressions.PropertyChangeListener.Subscribe
-  href: NMF.Expressions.PropertyChangeListener.html#NMF_Expressions_PropertyChangeListener_Subscribe_System_ComponentModel_INotifyPropertyChanged_System_String_
-  name: Subscribe
-  nameWithType: PropertyChangeListener.Subscribe
-  fullName: NMF.Expressions.PropertyChangeListener.Subscribe
-- uid: System.ComponentModel.INotifyPropertyChanged
-  commentId: T:System.ComponentModel.INotifyPropertyChanged
-  parent: System.ComponentModel
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged
-  name: INotifyPropertyChanged
-  nameWithType: INotifyPropertyChanged
-  fullName: System.ComponentModel.INotifyPropertyChanged
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -644,6 +659,20 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: NMF.Expressions.PropertyChangeListener.Subscribe*
+  commentId: Overload:NMF.Expressions.PropertyChangeListener.Subscribe
+  href: NMF.Expressions.PropertyChangeListener.html#NMF_Expressions_PropertyChangeListener_Subscribe_System_ComponentModel_INotifyPropertyChanged_
+  name: Subscribe
+  nameWithType: PropertyChangeListener.Subscribe
+  fullName: NMF.Expressions.PropertyChangeListener.Subscribe
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
 - uid: System.ComponentModel
   commentId: N:System.ComponentModel
   isExternal: true
@@ -709,3 +738,9 @@ references:
   name: INotificationResult
   nameWithType: INotificationResult
   fullName: NMF.Expressions.INotificationResult
+- uid: NMF.Expressions.PropertyChangeListener.MemberName*
+  commentId: Overload:NMF.Expressions.PropertyChangeListener.MemberName
+  href: NMF.Expressions.PropertyChangeListener.html#NMF_Expressions_PropertyChangeListener_MemberName
+  name: MemberName
+  nameWithType: PropertyChangeListener.MemberName
+  fullName: NMF.Expressions.PropertyChangeListener.MemberName

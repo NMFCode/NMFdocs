@@ -21,11 +21,11 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EModelElementEAnnotationsCollection
     path: src/Interop/EcoreInterop/Model/EModelElementEAnnotationsCollection.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Denotes a collection type for annotations of elements
+  summary: Denotes a class to implement the eAnnotations reference
   example: []
   syntax:
     content: 'public class EModelElementEAnnotationsCollection : ObservableOppositeOrderedSet<IEModelElement, IEAnnotation>, INotifyCollectionChanged, INotifyCollectionChanging, INotifyPropertyChanged, IOrderedSetExpression<IEAnnotation>, IListExpression<IEAnnotation>, ISetExpression<IEAnnotation>, ICollectionExpression<IEAnnotation>, IEnumerableExpression<IEAnnotation>, IOrderedSet<IEAnnotation>, IList<IEAnnotation>, ISet<IEAnnotation>, ICollection<IEAnnotation>, IEnumerable<IEAnnotation>, ICollectionExpression, IEnumerableExpression, IList, ICollection, IEnumerable'
@@ -127,7 +127,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EModelElementEAnnotationsCollection.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -138,7 +138,7 @@ items:
     parameters:
     - id: parent
       type: NMF.Interop.Ecore.IEModelElement
-      description: the parent element
+      description: the parent EModelElement
     content.vb: Public Sub New(parent As IEModelElement)
   overload: NMF.Interop.Ecore.EModelElementEAnnotationsCollection.#ctor*
   nameWithType.vb: EModelElementEAnnotationsCollection.New(IEModelElement)
@@ -162,21 +162,22 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetOpposite
     path: src/Interop/EcoreInterop/Model/EModelElementEAnnotationsCollection.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Sets the opposite value
+  summary: Sets the opposite of the given item
   example: []
   syntax:
-    content: protected override void SetOpposite(IEAnnotation item, IEModelElement parent)
+    content: protected override void SetOpposite(IEAnnotation item, IEModelElement newParent)
     parameters:
     - id: item
       type: NMF.Interop.Ecore.IEAnnotation
-      description: The item to set the opposite
-    - id: parent
+      description: the item
+    - id: newParent
       type: NMF.Interop.Ecore.IEModelElement
-    content.vb: Protected Overrides Sub SetOpposite(item As IEAnnotation, parent As IEModelElement)
+      description: the new parent or null, if the item is removed from the collection
+    content.vb: Protected Overrides Sub SetOpposite(item As IEAnnotation, newParent As IEModelElement)
   overridden: NMF.Collections.ObjectModel.ObservableOppositeOrderedSet{NMF.Interop.Ecore.IEModelElement,NMF.Interop.Ecore.IEAnnotation}.SetOpposite(NMF.Interop.Ecore.IEAnnotation,NMF.Interop.Ecore.IEModelElement)
   overload: NMF.Interop.Ecore.EModelElementEAnnotationsCollection.SetOpposite*
 references:

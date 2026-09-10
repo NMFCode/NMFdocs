@@ -17,12 +17,22 @@ items:
   - NMF.Interop.Ecore.EOperation.ETypeParameters
   - NMF.Interop.Ecore.EOperation.GetClass
   - NMF.Interop.Ecore.EOperation.GetCollectionForFeature(System.String)
-  - NMF.Interop.Ecore.EOperation.GetExpressionForAttribute(System.String)
+  - NMF.Interop.Ecore.EOperation.GetCompositionName(System.Object)
   - NMF.Interop.Ecore.EOperation.GetExpressionForReference(System.String)
   - NMF.Interop.Ecore.EOperation.GetModelElementForReference(System.String,System.Int32)
+  - NMF.Interop.Ecore.EOperation.GetOperationID
+  - NMF.Interop.Ecore.EOperation.GetOperationIDCalled
+  - NMF.Interop.Ecore.EOperation.GetOperationIDCalling
   - NMF.Interop.Ecore.EOperation.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
+  - NMF.Interop.Ecore.EOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  - NMF.Interop.Ecore.EOperation.IsOverrideOfCalled
+  - NMF.Interop.Ecore.EOperation.IsOverrideOfCalling
   - NMF.Interop.Ecore.EOperation.OnEContainingClassChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.EOperation.OnEContainingClassChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Ecore.EOperation.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Interop.Ecore.EOperation.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Interop.Ecore.EOperation.ReferencedElements
@@ -41,7 +51,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EOperation
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -53,7 +63,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EOperation/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EOperation")]
 
       public class EOperation : ETypedElement, IEOperation, IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -61,7 +71,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EOperation/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EOperation")>
 
       Public Class EOperation Inherits ETypedElement Implements IEOperation, IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -85,39 +95,45 @@ items:
   - NMF.Interop.Ecore.ETypedElement.UpperBound
   - NMF.Interop.Ecore.ETypedElement.EType
   - NMF.Interop.Ecore.ETypedElement.EGenericType
-  - NMF.Interop.Ecore.ETypedElement.OrderedChanging
   - NMF.Interop.Ecore.ETypedElement.OrderedChanged
-  - NMF.Interop.Ecore.ETypedElement.UniqueChanging
+  - NMF.Interop.Ecore.ETypedElement.OrderedChanging
   - NMF.Interop.Ecore.ETypedElement.UniqueChanged
-  - NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+  - NMF.Interop.Ecore.ETypedElement.UniqueChanging
   - NMF.Interop.Ecore.ETypedElement.LowerBoundChanged
-  - NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  - NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
   - NMF.Interop.Ecore.ETypedElement.UpperBoundChanged
+  - NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
   - NMF.Interop.Ecore.ETypedElement.ETypeChanging
   - NMF.Interop.Ecore.ETypedElement.ETypeChanged
   - NMF.Interop.Ecore.ETypedElement.EGenericTypeChanging
   - NMF.Interop.Ecore.ETypedElement.EGenericTypeChanged
-  - NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnOrderedChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnUniqueChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnETypeChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnETypeChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnEGenericTypeChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.OnEGenericTypeChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ETypedElement.GetAttributeValue(System.String,System.Int32)
+  - NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
   - NMF.Interop.Ecore.ENamedElement.Name
   - NMF.Interop.Ecore.ENamedElement.IsIdentified
-  - NMF.Interop.Ecore.ENamedElement.NameChanging
   - NMF.Interop.Ecore.ENamedElement.NameChanged
-  - NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ENamedElement.NameChanging
   - NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ENamedElement.ToIdentifierString
   - NMF.Interop.Ecore.EModelElement.EAnnotations
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
   - NMF.Models.ModelElement.Lock
@@ -136,6 +152,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.ToString
   - NMF.Models.ModelElement.IdentifierString
   - NMF.Models.ModelElement.ClassName
@@ -144,7 +161,6 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   - NMF.Models.ModelElement.Extensions
@@ -191,7 +207,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//EOperation/
+      value: http://www.eclipse.org/emf/2002/Ecore#//EOperation
 - uid: NMF.Interop.Ecore.EOperation.#ctor
   commentId: M:NMF.Interop.Ecore.EOperation.#ctor
   id: '#ctor'
@@ -210,7 +226,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 68
+    startLine: 87
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -241,7 +257,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClass
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 87
+    startLine: 106
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -249,28 +265,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eContainingClass")]
 
       [XmlAttribute(true)]
 
       [XmlOpposite("eOperations")]
 
-      public virtual IEClass EContainingClass { get; set; }
+      public IEClass EContainingClass { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEClass
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eContainingClass")>
 
       <XmlAttribute(True)>
 
       <XmlOpposite("eOperations")>
 
-      Public Overridable Property EContainingClass As IEClass
+      Public Property EContainingClass As IEClass
   overload: NMF.Interop.Ecore.EOperation.EContainingClass*
   implements:
   - NMF.Interop.Ecore.IEOperation.EContainingClass
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -304,7 +329,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameters
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 106
+    startLine: 126
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -312,28 +337,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eTypeParameters")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IOrderedSetExpression<IETypeParameter> ETypeParameters { get; }
+      public IOrderedSetExpression<IETypeParameter> ETypeParameters { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IETypeParameter}
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eTypeParameters")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable ReadOnly Property ETypeParameters As IOrderedSetExpression(Of IETypeParameter)
+      Public ReadOnly Property ETypeParameters As IOrderedSetExpression(Of IETypeParameter)
   overload: NMF.Interop.Ecore.EOperation.ETypeParameters*
   implements:
   - NMF.Interop.Ecore.IEOperation.ETypeParameters
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -365,7 +399,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EParameters
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 122
+    startLine: 143
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -373,6 +407,8 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eParameters")]
 
       [XmlAttribute(false)]
@@ -381,11 +417,13 @@ items:
 
       [XmlOpposite("eOperation")]
 
-      public virtual IOrderedSetExpression<IEParameter> EParameters { get; }
+      public IOrderedSetExpression<IEParameter> EParameters { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEParameter}
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eParameters")>
 
       <XmlAttribute(False)>
@@ -394,11 +432,16 @@ items:
 
       <XmlOpposite("eOperation")>
 
-      Public Overridable ReadOnly Property EParameters As IOrderedSetExpression(Of IEParameter)
+      Public ReadOnly Property EParameters As IOrderedSetExpression(Of IEParameter)
   overload: NMF.Interop.Ecore.EOperation.EParameters*
   implements:
   - NMF.Interop.Ecore.IEOperation.EParameters
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -435,7 +478,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EExceptions
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 139
+    startLine: 161
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -447,7 +490,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual IOrderedSetExpression<IEClassifier> EExceptions { get; }
+      public IOrderedSetExpression<IEClassifier> EExceptions { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEClassifier}
@@ -456,7 +499,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable ReadOnly Property EExceptions As IOrderedSetExpression(Of IEClassifier)
+      Public ReadOnly Property EExceptions As IOrderedSetExpression(Of IEClassifier)
   overload: NMF.Interop.Ecore.EOperation.EExceptions*
   implements:
   - NMF.Interop.Ecore.IEOperation.EExceptions
@@ -489,7 +532,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EGenericExceptions
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 154
+    startLine: 178
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -497,28 +540,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eGenericExceptions")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IOrderedSetExpression<IEGenericType> EGenericExceptions { get; }
+      public IOrderedSetExpression<IEGenericType> EGenericExceptions { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEGenericType}
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eGenericExceptions")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable ReadOnly Property EGenericExceptions As IOrderedSetExpression(Of IEGenericType)
+      Public ReadOnly Property EGenericExceptions As IOrderedSetExpression(Of IEGenericType)
   overload: NMF.Interop.Ecore.EOperation.EGenericExceptions*
   implements:
   - NMF.Interop.Ecore.IEOperation.EGenericExceptions
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -550,7 +602,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 170
+    startLine: 195
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -584,7 +636,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 181
+    startLine: 206
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -618,7 +670,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 192
+    startLine: 217
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -631,6 +683,130 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Ecore.EOperation.ClassInstance*
+- uid: NMF.Interop.Ecore.EOperation.GetOperationIDCalling
+  commentId: E:NMF.Interop.Ecore.EOperation.GetOperationIDCalling
+  id: GetOperationIDCalling
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: GetOperationIDCalling
+  nameWithType: EOperation.GetOperationIDCalling
+  fullName: NMF.Interop.Ecore.EOperation.GetOperationIDCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetOperationIDCalling
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 232
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getOperationID gets called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> GetOperationIDCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event GetOperationIDCalling As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+- uid: NMF.Interop.Ecore.EOperation.GetOperationIDCalled
+  commentId: E:NMF.Interop.Ecore.EOperation.GetOperationIDCalled
+  id: GetOperationIDCalled
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: GetOperationIDCalled
+  nameWithType: EOperation.GetOperationIDCalled
+  fullName: NMF.Interop.Ecore.EOperation.GetOperationIDCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetOperationIDCalled
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 237
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getOperationID got called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> GetOperationIDCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event GetOperationIDCalled As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+- uid: NMF.Interop.Ecore.EOperation.IsOverrideOfCalling
+  commentId: E:NMF.Interop.Ecore.EOperation.IsOverrideOfCalling
+  id: IsOverrideOfCalling
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: IsOverrideOfCalling
+  nameWithType: EOperation.IsOverrideOfCalling
+  fullName: NMF.Interop.Ecore.EOperation.IsOverrideOfCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsOverrideOfCalling
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 242
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation isOverrideOf gets called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> IsOverrideOfCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event IsOverrideOfCalling As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+- uid: NMF.Interop.Ecore.EOperation.IsOverrideOfCalled
+  commentId: E:NMF.Interop.Ecore.EOperation.IsOverrideOfCalled
+  id: IsOverrideOfCalled
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: IsOverrideOfCalled
+  nameWithType: EOperation.IsOverrideOfCalled
+  fullName: NMF.Interop.Ecore.EOperation.IsOverrideOfCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsOverrideOfCalled
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 247
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation isOverrideOf got called
+  example: []
+  syntax:
+    content: public event EventHandler<OperationCallEventArgs> IsOverrideOfCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Public Event IsOverrideOfCalled As EventHandler(Of OperationCallEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
 - uid: NMF.Interop.Ecore.EOperation.EContainingClassChanging
   commentId: E:NMF.Interop.Ecore.EOperation.EContainingClassChanging
   id: EContainingClassChanging
@@ -649,7 +825,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClassChanging
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 207
+    startLine: 252
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -680,7 +856,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClassChanged
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 212
+    startLine: 257
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -693,6 +869,202 @@ items:
     content.vb: Public Event EContainingClassChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IEOperation.EContainingClassChanged
+- uid: NMF.Interop.Ecore.EOperation.GetOperationID
+  commentId: M:NMF.Interop.Ecore.EOperation.GetOperationID
+  id: GetOperationID
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: GetOperationID()
+  nameWithType: EOperation.GetOperationID()
+  fullName: NMF.Interop.Ecore.EOperation.GetOperationID()
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetOperationID
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 262
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: public int GetOperationID()
+    return:
+      type: System.Int32
+    content.vb: Public Function GetOperationID() As Integer
+  overload: NMF.Interop.Ecore.EOperation.GetOperationID*
+  implements:
+  - NMF.Interop.Ecore.IEOperation.GetOperationID
+- uid: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling(NMF.Models.OperationCallEventArgs)
+  id: OnGetOperationIDCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: OnGetOperationIDCalling(OperationCallEventArgs)
+  nameWithType: EOperation.OnGetOperationIDCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnGetOperationIDCalling
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 292
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the GetOperationIDCalling event
+  example: []
+  syntax:
+    content: protected virtual void OnGetOperationIDCalling(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnGetOperationIDCalling(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling*
+- uid: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled(NMF.Models.OperationCallEventArgs)
+  id: OnGetOperationIDCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: OnGetOperationIDCalled(OperationCallEventArgs)
+  nameWithType: EOperation.OnGetOperationIDCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnGetOperationIDCalled
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 305
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the GetOperationIDCalled event
+  example: []
+  syntax:
+    content: protected virtual void OnGetOperationIDCalled(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnGetOperationIDCalled(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled*
+- uid: NMF.Interop.Ecore.EOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  commentId: M:NMF.Interop.Ecore.EOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  id: IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: IsOverrideOf(IEOperation)
+  nameWithType: EOperation.IsOverrideOf(IEOperation)
+  fullName: NMF.Interop.Ecore.EOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsOverrideOf
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 318
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: public bool IsOverrideOf(IEOperation someOperation)
+    parameters:
+    - id: someOperation
+      type: NMF.Interop.Ecore.IEOperation
+      description: ''
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsOverrideOf(someOperation As IEOperation) As Boolean
+  overload: NMF.Interop.Ecore.EOperation.IsOverrideOf*
+  implements:
+  - NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+- uid: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling(NMF.Models.OperationCallEventArgs)
+  id: OnIsOverrideOfCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: OnIsOverrideOfCalling(OperationCallEventArgs)
+  nameWithType: EOperation.OnIsOverrideOfCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnIsOverrideOfCalling
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 348
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the IsOverrideOfCalling event
+  example: []
+  syntax:
+    content: protected virtual void OnIsOverrideOfCalling(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnIsOverrideOfCalling(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling*
+- uid: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled(NMF.Models.OperationCallEventArgs)
+  id: OnIsOverrideOfCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: OnIsOverrideOfCalled(OperationCallEventArgs)
+  nameWithType: EOperation.OnIsOverrideOfCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled(NMF.Models.OperationCallEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnIsOverrideOfCalled
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 361
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the IsOverrideOfCalled event
+  example: []
+  syntax:
+    content: protected virtual void OnIsOverrideOfCalled(OperationCallEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Models.OperationCallEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnIsOverrideOfCalled(eventArgs As OperationCallEventArgs)
+  overload: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled*
 - uid: NMF.Interop.Ecore.EOperation.OnEContainingClassChanging(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.EOperation.OnEContainingClassChanging(NMF.Expressions.ValueChangedEventArgs)
   id: OnEContainingClassChanging(NMF.Expressions.ValueChangedEventArgs)
@@ -711,7 +1083,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEContainingClassChanging
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 218
+    startLine: 379
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -743,7 +1115,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnParentChanging
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 232
+    startLine: 393
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -779,7 +1151,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEContainingClassChanged
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 245
+    startLine: 406
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -811,7 +1183,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnParentChanged
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 259
+    startLine: 420
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -847,7 +1219,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 362
+    startLine: 543
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -883,7 +1255,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 388
+    startLine: 569
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -925,7 +1297,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 431
+    startLine: 627
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -964,7 +1336,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 457
+    startLine: 653
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -985,45 +1357,6 @@ items:
   nameWithType.vb: EOperation.SetFeature(String, Object)
   fullName.vb: NMF.Interop.Ecore.EOperation.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
-- uid: NMF.Interop.Ecore.EOperation.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Interop.Ecore.EOperation.GetExpressionForAttribute(System.String)
-  id: GetExpressionForAttribute(System.String)
-  parent: NMF.Interop.Ecore.EOperation
-  langs:
-  - csharp
-  - vb
-  name: GetExpressionForAttribute(string)
-  nameWithType: EOperation.GetExpressionForAttribute(string)
-  fullName: NMF.Interop.Ecore.EOperation.GetExpressionForAttribute(string)
-  type: Method
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/EOperation.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: GetExpressionForAttribute
-    path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 472
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets the property expression for the given attribute
-  example: []
-  syntax:
-    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
-    parameters:
-    - id: attribute
-      type: System.String
-      description: The requested attribute in upper case
-    return:
-      type: NMF.Expressions.INotifyExpression{System.Object}
-      description: An incremental property expression
-    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
-  overridden: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
-  overload: NMF.Interop.Ecore.EOperation.GetExpressionForAttribute*
-  nameWithType.vb: EOperation.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Interop.Ecore.EOperation.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Interop.Ecore.EOperation.GetExpressionForReference(System.String)
   commentId: M:NMF.Interop.Ecore.EOperation.GetExpressionForReference(System.String)
   id: GetExpressionForReference(System.String)
@@ -1042,7 +1375,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 486
+    startLine: 668
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1063,6 +1396,45 @@ items:
   nameWithType.vb: EOperation.GetExpressionForReference(String)
   fullName.vb: NMF.Interop.Ecore.EOperation.GetExpressionForReference(String)
   name.vb: GetExpressionForReference(String)
+- uid: NMF.Interop.Ecore.EOperation.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EOperation.GetCompositionName(System.Object)
+  id: GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EOperation
+  langs:
+  - csharp
+  - vb
+  name: GetCompositionName(object)
+  nameWithType: EOperation.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EOperation.GetCompositionName(object)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetCompositionName
+    path: src/Interop/EcoreInterop/Model/EOperation.cs
+    startLine: 682
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets the property name for the given container
+  example: []
+  syntax:
+    content: protected override string GetCompositionName(object container)
+    parameters:
+    - id: container
+      type: System.Object
+      description: The container object
+    return:
+      type: System.String
+      description: The name of the respective container reference
+    content.vb: Protected Overrides Function GetCompositionName(container As Object) As String
+  overridden: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  overload: NMF.Interop.Ecore.EOperation.GetCompositionName*
+  nameWithType.vb: EOperation.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EOperation.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
 - uid: NMF.Interop.Ecore.EOperation.GetClass
   commentId: M:NMF.Interop.Ecore.EOperation.GetClass
   id: GetClass
@@ -1081,7 +1453,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/EOperation.cs
-    startLine: 498
+    startLine: 702
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1257,13 +1629,6 @@ references:
   name: EGenericType
   nameWithType: ETypedElement.EGenericType
   fullName: NMF.Interop.Ecore.ETypedElement.EGenericType
-- uid: NMF.Interop.Ecore.ETypedElement.OrderedChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.OrderedChanging
-  parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OrderedChanging
-  name: OrderedChanging
-  nameWithType: ETypedElement.OrderedChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.ETypedElement.OrderedChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.OrderedChanged
   parent: NMF.Interop.Ecore.ETypedElement
@@ -1271,13 +1636,13 @@ references:
   name: OrderedChanged
   nameWithType: ETypedElement.OrderedChanged
   fullName: NMF.Interop.Ecore.ETypedElement.OrderedChanged
-- uid: NMF.Interop.Ecore.ETypedElement.UniqueChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.UniqueChanging
+- uid: NMF.Interop.Ecore.ETypedElement.OrderedChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.OrderedChanging
   parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_UniqueChanging
-  name: UniqueChanging
-  nameWithType: ETypedElement.UniqueChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.UniqueChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OrderedChanging
+  name: OrderedChanging
+  nameWithType: ETypedElement.OrderedChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.ETypedElement.UniqueChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.UniqueChanged
   parent: NMF.Interop.Ecore.ETypedElement
@@ -1285,13 +1650,13 @@ references:
   name: UniqueChanged
   nameWithType: ETypedElement.UniqueChanged
   fullName: NMF.Interop.Ecore.ETypedElement.UniqueChanged
-- uid: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+- uid: NMF.Interop.Ecore.ETypedElement.UniqueChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.UniqueChanging
   parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_LowerBoundChanging
-  name: LowerBoundChanging
-  nameWithType: ETypedElement.LowerBoundChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_UniqueChanging
+  name: UniqueChanging
+  nameWithType: ETypedElement.UniqueChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.UniqueChanging
 - uid: NMF.Interop.Ecore.ETypedElement.LowerBoundChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.LowerBoundChanged
   parent: NMF.Interop.Ecore.ETypedElement
@@ -1299,13 +1664,13 @@ references:
   name: LowerBoundChanged
   nameWithType: ETypedElement.LowerBoundChanged
   fullName: NMF.Interop.Ecore.ETypedElement.LowerBoundChanged
-- uid: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+- uid: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
   parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_UpperBoundChanging
-  name: UpperBoundChanging
-  nameWithType: ETypedElement.UpperBoundChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_LowerBoundChanging
+  name: LowerBoundChanging
+  nameWithType: ETypedElement.LowerBoundChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
 - uid: NMF.Interop.Ecore.ETypedElement.UpperBoundChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.UpperBoundChanged
   parent: NMF.Interop.Ecore.ETypedElement
@@ -1313,6 +1678,13 @@ references:
   name: UpperBoundChanged
   nameWithType: ETypedElement.UpperBoundChanged
   fullName: NMF.Interop.Ecore.ETypedElement.UpperBoundChanged
+- uid: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  parent: NMF.Interop.Ecore.ETypedElement
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_UpperBoundChanging
+  name: UpperBoundChanging
+  nameWithType: ETypedElement.UpperBoundChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
 - uid: NMF.Interop.Ecore.ETypedElement.ETypeChanging
   commentId: E:NMF.Interop.Ecore.ETypedElement.ETypeChanging
   parent: NMF.Interop.Ecore.ETypedElement
@@ -1341,29 +1713,6 @@ references:
   name: EGenericTypeChanged
   nameWithType: ETypedElement.EGenericTypeChanged
   fullName: NMF.Interop.Ecore.ETypedElement.EGenericTypeChanged
-- uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnOrderedChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnOrderedChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnOrderedChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnOrderedChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
 - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ETypedElement.OnOrderedChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
@@ -1387,25 +1736,25 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnUniqueChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnUniqueChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnOrderedChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnOrderedChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
   spec.csharp:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnUniqueChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnOrderedChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
   spec.vb:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnUniqueChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnOrderedChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1433,25 +1782,25 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnLowerBoundChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnLowerBoundChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnUniqueChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnUniqueChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
   spec.csharp:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnLowerBoundChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnUniqueChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
   spec.vb:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnLowerBoundChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnUniqueChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1479,25 +1828,25 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnUpperBoundChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnUpperBoundChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnLowerBoundChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnLowerBoundChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
   spec.csharp:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnUpperBoundChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnLowerBoundChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
   spec.vb:
-  - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnUpperBoundChanging
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  - uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnLowerBoundChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1521,6 +1870,29 @@ references:
   - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnUpperBoundChanged
     href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanged_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.ETypedElement
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnUpperBoundChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnUpperBoundChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnUpperBoundChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnUpperBoundChanging
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1660,6 +2032,37 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
+- uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Interop.Ecore.ETypedElement
+  isExternal: true
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_GetExpressionForAttribute_System_String_
+  name: GetExpressionForAttribute(string)
+  nameWithType: ETypedElement.GetExpressionForAttribute(string)
+  fullName: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ETypedElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_GetExpressionForAttribute_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_GetExpressionForAttribute_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Interop.Ecore.ENamedElement.Name
   commentId: P:NMF.Interop.Ecore.ENamedElement.Name
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1674,13 +2077,6 @@ references:
   name: IsIdentified
   nameWithType: ENamedElement.IsIdentified
   fullName: NMF.Interop.Ecore.ENamedElement.IsIdentified
-- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.ENamedElement
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: ENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanged
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1688,29 +2084,13 @@ references:
   name: NameChanged
   nameWithType: ENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.ENamedElement.NameChanged
-- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
   parent: NMF.Interop.Ecore.ENamedElement
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNameChanging(ValueChangedEventArgs)
-  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnNameChanging
-    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnNameChanging
-    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: ENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1730,6 +2110,29 @@ references:
   - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnNameChanged
     href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanged_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.ENamedElement
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanging(ValueChangedEventArgs)
+  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnNameChanging
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnNameChanging
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1760,6 +2163,97 @@ references:
   name: EAnnotations
   nameWithType: EModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.EModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: EModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: EModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: EModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotation(string)
+  nameWithType.vb: EModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalling(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalled(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Models.ModelElement.Model
   commentId: P:NMF.Models.ModelElement.Model
   parent: NMF.Models.ModelElement
@@ -2077,6 +2571,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.ToString
   commentId: M:NMF.Models.ModelElement.ToString
   parent: NMF.Models.ModelElement
@@ -2219,35 +2719,6 @@ references:
   - name: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-  - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
@@ -3519,6 +3990,93 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+  commentId: E:NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+  parent: NMF.Interop.Ecore.IEOperation
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_GetOperationIDCalling
+  name: GetOperationIDCalling
+  nameWithType: IEOperation.GetOperationIDCalling
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+  commentId: E:NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+  parent: NMF.Interop.Ecore.IEOperation
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_GetOperationIDCalled
+  name: GetOperationIDCalled
+  nameWithType: IEOperation.GetOperationIDCalled
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+  commentId: E:NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+  parent: NMF.Interop.Ecore.IEOperation
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_IsOverrideOfCalling
+  name: IsOverrideOfCalling
+  nameWithType: IEOperation.IsOverrideOfCalling
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
+  commentId: E:NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
+  parent: NMF.Interop.Ecore.IEOperation
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_IsOverrideOfCalled
+  name: IsOverrideOfCalled
+  nameWithType: IEOperation.IsOverrideOfCalled
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
 - uid: NMF.Interop.Ecore.IEOperation.EContainingClassChanging
   commentId: E:NMF.Interop.Ecore.IEOperation.EContainingClassChanging
   parent: NMF.Interop.Ecore.IEOperation
@@ -3557,34 +4115,6 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
 - uid: NMF.Interop.Ecore.IEOperation.EContainingClassChanged
   commentId: E:NMF.Interop.Ecore.IEOperation.EContainingClassChanged
   parent: NMF.Interop.Ecore.IEOperation
@@ -3592,6 +4122,114 @@ references:
   name: EContainingClassChanged
   nameWithType: IEOperation.EContainingClassChanged
   fullName: NMF.Interop.Ecore.IEOperation.EContainingClassChanged
+- uid: NMF.Interop.Ecore.EOperation.GetOperationID*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.GetOperationID
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_GetOperationID
+  name: GetOperationID
+  nameWithType: EOperation.GetOperationID
+  fullName: NMF.Interop.Ecore.EOperation.GetOperationID
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationID
+  commentId: M:NMF.Interop.Ecore.IEOperation.GetOperationID
+  parent: NMF.Interop.Ecore.IEOperation
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_GetOperationID
+  name: GetOperationID()
+  nameWithType: IEOperation.GetOperationID()
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationID()
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEOperation.GetOperationID
+    name: GetOperationID
+    href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_GetOperationID
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEOperation.GetOperationID
+    name: GetOperationID
+    href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_GetOperationID
+  - name: (
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_OnGetOperationIDCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetOperationIDCalling
+  nameWithType: EOperation.OnGetOperationIDCalling
+  fullName: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalling
+- uid: NMF.Models.OperationCallEventArgs
+  commentId: T:NMF.Models.OperationCallEventArgs
+  parent: NMF.Models
+  name: OperationCallEventArgs
+  nameWithType: OperationCallEventArgs
+  fullName: NMF.Models.OperationCallEventArgs
+- uid: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_OnGetOperationIDCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetOperationIDCalled
+  nameWithType: EOperation.OnGetOperationIDCalled
+  fullName: NMF.Interop.Ecore.EOperation.OnGetOperationIDCalled
+- uid: NMF.Interop.Ecore.EOperation.IsOverrideOf*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.IsOverrideOf
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_IsOverrideOf_NMF_Interop_Ecore_IEOperation_
+  name: IsOverrideOf
+  nameWithType: EOperation.IsOverrideOf
+  fullName: NMF.Interop.Ecore.EOperation.IsOverrideOf
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  commentId: M:NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  parent: NMF.Interop.Ecore.IEOperation
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_IsOverrideOf_NMF_Interop_Ecore_IEOperation_
+  name: IsOverrideOf(IEOperation)
+  nameWithType: IEOperation.IsOverrideOf(IEOperation)
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+    name: IsOverrideOf
+    href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_IsOverrideOf_NMF_Interop_Ecore_IEOperation_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEOperation
+    name: IEOperation
+    href: NMF.Interop.Ecore.IEOperation.html
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+    name: IsOverrideOf
+    href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_IsOverrideOf_NMF_Interop_Ecore_IEOperation_
+  - name: (
+  - uid: NMF.Interop.Ecore.IEOperation
+    name: IEOperation
+    href: NMF.Interop.Ecore.IEOperation.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_OnIsOverrideOfCalling_NMF_Models_OperationCallEventArgs_
+  name: OnIsOverrideOfCalling
+  nameWithType: EOperation.OnIsOverrideOfCalling
+  fullName: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalling
+- uid: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_OnIsOverrideOfCalled_NMF_Models_OperationCallEventArgs_
+  name: OnIsOverrideOfCalled
+  nameWithType: EOperation.OnIsOverrideOfCalled
+  fullName: NMF.Interop.Ecore.EOperation.OnIsOverrideOfCalled
 - uid: NMF.Interop.Ecore.EOperation.OnEContainingClassChanging*
   commentId: Overload:NMF.Interop.Ecore.EOperation.OnEContainingClassChanging
   href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_OnEContainingClassChanging_NMF_Expressions_ValueChangedEventArgs_
@@ -3767,17 +4405,6 @@ references:
   name: GetModelElementForReference
   nameWithType: EOperation.GetModelElementForReference
   fullName: NMF.Interop.Ecore.EOperation.GetModelElementForReference
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
   commentId: M:NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
   parent: NMF.Interop.Ecore.EModelElement
@@ -3899,96 +4526,6 @@ references:
   name: SetFeature
   nameWithType: EOperation.SetFeature
   fullName: NMF.Interop.Ecore.EOperation.SetFeature
-- uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Interop.Ecore.ETypedElement
-  isExternal: true
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_GetExpressionForAttribute_System_String_
-  name: GetExpressionForAttribute(string)
-  nameWithType: ETypedElement.GetExpressionForAttribute(string)
-  fullName: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ETypedElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_GetExpressionForAttribute_System_String_
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-    href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_GetExpressionForAttribute_System_String_
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: NMF.Interop.Ecore.EOperation.GetExpressionForAttribute*
-  commentId: Overload:NMF.Interop.Ecore.EOperation.GetExpressionForAttribute
-  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_GetExpressionForAttribute_System_String_
-  name: GetExpressionForAttribute
-  nameWithType: EOperation.GetExpressionForAttribute
-  fullName: NMF.Interop.Ecore.EOperation.GetExpressionForAttribute
-- uid: NMF.Expressions.INotifyExpression{System.Object}
-  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
-  parent: NMF.Expressions
-  definition: NMF.Expressions.INotifyExpression`1
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: INotifyExpression<object>
-  nameWithType: INotifyExpression<object>
-  fullName: NMF.Expressions.INotifyExpression<object>
-  nameWithType.vb: INotifyExpression(Of Object)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
-  name.vb: INotifyExpression(Of Object)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: <
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: NMF.Expressions.INotifyExpression`1
-  commentId: T:NMF.Expressions.INotifyExpression`1
-  name: INotifyExpression<T>
-  nameWithType: INotifyExpression<T>
-  fullName: NMF.Expressions.INotifyExpression<T>
-  nameWithType.vb: INotifyExpression(Of T)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
-  name.vb: INotifyExpression(Of T)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: NMF.Interop.Ecore.ETypedElement.GetExpressionForReference(System.String)
   commentId: M:NMF.Interop.Ecore.ETypedElement.GetExpressionForReference(System.String)
   parent: NMF.Interop.Ecore.ETypedElement
@@ -4052,6 +4589,65 @@ references:
   - uid: NMF.Models.IModelElement
     name: IModelElement
   - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  name: GetCompositionName(object)
+  nameWithType: EModelElement.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EModelElement.GetCompositionName(object)
+  nameWithType.vb: EModelElement.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Ecore.EOperation.GetCompositionName*
+  commentId: Overload:NMF.Interop.Ecore.EOperation.GetCompositionName
+  href: NMF.Interop.Ecore.EOperation.html#NMF_Interop_Ecore_EOperation_GetCompositionName_System_Object_
+  name: GetCompositionName
+  nameWithType: EOperation.GetCompositionName
+  fullName: NMF.Interop.Ecore.EOperation.GetCompositionName
 - uid: NMF.Interop.Ecore.ETypedElement.GetClass
   commentId: M:NMF.Interop.Ecore.ETypedElement.GetClass
   parent: NMF.Interop.Ecore.ETypedElement

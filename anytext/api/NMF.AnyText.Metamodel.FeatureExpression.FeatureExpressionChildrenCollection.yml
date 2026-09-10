@@ -7,12 +7,11 @@ items:
   children:
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.#ctor(NMF.AnyText.Metamodel.FeatureExpression)
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Clear
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Count
-  - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore
+  - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.GetEnumerator
   - NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -137,64 +138,38 @@ items:
   overload: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore
-  commentId: M:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies
+  commentId: M:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: FeatureExpression.FeatureExpressionChildrenCollection.AttachCore()
-  fullName: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies()
+  fullName: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: AnyText/AnyText/Metamodel/FeatureExpression.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 322
+    startLine: 323
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
-  summary: Registers event hooks to keep the collection up to date
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore*
-- uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore
-  commentId: M:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: FeatureExpression.FeatureExpressionChildrenCollection.DetachCore()
-  fullName: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: AnyText/AnyText/Metamodel/FeatureExpression.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 330
-  assemblies:
-  - NMF.AnyText
-  namespace: NMF.AnyText.Metamodel
-  summary: Unregisters all event hooks registered by AttachCore
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies*
 - uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 339
+    startLine: 333
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 355
+    startLine: 349
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 365
+    startLine: 359
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 379
+    startLine: 373
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 393
+    startLine: 387
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/AnyText/AnyText/Metamodel/FeatureExpression.cs
-    startLine: 407
+    startLine: 401
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore*
-  commentId: Overload:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore
-  href: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.html#NMF_AnyText_Metamodel_FeatureExpression_FeatureExpressionChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: FeatureExpression.FeatureExpressionChildrenCollection.AttachCore
-  fullName: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies
+  href: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.html#NMF_AnyText_Metamodel_FeatureExpression_FeatureExpressionChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies
+  fullName: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore*
-  commentId: Overload:NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore
-  href: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.html#NMF_AnyText_Metamodel_FeatureExpression_FeatureExpressionChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: FeatureExpression.FeatureExpressionChildrenCollection.DetachCore
-  fullName: NMF.AnyText.Metamodel.FeatureExpression.FeatureExpressionChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

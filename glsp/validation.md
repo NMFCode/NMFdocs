@@ -27,8 +27,7 @@ public class SensorDescriptor : NodeDescriptor<ISensor>
 
 The framework supports three different return types for validation rules.
 
-
-### [Boolean Validation](xref:NMF.Glsp.Language.NodeDescriptor{{T}}.Validate(System.Func{{T},System.Boolean},System.String,System.String,System.String))
+### [Boolean Validation](xref:NMF.Glsp.Language.NodeDescriptor`1.Validate(System.Func{`0,System.Boolean},System.String,System.String,System.String))
 
 The simplest form of validation returns a boolean value.
 
@@ -54,7 +53,7 @@ If the validator returns `false`, the framework creates a *[marker](api/NMF.Glsp
 Boolean validation is recommended whenever the validation message is constant.
 
 
-### [String Validation](xref:NMF.Glsp.Language.NodeDescriptor{{T}}.Validate(System.Func{{T},System.String},System.String))
+### [String Validation](xref:NMF.Glsp.Language.NodeDescriptor`1.Validate(System.Func{`0,System.String},System.String))
 
 Validation rules may also return a string.
 
@@ -82,7 +81,7 @@ Validate(
 This form is useful whenever the validation message depends on the current model state.
 
 
-### [Marker Validation](xref:NMF.Glsp.Language.NodeDescriptor{{T}}.Validate(System.Func{{T},NMF.Glsp.Validation.Marker}))
+### [Marker Validation](xref:NMF.Glsp.Language.NodeDescriptor`1.Validate(System.Func{`0,NMF.Glsp.Protocol.Validation.Marker}))
 
 For full control over the reported *[marker](api/NMF.Glsp.Protocol.Validation.Marker.yml)*, validation rules may directly return a `Marker`.
 
@@ -112,7 +111,7 @@ Validate(sensor =>
 Returning a `Marker` allows complete control over the reported validation result.
 
 
-## [Live Validation](xref:NMF.Glsp.Language.NodeDescriptor{{T}}.ValidateLive(System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}},System.String,System.String,System.String))
+## [Live Validation](xref:NMF.Glsp.Language.NodeDescriptor`1.ValidateLive*)
 
 Live validation continuously evaluates validation rules while the user edits the model. Instead of waiting for a manual validation request, *[markers](api/NMF.Glsp.Protocol.Validation.Marker.yml)* are updated automatically whenever the observed semantic element changes.
 
@@ -174,4 +173,4 @@ When validation is declared inside nested layout elements such as *[compartments
 - Use **string validation** when the message depends on the model.
 - Use **marker validation** only if additional control over the *[marker](api/NMF.Glsp.Protocol.Validation.Marker.yml)* is required.
 - Prefer **live validation** for fast, local consistency checks.
-- Reserve computationally expensive validations for **batch validation**.
+- Reserve butterfly validations for **batch validation**, i.e. validations that change with many triggers.

@@ -13,10 +13,18 @@ items:
   - NMF.Interop.Cmof.Argument.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Cmof.Argument.IsIdentified
   - NMF.Interop.Cmof.Argument.Name
+  - NMF.Interop.Cmof.Argument.NameChanged
+  - NMF.Interop.Cmof.Argument.NameChanging
+  - NMF.Interop.Cmof.Argument.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Argument.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Argument.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Argument.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Cmof.Argument.ReferencedElements
   - NMF.Interop.Cmof.Argument.SetFeature(System.String,System.Object)
   - NMF.Interop.Cmof.Argument.ToIdentifierString
   - NMF.Interop.Cmof.Argument.Value
+  - NMF.Interop.Cmof.Argument.ValueChanged
+  - NMF.Interop.Cmof.Argument.ValueChanging
   langs:
   - csharp
   - vb
@@ -31,7 +39,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Argument
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 39
+    startLine: 38
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -88,6 +96,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.ToString
   - NMF.Models.ModelElement.IdentifierString
   - NMF.Models.ModelElement.ClassName
@@ -169,7 +178,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Name
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 68
+    startLine: 67
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -230,7 +239,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Value
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 95
+    startLine: 97
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -284,7 +293,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 129
+    startLine: 133
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -318,7 +327,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 140
+    startLine: 144
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -349,7 +358,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsIdentified
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 155
+    startLine: 159
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -365,6 +374,258 @@ items:
   overload: NMF.Interop.Cmof.Argument.IsIdentified*
   implements:
   - NMF.Models.IModelElement.IsIdentified
+- uid: NMF.Interop.Cmof.Argument.NameChanged
+  commentId: E:NMF.Interop.Cmof.Argument.NameChanged
+  id: NameChanged
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: NameChanged
+  nameWithType: Argument.NameChanged
+  fullName: NMF.Interop.Cmof.Argument.NameChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: NameChanged
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 170
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the Name property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> NameChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event NameChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IArgument.NameChanged
+- uid: NMF.Interop.Cmof.Argument.NameChanging
+  commentId: E:NMF.Interop.Cmof.Argument.NameChanging
+  id: NameChanging
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: NameChanging
+  nameWithType: Argument.NameChanging
+  fullName: NMF.Interop.Cmof.Argument.NameChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: NameChanging
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 175
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the Name property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> NameChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event NameChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IArgument.NameChanging
+- uid: NMF.Interop.Cmof.Argument.ValueChanging
+  commentId: E:NMF.Interop.Cmof.Argument.ValueChanging
+  id: ValueChanging
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: ValueChanging
+  nameWithType: Argument.ValueChanging
+  fullName: NMF.Interop.Cmof.Argument.ValueChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ValueChanging
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 180
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the Value property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> ValueChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ValueChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IArgument.ValueChanging
+- uid: NMF.Interop.Cmof.Argument.ValueChanged
+  commentId: E:NMF.Interop.Cmof.Argument.ValueChanged
+  id: ValueChanged
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: ValueChanged
+  nameWithType: Argument.ValueChanged
+  fullName: NMF.Interop.Cmof.Argument.ValueChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ValueChanged
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 185
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the Value property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> ValueChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ValueChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IArgument.ValueChanged
+- uid: NMF.Interop.Cmof.Argument.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Argument.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: OnNameChanged(ValueChangedEventArgs)
+  nameWithType: Argument.OnNameChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Argument.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnNameChanged
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 196
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the NameChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnNameChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnNameChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Argument.OnNameChanged*
+- uid: NMF.Interop.Cmof.Argument.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Argument.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: OnNameChanging(ValueChangedEventArgs)
+  nameWithType: Argument.OnNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Argument.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnNameChanging
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 209
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the NameChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnNameChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnNameChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Argument.OnNameChanging*
+- uid: NMF.Interop.Cmof.Argument.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Argument.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: OnValueChanging(ValueChangedEventArgs)
+  nameWithType: Argument.OnValueChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Argument.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnValueChanging
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 227
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the ValueChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnValueChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnValueChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Argument.OnValueChanging*
+- uid: NMF.Interop.Cmof.Argument.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Argument.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Argument
+  langs:
+  - csharp
+  - vb
+  name: OnValueChanged(ValueChangedEventArgs)
+  nameWithType: Argument.OnValueChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Argument.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Argument.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnValueChanged
+    path: src/Interop/UMLInterop/Cmof/Argument.cs
+    startLine: 240
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the ValueChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnValueChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnValueChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Argument.OnValueChanged*
 - uid: NMF.Interop.Cmof.Argument.GetModelElementForReference(System.String,System.Int32)
   commentId: M:NMF.Interop.Cmof.Argument.GetModelElementForReference(System.String,System.Int32)
   id: GetModelElementForReference(System.String,System.Int32)
@@ -383,7 +644,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 192
+    startLine: 268
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -425,7 +686,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 207
+    startLine: 283
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -467,7 +728,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 221
+    startLine: 297
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -506,7 +767,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForAttribute
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 241
+    startLine: 317
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -545,7 +806,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 255
+    startLine: 331
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -584,7 +845,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 267
+    startLine: 343
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -617,7 +878,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ToIdentifierString
     path: src/Interop/UMLInterop/Cmof/Argument.cs
-    startLine: 280
+    startLine: 356
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -1089,6 +1350,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.ToString
   commentId: M:NMF.Models.ModelElement.ToString
   parent: NMF.Models.ModelElement
@@ -2391,6 +2658,123 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: NMF.Interop.Cmof.IArgument.NameChanged
+  commentId: E:NMF.Interop.Cmof.IArgument.NameChanged
+  parent: NMF.Interop.Cmof.IArgument
+  href: NMF.Interop.Cmof.IArgument.html#NMF_Interop_Cmof_IArgument_NameChanged
+  name: NameChanged
+  nameWithType: IArgument.NameChanged
+  fullName: NMF.Interop.Cmof.IArgument.NameChanged
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<ValueChangedEventArgs>
+  nameWithType: EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
+  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
+  name.vb: EventHandler(Of ValueChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.IArgument.NameChanging
+  commentId: E:NMF.Interop.Cmof.IArgument.NameChanging
+  parent: NMF.Interop.Cmof.IArgument
+  href: NMF.Interop.Cmof.IArgument.html#NMF_Interop_Cmof_IArgument_NameChanging
+  name: NameChanging
+  nameWithType: IArgument.NameChanging
+  fullName: NMF.Interop.Cmof.IArgument.NameChanging
+- uid: NMF.Interop.Cmof.IArgument.ValueChanging
+  commentId: E:NMF.Interop.Cmof.IArgument.ValueChanging
+  parent: NMF.Interop.Cmof.IArgument
+  href: NMF.Interop.Cmof.IArgument.html#NMF_Interop_Cmof_IArgument_ValueChanging
+  name: ValueChanging
+  nameWithType: IArgument.ValueChanging
+  fullName: NMF.Interop.Cmof.IArgument.ValueChanging
+- uid: NMF.Interop.Cmof.IArgument.ValueChanged
+  commentId: E:NMF.Interop.Cmof.IArgument.ValueChanged
+  parent: NMF.Interop.Cmof.IArgument
+  href: NMF.Interop.Cmof.IArgument.html#NMF_Interop_Cmof_IArgument_ValueChanged
+  name: ValueChanged
+  nameWithType: IArgument.ValueChanged
+  fullName: NMF.Interop.Cmof.IArgument.ValueChanged
+- uid: NMF.Interop.Cmof.Argument.OnNameChanged*
+  commentId: Overload:NMF.Interop.Cmof.Argument.OnNameChanged
+  href: NMF.Interop.Cmof.Argument.html#NMF_Interop_Cmof_Argument_OnNameChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanged
+  nameWithType: Argument.OnNameChanged
+  fullName: NMF.Interop.Cmof.Argument.OnNameChanged
+- uid: NMF.Expressions.ValueChangedEventArgs
+  commentId: T:NMF.Expressions.ValueChangedEventArgs
+  parent: NMF.Expressions
+  name: ValueChangedEventArgs
+  nameWithType: ValueChangedEventArgs
+  fullName: NMF.Expressions.ValueChangedEventArgs
+- uid: NMF.Interop.Cmof.Argument.OnNameChanging*
+  commentId: Overload:NMF.Interop.Cmof.Argument.OnNameChanging
+  href: NMF.Interop.Cmof.Argument.html#NMF_Interop_Cmof_Argument_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanging
+  nameWithType: Argument.OnNameChanging
+  fullName: NMF.Interop.Cmof.Argument.OnNameChanging
+- uid: NMF.Interop.Cmof.Argument.OnValueChanging*
+  commentId: Overload:NMF.Interop.Cmof.Argument.OnValueChanging
+  href: NMF.Interop.Cmof.Argument.html#NMF_Interop_Cmof_Argument_OnValueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnValueChanging
+  nameWithType: Argument.OnValueChanging
+  fullName: NMF.Interop.Cmof.Argument.OnValueChanging
+- uid: NMF.Interop.Cmof.Argument.OnValueChanged*
+  commentId: Overload:NMF.Interop.Cmof.Argument.OnValueChanged
+  href: NMF.Interop.Cmof.Argument.html#NMF_Interop_Cmof_Argument_OnValueChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnValueChanged
+  nameWithType: Argument.OnValueChanged
+  fullName: NMF.Interop.Cmof.Argument.OnValueChanged
 - uid: NMF.Models.ModelElement.GetModelElementForReference(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetModelElementForReference(System.String,System.Int32)
   parent: NMF.Models.ModelElement

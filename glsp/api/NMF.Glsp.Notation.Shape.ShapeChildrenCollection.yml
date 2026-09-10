@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.#ctor(NMF.Glsp.Notation.Shape)
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Clear
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Count
-  - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore
+  - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.GetEnumerator
   - NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ShapeChildrenCollection
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 372
+    startLine: 302
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 380
+    startLine: 310
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 388
+    startLine: 318
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -137,64 +138,38 @@ items:
   overload: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore
-  commentId: M:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies
+  commentId: M:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Glsp.Notation.Shape.ShapeChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: Shape.ShapeChildrenCollection.AttachCore()
-  fullName: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: Shape.ShapeChildrenCollection.CreateDependencies()
+  fullName: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Glsp/Glsp/Notation/Shape.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 406
+    startLine: 339
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore*
-- uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore
-  commentId: M:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Glsp.Notation.Shape.ShapeChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: Shape.ShapeChildrenCollection.DetachCore()
-  fullName: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Shape.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 413
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies*
 - uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 423
+    startLine: 350
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 448
+    startLine: 375
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 459
+    startLine: 386
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 477
+    startLine: 404
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 496
+    startLine: 423
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Glsp/Glsp/Notation/Shape.cs
-    startLine: 515
+    startLine: 442
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore*
-  commentId: Overload:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore
-  href: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.html#NMF_Glsp_Notation_Shape_ShapeChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: Shape.ShapeChildrenCollection.AttachCore
-  fullName: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies
+  href: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.html#NMF_Glsp_Notation_Shape_ShapeChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: Shape.ShapeChildrenCollection.CreateDependencies
+  fullName: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore*
-  commentId: Overload:NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore
-  href: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.html#NMF_Glsp_Notation_Shape_ShapeChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: Shape.ShapeChildrenCollection.DetachCore
-  fullName: NMF.Glsp.Notation.Shape.ShapeChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

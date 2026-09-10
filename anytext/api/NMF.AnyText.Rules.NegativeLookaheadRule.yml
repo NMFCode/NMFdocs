@@ -13,6 +13,7 @@ items:
   - NMF.AnyText.Rules.NegativeLookaheadRule.Inner
   - NMF.AnyText.Rules.NegativeLookaheadRule.IsEpsilonAllowed(System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
   - NMF.AnyText.Rules.NegativeLookaheadRule.Match(NMF.AnyText.ParseContext,NMF.AnyText.RecursionContext,NMF.AnyText.ParsePosition@)
+  - NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.NegativeLookaheadRule.Synthesize(System.Object,NMF.AnyText.ParsePosition,NMF.AnyText.ParseContext)
   langs:
   - csharp
@@ -63,12 +64,14 @@ items:
   - NMF.AnyText.Rules.Rule.SymbolTags(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.PassAlongDocumentSymbols
   - NMF.AnyText.Rules.Rule.Invalidate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
+  - NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.IsLeftRecursive
   - NMF.AnyText.Rules.Rule.Continuations
   - NMF.AnyText.Rules.Rule.CanSynthesize(System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.CreateSynthesisRequirements
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.IO.TextWriter,System.String)
+  - NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   - NMF.AnyText.Rules.Rule.CreateEpsilonRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.CanStartWith(NMF.AnyText.Rules.Rule)
@@ -267,6 +270,54 @@ items:
   nameWithType.vb: NegativeLookaheadRule.IsEpsilonAllowed(List(Of Rule))
   fullName.vb: NMF.AnyText.Rules.NegativeLookaheadRule.IsEpsilonAllowed(System.Collections.Generic.List(Of NMF.AnyText.Rules.Rule))
   name.vb: IsEpsilonAllowed(List(Of Rule))
+- uid: NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  id: OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.NegativeLookaheadRule
+  langs:
+  - csharp
+  - vb
+  name: OnContextChanged(RuleApplication, object, object, ParseContext)
+  nameWithType: NegativeLookaheadRule.OnContextChanged(RuleApplication, object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, object, object, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/NegativeLookaheadRule.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnContextChanged
+    path: src/AnyText/AnyText.Core/Rules/NegativeLookaheadRule.cs
+    startLine: 43
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Gets called when the parent rule application changes while the rule application is active
+  example: []
+  syntax:
+    content: protected override bool OnContextChanged(RuleApplication ruleApplication, object oldContextElement, object newContextElement, ParseContext context)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application whose parent changed
+    - id: oldContextElement
+      type: System.Object
+      description: the old context element
+    - id: newContextElement
+      type: System.Object
+      description: the new context element
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the context in which the parent changed
+    return:
+      type: System.Boolean
+      description: true, if the context change is handled, otherwise false and the context change should be propagated further
+    content.vb: Protected Overrides Function OnContextChanged(ruleApplication As RuleApplication, oldContextElement As Object, newContextElement As Object, context As ParseContext) As Boolean
+  overridden: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  overload: NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged*
+  nameWithType.vb: NegativeLookaheadRule.OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChanged(RuleApplication, Object, Object, ParseContext)
 - uid: NMF.AnyText.Rules.NegativeLookaheadRule.Inner
   commentId: P:NMF.AnyText.Rules.NegativeLookaheadRule.Inner
   id: Inner
@@ -285,7 +336,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Inner
     path: src/AnyText/AnyText.Core/Rules/NegativeLookaheadRule.cs
-    startLine: 45
+    startLine: 51
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -316,7 +367,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Match
     path: src/AnyText/AnyText.Core/Rules/NegativeLookaheadRule.cs
-    startLine: 48
+    startLine: 54
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -361,7 +412,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanSynthesize
     path: src/AnyText/AnyText.Core/Rules/NegativeLookaheadRule.cs
-    startLine: 61
+    startLine: 67
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -406,7 +457,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synthesize
     path: src/AnyText/AnyText.Core/Rules/NegativeLookaheadRule.cs
-    startLine: 67
+    startLine: 73
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -417,7 +468,7 @@ items:
     parameters:
     - id: semanticElement
       type: System.Object
-      description: ''
+      description: the semantic element that shall be synthesized
     - id: position
       type: NMF.AnyText.ParsePosition
       description: the parse position at which the element should be synthesized
@@ -953,6 +1004,31 @@ references:
     name: ParseContext
     href: NMF.AnyText.ParseContext.html
   - name: )
+- uid: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.Rules.Rule
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  name: GetEssentialInnerRuleApplication(RuleApplication)
+  nameWithType: Rule.GetEssentialInnerRuleApplication(RuleApplication)
+  fullName: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+    name: GetEssentialInnerRuleApplication
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+    name: GetEssentialInnerRuleApplication
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
 - uid: NMF.AnyText.Rules.Rule.IsLeftRecursive
   commentId: P:NMF.AnyText.Rules.Rule.IsLeftRecursive
   parent: NMF.AnyText.Rules.Rule
@@ -1144,6 +1220,83 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  isExternal: true
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  name: SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  nameWithType: Rule.SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.SynthesizeChanges(object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable<string>, NMF.AnyText.ParseContext)
+  nameWithType.vb: Rule.SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.SynthesizeChanges(Object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable(Of String), NMF.AnyText.ParseContext)
+  name.vb: SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+    name: SynthesizeChanges
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+    name: SynthesizeChanges
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
   - name: )
 - uid: NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   commentId: M:NMF.AnyText.Rules.Rule.IsEpsilonAllowed
@@ -1963,6 +2116,111 @@ references:
   name: IsEpsilonAllowed
   nameWithType: NegativeLookaheadRule.IsEpsilonAllowed
   fullName: NMF.AnyText.Rules.NegativeLookaheadRule.IsEpsilonAllowed
+- uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  isExternal: true
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChanged(RuleApplication, object, object, ParseContext)
+  nameWithType: Rule.OnContextChanged(RuleApplication, object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, object, object, NMF.AnyText.ParseContext)
+  nameWithType.vb: Rule.OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChanged
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChanged
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+- uid: NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged*
+  commentId: Overload:NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged
+  href: NMF.AnyText.Rules.NegativeLookaheadRule.html#NMF_AnyText_Rules_NegativeLookaheadRule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChanged
+  nameWithType: NegativeLookaheadRule.OnContextChanged
+  fullName: NMF.AnyText.Rules.NegativeLookaheadRule.OnContextChanged
+- uid: NMF.AnyText.Rules.RuleApplication
+  commentId: T:NMF.AnyText.Rules.RuleApplication
+  parent: NMF.AnyText.Rules
+  href: NMF.AnyText.Rules.RuleApplication.html
+  name: RuleApplication
+  nameWithType: RuleApplication
+  fullName: NMF.AnyText.Rules.RuleApplication
+- uid: NMF.AnyText.ParseContext
+  commentId: T:NMF.AnyText.ParseContext
+  parent: NMF.AnyText
+  href: NMF.AnyText.ParseContext.html
+  name: ParseContext
+  nameWithType: ParseContext
+  fullName: NMF.AnyText.ParseContext
+- uid: NMF.AnyText
+  commentId: N:NMF.AnyText
+  href: NMF.html
+  name: NMF.AnyText
+  nameWithType: NMF.AnyText
+  fullName: NMF.AnyText
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+    href: NMF.html
+  - name: .
+  - uid: NMF.AnyText
+    name: AnyText
+    href: NMF.AnyText.html
+  spec.vb:
+  - uid: NMF
+    name: NMF
+    href: NMF.html
+  - name: .
+  - uid: NMF.AnyText
+    name: AnyText
+    href: NMF.AnyText.html
 - uid: NMF.AnyText.Rules.NegativeLookaheadRule.Inner*
   commentId: Overload:NMF.AnyText.Rules.NegativeLookaheadRule.Inner
   href: NMF.AnyText.Rules.NegativeLookaheadRule.html#NMF_AnyText_Rules_NegativeLookaheadRule_Inner
@@ -2025,13 +2283,6 @@ references:
   name: Match
   nameWithType: NegativeLookaheadRule.Match
   fullName: NMF.AnyText.Rules.NegativeLookaheadRule.Match
-- uid: NMF.AnyText.ParseContext
-  commentId: T:NMF.AnyText.ParseContext
-  parent: NMF.AnyText
-  href: NMF.AnyText.ParseContext.html
-  name: ParseContext
-  nameWithType: ParseContext
-  fullName: NMF.AnyText.ParseContext
 - uid: NMF.AnyText.RecursionContext
   commentId: T:NMF.AnyText.RecursionContext
   parent: NMF.AnyText
@@ -2046,35 +2297,6 @@ references:
   name: ParsePosition
   nameWithType: ParsePosition
   fullName: NMF.AnyText.ParsePosition
-- uid: NMF.AnyText.Rules.RuleApplication
-  commentId: T:NMF.AnyText.Rules.RuleApplication
-  parent: NMF.AnyText.Rules
-  href: NMF.AnyText.Rules.RuleApplication.html
-  name: RuleApplication
-  nameWithType: RuleApplication
-  fullName: NMF.AnyText.Rules.RuleApplication
-- uid: NMF.AnyText
-  commentId: N:NMF.AnyText
-  href: NMF.html
-  name: NMF.AnyText
-  nameWithType: NMF.AnyText
-  fullName: NMF.AnyText
-  spec.csharp:
-  - uid: NMF
-    name: NMF
-    href: NMF.html
-  - name: .
-  - uid: NMF.AnyText
-    name: AnyText
-    href: NMF.AnyText.html
-  spec.vb:
-  - uid: NMF
-    name: NMF
-    href: NMF.html
-  - name: .
-  - uid: NMF.AnyText
-    name: AnyText
-    href: NMF.AnyText.html
 - uid: NMF.AnyText.Rules.Rule.CanSynthesize(System.Object,NMF.AnyText.ParseContext,NMF.AnyText.SynthesisPlan)
   commentId: M:NMF.AnyText.Rules.Rule.CanSynthesize(System.Object,NMF.AnyText.ParseContext,NMF.AnyText.SynthesisPlan)
   parent: NMF.AnyText.Rules.Rule

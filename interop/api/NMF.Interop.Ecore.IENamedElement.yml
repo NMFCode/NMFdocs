@@ -22,7 +22,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IENamedElement
     path: src/Interop/EcoreInterop/Model/IENamedElement.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -34,15 +34,37 @@ items:
 
       [XmlDefaultImplementationType(typeof(ENamedElement))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ENamedElement")]
+
       public interface IENamedElement : IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(ENamedElement))>
 
       <XmlDefaultImplementationType(GetType(ENamedElement))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ENamedElement")>
+
       Public Interface IENamedElement Inherits IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EAttribute
+  - NMF.Interop.Ecore.EClass
+  - NMF.Interop.Ecore.EClassifier
+  - NMF.Interop.Ecore.EDataType
+  - NMF.Interop.Ecore.EEnum
+  - NMF.Interop.Ecore.EEnumLiteral
+  - NMF.Interop.Ecore.ENamedElement
+  - NMF.Interop.Ecore.EOperation
+  - NMF.Interop.Ecore.EPackage
+  - NMF.Interop.Ecore.EParameter
+  - NMF.Interop.Ecore.EReference
+  - NMF.Interop.Ecore.EStructuralFeature
+  - NMF.Interop.Ecore.ETypeParameter
+  - NMF.Interop.Ecore.ETypedElement
   inheritedMembers:
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -90,6 +112,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.ENamedElement
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//ENamedElement
 - uid: NMF.Interop.Ecore.IENamedElement.Name
   commentId: P:NMF.Interop.Ecore.IENamedElement.Name
   id: Name
@@ -108,48 +135,47 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Name
     path: src/Interop/EcoreInterop/Model/IENamedElement.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The name property
   example: []
   syntax:
-    content: string Name { get; set; }
+    content: >-
+      [XmlElementName("name")]
+
+      [Id]
+
+      [XmlAttribute(true)]
+
+      string Name { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property Name As String
+    content.vb: >-
+      <XmlElementName("name")>
+
+      <Id>
+
+      <XmlAttribute(True)>
+
+      Property Name As String
   overload: NMF.Interop.Ecore.IENamedElement.Name*
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  id: NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  langs:
-  - csharp
-  - vb
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/IENamedElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: NameChanging
-    path: src/Interop/EcoreInterop/Model/IENamedElement.cs
-    startLine: 53
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Name property changes its value
-  example: []
-  syntax:
-    content: event EventHandler<ValueChangedEventArgs> NameChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event NameChanging As EventHandler(Of ValueChangedEventArgs)
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: name
+  - type: NMF.Models.IdAttribute
+    ctor: NMF.Models.IdAttribute.#ctor
+    arguments: []
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   id: NameChanged
@@ -168,7 +194,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NameChanged
     path: src/Interop/EcoreInterop/Model/IENamedElement.cs
-    startLine: 58
+    startLine: 60
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -179,6 +205,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event NameChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  id: NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  langs:
+  - csharp
+  - vb
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IENamedElement.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: NameChanging
+    path: src/Interop/EcoreInterop/Model/IENamedElement.cs
+    startLine: 65
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the Name property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> NameChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event NameChanging As EventHandler(Of ValueChangedEventArgs)
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -217,6 +272,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement

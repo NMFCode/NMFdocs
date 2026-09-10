@@ -7,9 +7,12 @@ items:
   children:
   - NMF.AnyText.SynchronizingLspServer.#ctor(System.Collections.Generic.IEnumerable{NMF.AnyText.Grammars.Grammar},NMF.Models.Services.IModelServer,NMF.AnyText.IModelSynchronization[])
   - NMF.AnyText.SynchronizingLspServer.#ctor(System.Collections.Generic.IEnumerable{NMF.AnyText.Grammars.Grammar},NMF.Models.Services.IModelServer,System.Collections.Generic.IEnumerable{NMF.AnyText.IModelSynchronization})
+  - NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
   - NMF.AnyText.SynchronizingLspServer.HandleExtensionCommand(System.String,System.Object[])
+  - NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
   - NMF.AnyText.SynchronizingLspServer.OpenNewDocument(NMF.AnyText.Parser)
   - NMF.AnyText.SynchronizingLspServer.PostProcessCompletions(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CompletionItem})
+  - NMF.AnyText.SynchronizingLspServer.SystemCommands
   langs:
   - csharp
   - vb
@@ -24,7 +27,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SynchronizingLspServer
     path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
-    startLine: 14
+    startLine: 16
   assemblies:
   - NMF.AnyText.Synchronizations
   namespace: NMF.AnyText
@@ -53,13 +56,13 @@ items:
   - NMF.AnyText.LspServer.Initialized
   - NMF.AnyText.LspServer.Shutdown
   - NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
-  - NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
   - NMF.AnyText.LspServer.DidSave(LspTypes.TextDocumentIdentifier,System.String)
   - NMF.AnyText.LspServer.DidClose(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.CloseDocument(NMF.AnyText.Parser)
   - NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.Exit
   - NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType,System.String,System.Boolean)
+  - NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.QueryDocumentSymbols(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.ExecuteCommand(Newtonsoft.Json.Linq.JToken)
@@ -105,7 +108,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - NMF.AnyText.Synchronizations
   namespace: NMF.AnyText
@@ -146,7 +149,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
-    startLine: 32
+    startLine: 34
   assemblies:
   - NMF.AnyText.Synchronizations
   namespace: NMF.AnyText
@@ -187,7 +190,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OpenNewDocument
     path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
-    startLine: 43
+    startLine: 47
   assemblies:
   - NMF.AnyText.Synchronizations
   namespace: NMF.AnyText
@@ -220,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: PostProcessCompletions
     path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
-    startLine: 49
+    startLine: 53
   assemblies:
   - NMF.AnyText.Synchronizations
   namespace: NMF.AnyText
@@ -244,6 +247,80 @@ items:
   nameWithType.vb: SynchronizingLspServer.PostProcessCompletions(Parser, IEnumerable(Of CompletionItem))
   fullName.vb: NMF.AnyText.SynchronizingLspServer.PostProcessCompletions(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of LspTypes.CompletionItem))
   name.vb: PostProcessCompletions(Parser, IEnumerable(Of CompletionItem))
+- uid: NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  commentId: M:NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  id: CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  parent: NMF.AnyText.SynchronizingLspServer
+  langs:
+  - csharp
+  - vb
+  name: CodeLensesForDocument(Parser, IEnumerable<CodeLens>)
+  nameWithType: SynchronizingLspServer.CodeLensesForDocument(Parser, IEnumerable<CodeLens>)
+  fullName: NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<LspTypes.CodeLens>)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CodeLensesForDocument
+    path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
+    startLine: 66
+  assemblies:
+  - NMF.AnyText.Synchronizations
+  namespace: NMF.AnyText
+  summary: Calculates the code lenses for the given document
+  example: []
+  syntax:
+    content: protected override IEnumerable<CodeLens> CodeLensesForDocument(Parser document, IEnumerable<CodeLens> codeLenses)
+    parameters:
+    - id: document
+      type: NMF.AnyText.Parser
+      description: the document for which to calculate code lenses
+    - id: codeLenses
+      type: System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+      description: the code lenses obtained from the document
+    return:
+      type: System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+      description: A collection of code lenses
+    content.vb: Protected Overrides Function CodeLensesForDocument(document As Parser, codeLenses As IEnumerable(Of CodeLens)) As IEnumerable(Of CodeLens)
+  overridden: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  overload: NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument*
+  nameWithType.vb: SynchronizingLspServer.CodeLensesForDocument(Parser, IEnumerable(Of CodeLens))
+  fullName.vb: NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of LspTypes.CodeLens))
+  name.vb: CodeLensesForDocument(Parser, IEnumerable(Of CodeLens))
+- uid: NMF.AnyText.SynchronizingLspServer.SystemCommands
+  commentId: P:NMF.AnyText.SynchronizingLspServer.SystemCommands
+  id: SystemCommands
+  parent: NMF.AnyText.SynchronizingLspServer
+  langs:
+  - csharp
+  - vb
+  name: SystemCommands
+  nameWithType: SynchronizingLspServer.SystemCommands
+  fullName: NMF.AnyText.SynchronizingLspServer.SystemCommands
+  type: Property
+  source:
+    remote:
+      path: AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SystemCommands
+    path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
+    startLine: 146
+  assemblies:
+  - NMF.AnyText.Synchronizations
+  namespace: NMF.AnyText
+  summary: Gets a collection of available system commands
+  example: []
+  syntax:
+    content: protected override IEnumerable<string> SystemCommands { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Protected Overrides ReadOnly Property SystemCommands As IEnumerable(Of String)
+  overridden: NMF.AnyText.LspServer.SystemCommands
+  overload: NMF.AnyText.SynchronizingLspServer.SystemCommands*
 - uid: NMF.AnyText.SynchronizingLspServer.HandleExtensionCommand(System.String,System.Object[])
   commentId: M:NMF.AnyText.SynchronizingLspServer.HandleExtensionCommand(System.String,System.Object[])
   id: HandleExtensionCommand(System.String,System.Object[])
@@ -262,7 +339,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: HandleExtensionCommand
     path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
-    startLine: 60
+    startLine: 157
   assemblies:
   - NMF.AnyText.Synchronizations
   namespace: NMF.AnyText
@@ -286,6 +363,48 @@ items:
   nameWithType.vb: SynchronizingLspServer.HandleExtensionCommand(String, Object())
   fullName.vb: NMF.AnyText.SynchronizingLspServer.HandleExtensionCommand(String, Object())
   name.vb: HandleExtensionCommand(String, Object())
+- uid: NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+  commentId: M:NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+  id: OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+  parent: NMF.AnyText.SynchronizingLspServer
+  langs:
+  - csharp
+  - vb
+  name: OnDocumentUpdate(Parser, IEnumerable<TextEdit>, string)
+  nameWithType: SynchronizingLspServer.OnDocumentUpdate(Parser, IEnumerable<TextEdit>, string)
+  fullName: NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<NMF.AnyText.TextEdit>, string)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnDocumentUpdate
+    path: src/AnyText/AnyText.Synchronizations/SynchronizingLspServer.cs
+    startLine: 216
+  assemblies:
+  - NMF.AnyText.Synchronizations
+  namespace: NMF.AnyText
+  summary: Gets called when a document should be updated
+  example: []
+  syntax:
+    content: protected override void OnDocumentUpdate(Parser document, IEnumerable<TextEdit> edits, string uri)
+    parameters:
+    - id: document
+      type: NMF.AnyText.Parser
+      description: the parsed document
+    - id: edits
+      type: System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit}
+      description: the edits that should be performed
+    - id: uri
+      type: System.String
+      description: the URI of the document
+    content.vb: Protected Overrides Sub OnDocumentUpdate(document As Parser, edits As IEnumerable(Of TextEdit), uri As String)
+  overridden: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+  overload: NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate*
+  nameWithType.vb: SynchronizingLspServer.OnDocumentUpdate(Parser, IEnumerable(Of TextEdit), String)
+  fullName.vb: NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of NMF.AnyText.TextEdit), String)
+  name.vb: OnDocumentUpdate(Parser, IEnumerable(Of TextEdit), String)
 references:
 - uid: NMF.AnyText
   commentId: N:NMF.AnyText
@@ -338,7 +457,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit,System.String)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ApplyWorkspaceEditAsync_NMF_AnyText_Workspace_WorkspaceEdit_System_String_
   name: ApplyWorkspaceEditAsync(WorkspaceEdit, string)
   nameWithType: LspServer.ApplyWorkspaceEditAsync(WorkspaceEdit, string)
   fullName: NMF.AnyText.LspServer.ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit, string)
@@ -348,9 +467,11 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit,System.String)
     name: ApplyWorkspaceEditAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ApplyWorkspaceEditAsync_NMF_AnyText_Workspace_WorkspaceEdit_System_String_
   - name: (
   - uid: NMF.AnyText.Workspace.WorkspaceEdit
     name: WorkspaceEdit
+    href: NMF.AnyText.Workspace.WorkspaceEdit.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -361,9 +482,11 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.ApplyWorkspaceEditAsync(NMF.AnyText.Workspace.WorkspaceEdit,System.String)
     name: ApplyWorkspaceEditAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ApplyWorkspaceEditAsync_NMF_AnyText_Workspace_WorkspaceEdit_System_String_
   - name: (
   - uid: NMF.AnyText.Workspace.WorkspaceEdit
     name: WorkspaceEdit
+    href: NMF.AnyText.Workspace.WorkspaceEdit.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -375,12 +498,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.CodeAction(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeAction_Newtonsoft_Json_Linq_JToken_
   name: CodeAction(JToken)
   nameWithType: LspServer.CodeAction(JToken)
   fullName: NMF.AnyText.LspServer.CodeAction(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.CodeAction(Newtonsoft.Json.Linq.JToken)
     name: CodeAction
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeAction_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -389,6 +514,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.CodeAction(Newtonsoft.Json.Linq.JToken)
     name: CodeAction
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeAction_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -398,12 +524,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.CodeLens(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLens_Newtonsoft_Json_Linq_JToken_
   name: CodeLens(JToken)
   nameWithType: LspServer.CodeLens(JToken)
   fullName: NMF.AnyText.LspServer.CodeLens(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.CodeLens(Newtonsoft.Json.Linq.JToken)
     name: CodeLens
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLens_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -412,6 +540,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.CodeLens(Newtonsoft.Json.Linq.JToken)
     name: CodeLens
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLens_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -421,12 +550,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensResolve_Newtonsoft_Json_Linq_JToken_
   name: CodeLensResolve(JToken)
   nameWithType: LspServer.CodeLensResolve(JToken)
   fullName: NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
     name: CodeLensResolve
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensResolve_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -435,6 +566,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
     name: CodeLensResolve
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensResolve_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -444,12 +576,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.HandleCompletion(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_HandleCompletion_Newtonsoft_Json_Linq_JToken_
   name: HandleCompletion(JToken)
   nameWithType: LspServer.HandleCompletion(JToken)
   fullName: NMF.AnyText.LspServer.HandleCompletion(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.HandleCompletion(Newtonsoft.Json.Linq.JToken)
     name: HandleCompletion
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_HandleCompletion_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -458,6 +592,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.HandleCompletion(Newtonsoft.Json.Linq.JToken)
     name: HandleCompletion
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_HandleCompletion_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -466,6 +601,7 @@ references:
 - uid: NMF.AnyText.LspServer.OpenDocuments
   commentId: P:NMF.AnyText.LspServer.OpenDocuments
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OpenDocuments
   name: OpenDocuments
   nameWithType: LspServer.OpenDocuments
   fullName: NMF.AnyText.LspServer.OpenDocuments
@@ -473,7 +609,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.TryGetOpenDocument(System.String,NMF.AnyText.Parser@)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_TryGetOpenDocument_System_String_NMF_AnyText_Parser__
   name: TryGetOpenDocument(string, out Parser)
   nameWithType: LspServer.TryGetOpenDocument(string, out Parser)
   fullName: NMF.AnyText.LspServer.TryGetOpenDocument(string, out NMF.AnyText.Parser)
@@ -483,6 +619,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.TryGetOpenDocument(System.String,NMF.AnyText.Parser@)
     name: TryGetOpenDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_TryGetOpenDocument_System_String_NMF_AnyText_Parser__
   - name: (
   - uid: System.String
     name: string
@@ -494,10 +631,12 @@ references:
   - name: " "
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.TryGetOpenDocument(System.String,NMF.AnyText.Parser@)
     name: TryGetOpenDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_TryGetOpenDocument_System_String_NMF_AnyText_Parser__
   - name: (
   - uid: System.String
     name: String
@@ -507,16 +646,19 @@ references:
   - name: " "
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: )
 - uid: NMF.AnyText.LspServer.Documents
   commentId: P:NMF.AnyText.LspServer.Documents
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Documents
   name: Documents
   nameWithType: LspServer.Documents
   fullName: NMF.AnyText.LspServer.Documents
 - uid: NMF.AnyText.LspServer.Grammars
   commentId: P:NMF.AnyText.LspServer.Grammars
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Grammars
   name: Grammars
   nameWithType: LspServer.Grammars
   fullName: NMF.AnyText.LspServer.Grammars
@@ -524,13 +666,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.SetRpc(StreamJsonRpc.JsonRpc)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/streamjsonrpc.jsonrpc
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SetRpc_StreamJsonRpc_JsonRpc_
   name: SetRpc(JsonRpc)
   nameWithType: LspServer.SetRpc(JsonRpc)
   fullName: NMF.AnyText.LspServer.SetRpc(StreamJsonRpc.JsonRpc)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.SetRpc(StreamJsonRpc.JsonRpc)
     name: SetRpc
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SetRpc_StreamJsonRpc_JsonRpc_
   - name: (
   - uid: StreamJsonRpc.JsonRpc
     name: JsonRpc
@@ -540,6 +683,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.SetRpc(StreamJsonRpc.JsonRpc)
     name: SetRpc
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SetRpc_StreamJsonRpc_JsonRpc_
   - name: (
   - uid: StreamJsonRpc.JsonRpc
     name: JsonRpc
@@ -550,7 +694,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.Initialize(System.Nullable{System.Int32},LspTypes._InitializeParams_ClientInfo,System.String,System.String,System.Uri,LspTypes.ClientCapabilities,LspTypes.TraceValue,LspTypes.WorkspaceFolder[],System.Object)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Initialize_System_Nullable_System_Int32__LspTypes__InitializeParams_ClientInfo_System_String_System_String_System_Uri_LspTypes_ClientCapabilities_LspTypes_TraceValue_LspTypes_WorkspaceFolder___System_Object_
   name: Initialize(int?, _InitializeParams_ClientInfo, string, string, Uri, ClientCapabilities, TraceValue, WorkspaceFolder[], object)
   nameWithType: LspServer.Initialize(int?, _InitializeParams_ClientInfo, string, string, Uri, ClientCapabilities, TraceValue, WorkspaceFolder[], object)
   fullName: NMF.AnyText.LspServer.Initialize(int?, LspTypes._InitializeParams_ClientInfo, string, string, System.Uri, LspTypes.ClientCapabilities, LspTypes.TraceValue, LspTypes.WorkspaceFolder[], object)
@@ -560,6 +704,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.Initialize(System.Nullable{System.Int32},LspTypes._InitializeParams_ClientInfo,System.String,System.String,System.Uri,LspTypes.ClientCapabilities,LspTypes.TraceValue,LspTypes.WorkspaceFolder[],System.Object)
     name: Initialize
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Initialize_System_Nullable_System_Int32__LspTypes__InitializeParams_ClientInfo_System_String_System_String_System_Uri_LspTypes_ClientCapabilities_LspTypes_TraceValue_LspTypes_WorkspaceFolder___System_Object_
   - name: (
   - uid: System.Int32
     name: int
@@ -616,6 +761,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.Initialize(System.Nullable{System.Int32},LspTypes._InitializeParams_ClientInfo,System.String,System.String,System.Uri,LspTypes.ClientCapabilities,LspTypes.TraceValue,LspTypes.WorkspaceFolder[],System.Object)
     name: Initialize
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Initialize_System_Nullable_System_Int32__LspTypes__InitializeParams_ClientInfo_System_String_System_String_System_Uri_LspTypes_ClientCapabilities_LspTypes_TraceValue_LspTypes_WorkspaceFolder___System_Object_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -672,45 +818,53 @@ references:
 - uid: NMF.AnyText.LspServer.Initialized
   commentId: M:NMF.AnyText.LspServer.Initialized
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Initialized
   name: Initialized()
   nameWithType: LspServer.Initialized()
   fullName: NMF.AnyText.LspServer.Initialized()
   spec.csharp:
   - uid: NMF.AnyText.LspServer.Initialized
     name: Initialized
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Initialized
   - name: (
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.Initialized
     name: Initialized
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Initialized
   - name: (
   - name: )
 - uid: NMF.AnyText.LspServer.Shutdown
   commentId: M:NMF.AnyText.LspServer.Shutdown
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Shutdown
   name: Shutdown()
   nameWithType: LspServer.Shutdown()
   fullName: NMF.AnyText.LspServer.Shutdown()
   spec.csharp:
   - uid: NMF.AnyText.LspServer.Shutdown
     name: Shutdown
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Shutdown
   - name: (
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.Shutdown
     name: Shutdown
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Shutdown
   - name: (
   - name: )
 - uid: NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidChange_Newtonsoft_Json_Linq_JToken_
   name: DidChange(JToken)
   nameWithType: LspServer.DidChange(JToken)
   fullName: NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
     name: DidChange
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidChange_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -719,75 +873,17 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
     name: DidChange
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidChange_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
     isExternal: true
   - name: )
-- uid: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
-  commentId: M:NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
-  parent: NMF.AnyText.LspServer
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: OnDocumentUpdate(Parser, IEnumerable<TextEdit>, string)
-  nameWithType: LspServer.OnDocumentUpdate(Parser, IEnumerable<TextEdit>, string)
-  fullName: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<NMF.AnyText.TextEdit>, string)
-  nameWithType.vb: LspServer.OnDocumentUpdate(Parser, IEnumerable(Of TextEdit), String)
-  fullName.vb: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of NMF.AnyText.TextEdit), String)
-  name.vb: OnDocumentUpdate(Parser, IEnumerable(Of TextEdit), String)
-  spec.csharp:
-  - uid: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
-    name: OnDocumentUpdate
-  - name: (
-  - uid: NMF.AnyText.Parser
-    name: Parser
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: NMF.AnyText.TextEdit
-    name: TextEdit
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
-    name: OnDocumentUpdate
-  - name: (
-  - uid: NMF.AnyText.Parser
-    name: Parser
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: NMF.AnyText.TextEdit
-    name: TextEdit
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
 - uid: NMF.AnyText.LspServer.DidSave(LspTypes.TextDocumentIdentifier,System.String)
   commentId: M:NMF.AnyText.LspServer.DidSave(LspTypes.TextDocumentIdentifier,System.String)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidSave_LspTypes_TextDocumentIdentifier_System_String_
   name: DidSave(TextDocumentIdentifier, string)
   nameWithType: LspServer.DidSave(TextDocumentIdentifier, string)
   fullName: NMF.AnyText.LspServer.DidSave(LspTypes.TextDocumentIdentifier, string)
@@ -797,6 +893,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.DidSave(LspTypes.TextDocumentIdentifier,System.String)
     name: DidSave
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidSave_LspTypes_TextDocumentIdentifier_System_String_
   - name: (
   - uid: LspTypes.TextDocumentIdentifier
     name: TextDocumentIdentifier
@@ -811,6 +908,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.DidSave(LspTypes.TextDocumentIdentifier,System.String)
     name: DidSave
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidSave_LspTypes_TextDocumentIdentifier_System_String_
   - name: (
   - uid: LspTypes.TextDocumentIdentifier
     name: TextDocumentIdentifier
@@ -826,12 +924,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.DidClose(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidClose_Newtonsoft_Json_Linq_JToken_
   name: DidClose(JToken)
   nameWithType: LspServer.DidClose(JToken)
   fullName: NMF.AnyText.LspServer.DidClose(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.DidClose(Newtonsoft.Json.Linq.JToken)
     name: DidClose
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidClose_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -840,6 +940,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.DidClose(Newtonsoft.Json.Linq.JToken)
     name: DidClose
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidClose_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -848,33 +949,40 @@ references:
 - uid: NMF.AnyText.LspServer.CloseDocument(NMF.AnyText.Parser)
   commentId: M:NMF.AnyText.LspServer.CloseDocument(NMF.AnyText.Parser)
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CloseDocument_NMF_AnyText_Parser_
   name: CloseDocument(Parser)
   nameWithType: LspServer.CloseDocument(Parser)
   fullName: NMF.AnyText.LspServer.CloseDocument(NMF.AnyText.Parser)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.CloseDocument(NMF.AnyText.Parser)
     name: CloseDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CloseDocument_NMF_AnyText_Parser_
   - name: (
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.CloseDocument(NMF.AnyText.Parser)
     name: CloseDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CloseDocument_NMF_AnyText_Parser_
   - name: (
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: )
 - uid: NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidOpen_Newtonsoft_Json_Linq_JToken_
   name: DidOpen(JToken)
   nameWithType: LspServer.DidOpen(JToken)
   fullName: NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
     name: DidOpen
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidOpen_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -883,6 +991,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
     name: DidOpen
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_DidOpen_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -891,24 +1000,27 @@ references:
 - uid: NMF.AnyText.LspServer.Exit
   commentId: M:NMF.AnyText.LspServer.Exit
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Exit
   name: Exit()
   nameWithType: LspServer.Exit()
   fullName: NMF.AnyText.LspServer.Exit()
   spec.csharp:
   - uid: NMF.AnyText.LspServer.Exit
     name: Exit
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Exit
   - name: (
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.Exit
     name: Exit
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Exit
   - name: (
   - name: )
 - uid: NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType,System.String,System.Boolean)
   commentId: M:NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType,System.String,System.Boolean)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendLogMessageAsync_NMF_AnyText_MessageType_System_String_System_Boolean_
   name: SendLogMessageAsync(MessageType, string, bool)
   nameWithType: LspServer.SendLogMessageAsync(MessageType, string, bool)
   fullName: NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType, string, bool)
@@ -918,9 +1030,11 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType,System.String,System.Boolean)
     name: SendLogMessageAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendLogMessageAsync_NMF_AnyText_MessageType_System_String_System_Boolean_
   - name: (
   - uid: NMF.AnyText.MessageType
     name: MessageType
+    href: NMF.AnyText.MessageType.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -937,9 +1051,11 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType,System.String,System.Boolean)
     name: SendLogMessageAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendLogMessageAsync_NMF_AnyText_MessageType_System_String_System_Boolean_
   - name: (
   - uid: NMF.AnyText.MessageType
     name: MessageType
+    href: NMF.AnyText.MessageType.html
   - name: ','
   - name: " "
   - uid: System.String
@@ -953,16 +1069,59 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  commentId: M:NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  parent: NMF.AnyText.LspServer
+  isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  name: SendDiagnosticsAsync(ParseContext, string)
+  nameWithType: LspServer.SendDiagnosticsAsync(ParseContext, string)
+  fullName: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, string)
+  nameWithType.vb: LspServer.SendDiagnosticsAsync(ParseContext, String)
+  fullName.vb: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, String)
+  name.vb: SendDiagnosticsAsync(ParseContext, String)
+  spec.csharp:
+  - uid: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+    name: SendDiagnosticsAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  - name: (
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+    name: SendDiagnosticsAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  - name: (
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentHighlights_Newtonsoft_Json_Linq_JToken_
   name: QueryDocumentHighlights(JToken)
   nameWithType: LspServer.QueryDocumentHighlights(JToken)
   fullName: NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
     name: QueryDocumentHighlights
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentHighlights_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -971,6 +1130,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
     name: QueryDocumentHighlights
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentHighlights_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -980,12 +1140,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QueryDocumentSymbols(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentSymbols_Newtonsoft_Json_Linq_JToken_
   name: QueryDocumentSymbols(JToken)
   nameWithType: LspServer.QueryDocumentSymbols(JToken)
   fullName: NMF.AnyText.LspServer.QueryDocumentSymbols(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QueryDocumentSymbols(Newtonsoft.Json.Linq.JToken)
     name: QueryDocumentSymbols
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentSymbols_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -994,6 +1156,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QueryDocumentSymbols(Newtonsoft.Json.Linq.JToken)
     name: QueryDocumentSymbols
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDocumentSymbols_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1003,12 +1166,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.ExecuteCommand(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ExecuteCommand_Newtonsoft_Json_Linq_JToken_
   name: ExecuteCommand(JToken)
   nameWithType: LspServer.ExecuteCommand(JToken)
   fullName: NMF.AnyText.LspServer.ExecuteCommand(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ExecuteCommand(Newtonsoft.Json.Linq.JToken)
     name: ExecuteCommand
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ExecuteCommand_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1017,6 +1182,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.ExecuteCommand(Newtonsoft.Json.Linq.JToken)
     name: ExecuteCommand
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ExecuteCommand_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1026,12 +1192,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QueryReferences(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryReferences_Newtonsoft_Json_Linq_JToken_
   name: QueryReferences(JToken)
   nameWithType: LspServer.QueryReferences(JToken)
   fullName: NMF.AnyText.LspServer.QueryReferences(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QueryReferences(Newtonsoft.Json.Linq.JToken)
     name: QueryReferences
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryReferences_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1040,6 +1208,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QueryReferences(Newtonsoft.Json.Linq.JToken)
     name: QueryReferences
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryReferences_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1048,33 +1217,40 @@ references:
 - uid: NMF.AnyText.LspServer.ShowReferencesNotifyAsync(NMF.AnyText.ParsePosition)
   commentId: M:NMF.AnyText.LspServer.ShowReferencesNotifyAsync(NMF.AnyText.ParsePosition)
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowReferencesNotifyAsync_NMF_AnyText_ParsePosition_
   name: ShowReferencesNotifyAsync(ParsePosition)
   nameWithType: LspServer.ShowReferencesNotifyAsync(ParsePosition)
   fullName: NMF.AnyText.LspServer.ShowReferencesNotifyAsync(NMF.AnyText.ParsePosition)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ShowReferencesNotifyAsync(NMF.AnyText.ParsePosition)
     name: ShowReferencesNotifyAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowReferencesNotifyAsync_NMF_AnyText_ParsePosition_
   - name: (
   - uid: NMF.AnyText.ParsePosition
     name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.ShowReferencesNotifyAsync(NMF.AnyText.ParsePosition)
     name: ShowReferencesNotifyAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowReferencesNotifyAsync_NMF_AnyText_ParsePosition_
   - name: (
   - uid: NMF.AnyText.ParsePosition
     name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
   - name: )
 - uid: NMF.AnyText.LspServer.QueryFoldingRanges(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.QueryFoldingRanges(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryFoldingRanges_Newtonsoft_Json_Linq_JToken_
   name: QueryFoldingRanges(JToken)
   nameWithType: LspServer.QueryFoldingRanges(JToken)
   fullName: NMF.AnyText.LspServer.QueryFoldingRanges(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QueryFoldingRanges(Newtonsoft.Json.Linq.JToken)
     name: QueryFoldingRanges
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryFoldingRanges_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1083,6 +1259,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QueryFoldingRanges(Newtonsoft.Json.Linq.JToken)
     name: QueryFoldingRanges
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryFoldingRanges_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1092,12 +1269,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.Formatting(LspTypes.TextDocumentIdentifier,NMF.AnyText.FormattingOptions)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Formatting_LspTypes_TextDocumentIdentifier_NMF_AnyText_FormattingOptions_
   name: Formatting(TextDocumentIdentifier, FormattingOptions)
   nameWithType: LspServer.Formatting(TextDocumentIdentifier, FormattingOptions)
   fullName: NMF.AnyText.LspServer.Formatting(LspTypes.TextDocumentIdentifier, NMF.AnyText.FormattingOptions)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.Formatting(LspTypes.TextDocumentIdentifier,NMF.AnyText.FormattingOptions)
     name: Formatting
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Formatting_LspTypes_TextDocumentIdentifier_NMF_AnyText_FormattingOptions_
   - name: (
   - uid: LspTypes.TextDocumentIdentifier
     name: TextDocumentIdentifier
@@ -1106,10 +1285,12 @@ references:
   - name: " "
   - uid: NMF.AnyText.FormattingOptions
     name: FormattingOptions
+    href: NMF.AnyText.FormattingOptions.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.Formatting(LspTypes.TextDocumentIdentifier,NMF.AnyText.FormattingOptions)
     name: Formatting
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Formatting_LspTypes_TextDocumentIdentifier_NMF_AnyText_FormattingOptions_
   - name: (
   - uid: LspTypes.TextDocumentIdentifier
     name: TextDocumentIdentifier
@@ -1118,17 +1299,20 @@ references:
   - name: " "
   - uid: NMF.AnyText.FormattingOptions
     name: FormattingOptions
+    href: NMF.AnyText.FormattingOptions.html
   - name: )
 - uid: NMF.AnyText.LspServer.FormattingRange(LspTypes.TextDocumentIdentifier,LspTypes.Range,NMF.AnyText.FormattingOptions)
   commentId: M:NMF.AnyText.LspServer.FormattingRange(LspTypes.TextDocumentIdentifier,LspTypes.Range,NMF.AnyText.FormattingOptions)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_FormattingRange_LspTypes_TextDocumentIdentifier_LspTypes_Range_NMF_AnyText_FormattingOptions_
   name: FormattingRange(TextDocumentIdentifier, Range, FormattingOptions)
   nameWithType: LspServer.FormattingRange(TextDocumentIdentifier, Range, FormattingOptions)
   fullName: NMF.AnyText.LspServer.FormattingRange(LspTypes.TextDocumentIdentifier, LspTypes.Range, NMF.AnyText.FormattingOptions)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.FormattingRange(LspTypes.TextDocumentIdentifier,LspTypes.Range,NMF.AnyText.FormattingOptions)
     name: FormattingRange
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_FormattingRange_LspTypes_TextDocumentIdentifier_LspTypes_Range_NMF_AnyText_FormattingOptions_
   - name: (
   - uid: LspTypes.TextDocumentIdentifier
     name: TextDocumentIdentifier
@@ -1142,10 +1326,12 @@ references:
   - name: " "
   - uid: NMF.AnyText.FormattingOptions
     name: FormattingOptions
+    href: NMF.AnyText.FormattingOptions.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.FormattingRange(LspTypes.TextDocumentIdentifier,LspTypes.Range,NMF.AnyText.FormattingOptions)
     name: FormattingRange
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_FormattingRange_LspTypes_TextDocumentIdentifier_LspTypes_Range_NMF_AnyText_FormattingOptions_
   - name: (
   - uid: LspTypes.TextDocumentIdentifier
     name: TextDocumentIdentifier
@@ -1159,17 +1345,20 @@ references:
   - name: " "
   - uid: NMF.AnyText.FormattingOptions
     name: FormattingOptions
+    href: NMF.AnyText.FormattingOptions.html
   - name: )
 - uid: NMF.AnyText.LspServer.QueryDefinition(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.QueryDefinition(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDefinition_Newtonsoft_Json_Linq_JToken_
   name: QueryDefinition(JToken)
   nameWithType: LspServer.QueryDefinition(JToken)
   fullName: NMF.AnyText.LspServer.QueryDefinition(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QueryDefinition(Newtonsoft.Json.Linq.JToken)
     name: QueryDefinition
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDefinition_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1178,6 +1367,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QueryDefinition(Newtonsoft.Json.Linq.JToken)
     name: QueryDefinition
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryDefinition_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1187,12 +1377,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.Hover(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Hover_Newtonsoft_Json_Linq_JToken_
   name: Hover(JToken)
   nameWithType: LspServer.Hover(JToken)
   fullName: NMF.AnyText.LspServer.Hover(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.Hover(Newtonsoft.Json.Linq.JToken)
     name: Hover
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Hover_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1201,6 +1393,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.Hover(Newtonsoft.Json.Linq.JToken)
     name: Hover
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_Hover_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1210,12 +1403,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.ProvideInlayHints(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ProvideInlayHints_Newtonsoft_Json_Linq_JToken_
   name: ProvideInlayHints(JToken)
   nameWithType: LspServer.ProvideInlayHints(JToken)
   fullName: NMF.AnyText.LspServer.ProvideInlayHints(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ProvideInlayHints(Newtonsoft.Json.Linq.JToken)
     name: ProvideInlayHints
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ProvideInlayHints_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1224,6 +1419,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.ProvideInlayHints(Newtonsoft.Json.Linq.JToken)
     name: ProvideInlayHints
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ProvideInlayHints_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1233,12 +1429,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QueryRenameWorkspaceEdit(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryRenameWorkspaceEdit_Newtonsoft_Json_Linq_JToken_
   name: QueryRenameWorkspaceEdit(JToken)
   nameWithType: LspServer.QueryRenameWorkspaceEdit(JToken)
   fullName: NMF.AnyText.LspServer.QueryRenameWorkspaceEdit(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QueryRenameWorkspaceEdit(Newtonsoft.Json.Linq.JToken)
     name: QueryRenameWorkspaceEdit
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryRenameWorkspaceEdit_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1247,6 +1445,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QueryRenameWorkspaceEdit(Newtonsoft.Json.Linq.JToken)
     name: QueryRenameWorkspaceEdit
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QueryRenameWorkspaceEdit_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1256,12 +1455,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QuerySelectionRanges(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySelectionRanges_Newtonsoft_Json_Linq_JToken_
   name: QuerySelectionRanges(JToken)
   nameWithType: LspServer.QuerySelectionRanges(JToken)
   fullName: NMF.AnyText.LspServer.QuerySelectionRanges(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QuerySelectionRanges(Newtonsoft.Json.Linq.JToken)
     name: QuerySelectionRanges
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySelectionRanges_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1270,6 +1471,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QuerySelectionRanges(Newtonsoft.Json.Linq.JToken)
     name: QuerySelectionRanges
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySelectionRanges_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1279,12 +1481,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QuerySemanticTokens(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokens_Newtonsoft_Json_Linq_JToken_
   name: QuerySemanticTokens(JToken)
   nameWithType: LspServer.QuerySemanticTokens(JToken)
   fullName: NMF.AnyText.LspServer.QuerySemanticTokens(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QuerySemanticTokens(Newtonsoft.Json.Linq.JToken)
     name: QuerySemanticTokens
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokens_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1293,6 +1497,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QuerySemanticTokens(Newtonsoft.Json.Linq.JToken)
     name: QuerySemanticTokens
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokens_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1302,12 +1507,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QuerySemanticTokensDelta(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokensDelta_Newtonsoft_Json_Linq_JToken_
   name: QuerySemanticTokensDelta(JToken)
   nameWithType: LspServer.QuerySemanticTokensDelta(JToken)
   fullName: NMF.AnyText.LspServer.QuerySemanticTokensDelta(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QuerySemanticTokensDelta(Newtonsoft.Json.Linq.JToken)
     name: QuerySemanticTokensDelta
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokensDelta_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1316,6 +1523,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QuerySemanticTokensDelta(Newtonsoft.Json.Linq.JToken)
     name: QuerySemanticTokensDelta
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokensDelta_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1325,12 +1533,14 @@ references:
   commentId: M:NMF.AnyText.LspServer.QuerySemanticTokensRange(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokensRange_Newtonsoft_Json_Linq_JToken_
   name: QuerySemanticTokensRange(JToken)
   nameWithType: LspServer.QuerySemanticTokensRange(JToken)
   fullName: NMF.AnyText.LspServer.QuerySemanticTokensRange(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.QuerySemanticTokensRange(Newtonsoft.Json.Linq.JToken)
     name: QuerySemanticTokensRange
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokensRange_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1339,6 +1549,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.QuerySemanticTokensRange(Newtonsoft.Json.Linq.JToken)
     name: QuerySemanticTokensRange
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_QuerySemanticTokensRange_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1348,7 +1559,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.ShowDocument(System.String,LspTypes.Range,System.Boolean,System.Boolean)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowDocument_System_String_LspTypes_Range_System_Boolean_System_Boolean_
   name: ShowDocument(string, Range, bool, bool)
   nameWithType: LspServer.ShowDocument(string, Range, bool, bool)
   fullName: NMF.AnyText.LspServer.ShowDocument(string, LspTypes.Range, bool, bool)
@@ -1358,6 +1569,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ShowDocument(System.String,LspTypes.Range,System.Boolean,System.Boolean)
     name: ShowDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowDocument_System_String_LspTypes_Range_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: string
@@ -1384,6 +1596,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.ShowDocument(System.String,LspTypes.Range,System.Boolean,System.Boolean)
     name: ShowDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowDocument_System_String_LspTypes_Range_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: String
@@ -1411,7 +1624,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.ShowMessageRequestAsync(System.String,NMF.AnyText.MessageType,System.Collections.Generic.IEnumerable{System.String})
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowMessageRequestAsync_System_String_NMF_AnyText_MessageType_System_Collections_Generic_IEnumerable_System_String__
   name: ShowMessageRequestAsync(string, MessageType, IEnumerable<string>)
   nameWithType: LspServer.ShowMessageRequestAsync(string, MessageType, IEnumerable<string>)
   fullName: NMF.AnyText.LspServer.ShowMessageRequestAsync(string, NMF.AnyText.MessageType, System.Collections.Generic.IEnumerable<string>)
@@ -1421,6 +1634,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ShowMessageRequestAsync(System.String,NMF.AnyText.MessageType,System.Collections.Generic.IEnumerable{System.String})
     name: ShowMessageRequestAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowMessageRequestAsync_System_String_NMF_AnyText_MessageType_System_Collections_Generic_IEnumerable_System_String__
   - name: (
   - uid: System.String
     name: string
@@ -1430,6 +1644,7 @@ references:
   - name: " "
   - uid: NMF.AnyText.MessageType
     name: MessageType
+    href: NMF.AnyText.MessageType.html
   - name: ','
   - name: " "
   - uid: System.Collections.Generic.IEnumerable`1
@@ -1446,6 +1661,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.ShowMessageRequestAsync(System.String,NMF.AnyText.MessageType,System.Collections.Generic.IEnumerable{System.String})
     name: ShowMessageRequestAsync
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowMessageRequestAsync_System_String_NMF_AnyText_MessageType_System_Collections_Generic_IEnumerable_System_String__
   - name: (
   - uid: System.String
     name: String
@@ -1455,6 +1671,7 @@ references:
   - name: " "
   - uid: NMF.AnyText.MessageType
     name: MessageType
+    href: NMF.AnyText.MessageType.html
   - name: ','
   - name: " "
   - uid: System.Collections.Generic.IEnumerable`1
@@ -1474,7 +1691,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.ShowMessageNotify(System.String,NMF.AnyText.MessageType)
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowMessageNotify_System_String_NMF_AnyText_MessageType_
   name: ShowMessageNotify(string, MessageType)
   nameWithType: LspServer.ShowMessageNotify(string, MessageType)
   fullName: NMF.AnyText.LspServer.ShowMessageNotify(string, NMF.AnyText.MessageType)
@@ -1484,6 +1701,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.ShowMessageNotify(System.String,NMF.AnyText.MessageType)
     name: ShowMessageNotify
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowMessageNotify_System_String_NMF_AnyText_MessageType_
   - name: (
   - uid: System.String
     name: string
@@ -1493,10 +1711,12 @@ references:
   - name: " "
   - uid: NMF.AnyText.MessageType
     name: MessageType
+    href: NMF.AnyText.MessageType.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.ShowMessageNotify(System.String,NMF.AnyText.MessageType)
     name: ShowMessageNotify
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_ShowMessageNotify_System_String_NMF_AnyText_MessageType_
   - name: (
   - uid: System.String
     name: String
@@ -1506,17 +1726,20 @@ references:
   - name: " "
   - uid: NMF.AnyText.MessageType
     name: MessageType
+    href: NMF.AnyText.MessageType.html
   - name: )
 - uid: NMF.AnyText.LspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
   parent: NMF.AnyText.LspServer
   isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SetTrace_Newtonsoft_Json_Linq_JToken_
   name: SetTrace(JToken)
   nameWithType: LspServer.SetTrace(JToken)
   fullName: NMF.AnyText.LspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
     name: SetTrace
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SetTrace_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1525,6 +1748,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
     name: SetTrace
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SetTrace_Newtonsoft_Json_Linq_JToken_
   - name: (
   - uid: Newtonsoft.Json.Linq.JToken
     name: JToken
@@ -1949,22 +2173,27 @@ references:
 - uid: NMF.AnyText.LspServer.OpenNewDocument(NMF.AnyText.Parser)
   commentId: M:NMF.AnyText.LspServer.OpenNewDocument(NMF.AnyText.Parser)
   parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OpenNewDocument_NMF_AnyText_Parser_
   name: OpenNewDocument(Parser)
   nameWithType: LspServer.OpenNewDocument(Parser)
   fullName: NMF.AnyText.LspServer.OpenNewDocument(NMF.AnyText.Parser)
   spec.csharp:
   - uid: NMF.AnyText.LspServer.OpenNewDocument(NMF.AnyText.Parser)
     name: OpenNewDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OpenNewDocument_NMF_AnyText_Parser_
   - name: (
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: )
   spec.vb:
   - uid: NMF.AnyText.LspServer.OpenNewDocument(NMF.AnyText.Parser)
     name: OpenNewDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OpenNewDocument_NMF_AnyText_Parser_
   - name: (
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: )
 - uid: NMF.AnyText.SynchronizingLspServer.OpenNewDocument*
   commentId: Overload:NMF.AnyText.SynchronizingLspServer.OpenNewDocument
@@ -1983,7 +2212,7 @@ references:
   commentId: M:NMF.AnyText.LspServer.PostProcessCompletions(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CompletionItem})
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_PostProcessCompletions_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CompletionItem__
   name: PostProcessCompletions(Parser, IEnumerable<CompletionItem>)
   nameWithType: LspServer.PostProcessCompletions(Parser, IEnumerable<CompletionItem>)
   fullName: NMF.AnyText.LspServer.PostProcessCompletions(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<LspTypes.CompletionItem>)
@@ -1993,9 +2222,11 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.PostProcessCompletions(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CompletionItem})
     name: PostProcessCompletions
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_PostProcessCompletions_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CompletionItem__
   - name: (
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: ','
   - name: " "
   - uid: System.Collections.Generic.IEnumerable`1
@@ -2011,9 +2242,11 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.PostProcessCompletions(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CompletionItem})
     name: PostProcessCompletions
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_PostProcessCompletions_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CompletionItem__
   - name: (
   - uid: NMF.AnyText.Parser
     name: Parser
+    href: NMF.AnyText.Parser.html
   - name: ','
   - name: " "
   - uid: System.Collections.Generic.IEnumerable`1
@@ -2067,11 +2300,151 @@ references:
     name: CompletionItem
     isExternal: true
   - name: )
+- uid: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  commentId: M:NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  parent: NMF.AnyText.LspServer
+  isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensesForDocument_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CodeLens__
+  name: CodeLensesForDocument(Parser, IEnumerable<CodeLens>)
+  nameWithType: LspServer.CodeLensesForDocument(Parser, IEnumerable<CodeLens>)
+  fullName: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<LspTypes.CodeLens>)
+  nameWithType.vb: LspServer.CodeLensesForDocument(Parser, IEnumerable(Of CodeLens))
+  fullName.vb: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of LspTypes.CodeLens))
+  name.vb: CodeLensesForDocument(Parser, IEnumerable(Of CodeLens))
+  spec.csharp:
+  - uid: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+    name: CodeLensesForDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensesForDocument_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CodeLens__
+  - name: (
+  - uid: NMF.AnyText.Parser
+    name: Parser
+    href: NMF.AnyText.Parser.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: LspTypes.CodeLens
+    name: CodeLens
+    isExternal: true
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+    name: CodeLensesForDocument
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensesForDocument_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CodeLens__
+  - name: (
+  - uid: NMF.AnyText.Parser
+    name: Parser
+    href: NMF.AnyText.Parser.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LspTypes.CodeLens
+    name: CodeLens
+    isExternal: true
+  - name: )
+  - name: )
+- uid: NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument*
+  commentId: Overload:NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument
+  href: NMF.AnyText.SynchronizingLspServer.html#NMF_AnyText_SynchronizingLspServer_CodeLensesForDocument_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CodeLens__
+  name: CodeLensesForDocument
+  nameWithType: SynchronizingLspServer.CodeLensesForDocument
+  fullName: NMF.AnyText.SynchronizingLspServer.CodeLensesForDocument
+- uid: System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+  commentId: T:System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<CodeLens>
+  nameWithType: IEnumerable<CodeLens>
+  fullName: System.Collections.Generic.IEnumerable<LspTypes.CodeLens>
+  nameWithType.vb: IEnumerable(Of CodeLens)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of LspTypes.CodeLens)
+  name.vb: IEnumerable(Of CodeLens)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: LspTypes.CodeLens
+    name: CodeLens
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LspTypes.CodeLens
+    name: CodeLens
+    isExternal: true
+  - name: )
+- uid: NMF.AnyText.LspServer.SystemCommands
+  commentId: P:NMF.AnyText.LspServer.SystemCommands
+  parent: NMF.AnyText.LspServer
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SystemCommands
+  name: SystemCommands
+  nameWithType: LspServer.SystemCommands
+  fullName: NMF.AnyText.LspServer.SystemCommands
+- uid: NMF.AnyText.SynchronizingLspServer.SystemCommands*
+  commentId: Overload:NMF.AnyText.SynchronizingLspServer.SystemCommands
+  href: NMF.AnyText.SynchronizingLspServer.html#NMF_AnyText_SynchronizingLspServer_SystemCommands
+  name: SystemCommands
+  nameWithType: SynchronizingLspServer.SystemCommands
+  fullName: NMF.AnyText.SynchronizingLspServer.SystemCommands
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.AnyText.LspServer.HandleExtensionCommand(System.String,System.Object[])
   commentId: M:NMF.AnyText.LspServer.HandleExtensionCommand(System.String,System.Object[])
   parent: NMF.AnyText.LspServer
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_HandleExtensionCommand_System_String_System_Object___
   name: HandleExtensionCommand(string, object[])
   nameWithType: LspServer.HandleExtensionCommand(string, object[])
   fullName: NMF.AnyText.LspServer.HandleExtensionCommand(string, object[])
@@ -2081,6 +2454,7 @@ references:
   spec.csharp:
   - uid: NMF.AnyText.LspServer.HandleExtensionCommand(System.String,System.Object[])
     name: HandleExtensionCommand
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_HandleExtensionCommand_System_String_System_Object___
   - name: (
   - uid: System.String
     name: string
@@ -2098,6 +2472,7 @@ references:
   spec.vb:
   - uid: NMF.AnyText.LspServer.HandleExtensionCommand(System.String,System.Object[])
     name: HandleExtensionCommand
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_HandleExtensionCommand_System_String_System_Object___
   - name: (
   - uid: System.String
     name: String
@@ -2163,3 +2538,107 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+  commentId: M:NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+  parent: NMF.AnyText.LspServer
+  isExternal: true
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OnDocumentUpdate_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_NMF_AnyText_TextEdit__System_String_
+  name: OnDocumentUpdate(Parser, IEnumerable<TextEdit>, string)
+  nameWithType: LspServer.OnDocumentUpdate(Parser, IEnumerable<TextEdit>, string)
+  fullName: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<NMF.AnyText.TextEdit>, string)
+  nameWithType.vb: LspServer.OnDocumentUpdate(Parser, IEnumerable(Of TextEdit), String)
+  fullName.vb: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of NMF.AnyText.TextEdit), String)
+  name.vb: OnDocumentUpdate(Parser, IEnumerable(Of TextEdit), String)
+  spec.csharp:
+  - uid: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+    name: OnDocumentUpdate
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OnDocumentUpdate_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_NMF_AnyText_TextEdit__System_String_
+  - name: (
+  - uid: NMF.AnyText.Parser
+    name: Parser
+    href: NMF.AnyText.Parser.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: NMF.AnyText.TextEdit
+    name: TextEdit
+    href: NMF.AnyText.TextEdit.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.LspServer.OnDocumentUpdate(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit},System.String)
+    name: OnDocumentUpdate
+    href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_OnDocumentUpdate_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_NMF_AnyText_TextEdit__System_String_
+  - name: (
+  - uid: NMF.AnyText.Parser
+    name: Parser
+    href: NMF.AnyText.Parser.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.TextEdit
+    name: TextEdit
+    href: NMF.AnyText.TextEdit.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate*
+  commentId: Overload:NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate
+  href: NMF.AnyText.SynchronizingLspServer.html#NMF_AnyText_SynchronizingLspServer_OnDocumentUpdate_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_NMF_AnyText_TextEdit__System_String_
+  name: OnDocumentUpdate
+  nameWithType: SynchronizingLspServer.OnDocumentUpdate
+  fullName: NMF.AnyText.SynchronizingLspServer.OnDocumentUpdate
+- uid: System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit}
+  commentId: T:System.Collections.Generic.IEnumerable{NMF.AnyText.TextEdit}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<TextEdit>
+  nameWithType: IEnumerable<TextEdit>
+  fullName: System.Collections.Generic.IEnumerable<NMF.AnyText.TextEdit>
+  nameWithType.vb: IEnumerable(Of TextEdit)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.AnyText.TextEdit)
+  name.vb: IEnumerable(Of TextEdit)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: NMF.AnyText.TextEdit
+    name: TextEdit
+    href: NMF.AnyText.TextEdit.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.TextEdit
+    name: TextEdit
+    href: NMF.AnyText.TextEdit.html
+  - name: )

@@ -8,7 +8,7 @@ items:
   - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddLanguage``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddLspServer(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
-  - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
+  - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean,NMF.Synchronizations.SynchronizationDirection,System.Boolean)
   - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronizingLspServer(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.MapLspWebSocketServer(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String)
   langs:
@@ -110,17 +110,17 @@ items:
       description: The service container the LSP server should be added to
     content.vb: Public Shared Sub AddSynchronizingLspServer(services As IServiceCollection)
   overload: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronizingLspServer*
-- uid: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
-  commentId: M:Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
-  id: AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
+- uid: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean,NMF.Synchronizations.SynchronizationDirection,System.Boolean)
+  commentId: M:Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean,NMF.Synchronizations.SynchronizationDirection,System.Boolean)
+  id: AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean,NMF.Synchronizations.SynchronizationDirection,System.Boolean)
   isExtensionMethod: true
   parent: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions
   langs:
   - csharp
   - vb
-  name: AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(IServiceCollection, string, string, bool)
-  nameWithType: AnyTextWebSocketServerExtensions.AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(IServiceCollection, string, string, bool)
-  fullName: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, string, bool)
+  name: AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(IServiceCollection, string, string, bool, SynchronizationDirection, bool)
+  nameWithType: AnyTextWebSocketServerExtensions.AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(IServiceCollection, string, string, bool, SynchronizationDirection, bool)
+  fullName: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, string, bool, NMF.Synchronizations.SynchronizationDirection, bool)
   type: Method
   source:
     remote:
@@ -129,14 +129,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddSynchronization
     path: src/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs
-    startLine: 49
+    startLine: 51
   assemblies:
   - NMF.AnyText.AspNetCore
   namespace: Microsoft.Extensions.DependencyInjection
   summary: Declares a synchronization between multiple files
   example: []
   syntax:
-    content: 'public static void AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(this IServiceCollection services, string leftExtension, string rightExtension, bool isAutomatic = false) where TLeft : class, IModelElement where TRight : class, IModelElement where TSynchronization : ReflectiveSynchronization, new() where TStartRule : SynchronizationRule<TLeft, TRight>'
+    content: 'public static void AddSynchronization<TLeft, TRight, TSynchronization, TStartRule>(this IServiceCollection services, string leftExtension, string rightExtension, bool isAutomatic = false, SynchronizationDirection direction = SynchronizationDirection.LeftWins, bool opposeDirection = true) where TLeft : class, IModelElement where TRight : class, IModelElement where TSynchronization : ReflectiveSynchronization, new() where TStartRule : SynchronizationRule<TLeft, TRight>'
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -150,6 +150,12 @@ items:
     - id: isAutomatic
       type: System.Boolean
       description: true, if the synchronization should be started automatically
+    - id: direction
+      type: NMF.Synchronizations.SynchronizationDirection
+      description: the default direction of the synchronization
+    - id: opposeDirection
+      type: System.Boolean
+      description: true, if the direction should be opposed automatically if the synchronization is initiated from the right model, otherwise false. Does not have an effect on check-only synchronizations.
     typeParameters:
     - id: TLeft
       description: the type of the left model
@@ -159,11 +165,11 @@ items:
       description: the type of the synchronization
     - id: TStartRule
       description: the type of the start rule
-    content.vb: Public Shared Sub AddSynchronization(Of TLeft As {Class, IModelElement}, TRight As {Class, IModelElement}, TSynchronization As {ReflectiveSynchronization, New}, TStartRule As SynchronizationRule(Of TLeft, TRight))(services As IServiceCollection, leftExtension As String, rightExtension As String, isAutomatic As Boolean = False)
+    content.vb: Public Shared Sub AddSynchronization(Of TLeft As {Class, IModelElement}, TRight As {Class, IModelElement}, TSynchronization As {ReflectiveSynchronization, New}, TStartRule As SynchronizationRule(Of TLeft, TRight))(services As IServiceCollection, leftExtension As String, rightExtension As String, isAutomatic As Boolean = False, direction As SynchronizationDirection = SynchronizationDirection.LeftWins, opposeDirection As Boolean = True)
   overload: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization*
-  nameWithType.vb: AnyTextWebSocketServerExtensions.AddSynchronization(Of TLeft, TRight, TSynchronization, TStartRule)(IServiceCollection, String, String, Boolean)
-  fullName.vb: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization(Of TLeft, TRight, TSynchronization, TStartRule)(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, String, Boolean)
-  name.vb: AddSynchronization(Of TLeft, TRight, TSynchronization, TStartRule)(IServiceCollection, String, String, Boolean)
+  nameWithType.vb: AnyTextWebSocketServerExtensions.AddSynchronization(Of TLeft, TRight, TSynchronization, TStartRule)(IServiceCollection, String, String, Boolean, SynchronizationDirection, Boolean)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization(Of TLeft, TRight, TSynchronization, TStartRule)(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, String, Boolean, NMF.Synchronizations.SynchronizationDirection, Boolean)
+  name.vb: AddSynchronization(Of TLeft, TRight, TSynchronization, TStartRule)(IServiceCollection, String, String, Boolean, SynchronizationDirection, Boolean)
 - uid: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
   commentId: M:Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
   id: AddSynchronization``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)
@@ -183,7 +189,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddSynchronization
     path: src/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs
-    startLine: 71
+    startLine: 75
   assemblies:
   - NMF.AnyText.AspNetCore
   namespace: Microsoft.Extensions.DependencyInjection
@@ -231,7 +237,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddLanguage
     path: src/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs
-    startLine: 87
+    startLine: 91
   assemblies:
   - NMF.AnyText.AspNetCore
   namespace: Microsoft.Extensions.DependencyInjection
@@ -270,7 +276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: MapLspWebSocketServer
     path: src/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs
-    startLine: 99
+    startLine: 103
   assemblies:
   - NMF.AnyText.AspNetCore
   namespace: Microsoft.Extensions.DependencyInjection
@@ -580,7 +586,7 @@ references:
   fullName: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronizingLspServer
 - uid: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization*
   commentId: Overload:Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization
-  href: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.html#Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddSynchronization__4_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Boolean_
+  href: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.html#Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddSynchronization__4_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Boolean_NMF_Synchronizations_SynchronizationDirection_System_Boolean_
   name: AddSynchronization
   nameWithType: AnyTextWebSocketServerExtensions.AddSynchronization
   fullName: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization
@@ -606,6 +612,29 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: NMF.Synchronizations.SynchronizationDirection
+  commentId: T:NMF.Synchronizations.SynchronizationDirection
+  parent: NMF.Synchronizations
+  name: SynchronizationDirection
+  nameWithType: SynchronizationDirection
+  fullName: NMF.Synchronizations.SynchronizationDirection
+- uid: NMF.Synchronizations
+  commentId: N:NMF.Synchronizations
+  name: NMF.Synchronizations
+  nameWithType: NMF.Synchronizations
+  fullName: NMF.Synchronizations
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Synchronizations
+    name: Synchronizations
+  spec.vb:
+  - uid: NMF
+    name: NMF
+  - name: .
+  - uid: NMF.Synchronizations
+    name: Synchronizations
 - uid: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddLanguage*
   commentId: Overload:Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddLanguage
   href: Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.html#Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddLanguage__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_

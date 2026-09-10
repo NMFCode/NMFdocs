@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.#ctor(NMF.Interop.Ecore.ETypeParameter)
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Clear
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Count
-  - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore
+  - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.GetEnumerator
   - NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameterChildrenCollection
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 199
+    startLine: 223
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 207
+    startLine: 231
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 215
+    startLine: 239
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -137,64 +138,38 @@ items:
   overload: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore
-  commentId: M:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies
+  commentId: M:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: ETypeParameter.ETypeParameterChildrenCollection.AttachCore()
-  fullName: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies()
+  fullName: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypeParameter.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 226
+    startLine: 253
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore*
-- uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore
-  commentId: M:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: ETypeParameter.ETypeParameterChildrenCollection.DetachCore()
-  fullName: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/ETypeParameter.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 232
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies*
 - uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 241
+    startLine: 263
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 253
+    startLine: 275
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 263
+    startLine: 285
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 277
+    startLine: 299
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 301
+    startLine: 323
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Interop/EcoreInterop/Model/ETypeParameter.cs
-    startLine: 316
+    startLine: 338
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore*
-  commentId: Overload:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore
-  href: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.html#NMF_Interop_Ecore_ETypeParameter_ETypeParameterChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: ETypeParameter.ETypeParameterChildrenCollection.AttachCore
-  fullName: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies
+  href: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.html#NMF_Interop_Ecore_ETypeParameter_ETypeParameterChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies
+  fullName: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore*
-  commentId: Overload:NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore
-  href: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.html#NMF_Interop_Ecore_ETypeParameter_ETypeParameterChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: ETypeParameter.ETypeParameterChildrenCollection.DetachCore
-  fullName: NMF.Interop.Ecore.ETypeParameter.ETypeParameterChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

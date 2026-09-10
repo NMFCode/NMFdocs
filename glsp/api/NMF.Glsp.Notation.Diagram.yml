@@ -9,8 +9,6 @@ items:
   - NMF.Glsp.Notation.Diagram.Children
   - NMF.Glsp.Notation.Diagram.ClassInstance
   - NMF.Glsp.Notation.Diagram.DiagramType
-  - NMF.Glsp.Notation.Diagram.DiagramTypeChanged
-  - NMF.Glsp.Notation.Diagram.DiagramTypeChanging
   - NMF.Glsp.Notation.Diagram.Elements
   - NMF.Glsp.Notation.Diagram.GetAttributeValue(System.String,System.Int32)
   - NMF.Glsp.Notation.Diagram.GetClass
@@ -19,8 +17,6 @@ items:
   - NMF.Glsp.Notation.Diagram.GetExpressionForAttribute(System.String)
   - NMF.Glsp.Notation.Diagram.GetModelElementForReference(System.String,System.Int32)
   - NMF.Glsp.Notation.Diagram.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
-  - NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Glsp.Notation.Diagram.ReferencedElements
   - NMF.Glsp.Notation.Diagram.SetFeature(System.String,System.Object)
   langs:
@@ -73,14 +69,6 @@ items:
   inheritedMembers:
   - NMF.Glsp.Notation.NotationElement.Id
   - NMF.Glsp.Notation.NotationElement.SemanticElement
-  - NMF.Glsp.Notation.NotationElement.IdChanging
-  - NMF.Glsp.Notation.NotationElement.IdChanged
-  - NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-  - NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-  - NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Glsp.Notation.NotationElement.GetExpressionForReference(System.String)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
@@ -102,6 +90,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -262,7 +251,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Elements
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 102
+    startLine: 100
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -332,7 +321,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 119
+    startLine: 117
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -366,7 +355,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 130
+    startLine: 128
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -400,7 +389,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 141
+    startLine: 139
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -413,132 +402,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Glsp.Notation.Diagram.ClassInstance*
-- uid: NMF.Glsp.Notation.Diagram.DiagramTypeChanging
-  commentId: E:NMF.Glsp.Notation.Diagram.DiagramTypeChanging
-  id: DiagramTypeChanging
-  parent: NMF.Glsp.Notation.Diagram
-  langs:
-  - csharp
-  - vb
-  name: DiagramTypeChanging
-  nameWithType: Diagram.DiagramTypeChanging
-  fullName: NMF.Glsp.Notation.Diagram.DiagramTypeChanging
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Diagram.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DiagramTypeChanging
-    path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 156
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired before the DiagramType property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> DiagramTypeChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event DiagramTypeChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Glsp.Notation.IDiagram.DiagramTypeChanging
-- uid: NMF.Glsp.Notation.Diagram.DiagramTypeChanged
-  commentId: E:NMF.Glsp.Notation.Diagram.DiagramTypeChanged
-  id: DiagramTypeChanged
-  parent: NMF.Glsp.Notation.Diagram
-  langs:
-  - csharp
-  - vb
-  name: DiagramTypeChanged
-  nameWithType: Diagram.DiagramTypeChanged
-  fullName: NMF.Glsp.Notation.Diagram.DiagramTypeChanged
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Diagram.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DiagramTypeChanged
-    path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 161
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired when the DiagramType property changed its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> DiagramTypeChanged
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event DiagramTypeChanged As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Glsp.Notation.IDiagram.DiagramTypeChanged
-- uid: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnDiagramTypeChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.Diagram
-  langs:
-  - csharp
-  - vb
-  name: OnDiagramTypeChanging(ValueChangedEventArgs)
-  nameWithType: Diagram.OnDiagramTypeChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Diagram.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnDiagramTypeChanging
-    path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 172
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Raises the DiagramTypeChanging event
-  example: []
-  syntax:
-    content: protected virtual void OnDiagramTypeChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnDiagramTypeChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging*
-- uid: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged(NMF.Expressions.ValueChangedEventArgs)
-  id: OnDiagramTypeChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.Diagram
-  langs:
-  - csharp
-  - vb
-  name: OnDiagramTypeChanged(ValueChangedEventArgs)
-  nameWithType: Diagram.OnDiagramTypeChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Diagram.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnDiagramTypeChanged
-    path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 185
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Raises the DiagramTypeChanged event
-  example: []
-  syntax:
-    content: protected virtual void OnDiagramTypeChanged(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnDiagramTypeChanged(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged*
 - uid: NMF.Glsp.Notation.Diagram.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   commentId: M:NMF.Glsp.Notation.Diagram.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   id: GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
@@ -557,7 +420,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 224
+    startLine: 186
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -593,7 +456,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 240
+    startLine: 202
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -635,7 +498,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 262
+    startLine: 224
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -677,7 +540,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 276
+    startLine: 238
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -716,7 +579,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 290
+    startLine: 252
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -755,7 +618,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForAttribute
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 305
+    startLine: 267
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -794,7 +657,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCompositionName
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 319
+    startLine: 281
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -833,7 +696,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Glsp/Glsp/Notation/Diagram.cs
-    startLine: 331
+    startLine: 293
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -953,126 +816,6 @@ references:
   name: SemanticElement
   nameWithType: NotationElement.SemanticElement
   fullName: NMF.Glsp.Notation.NotationElement.SemanticElement
-- uid: NMF.Glsp.Notation.NotationElement.IdChanging
-  commentId: E:NMF.Glsp.Notation.NotationElement.IdChanging
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_IdChanging
-  name: IdChanging
-  nameWithType: NotationElement.IdChanging
-  fullName: NMF.Glsp.Notation.NotationElement.IdChanging
-- uid: NMF.Glsp.Notation.NotationElement.IdChanged
-  commentId: E:NMF.Glsp.Notation.NotationElement.IdChanged
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_IdChanged
-  name: IdChanged
-  nameWithType: NotationElement.IdChanged
-  fullName: NMF.Glsp.Notation.NotationElement.IdChanged
-- uid: NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-  commentId: E:NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_SemanticElementChanging
-  name: SemanticElementChanging
-  nameWithType: NotationElement.SemanticElementChanging
-  fullName: NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-- uid: NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-  commentId: E:NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_SemanticElementChanged
-  name: SemanticElementChanged
-  nameWithType: NotationElement.SemanticElementChanged
-  fullName: NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-- uid: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnIdChanging(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnIdChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnIdChanged(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnIdChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSemanticElementChanging(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnSemanticElementChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSemanticElementChanged(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnSemanticElementChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
 - uid: NMF.Glsp.Notation.NotationElement.GetExpressionForReference(System.String)
   commentId: M:NMF.Glsp.Notation.NotationElement.GetExpressionForReference(System.String)
   parent: NMF.Glsp.Notation.NotationElement
@@ -1477,6 +1220,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -2789,97 +2538,6 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
-- uid: NMF.Glsp.Notation.IDiagram.DiagramTypeChanging
-  commentId: E:NMF.Glsp.Notation.IDiagram.DiagramTypeChanging
-  parent: NMF.Glsp.Notation.IDiagram
-  href: NMF.Glsp.Notation.IDiagram.html#NMF_Glsp_Notation_IDiagram_DiagramTypeChanging
-  name: DiagramTypeChanging
-  nameWithType: IDiagram.DiagramTypeChanging
-  fullName: NMF.Glsp.Notation.IDiagram.DiagramTypeChanging
-- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  parent: System
-  definition: System.EventHandler`1
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<ValueChangedEventArgs>
-  nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
-  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
-  name.vb: EventHandler(Of ValueChangedEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.IDiagram.DiagramTypeChanged
-  commentId: E:NMF.Glsp.Notation.IDiagram.DiagramTypeChanged
-  parent: NMF.Glsp.Notation.IDiagram
-  href: NMF.Glsp.Notation.IDiagram.html#NMF_Glsp_Notation_IDiagram_DiagramTypeChanged
-  name: DiagramTypeChanged
-  nameWithType: IDiagram.DiagramTypeChanged
-  fullName: NMF.Glsp.Notation.IDiagram.DiagramTypeChanged
-- uid: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging*
-  commentId: Overload:NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging
-  href: NMF.Glsp.Notation.Diagram.html#NMF_Glsp_Notation_Diagram_OnDiagramTypeChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnDiagramTypeChanging
-  nameWithType: Diagram.OnDiagramTypeChanging
-  fullName: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanging
-- uid: NMF.Expressions.ValueChangedEventArgs
-  commentId: T:NMF.Expressions.ValueChangedEventArgs
-  parent: NMF.Expressions
-  name: ValueChangedEventArgs
-  nameWithType: ValueChangedEventArgs
-  fullName: NMF.Expressions.ValueChangedEventArgs
-- uid: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged*
-  commentId: Overload:NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged
-  href: NMF.Glsp.Notation.Diagram.html#NMF_Glsp_Notation_Diagram_OnDiagramTypeChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnDiagramTypeChanged
-  nameWithType: Diagram.OnDiagramTypeChanged
-  fullName: NMF.Glsp.Notation.Diagram.OnDiagramTypeChanged
 - uid: NMF.Models.ModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   commentId: M:NMF.Models.ModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   parent: NMF.Models.ModelElement
