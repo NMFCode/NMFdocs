@@ -153,7 +153,7 @@ Class AnyTextWebSocketServerExtensions  <a class="header-action link-secondary" 
 
   <h3 id="Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddLanguage__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddLanguage``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
   AddLanguage&lt;TLanguage&gt;(IServiceCollection)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a language</p>
@@ -225,7 +225,7 @@ Class AnyTextWebSocketServerExtensions  <a class="header-action link-secondary" 
 
   <h3 id="Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddSynchronization__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Boolean_" data-uid="Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)">
   AddSynchronization&lt;T&gt;(IServiceCollection, string, string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Declares a synchronization between multiple files</p>
@@ -271,9 +271,9 @@ Class AnyTextWebSocketServerExtensions  <a class="header-action link-secondary" 
 
   <a id="Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddSynchronization_" data-uid="Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization*"></a>
 
-  <h3 id="Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddSynchronization__4_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Boolean_" data-uid="Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean)">
-  AddSynchronization&lt;TLeft, TRight, TSynchronization, TStartRule&gt;(IServiceCollection, string, string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_AddSynchronization__4_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_Boolean_NMF_Synchronizations_SynchronizationDirection_System_Boolean_" data-uid="Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.AddSynchronization``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.Boolean,NMF.Synchronizations.SynchronizationDirection,System.Boolean)">
+  AddSynchronization&lt;TLeft, TRight, TSynchronization, TStartRule&gt;(IServiceCollection, string, string, bool, SynchronizationDirection, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Declares a synchronization between multiple files</p>
@@ -281,7 +281,7 @@ Class AnyTextWebSocketServerExtensions  <a class="header-action link-secondary" 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AddSynchronization&lt;TLeft, TRight, TSynchronization, TStartRule&gt;(this IServiceCollection services, string leftExtension, string rightExtension, bool isAutomatic = false) where TLeft : class, IModelElement where TRight : class, IModelElement where TSynchronization : ReflectiveSynchronization, new() where TStartRule : SynchronizationRule&lt;TLeft, TRight&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AddSynchronization&lt;TLeft, TRight, TSynchronization, TStartRule&gt;(this IServiceCollection services, string leftExtension, string rightExtension, bool isAutomatic = false, SynchronizationDirection direction = SynchronizationDirection.LeftWins, bool opposeDirection = true) where TLeft : class, IModelElement where TRight : class, IModelElement where TSynchronization : ReflectiveSynchronization, new() where TStartRule : SynchronizationRule&lt;TLeft, TRight&gt;</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -297,6 +297,12 @@ Class AnyTextWebSocketServerExtensions  <a class="header-action link-secondary" 
 </dd>
     <dt><code>isAutomatic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>true, if the synchronization should be started automatically</p>
+</dd>
+    <dt><code>direction</code> <a class="xref" href="../../synchronizations/api/NMF.Synchronizations.SynchronizationDirection.html">SynchronizationDirection</a></dt>
+    <dd><p>the default direction of the synchronization</p>
+</dd>
+    <dt><code>opposeDirection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>true, if the direction should be opposed automatically if the synchronization is initiated from the right model, otherwise false. Does not have an effect on check-only synchronizations.</p>
 </dd>
   </dl>
 
@@ -363,7 +369,7 @@ Class AnyTextWebSocketServerExtensions  <a class="header-action link-secondary" 
 
   <h3 id="Microsoft_Extensions_DependencyInjection_AnyTextWebSocketServerExtensions_MapLspWebSocketServer_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_String_" data-uid="Microsoft.Extensions.DependencyInjection.AnyTextWebSocketServerExtensions.MapLspWebSocketServer(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String)">
   MapLspWebSocketServer(IEndpointRouteBuilder, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/AnyText/AnyText.AspNetCore/AnyTextWebSocketServerExtensions.cs/#L104"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Maps the LSP server</p>

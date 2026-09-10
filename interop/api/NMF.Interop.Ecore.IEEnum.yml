@@ -6,6 +6,15 @@ items:
   parent: NMF.Interop.Ecore
   children:
   - NMF.Interop.Ecore.IEEnum.ELiterals
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(System.Int32)
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(System.String)
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral(System.String)
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalled
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalling
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled_
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling
+  - NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling_
   langs:
   - csharp
   - vb
@@ -20,7 +29,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEEnum
     path: src/Interop/EcoreInterop/Model/IEEnum.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -32,31 +41,46 @@ items:
 
       [XmlDefaultImplementationType(typeof(EEnum))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EEnum")]
+
       public interface IEEnum : IEDataType, IEClassifier, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EEnum))>
 
       <XmlDefaultImplementationType(GetType(EEnum))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EEnum")>
+
       Public Interface IEEnum Inherits IEDataType, IEClassifier, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EEnum
   inheritedMembers:
   - NMF.Interop.Ecore.IEDataType.Serializable
-  - NMF.Interop.Ecore.IEDataType.SerializableChanging
   - NMF.Interop.Ecore.IEDataType.SerializableChanged
+  - NMF.Interop.Ecore.IEDataType.SerializableChanging
   - NMF.Interop.Ecore.IEClassifier.InstanceClassName
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeName
   - NMF.Interop.Ecore.IEClassifier.EPackage
   - NMF.Interop.Ecore.IEClassifier.ETypeParameters
-  - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  - NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+  - NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
   - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
-  - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
+  - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
   - NMF.Interop.Ecore.IEClassifier.EPackageChanging
   - NMF.Interop.Ecore.IEClassifier.EPackageChanged
+  - NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierID
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -104,6 +128,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EEnum
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EEnum
 - uid: NMF.Interop.Ecore.IEEnum.ELiterals
   commentId: P:NMF.Interop.Ecore.IEEnum.ELiterals
   id: ELiterals
@@ -122,19 +151,350 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELiterals
     path: src/Interop/EcoreInterop/Model/IEEnum.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eLiterals property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEEnumLiteral> ELiterals { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eLiterals")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      [XmlOpposite("eEnum")]
+
+      IOrderedSetExpression<IEEnumLiteral> ELiterals { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEEnumLiteral}
-    content.vb: ReadOnly Property ELiterals As IOrderedSetExpression(Of IEEnumLiteral)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eLiterals")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      <XmlOpposite("eEnum")>
+
+      ReadOnly Property ELiterals As IOrderedSetExpression(Of IEEnumLiteral)
   overload: NMF.Interop.Ecore.IEEnum.ELiterals*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eLiterals
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eEnum
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling
+  commentId: E:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling
+  id: GetEEnumLiteralCalling
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralCalling
+  nameWithType: IEEnum.GetEEnumLiteralCalling
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralCalling
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 61
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getEEnumLiteral gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEEnumLiteralCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEEnumLiteralCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling_
+  commentId: E:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling_
+  id: GetEEnumLiteralCalling_
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralCalling_
+  nameWithType: IEEnum.GetEEnumLiteralCalling_
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalling_
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralCalling_
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 66
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getEEnumLiteral gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEEnumLiteralCalling_
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEEnumLiteralCalling_ As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled
+  commentId: E:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled
+  id: GetEEnumLiteralCalled
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralCalled
+  nameWithType: IEEnum.GetEEnumLiteralCalled
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralCalled
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 71
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getEEnumLiteral got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEEnumLiteralCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEEnumLiteralCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled_
+  commentId: E:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled_
+  id: GetEEnumLiteralCalled_
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralCalled_
+  nameWithType: IEEnum.GetEEnumLiteralCalled_
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralCalled_
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralCalled_
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 76
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getEEnumLiteral got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEEnumLiteralCalled_
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEEnumLiteralCalled_ As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalling
+  commentId: E:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalling
+  id: GetEEnumLiteralByLiteralCalling
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralByLiteralCalling
+  nameWithType: IEEnum.GetEEnumLiteralByLiteralCalling
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralByLiteralCalling
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 81
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getEEnumLiteralByLiteral gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEEnumLiteralByLiteralCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEEnumLiteralByLiteralCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalled
+  commentId: E:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalled
+  id: GetEEnumLiteralByLiteralCalled
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralByLiteralCalled
+  nameWithType: IEEnum.GetEEnumLiteralByLiteralCalled
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteralCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralByLiteralCalled
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 86
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getEEnumLiteralByLiteral got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetEEnumLiteralByLiteralCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetEEnumLiteralByLiteralCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(System.String)
+  commentId: M:NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(System.String)
+  id: GetEEnumLiteral(System.String)
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteral(string)
+  nameWithType: IEEnum.GetEEnumLiteral(string)
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteral
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 92
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: IEEnumLiteral GetEEnumLiteral(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: ''
+    return:
+      type: NMF.Interop.Ecore.IEEnumLiteral
+    content.vb: Function GetEEnumLiteral(name As String) As IEEnumLiteral
+  overload: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral*
+  nameWithType.vb: IEEnum.GetEEnumLiteral(String)
+  fullName.vb: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(String)
+  name.vb: GetEEnumLiteral(String)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(System.Int32)
+  commentId: M:NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(System.Int32)
+  id: GetEEnumLiteral(System.Int32)
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteral(int)
+  nameWithType: IEEnum.GetEEnumLiteral(int)
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(int)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteral
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 98
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: IEEnumLiteral GetEEnumLiteral(int value)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: ''
+    return:
+      type: NMF.Interop.Ecore.IEEnumLiteral
+    content.vb: Function GetEEnumLiteral(value As Integer) As IEEnumLiteral
+  overload: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral*
+  nameWithType.vb: IEEnum.GetEEnumLiteral(Integer)
+  fullName.vb: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral(Integer)
+  name.vb: GetEEnumLiteral(Integer)
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral(System.String)
+  commentId: M:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral(System.String)
+  id: GetEEnumLiteralByLiteral(System.String)
+  parent: NMF.Interop.Ecore.IEEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEEnumLiteralByLiteral(string)
+  nameWithType: IEEnum.GetEEnumLiteralByLiteral(string)
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral(string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEEnum.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEEnumLiteralByLiteral
+    path: src/Interop/EcoreInterop/Model/IEEnum.cs
+    startLine: 104
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: IEEnumLiteral GetEEnumLiteralByLiteral(string literal)
+    parameters:
+    - id: literal
+      type: System.String
+      description: ''
+    return:
+      type: NMF.Interop.Ecore.IEEnumLiteral
+    content.vb: Function GetEEnumLiteralByLiteral(literal As String) As IEEnumLiteral
+  overload: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral*
+  nameWithType.vb: IEEnum.GetEEnumLiteralByLiteral(String)
+  fullName.vb: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral(String)
+  name.vb: GetEEnumLiteralByLiteral(String)
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -173,13 +533,6 @@ references:
   name: Serializable
   nameWithType: IEDataType.Serializable
   fullName: NMF.Interop.Ecore.IEDataType.Serializable
-- uid: NMF.Interop.Ecore.IEDataType.SerializableChanging
-  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanging
-  parent: NMF.Interop.Ecore.IEDataType
-  href: NMF.Interop.Ecore.IEDataType.html#NMF_Interop_Ecore_IEDataType_SerializableChanging
-  name: SerializableChanging
-  nameWithType: IEDataType.SerializableChanging
-  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanging
 - uid: NMF.Interop.Ecore.IEDataType.SerializableChanged
   commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanged
   parent: NMF.Interop.Ecore.IEDataType
@@ -187,6 +540,13 @@ references:
   name: SerializableChanged
   nameWithType: IEDataType.SerializableChanged
   fullName: NMF.Interop.Ecore.IEDataType.SerializableChanged
+- uid: NMF.Interop.Ecore.IEDataType.SerializableChanging
+  commentId: E:NMF.Interop.Ecore.IEDataType.SerializableChanging
+  parent: NMF.Interop.Ecore.IEDataType
+  href: NMF.Interop.Ecore.IEDataType.html#NMF_Interop_Ecore_IEDataType_SerializableChanging
+  name: SerializableChanging
+  nameWithType: IEDataType.SerializableChanging
+  fullName: NMF.Interop.Ecore.IEDataType.SerializableChanging
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceClassName
   commentId: P:NMF.Interop.Ecore.IEClassifier.InstanceClassName
   parent: NMF.Interop.Ecore.IEClassifier
@@ -215,13 +575,34 @@ references:
   name: ETypeParameters
   nameWithType: IEClassifier.ETypeParameters
   fullName: NMF.Interop.Ecore.IEClassifier.ETypeParameters
-- uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
-  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+  commentId: E:NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
   parent: NMF.Interop.Ecore.IEClassifier
-  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceClassNameChanging
-  name: InstanceClassNameChanging
-  nameWithType: IEClassifier.InstanceClassNameChanging
-  fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstanceCalling
+  name: IsInstanceCalling
+  nameWithType: IEClassifier.IsInstanceCalling
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  commentId: E:NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstanceCalled
+  name: IsInstanceCalled
+  nameWithType: IEClassifier.IsInstanceCalled
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  commentId: E:NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierIDCalling
+  name: GetClassifierIDCalling
+  nameWithType: IEClassifier.GetClassifierIDCalling
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  commentId: E:NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierIDCalled
+  name: GetClassifierIDCalled
+  nameWithType: IEClassifier.GetClassifierIDCalled
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   parent: NMF.Interop.Ecore.IEClassifier
@@ -229,13 +610,13 @@ references:
   name: InstanceClassNameChanged
   nameWithType: IEClassifier.InstanceClassNameChanged
   fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
-- uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
-  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+- uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
   parent: NMF.Interop.Ecore.IEClassifier
-  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceTypeNameChanging
-  name: InstanceTypeNameChanging
-  nameWithType: IEClassifier.InstanceTypeNameChanging
-  fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceClassNameChanging
+  name: InstanceClassNameChanging
+  nameWithType: IEClassifier.InstanceClassNameChanging
+  fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   parent: NMF.Interop.Ecore.IEClassifier
@@ -243,6 +624,13 @@ references:
   name: InstanceTypeNameChanged
   nameWithType: IEClassifier.InstanceTypeNameChanged
   fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
+- uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_InstanceTypeNameChanging
+  name: InstanceTypeNameChanging
+  nameWithType: IEClassifier.InstanceTypeNameChanging
+  fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
 - uid: NMF.Interop.Ecore.IEClassifier.EPackageChanging
   commentId: E:NMF.Interop.Ecore.IEClassifier.EPackageChanging
   parent: NMF.Interop.Ecore.IEClassifier
@@ -257,6 +645,56 @@ references:
   name: EPackageChanged
   nameWithType: IEClassifier.EPackageChanged
   fullName: NMF.Interop.Ecore.IEClassifier.EPackageChanged
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  commentId: M:NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  parent: NMF.Interop.Ecore.IEClassifier
+  isExternal: true
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  name: IsInstance(object)
+  nameWithType: IEClassifier.IsInstance(object)
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstance(object)
+  nameWithType.vb: IEClassifier.IsInstance(Object)
+  fullName.vb: NMF.Interop.Ecore.IEClassifier.IsInstance(Object)
+  name.vb: IsInstance(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+    name: IsInstance
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+    name: IsInstance
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  commentId: M:NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  parent: NMF.Interop.Ecore.IEClassifier
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  name: GetClassifierID()
+  nameWithType: IEClassifier.GetClassifierID()
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierID()
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+    name: GetClassifierID
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+    name: GetClassifierID
+    href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  - name: (
+  - name: )
 - uid: NMF.Interop.Ecore.IENamedElement.Name
   commentId: P:NMF.Interop.Ecore.IENamedElement.Name
   parent: NMF.Interop.Ecore.IENamedElement
@@ -264,13 +702,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -278,6 +709,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -285,6 +723,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement
@@ -1028,3 +1511,110 @@ references:
   - name: .
   - uid: NMF.Collections.Generic
     name: Generic
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral*
+  commentId: Overload:NMF.Interop.Ecore.IEEnum.GetEEnumLiteral
+  href: NMF.Interop.Ecore.IEEnum.html#NMF_Interop_Ecore_IEEnum_GetEEnumLiteral_System_String_
+  name: GetEEnumLiteral
+  nameWithType: IEEnum.GetEEnumLiteral
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteral
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NMF.Interop.Ecore.IEEnumLiteral
+  commentId: T:NMF.Interop.Ecore.IEEnumLiteral
+  parent: NMF.Interop.Ecore
+  href: NMF.Interop.Ecore.IEEnumLiteral.html
+  name: IEEnumLiteral
+  nameWithType: IEEnumLiteral
+  fullName: NMF.Interop.Ecore.IEEnumLiteral
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral*
+  commentId: Overload:NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral
+  href: NMF.Interop.Ecore.IEEnum.html#NMF_Interop_Ecore_IEEnum_GetEEnumLiteralByLiteral_System_String_
+  name: GetEEnumLiteralByLiteral
+  nameWithType: IEEnum.GetEEnumLiteralByLiteral
+  fullName: NMF.Interop.Ecore.IEEnum.GetEEnumLiteralByLiteral

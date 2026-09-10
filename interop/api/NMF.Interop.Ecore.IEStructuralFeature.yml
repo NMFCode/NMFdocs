@@ -17,6 +17,12 @@ items:
   - NMF.Interop.Ecore.IEStructuralFeature.EContainingClass
   - NMF.Interop.Ecore.IEStructuralFeature.EContainingClassChanged
   - NMF.Interop.Ecore.IEStructuralFeature.EContainingClassChanging
+  - NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass
+  - NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalled
+  - NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalling
+  - NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID
+  - NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalled
+  - NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalling
   - NMF.Interop.Ecore.IEStructuralFeature.Transient
   - NMF.Interop.Ecore.IEStructuralFeature.TransientChanged
   - NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
@@ -40,7 +46,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEStructuralFeature
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -52,13 +58,21 @@ items:
 
       [XmlDefaultImplementationType(typeof(EStructuralFeature))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature")]
+
       public interface IEStructuralFeature : IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EStructuralFeature))>
 
       <XmlDefaultImplementationType(GetType(EStructuralFeature))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature")>
+
       Public Interface IEStructuralFeature Inherits IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EAttribute
+  - NMF.Interop.Ecore.EReference
+  - NMF.Interop.Ecore.EStructuralFeature
   inheritedMembers:
   - NMF.Interop.Ecore.IETypedElement.Ordered
   - NMF.Interop.Ecore.IETypedElement.Unique
@@ -66,22 +80,25 @@ items:
   - NMF.Interop.Ecore.IETypedElement.UpperBound
   - NMF.Interop.Ecore.IETypedElement.EType
   - NMF.Interop.Ecore.IETypedElement.EGenericType
-  - NMF.Interop.Ecore.IETypedElement.OrderedChanging
   - NMF.Interop.Ecore.IETypedElement.OrderedChanged
-  - NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  - NMF.Interop.Ecore.IETypedElement.OrderedChanging
   - NMF.Interop.Ecore.IETypedElement.UniqueChanged
-  - NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  - NMF.Interop.Ecore.IETypedElement.UniqueChanging
   - NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
-  - NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  - NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
   - NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
+  - NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
   - NMF.Interop.Ecore.IETypedElement.ETypeChanging
   - NMF.Interop.Ecore.IETypedElement.ETypeChanged
   - NMF.Interop.Ecore.IETypedElement.EGenericTypeChanging
   - NMF.Interop.Ecore.IETypedElement.EGenericTypeChanged
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -129,6 +146,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EStructuralFeature
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature
 - uid: NMF.Interop.Ecore.IEStructuralFeature.Changeable
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.Changeable
   id: Changeable
@@ -147,19 +169,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Changeable
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The changeable property
   example: []
   syntax:
-    content: bool? Changeable { get; set; }
+    content: >-
+      [XmlElementName("changeable")]
+
+      [XmlAttribute(true)]
+
+      bool? Changeable { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
-    content.vb: Property Changeable As Boolean?
+    content.vb: >-
+      <XmlElementName("changeable")>
+
+      <XmlAttribute(True)>
+
+      Property Changeable As Boolean?
   overload: NMF.Interop.Ecore.IEStructuralFeature.Changeable*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: changeable
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEStructuralFeature.Volatile
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.Volatile
   id: Volatile
@@ -178,19 +221,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Volatile
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 53
+    startLine: 60
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The volatile property
   example: []
   syntax:
-    content: bool? Volatile { get; set; }
+    content: >-
+      [XmlElementName("volatile")]
+
+      [XmlAttribute(true)]
+
+      bool? Volatile { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
-    content.vb: Property Volatile As Boolean?
+    content.vb: >-
+      <XmlElementName("volatile")>
+
+      <XmlAttribute(True)>
+
+      Property Volatile As Boolean?
   overload: NMF.Interop.Ecore.IEStructuralFeature.Volatile*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: volatile
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEStructuralFeature.Transient
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.Transient
   id: Transient
@@ -209,19 +273,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Transient
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 62
+    startLine: 73
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The transient property
   example: []
   syntax:
-    content: bool? Transient { get; set; }
+    content: >-
+      [XmlElementName("transient")]
+
+      [XmlAttribute(true)]
+
+      bool? Transient { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
-    content.vb: Property Transient As Boolean?
+    content.vb: >-
+      <XmlElementName("transient")>
+
+      <XmlAttribute(True)>
+
+      Property Transient As Boolean?
   overload: NMF.Interop.Ecore.IEStructuralFeature.Transient*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: transient
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteral
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteral
   id: DefaultValueLiteral
@@ -240,19 +325,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DefaultValueLiteral
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 71
+    startLine: 86
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The defaultValueLiteral property
   example: []
   syntax:
-    content: string DefaultValueLiteral { get; set; }
+    content: >-
+      [XmlElementName("defaultValueLiteral")]
+
+      [XmlAttribute(true)]
+
+      string DefaultValueLiteral { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property DefaultValueLiteral As String
+    content.vb: >-
+      <XmlElementName("defaultValueLiteral")>
+
+      <XmlAttribute(True)>
+
+      Property DefaultValueLiteral As String
   overload: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteral*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: defaultValueLiteral
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEStructuralFeature.Unsettable
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.Unsettable
   id: Unsettable
@@ -271,19 +377,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Unsettable
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 80
+    startLine: 99
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The unsettable property
   example: []
   syntax:
-    content: bool? Unsettable { get; set; }
+    content: >-
+      [XmlElementName("unsettable")]
+
+      [XmlAttribute(true)]
+
+      bool? Unsettable { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
-    content.vb: Property Unsettable As Boolean?
+    content.vb: >-
+      <XmlElementName("unsettable")>
+
+      <XmlAttribute(True)>
+
+      Property Unsettable As Boolean?
   overload: NMF.Interop.Ecore.IEStructuralFeature.Unsettable*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: unsettable
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEStructuralFeature.Derived
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.Derived
   id: Derived
@@ -302,19 +429,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Derived
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 89
+    startLine: 112
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The derived property
   example: []
   syntax:
-    content: bool? Derived { get; set; }
+    content: >-
+      [XmlElementName("derived")]
+
+      [XmlAttribute(true)]
+
+      bool? Derived { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
-    content.vb: Property Derived As Boolean?
+    content.vb: >-
+      <XmlElementName("derived")>
+
+      <XmlAttribute(True)>
+
+      Property Derived As Boolean?
   overload: NMF.Interop.Ecore.IEStructuralFeature.Derived*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: derived
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEStructuralFeature.EContainingClass
   commentId: P:NMF.Interop.Ecore.IEStructuralFeature.EContainingClass
   id: EContainingClass
@@ -333,48 +481,174 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClass
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 98
+    startLine: 125
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eContainingClass property
   example: []
   syntax:
-    content: IEClass EContainingClass { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eContainingClass")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("eStructuralFeatures")]
+
+      IEClass EContainingClass { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEClass
-    content.vb: Property EContainingClass As IEClass
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eContainingClass")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("eStructuralFeatures")>
+
+      Property EContainingClass As IEClass
   overload: NMF.Interop.Ecore.IEStructuralFeature.EContainingClass*
-- uid: NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanging
-  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanging
-  id: ChangeableChanging
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eContainingClass
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eStructuralFeatures
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalling
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalling
+  id: GetFeatureIDCalling
   parent: NMF.Interop.Ecore.IEStructuralFeature
   langs:
   - csharp
   - vb
-  name: ChangeableChanging
-  nameWithType: IEStructuralFeature.ChangeableChanging
-  fullName: NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanging
+  name: GetFeatureIDCalling
+  nameWithType: IEStructuralFeature.GetFeatureIDCalling
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalling
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: ChangeableChanging
+    id: GetFeatureIDCalling
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 107
+    startLine: 139
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Changeable property changes its value
+  summary: Gets fired before the operation getFeatureID gets called
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> ChangeableChanging
+    content: event EventHandler<OperationCallEventArgs> GetFeatureIDCalling
     return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event ChangeableChanging As EventHandler(Of ValueChangedEventArgs)
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetFeatureIDCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalled
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalled
+  id: GetFeatureIDCalled
+  parent: NMF.Interop.Ecore.IEStructuralFeature
+  langs:
+  - csharp
+  - vb
+  name: GetFeatureIDCalled
+  nameWithType: IEStructuralFeature.GetFeatureIDCalled
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureIDCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetFeatureIDCalled
+    path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
+    startLine: 144
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getFeatureID got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetFeatureIDCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetFeatureIDCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalling
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalling
+  id: GetContainerClassCalling
+  parent: NMF.Interop.Ecore.IEStructuralFeature
+  langs:
+  - csharp
+  - vb
+  name: GetContainerClassCalling
+  nameWithType: IEStructuralFeature.GetContainerClassCalling
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetContainerClassCalling
+    path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
+    startLine: 149
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getContainerClass gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetContainerClassCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetContainerClassCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalled
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalled
+  id: GetContainerClassCalled
+  parent: NMF.Interop.Ecore.IEStructuralFeature
+  langs:
+  - csharp
+  - vb
+  name: GetContainerClassCalled
+  nameWithType: IEStructuralFeature.GetContainerClassCalled
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClassCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetContainerClassCalled
+    path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
+    startLine: 154
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getContainerClass got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetContainerClassCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetContainerClassCalled As EventHandler(Of OperationCallEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanged
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanged
   id: ChangeableChanged
@@ -393,7 +667,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ChangeableChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 112
+    startLine: 159
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -404,35 +678,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event ChangeableChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEStructuralFeature.VolatileChanging
-  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.VolatileChanging
-  id: VolatileChanging
+- uid: NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanging
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanging
+  id: ChangeableChanging
   parent: NMF.Interop.Ecore.IEStructuralFeature
   langs:
   - csharp
   - vb
-  name: VolatileChanging
-  nameWithType: IEStructuralFeature.VolatileChanging
-  fullName: NMF.Interop.Ecore.IEStructuralFeature.VolatileChanging
+  name: ChangeableChanging
+  nameWithType: IEStructuralFeature.ChangeableChanging
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.ChangeableChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: VolatileChanging
+    id: ChangeableChanging
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 117
+    startLine: 164
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Volatile property changes its value
+  summary: Gets fired before the Changeable property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> VolatileChanging
+    content: event EventHandler<ValueChangedEventArgs> ChangeableChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event VolatileChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event ChangeableChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.VolatileChanged
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.VolatileChanged
   id: VolatileChanged
@@ -451,7 +725,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: VolatileChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 122
+    startLine: 169
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -462,35 +736,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event VolatileChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
-  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
-  id: TransientChanging
+- uid: NMF.Interop.Ecore.IEStructuralFeature.VolatileChanging
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.VolatileChanging
+  id: VolatileChanging
   parent: NMF.Interop.Ecore.IEStructuralFeature
   langs:
   - csharp
   - vb
-  name: TransientChanging
-  nameWithType: IEStructuralFeature.TransientChanging
-  fullName: NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
+  name: VolatileChanging
+  nameWithType: IEStructuralFeature.VolatileChanging
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.VolatileChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: TransientChanging
+    id: VolatileChanging
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 127
+    startLine: 174
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Transient property changes its value
+  summary: Gets fired before the Volatile property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> TransientChanging
+    content: event EventHandler<ValueChangedEventArgs> VolatileChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event TransientChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event VolatileChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.TransientChanged
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.TransientChanged
   id: TransientChanged
@@ -509,7 +783,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TransientChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 132
+    startLine: 179
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -520,35 +794,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event TransientChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanging
-  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanging
-  id: DefaultValueLiteralChanging
+- uid: NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
+  id: TransientChanging
   parent: NMF.Interop.Ecore.IEStructuralFeature
   langs:
   - csharp
   - vb
-  name: DefaultValueLiteralChanging
-  nameWithType: IEStructuralFeature.DefaultValueLiteralChanging
-  fullName: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanging
+  name: TransientChanging
+  nameWithType: IEStructuralFeature.TransientChanging
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.TransientChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: DefaultValueLiteralChanging
+    id: TransientChanging
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 137
+    startLine: 184
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the DefaultValueLiteral property changes its value
+  summary: Gets fired before the Transient property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> DefaultValueLiteralChanging
+    content: event EventHandler<ValueChangedEventArgs> TransientChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event DefaultValueLiteralChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event TransientChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanged
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanged
   id: DefaultValueLiteralChanged
@@ -567,7 +841,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DefaultValueLiteralChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 142
+    startLine: 189
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -578,35 +852,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event DefaultValueLiteralChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanging
-  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanging
-  id: UnsettableChanging
+- uid: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanging
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanging
+  id: DefaultValueLiteralChanging
   parent: NMF.Interop.Ecore.IEStructuralFeature
   langs:
   - csharp
   - vb
-  name: UnsettableChanging
-  nameWithType: IEStructuralFeature.UnsettableChanging
-  fullName: NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanging
+  name: DefaultValueLiteralChanging
+  nameWithType: IEStructuralFeature.DefaultValueLiteralChanging
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.DefaultValueLiteralChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: UnsettableChanging
+    id: DefaultValueLiteralChanging
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 147
+    startLine: 194
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Unsettable property changes its value
+  summary: Gets fired before the DefaultValueLiteral property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> UnsettableChanging
+    content: event EventHandler<ValueChangedEventArgs> DefaultValueLiteralChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event UnsettableChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event DefaultValueLiteralChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanged
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanged
   id: UnsettableChanged
@@ -625,7 +899,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UnsettableChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 152
+    startLine: 199
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -636,35 +910,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event UnsettableChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEStructuralFeature.DerivedChanging
-  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.DerivedChanging
-  id: DerivedChanging
+- uid: NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanging
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanging
+  id: UnsettableChanging
   parent: NMF.Interop.Ecore.IEStructuralFeature
   langs:
   - csharp
   - vb
-  name: DerivedChanging
-  nameWithType: IEStructuralFeature.DerivedChanging
-  fullName: NMF.Interop.Ecore.IEStructuralFeature.DerivedChanging
+  name: UnsettableChanging
+  nameWithType: IEStructuralFeature.UnsettableChanging
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.UnsettableChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: DerivedChanging
+    id: UnsettableChanging
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 157
+    startLine: 204
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Derived property changes its value
+  summary: Gets fired before the Unsettable property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> DerivedChanging
+    content: event EventHandler<ValueChangedEventArgs> UnsettableChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event DerivedChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event UnsettableChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.DerivedChanged
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.DerivedChanged
   id: DerivedChanged
@@ -683,7 +957,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DerivedChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 162
+    startLine: 209
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -694,6 +968,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event DerivedChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEStructuralFeature.DerivedChanging
+  commentId: E:NMF.Interop.Ecore.IEStructuralFeature.DerivedChanging
+  id: DerivedChanging
+  parent: NMF.Interop.Ecore.IEStructuralFeature
+  langs:
+  - csharp
+  - vb
+  name: DerivedChanging
+  nameWithType: IEStructuralFeature.DerivedChanging
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.DerivedChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DerivedChanging
+    path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
+    startLine: 214
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the Derived property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> DerivedChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event DerivedChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEStructuralFeature.EContainingClassChanging
   commentId: E:NMF.Interop.Ecore.IEStructuralFeature.EContainingClassChanging
   id: EContainingClassChanging
@@ -712,7 +1015,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClassChanging
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 167
+    startLine: 219
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -741,7 +1044,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClassChanged
     path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
-    startLine: 172
+    startLine: 224
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -752,6 +1055,64 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event EContainingClassChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID
+  commentId: M:NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID
+  id: GetFeatureID
+  parent: NMF.Interop.Ecore.IEStructuralFeature
+  langs:
+  - csharp
+  - vb
+  name: GetFeatureID()
+  nameWithType: IEStructuralFeature.GetFeatureID()
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID()
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetFeatureID
+    path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
+    startLine: 229
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: int GetFeatureID()
+    return:
+      type: System.Int32
+    content.vb: Function GetFeatureID() As Integer
+  overload: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID*
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass
+  commentId: M:NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass
+  id: GetContainerClass
+  parent: NMF.Interop.Ecore.IEStructuralFeature
+  langs:
+  - csharp
+  - vb
+  name: GetContainerClass()
+  nameWithType: IEStructuralFeature.GetContainerClass()
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass()
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEStructuralFeature.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetContainerClass
+    path: src/Interop/EcoreInterop/Model/IEStructuralFeature.cs
+    startLine: 234
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: void GetContainerClass()
+    content.vb: Sub GetContainerClass()
+  overload: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass*
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -825,13 +1186,6 @@ references:
   name: EGenericType
   nameWithType: IETypedElement.EGenericType
   fullName: NMF.Interop.Ecore.IETypedElement.EGenericType
-- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanging
-  parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanging
-  name: OrderedChanging
-  nameWithType: IETypedElement.OrderedChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.IETypedElement.OrderedChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -839,13 +1193,13 @@ references:
   name: OrderedChanged
   nameWithType: IETypedElement.OrderedChanged
   fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanged
-- uid: NMF.Interop.Ecore.IETypedElement.UniqueChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanging
+- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UniqueChanging
-  name: UniqueChanging
-  nameWithType: IETypedElement.UniqueChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanging
+  name: OrderedChanging
+  nameWithType: IETypedElement.OrderedChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.IETypedElement.UniqueChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -853,13 +1207,13 @@ references:
   name: UniqueChanged
   nameWithType: IETypedElement.UniqueChanged
   fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanged
-- uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+- uid: NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_LowerBoundChanging
-  name: LowerBoundChanging
-  nameWithType: IETypedElement.LowerBoundChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UniqueChanging
+  name: UniqueChanging
+  nameWithType: IETypedElement.UniqueChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanging
 - uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -867,13 +1221,13 @@ references:
   name: LowerBoundChanged
   nameWithType: IETypedElement.LowerBoundChanged
   fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
-- uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+- uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UpperBoundChanging
-  name: UpperBoundChanging
-  nameWithType: IETypedElement.UpperBoundChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_LowerBoundChanging
+  name: LowerBoundChanging
+  nameWithType: IETypedElement.LowerBoundChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
 - uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -881,6 +1235,13 @@ references:
   name: UpperBoundChanged
   nameWithType: IETypedElement.UpperBoundChanged
   fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
+- uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  parent: NMF.Interop.Ecore.IETypedElement
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UpperBoundChanging
+  name: UpperBoundChanging
+  nameWithType: IETypedElement.UpperBoundChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
 - uid: NMF.Interop.Ecore.IETypedElement.ETypeChanging
   commentId: E:NMF.Interop.Ecore.IETypedElement.ETypeChanging
   parent: NMF.Interop.Ecore.IETypedElement
@@ -916,13 +1277,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -930,6 +1284,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -937,6 +1298,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement
@@ -1711,6 +2117,65 @@ references:
   name: IEClass
   nameWithType: IEClass
   fullName: NMF.Interop.Ecore.IEClass
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -1742,31 +2207,26 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID*
+  commentId: Overload:NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID
+  href: NMF.Interop.Ecore.IEStructuralFeature.html#NMF_Interop_Ecore_IEStructuralFeature_GetFeatureID
+  name: GetFeatureID
+  nameWithType: IEStructuralFeature.GetFeatureID
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetFeatureID
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass*
+  commentId: Overload:NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass
+  href: NMF.Interop.Ecore.IEStructuralFeature.html#NMF_Interop_Ecore_IEStructuralFeature_GetContainerClass
+  name: GetContainerClass
+  nameWithType: IEStructuralFeature.GetContainerClass
+  fullName: NMF.Interop.Ecore.IEStructuralFeature.GetContainerClass

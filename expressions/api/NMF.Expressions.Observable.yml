@@ -76,6 +76,8 @@ items:
   - NMF.Expressions.Observable.LeftShift(NMF.Expressions.INotifyExpression{System.UInt64},NMF.Expressions.INotifyExpression{System.Int32})
   - NMF.Expressions.Observable.LessThanOrEquals``1(NMF.Expressions.INotifyExpression{``0},NMF.Expressions.INotifyExpression{``0})
   - NMF.Expressions.Observable.LessThan``1(NMF.Expressions.INotifyExpression{``0},NMF.Expressions.INotifyExpression{``0})
+  - NMF.Expressions.Observable.Member``2(NMF.Expressions.INotifyExpression{``0},System.String,System.Func{``0,``1})
+  - NMF.Expressions.Observable.Member``2(``0,System.String,System.Func{``1})
   - NMF.Expressions.Observable.Modulo(NMF.Expressions.INotifyExpression{System.Double},NMF.Expressions.INotifyExpression{System.Double})
   - NMF.Expressions.Observable.Modulo(NMF.Expressions.INotifyExpression{System.Int32},NMF.Expressions.INotifyExpression{System.Int32})
   - NMF.Expressions.Observable.Modulo(NMF.Expressions.INotifyExpression{System.Int64},NMF.Expressions.INotifyExpression{System.Int64})
@@ -2461,6 +2463,104 @@ items:
   nameWithType.vb: Observable.Reversable(Of T)(Expression(Of Func(Of T)))
   fullName.vb: NMF.Expressions.Observable.Reversable(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T)))
   name.vb: Reversable(Of T)(Expression(Of Func(Of T)))
+- uid: NMF.Expressions.Observable.Member``2(``0,System.String,System.Func{``1})
+  commentId: M:NMF.Expressions.Observable.Member``2(``0,System.String,System.Func{``1})
+  id: Member``2(``0,System.String,System.Func{``1})
+  parent: NMF.Expressions.Observable
+  langs:
+  - csharp
+  - vb
+  name: Member<TTarget, TMember>(TTarget, string, Func<TMember>)
+  nameWithType: Observable.Member<TTarget, TMember>(TTarget, string, Func<TMember>)
+  fullName: NMF.Expressions.Observable.Member<TTarget, TMember>(TTarget, string, System.Func<TMember>)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions/Public/Observable.Manual.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: Member
+    path: src/Expressions/Expressions/Public/Observable.Manual.cs
+    startLine: 54
+  assemblies:
+  - NMF.Expressions
+  namespace: NMF.Expressions
+  summary: Creates an observable expression to access a member
+  example: []
+  syntax:
+    content: public static INotifyValue<TMember> Member<TTarget, TMember>(TTarget target, string memberName, Func<TMember> memberGetter)
+    parameters:
+    - id: target
+      type: '{TTarget}'
+      description: the target expression
+    - id: memberName
+      type: System.String
+      description: the name of the member
+    - id: memberGetter
+      type: System.Func{{TMember}}
+      description: a function to obtain the member
+    typeParameters:
+    - id: TTarget
+      description: the type of the member target
+    - id: TMember
+      description: the type of the member
+    return:
+      type: NMF.Expressions.INotifyValue{{TMember}}
+      description: an observable expression for the member
+    content.vb: Public Shared Function Member(Of TTarget, TMember)(target As TTarget, memberName As String, memberGetter As Func(Of TMember)) As INotifyValue(Of TMember)
+  overload: NMF.Expressions.Observable.Member*
+  nameWithType.vb: Observable.Member(Of TTarget, TMember)(TTarget, String, Func(Of TMember))
+  fullName.vb: NMF.Expressions.Observable.Member(Of TTarget, TMember)(TTarget, String, System.Func(Of TMember))
+  name.vb: Member(Of TTarget, TMember)(TTarget, String, Func(Of TMember))
+- uid: NMF.Expressions.Observable.Member``2(NMF.Expressions.INotifyExpression{``0},System.String,System.Func{``0,``1})
+  commentId: M:NMF.Expressions.Observable.Member``2(NMF.Expressions.INotifyExpression{``0},System.String,System.Func{``0,``1})
+  id: Member``2(NMF.Expressions.INotifyExpression{``0},System.String,System.Func{``0,``1})
+  parent: NMF.Expressions.Observable
+  langs:
+  - csharp
+  - vb
+  name: Member<TTarget, TMember>(INotifyExpression<TTarget>, string, Func<TTarget, TMember>)
+  nameWithType: Observable.Member<TTarget, TMember>(INotifyExpression<TTarget>, string, Func<TTarget, TMember>)
+  fullName: NMF.Expressions.Observable.Member<TTarget, TMember>(NMF.Expressions.INotifyExpression<TTarget>, string, System.Func<TTarget, TMember>)
+  type: Method
+  source:
+    remote:
+      path: Expressions/Expressions/Public/Observable.Manual.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: Member
+    path: src/Expressions/Expressions/Public/Observable.Manual.cs
+    startLine: 72
+  assemblies:
+  - NMF.Expressions
+  namespace: NMF.Expressions
+  summary: Creates an observable expression to access a member
+  example: []
+  syntax:
+    content: public static INotifyValue<TMember> Member<TTarget, TMember>(INotifyExpression<TTarget> target, string memberName, Func<TTarget, TMember> memberGetter)
+    parameters:
+    - id: target
+      type: NMF.Expressions.INotifyExpression{{TTarget}}
+      description: the target expression
+    - id: memberName
+      type: System.String
+      description: the name of the member
+    - id: memberGetter
+      type: System.Func{{TTarget},{TMember}}
+      description: a function to obtain the member
+    typeParameters:
+    - id: TTarget
+      description: the type of the member target
+    - id: TMember
+      description: the type of the member
+    return:
+      type: NMF.Expressions.INotifyValue{{TMember}}
+      description: an observable expression for the member
+    content.vb: Public Shared Function Member(Of TTarget, TMember)(target As INotifyExpression(Of TTarget), memberName As String, memberGetter As Func(Of TTarget, TMember)) As INotifyValue(Of TMember)
+  overload: NMF.Expressions.Observable.Member*
+  nameWithType.vb: Observable.Member(Of TTarget, TMember)(INotifyExpression(Of TTarget), String, Func(Of TTarget, TMember))
+  fullName.vb: NMF.Expressions.Observable.Member(Of TTarget, TMember)(NMF.Expressions.INotifyExpression(Of TTarget), String, System.Func(Of TTarget, TMember))
+  name.vb: Member(Of TTarget, TMember)(INotifyExpression(Of TTarget), String, Func(Of TTarget, TMember))
 - uid: NMF.Expressions.Observable.ArrayIndex``1(NMF.Expressions.INotifyExpression{``0[]},NMF.Expressions.INotifyExpression{System.Int32})
   commentId: M:NMF.Expressions.Observable.ArrayIndex``1(NMF.Expressions.INotifyExpression{``0[]},NMF.Expressions.INotifyExpression{System.Int32})
   id: ArrayIndex``1(NMF.Expressions.INotifyExpression{``0[]},NMF.Expressions.INotifyExpression{System.Int32})
@@ -2479,7 +2579,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ArrayIndex
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 52
+    startLine: 88
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2523,7 +2623,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ArrayIndex
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 64
+    startLine: 100
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2567,7 +2667,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ArrayInitialization
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 75
+    startLine: 111
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2581,7 +2681,7 @@ items:
       description: The elements of the array
     typeParameters:
     - id: T
-      description: The array element type
+      description: The array _element type
     return:
       type: NMF.Expressions.INotifyExpression{{T}[]}
       description: An incremental array
@@ -2608,7 +2708,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Coalesce
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 87
+    startLine: 123
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2625,7 +2725,7 @@ items:
       description: The incremental coalesce value
     typeParameters:
     - id: T
-      description: The element type
+      description: The _element type
     return:
       type: NMF.Expressions.INotifyExpression{{T}}
       description: An incremental coalesced value
@@ -2652,7 +2752,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Coalesce
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 99
+    startLine: 135
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2669,7 +2769,7 @@ items:
       description: The incremental coalesce value
     typeParameters:
     - id: T
-      description: The element type
+      description: The _element type
     return:
       type: NMF.Expressions.INotifyReversableExpression{{T}}
       description: An incremental coalesced value
@@ -2696,7 +2796,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Box
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 110
+    startLine: 146
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2737,7 +2837,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Box
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 128
+    startLine: 164
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2778,7 +2878,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Conditional
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 142
+    startLine: 178
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2826,7 +2926,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Constant
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 153
+    startLine: 189
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2867,7 +2967,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NewArray
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 164
+    startLine: 200
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2908,7 +3008,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NewArray
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 176
+    startLine: 212
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2952,7 +3052,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NewArray
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 189
+    startLine: 225
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -2999,7 +3099,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InstanceOf
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 200
+    startLine: 236
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3040,7 +3140,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: As
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 212
+    startLine: 248
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3083,7 +3183,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Convert
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 225
+    startLine: 261
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3126,7 +3226,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: And
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 236
+    startLine: 272
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3167,7 +3267,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: And
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 247
+    startLine: 283
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3208,7 +3308,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: And
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 258
+    startLine: 294
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3261,7 +3361,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: And
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 270
+    startLine: 306
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3314,7 +3414,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Or
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 282
+    startLine: 318
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3355,7 +3455,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Or
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 293
+    startLine: 329
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3396,7 +3496,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Or
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 304
+    startLine: 340
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3449,7 +3549,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Or
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 316
+    startLine: 352
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3502,7 +3602,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Xor
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 328
+    startLine: 364
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3543,7 +3643,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Xor
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 339
+    startLine: 375
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3584,7 +3684,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Xor
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 350
+    startLine: 386
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3637,7 +3737,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Xor
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 362
+    startLine: 398
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3690,7 +3790,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: And
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 374
+    startLine: 410
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3731,7 +3831,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Or
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 385
+    startLine: 421
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3772,7 +3872,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Xor
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 396
+    startLine: 432
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3813,7 +3913,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AndAlso
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 408
+    startLine: 444
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3855,7 +3955,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OrElse
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 420
+    startLine: 456
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3897,7 +3997,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Not
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 430
+    startLine: 466
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3935,7 +4035,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnesComplement
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 440
+    startLine: 476
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -3973,7 +4073,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnesComplement
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 450
+    startLine: 486
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4011,7 +4111,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnesComplement
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 460
+    startLine: 496
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4061,7 +4161,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnesComplement
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 471
+    startLine: 507
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4111,7 +4211,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Negate
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 482
+    startLine: 518
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4149,7 +4249,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Negate
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 492
+    startLine: 528
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4187,7 +4287,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Negate
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 502
+    startLine: 538
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4225,7 +4325,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Negate
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 512
+    startLine: 548
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4263,7 +4363,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Divide
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 523
+    startLine: 559
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4304,7 +4404,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Divide
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 534
+    startLine: 570
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4345,7 +4445,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Divide
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 545
+    startLine: 581
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4398,7 +4498,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Divide
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 557
+    startLine: 593
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4451,7 +4551,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Divide
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 569
+    startLine: 605
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4492,7 +4592,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Divide
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 580
+    startLine: 616
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4533,7 +4633,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subtract
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 591
+    startLine: 627
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4574,7 +4674,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subtract
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 602
+    startLine: 638
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4615,7 +4715,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subtract
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 613
+    startLine: 649
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4668,7 +4768,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subtract
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 625
+    startLine: 661
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4721,7 +4821,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subtract
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 637
+    startLine: 673
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4762,7 +4862,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Subtract
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 648
+    startLine: 684
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4803,7 +4903,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 659
+    startLine: 695
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4844,7 +4944,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 670
+    startLine: 706
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4885,7 +4985,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 681
+    startLine: 717
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4938,7 +5038,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 693
+    startLine: 729
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -4991,7 +5091,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 705
+    startLine: 741
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5032,7 +5132,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 716
+    startLine: 752
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5073,7 +5173,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 727
+    startLine: 763
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5114,7 +5214,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Multiply
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 738
+    startLine: 774
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5155,7 +5255,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Multiply
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 749
+    startLine: 785
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5196,7 +5296,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Multiply
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 760
+    startLine: 796
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5249,7 +5349,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Multiply
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 772
+    startLine: 808
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5302,7 +5402,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Multiply
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 784
+    startLine: 820
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5343,7 +5443,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Multiply
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 795
+    startLine: 831
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5384,7 +5484,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Modulo
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 806
+    startLine: 842
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5425,7 +5525,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Modulo
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 817
+    startLine: 853
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5466,7 +5566,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Modulo
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 828
+    startLine: 864
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5519,7 +5619,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Modulo
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 840
+    startLine: 876
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5572,7 +5672,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Modulo
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 852
+    startLine: 888
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5613,7 +5713,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Modulo
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 863
+    startLine: 899
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5654,7 +5754,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 874
+    startLine: 910
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5695,7 +5795,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 885
+    startLine: 921
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5736,7 +5836,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 896
+    startLine: 932
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5789,7 +5889,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RightShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 908
+    startLine: 944
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5842,7 +5942,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 920
+    startLine: 956
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5883,7 +5983,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 931
+    startLine: 967
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5924,7 +6024,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 942
+    startLine: 978
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -5977,7 +6077,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LeftShift
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 954
+    startLine: 990
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -6030,7 +6130,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GreatherThan
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 967
+    startLine: 1003
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -6074,7 +6174,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GreatherThanOrEquals
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 980
+    startLine: 1016
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -6118,7 +6218,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LessThan
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 993
+    startLine: 1029
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -6162,7 +6262,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LessThanOrEquals
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 1006
+    startLine: 1042
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -6206,7 +6306,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Equals
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 1019
+    startLine: 1055
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -6250,7 +6350,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NotEquals
     path: src/Expressions/Expressions/Public/Observable.Manual.cs
-    startLine: 1031
+    startLine: 1067
   assemblies:
   - NMF.Expressions
   namespace: NMF.Expressions
@@ -13774,6 +13874,240 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: NMF.Expressions.Observable.Member*
+  commentId: Overload:NMF.Expressions.Observable.Member
+  href: NMF.Expressions.Observable.html#NMF_Expressions_Observable_Member__2___0_System_String_System_Func___1__
+  name: Member
+  nameWithType: Observable.Member
+  fullName: NMF.Expressions.Observable.Member
+- uid: '{TTarget}'
+  commentId: '!:TTarget'
+  definition: TTarget
+  name: TTarget
+  nameWithType: TTarget
+  fullName: TTarget
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Func{{TMember}}
+  commentId: T:System.Func{``1}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TMember>
+  nameWithType: Func<TMember>
+  fullName: System.Func<TMember>
+  nameWithType.vb: Func(Of TMember)
+  fullName.vb: System.Func(Of TMember)
+  name.vb: Func(Of TMember)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TMember
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TMember
+  - name: )
+- uid: NMF.Expressions.INotifyValue{{TMember}}
+  commentId: T:NMF.Expressions.INotifyValue{``1}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyValue`1
+  href: NMF.Expressions.INotifyValue-1.html
+  name: INotifyValue<TMember>
+  nameWithType: INotifyValue<TMember>
+  fullName: NMF.Expressions.INotifyValue<TMember>
+  nameWithType.vb: INotifyValue(Of TMember)
+  fullName.vb: NMF.Expressions.INotifyValue(Of TMember)
+  name.vb: INotifyValue(Of TMember)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+    href: NMF.Expressions.INotifyValue-1.html
+  - name: <
+  - name: TMember
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyValue`1
+    name: INotifyValue
+    href: NMF.Expressions.INotifyValue-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TMember
+  - name: )
+- uid: TTarget
+  commentId: '!:TTarget'
+  name: TTarget
+  nameWithType: TTarget
+  fullName: TTarget
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: NMF.Expressions.INotifyExpression{{TTarget}}
+  commentId: T:NMF.Expressions.INotifyExpression{``0}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyExpression`1
+  href: NMF.Expressions.INotifyExpression-1.html
+  name: INotifyExpression<TTarget>
+  nameWithType: INotifyExpression<TTarget>
+  fullName: NMF.Expressions.INotifyExpression<TTarget>
+  nameWithType.vb: INotifyExpression(Of TTarget)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of TTarget)
+  name.vb: INotifyExpression(Of TTarget)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: <
+  - name: TTarget
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TTarget
+  - name: )
+- uid: System.Func{{TTarget},{TMember}}
+  commentId: T:System.Func{``0,``1}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<TTarget, TMember>
+  nameWithType: Func<TTarget, TMember>
+  fullName: System.Func<TTarget, TMember>
+  nameWithType.vb: Func(Of TTarget, TMember)
+  fullName.vb: System.Func(Of TTarget, TMember)
+  name.vb: Func(Of TTarget, TMember)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TTarget
+  - name: ','
+  - name: " "
+  - name: TMember
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TTarget
+  - name: ','
+  - name: " "
+  - name: TMember
+  - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  parent: NMF.Expressions
+  href: NMF.Expressions.INotifyExpression-1.html
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+    href: NMF.Expressions.INotifyExpression-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: NMF.Expressions.Observable.ArrayIndex*
   commentId: Overload:NMF.Expressions.Observable.ArrayIndex
   href: NMF.Expressions.Observable.html#NMF_Expressions_Observable_ArrayIndex__1_NMF_Expressions_INotifyExpression___0____NMF_Expressions_INotifyExpression_System_Int32__
@@ -13848,32 +14182,6 @@ references:
   commentId: T:NMF.Expressions.INotifyExpression{`0}
   parent: NMF.Expressions
   definition: NMF.Expressions.INotifyExpression`1
-  href: NMF.Expressions.INotifyExpression-1.html
-  name: INotifyExpression<T>
-  nameWithType: INotifyExpression<T>
-  fullName: NMF.Expressions.INotifyExpression<T>
-  nameWithType.vb: INotifyExpression(Of T)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
-  name.vb: INotifyExpression(Of T)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-    href: NMF.Expressions.INotifyExpression-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-    href: NMF.Expressions.INotifyExpression-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: NMF.Expressions.INotifyExpression`1
-  commentId: T:NMF.Expressions.INotifyExpression`1
-  parent: NMF.Expressions
   href: NMF.Expressions.INotifyExpression-1.html
   name: INotifyExpression<T>
   nameWithType: INotifyExpression<T>
@@ -14407,33 +14715,6 @@ references:
   - name: Of
   - name: " "
   - name: TSource
-  - name: )
-- uid: NMF.Expressions.INotifyExpression{{TTarget}}
-  commentId: T:NMF.Expressions.INotifyExpression{``1}
-  parent: NMF.Expressions
-  definition: NMF.Expressions.INotifyExpression`1
-  href: NMF.Expressions.INotifyExpression-1.html
-  name: INotifyExpression<TTarget>
-  nameWithType: INotifyExpression<TTarget>
-  fullName: NMF.Expressions.INotifyExpression<TTarget>
-  nameWithType.vb: INotifyExpression(Of TTarget)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of TTarget)
-  name.vb: INotifyExpression(Of TTarget)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-    href: NMF.Expressions.INotifyExpression-1.html
-  - name: <
-  - name: TTarget
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-    href: NMF.Expressions.INotifyExpression-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TTarget
   - name: )
 - uid: NMF.Expressions.Observable.And*
   commentId: Overload:NMF.Expressions.Observable.And

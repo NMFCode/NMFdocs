@@ -9,15 +9,23 @@ items:
   - NMF.Interop.Cmof.Slot.Children
   - NMF.Interop.Cmof.Slot.ClassInstance
   - NMF.Interop.Cmof.Slot.DefiningFeature
+  - NMF.Interop.Cmof.Slot.DefiningFeatureChanged
+  - NMF.Interop.Cmof.Slot.DefiningFeatureChanging
   - NMF.Interop.Cmof.Slot.GetClass
   - NMF.Interop.Cmof.Slot.GetCollectionForFeature(System.String)
   - NMF.Interop.Cmof.Slot.GetCompositionName(System.Object)
   - NMF.Interop.Cmof.Slot.GetExpressionForReference(System.String)
   - NMF.Interop.Cmof.Slot.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Cmof.Slot.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
+  - NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Slot.OnOwningInstanceChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Slot.OnOwningInstanceChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Cmof.Slot.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Interop.Cmof.Slot.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   - NMF.Interop.Cmof.Slot.OwningInstance
+  - NMF.Interop.Cmof.Slot.OwningInstanceChanged
+  - NMF.Interop.Cmof.Slot.OwningInstanceChanging
   - NMF.Interop.Cmof.Slot.ReferencedElements
   - NMF.Interop.Cmof.Slot.SetFeature(System.String,System.Object)
   - NMF.Interop.Cmof.Slot.Value
@@ -35,7 +43,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Slot
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 39
+    startLine: 38
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -72,20 +80,76 @@ items:
   - System.ComponentModel.INotifyPropertyChanging
   inheritedMembers:
   - NMF.Interop.Cmof.Element.OwnedComment
+  - NMF.Interop.Cmof.Element.Has_ownerCalling
+  - NMF.Interop.Cmof.Element.Has_ownerCalled
+  - NMF.Interop.Cmof.Element.Not_own_selfCalling
+  - NMF.Interop.Cmof.Element.Not_own_selfCalled
+  - NMF.Interop.Cmof.Element.AllOwnedElementsCalling
+  - NMF.Interop.Cmof.Element.AllOwnedElementsCalled
+  - NMF.Interop.Cmof.Element.MustBeOwnedCalling
+  - NMF.Interop.Cmof.Element.MustBeOwnedCalled
+  - NMF.Interop.Cmof.Element.GetMetaClassCalling
+  - NMF.Interop.Cmof.Element.GetMetaClassCalled
+  - NMF.Interop.Cmof.Element.ContainerCalling
+  - NMF.Interop.Cmof.Element.ContainerCalled
+  - NMF.Interop.Cmof.Element.IsInstanceOfTypeCalling
+  - NMF.Interop.Cmof.Element.IsInstanceOfTypeCalled
+  - NMF.Interop.Cmof.Element.DeleteCalling
+  - NMF.Interop.Cmof.Element.DeleteCalled
   - NMF.Interop.Cmof.Element.Has_owner(System.Object,System.Object)
+  - NMF.Interop.Cmof.Element.OnHas_ownerCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnHas_ownerCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.Not_own_self(System.Object,System.Object)
+  - NMF.Interop.Cmof.Element.OnNot_own_selfCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnNot_own_selfCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.AllOwnedElements
+  - NMF.Interop.Cmof.Element.OnAllOwnedElementsCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnAllOwnedElementsCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.MustBeOwned
+  - NMF.Interop.Cmof.Element.OnMustBeOwnedCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnMustBeOwnedCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.GetMetaClass
+  - NMF.Interop.Cmof.Element.OnGetMetaClassCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnGetMetaClassCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.Container
+  - NMF.Interop.Cmof.Element.OnContainerCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnContainerCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.IsInstanceOfType(NMF.Interop.Cmof.IClass,System.Boolean)
+  - NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Element.Delete
+  - NMF.Interop.Cmof.Element.OnDeleteCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Element.OnDeleteCalled(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.GetCalling
+  - NMF.Interop.Cmof.Object.GetCalled
+  - NMF.Interop.Cmof.Object.EqualsCalling
+  - NMF.Interop.Cmof.Object.EqualsCalled
+  - NMF.Interop.Cmof.Object.SetCalling
+  - NMF.Interop.Cmof.Object.SetCalled
+  - NMF.Interop.Cmof.Object.IsSetCalling
+  - NMF.Interop.Cmof.Object.IsSetCalled
+  - NMF.Interop.Cmof.Object.UnsetCalling
+  - NMF.Interop.Cmof.Object.UnsetCalled
+  - NMF.Interop.Cmof.Object.InvokeCalling
+  - NMF.Interop.Cmof.Object.InvokeCalled
   - NMF.Interop.Cmof.Object.Get(NMF.Interop.Cmof.IProperty)
+  - NMF.Interop.Cmof.Object.OnGetCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.OnGetCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Object.Equals(NMF.Interop.Cmof.IObject)
+  - NMF.Interop.Cmof.Object.OnEqualsCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.OnEqualsCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Object.Set(NMF.Interop.Cmof.IProperty,NMF.Interop.Cmof.IObject)
+  - NMF.Interop.Cmof.Object.OnSetCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.OnSetCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Object.IsSet(NMF.Interop.Cmof.IProperty)
+  - NMF.Interop.Cmof.Object.OnIsSetCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.OnIsSetCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Object.Unset(NMF.Interop.Cmof.IProperty)
+  - NMF.Interop.Cmof.Object.OnUnsetCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.OnUnsetCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Cmof.Object.Invoke(NMF.Interop.Cmof.IOperation,System.Collections.Generic.IEnumerable{NMF.Interop.Cmof.IArgument})
+  - NMF.Interop.Cmof.Object.OnInvokeCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Cmof.Object.OnInvokeCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
   - NMF.Models.ModelElement.Lock
@@ -104,6 +168,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -180,7 +245,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 68
+    startLine: 67
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -211,7 +276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DefiningFeature
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 78
+    startLine: 77
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -265,7 +330,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Value
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 113
+    startLine: 114
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -335,7 +400,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OwningInstance
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 130
+    startLine: 131
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -407,7 +472,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 150
+    startLine: 151
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -441,7 +506,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 161
+    startLine: 162
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -475,7 +540,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 172
+    startLine: 173
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -488,6 +553,226 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Cmof.Slot.ClassInstance*
+- uid: NMF.Interop.Cmof.Slot.DefiningFeatureChanging
+  commentId: E:NMF.Interop.Cmof.Slot.DefiningFeatureChanging
+  id: DefiningFeatureChanging
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: DefiningFeatureChanging
+  nameWithType: Slot.DefiningFeatureChanging
+  fullName: NMF.Interop.Cmof.Slot.DefiningFeatureChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DefiningFeatureChanging
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 188
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the DefiningFeature property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> DefiningFeatureChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event DefiningFeatureChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.ISlot.DefiningFeatureChanging
+- uid: NMF.Interop.Cmof.Slot.DefiningFeatureChanged
+  commentId: E:NMF.Interop.Cmof.Slot.DefiningFeatureChanged
+  id: DefiningFeatureChanged
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: DefiningFeatureChanged
+  nameWithType: Slot.DefiningFeatureChanged
+  fullName: NMF.Interop.Cmof.Slot.DefiningFeatureChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DefiningFeatureChanged
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 193
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the DefiningFeature property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> DefiningFeatureChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event DefiningFeatureChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.ISlot.DefiningFeatureChanged
+- uid: NMF.Interop.Cmof.Slot.OwningInstanceChanging
+  commentId: E:NMF.Interop.Cmof.Slot.OwningInstanceChanging
+  id: OwningInstanceChanging
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: OwningInstanceChanging
+  nameWithType: Slot.OwningInstanceChanging
+  fullName: NMF.Interop.Cmof.Slot.OwningInstanceChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OwningInstanceChanging
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 198
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the OwningInstance property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> OwningInstanceChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event OwningInstanceChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.ISlot.OwningInstanceChanging
+- uid: NMF.Interop.Cmof.Slot.OwningInstanceChanged
+  commentId: E:NMF.Interop.Cmof.Slot.OwningInstanceChanged
+  id: OwningInstanceChanged
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: OwningInstanceChanged
+  nameWithType: Slot.OwningInstanceChanged
+  fullName: NMF.Interop.Cmof.Slot.OwningInstanceChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OwningInstanceChanged
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 203
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the OwningInstance property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> OwningInstanceChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event OwningInstanceChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.ISlot.OwningInstanceChanged
+- uid: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnDefiningFeatureChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: OnDefiningFeatureChanging(ValueChangedEventArgs)
+  nameWithType: Slot.OnDefiningFeatureChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnDefiningFeatureChanging
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 214
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the DefiningFeatureChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnDefiningFeatureChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnDefiningFeatureChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging*
+- uid: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnDefiningFeatureChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: OnDefiningFeatureChanged(ValueChangedEventArgs)
+  nameWithType: Slot.OnDefiningFeatureChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnDefiningFeatureChanged
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 227
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the DefiningFeatureChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnDefiningFeatureChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnDefiningFeatureChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged*
+- uid: NMF.Interop.Cmof.Slot.OnOwningInstanceChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Slot.OnOwningInstanceChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnOwningInstanceChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: OnOwningInstanceChanging(ValueChangedEventArgs)
+  nameWithType: Slot.OnOwningInstanceChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Slot.OnOwningInstanceChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnOwningInstanceChanging
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 283
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the OwningInstanceChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnOwningInstanceChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnOwningInstanceChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Slot.OnOwningInstanceChanging*
 - uid: NMF.Interop.Cmof.Slot.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Cmof.Slot.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   id: OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
@@ -506,7 +791,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnParentChanging
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 237
+    startLine: 297
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -524,6 +809,38 @@ items:
     content.vb: Protected Overrides Sub OnParentChanging(newParent As IModelElement, oldParent As IModelElement)
   overridden: NMF.Models.ModelElement.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   overload: NMF.Interop.Cmof.Slot.OnParentChanging*
+- uid: NMF.Interop.Cmof.Slot.OnOwningInstanceChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Slot.OnOwningInstanceChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnOwningInstanceChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Slot
+  langs:
+  - csharp
+  - vb
+  name: OnOwningInstanceChanged(ValueChangedEventArgs)
+  nameWithType: Slot.OnOwningInstanceChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Slot.OnOwningInstanceChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Slot.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnOwningInstanceChanged
+    path: src/Interop/UMLInterop/Cmof/Slot.cs
+    startLine: 310
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the OwningInstanceChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnOwningInstanceChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnOwningInstanceChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Slot.OnOwningInstanceChanged*
 - uid: NMF.Interop.Cmof.Slot.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Cmof.Slot.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   id: OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
@@ -542,7 +859,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnParentChanged
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 250
+    startLine: 324
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -578,7 +895,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 272
+    startLine: 347
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -614,7 +931,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 288
+    startLine: 363
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -656,7 +973,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 317
+    startLine: 392
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -695,7 +1012,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 331
+    startLine: 406
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -734,7 +1051,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 351
+    startLine: 426
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -773,7 +1090,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCompositionName
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 369
+    startLine: 444
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -812,7 +1129,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/UMLInterop/Cmof/Slot.cs
-    startLine: 381
+    startLine: 456
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -939,6 +1256,118 @@ references:
   name: OwnedComment
   nameWithType: Element.OwnedComment
   fullName: NMF.Interop.Cmof.Element.OwnedComment
+- uid: NMF.Interop.Cmof.Element.Has_ownerCalling
+  commentId: E:NMF.Interop.Cmof.Element.Has_ownerCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_Has_ownerCalling
+  name: Has_ownerCalling
+  nameWithType: Element.Has_ownerCalling
+  fullName: NMF.Interop.Cmof.Element.Has_ownerCalling
+- uid: NMF.Interop.Cmof.Element.Has_ownerCalled
+  commentId: E:NMF.Interop.Cmof.Element.Has_ownerCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_Has_ownerCalled
+  name: Has_ownerCalled
+  nameWithType: Element.Has_ownerCalled
+  fullName: NMF.Interop.Cmof.Element.Has_ownerCalled
+- uid: NMF.Interop.Cmof.Element.Not_own_selfCalling
+  commentId: E:NMF.Interop.Cmof.Element.Not_own_selfCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_Not_own_selfCalling
+  name: Not_own_selfCalling
+  nameWithType: Element.Not_own_selfCalling
+  fullName: NMF.Interop.Cmof.Element.Not_own_selfCalling
+- uid: NMF.Interop.Cmof.Element.Not_own_selfCalled
+  commentId: E:NMF.Interop.Cmof.Element.Not_own_selfCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_Not_own_selfCalled
+  name: Not_own_selfCalled
+  nameWithType: Element.Not_own_selfCalled
+  fullName: NMF.Interop.Cmof.Element.Not_own_selfCalled
+- uid: NMF.Interop.Cmof.Element.AllOwnedElementsCalling
+  commentId: E:NMF.Interop.Cmof.Element.AllOwnedElementsCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_AllOwnedElementsCalling
+  name: AllOwnedElementsCalling
+  nameWithType: Element.AllOwnedElementsCalling
+  fullName: NMF.Interop.Cmof.Element.AllOwnedElementsCalling
+- uid: NMF.Interop.Cmof.Element.AllOwnedElementsCalled
+  commentId: E:NMF.Interop.Cmof.Element.AllOwnedElementsCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_AllOwnedElementsCalled
+  name: AllOwnedElementsCalled
+  nameWithType: Element.AllOwnedElementsCalled
+  fullName: NMF.Interop.Cmof.Element.AllOwnedElementsCalled
+- uid: NMF.Interop.Cmof.Element.MustBeOwnedCalling
+  commentId: E:NMF.Interop.Cmof.Element.MustBeOwnedCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_MustBeOwnedCalling
+  name: MustBeOwnedCalling
+  nameWithType: Element.MustBeOwnedCalling
+  fullName: NMF.Interop.Cmof.Element.MustBeOwnedCalling
+- uid: NMF.Interop.Cmof.Element.MustBeOwnedCalled
+  commentId: E:NMF.Interop.Cmof.Element.MustBeOwnedCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_MustBeOwnedCalled
+  name: MustBeOwnedCalled
+  nameWithType: Element.MustBeOwnedCalled
+  fullName: NMF.Interop.Cmof.Element.MustBeOwnedCalled
+- uid: NMF.Interop.Cmof.Element.GetMetaClassCalling
+  commentId: E:NMF.Interop.Cmof.Element.GetMetaClassCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_GetMetaClassCalling
+  name: GetMetaClassCalling
+  nameWithType: Element.GetMetaClassCalling
+  fullName: NMF.Interop.Cmof.Element.GetMetaClassCalling
+- uid: NMF.Interop.Cmof.Element.GetMetaClassCalled
+  commentId: E:NMF.Interop.Cmof.Element.GetMetaClassCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_GetMetaClassCalled
+  name: GetMetaClassCalled
+  nameWithType: Element.GetMetaClassCalled
+  fullName: NMF.Interop.Cmof.Element.GetMetaClassCalled
+- uid: NMF.Interop.Cmof.Element.ContainerCalling
+  commentId: E:NMF.Interop.Cmof.Element.ContainerCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_ContainerCalling
+  name: ContainerCalling
+  nameWithType: Element.ContainerCalling
+  fullName: NMF.Interop.Cmof.Element.ContainerCalling
+- uid: NMF.Interop.Cmof.Element.ContainerCalled
+  commentId: E:NMF.Interop.Cmof.Element.ContainerCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_ContainerCalled
+  name: ContainerCalled
+  nameWithType: Element.ContainerCalled
+  fullName: NMF.Interop.Cmof.Element.ContainerCalled
+- uid: NMF.Interop.Cmof.Element.IsInstanceOfTypeCalling
+  commentId: E:NMF.Interop.Cmof.Element.IsInstanceOfTypeCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_IsInstanceOfTypeCalling
+  name: IsInstanceOfTypeCalling
+  nameWithType: Element.IsInstanceOfTypeCalling
+  fullName: NMF.Interop.Cmof.Element.IsInstanceOfTypeCalling
+- uid: NMF.Interop.Cmof.Element.IsInstanceOfTypeCalled
+  commentId: E:NMF.Interop.Cmof.Element.IsInstanceOfTypeCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_IsInstanceOfTypeCalled
+  name: IsInstanceOfTypeCalled
+  nameWithType: Element.IsInstanceOfTypeCalled
+  fullName: NMF.Interop.Cmof.Element.IsInstanceOfTypeCalled
+- uid: NMF.Interop.Cmof.Element.DeleteCalling
+  commentId: E:NMF.Interop.Cmof.Element.DeleteCalling
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_DeleteCalling
+  name: DeleteCalling
+  nameWithType: Element.DeleteCalling
+  fullName: NMF.Interop.Cmof.Element.DeleteCalling
+- uid: NMF.Interop.Cmof.Element.DeleteCalled
+  commentId: E:NMF.Interop.Cmof.Element.DeleteCalled
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_DeleteCalled
+  name: DeleteCalled
+  nameWithType: Element.DeleteCalled
+  fullName: NMF.Interop.Cmof.Element.DeleteCalled
 - uid: NMF.Interop.Cmof.Element.Has_owner(System.Object,System.Object)
   commentId: M:NMF.Interop.Cmof.Element.Has_owner(System.Object,System.Object)
   parent: NMF.Interop.Cmof.Element
@@ -981,6 +1410,52 @@ references:
     name: Object
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnHas_ownerCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnHas_ownerCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnHas_ownerCalling_NMF_Models_OperationCallEventArgs_
+  name: OnHas_ownerCalling(OperationCallEventArgs)
+  nameWithType: Element.OnHas_ownerCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnHas_ownerCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnHas_ownerCalling(NMF.Models.OperationCallEventArgs)
+    name: OnHas_ownerCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnHas_ownerCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnHas_ownerCalling(NMF.Models.OperationCallEventArgs)
+    name: OnHas_ownerCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnHas_ownerCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnHas_ownerCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnHas_ownerCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnHas_ownerCalled_NMF_Models_OperationCallEventArgs_
+  name: OnHas_ownerCalled(OperationCallEventArgs)
+  nameWithType: Element.OnHas_ownerCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnHas_ownerCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnHas_ownerCalled(NMF.Models.OperationCallEventArgs)
+    name: OnHas_ownerCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnHas_ownerCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnHas_ownerCalled(NMF.Models.OperationCallEventArgs)
+    name: OnHas_ownerCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnHas_ownerCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Interop.Cmof.Element.Not_own_self(System.Object,System.Object)
   commentId: M:NMF.Interop.Cmof.Element.Not_own_self(System.Object,System.Object)
@@ -1025,6 +1500,52 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
+- uid: NMF.Interop.Cmof.Element.OnNot_own_selfCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnNot_own_selfCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnNot_own_selfCalling_NMF_Models_OperationCallEventArgs_
+  name: OnNot_own_selfCalling(OperationCallEventArgs)
+  nameWithType: Element.OnNot_own_selfCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnNot_own_selfCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnNot_own_selfCalling(NMF.Models.OperationCallEventArgs)
+    name: OnNot_own_selfCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnNot_own_selfCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnNot_own_selfCalling(NMF.Models.OperationCallEventArgs)
+    name: OnNot_own_selfCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnNot_own_selfCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnNot_own_selfCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnNot_own_selfCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnNot_own_selfCalled_NMF_Models_OperationCallEventArgs_
+  name: OnNot_own_selfCalled(OperationCallEventArgs)
+  nameWithType: Element.OnNot_own_selfCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnNot_own_selfCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnNot_own_selfCalled(NMF.Models.OperationCallEventArgs)
+    name: OnNot_own_selfCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnNot_own_selfCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnNot_own_selfCalled(NMF.Models.OperationCallEventArgs)
+    name: OnNot_own_selfCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnNot_own_selfCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Element.AllOwnedElements
   commentId: M:NMF.Interop.Cmof.Element.AllOwnedElements
   parent: NMF.Interop.Cmof.Element
@@ -1043,6 +1564,52 @@ references:
     name: AllOwnedElements
     href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_AllOwnedElements
   - name: (
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnAllOwnedElementsCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnAllOwnedElementsCalling_NMF_Models_OperationCallEventArgs_
+  name: OnAllOwnedElementsCalling(OperationCallEventArgs)
+  nameWithType: Element.OnAllOwnedElementsCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalling(NMF.Models.OperationCallEventArgs)
+    name: OnAllOwnedElementsCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnAllOwnedElementsCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalling(NMF.Models.OperationCallEventArgs)
+    name: OnAllOwnedElementsCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnAllOwnedElementsCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnAllOwnedElementsCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnAllOwnedElementsCalled_NMF_Models_OperationCallEventArgs_
+  name: OnAllOwnedElementsCalled(OperationCallEventArgs)
+  nameWithType: Element.OnAllOwnedElementsCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalled(NMF.Models.OperationCallEventArgs)
+    name: OnAllOwnedElementsCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnAllOwnedElementsCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnAllOwnedElementsCalled(NMF.Models.OperationCallEventArgs)
+    name: OnAllOwnedElementsCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnAllOwnedElementsCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Interop.Cmof.Element.MustBeOwned
   commentId: M:NMF.Interop.Cmof.Element.MustBeOwned
@@ -1063,6 +1630,52 @@ references:
     href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_MustBeOwned
   - name: (
   - name: )
+- uid: NMF.Interop.Cmof.Element.OnMustBeOwnedCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnMustBeOwnedCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnMustBeOwnedCalling_NMF_Models_OperationCallEventArgs_
+  name: OnMustBeOwnedCalling(OperationCallEventArgs)
+  nameWithType: Element.OnMustBeOwnedCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnMustBeOwnedCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnMustBeOwnedCalling(NMF.Models.OperationCallEventArgs)
+    name: OnMustBeOwnedCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnMustBeOwnedCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnMustBeOwnedCalling(NMF.Models.OperationCallEventArgs)
+    name: OnMustBeOwnedCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnMustBeOwnedCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnMustBeOwnedCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnMustBeOwnedCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnMustBeOwnedCalled_NMF_Models_OperationCallEventArgs_
+  name: OnMustBeOwnedCalled(OperationCallEventArgs)
+  nameWithType: Element.OnMustBeOwnedCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnMustBeOwnedCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnMustBeOwnedCalled(NMF.Models.OperationCallEventArgs)
+    name: OnMustBeOwnedCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnMustBeOwnedCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnMustBeOwnedCalled(NMF.Models.OperationCallEventArgs)
+    name: OnMustBeOwnedCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnMustBeOwnedCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Element.GetMetaClass
   commentId: M:NMF.Interop.Cmof.Element.GetMetaClass
   parent: NMF.Interop.Cmof.Element
@@ -1082,6 +1695,52 @@ references:
     href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_GetMetaClass
   - name: (
   - name: )
+- uid: NMF.Interop.Cmof.Element.OnGetMetaClassCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnGetMetaClassCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnGetMetaClassCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetMetaClassCalling(OperationCallEventArgs)
+  nameWithType: Element.OnGetMetaClassCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnGetMetaClassCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnGetMetaClassCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetMetaClassCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnGetMetaClassCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnGetMetaClassCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetMetaClassCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnGetMetaClassCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnGetMetaClassCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnGetMetaClassCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnGetMetaClassCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetMetaClassCalled(OperationCallEventArgs)
+  nameWithType: Element.OnGetMetaClassCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnGetMetaClassCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnGetMetaClassCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetMetaClassCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnGetMetaClassCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnGetMetaClassCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetMetaClassCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnGetMetaClassCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Element.Container
   commentId: M:NMF.Interop.Cmof.Element.Container
   parent: NMF.Interop.Cmof.Element
@@ -1100,6 +1759,52 @@ references:
     name: Container
     href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_Container
   - name: (
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnContainerCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnContainerCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnContainerCalling_NMF_Models_OperationCallEventArgs_
+  name: OnContainerCalling(OperationCallEventArgs)
+  nameWithType: Element.OnContainerCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnContainerCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnContainerCalling(NMF.Models.OperationCallEventArgs)
+    name: OnContainerCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnContainerCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnContainerCalling(NMF.Models.OperationCallEventArgs)
+    name: OnContainerCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnContainerCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnContainerCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnContainerCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnContainerCalled_NMF_Models_OperationCallEventArgs_
+  name: OnContainerCalled(OperationCallEventArgs)
+  nameWithType: Element.OnContainerCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnContainerCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnContainerCalled(NMF.Models.OperationCallEventArgs)
+    name: OnContainerCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnContainerCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnContainerCalled(NMF.Models.OperationCallEventArgs)
+    name: OnContainerCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnContainerCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Interop.Cmof.Element.IsInstanceOfType(NMF.Interop.Cmof.IClass,System.Boolean)
   commentId: M:NMF.Interop.Cmof.Element.IsInstanceOfType(NMF.Interop.Cmof.IClass,System.Boolean)
@@ -1142,6 +1847,52 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnIsInstanceOfTypeCalling_NMF_Models_OperationCallEventArgs_
+  name: OnIsInstanceOfTypeCalling(OperationCallEventArgs)
+  nameWithType: Element.OnIsInstanceOfTypeCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalling(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceOfTypeCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnIsInstanceOfTypeCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalling(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceOfTypeCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnIsInstanceOfTypeCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnIsInstanceOfTypeCalled_NMF_Models_OperationCallEventArgs_
+  name: OnIsInstanceOfTypeCalled(OperationCallEventArgs)
+  nameWithType: Element.OnIsInstanceOfTypeCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalled(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceOfTypeCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnIsInstanceOfTypeCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnIsInstanceOfTypeCalled(NMF.Models.OperationCallEventArgs)
+    name: OnIsInstanceOfTypeCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnIsInstanceOfTypeCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Element.Delete
   commentId: M:NMF.Interop.Cmof.Element.Delete
   parent: NMF.Interop.Cmof.Element
@@ -1161,6 +1912,136 @@ references:
     href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_Delete
   - name: (
   - name: )
+- uid: NMF.Interop.Cmof.Element.OnDeleteCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnDeleteCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnDeleteCalling_NMF_Models_OperationCallEventArgs_
+  name: OnDeleteCalling(OperationCallEventArgs)
+  nameWithType: Element.OnDeleteCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnDeleteCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnDeleteCalling(NMF.Models.OperationCallEventArgs)
+    name: OnDeleteCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnDeleteCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnDeleteCalling(NMF.Models.OperationCallEventArgs)
+    name: OnDeleteCalling
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnDeleteCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Element.OnDeleteCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Element.OnDeleteCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Element
+  href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnDeleteCalled_NMF_Models_OperationCallEventArgs_
+  name: OnDeleteCalled(OperationCallEventArgs)
+  nameWithType: Element.OnDeleteCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Element.OnDeleteCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Element.OnDeleteCalled(NMF.Models.OperationCallEventArgs)
+    name: OnDeleteCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnDeleteCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Element.OnDeleteCalled(NMF.Models.OperationCallEventArgs)
+    name: OnDeleteCalled
+    href: NMF.Interop.Cmof.Element.html#NMF_Interop_Cmof_Element_OnDeleteCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.GetCalling
+  commentId: E:NMF.Interop.Cmof.Object.GetCalling
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_GetCalling
+  name: GetCalling
+  nameWithType: Object.GetCalling
+  fullName: NMF.Interop.Cmof.Object.GetCalling
+- uid: NMF.Interop.Cmof.Object.GetCalled
+  commentId: E:NMF.Interop.Cmof.Object.GetCalled
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_GetCalled
+  name: GetCalled
+  nameWithType: Object.GetCalled
+  fullName: NMF.Interop.Cmof.Object.GetCalled
+- uid: NMF.Interop.Cmof.Object.EqualsCalling
+  commentId: E:NMF.Interop.Cmof.Object.EqualsCalling
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_EqualsCalling
+  name: EqualsCalling
+  nameWithType: Object.EqualsCalling
+  fullName: NMF.Interop.Cmof.Object.EqualsCalling
+- uid: NMF.Interop.Cmof.Object.EqualsCalled
+  commentId: E:NMF.Interop.Cmof.Object.EqualsCalled
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_EqualsCalled
+  name: EqualsCalled
+  nameWithType: Object.EqualsCalled
+  fullName: NMF.Interop.Cmof.Object.EqualsCalled
+- uid: NMF.Interop.Cmof.Object.SetCalling
+  commentId: E:NMF.Interop.Cmof.Object.SetCalling
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_SetCalling
+  name: SetCalling
+  nameWithType: Object.SetCalling
+  fullName: NMF.Interop.Cmof.Object.SetCalling
+- uid: NMF.Interop.Cmof.Object.SetCalled
+  commentId: E:NMF.Interop.Cmof.Object.SetCalled
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_SetCalled
+  name: SetCalled
+  nameWithType: Object.SetCalled
+  fullName: NMF.Interop.Cmof.Object.SetCalled
+- uid: NMF.Interop.Cmof.Object.IsSetCalling
+  commentId: E:NMF.Interop.Cmof.Object.IsSetCalling
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_IsSetCalling
+  name: IsSetCalling
+  nameWithType: Object.IsSetCalling
+  fullName: NMF.Interop.Cmof.Object.IsSetCalling
+- uid: NMF.Interop.Cmof.Object.IsSetCalled
+  commentId: E:NMF.Interop.Cmof.Object.IsSetCalled
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_IsSetCalled
+  name: IsSetCalled
+  nameWithType: Object.IsSetCalled
+  fullName: NMF.Interop.Cmof.Object.IsSetCalled
+- uid: NMF.Interop.Cmof.Object.UnsetCalling
+  commentId: E:NMF.Interop.Cmof.Object.UnsetCalling
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_UnsetCalling
+  name: UnsetCalling
+  nameWithType: Object.UnsetCalling
+  fullName: NMF.Interop.Cmof.Object.UnsetCalling
+- uid: NMF.Interop.Cmof.Object.UnsetCalled
+  commentId: E:NMF.Interop.Cmof.Object.UnsetCalled
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_UnsetCalled
+  name: UnsetCalled
+  nameWithType: Object.UnsetCalled
+  fullName: NMF.Interop.Cmof.Object.UnsetCalled
+- uid: NMF.Interop.Cmof.Object.InvokeCalling
+  commentId: E:NMF.Interop.Cmof.Object.InvokeCalling
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_InvokeCalling
+  name: InvokeCalling
+  nameWithType: Object.InvokeCalling
+  fullName: NMF.Interop.Cmof.Object.InvokeCalling
+- uid: NMF.Interop.Cmof.Object.InvokeCalled
+  commentId: E:NMF.Interop.Cmof.Object.InvokeCalled
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_InvokeCalled
+  name: InvokeCalled
+  nameWithType: Object.InvokeCalled
+  fullName: NMF.Interop.Cmof.Object.InvokeCalled
 - uid: NMF.Interop.Cmof.Object.Get(NMF.Interop.Cmof.IProperty)
   commentId: M:NMF.Interop.Cmof.Object.Get(NMF.Interop.Cmof.IProperty)
   parent: NMF.Interop.Cmof.Object
@@ -1186,6 +2067,52 @@ references:
     name: IProperty
     href: NMF.Interop.Cmof.IProperty.html
   - name: )
+- uid: NMF.Interop.Cmof.Object.OnGetCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnGetCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnGetCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetCalling(OperationCallEventArgs)
+  nameWithType: Object.OnGetCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnGetCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnGetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnGetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnGetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnGetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnGetCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnGetCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnGetCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetCalled(OperationCallEventArgs)
+  nameWithType: Object.OnGetCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnGetCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnGetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnGetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnGetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnGetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Object.Equals(NMF.Interop.Cmof.IObject)
   commentId: M:NMF.Interop.Cmof.Object.Equals(NMF.Interop.Cmof.IObject)
   parent: NMF.Interop.Cmof.Object
@@ -1210,6 +2137,52 @@ references:
   - uid: NMF.Interop.Cmof.IObject
     name: IObject
     href: NMF.Interop.Cmof.IObject.html
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnEqualsCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnEqualsCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnEqualsCalling_NMF_Models_OperationCallEventArgs_
+  name: OnEqualsCalling(OperationCallEventArgs)
+  nameWithType: Object.OnEqualsCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnEqualsCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnEqualsCalling(NMF.Models.OperationCallEventArgs)
+    name: OnEqualsCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnEqualsCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnEqualsCalling(NMF.Models.OperationCallEventArgs)
+    name: OnEqualsCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnEqualsCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnEqualsCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnEqualsCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnEqualsCalled_NMF_Models_OperationCallEventArgs_
+  name: OnEqualsCalled(OperationCallEventArgs)
+  nameWithType: Object.OnEqualsCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnEqualsCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnEqualsCalled(NMF.Models.OperationCallEventArgs)
+    name: OnEqualsCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnEqualsCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnEqualsCalled(NMF.Models.OperationCallEventArgs)
+    name: OnEqualsCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnEqualsCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Interop.Cmof.Object.Set(NMF.Interop.Cmof.IProperty,NMF.Interop.Cmof.IObject)
   commentId: M:NMF.Interop.Cmof.Object.Set(NMF.Interop.Cmof.IProperty,NMF.Interop.Cmof.IObject)
@@ -1246,6 +2219,52 @@ references:
     name: IObject
     href: NMF.Interop.Cmof.IObject.html
   - name: )
+- uid: NMF.Interop.Cmof.Object.OnSetCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnSetCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnSetCalling_NMF_Models_OperationCallEventArgs_
+  name: OnSetCalling(OperationCallEventArgs)
+  nameWithType: Object.OnSetCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnSetCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnSetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnSetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnSetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnSetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnSetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnSetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnSetCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnSetCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnSetCalled_NMF_Models_OperationCallEventArgs_
+  name: OnSetCalled(OperationCallEventArgs)
+  nameWithType: Object.OnSetCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnSetCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnSetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnSetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnSetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnSetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnSetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnSetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Object.IsSet(NMF.Interop.Cmof.IProperty)
   commentId: M:NMF.Interop.Cmof.Object.IsSet(NMF.Interop.Cmof.IProperty)
   parent: NMF.Interop.Cmof.Object
@@ -1271,6 +2290,52 @@ references:
     name: IProperty
     href: NMF.Interop.Cmof.IProperty.html
   - name: )
+- uid: NMF.Interop.Cmof.Object.OnIsSetCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnIsSetCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnIsSetCalling_NMF_Models_OperationCallEventArgs_
+  name: OnIsSetCalling(OperationCallEventArgs)
+  nameWithType: Object.OnIsSetCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnIsSetCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnIsSetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnIsSetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnIsSetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnIsSetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnIsSetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnIsSetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnIsSetCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnIsSetCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnIsSetCalled_NMF_Models_OperationCallEventArgs_
+  name: OnIsSetCalled(OperationCallEventArgs)
+  nameWithType: Object.OnIsSetCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnIsSetCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnIsSetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnIsSetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnIsSetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnIsSetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnIsSetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnIsSetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.Object.Unset(NMF.Interop.Cmof.IProperty)
   commentId: M:NMF.Interop.Cmof.Object.Unset(NMF.Interop.Cmof.IProperty)
   parent: NMF.Interop.Cmof.Object
@@ -1295,6 +2360,52 @@ references:
   - uid: NMF.Interop.Cmof.IProperty
     name: IProperty
     href: NMF.Interop.Cmof.IProperty.html
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnUnsetCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnUnsetCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnUnsetCalling_NMF_Models_OperationCallEventArgs_
+  name: OnUnsetCalling(OperationCallEventArgs)
+  nameWithType: Object.OnUnsetCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnUnsetCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnUnsetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnUnsetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnUnsetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnUnsetCalling(NMF.Models.OperationCallEventArgs)
+    name: OnUnsetCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnUnsetCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnUnsetCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnUnsetCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnUnsetCalled_NMF_Models_OperationCallEventArgs_
+  name: OnUnsetCalled(OperationCallEventArgs)
+  nameWithType: Object.OnUnsetCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnUnsetCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnUnsetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnUnsetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnUnsetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnUnsetCalled(NMF.Models.OperationCallEventArgs)
+    name: OnUnsetCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnUnsetCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Interop.Cmof.Object.Invoke(NMF.Interop.Cmof.IOperation,System.Collections.Generic.IEnumerable{NMF.Interop.Cmof.IArgument})
   commentId: M:NMF.Interop.Cmof.Object.Invoke(NMF.Interop.Cmof.IOperation,System.Collections.Generic.IEnumerable{NMF.Interop.Cmof.IArgument})
@@ -1348,6 +2459,52 @@ references:
     name: IArgument
     href: NMF.Interop.Cmof.IArgument.html
   - name: )
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnInvokeCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnInvokeCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnInvokeCalling_NMF_Models_OperationCallEventArgs_
+  name: OnInvokeCalling(OperationCallEventArgs)
+  nameWithType: Object.OnInvokeCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnInvokeCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnInvokeCalling(NMF.Models.OperationCallEventArgs)
+    name: OnInvokeCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnInvokeCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnInvokeCalling(NMF.Models.OperationCallEventArgs)
+    name: OnInvokeCalling
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnInvokeCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.Object.OnInvokeCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Cmof.Object.OnInvokeCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Cmof.Object
+  href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnInvokeCalled_NMF_Models_OperationCallEventArgs_
+  name: OnInvokeCalled(OperationCallEventArgs)
+  nameWithType: Object.OnInvokeCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Cmof.Object.OnInvokeCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Cmof.Object.OnInvokeCalled(NMF.Models.OperationCallEventArgs)
+    name: OnInvokeCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnInvokeCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Cmof.Object.OnInvokeCalled(NMF.Models.OperationCallEventArgs)
+    name: OnInvokeCalled
+    href: NMF.Interop.Cmof.Object.html#NMF_Interop_Cmof_Object_OnInvokeCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: NMF.Models.ModelElement.Model
   commentId: P:NMF.Models.ModelElement.Model
@@ -1666,6 +2823,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -3049,6 +4212,117 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
+- uid: NMF.Interop.Cmof.ISlot.DefiningFeatureChanging
+  commentId: E:NMF.Interop.Cmof.ISlot.DefiningFeatureChanging
+  parent: NMF.Interop.Cmof.ISlot
+  href: NMF.Interop.Cmof.ISlot.html#NMF_Interop_Cmof_ISlot_DefiningFeatureChanging
+  name: DefiningFeatureChanging
+  nameWithType: ISlot.DefiningFeatureChanging
+  fullName: NMF.Interop.Cmof.ISlot.DefiningFeatureChanging
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<ValueChangedEventArgs>
+  nameWithType: EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
+  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
+  name.vb: EventHandler(Of ValueChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.ISlot.DefiningFeatureChanged
+  commentId: E:NMF.Interop.Cmof.ISlot.DefiningFeatureChanged
+  parent: NMF.Interop.Cmof.ISlot
+  href: NMF.Interop.Cmof.ISlot.html#NMF_Interop_Cmof_ISlot_DefiningFeatureChanged
+  name: DefiningFeatureChanged
+  nameWithType: ISlot.DefiningFeatureChanged
+  fullName: NMF.Interop.Cmof.ISlot.DefiningFeatureChanged
+- uid: NMF.Interop.Cmof.ISlot.OwningInstanceChanging
+  commentId: E:NMF.Interop.Cmof.ISlot.OwningInstanceChanging
+  parent: NMF.Interop.Cmof.ISlot
+  href: NMF.Interop.Cmof.ISlot.html#NMF_Interop_Cmof_ISlot_OwningInstanceChanging
+  name: OwningInstanceChanging
+  nameWithType: ISlot.OwningInstanceChanging
+  fullName: NMF.Interop.Cmof.ISlot.OwningInstanceChanging
+- uid: NMF.Interop.Cmof.ISlot.OwningInstanceChanged
+  commentId: E:NMF.Interop.Cmof.ISlot.OwningInstanceChanged
+  parent: NMF.Interop.Cmof.ISlot
+  href: NMF.Interop.Cmof.ISlot.html#NMF_Interop_Cmof_ISlot_OwningInstanceChanged
+  name: OwningInstanceChanged
+  nameWithType: ISlot.OwningInstanceChanged
+  fullName: NMF.Interop.Cmof.ISlot.OwningInstanceChanged
+- uid: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging*
+  commentId: Overload:NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging
+  href: NMF.Interop.Cmof.Slot.html#NMF_Interop_Cmof_Slot_OnDefiningFeatureChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnDefiningFeatureChanging
+  nameWithType: Slot.OnDefiningFeatureChanging
+  fullName: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanging
+- uid: NMF.Expressions.ValueChangedEventArgs
+  commentId: T:NMF.Expressions.ValueChangedEventArgs
+  parent: NMF.Expressions
+  name: ValueChangedEventArgs
+  nameWithType: ValueChangedEventArgs
+  fullName: NMF.Expressions.ValueChangedEventArgs
+- uid: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged*
+  commentId: Overload:NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged
+  href: NMF.Interop.Cmof.Slot.html#NMF_Interop_Cmof_Slot_OnDefiningFeatureChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnDefiningFeatureChanged
+  nameWithType: Slot.OnDefiningFeatureChanged
+  fullName: NMF.Interop.Cmof.Slot.OnDefiningFeatureChanged
+- uid: NMF.Interop.Cmof.Slot.OnOwningInstanceChanging*
+  commentId: Overload:NMF.Interop.Cmof.Slot.OnOwningInstanceChanging
+  href: NMF.Interop.Cmof.Slot.html#NMF_Interop_Cmof_Slot_OnOwningInstanceChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnOwningInstanceChanging
+  nameWithType: Slot.OnOwningInstanceChanging
+  fullName: NMF.Interop.Cmof.Slot.OnOwningInstanceChanging
 - uid: NMF.Models.ModelElement.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   commentId: M:NMF.Models.ModelElement.OnParentChanging(NMF.Models.IModelElement,NMF.Models.IModelElement)
   parent: NMF.Models.ModelElement
@@ -3083,6 +4357,12 @@ references:
   name: OnParentChanging
   nameWithType: Slot.OnParentChanging
   fullName: NMF.Interop.Cmof.Slot.OnParentChanging
+- uid: NMF.Interop.Cmof.Slot.OnOwningInstanceChanged*
+  commentId: Overload:NMF.Interop.Cmof.Slot.OnOwningInstanceChanged
+  href: NMF.Interop.Cmof.Slot.html#NMF_Interop_Cmof_Slot_OnOwningInstanceChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnOwningInstanceChanged
+  nameWithType: Slot.OnOwningInstanceChanged
+  fullName: NMF.Interop.Cmof.Slot.OnOwningInstanceChanged
 - uid: NMF.Models.ModelElement.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   commentId: M:NMF.Models.ModelElement.OnParentChanged(NMF.Models.IModelElement,NMF.Models.IModelElement)
   parent: NMF.Models.ModelElement

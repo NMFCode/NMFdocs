@@ -12,6 +12,7 @@ items:
   - NMF.AnyText.LspServer.CodeAction(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.CodeLens(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
+  - NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
   - NMF.AnyText.LspServer.DidChange(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.DidClose(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.DidOpen(Newtonsoft.Json.Linq.JToken)
@@ -42,6 +43,7 @@ items:
   - NMF.AnyText.LspServer.QuerySemanticTokens(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.QuerySemanticTokensDelta(Newtonsoft.Json.Linq.JToken)
   - NMF.AnyText.LspServer.QuerySemanticTokensRange(Newtonsoft.Json.Linq.JToken)
+  - NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType,System.String,System.Boolean)
   - NMF.AnyText.LspServer.SetRpc(StreamJsonRpc.JsonRpc)
   - NMF.AnyText.LspServer.SetTrace(Newtonsoft.Json.Linq.JToken)
@@ -50,6 +52,7 @@ items:
   - NMF.AnyText.LspServer.ShowMessageRequestAsync(System.String,NMF.AnyText.MessageType,System.Collections.Generic.IEnumerable{System.String})
   - NMF.AnyText.LspServer.ShowReferencesNotifyAsync(NMF.AnyText.ParsePosition)
   - NMF.AnyText.LspServer.Shutdown
+  - NMF.AnyText.LspServer.SystemCommands
   - NMF.AnyText.LspServer.TryGetOpenDocument(System.String,NMF.AnyText.Parser@)
   langs:
   - csharp
@@ -204,6 +207,47 @@ items:
   overload: NMF.AnyText.LspServer.CodeLens*
   implements:
   - NMF.AnyText.ILspServer.CodeLens(Newtonsoft.Json.Linq.JToken)
+- uid: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  commentId: M:NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  id: CodeLensesForDocument(NMF.AnyText.Parser,System.Collections.Generic.IEnumerable{LspTypes.CodeLens})
+  parent: NMF.AnyText.LspServer
+  langs:
+  - csharp
+  - vb
+  name: CodeLensesForDocument(Parser, IEnumerable<CodeLens>)
+  nameWithType: LspServer.CodeLensesForDocument(Parser, IEnumerable<CodeLens>)
+  fullName: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable<LspTypes.CodeLens>)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Lsp/LspServer.CodeLens.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CodeLensesForDocument
+    path: src/AnyText/AnyText.Lsp/LspServer.CodeLens.cs
+    startLine: 96
+  assemblies:
+  - NMF.AnyText.Lsp
+  namespace: NMF.AnyText
+  summary: Calculates the code lenses for the given document
+  example: []
+  syntax:
+    content: protected virtual IEnumerable<CodeLens> CodeLensesForDocument(Parser document, IEnumerable<CodeLens> codeLenses)
+    parameters:
+    - id: document
+      type: NMF.AnyText.Parser
+      description: the document for which to calculate code lenses
+    - id: codeLenses
+      type: System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+      description: the code lenses obtained from the document
+    return:
+      type: System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+      description: A collection of code lenses
+    content.vb: Protected Overridable Function CodeLensesForDocument(document As Parser, codeLenses As IEnumerable(Of CodeLens)) As IEnumerable(Of CodeLens)
+  overload: NMF.AnyText.LspServer.CodeLensesForDocument*
+  nameWithType.vb: LspServer.CodeLensesForDocument(Parser, IEnumerable(Of CodeLens))
+  fullName.vb: NMF.AnyText.LspServer.CodeLensesForDocument(NMF.AnyText.Parser, System.Collections.Generic.IEnumerable(Of LspTypes.CodeLens))
+  name.vb: CodeLensesForDocument(Parser, IEnumerable(Of CodeLens))
 - uid: NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.CodeLensResolve(Newtonsoft.Json.Linq.JToken)
   id: CodeLensResolve(Newtonsoft.Json.Linq.JToken)
@@ -222,7 +266,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CodeLensResolve
     path: src/AnyText/AnyText.Lsp/LspServer.CodeLens.cs
-    startLine: 58
+    startLine: 102
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -296,7 +340,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: PostProcessCompletions
     path: src/AnyText/AnyText.Lsp/LspServer.CompletionHandler.cs
-    startLine: 65
+    startLine: 78
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -337,7 +381,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -372,7 +416,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -410,7 +454,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OpenDocuments
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 94
+    startLine: 103
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -441,7 +485,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TryGetOpenDocument
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 102
+    startLine: 111
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -482,7 +526,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Documents
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 110
+    startLine: 119
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -513,7 +557,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Grammars
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 115
+    startLine: 124
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -544,7 +588,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetRpc
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 118
+    startLine: 127
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -578,7 +622,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Initialize
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 124
+    startLine: 133
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -642,7 +686,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Initialized
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 203
+    startLine: 212
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -672,7 +716,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Shutdown
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 209
+    startLine: 218
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -702,7 +746,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidChange
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 218
+    startLine: 227
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -736,7 +780,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnDocumentUpdate
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 249
+    startLine: 265
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -777,7 +821,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidSave
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 257
+    startLine: 273
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -817,7 +861,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidClose
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 275
+    startLine: 291
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -851,7 +895,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CloseDocument
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 289
+    startLine: 313
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -883,7 +927,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OpenNewDocument
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 295
+    startLine: 319
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -915,7 +959,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: DidOpen
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 298
+    startLine: 322
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -949,7 +993,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Exit
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 337
+    startLine: 368
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -979,7 +1023,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SendLogMessageAsync
     path: src/AnyText/AnyText.Lsp/LspServer.cs
-    startLine: 348
+    startLine: 379
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -1004,6 +1048,49 @@ items:
   nameWithType.vb: LspServer.SendLogMessageAsync(MessageType, String, Boolean)
   fullName.vb: NMF.AnyText.LspServer.SendLogMessageAsync(NMF.AnyText.MessageType, String, Boolean)
   name.vb: SendLogMessageAsync(MessageType, String, Boolean)
+- uid: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  commentId: M:NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  id: SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  parent: NMF.AnyText.LspServer
+  langs:
+  - csharp
+  - vb
+  name: SendDiagnosticsAsync(ParseContext, string)
+  nameWithType: LspServer.SendDiagnosticsAsync(ParseContext, string)
+  fullName: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, string)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Lsp/LspServer.Diagnostics.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SendDiagnosticsAsync
+    path: src/AnyText/AnyText.Lsp/LspServer.Diagnostics.cs
+    startLine: 17
+  assemblies:
+  - NMF.AnyText.Lsp
+  namespace: NMF.AnyText
+  summary: Updates diagnostics information for the given Uri
+  example: []
+  syntax:
+    content: public Task SendDiagnosticsAsync(ParseContext context, string uri)
+    parameters:
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context with errors
+    - id: uri
+      type: System.String
+      description: the uri of the document
+    return:
+      type: System.Threading.Tasks.Task
+      description: a task that completes when sending diagnostics completed
+    content.vb: Public Function SendDiagnosticsAsync(context As ParseContext, uri As String) As Task
+  overload: NMF.AnyText.LspServer.SendDiagnosticsAsync*
+  implements:
+  - NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  nameWithType.vb: LspServer.SendDiagnosticsAsync(ParseContext, String)
+  fullName.vb: NMF.AnyText.LspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, String)
+  name.vb: SendDiagnosticsAsync(ParseContext, String)
 - uid: NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
   id: QueryDocumentHighlights(Newtonsoft.Json.Linq.JToken)
@@ -1157,6 +1244,37 @@ items:
   nameWithType.vb: LspServer.HandleExtensionCommand(String, Object())
   fullName.vb: NMF.AnyText.LspServer.HandleExtensionCommand(String, Object())
   name.vb: HandleExtensionCommand(String, Object())
+- uid: NMF.AnyText.LspServer.SystemCommands
+  commentId: P:NMF.AnyText.LspServer.SystemCommands
+  id: SystemCommands
+  parent: NMF.AnyText.LspServer
+  langs:
+  - csharp
+  - vb
+  name: SystemCommands
+  nameWithType: LspServer.SystemCommands
+  fullName: NMF.AnyText.LspServer.SystemCommands
+  type: Property
+  source:
+    remote:
+      path: AnyText/AnyText.Lsp/LspServer.ExecuteCommand.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SystemCommands
+    path: src/AnyText/AnyText.Lsp/LspServer.ExecuteCommand.cs
+    startLine: 153
+  assemblies:
+  - NMF.AnyText.Lsp
+  namespace: NMF.AnyText
+  summary: Gets a collection of available system commands
+  example: []
+  syntax:
+    content: protected virtual IEnumerable<string> SystemCommands { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Protected Overridable ReadOnly Property SystemCommands As IEnumerable(Of String)
+  overload: NMF.AnyText.LspServer.SystemCommands*
 - uid: NMF.AnyText.LspServer.QueryReferences(Newtonsoft.Json.Linq.JToken)
   commentId: M:NMF.AnyText.LspServer.QueryReferences(Newtonsoft.Json.Linq.JToken)
   id: QueryReferences(Newtonsoft.Json.Linq.JToken)
@@ -1215,7 +1333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ShowReferencesNotifyAsync
     path: src/AnyText/AnyText.Lsp/LspServer.FindReferences.cs
-    startLine: 36
+    startLine: 48
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -1326,7 +1444,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FormattingRange
     path: src/AnyText/AnyText.Lsp/LspServer.Formatting.cs
-    startLine: 29
+    startLine: 41
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -1604,7 +1722,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: QuerySemanticTokensDelta
     path: src/AnyText/AnyText.Lsp/LspServer.SemanticToken.cs
-    startLine: 35
+    startLine: 48
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -1644,7 +1762,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: QuerySemanticTokensRange
     path: src/AnyText/AnyText.Lsp/LspServer.SemanticToken.cs
-    startLine: 77
+    startLine: 89
   assemblies:
   - NMF.AnyText.Lsp
   namespace: NMF.AnyText
@@ -2431,6 +2549,117 @@ references:
     isExternal: true
   - name: (
   - name: )
+- uid: NMF.AnyText.LspServer.CodeLensesForDocument*
+  commentId: Overload:NMF.AnyText.LspServer.CodeLensesForDocument
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensesForDocument_NMF_AnyText_Parser_System_Collections_Generic_IEnumerable_LspTypes_CodeLens__
+  name: CodeLensesForDocument
+  nameWithType: LspServer.CodeLensesForDocument
+  fullName: NMF.AnyText.LspServer.CodeLensesForDocument
+- uid: NMF.AnyText.Parser
+  commentId: T:NMF.AnyText.Parser
+  parent: NMF.AnyText
+  href: NMF.AnyText.Parser.html
+  name: Parser
+  nameWithType: Parser
+  fullName: NMF.AnyText.Parser
+- uid: System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+  commentId: T:System.Collections.Generic.IEnumerable{LspTypes.CodeLens}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<CodeLens>
+  nameWithType: IEnumerable<CodeLens>
+  fullName: System.Collections.Generic.IEnumerable<LspTypes.CodeLens>
+  nameWithType.vb: IEnumerable(Of CodeLens)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of LspTypes.CodeLens)
+  name.vb: IEnumerable(Of CodeLens)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: LspTypes.CodeLens
+    name: CodeLens
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LspTypes.CodeLens
+    name: CodeLens
+    isExternal: true
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: NMF.AnyText.LspServer.CodeLensResolve*
   commentId: Overload:NMF.AnyText.LspServer.CodeLensResolve
   href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_CodeLensResolve_Newtonsoft_Json_Linq_JToken_
@@ -2521,13 +2750,6 @@ references:
   name: PostProcessCompletions
   nameWithType: LspServer.PostProcessCompletions
   fullName: NMF.AnyText.LspServer.PostProcessCompletions
-- uid: NMF.AnyText.Parser
-  commentId: T:NMF.AnyText.Parser
-  parent: NMF.AnyText
-  href: NMF.AnyText.Parser.html
-  name: Parser
-  nameWithType: Parser
-  fullName: NMF.AnyText.Parser
 - uid: System.Collections.Generic.IEnumerable{LspTypes.CompletionItem}
   commentId: T:System.Collections.Generic.IEnumerable{LspTypes.CompletionItem}
   parent: System.Collections.Generic
@@ -2561,71 +2783,6 @@ references:
     name: CompletionItem
     isExternal: true
   - name: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: NMF.AnyText.LspServer.#ctor*
   commentId: Overload:NMF.AnyText.LspServer.#ctor
   href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer__ctor_NMF_AnyText_Grammars_Grammar___
@@ -3493,6 +3650,60 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
+- uid: NMF.AnyText.LspServer.SendDiagnosticsAsync*
+  commentId: Overload:NMF.AnyText.LspServer.SendDiagnosticsAsync
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  name: SendDiagnosticsAsync
+  nameWithType: LspServer.SendDiagnosticsAsync
+  fullName: NMF.AnyText.LspServer.SendDiagnosticsAsync
+- uid: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  commentId: M:NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+  parent: NMF.AnyText.ILspServer
+  isExternal: true
+  href: NMF.AnyText.ILspServer.html#NMF_AnyText_ILspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  name: SendDiagnosticsAsync(ParseContext, string)
+  nameWithType: ILspServer.SendDiagnosticsAsync(ParseContext, string)
+  fullName: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, string)
+  nameWithType.vb: ILspServer.SendDiagnosticsAsync(ParseContext, String)
+  fullName.vb: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext, String)
+  name.vb: SendDiagnosticsAsync(ParseContext, String)
+  spec.csharp:
+  - uid: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+    name: SendDiagnosticsAsync
+    href: NMF.AnyText.ILspServer.html#NMF_AnyText_ILspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  - name: (
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.ILspServer.SendDiagnosticsAsync(NMF.AnyText.ParseContext,System.String)
+    name: SendDiagnosticsAsync
+    href: NMF.AnyText.ILspServer.html#NMF_AnyText_ILspServer_SendDiagnosticsAsync_NMF_AnyText_ParseContext_System_String_
+  - name: (
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.AnyText.ParseContext
+  commentId: T:NMF.AnyText.ParseContext
+  parent: NMF.AnyText
+  href: NMF.AnyText.ParseContext.html
+  name: ParseContext
+  nameWithType: ParseContext
+  fullName: NMF.AnyText.ParseContext
 - uid: LspTypes.DocumentHighlight
   commentId: T:LspTypes.DocumentHighlight
   isExternal: true
@@ -3663,6 +3874,47 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: (
+  - name: )
+- uid: NMF.AnyText.LspServer.SystemCommands*
+  commentId: Overload:NMF.AnyText.LspServer.SystemCommands
+  href: NMF.AnyText.LspServer.html#NMF_AnyText_LspServer_SystemCommands
+  name: SystemCommands
+  nameWithType: LspServer.SystemCommands
+  fullName: NMF.AnyText.LspServer.SystemCommands
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: LspTypes.Location
   commentId: T:LspTypes.Location
@@ -4304,41 +4556,6 @@ references:
   name: ShowMessageRequestAsync
   nameWithType: LspServer.ShowMessageRequestAsync
   fullName: NMF.AnyText.LspServer.ShowMessageRequestAsync
-- uid: System.Collections.Generic.IEnumerable{System.String}
-  commentId: T:System.Collections.Generic.IEnumerable{System.String}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<string>
-  nameWithType: IEnumerable<string>
-  fullName: System.Collections.Generic.IEnumerable<string>
-  nameWithType.vb: IEnumerable(Of String)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
-  name.vb: IEnumerable(Of String)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
 - uid: System.Threading.Tasks.Task{LspTypes.MessageActionItem}
   commentId: T:System.Threading.Tasks.Task{LspTypes.MessageActionItem}
   parent: System.Threading.Tasks

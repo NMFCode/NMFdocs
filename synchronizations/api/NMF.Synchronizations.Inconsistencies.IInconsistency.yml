@@ -7,8 +7,12 @@ items:
   children:
   - NMF.Synchronizations.Inconsistencies.IInconsistency.CanResolveLeft
   - NMF.Synchronizations.Inconsistencies.IInconsistency.CanResolveRight
+  - NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft
+  - NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight
+  - NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement
   - NMF.Synchronizations.Inconsistencies.IInconsistency.ResolveLeft
   - NMF.Synchronizations.Inconsistencies.IInconsistency.ResolveRight
+  - NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement
   langs:
   - csharp
   - vb
@@ -32,8 +36,77 @@ items:
   syntax:
     content: 'public interface IInconsistency : IEquatable<IInconsistency>'
     content.vb: Public Interface IInconsistency Inherits IEquatable(Of IInconsistency)
+  derivedClasses:
+  - NMF.Synchronizations.Inconsistencies.IncrementalPropertyConsistencyCheck`3
+  - NMF.Synchronizations.Inconsistencies.IncrementalReferenceConsistencyCheck`4
+  - NMF.Synchronizations.Inconsistencies.MissingItemInconsistency`1
+  - NMF.Synchronizations.Inconsistencies.MissingItemInconsistency`2
+  - NMF.Synchronizations.Inconsistencies.ReferenceInconsistency`4
+  - NMF.Synchronizations.PropertyInequality`3
   inheritedMembers:
   - System.IEquatable{NMF.Synchronizations.Inconsistencies.IInconsistency}.Equals(NMF.Synchronizations.Inconsistencies.IInconsistency)
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement
+  commentId: P:NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement
+  id: LeftElement
+  parent: NMF.Synchronizations.Inconsistencies.IInconsistency
+  langs:
+  - csharp
+  - vb
+  name: LeftElement
+  nameWithType: IInconsistency.LeftElement
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: LeftElement
+    path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+    startLine: 12
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations.Inconsistencies
+  summary: The object that this inconsistency is anchored at on the left side
+  example: []
+  syntax:
+    content: object LeftElement { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: ReadOnly Property LeftElement As Object
+  overload: NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement*
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement
+  commentId: P:NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement
+  id: RightElement
+  parent: NMF.Synchronizations.Inconsistencies.IInconsistency
+  langs:
+  - csharp
+  - vb
+  name: RightElement
+  nameWithType: IInconsistency.RightElement
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement
+  type: Property
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: RightElement
+    path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+    startLine: 17
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations.Inconsistencies
+  summary: The object that this inconsistency is anchored at on the right side
+  example: []
+  syntax:
+    content: object RightElement { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: ReadOnly Property RightElement As Object
+  overload: NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement*
 - uid: NMF.Synchronizations.Inconsistencies.IInconsistency.CanResolveLeft
   commentId: P:NMF.Synchronizations.Inconsistencies.IInconsistency.CanResolveLeft
   id: CanResolveLeft
@@ -52,7 +125,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanResolveLeft
     path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
-    startLine: 12
+    startLine: 22
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations.Inconsistencies
@@ -83,7 +156,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanResolveRight
     path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
-    startLine: 17
+    startLine: 27
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations.Inconsistencies
@@ -114,7 +187,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveLeft
     path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
-    startLine: 22
+    startLine: 32
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations.Inconsistencies
@@ -142,7 +215,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveRight
     path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
-    startLine: 27
+    startLine: 37
   assemblies:
   - NMF.Synchronizations
   namespace: NMF.Synchronizations.Inconsistencies
@@ -152,6 +225,68 @@ items:
     content: void ResolveRight()
     content.vb: Sub ResolveRight()
   overload: NMF.Synchronizations.Inconsistencies.IInconsistency.ResolveRight*
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft
+  commentId: M:NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft
+  id: DescribeLeft
+  parent: NMF.Synchronizations.Inconsistencies.IInconsistency
+  langs:
+  - csharp
+  - vb
+  name: DescribeLeft()
+  nameWithType: IInconsistency.DescribeLeft()
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft()
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DescribeLeft
+    path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+    startLine: 43
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations.Inconsistencies
+  summary: Gets a string describing the inconsistency from the point of view of the left side
+  example: []
+  syntax:
+    content: string DescribeLeft()
+    return:
+      type: System.String
+      description: a human-readable description of the inconsistency
+    content.vb: Function DescribeLeft() As String
+  overload: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft*
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight
+  commentId: M:NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight
+  id: DescribeRight
+  parent: NMF.Synchronizations.Inconsistencies.IInconsistency
+  langs:
+  - csharp
+  - vb
+  name: DescribeRight()
+  nameWithType: IInconsistency.DescribeRight()
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight()
+  type: Method
+  source:
+    remote:
+      path: Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DescribeRight
+    path: src/Synchronizations/Synchronizations/Inconsistencies/IInconsistency.cs
+    startLine: 49
+  assemblies:
+  - NMF.Synchronizations
+  namespace: NMF.Synchronizations.Inconsistencies
+  summary: Gets a string describing the inconsistency from the point of view of the right side
+  example: []
+  syntax:
+    content: string DescribeRight()
+    return:
+      type: System.String
+      description: a human-readable description of the inconsistency
+    content.vb: Function DescribeRight() As String
+  overload: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight*
 references:
 - uid: NMF.Synchronizations.Inconsistencies
   commentId: N:NMF.Synchronizations.Inconsistencies
@@ -306,6 +441,29 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement*
+  commentId: Overload:NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement
+  href: NMF.Synchronizations.Inconsistencies.IInconsistency.html#NMF_Synchronizations_Inconsistencies_IInconsistency_LeftElement
+  name: LeftElement
+  nameWithType: IInconsistency.LeftElement
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.LeftElement
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement*
+  commentId: Overload:NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement
+  href: NMF.Synchronizations.Inconsistencies.IInconsistency.html#NMF_Synchronizations_Inconsistencies_IInconsistency_RightElement
+  name: RightElement
+  nameWithType: IInconsistency.RightElement
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.RightElement
 - uid: NMF.Synchronizations.Inconsistencies.IInconsistency.CanResolveLeft*
   commentId: Overload:NMF.Synchronizations.Inconsistencies.IInconsistency.CanResolveLeft
   href: NMF.Synchronizations.Inconsistencies.IInconsistency.html#NMF_Synchronizations_Inconsistencies_IInconsistency_CanResolveLeft
@@ -341,3 +499,26 @@ references:
   name: ResolveRight
   nameWithType: IInconsistency.ResolveRight
   fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.ResolveRight
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft*
+  commentId: Overload:NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft
+  href: NMF.Synchronizations.Inconsistencies.IInconsistency.html#NMF_Synchronizations_Inconsistencies_IInconsistency_DescribeLeft
+  name: DescribeLeft
+  nameWithType: IInconsistency.DescribeLeft
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeLeft
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight*
+  commentId: Overload:NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight
+  href: NMF.Synchronizations.Inconsistencies.IInconsistency.html#NMF_Synchronizations_Inconsistencies_IInconsistency_DescribeRight
+  name: DescribeRight
+  nameWithType: IInconsistency.DescribeRight
+  fullName: NMF.Synchronizations.Inconsistencies.IInconsistency.DescribeRight

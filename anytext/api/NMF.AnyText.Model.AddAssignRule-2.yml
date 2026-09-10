@@ -6,11 +6,13 @@ items:
   parent: NMF.AnyText.Model
   children:
   - NMF.AnyText.Model.AddAssignRule`2.CanSynthesize(System.Object,NMF.AnyText.ParseContext,NMF.AnyText.SynthesisPlan)
+  - NMF.AnyText.Model.AddAssignRule`2.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
   - NMF.AnyText.Model.AddAssignRule`2.CreateSynthesisRequirements
   - NMF.AnyText.Model.AddAssignRule`2.Feature
   - NMF.AnyText.Model.AddAssignRule`2.GetCollection(`0,NMF.AnyText.ParseContext)
   - NMF.AnyText.Model.AddAssignRule`2.IndexCalculation
   - NMF.AnyText.Model.AddAssignRule`2.OnActivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Boolean)
+  - NMF.AnyText.Model.AddAssignRule`2.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Model.AddAssignRule`2.OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   - NMF.AnyText.Model.AddAssignRule`2.OnValueChange(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Model.AddAssignRule`2.Synthesize(System.Object,NMF.AnyText.ParsePosition,NMF.AnyText.ParseContext)
@@ -74,8 +76,8 @@ items:
   - NMF.AnyText.Rules.QuoteRule.InnerRule
   - NMF.AnyText.Rules.QuoteRule.FormattingInstructions
   - NMF.AnyText.Rules.QuoteRule.Match(NMF.AnyText.ParseContext,NMF.AnyText.RecursionContext,NMF.AnyText.ParsePosition@)
+  - NMF.AnyText.Rules.QuoteRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.QuoteRule.Recover(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.ParsePosition@)
-  - NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
   - NMF.AnyText.Rules.QuoteRule.CanStartWith(NMF.AnyText.Rules.Rule,System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
   - NMF.AnyText.Rules.QuoteRule.AddLeftRecursionRules(System.Collections.Generic.List{NMF.AnyText.Rules.Rule},System.Collections.Generic.List{NMF.AnyText.Rules.RecursiveContinuation})
   - NMF.AnyText.Rules.QuoteRule.IsEpsilonAllowed(System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
@@ -102,6 +104,7 @@ items:
   - NMF.AnyText.Rules.Rule.CanSynthesize(System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.IO.TextWriter,System.String)
+  - NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   - NMF.AnyText.Rules.Rule.CreateEpsilonRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.CanStartWith(NMF.AnyText.Rules.Rule)
@@ -163,6 +166,52 @@ items:
   nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).OnActivate(RuleApplication, ParseContext, Boolean)
   fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).OnActivate(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, Boolean)
   name.vb: OnActivate(RuleApplication, ParseContext, Boolean)
+- uid: NMF.AnyText.Model.AddAssignRule`2.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Model.AddAssignRule`2.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  id: OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Model.AddAssignRule`2
+  langs:
+  - csharp
+  - vb
+  name: OnContextChanged(RuleApplication, object, object, ParseContext)
+  nameWithType: AddAssignRule<TSemanticElement, TProperty>.OnContextChanged(RuleApplication, object, object, ParseContext)
+  fullName: NMF.AnyText.Model.AddAssignRule<TSemanticElement, TProperty>.OnContextChanged(NMF.AnyText.Rules.RuleApplication, object, object, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Model/AddAssignRule.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnContextChanged
+    path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
+    startLine: 24
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Model
+  summary: Gets called when the parent rule application changes while the rule application is active
+  example: []
+  syntax:
+    content: protected override bool OnContextChanged(RuleApplication ruleApplication, object oldContext, object newContext, ParseContext context)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application whose parent changed
+    - id: oldContext
+      type: System.Object
+    - id: newContext
+      type: System.Object
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the context in which the parent changed
+    return:
+      type: System.Boolean
+      description: true, if the context change is handled, otherwise false and the context change should be propagated further
+    content.vb: Protected Overrides Function OnContextChanged(ruleApplication As RuleApplication, oldContext As Object, newContext As Object, context As ParseContext) As Boolean
+  overridden: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  overload: NMF.AnyText.Model.AddAssignRule`2.OnContextChanged*
+  nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).OnContextChanged(NMF.AnyText.Rules.RuleApplication, Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChanged(RuleApplication, Object, Object, ParseContext)
 - uid: NMF.AnyText.Model.AddAssignRule`2.OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Model.AddAssignRule`2.OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   id: OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
@@ -181,7 +230,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnDeactivate
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 48
+    startLine: 75
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -219,7 +268,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnValueChange
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 57
+    startLine: 85
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -245,6 +294,51 @@ items:
   overload: NMF.AnyText.Model.AddAssignRule`2.OnValueChange*
   nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).OnValueChange(RuleApplication, ParseContext, RuleApplication)
   fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).OnValueChange(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, NMF.AnyText.Rules.RuleApplication)
+- uid: NMF.AnyText.Model.AddAssignRule`2.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+  commentId: M:NMF.AnyText.Model.AddAssignRule`2.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+  id: CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+  parent: NMF.AnyText.Model.AddAssignRule`2
+  langs:
+  - csharp
+  - vb
+  name: CreateRuleApplication(RuleApplication, ParseContext, object)
+  nameWithType: AddAssignRule<TSemanticElement, TProperty>.CreateRuleApplication(RuleApplication, ParseContext, object)
+  fullName: NMF.AnyText.Model.AddAssignRule<TSemanticElement, TProperty>.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, object)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Model/AddAssignRule.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateRuleApplication
+    path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
+    startLine: 133
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Model
+  summary: Creates the rule application for this rule
+  example: []
+  syntax:
+    content: protected override RuleApplication CreateRuleApplication(RuleApplication app, ParseContext context, object semanticElement = null)
+    parameters:
+    - id: app
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the inner rule application
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context
+    - id: semanticElement
+      type: System.Object
+      description: the semantic element for which the rule application is created or null, if not yet known
+    return:
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the new rule application
+    content.vb: Protected Overrides Function CreateRuleApplication(app As RuleApplication, context As ParseContext, semanticElement As Object = Nothing) As RuleApplication
+  overridden: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+  overload: NMF.AnyText.Model.AddAssignRule`2.CreateRuleApplication*
+  nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).CreateRuleApplication(RuleApplication, ParseContext, Object)
+  fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).CreateRuleApplication(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, Object)
+  name.vb: CreateRuleApplication(RuleApplication, ParseContext, Object)
 - uid: NMF.AnyText.Model.AddAssignRule`2.IndexCalculation
   commentId: P:NMF.AnyText.Model.AddAssignRule`2.IndexCalculation
   id: IndexCalculation
@@ -263,7 +357,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IndexCalculation
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 107
+    startLine: 173
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -296,7 +390,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Feature
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 112
+    startLine: 178
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -329,7 +423,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanSynthesize
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 117
+    startLine: 183
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -374,7 +468,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synthesize
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 127
+    startLine: 193
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -385,7 +479,7 @@ items:
     parameters:
     - id: semanticElement
       type: System.Object
-      description: ''
+      description: the semantic element that shall be synthesized
     - id: position
       type: NMF.AnyText.ParsePosition
       description: the parse position at which the element should be synthesized
@@ -419,7 +513,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateSynthesisRequirements
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 137
+    startLine: 203
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -453,7 +547,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollection
     path: src/AnyText/AnyText.Core/Model/AddAssignRule.cs
-    startLine: 148
+    startLine: 214
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Model
@@ -602,6 +696,31 @@ references:
     name: ParsePosition
     href: NMF.AnyText.ParsePosition.html
   - name: )
+- uid: NMF.AnyText.Rules.QuoteRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.Rules.QuoteRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.Rules.QuoteRule
+  href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  name: GetEssentialInnerRuleApplication(RuleApplication)
+  nameWithType: QuoteRule.GetEssentialInnerRuleApplication(RuleApplication)
+  fullName: NMF.AnyText.Rules.QuoteRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.QuoteRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+    name: GetEssentialInnerRuleApplication
+    href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.QuoteRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+    name: GetEssentialInnerRuleApplication
+    href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
 - uid: NMF.AnyText.Rules.QuoteRule.Recover(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.ParsePosition@)
   commentId: M:NMF.AnyText.Rules.QuoteRule.Recover(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.ParsePosition@)
   parent: NMF.AnyText.Rules.QuoteRule
@@ -671,57 +790,6 @@ references:
   - uid: NMF.AnyText.ParsePosition
     name: ParsePosition
     href: NMF.AnyText.ParsePosition.html
-  - name: )
-- uid: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
-  commentId: M:NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
-  parent: NMF.AnyText.Rules.QuoteRule
-  isExternal: true
-  href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
-  name: CreateRuleApplication(RuleApplication, ParseContext, object)
-  nameWithType: QuoteRule.CreateRuleApplication(RuleApplication, ParseContext, object)
-  fullName: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, object)
-  nameWithType.vb: QuoteRule.CreateRuleApplication(RuleApplication, ParseContext, Object)
-  fullName.vb: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, Object)
-  name.vb: CreateRuleApplication(RuleApplication, ParseContext, Object)
-  spec.csharp:
-  - uid: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
-    name: CreateRuleApplication
-    href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
-  - name: (
-  - uid: NMF.AnyText.Rules.RuleApplication
-    name: RuleApplication
-    href: NMF.AnyText.Rules.RuleApplication.html
-  - name: ','
-  - name: " "
-  - uid: NMF.AnyText.ParseContext
-    name: ParseContext
-    href: NMF.AnyText.ParseContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
-    name: CreateRuleApplication
-    href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
-  - name: (
-  - uid: NMF.AnyText.Rules.RuleApplication
-    name: RuleApplication
-    href: NMF.AnyText.Rules.RuleApplication.html
-  - name: ','
-  - name: " "
-  - uid: NMF.AnyText.ParseContext
-    name: ParseContext
-    href: NMF.AnyText.ParseContext.html
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.AnyText.Rules.QuoteRule.CanStartWith(NMF.AnyText.Rules.Rule,System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
   commentId: M:NMF.AnyText.Rules.QuoteRule.CanStartWith(NMF.AnyText.Rules.Rule,System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
@@ -1328,6 +1396,83 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  isExternal: true
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  name: SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  nameWithType: Rule.SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.SynthesizeChanges(object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable<string>, NMF.AnyText.ParseContext)
+  nameWithType.vb: Rule.SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.SynthesizeChanges(Object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable(Of String), NMF.AnyText.ParseContext)
+  name.vb: SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+    name: SynthesizeChanges
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+    name: SynthesizeChanges
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
   - name: )
 - uid: NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   commentId: M:NMF.AnyText.Rules.Rule.IsEpsilonAllowed
@@ -1953,6 +2098,77 @@ references:
   - uid: NMF.AnyText
     name: AnyText
     href: NMF.AnyText.html
+- uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  isExternal: true
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChanged(RuleApplication, object, object, ParseContext)
+  nameWithType: Rule.OnContextChanged(RuleApplication, object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, object, object, NMF.AnyText.ParseContext)
+  nameWithType.vb: Rule.OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChanged
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChanged
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+- uid: NMF.AnyText.Model.AddAssignRule`2.OnContextChanged*
+  commentId: Overload:NMF.AnyText.Model.AddAssignRule`2.OnContextChanged
+  href: NMF.AnyText.Model.AddAssignRule-2.html#NMF_AnyText_Model_AddAssignRule_2_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChanged
+  nameWithType: AddAssignRule<TSemanticElement, TProperty>.OnContextChanged
+  fullName: NMF.AnyText.Model.AddAssignRule<TSemanticElement, TProperty>.OnContextChanged
+  nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).OnContextChanged
+  fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).OnContextChanged
 - uid: NMF.AnyText.Rules.Rule.OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Rules.Rule.OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   parent: NMF.AnyText.Rules.Rule
@@ -2049,6 +2265,65 @@ references:
   fullName: NMF.AnyText.Model.AddAssignRule<TSemanticElement, TProperty>.OnValueChange
   nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).OnValueChange
   fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).OnValueChange
+- uid: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+  commentId: M:NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+  parent: NMF.AnyText.Rules.QuoteRule
+  isExternal: true
+  href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
+  name: CreateRuleApplication(RuleApplication, ParseContext, object)
+  nameWithType: QuoteRule.CreateRuleApplication(RuleApplication, ParseContext, object)
+  fullName: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, object)
+  nameWithType.vb: QuoteRule.CreateRuleApplication(RuleApplication, ParseContext, Object)
+  fullName.vb: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext, Object)
+  name.vb: CreateRuleApplication(RuleApplication, ParseContext, Object)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+    name: CreateRuleApplication
+    href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.QuoteRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Object)
+    name: CreateRuleApplication
+    href: NMF.AnyText.Rules.QuoteRule.html#NMF_AnyText_Rules_QuoteRule_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.AnyText.Model.AddAssignRule`2.CreateRuleApplication*
+  commentId: Overload:NMF.AnyText.Model.AddAssignRule`2.CreateRuleApplication
+  href: NMF.AnyText.Model.AddAssignRule-2.html#NMF_AnyText_Model_AddAssignRule_2_CreateRuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_System_Object_
+  name: CreateRuleApplication
+  nameWithType: AddAssignRule<TSemanticElement, TProperty>.CreateRuleApplication
+  fullName: NMF.AnyText.Model.AddAssignRule<TSemanticElement, TProperty>.CreateRuleApplication
+  nameWithType.vb: AddAssignRule(Of TSemanticElement, TProperty).CreateRuleApplication
+  fullName.vb: NMF.AnyText.Model.AddAssignRule(Of TSemanticElement, TProperty).CreateRuleApplication
 - uid: NMF.AnyText.Model.AddAssignRule`2.IndexCalculation*
   commentId: Overload:NMF.AnyText.Model.AddAssignRule`2.IndexCalculation
   href: NMF.AnyText.Model.AddAssignRule-2.html#NMF_AnyText_Model_AddAssignRule_2_IndexCalculation

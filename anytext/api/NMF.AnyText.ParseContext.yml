@@ -6,12 +6,13 @@ items:
   parent: NMF.AnyText
   children:
   - NMF.AnyText.ParseContext.#ctor(NMF.AnyText.Grammars.Grammar,NMF.AnyText.Matcher,System.StringComparison)
-  - NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  - NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  - NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  - NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  - NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   - NMF.AnyText.ParseContext.AddDefinition(System.Object,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.ParseContext.AddDiagnosticItem(NMF.AnyText.DiagnosticItem)
   - NMF.AnyText.ParseContext.AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.ParseContext.CurrentDirectory
   - NMF.AnyText.ParseContext.Dispose
   - NMF.AnyText.ParseContext.Dispose(System.Boolean)
@@ -22,6 +23,7 @@ items:
   - NMF.AnyText.ParseContext.Grammar
   - NMF.AnyText.ParseContext.Imports
   - NMF.AnyText.ParseContext.Input
+  - NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
   - NMF.AnyText.ParseContext.IsExecutingModelChanges
   - NMF.AnyText.ParseContext.IsLastUpdateSuccessful
   - NMF.AnyText.ParseContext.IsParsing
@@ -137,7 +139,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Grammar
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 39
+    startLine: 41
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -168,7 +170,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: FileUri
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -199,7 +201,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RootRule
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 49
+    startLine: 51
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -230,7 +232,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Imports
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 54
+    startLine: 56
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -261,7 +263,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Root
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 59
+    startLine: 61
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -292,7 +294,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RefreshRoot
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 64
+    startLine: 66
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -302,6 +304,41 @@ items:
     content: public void RefreshRoot()
     content.vb: Public Sub RefreshRoot()
   overload: NMF.AnyText.ParseContext.RefreshRoot*
+- uid: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  id: CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.ParseContext
+  langs:
+  - csharp
+  - vb
+  name: CreateRoot(RuleApplication)
+  nameWithType: ParseContext.CreateRoot(RuleApplication)
+  fullName: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/ParseContext.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateRoot
+    path: src/AnyText/AnyText.Core/ParseContext.cs
+    startLine: 80
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText
+  summary: Creates the root element for the given root rule application
+  example: []
+  syntax:
+    content: protected virtual object CreateRoot(RuleApplication rootRuleApplication)
+    parameters:
+    - id: rootRuleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the root rule application
+    return:
+      type: System.Object
+      description: the created root object
+    content.vb: Protected Overridable Function CreateRoot(rootRuleApplication As RuleApplication) As Object
+  overload: NMF.AnyText.ParseContext.CreateRoot*
 - uid: NMF.AnyText.ParseContext.RootRuleApplication
   commentId: P:NMF.AnyText.ParseContext.RootRuleApplication
   id: RootRuleApplication
@@ -320,7 +357,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RootRuleApplication
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 76
+    startLine: 88
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -351,7 +388,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LastSuccessfulRootRuleApplication
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 81
+    startLine: 93
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -382,7 +419,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Input
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 86
+    startLine: 98
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -413,7 +450,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Matcher
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 91
+    startLine: 103
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -444,7 +481,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsLastUpdateSuccessful
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 96
+    startLine: 110
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -475,7 +512,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: StringComparison
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 101
+    startLine: 115
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -506,7 +543,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsParsing
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 106
+    startLine: 120
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -537,7 +574,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsExecutingModelChanges
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 111
+    startLine: 125
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -568,7 +605,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CurrentDirectory
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 116
+    startLine: 130
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -599,7 +636,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TryResolveReference
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 125
+    startLine: 139
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -645,7 +682,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetPotentialReferences
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 138
+    startLine: 152
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -689,7 +726,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EnqueueResolveAction
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 145
+    startLine: 159
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -721,7 +758,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddDefinition
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 174
+    startLine: 192
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -759,7 +796,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TryGetDefinitions
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 196
+    startLine: 214
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -800,7 +837,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RemoveDefinition
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 206
+    startLine: 224
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -820,6 +857,41 @@ items:
   nameWithType.vb: ParseContext.RemoveDefinition(Object, RuleApplication)
   fullName.vb: NMF.AnyText.ParseContext.RemoveDefinition(Object, NMF.AnyText.Rules.RuleApplication)
   name.vb: RemoveDefinition(Object, RuleApplication)
+- uid: NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
+  commentId: M:NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
+  id: InvalidateReferences(System.Object)
+  parent: NMF.AnyText.ParseContext
+  langs:
+  - csharp
+  - vb
+  name: InvalidateReferences(object)
+  nameWithType: ParseContext.InvalidateReferences(object)
+  fullName: NMF.AnyText.ParseContext.InvalidateReferences(object)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/ParseContext.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: InvalidateReferences
+    path: src/AnyText/AnyText.Core/ParseContext.cs
+    startLine: 249
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText
+  summary: Invalidates the given references
+  example: []
+  syntax:
+    content: public void InvalidateReferences(object key)
+    parameters:
+    - id: key
+      type: System.Object
+      description: The semantic element of the rule application
+    content.vb: Public Sub InvalidateReferences(key As Object)
+  overload: NMF.AnyText.ParseContext.InvalidateReferences*
+  nameWithType.vb: ParseContext.InvalidateReferences(Object)
+  fullName.vb: NMF.AnyText.ParseContext.InvalidateReferences(Object)
+  name.vb: InvalidateReferences(Object)
 - uid: NMF.AnyText.ParseContext.AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
   commentId: M:NMF.AnyText.ParseContext.AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
   id: AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
@@ -838,7 +910,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddReference
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 223
+    startLine: 265
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -876,7 +948,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RemoveReference
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 244
+    startLine: 286
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -914,7 +986,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TryGetReferences
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 262
+    startLine: 304
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -955,7 +1027,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RestoreContextElement
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 272
+    startLine: 314
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -990,7 +1062,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddDiagnosticItem
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 328
+    startLine: 372
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1022,7 +1094,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RemoveDiagnosticItem
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 344
+    startLine: 388
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1057,7 +1129,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Errors
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 360
+    startLine: 404
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1070,16 +1142,16 @@ items:
       type: System.Collections.Generic.IEnumerable{NMF.AnyText.DiagnosticItem}
     content.vb: Public ReadOnly Property Errors As IEnumerable(Of DiagnosticItem)
   overload: NMF.AnyText.ParseContext.Errors*
-- uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  commentId: M:NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  id: AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+- uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  commentId: M:NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  id: AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   parent: NMF.AnyText.ParseContext
   langs:
   - csharp
   - vb
-  name: AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>)
-  nameWithType: ParseContext.AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>)
-  fullName: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, ref NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>)
+  name: AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  nameWithType: ParseContext.AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  fullName: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, ref NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>, ref NMF.AnyText.ParsePositionDelta)
   type: Method
   source:
     remote:
@@ -1088,14 +1160,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AcceptSequenceAdd
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 370
+    startLine: 415
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
   summary: Decides whether the provided rule application shall be accepted
   example: []
   syntax:
-    content: protected virtual bool AcceptSequenceAdd(SequenceRule sequence, ref RuleApplication toAdd, List<RuleApplication> added)
+    content: protected virtual bool AcceptSequenceAdd(SequenceRule sequence, ref RuleApplication toAdd, List<RuleApplication> added, ref ParsePositionDelta examined)
     parameters:
     - id: sequence
       type: NMF.AnyText.Rules.SequenceRule
@@ -1106,24 +1178,27 @@ items:
     - id: added
       type: System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication}
       description: the rule applications accepted so far
+    - id: examined
+      type: NMF.AnyText.ParsePositionDelta
+      description: the amount of text that was examined
     return:
       type: System.Boolean
       description: true, if the rule application shall be accepted, otherwise false
-    content.vb: Protected Overridable Function AcceptSequenceAdd(sequence As SequenceRule, toAdd As RuleApplication, added As List(Of RuleApplication)) As Boolean
+    content.vb: Protected Overridable Function AcceptSequenceAdd(sequence As SequenceRule, toAdd As RuleApplication, added As List(Of RuleApplication), examined As ParsePositionDelta) As Boolean
   overload: NMF.AnyText.ParseContext.AcceptSequenceAdd*
-  nameWithType.vb: ParseContext.AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication))
-  fullName.vb: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication))
-  name.vb: AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication))
-- uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  commentId: M:NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  id: AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  nameWithType.vb: ParseContext.AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+  fullName.vb: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication), NMF.AnyText.ParsePositionDelta)
+  name.vb: AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+- uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  commentId: M:NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  id: AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   parent: NMF.AnyText.ParseContext
   langs:
   - csharp
   - vb
-  name: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>)
-  nameWithType: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>)
-  fullName: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>)
+  name: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  nameWithType: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  fullName: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>, ref NMF.AnyText.ParsePositionDelta)
   type: Method
   source:
     remote:
@@ -1132,14 +1207,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AcceptZeroOrMoreAdd
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 382
+    startLine: 428
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
   summary: Decides whether the provided rule application shall be accepted
   example: []
   syntax:
-    content: protected virtual bool AcceptZeroOrMoreAdd(ZeroOrMoreRule star, RuleApplication toAdd, List<RuleApplication> added)
+    content: protected virtual bool AcceptZeroOrMoreAdd(ZeroOrMoreRule star, RuleApplication toAdd, List<RuleApplication> added, ref ParsePositionDelta examined)
     parameters:
     - id: star
       type: NMF.AnyText.Rules.ZeroOrMoreRule
@@ -1150,24 +1225,27 @@ items:
     - id: added
       type: System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication}
       description: the rule applications accepted so far
+    - id: examined
+      type: NMF.AnyText.ParsePositionDelta
+      description: the amount of text that was examined
     return:
       type: System.Boolean
       description: true, if the rule application shall be accepted, otherwise false
-    content.vb: Protected Overridable Function AcceptZeroOrMoreAdd(star As ZeroOrMoreRule, toAdd As RuleApplication, added As List(Of RuleApplication)) As Boolean
+    content.vb: Protected Overridable Function AcceptZeroOrMoreAdd(star As ZeroOrMoreRule, toAdd As RuleApplication, added As List(Of RuleApplication), examined As ParsePositionDelta) As Boolean
   overload: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd*
-  nameWithType.vb: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication))
-  fullName.vb: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication))
-  name.vb: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication))
-- uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  commentId: M:NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  id: AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  nameWithType.vb: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+  fullName.vb: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication), NMF.AnyText.ParsePositionDelta)
+  name.vb: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+- uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  commentId: M:NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  id: AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   parent: NMF.AnyText.ParseContext
   langs:
   - csharp
   - vb
-  name: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>)
-  nameWithType: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>)
-  fullName: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>)
+  name: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  nameWithType: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  fullName: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>, ref NMF.AnyText.ParsePositionDelta)
   type: Method
   source:
     remote:
@@ -1176,14 +1254,14 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AcceptOneOrMoreAdd
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 394
+    startLine: 441
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
   summary: Decides whether the provided rule application shall be accepted
   example: []
   syntax:
-    content: protected virtual bool AcceptOneOrMoreAdd(OneOrMoreRule rule, RuleApplication toAdd, List<RuleApplication> added)
+    content: protected virtual bool AcceptOneOrMoreAdd(OneOrMoreRule rule, RuleApplication toAdd, List<RuleApplication> added, ref ParsePositionDelta examined)
     parameters:
     - id: rule
       type: NMF.AnyText.Rules.OneOrMoreRule
@@ -1194,14 +1272,17 @@ items:
     - id: added
       type: System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication}
       description: the rule applications accepted so far
+    - id: examined
+      type: NMF.AnyText.ParsePositionDelta
+      description: the amount of text that was examined
     return:
       type: System.Boolean
       description: true, if the rule application shall be accepted, otherwise false
-    content.vb: Protected Overridable Function AcceptOneOrMoreAdd(rule As OneOrMoreRule, toAdd As RuleApplication, added As List(Of RuleApplication)) As Boolean
+    content.vb: Protected Overridable Function AcceptOneOrMoreAdd(rule As OneOrMoreRule, toAdd As RuleApplication, added As List(Of RuleApplication), examined As ParsePositionDelta) As Boolean
   overload: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd*
-  nameWithType.vb: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication))
-  fullName.vb: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication))
-  name.vb: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication))
+  nameWithType.vb: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+  fullName.vb: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication), NMF.AnyText.ParsePositionDelta)
+  name.vb: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
 - uid: NMF.AnyText.ParseContext.TrackAndCreateWorkspaceEdit(NMF.AnyText.TextEdit[],System.Uri)
   commentId: M:NMF.AnyText.ParseContext.TrackAndCreateWorkspaceEdit(NMF.AnyText.TextEdit[],System.Uri)
   id: TrackAndCreateWorkspaceEdit(NMF.AnyText.TextEdit[],System.Uri)
@@ -1220,7 +1301,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TrackAndCreateWorkspaceEdit
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 413
+    startLine: 460
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1267,7 +1348,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ShouldParseChange
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 438
+    startLine: 485
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1302,7 +1383,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dispose
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 463
+    startLine: 510
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1337,7 +1418,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Dispose
     path: src/AnyText/AnyText.Core/ParseContext.cs
-    startLine: 468
+    startLine: 515
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -1859,12 +1940,12 @@ references:
   name: RefreshRoot
   nameWithType: ParseContext.RefreshRoot
   fullName: NMF.AnyText.ParseContext.RefreshRoot
-- uid: NMF.AnyText.ParseContext.RootRuleApplication*
-  commentId: Overload:NMF.AnyText.ParseContext.RootRuleApplication
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_RootRuleApplication
-  name: RootRuleApplication
-  nameWithType: ParseContext.RootRuleApplication
-  fullName: NMF.AnyText.ParseContext.RootRuleApplication
+- uid: NMF.AnyText.ParseContext.CreateRoot*
+  commentId: Overload:NMF.AnyText.ParseContext.CreateRoot
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_CreateRoot_NMF_AnyText_Rules_RuleApplication_
+  name: CreateRoot
+  nameWithType: ParseContext.CreateRoot
+  fullName: NMF.AnyText.ParseContext.CreateRoot
 - uid: NMF.AnyText.Rules.RuleApplication
   commentId: T:NMF.AnyText.Rules.RuleApplication
   parent: NMF.AnyText.Rules
@@ -1872,6 +1953,12 @@ references:
   name: RuleApplication
   nameWithType: RuleApplication
   fullName: NMF.AnyText.Rules.RuleApplication
+- uid: NMF.AnyText.ParseContext.RootRuleApplication*
+  commentId: Overload:NMF.AnyText.ParseContext.RootRuleApplication
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_RootRuleApplication
+  name: RootRuleApplication
+  nameWithType: ParseContext.RootRuleApplication
+  fullName: NMF.AnyText.ParseContext.RootRuleApplication
 - uid: NMF.AnyText.ParseContext.LastSuccessfulRootRuleApplication*
   commentId: Overload:NMF.AnyText.ParseContext.LastSuccessfulRootRuleApplication
   href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_LastSuccessfulRootRuleApplication
@@ -2136,6 +2223,12 @@ references:
   name: RemoveDefinition
   nameWithType: ParseContext.RemoveDefinition
   fullName: NMF.AnyText.ParseContext.RemoveDefinition
+- uid: NMF.AnyText.ParseContext.InvalidateReferences*
+  commentId: Overload:NMF.AnyText.ParseContext.InvalidateReferences
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_InvalidateReferences_System_Object_
+  name: InvalidateReferences
+  nameWithType: ParseContext.InvalidateReferences
+  fullName: NMF.AnyText.ParseContext.InvalidateReferences
 - uid: NMF.AnyText.ParseContext.AddReference*
   commentId: Overload:NMF.AnyText.ParseContext.AddReference
   href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AddReference_System_Object_NMF_AnyText_Rules_RuleApplication_
@@ -2220,7 +2313,7 @@ references:
   - name: )
 - uid: NMF.AnyText.ParseContext.AcceptSequenceAdd*
   commentId: Overload:NMF.AnyText.ParseContext.AcceptSequenceAdd
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   name: AcceptSequenceAdd
   nameWithType: ParseContext.AcceptSequenceAdd
   fullName: NMF.AnyText.ParseContext.AcceptSequenceAdd
@@ -2264,9 +2357,16 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
+- uid: NMF.AnyText.ParsePositionDelta
+  commentId: T:NMF.AnyText.ParsePositionDelta
+  parent: NMF.AnyText
+  href: NMF.AnyText.ParsePositionDelta.html
+  name: ParsePositionDelta
+  nameWithType: ParsePositionDelta
+  fullName: NMF.AnyText.ParsePositionDelta
 - uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd*
   commentId: Overload:NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   name: AcceptZeroOrMoreAdd
   nameWithType: ParseContext.AcceptZeroOrMoreAdd
   fullName: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd
@@ -2279,7 +2379,7 @@ references:
   fullName: NMF.AnyText.Rules.ZeroOrMoreRule
 - uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd*
   commentId: Overload:NMF.AnyText.ParseContext.AcceptOneOrMoreAdd
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   name: AcceptOneOrMoreAdd
   nameWithType: ParseContext.AcceptOneOrMoreAdd
   fullName: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd

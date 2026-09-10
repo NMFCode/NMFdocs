@@ -8,6 +8,7 @@ items:
   - NMF.Interop.Ecore.EStringToStringMapEntry.ClassInstance
   - NMF.Interop.Ecore.EStringToStringMapEntry.GetAttributeValue(System.String,System.Int32)
   - NMF.Interop.Ecore.EStringToStringMapEntry.GetClass
+  - NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute(System.String)
   - NMF.Interop.Ecore.EStringToStringMapEntry.Key
   - NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanged
   - NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
@@ -33,7 +34,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EStringToStringMapEntry
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -45,7 +46,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry")]
 
       public class EStringToStringMapEntry : ModelElement, IEStringToStringMapEntry, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -53,7 +54,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry")>
 
       Public Class EStringToStringMapEntry Inherits ModelElement Implements IEStringToStringMapEntry, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -86,6 +87,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -102,7 +104,6 @@ items:
   - NMF.Models.ModelElement.GetCollectionForFeature(System.String)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   - NMF.Models.ModelElement.GetExpressionForReference(System.String)
-  - NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Extensions
   - NMF.Models.ModelElement.GetExtension``1
   - NMF.Models.ModelElement.ReferencedElements
@@ -148,7 +149,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry/
+      value: http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.Key
   commentId: P:NMF.Interop.Ecore.EStringToStringMapEntry.Key
   id: Key
@@ -167,7 +168,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Key
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 57
+    startLine: 64
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -179,7 +180,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual string Key { get; set; }
+      public string Key { get; set; }
     parameters: []
     return:
       type: System.String
@@ -188,7 +189,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Key As String
+      Public Property Key As String
   overload: NMF.Interop.Ecore.EStringToStringMapEntry.Key*
   implements:
   - NMF.Interop.Ecore.IEStringToStringMapEntry.Key
@@ -221,7 +222,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Value
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 83
+    startLine: 92
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -233,7 +234,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual string Value { get; set; }
+      public string Value { get; set; }
     parameters: []
     return:
       type: System.String
@@ -242,7 +243,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Value As String
+      Public Property Value As String
   overload: NMF.Interop.Ecore.EStringToStringMapEntry.Value*
   implements:
   - NMF.Interop.Ecore.IEStringToStringMapEntry.Value
@@ -275,7 +276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 109
+    startLine: 120
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -288,37 +289,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Ecore.EStringToStringMapEntry.ClassInstance*
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
-  commentId: E:NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
-  id: KeyChanging
-  parent: NMF.Interop.Ecore.EStringToStringMapEntry
-  langs:
-  - csharp
-  - vb
-  name: KeyChanging
-  nameWithType: EStringToStringMapEntry.KeyChanging
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: KeyChanging
-    path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 124
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Key property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> KeyChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event KeyChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanged
   commentId: E:NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanged
   id: KeyChanged
@@ -337,7 +307,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: KeyChanged
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 129
+    startLine: 135
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -350,37 +320,37 @@ items:
     content.vb: Public Event KeyChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanging
-  commentId: E:NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanging
-  id: ValueChanging
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
+  commentId: E:NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
+  id: KeyChanging
   parent: NMF.Interop.Ecore.EStringToStringMapEntry
   langs:
   - csharp
   - vb
-  name: ValueChanging
-  nameWithType: EStringToStringMapEntry.ValueChanging
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanging
+  name: KeyChanging
+  nameWithType: EStringToStringMapEntry.KeyChanging
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.KeyChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: ValueChanging
+    id: KeyChanging
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 134
+    startLine: 140
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Value property changes its value
+  summary: Gets fired before the Key property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> ValueChanging
+    content: public event EventHandler<ValueChangedEventArgs> KeyChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event ValueChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event KeyChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
+  - NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanged
   commentId: E:NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanged
   id: ValueChanged
@@ -399,7 +369,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ValueChanged
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 139
+    startLine: 145
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -412,38 +382,37 @@ items:
     content.vb: Public Event ValueChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanged
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanging
+  commentId: E:NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanging
+  id: ValueChanging
   parent: NMF.Interop.Ecore.EStringToStringMapEntry
   langs:
   - csharp
   - vb
-  name: OnKeyChanging(ValueChangedEventArgs)
-  nameWithType: EStringToStringMapEntry.OnKeyChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
+  name: ValueChanging
+  nameWithType: EStringToStringMapEntry.ValueChanging
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.ValueChanging
+  type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnKeyChanging
+    id: ValueChanging
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 145
+    startLine: 150
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the KeyChanging event
+  summary: Gets fired before the Value property changes its value
   example: []
   syntax:
-    content: protected virtual void OnKeyChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnKeyChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging*
+    content: public event EventHandler<ValueChangedEventArgs> ValueChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ValueChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnKeyChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -462,7 +431,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnKeyChanged
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 158
+    startLine: 161
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -476,38 +445,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnKeyChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged*
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.EStringToStringMapEntry
   langs:
   - csharp
   - vb
-  name: OnValueChanging(ValueChangedEventArgs)
-  nameWithType: EStringToStringMapEntry.OnValueChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnKeyChanging(ValueChangedEventArgs)
+  nameWithType: EStringToStringMapEntry.OnKeyChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnValueChanging
+    id: OnKeyChanging
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 171
+    startLine: 174
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the ValueChanging event
+  summary: Raises the KeyChanging event
   example: []
   syntax:
-    content: protected virtual void OnValueChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnKeyChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnValueChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging*
+    content.vb: Protected Overridable Sub OnKeyChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging*
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnValueChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -526,7 +495,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnValueChanged
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 184
+    startLine: 192
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -540,6 +509,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnValueChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanged*
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.EStringToStringMapEntry
+  langs:
+  - csharp
+  - vb
+  name: OnValueChanging(ValueChangedEventArgs)
+  nameWithType: EStringToStringMapEntry.OnValueChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnValueChanging
+    path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
+    startLine: 205
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the ValueChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnValueChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnValueChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging*
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.GetAttributeValue(System.String,System.Int32)
   id: GetAttributeValue(System.String,System.Int32)
@@ -558,7 +559,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 199
+    startLine: 220
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -600,7 +601,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 217
+    startLine: 238
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -621,6 +622,45 @@ items:
   nameWithType.vb: EStringToStringMapEntry.SetFeature(String, Object)
   fullName.vb: NMF.Interop.Ecore.EStringToStringMapEntry.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute(System.String)
+  id: GetExpressionForAttribute(System.String)
+  parent: NMF.Interop.Ecore.EStringToStringMapEntry
+  langs:
+  - csharp
+  - vb
+  name: GetExpressionForAttribute(string)
+  nameWithType: EStringToStringMapEntry.GetExpressionForAttribute(string)
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute(string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetExpressionForAttribute
+    path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
+    startLine: 258
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets the property expression for the given attribute
+  example: []
+  syntax:
+    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
+    parameters:
+    - id: attribute
+      type: System.String
+      description: The requested attribute in upper case
+    return:
+      type: NMF.Expressions.INotifyExpression{System.Object}
+      description: An incremental property expression
+    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
+  overridden: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  overload: NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute*
+  nameWithType.vb: EStringToStringMapEntry.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.GetClass
   commentId: M:NMF.Interop.Ecore.EStringToStringMapEntry.GetClass
   id: GetClass
@@ -639,7 +679,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/EStringToStringMapEntry.cs
-    startLine: 235
+    startLine: 274
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1110,6 +1150,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -1467,35 +1513,6 @@ references:
   spec.vb:
   - uid: NMF.Models.ModelElement.GetExpressionForReference(System.String)
     name: GetExpressionForReference
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: GetExpressionForAttribute(string)
-  nameWithType: ModelElement.GetExpressionForAttribute(string)
-  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
   - name: (
   - uid: System.String
     name: String
@@ -2400,13 +2417,13 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
-- uid: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
-  commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
+- uid: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
+  commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
   parent: NMF.Interop.Ecore.IEStringToStringMapEntry
-  href: NMF.Interop.Ecore.IEStringToStringMapEntry.html#NMF_Interop_Ecore_IEStringToStringMapEntry_KeyChanging
-  name: KeyChanging
-  nameWithType: IEStringToStringMapEntry.KeyChanging
-  fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
+  href: NMF.Interop.Ecore.IEStringToStringMapEntry.html#NMF_Interop_Ecore_IEStringToStringMapEntry_KeyChanged
+  name: KeyChanged
+  nameWithType: IEStringToStringMapEntry.KeyChanged
+  fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -2466,20 +2483,13 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
-  commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
+- uid: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
+  commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
   parent: NMF.Interop.Ecore.IEStringToStringMapEntry
-  href: NMF.Interop.Ecore.IEStringToStringMapEntry.html#NMF_Interop_Ecore_IEStringToStringMapEntry_KeyChanged
-  name: KeyChanged
-  nameWithType: IEStringToStringMapEntry.KeyChanged
-  fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanged
-- uid: NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
-  commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
-  parent: NMF.Interop.Ecore.IEStringToStringMapEntry
-  href: NMF.Interop.Ecore.IEStringToStringMapEntry.html#NMF_Interop_Ecore_IEStringToStringMapEntry_ValueChanging
-  name: ValueChanging
-  nameWithType: IEStringToStringMapEntry.ValueChanging
-  fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
+  href: NMF.Interop.Ecore.IEStringToStringMapEntry.html#NMF_Interop_Ecore_IEStringToStringMapEntry_KeyChanging
+  name: KeyChanging
+  nameWithType: IEStringToStringMapEntry.KeyChanging
+  fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.KeyChanging
 - uid: NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanged
   commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanged
   parent: NMF.Interop.Ecore.IEStringToStringMapEntry
@@ -2487,12 +2497,19 @@ references:
   name: ValueChanged
   nameWithType: IEStringToStringMapEntry.ValueChanged
   fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanged
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging*
-  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging
-  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnKeyChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnKeyChanging
-  nameWithType: EStringToStringMapEntry.OnKeyChanging
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging
+- uid: NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
+  commentId: E:NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
+  parent: NMF.Interop.Ecore.IEStringToStringMapEntry
+  href: NMF.Interop.Ecore.IEStringToStringMapEntry.html#NMF_Interop_Ecore_IEStringToStringMapEntry_ValueChanging
+  name: ValueChanging
+  nameWithType: IEStringToStringMapEntry.ValueChanging
+  fullName: NMF.Interop.Ecore.IEStringToStringMapEntry.ValueChanging
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged*
+  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged
+  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnKeyChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnKeyChanged
+  nameWithType: EStringToStringMapEntry.OnKeyChanged
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged
 - uid: NMF.Expressions.ValueChangedEventArgs
   commentId: T:NMF.Expressions.ValueChangedEventArgs
   parent: NMF.Expressions
@@ -2516,24 +2533,24 @@ references:
   - name: .
   - uid: NMF.Expressions
     name: Expressions
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged*
-  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged
-  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnKeyChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnKeyChanged
-  nameWithType: EStringToStringMapEntry.OnKeyChanged
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanged
-- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging*
-  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging
-  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnValueChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnValueChanging
-  nameWithType: EStringToStringMapEntry.OnValueChanging
-  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging*
+  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging
+  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnKeyChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnKeyChanging
+  nameWithType: EStringToStringMapEntry.OnKeyChanging
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnKeyChanging
 - uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanged*
   commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanged
   href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnValueChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnValueChanged
   nameWithType: EStringToStringMapEntry.OnValueChanged
   fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanged
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging*
+  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging
+  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_OnValueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnValueChanging
+  nameWithType: EStringToStringMapEntry.OnValueChanging
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.OnValueChanging
 - uid: NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Models.ModelElement
@@ -2639,6 +2656,94 @@ references:
   name: SetFeature
   nameWithType: EStringToStringMapEntry.SetFeature
   fullName: NMF.Interop.Ecore.EStringToStringMapEntry.SetFeature
+- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: GetExpressionForAttribute(string)
+  nameWithType: ModelElement.GetExpressionForAttribute(string)
+  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute*
+  commentId: Overload:NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute
+  href: NMF.Interop.Ecore.EStringToStringMapEntry.html#NMF_Interop_Ecore_EStringToStringMapEntry_GetExpressionForAttribute_System_String_
+  name: GetExpressionForAttribute
+  nameWithType: EStringToStringMapEntry.GetExpressionForAttribute
+  fullName: NMF.Interop.Ecore.EStringToStringMapEntry.GetExpressionForAttribute
+- uid: NMF.Expressions.INotifyExpression{System.Object}
+  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyExpression`1
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: INotifyExpression<object>
+  nameWithType: INotifyExpression<object>
+  fullName: NMF.Expressions.INotifyExpression<object>
+  nameWithType.vb: INotifyExpression(Of Object)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
+  name.vb: INotifyExpression(Of Object)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: NMF.Models.ModelElement.GetClass
   commentId: M:NMF.Models.ModelElement.GetClass
   parent: NMF.Models.ModelElement

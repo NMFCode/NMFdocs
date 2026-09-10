@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.#ctor(NMF.Models.Changes.CompositionPropertyChange)
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Clear
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Count
-  - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore
+  - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.GetEnumerator
   - NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -137,64 +138,38 @@ items:
   overload: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore
-  commentId: M:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore()
-  fullName: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Models/Models/Changes/CompositionPropertyChange.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 472
+    startLine: 475
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore*
-- uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore
-  commentId: M:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore()
-  fullName: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Models/Models/Changes/CompositionPropertyChange.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 479
-  assemblies:
-  - NMF.Models
-  namespace: NMF.Models.Changes
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies*
 - uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 489
+    startLine: 486
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 506
+    startLine: 503
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 517
+    startLine: 514
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 535
+    startLine: 532
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 554
+    startLine: 551
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Models/Models/Changes/CompositionPropertyChange.cs
-    startLine: 573
+    startLine: 570
   assemblies:
   - NMF.Models
   namespace: NMF.Models.Changes
@@ -631,6 +606,44 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1398,56 +1411,49 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
+    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore
-  href: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.html#NMF_Models_Changes_CompositionPropertyChange_CompositionPropertyChangeReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore
-  fullName: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies
+  href: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.html#NMF_Models_Changes_CompositionPropertyChange_CompositionPropertyChangeReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies
+  fullName: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-    href: NMF.Models.Collections.ReferenceCollection.html#NMF_Models_Collections_ReferenceCollection_DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore
-  href: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.html#NMF_Models_Changes_CompositionPropertyChange_CompositionPropertyChangeReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore
-  fullName: NMF.Models.Changes.CompositionPropertyChange.CompositionPropertyChangeReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

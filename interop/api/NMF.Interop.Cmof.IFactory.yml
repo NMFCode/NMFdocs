@@ -6,11 +6,23 @@ items:
   parent: NMF.Interop.Cmof
   children:
   - NMF.Interop.Cmof.IFactory.ConvertToString(NMF.Interop.Cmof.IDataType,NMF.Interop.Cmof.IObject)
+  - NMF.Interop.Cmof.IFactory.ConvertToStringCalled
+  - NMF.Interop.Cmof.IFactory.ConvertToStringCalling
   - NMF.Interop.Cmof.IFactory.Create(NMF.Interop.Cmof.IClass)
+  - NMF.Interop.Cmof.IFactory.CreateCalled
+  - NMF.Interop.Cmof.IFactory.CreateCalling
   - NMF.Interop.Cmof.IFactory.CreateElement(NMF.Interop.Cmof.IClass,System.Collections.Generic.IEnumerable{NMF.Interop.Cmof.IArgument})
+  - NMF.Interop.Cmof.IFactory.CreateElementCalled
+  - NMF.Interop.Cmof.IFactory.CreateElementCalling
   - NMF.Interop.Cmof.IFactory.CreateFromString(NMF.Interop.Cmof.IDataType,System.String)
+  - NMF.Interop.Cmof.IFactory.CreateFromStringCalled
+  - NMF.Interop.Cmof.IFactory.CreateFromStringCalling
   - NMF.Interop.Cmof.IFactory.CreateLink(NMF.Interop.Cmof.IAssociation,NMF.Interop.Cmof.IElement,NMF.Interop.Cmof.IElement)
+  - NMF.Interop.Cmof.IFactory.CreateLinkCalled
+  - NMF.Interop.Cmof.IFactory.CreateLinkCalling
   - NMF.Interop.Cmof.IFactory.Package
+  - NMF.Interop.Cmof.IFactory.PackageChanged
+  - NMF.Interop.Cmof.IFactory.PackageChanging
   langs:
   - csharp
   - vb
@@ -25,7 +37,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IFactory
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 39
+    startLine: 38
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -48,8 +60,26 @@ items:
       <ModelRepresentationClass("http://www.omg.org/spec/MOF/20131001/cmof.xmi#//Factory")>
 
       Public Interface IFactory Inherits IElement, IObject, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Cmof.Factory
   inheritedMembers:
   - NMF.Interop.Cmof.IElement.OwnedComment
+  - NMF.Interop.Cmof.IElement.Has_ownerCalling
+  - NMF.Interop.Cmof.IElement.Has_ownerCalled
+  - NMF.Interop.Cmof.IElement.Not_own_selfCalling
+  - NMF.Interop.Cmof.IElement.Not_own_selfCalled
+  - NMF.Interop.Cmof.IElement.AllOwnedElementsCalling
+  - NMF.Interop.Cmof.IElement.AllOwnedElementsCalled
+  - NMF.Interop.Cmof.IElement.MustBeOwnedCalling
+  - NMF.Interop.Cmof.IElement.MustBeOwnedCalled
+  - NMF.Interop.Cmof.IElement.GetMetaClassCalling
+  - NMF.Interop.Cmof.IElement.GetMetaClassCalled
+  - NMF.Interop.Cmof.IElement.ContainerCalling
+  - NMF.Interop.Cmof.IElement.ContainerCalled
+  - NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalling
+  - NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalled
+  - NMF.Interop.Cmof.IElement.DeleteCalling
+  - NMF.Interop.Cmof.IElement.DeleteCalled
   - NMF.Interop.Cmof.IElement.Has_owner(System.Object,System.Object)
   - NMF.Interop.Cmof.IElement.Not_own_self(System.Object,System.Object)
   - NMF.Interop.Cmof.IElement.AllOwnedElements
@@ -58,6 +88,18 @@ items:
   - NMF.Interop.Cmof.IElement.Container
   - NMF.Interop.Cmof.IElement.IsInstanceOfType(NMF.Interop.Cmof.IClass,System.Boolean)
   - NMF.Interop.Cmof.IElement.Delete
+  - NMF.Interop.Cmof.IObject.GetCalling
+  - NMF.Interop.Cmof.IObject.GetCalled
+  - NMF.Interop.Cmof.IObject.EqualsCalling
+  - NMF.Interop.Cmof.IObject.EqualsCalled
+  - NMF.Interop.Cmof.IObject.SetCalling
+  - NMF.Interop.Cmof.IObject.SetCalled
+  - NMF.Interop.Cmof.IObject.IsSetCalling
+  - NMF.Interop.Cmof.IObject.IsSetCalled
+  - NMF.Interop.Cmof.IObject.UnsetCalling
+  - NMF.Interop.Cmof.IObject.UnsetCalled
+  - NMF.Interop.Cmof.IObject.InvokeCalling
+  - NMF.Interop.Cmof.IObject.InvokeCalled
   - NMF.Interop.Cmof.IObject.Get(NMF.Interop.Cmof.IProperty)
   - NMF.Interop.Cmof.IObject.Equals(NMF.Interop.Cmof.IObject)
   - NMF.Interop.Cmof.IObject.Set(NMF.Interop.Cmof.IProperty,NMF.Interop.Cmof.IObject)
@@ -133,7 +175,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Package
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 48
+    startLine: 47
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -167,6 +209,354 @@ items:
     arguments:
     - type: System.Boolean
       value: true
+- uid: NMF.Interop.Cmof.IFactory.CreateFromStringCalling
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateFromStringCalling
+  id: CreateFromStringCalling
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateFromStringCalling
+  nameWithType: IFactory.CreateFromStringCalling
+  fullName: NMF.Interop.Cmof.IFactory.CreateFromStringCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateFromStringCalling
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 60
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the operation createFromString gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateFromStringCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateFromStringCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateFromStringCalled
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateFromStringCalled
+  id: CreateFromStringCalled
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateFromStringCalled
+  nameWithType: IFactory.CreateFromStringCalled
+  fullName: NMF.Interop.Cmof.IFactory.CreateFromStringCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateFromStringCalled
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 65
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired after the operation createFromString got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateFromStringCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateFromStringCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.ConvertToStringCalling
+  commentId: E:NMF.Interop.Cmof.IFactory.ConvertToStringCalling
+  id: ConvertToStringCalling
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: ConvertToStringCalling
+  nameWithType: IFactory.ConvertToStringCalling
+  fullName: NMF.Interop.Cmof.IFactory.ConvertToStringCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ConvertToStringCalling
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 70
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the operation convertToString gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> ConvertToStringCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event ConvertToStringCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.ConvertToStringCalled
+  commentId: E:NMF.Interop.Cmof.IFactory.ConvertToStringCalled
+  id: ConvertToStringCalled
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: ConvertToStringCalled
+  nameWithType: IFactory.ConvertToStringCalled
+  fullName: NMF.Interop.Cmof.IFactory.ConvertToStringCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ConvertToStringCalled
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 75
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired after the operation convertToString got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> ConvertToStringCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event ConvertToStringCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateCalling
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateCalling
+  id: CreateCalling
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateCalling
+  nameWithType: IFactory.CreateCalling
+  fullName: NMF.Interop.Cmof.IFactory.CreateCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateCalling
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 80
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the operation create gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateCalled
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateCalled
+  id: CreateCalled
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateCalled
+  nameWithType: IFactory.CreateCalled
+  fullName: NMF.Interop.Cmof.IFactory.CreateCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateCalled
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 85
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired after the operation create got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateElementCalling
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateElementCalling
+  id: CreateElementCalling
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateElementCalling
+  nameWithType: IFactory.CreateElementCalling
+  fullName: NMF.Interop.Cmof.IFactory.CreateElementCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateElementCalling
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 90
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the operation createElement gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateElementCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateElementCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateElementCalled
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateElementCalled
+  id: CreateElementCalled
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateElementCalled
+  nameWithType: IFactory.CreateElementCalled
+  fullName: NMF.Interop.Cmof.IFactory.CreateElementCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateElementCalled
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 95
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired after the operation createElement got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateElementCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateElementCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateLinkCalling
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateLinkCalling
+  id: CreateLinkCalling
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateLinkCalling
+  nameWithType: IFactory.CreateLinkCalling
+  fullName: NMF.Interop.Cmof.IFactory.CreateLinkCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateLinkCalling
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 100
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the operation createLink gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateLinkCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateLinkCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.CreateLinkCalled
+  commentId: E:NMF.Interop.Cmof.IFactory.CreateLinkCalled
+  id: CreateLinkCalled
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateLinkCalled
+  nameWithType: IFactory.CreateLinkCalled
+  fullName: NMF.Interop.Cmof.IFactory.CreateLinkCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateLinkCalled
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 105
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired after the operation createLink got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> CreateLinkCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event CreateLinkCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.PackageChanging
+  commentId: E:NMF.Interop.Cmof.IFactory.PackageChanging
+  id: PackageChanging
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: PackageChanging
+  nameWithType: IFactory.PackageChanging
+  fullName: NMF.Interop.Cmof.IFactory.PackageChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: PackageChanging
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 110
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the Package property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> PackageChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event PackageChanging As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Cmof.IFactory.PackageChanged
+  commentId: E:NMF.Interop.Cmof.IFactory.PackageChanged
+  id: PackageChanged
+  parent: NMF.Interop.Cmof.IFactory
+  langs:
+  - csharp
+  - vb
+  name: PackageChanged
+  nameWithType: IFactory.PackageChanged
+  fullName: NMF.Interop.Cmof.IFactory.PackageChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/IFactory.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: PackageChanged
+    path: src/Interop/UMLInterop/Cmof/IFactory.cs
+    startLine: 115
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the Package property changed its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> PackageChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event PackageChanged As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Cmof.IFactory.CreateFromString(NMF.Interop.Cmof.IDataType,System.String)
   commentId: M:NMF.Interop.Cmof.IFactory.CreateFromString(NMF.Interop.Cmof.IDataType,System.String)
   id: CreateFromString(NMF.Interop.Cmof.IDataType,System.String)
@@ -185,7 +575,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateFromString
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 63
+    startLine: 122
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -225,7 +615,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ConvertToString
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 70
+    startLine: 129
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -262,7 +652,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Create
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 76
+    startLine: 135
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -296,7 +686,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateElement
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 83
+    startLine: 142
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -336,7 +726,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateLink
     path: src/Interop/UMLInterop/Cmof/IFactory.cs
-    startLine: 91
+    startLine: 150
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -396,6 +786,118 @@ references:
   name: OwnedComment
   nameWithType: IElement.OwnedComment
   fullName: NMF.Interop.Cmof.IElement.OwnedComment
+- uid: NMF.Interop.Cmof.IElement.Has_ownerCalling
+  commentId: E:NMF.Interop.Cmof.IElement.Has_ownerCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_Has_ownerCalling
+  name: Has_ownerCalling
+  nameWithType: IElement.Has_ownerCalling
+  fullName: NMF.Interop.Cmof.IElement.Has_ownerCalling
+- uid: NMF.Interop.Cmof.IElement.Has_ownerCalled
+  commentId: E:NMF.Interop.Cmof.IElement.Has_ownerCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_Has_ownerCalled
+  name: Has_ownerCalled
+  nameWithType: IElement.Has_ownerCalled
+  fullName: NMF.Interop.Cmof.IElement.Has_ownerCalled
+- uid: NMF.Interop.Cmof.IElement.Not_own_selfCalling
+  commentId: E:NMF.Interop.Cmof.IElement.Not_own_selfCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_Not_own_selfCalling
+  name: Not_own_selfCalling
+  nameWithType: IElement.Not_own_selfCalling
+  fullName: NMF.Interop.Cmof.IElement.Not_own_selfCalling
+- uid: NMF.Interop.Cmof.IElement.Not_own_selfCalled
+  commentId: E:NMF.Interop.Cmof.IElement.Not_own_selfCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_Not_own_selfCalled
+  name: Not_own_selfCalled
+  nameWithType: IElement.Not_own_selfCalled
+  fullName: NMF.Interop.Cmof.IElement.Not_own_selfCalled
+- uid: NMF.Interop.Cmof.IElement.AllOwnedElementsCalling
+  commentId: E:NMF.Interop.Cmof.IElement.AllOwnedElementsCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_AllOwnedElementsCalling
+  name: AllOwnedElementsCalling
+  nameWithType: IElement.AllOwnedElementsCalling
+  fullName: NMF.Interop.Cmof.IElement.AllOwnedElementsCalling
+- uid: NMF.Interop.Cmof.IElement.AllOwnedElementsCalled
+  commentId: E:NMF.Interop.Cmof.IElement.AllOwnedElementsCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_AllOwnedElementsCalled
+  name: AllOwnedElementsCalled
+  nameWithType: IElement.AllOwnedElementsCalled
+  fullName: NMF.Interop.Cmof.IElement.AllOwnedElementsCalled
+- uid: NMF.Interop.Cmof.IElement.MustBeOwnedCalling
+  commentId: E:NMF.Interop.Cmof.IElement.MustBeOwnedCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_MustBeOwnedCalling
+  name: MustBeOwnedCalling
+  nameWithType: IElement.MustBeOwnedCalling
+  fullName: NMF.Interop.Cmof.IElement.MustBeOwnedCalling
+- uid: NMF.Interop.Cmof.IElement.MustBeOwnedCalled
+  commentId: E:NMF.Interop.Cmof.IElement.MustBeOwnedCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_MustBeOwnedCalled
+  name: MustBeOwnedCalled
+  nameWithType: IElement.MustBeOwnedCalled
+  fullName: NMF.Interop.Cmof.IElement.MustBeOwnedCalled
+- uid: NMF.Interop.Cmof.IElement.GetMetaClassCalling
+  commentId: E:NMF.Interop.Cmof.IElement.GetMetaClassCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_GetMetaClassCalling
+  name: GetMetaClassCalling
+  nameWithType: IElement.GetMetaClassCalling
+  fullName: NMF.Interop.Cmof.IElement.GetMetaClassCalling
+- uid: NMF.Interop.Cmof.IElement.GetMetaClassCalled
+  commentId: E:NMF.Interop.Cmof.IElement.GetMetaClassCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_GetMetaClassCalled
+  name: GetMetaClassCalled
+  nameWithType: IElement.GetMetaClassCalled
+  fullName: NMF.Interop.Cmof.IElement.GetMetaClassCalled
+- uid: NMF.Interop.Cmof.IElement.ContainerCalling
+  commentId: E:NMF.Interop.Cmof.IElement.ContainerCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_ContainerCalling
+  name: ContainerCalling
+  nameWithType: IElement.ContainerCalling
+  fullName: NMF.Interop.Cmof.IElement.ContainerCalling
+- uid: NMF.Interop.Cmof.IElement.ContainerCalled
+  commentId: E:NMF.Interop.Cmof.IElement.ContainerCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_ContainerCalled
+  name: ContainerCalled
+  nameWithType: IElement.ContainerCalled
+  fullName: NMF.Interop.Cmof.IElement.ContainerCalled
+- uid: NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalling
+  commentId: E:NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_IsInstanceOfTypeCalling
+  name: IsInstanceOfTypeCalling
+  nameWithType: IElement.IsInstanceOfTypeCalling
+  fullName: NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalling
+- uid: NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalled
+  commentId: E:NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_IsInstanceOfTypeCalled
+  name: IsInstanceOfTypeCalled
+  nameWithType: IElement.IsInstanceOfTypeCalled
+  fullName: NMF.Interop.Cmof.IElement.IsInstanceOfTypeCalled
+- uid: NMF.Interop.Cmof.IElement.DeleteCalling
+  commentId: E:NMF.Interop.Cmof.IElement.DeleteCalling
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_DeleteCalling
+  name: DeleteCalling
+  nameWithType: IElement.DeleteCalling
+  fullName: NMF.Interop.Cmof.IElement.DeleteCalling
+- uid: NMF.Interop.Cmof.IElement.DeleteCalled
+  commentId: E:NMF.Interop.Cmof.IElement.DeleteCalled
+  parent: NMF.Interop.Cmof.IElement
+  href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_DeleteCalled
+  name: DeleteCalled
+  nameWithType: IElement.DeleteCalled
+  fullName: NMF.Interop.Cmof.IElement.DeleteCalled
 - uid: NMF.Interop.Cmof.IElement.Has_owner(System.Object,System.Object)
   commentId: M:NMF.Interop.Cmof.IElement.Has_owner(System.Object,System.Object)
   parent: NMF.Interop.Cmof.IElement
@@ -618,6 +1120,90 @@ references:
     href: NMF.Interop.Cmof.IElement.html#NMF_Interop_Cmof_IElement_Delete
   - name: (
   - name: )
+- uid: NMF.Interop.Cmof.IObject.GetCalling
+  commentId: E:NMF.Interop.Cmof.IObject.GetCalling
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_GetCalling
+  name: GetCalling
+  nameWithType: IObject.GetCalling
+  fullName: NMF.Interop.Cmof.IObject.GetCalling
+- uid: NMF.Interop.Cmof.IObject.GetCalled
+  commentId: E:NMF.Interop.Cmof.IObject.GetCalled
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_GetCalled
+  name: GetCalled
+  nameWithType: IObject.GetCalled
+  fullName: NMF.Interop.Cmof.IObject.GetCalled
+- uid: NMF.Interop.Cmof.IObject.EqualsCalling
+  commentId: E:NMF.Interop.Cmof.IObject.EqualsCalling
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_EqualsCalling
+  name: EqualsCalling
+  nameWithType: IObject.EqualsCalling
+  fullName: NMF.Interop.Cmof.IObject.EqualsCalling
+- uid: NMF.Interop.Cmof.IObject.EqualsCalled
+  commentId: E:NMF.Interop.Cmof.IObject.EqualsCalled
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_EqualsCalled
+  name: EqualsCalled
+  nameWithType: IObject.EqualsCalled
+  fullName: NMF.Interop.Cmof.IObject.EqualsCalled
+- uid: NMF.Interop.Cmof.IObject.SetCalling
+  commentId: E:NMF.Interop.Cmof.IObject.SetCalling
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_SetCalling
+  name: SetCalling
+  nameWithType: IObject.SetCalling
+  fullName: NMF.Interop.Cmof.IObject.SetCalling
+- uid: NMF.Interop.Cmof.IObject.SetCalled
+  commentId: E:NMF.Interop.Cmof.IObject.SetCalled
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_SetCalled
+  name: SetCalled
+  nameWithType: IObject.SetCalled
+  fullName: NMF.Interop.Cmof.IObject.SetCalled
+- uid: NMF.Interop.Cmof.IObject.IsSetCalling
+  commentId: E:NMF.Interop.Cmof.IObject.IsSetCalling
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_IsSetCalling
+  name: IsSetCalling
+  nameWithType: IObject.IsSetCalling
+  fullName: NMF.Interop.Cmof.IObject.IsSetCalling
+- uid: NMF.Interop.Cmof.IObject.IsSetCalled
+  commentId: E:NMF.Interop.Cmof.IObject.IsSetCalled
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_IsSetCalled
+  name: IsSetCalled
+  nameWithType: IObject.IsSetCalled
+  fullName: NMF.Interop.Cmof.IObject.IsSetCalled
+- uid: NMF.Interop.Cmof.IObject.UnsetCalling
+  commentId: E:NMF.Interop.Cmof.IObject.UnsetCalling
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_UnsetCalling
+  name: UnsetCalling
+  nameWithType: IObject.UnsetCalling
+  fullName: NMF.Interop.Cmof.IObject.UnsetCalling
+- uid: NMF.Interop.Cmof.IObject.UnsetCalled
+  commentId: E:NMF.Interop.Cmof.IObject.UnsetCalled
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_UnsetCalled
+  name: UnsetCalled
+  nameWithType: IObject.UnsetCalled
+  fullName: NMF.Interop.Cmof.IObject.UnsetCalled
+- uid: NMF.Interop.Cmof.IObject.InvokeCalling
+  commentId: E:NMF.Interop.Cmof.IObject.InvokeCalling
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_InvokeCalling
+  name: InvokeCalling
+  nameWithType: IObject.InvokeCalling
+  fullName: NMF.Interop.Cmof.IObject.InvokeCalling
+- uid: NMF.Interop.Cmof.IObject.InvokeCalled
+  commentId: E:NMF.Interop.Cmof.IObject.InvokeCalled
+  parent: NMF.Interop.Cmof.IObject
+  href: NMF.Interop.Cmof.IObject.html#NMF_Interop_Cmof_IObject_InvokeCalled
+  name: InvokeCalled
+  nameWithType: IObject.InvokeCalled
+  fullName: NMF.Interop.Cmof.IObject.InvokeCalled
 - uid: NMF.Interop.Cmof.IObject.Get(NMF.Interop.Cmof.IProperty)
   commentId: M:NMF.Interop.Cmof.IObject.Get(NMF.Interop.Cmof.IProperty)
   parent: NMF.Interop.Cmof.IObject
@@ -1452,6 +2038,103 @@ references:
   name: IPackage
   nameWithType: IPackage
   fullName: NMF.Interop.Cmof.IPackage
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<ValueChangedEventArgs>
+  nameWithType: EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
+  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
+  name.vb: EventHandler(Of ValueChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
 - uid: NMF.Interop.Cmof.IFactory.CreateFromString*
   commentId: Overload:NMF.Interop.Cmof.IFactory.CreateFromString
   href: NMF.Interop.Cmof.IFactory.html#NMF_Interop_Cmof_IFactory_CreateFromString_NMF_Interop_Cmof_IDataType_System_String_
@@ -1476,13 +2159,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: NMF.Interop.Cmof.IFactory.ConvertToString*
   commentId: Overload:NMF.Interop.Cmof.IFactory.ConvertToString
   href: NMF.Interop.Cmof.IFactory.html#NMF_Interop_Cmof_IFactory_ConvertToString_NMF_Interop_Cmof_IDataType_NMF_Interop_Cmof_IObject_

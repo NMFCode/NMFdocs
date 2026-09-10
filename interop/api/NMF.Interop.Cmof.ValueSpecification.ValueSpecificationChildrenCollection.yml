@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.#ctor(NMF.Interop.Cmof.ValueSpecification)
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Add(NMF.Models.IModelElement)
-  - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Clear
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Contains(NMF.Models.IModelElement)
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Count
-  - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore
+  - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.GetEnumerator
   - NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ValueSpecificationChildrenCollection
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 297
+    startLine: 562
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 305
+    startLine: 570
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 313
+    startLine: 578
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -137,64 +138,38 @@ items:
   overload: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore
-  commentId: M:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies
+  commentId: M:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: ValueSpecification.ValueSpecificationChildrenCollection.AttachCore()
-  fullName: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies()
+  fullName: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Interop/UMLInterop/Cmof/ValueSpecification.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 325
+    startLine: 591
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
-  summary: Registers event hooks to keep the collection up to date
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore*
-- uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore
-  commentId: M:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: ValueSpecification.ValueSpecificationChildrenCollection.DetachCore()
-  fullName: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Interop/UMLInterop/Cmof/ValueSpecification.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 332
-  assemblies:
-  - NMF.UMLInterop
-  namespace: NMF.Interop.Cmof
-  summary: Unregisters all event hooks registered by AttachCore
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies*
 - uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 340
+    startLine: 600
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 347
+    startLine: 607
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 356
+    startLine: 616
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 366
+    startLine: 626
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 375
+    startLine: 635
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Interop/UMLInterop/Cmof/ValueSpecification.cs
-    startLine: 384
+    startLine: 644
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore*
-  commentId: Overload:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore
-  href: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.html#NMF_Interop_Cmof_ValueSpecification_ValueSpecificationChildrenCollection_AttachCore
-  name: AttachCore
-  nameWithType: ValueSpecification.ValueSpecificationChildrenCollection.AttachCore
-  fullName: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies*
+  commentId: Overload:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies
+  href: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.html#NMF_Interop_Cmof_ValueSpecification_ValueSpecificationChildrenCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies
+  fullName: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore*
-  commentId: Overload:NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore
-  href: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.html#NMF_Interop_Cmof_ValueSpecification_ValueSpecificationChildrenCollection_DetachCore
-  name: DetachCore
-  nameWithType: ValueSpecification.ValueSpecificationChildrenCollection.DetachCore
-  fullName: NMF.Interop.Cmof.ValueSpecification.ValueSpecificationChildrenCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

@@ -7,6 +7,7 @@ items:
   children:
   - NMF.AnyText.ModelParseContext.#ctor(NMF.AnyText.Grammars.Grammar,NMF.AnyText.Matcher,System.StringComparison)
   - NMF.AnyText.ModelParseContext.#ctor(NMF.AnyText.Grammars.Grammar,System.StringComparison)
+  - NMF.AnyText.ModelParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.ModelParseContext.GetPotentialReferences``1(System.Object,System.String)
   - NMF.AnyText.ModelParseContext.TryResolveReference``1(System.Object,System.String,``0@)
   langs:
@@ -57,6 +58,7 @@ items:
   - NMF.AnyText.ParseContext.AddDefinition(System.Object,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.ParseContext.TryGetDefinitions(System.Object,System.Collections.Generic.ICollection{NMF.AnyText.Rules.RuleApplication}@)
   - NMF.AnyText.ParseContext.RemoveDefinition(System.Object,NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
   - NMF.AnyText.ParseContext.AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.ParseContext.RemoveReference(System.Object,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.ParseContext.TryGetReferences(System.Object,System.Collections.Generic.ICollection{NMF.AnyText.Rules.RuleApplication}@)
@@ -64,9 +66,9 @@ items:
   - NMF.AnyText.ParseContext.AddDiagnosticItem(NMF.AnyText.DiagnosticItem)
   - NMF.AnyText.ParseContext.RemoveDiagnosticItem(NMF.AnyText.DiagnosticItem)
   - NMF.AnyText.ParseContext.Errors
-  - NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  - NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  - NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  - NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  - NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   - NMF.AnyText.ParseContext.TrackAndCreateWorkspaceEdit(NMF.AnyText.TextEdit[],System.Uri)
   - NMF.AnyText.ParseContext.ShouldParseChange
   - NMF.AnyText.ParseContext.Dispose(System.Boolean)
@@ -222,7 +224,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetPotentialReferences
     path: src/AnyText/AnyText/ModelParseContext.cs
-    startLine: 57
+    startLine: 63
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText
@@ -249,6 +251,42 @@ items:
   nameWithType.vb: ModelParseContext.GetPotentialReferences(Of T)(Object, String)
   fullName.vb: NMF.AnyText.ModelParseContext.GetPotentialReferences(Of T)(Object, String)
   name.vb: GetPotentialReferences(Of T)(Object, String)
+- uid: NMF.AnyText.ModelParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.ModelParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  id: CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.ModelParseContext
+  langs:
+  - csharp
+  - vb
+  name: CreateRoot(RuleApplication)
+  nameWithType: ModelParseContext.CreateRoot(RuleApplication)
+  fullName: NMF.AnyText.ModelParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText/ModelParseContext.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: CreateRoot
+    path: src/AnyText/AnyText/ModelParseContext.cs
+    startLine: 82
+  assemblies:
+  - NMF.AnyText
+  namespace: NMF.AnyText
+  summary: Creates the root element for the given root rule application
+  example: []
+  syntax:
+    content: protected override object CreateRoot(RuleApplication rootRuleApplication)
+    parameters:
+    - id: rootRuleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the root rule application
+    return:
+      type: System.Object
+      description: the created root object
+    content.vb: Protected Overrides Function CreateRoot(rootRuleApplication As RuleApplication) As Object
+  overridden: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  overload: NMF.AnyText.ModelParseContext.CreateRoot*
 references:
 - uid: NMF.AnyText
   commentId: N:NMF.AnyText
@@ -579,6 +617,37 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
+- uid: NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
+  commentId: M:NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
+  parent: NMF.AnyText.ParseContext
+  isExternal: true
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_InvalidateReferences_System_Object_
+  name: InvalidateReferences(object)
+  nameWithType: ParseContext.InvalidateReferences(object)
+  fullName: NMF.AnyText.ParseContext.InvalidateReferences(object)
+  nameWithType.vb: ParseContext.InvalidateReferences(Object)
+  fullName.vb: NMF.AnyText.ParseContext.InvalidateReferences(Object)
+  name.vb: InvalidateReferences(Object)
+  spec.csharp:
+  - uid: NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
+    name: InvalidateReferences
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_InvalidateReferences_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.ParseContext.InvalidateReferences(System.Object)
+    name: InvalidateReferences
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_InvalidateReferences_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
 - uid: NMF.AnyText.ParseContext.AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
   commentId: M:NMF.AnyText.ParseContext.AddReference(System.Object,NMF.AnyText.Rules.RuleApplication)
   parent: NMF.AnyText.ParseContext
@@ -800,21 +869,21 @@ references:
   name: Errors
   nameWithType: ParseContext.Errors
   fullName: NMF.AnyText.ParseContext.Errors
-- uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  commentId: M:NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+- uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  commentId: M:NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   parent: NMF.AnyText.ParseContext
   isExternal: true
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
-  name: AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>)
-  nameWithType: ParseContext.AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>)
-  fullName: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, ref NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>)
-  nameWithType.vb: ParseContext.AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication))
-  fullName.vb: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication))
-  name.vb: AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication))
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
+  name: AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  nameWithType: ParseContext.AcceptSequenceAdd(SequenceRule, ref RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  fullName: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, ref NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>, ref NMF.AnyText.ParsePositionDelta)
+  nameWithType.vb: ParseContext.AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+  fullName.vb: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication), NMF.AnyText.ParsePositionDelta)
+  name.vb: AcceptSequenceAdd(SequenceRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
   spec.csharp:
-  - uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
     name: AcceptSequenceAdd
-    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   - name: (
   - uid: NMF.AnyText.Rules.SequenceRule
     name: SequenceRule
@@ -837,11 +906,18 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: NMF.AnyText.ParsePositionDelta
+    name: ParsePositionDelta
+    href: NMF.AnyText.ParsePositionDelta.html
   - name: )
   spec.vb:
-  - uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - uid: NMF.AnyText.ParseContext.AcceptSequenceAdd(NMF.AnyText.Rules.SequenceRule,NMF.AnyText.Rules.RuleApplication@,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
     name: AcceptSequenceAdd
-    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptSequenceAdd_NMF_AnyText_Rules_SequenceRule_NMF_AnyText_Rules_RuleApplication__System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   - name: (
   - uid: NMF.AnyText.Rules.SequenceRule
     name: SequenceRule
@@ -864,22 +940,27 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePositionDelta
+    name: ParsePositionDelta
+    href: NMF.AnyText.ParsePositionDelta.html
   - name: )
-- uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  commentId: M:NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+- uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  commentId: M:NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   parent: NMF.AnyText.ParseContext
   isExternal: true
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
-  name: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>)
-  nameWithType: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>)
-  fullName: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>)
-  nameWithType.vb: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication))
-  fullName.vb: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication))
-  name.vb: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication))
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
+  name: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  nameWithType: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  fullName: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>, ref NMF.AnyText.ParsePositionDelta)
+  nameWithType.vb: ParseContext.AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+  fullName.vb: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication), NMF.AnyText.ParsePositionDelta)
+  name.vb: AcceptZeroOrMoreAdd(ZeroOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
   spec.csharp:
-  - uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
     name: AcceptZeroOrMoreAdd
-    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   - name: (
   - uid: NMF.AnyText.Rules.ZeroOrMoreRule
     name: ZeroOrMoreRule
@@ -900,11 +981,18 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: NMF.AnyText.ParsePositionDelta
+    name: ParsePositionDelta
+    href: NMF.AnyText.ParsePositionDelta.html
   - name: )
   spec.vb:
-  - uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - uid: NMF.AnyText.ParseContext.AcceptZeroOrMoreAdd(NMF.AnyText.Rules.ZeroOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
     name: AcceptZeroOrMoreAdd
-    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptZeroOrMoreAdd_NMF_AnyText_Rules_ZeroOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   - name: (
   - uid: NMF.AnyText.Rules.ZeroOrMoreRule
     name: ZeroOrMoreRule
@@ -927,22 +1015,27 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePositionDelta
+    name: ParsePositionDelta
+    href: NMF.AnyText.ParsePositionDelta.html
   - name: )
-- uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
-  commentId: M:NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+- uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
+  commentId: M:NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
   parent: NMF.AnyText.ParseContext
   isExternal: true
-  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
-  name: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>)
-  nameWithType: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>)
-  fullName: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>)
-  nameWithType.vb: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication))
-  fullName.vb: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication))
-  name.vb: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication))
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
+  name: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  nameWithType: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List<RuleApplication>, ref ParsePositionDelta)
+  fullName: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List<NMF.AnyText.Rules.RuleApplication>, ref NMF.AnyText.ParsePositionDelta)
+  nameWithType.vb: ParseContext.AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
+  fullName.vb: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.List(Of NMF.AnyText.Rules.RuleApplication), NMF.AnyText.ParsePositionDelta)
+  name.vb: AcceptOneOrMoreAdd(OneOrMoreRule, RuleApplication, List(Of RuleApplication), ParsePositionDelta)
   spec.csharp:
-  - uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
     name: AcceptOneOrMoreAdd
-    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   - name: (
   - uid: NMF.AnyText.Rules.OneOrMoreRule
     name: OneOrMoreRule
@@ -963,11 +1056,18 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: NMF.AnyText.ParsePositionDelta
+    name: ParsePositionDelta
+    href: NMF.AnyText.ParsePositionDelta.html
   - name: )
   spec.vb:
-  - uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication})
+  - uid: NMF.AnyText.ParseContext.AcceptOneOrMoreAdd(NMF.AnyText.Rules.OneOrMoreRule,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.List{NMF.AnyText.Rules.RuleApplication},NMF.AnyText.ParsePositionDelta@)
     name: AcceptOneOrMoreAdd
-    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_AcceptOneOrMoreAdd_NMF_AnyText_Rules_OneOrMoreRule_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_List_NMF_AnyText_Rules_RuleApplication__NMF_AnyText_ParsePositionDelta__
   - name: (
   - uid: NMF.AnyText.Rules.OneOrMoreRule
     name: OneOrMoreRule
@@ -990,6 +1090,11 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePositionDelta
+    name: ParsePositionDelta
+    href: NMF.AnyText.ParsePositionDelta.html
   - name: )
 - uid: NMF.AnyText.ParseContext.TrackAndCreateWorkspaceEdit(NMF.AnyText.TextEdit[],System.Uri)
   commentId: M:NMF.AnyText.ParseContext.TrackAndCreateWorkspaceEdit(NMF.AnyText.TextEdit[],System.Uri)
@@ -1698,3 +1803,71 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.ParseContext
+  href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_CreateRoot_NMF_AnyText_Rules_RuleApplication_
+  name: CreateRoot(RuleApplication)
+  nameWithType: ParseContext.CreateRoot(RuleApplication)
+  fullName: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+  spec.csharp:
+  - uid: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+    name: CreateRoot
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_CreateRoot_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.ParseContext.CreateRoot(NMF.AnyText.Rules.RuleApplication)
+    name: CreateRoot
+    href: NMF.AnyText.ParseContext.html#NMF_AnyText_ParseContext_CreateRoot_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
+- uid: NMF.AnyText.ModelParseContext.CreateRoot*
+  commentId: Overload:NMF.AnyText.ModelParseContext.CreateRoot
+  href: NMF.AnyText.ModelParseContext.html#NMF_AnyText_ModelParseContext_CreateRoot_NMF_AnyText_Rules_RuleApplication_
+  name: CreateRoot
+  nameWithType: ModelParseContext.CreateRoot
+  fullName: NMF.AnyText.ModelParseContext.CreateRoot
+- uid: NMF.AnyText.Rules.RuleApplication
+  commentId: T:NMF.AnyText.Rules.RuleApplication
+  parent: NMF.AnyText.Rules
+  href: NMF.AnyText.Rules.RuleApplication.html
+  name: RuleApplication
+  nameWithType: RuleApplication
+  fullName: NMF.AnyText.Rules.RuleApplication
+- uid: NMF.AnyText.Rules
+  commentId: N:NMF.AnyText.Rules
+  href: NMF.html
+  name: NMF.AnyText.Rules
+  nameWithType: NMF.AnyText.Rules
+  fullName: NMF.AnyText.Rules
+  spec.csharp:
+  - uid: NMF
+    name: NMF
+    href: NMF.html
+  - name: .
+  - uid: NMF.AnyText
+    name: AnyText
+    href: NMF.AnyText.html
+  - name: .
+  - uid: NMF.AnyText.Rules
+    name: Rules
+    href: NMF.AnyText.Rules.html
+  spec.vb:
+  - uid: NMF
+    name: NMF
+    href: NMF.html
+  - name: .
+  - uid: NMF.AnyText
+    name: AnyText
+    href: NMF.AnyText.html
+  - name: .
+  - uid: NMF.AnyText.Rules
+    name: Rules
+    href: NMF.AnyText.Rules.html

@@ -59,7 +59,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypedElement
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -71,7 +71,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ETypedElement")]
 
       public abstract class ETypedElement : ENamedElement, IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -79,7 +79,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ETypedElement")>
 
       Public MustInherit Class ETypedElement Inherits ENamedElement Implements IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -101,13 +101,19 @@ items:
   inheritedMembers:
   - NMF.Interop.Ecore.ENamedElement.Name
   - NMF.Interop.Ecore.ENamedElement.IsIdentified
-  - NMF.Interop.Ecore.ENamedElement.NameChanging
   - NMF.Interop.Ecore.ENamedElement.NameChanged
-  - NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ENamedElement.NameChanging
   - NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Ecore.ENamedElement.ToIdentifierString
   - NMF.Interop.Ecore.EModelElement.EAnnotations
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
+  - NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
   - NMF.Models.ModelElement.Lock
@@ -128,6 +134,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.ToString
   - NMF.Models.ModelElement.IdentifierString
   - NMF.Models.ModelElement.ClassName
@@ -136,7 +143,6 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   - NMF.Models.ModelElement.Extensions
@@ -183,7 +189,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/
+      value: http://www.eclipse.org/emf/2002/Ecore#//ETypedElement
 - uid: NMF.Interop.Ecore.ETypedElement.Ordered
   commentId: P:NMF.Interop.Ecore.ETypedElement.Ordered
   id: Ordered
@@ -202,7 +208,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Ordered
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 78
+    startLine: 97
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -214,7 +220,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual bool? Ordered { get; set; }
+      public bool? Ordered { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
@@ -223,7 +229,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Ordered As Boolean?
+      Public Property Ordered As Boolean?
   overload: NMF.Interop.Ecore.ETypedElement.Ordered*
   implements:
   - NMF.Interop.Ecore.IETypedElement.Ordered
@@ -256,7 +262,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Unique
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 105
+    startLine: 126
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -268,7 +274,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual bool? Unique { get; set; }
+      public bool? Unique { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Boolean}
@@ -277,7 +283,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Unique As Boolean?
+      Public Property Unique As Boolean?
   overload: NMF.Interop.Ecore.ETypedElement.Unique*
   implements:
   - NMF.Interop.Ecore.IETypedElement.Unique
@@ -310,7 +316,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LowerBound
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 132
+    startLine: 155
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -322,7 +328,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual int? LowerBound { get; set; }
+      public int? LowerBound { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Int32}
@@ -331,7 +337,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property LowerBound As Integer?
+      Public Property LowerBound As Integer?
   overload: NMF.Interop.Ecore.ETypedElement.LowerBound*
   implements:
   - NMF.Interop.Ecore.IETypedElement.LowerBound
@@ -364,7 +370,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UpperBound
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 158
+    startLine: 183
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -376,7 +382,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual int? UpperBound { get; set; }
+      public int? UpperBound { get; set; }
     parameters: []
     return:
       type: System.Nullable{System.Int32}
@@ -385,7 +391,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property UpperBound As Integer?
+      Public Property UpperBound As Integer?
   overload: NMF.Interop.Ecore.ETypedElement.UpperBound*
   implements:
   - NMF.Interop.Ecore.IETypedElement.UpperBound
@@ -418,7 +424,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EType
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 185
+    startLine: 212
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -430,7 +436,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual IEClassifier EType { get; set; }
+      public IEClassifier EType { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEClassifier
@@ -439,7 +445,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property EType As IEClassifier
+      Public Property EType As IEClassifier
   overload: NMF.Interop.Ecore.ETypedElement.EType*
   implements:
   - NMF.Interop.Ecore.IETypedElement.EType
@@ -472,7 +478,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EGenericType
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 219
+    startLine: 248
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -480,28 +486,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eGenericType")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IEGenericType EGenericType { get; set; }
+      public IEGenericType EGenericType { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEGenericType
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eGenericType")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable Property EGenericType As IEGenericType
+      Public Property EGenericType As IEGenericType
   overload: NMF.Interop.Ecore.ETypedElement.EGenericType*
   implements:
   - NMF.Interop.Ecore.IETypedElement.EGenericType
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -533,7 +548,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 256
+    startLine: 289
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -567,7 +582,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 267
+    startLine: 300
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -601,7 +616,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 278
+    startLine: 311
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -614,37 +629,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Ecore.ETypedElement.ClassInstance*
-- uid: NMF.Interop.Ecore.ETypedElement.OrderedChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.OrderedChanging
-  id: OrderedChanging
-  parent: NMF.Interop.Ecore.ETypedElement
-  langs:
-  - csharp
-  - vb
-  name: OrderedChanging
-  nameWithType: ETypedElement.OrderedChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.OrderedChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/ETypedElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OrderedChanging
-    path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 293
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Ordered property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> OrderedChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event OrderedChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.ETypedElement.OrderedChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.OrderedChanged
   id: OrderedChanged
@@ -663,7 +647,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OrderedChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 298
+    startLine: 326
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -676,37 +660,37 @@ items:
     content.vb: Public Event OrderedChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IETypedElement.OrderedChanged
-- uid: NMF.Interop.Ecore.ETypedElement.UniqueChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.UniqueChanging
-  id: UniqueChanging
+- uid: NMF.Interop.Ecore.ETypedElement.OrderedChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.OrderedChanging
+  id: OrderedChanging
   parent: NMF.Interop.Ecore.ETypedElement
   langs:
   - csharp
   - vb
-  name: UniqueChanging
-  nameWithType: ETypedElement.UniqueChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.UniqueChanging
+  name: OrderedChanging
+  nameWithType: ETypedElement.OrderedChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.OrderedChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: UniqueChanging
+    id: OrderedChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 303
+    startLine: 331
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Unique property changes its value
+  summary: Gets fired before the Ordered property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> UniqueChanging
+    content: public event EventHandler<ValueChangedEventArgs> OrderedChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event UniqueChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event OrderedChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  - NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.ETypedElement.UniqueChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.UniqueChanged
   id: UniqueChanged
@@ -725,7 +709,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UniqueChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 308
+    startLine: 336
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -738,37 +722,37 @@ items:
     content.vb: Public Event UniqueChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IETypedElement.UniqueChanged
-- uid: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
-  id: LowerBoundChanging
+- uid: NMF.Interop.Ecore.ETypedElement.UniqueChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.UniqueChanging
+  id: UniqueChanging
   parent: NMF.Interop.Ecore.ETypedElement
   langs:
   - csharp
   - vb
-  name: LowerBoundChanging
-  nameWithType: ETypedElement.LowerBoundChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+  name: UniqueChanging
+  nameWithType: ETypedElement.UniqueChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.UniqueChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: LowerBoundChanging
+    id: UniqueChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 313
+    startLine: 341
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the LowerBound property changes its value
+  summary: Gets fired before the Unique property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> LowerBoundChanging
+    content: public event EventHandler<ValueChangedEventArgs> UniqueChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event LowerBoundChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event UniqueChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  - NMF.Interop.Ecore.IETypedElement.UniqueChanging
 - uid: NMF.Interop.Ecore.ETypedElement.LowerBoundChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.LowerBoundChanged
   id: LowerBoundChanged
@@ -787,7 +771,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: LowerBoundChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 318
+    startLine: 346
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -800,37 +784,37 @@ items:
     content.vb: Public Event LowerBoundChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
-- uid: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
-  commentId: E:NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
-  id: UpperBoundChanging
+- uid: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
+  id: LowerBoundChanging
   parent: NMF.Interop.Ecore.ETypedElement
   langs:
   - csharp
   - vb
-  name: UpperBoundChanging
-  nameWithType: ETypedElement.UpperBoundChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  name: LowerBoundChanging
+  nameWithType: ETypedElement.LowerBoundChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.LowerBoundChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: UpperBoundChanging
+    id: LowerBoundChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 323
+    startLine: 351
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the UpperBound property changes its value
+  summary: Gets fired before the LowerBound property changes its value
   example: []
   syntax:
-    content: public event EventHandler<ValueChangedEventArgs> UpperBoundChanging
+    content: public event EventHandler<ValueChangedEventArgs> LowerBoundChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event UpperBoundChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Public Event LowerBoundChanging As EventHandler(Of ValueChangedEventArgs)
   implements:
-  - NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  - NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
 - uid: NMF.Interop.Ecore.ETypedElement.UpperBoundChanged
   commentId: E:NMF.Interop.Ecore.ETypedElement.UpperBoundChanged
   id: UpperBoundChanged
@@ -849,7 +833,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UpperBoundChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 328
+    startLine: 356
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -862,6 +846,37 @@ items:
     content.vb: Public Event UpperBoundChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
+- uid: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  commentId: E:NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  id: UpperBoundChanging
+  parent: NMF.Interop.Ecore.ETypedElement
+  langs:
+  - csharp
+  - vb
+  name: UpperBoundChanging
+  nameWithType: ETypedElement.UpperBoundChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.UpperBoundChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/ETypedElement.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: UpperBoundChanging
+    path: src/Interop/EcoreInterop/Model/ETypedElement.cs
+    startLine: 361
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the UpperBound property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> UpperBoundChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event UpperBoundChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
 - uid: NMF.Interop.Ecore.ETypedElement.ETypeChanging
   commentId: E:NMF.Interop.Ecore.ETypedElement.ETypeChanging
   id: ETypeChanging
@@ -880,7 +895,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 333
+    startLine: 366
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -911,7 +926,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 338
+    startLine: 371
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -942,7 +957,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EGenericTypeChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 343
+    startLine: 376
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -973,7 +988,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EGenericTypeChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 348
+    startLine: 381
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -986,38 +1001,6 @@ items:
     content.vb: Public Event EGenericTypeChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IETypedElement.EGenericTypeChanged
-- uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Interop.Ecore.ETypedElement
-  langs:
-  - csharp
-  - vb
-  name: OnOrderedChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnOrderedChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/ETypedElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnOrderedChanging
-    path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 354
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Raises the OrderedChanging event
-  example: []
-  syntax:
-    content: protected virtual void OnOrderedChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnOrderedChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging*
 - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ETypedElement.OnOrderedChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnOrderedChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -1036,7 +1019,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnOrderedChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 367
+    startLine: 392
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1050,38 +1033,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnOrderedChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.ETypedElement.OnOrderedChanged*
-- uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
   langs:
   - csharp
   - vb
-  name: OnUniqueChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnUniqueChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnOrderedChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnOrderedChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnUniqueChanging
+    id: OnOrderedChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 380
+    startLine: 405
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the UniqueChanging event
+  summary: Raises the OrderedChanging event
   example: []
   syntax:
-    content: protected virtual void OnUniqueChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnOrderedChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnUniqueChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging*
+    content.vb: Protected Overridable Sub OnOrderedChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging*
 - uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ETypedElement.OnUniqueChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnUniqueChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -1100,7 +1083,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnUniqueChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 393
+    startLine: 423
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1114,38 +1097,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnUniqueChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.ETypedElement.OnUniqueChanged*
-- uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
   langs:
   - csharp
   - vb
-  name: OnLowerBoundChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnLowerBoundChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnUniqueChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnUniqueChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnLowerBoundChanging
+    id: OnUniqueChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 406
+    startLine: 436
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the LowerBoundChanging event
+  summary: Raises the UniqueChanging event
   example: []
   syntax:
-    content: protected virtual void OnLowerBoundChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnUniqueChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnLowerBoundChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging*
+    content.vb: Protected Overridable Sub OnUniqueChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging*
 - uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnLowerBoundChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -1164,7 +1147,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnLowerBoundChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 419
+    startLine: 454
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1178,38 +1161,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnLowerBoundChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged*
-- uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ETypedElement
   langs:
   - csharp
   - vb
-  name: OnUpperBoundChanging(ValueChangedEventArgs)
-  nameWithType: ETypedElement.OnUpperBoundChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  name: OnLowerBoundChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnLowerBoundChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging(NMF.Expressions.ValueChangedEventArgs)
   type: Method
   source:
     remote:
       path: Interop/EcoreInterop/Model/ETypedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnUpperBoundChanging
+    id: OnLowerBoundChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 432
+    startLine: 467
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the UpperBoundChanging event
+  summary: Raises the LowerBoundChanging event
   example: []
   syntax:
-    content: protected virtual void OnUpperBoundChanging(ValueChangedEventArgs eventArgs)
+    content: protected virtual void OnLowerBoundChanging(ValueChangedEventArgs eventArgs)
     parameters:
     - id: eventArgs
       type: NMF.Expressions.ValueChangedEventArgs
       description: The event data
-    content.vb: Protected Overridable Sub OnUpperBoundChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging*
+    content.vb: Protected Overridable Sub OnLowerBoundChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging*
 - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnUpperBoundChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -1228,7 +1211,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnUpperBoundChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 445
+    startLine: 485
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1242,6 +1225,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnUpperBoundChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged*
+- uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.ETypedElement
+  langs:
+  - csharp
+  - vb
+  name: OnUpperBoundChanging(ValueChangedEventArgs)
+  nameWithType: ETypedElement.OnUpperBoundChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/ETypedElement.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnUpperBoundChanging
+    path: src/Interop/EcoreInterop/Model/ETypedElement.cs
+    startLine: 498
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the UpperBoundChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnUpperBoundChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnUpperBoundChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging*
 - uid: NMF.Interop.Ecore.ETypedElement.OnETypeChanging(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ETypedElement.OnETypeChanging(NMF.Expressions.ValueChangedEventArgs)
   id: OnETypeChanging(NMF.Expressions.ValueChangedEventArgs)
@@ -1260,7 +1275,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnETypeChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 458
+    startLine: 516
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1292,7 +1307,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnETypeChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 471
+    startLine: 529
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1324,7 +1339,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEGenericTypeChanging
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 494
+    startLine: 560
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1356,7 +1371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEGenericTypeChanged
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 507
+    startLine: 573
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1388,7 +1403,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 531
+    startLine: 600
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1424,7 +1439,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 546
+    startLine: 615
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1466,7 +1481,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 561
+    startLine: 634
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1508,7 +1523,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 587
+    startLine: 660
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1547,7 +1562,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForAttribute
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 627
+    startLine: 700
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1563,7 +1578,7 @@ items:
       type: NMF.Expressions.INotifyExpression{System.Object}
       description: An incremental property expression
     content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
-  overridden: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  overridden: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
   overload: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute*
   nameWithType.vb: ETypedElement.GetExpressionForAttribute(String)
   fullName.vb: NMF.Interop.Ecore.ETypedElement.GetExpressionForAttribute(String)
@@ -1586,7 +1601,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 645
+    startLine: 726
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1625,7 +1640,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/ETypedElement.cs
-    startLine: 661
+    startLine: 742
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1759,13 +1774,6 @@ references:
   name: IsIdentified
   nameWithType: ENamedElement.IsIdentified
   fullName: NMF.Interop.Ecore.ENamedElement.IsIdentified
-- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.ENamedElement
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: ENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanged
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1773,29 +1781,13 @@ references:
   name: NameChanged
   nameWithType: ENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.ENamedElement.NameChanged
-- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
   parent: NMF.Interop.Ecore.ENamedElement
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNameChanging(ValueChangedEventArgs)
-  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnNameChanging
-    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnNameChanging
-    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: ENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   parent: NMF.Interop.Ecore.ENamedElement
@@ -1815,6 +1807,29 @@ references:
   - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
     name: OnNameChanged
     href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanged_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.ENamedElement
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanging(ValueChangedEventArgs)
+  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnNameChanging
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  - name: (
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+    name: OnNameChanging
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
   - name: (
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
@@ -1845,6 +1860,97 @@ references:
   name: EAnnotations
   nameWithType: EModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.EModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: EModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: EModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: EModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotation(string)
+  nameWithType.vb: EModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalling(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalled(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
   commentId: M:NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
   parent: NMF.Interop.Ecore.EModelElement
@@ -1875,6 +1981,37 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  name: GetCompositionName(object)
+  nameWithType: EModelElement.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EModelElement.GetCompositionName(object)
+  nameWithType.vb: EModelElement.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.Model
   commentId: P:NMF.Models.ModelElement.Model
@@ -2249,6 +2386,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.ToString
   commentId: M:NMF.Models.ModelElement.ToString
   parent: NMF.Models.ModelElement
@@ -2391,35 +2534,6 @@ references:
   - name: (
   - uid: NMF.Models.IModelElement
     name: IModelElement
-  - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
@@ -3615,13 +3729,13 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
-- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanging
+- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanged
+  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanged
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanging
-  name: OrderedChanging
-  nameWithType: IETypedElement.OrderedChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanged
+  name: OrderedChanged
+  nameWithType: IETypedElement.OrderedChanged
+  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -3681,20 +3795,13 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanged
-  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanged
+- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanged
-  name: OrderedChanged
-  nameWithType: IETypedElement.OrderedChanged
-  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanged
-- uid: NMF.Interop.Ecore.IETypedElement.UniqueChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanging
-  parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UniqueChanging
-  name: UniqueChanging
-  nameWithType: IETypedElement.UniqueChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanging
+  name: OrderedChanging
+  nameWithType: IETypedElement.OrderedChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.IETypedElement.UniqueChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -3702,13 +3809,13 @@ references:
   name: UniqueChanged
   nameWithType: IETypedElement.UniqueChanged
   fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanged
-- uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+- uid: NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_LowerBoundChanging
-  name: LowerBoundChanging
-  nameWithType: IETypedElement.LowerBoundChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UniqueChanging
+  name: UniqueChanging
+  nameWithType: IETypedElement.UniqueChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanging
 - uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -3716,13 +3823,13 @@ references:
   name: LowerBoundChanged
   nameWithType: IETypedElement.LowerBoundChanged
   fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
-- uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+- uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UpperBoundChanging
-  name: UpperBoundChanging
-  nameWithType: IETypedElement.UpperBoundChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_LowerBoundChanging
+  name: LowerBoundChanging
+  nameWithType: IETypedElement.LowerBoundChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
 - uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -3730,6 +3837,13 @@ references:
   name: UpperBoundChanged
   nameWithType: IETypedElement.UpperBoundChanged
   fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
+- uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  parent: NMF.Interop.Ecore.IETypedElement
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UpperBoundChanging
+  name: UpperBoundChanging
+  nameWithType: IETypedElement.UpperBoundChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
 - uid: NMF.Interop.Ecore.IETypedElement.ETypeChanging
   commentId: E:NMF.Interop.Ecore.IETypedElement.ETypeChanging
   parent: NMF.Interop.Ecore.IETypedElement
@@ -3758,60 +3872,60 @@ references:
   name: EGenericTypeChanged
   nameWithType: IETypedElement.EGenericTypeChanged
   fullName: NMF.Interop.Ecore.IETypedElement.EGenericTypeChanged
-- uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging*
-  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnOrderedChanging
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnOrderedChanging
-  nameWithType: ETypedElement.OnOrderedChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging
-- uid: NMF.Expressions.ValueChangedEventArgs
-  commentId: T:NMF.Expressions.ValueChangedEventArgs
-  parent: NMF.Expressions
-  name: ValueChangedEventArgs
-  nameWithType: ValueChangedEventArgs
-  fullName: NMF.Expressions.ValueChangedEventArgs
 - uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanged*
   commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnOrderedChanged
   href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnOrderedChanged
   nameWithType: ETypedElement.OnOrderedChanged
   fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanged
-- uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging*
-  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnUniqueChanging
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnUniqueChanging
-  nameWithType: ETypedElement.OnUniqueChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging
+- uid: NMF.Expressions.ValueChangedEventArgs
+  commentId: T:NMF.Expressions.ValueChangedEventArgs
+  parent: NMF.Expressions
+  name: ValueChangedEventArgs
+  nameWithType: ValueChangedEventArgs
+  fullName: NMF.Expressions.ValueChangedEventArgs
+- uid: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging*
+  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnOrderedChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnOrderedChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnOrderedChanging
+  nameWithType: ETypedElement.OnOrderedChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.OnOrderedChanging
 - uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanged*
   commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnUniqueChanged
   href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnUniqueChanged
   nameWithType: ETypedElement.OnUniqueChanged
   fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanged
-- uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging*
-  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnLowerBoundChanging
-  nameWithType: ETypedElement.OnLowerBoundChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging
+- uid: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging*
+  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnUniqueChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUniqueChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnUniqueChanging
+  nameWithType: ETypedElement.OnUniqueChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.OnUniqueChanging
 - uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged*
   commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged
   href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnLowerBoundChanged
   nameWithType: ETypedElement.OnLowerBoundChanged
   fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanged
-- uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging*
-  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging
-  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnUpperBoundChanging
-  nameWithType: ETypedElement.OnUpperBoundChanging
-  fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging
+- uid: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging*
+  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnLowerBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnLowerBoundChanging
+  nameWithType: ETypedElement.OnLowerBoundChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.OnLowerBoundChanging
 - uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged*
   commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged
   href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanged_NMF_Expressions_ValueChangedEventArgs_
   name: OnUpperBoundChanged
   nameWithType: ETypedElement.OnUpperBoundChanged
   fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanged
+- uid: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging*
+  commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging
+  href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnUpperBoundChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnUpperBoundChanging
+  nameWithType: ETypedElement.OnUpperBoundChanging
+  fullName: NMF.Interop.Ecore.ETypedElement.OnUpperBoundChanging
 - uid: NMF.Interop.Ecore.ETypedElement.OnETypeChanging*
   commentId: Overload:NMF.Interop.Ecore.ETypedElement.OnETypeChanging
   href: NMF.Interop.Ecore.ETypedElement.html#NMF_Interop_Ecore_ETypedElement_OnETypeChanging_NMF_Expressions_ValueChangedEventArgs_
@@ -4034,20 +4148,21 @@ references:
   name: SetFeature
   nameWithType: ETypedElement.SetFeature
   fullName: NMF.Interop.Ecore.ETypedElement.SetFeature
-- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Models.ModelElement
+- uid: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Interop.Ecore.ENamedElement
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_GetExpressionForAttribute_System_String_
   name: GetExpressionForAttribute(string)
-  nameWithType: ModelElement.GetExpressionForAttribute(string)
-  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
+  nameWithType: ENamedElement.GetExpressionForAttribute(string)
+  fullName: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ENamedElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(String)
   name.vb: GetExpressionForAttribute(String)
   spec.csharp:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  - uid: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
     name: GetExpressionForAttribute
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_GetExpressionForAttribute_System_String_
   - name: (
   - uid: System.String
     name: string
@@ -4055,8 +4170,9 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
   spec.vb:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  - uid: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
     name: GetExpressionForAttribute
+    href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_GetExpressionForAttribute_System_String_
   - name: (
   - uid: System.String
     name: String

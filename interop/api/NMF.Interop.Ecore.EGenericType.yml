@@ -23,7 +23,7 @@ items:
   - NMF.Interop.Ecore.EGenericType.EUpperBoundChanging
   - NMF.Interop.Ecore.EGenericType.GetClass
   - NMF.Interop.Ecore.EGenericType.GetCollectionForFeature(System.String)
-  - NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute(System.String)
+  - NMF.Interop.Ecore.EGenericType.GetCompositionName(System.Object)
   - NMF.Interop.Ecore.EGenericType.GetExpressionForReference(System.String)
   - NMF.Interop.Ecore.EGenericType.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Ecore.EGenericType.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
@@ -51,7 +51,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EGenericType
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -63,7 +63,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EGenericType/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EGenericType")]
 
       public class EGenericType : ModelElement, IEGenericType, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -71,7 +71,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EGenericType/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EGenericType")>
 
       Public Class EGenericType Inherits ModelElement Implements IEGenericType, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -103,6 +103,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -113,10 +114,10 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
+  - NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Extensions
   - NMF.Models.ModelElement.GetExtension``1
   - NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
@@ -161,7 +162,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//EGenericType/
+      value: http://www.eclipse.org/emf/2002/Ecore#//EGenericType
 - uid: NMF.Interop.Ecore.EGenericType.#ctor
   commentId: M:NMF.Interop.Ecore.EGenericType.#ctor
   id: '#ctor'
@@ -180,7 +181,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 72
+    startLine: 88
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -211,7 +212,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EUpperBound
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 82
+    startLine: 98
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -219,28 +220,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eUpperBound")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IEGenericType EUpperBound { get; set; }
+      public IEGenericType EUpperBound { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEGenericType
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eUpperBound")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable Property EUpperBound As IEGenericType
+      Public Property EUpperBound As IEGenericType
   overload: NMF.Interop.Ecore.EGenericType.EUpperBound*
   implements:
   - NMF.Interop.Ecore.IEGenericType.EUpperBound
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -272,7 +282,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeArguments
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 119
+    startLine: 139
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -280,28 +290,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eTypeArguments")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IOrderedSetExpression<IEGenericType> ETypeArguments { get; }
+      public IOrderedSetExpression<IEGenericType> ETypeArguments { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEGenericType}
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eTypeArguments")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable ReadOnly Property ETypeArguments As IOrderedSetExpression(Of IEGenericType)
+      Public ReadOnly Property ETypeArguments As IOrderedSetExpression(Of IEGenericType)
   overload: NMF.Interop.Ecore.EGenericType.ETypeArguments*
   implements:
   - NMF.Interop.Ecore.IEGenericType.ETypeArguments
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -333,7 +352,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELowerBound
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 135
+    startLine: 156
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -341,28 +360,37 @@ items:
   example: []
   syntax:
     content: >-
+      [Browsable(false)]
+
       [XmlElementName("eLowerBound")]
 
       [XmlAttribute(false)]
 
       [Containment]
 
-      public virtual IEGenericType ELowerBound { get; set; }
+      public IEGenericType ELowerBound { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEGenericType
     content.vb: >-
+      <Browsable(False)>
+
       <XmlElementName("eLowerBound")>
 
       <XmlAttribute(False)>
 
       <Containment>
 
-      Public Overridable Property ELowerBound As IEGenericType
+      Public Property ELowerBound As IEGenericType
   overload: NMF.Interop.Ecore.EGenericType.ELowerBound*
   implements:
   - NMF.Interop.Ecore.IEGenericType.ELowerBound
   attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
   - type: NMF.Serialization.XmlElementNameAttribute
     ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
     arguments:
@@ -394,7 +422,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameter
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 172
+    startLine: 197
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -406,7 +434,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual IETypeParameter ETypeParameter { get; set; }
+      public IETypeParameter ETypeParameter { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IETypeParameter
@@ -415,7 +443,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property ETypeParameter As IETypeParameter
+      Public Property ETypeParameter As IETypeParameter
   overload: NMF.Interop.Ecore.EGenericType.ETypeParameter*
   implements:
   - NMF.Interop.Ecore.IEGenericType.ETypeParameter
@@ -448,7 +476,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifier
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 206
+    startLine: 233
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -460,7 +488,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual IEClassifier EClassifier { get; set; }
+      public IEClassifier EClassifier { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEClassifier
@@ -469,7 +497,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property EClassifier As IEClassifier
+      Public Property EClassifier As IEClassifier
   overload: NMF.Interop.Ecore.EGenericType.EClassifier*
   implements:
   - NMF.Interop.Ecore.IEGenericType.EClassifier
@@ -502,7 +530,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 240
+    startLine: 269
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -536,7 +564,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 251
+    startLine: 280
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -570,7 +598,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 262
+    startLine: 291
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -601,7 +629,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EUpperBoundChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 277
+    startLine: 306
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -632,7 +660,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EUpperBoundChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 282
+    startLine: 311
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -663,7 +691,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELowerBoundChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 287
+    startLine: 316
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -694,7 +722,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ELowerBoundChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 292
+    startLine: 321
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -725,7 +753,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameterChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 297
+    startLine: 326
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -756,7 +784,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameterChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 302
+    startLine: 331
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -787,7 +815,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifierChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 307
+    startLine: 336
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -818,7 +846,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EClassifierChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 312
+    startLine: 341
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -849,7 +877,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEUpperBoundChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 318
+    startLine: 352
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -881,7 +909,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEUpperBoundChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 331
+    startLine: 365
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -913,7 +941,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnELowerBoundChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 374
+    startLine: 421
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -945,7 +973,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnELowerBoundChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 387
+    startLine: 434
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -977,7 +1005,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnETypeParameterChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 410
+    startLine: 465
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1009,7 +1037,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnETypeParameterChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 423
+    startLine: 478
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1041,7 +1069,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEClassifierChanging
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 446
+    startLine: 509
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1073,7 +1101,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnEClassifierChanged
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 459
+    startLine: 522
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1105,7 +1133,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 483
+    startLine: 549
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1141,7 +1169,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 507
+    startLine: 573
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1183,7 +1211,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 536
+    startLine: 610
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1222,7 +1250,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 550
+    startLine: 624
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1243,45 +1271,6 @@ items:
   nameWithType.vb: EGenericType.SetFeature(String, Object)
   fullName.vb: NMF.Interop.Ecore.EGenericType.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
-- uid: NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute(System.String)
-  id: GetExpressionForAttribute(System.String)
-  parent: NMF.Interop.Ecore.EGenericType
-  langs:
-  - csharp
-  - vb
-  name: GetExpressionForAttribute(string)
-  nameWithType: EGenericType.GetExpressionForAttribute(string)
-  fullName: NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute(string)
-  type: Method
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/EGenericType.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: GetExpressionForAttribute
-    path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 580
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets the property expression for the given attribute
-  example: []
-  syntax:
-    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
-    parameters:
-    - id: attribute
-      type: System.String
-      description: The requested attribute in upper case
-    return:
-      type: NMF.Expressions.INotifyExpression{System.Object}
-      description: An incremental property expression
-    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
-  overridden: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  overload: NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute*
-  nameWithType.vb: EGenericType.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Interop.Ecore.EGenericType.GetExpressionForReference(System.String)
   commentId: M:NMF.Interop.Ecore.EGenericType.GetExpressionForReference(System.String)
   id: GetExpressionForReference(System.String)
@@ -1300,7 +1289,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 606
+    startLine: 654
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1321,6 +1310,45 @@ items:
   nameWithType.vb: EGenericType.GetExpressionForReference(String)
   fullName.vb: NMF.Interop.Ecore.EGenericType.GetExpressionForReference(String)
   name.vb: GetExpressionForReference(String)
+- uid: NMF.Interop.Ecore.EGenericType.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EGenericType.GetCompositionName(System.Object)
+  id: GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EGenericType
+  langs:
+  - csharp
+  - vb
+  name: GetCompositionName(object)
+  nameWithType: EGenericType.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EGenericType.GetCompositionName(object)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/EGenericType.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetCompositionName
+    path: src/Interop/EcoreInterop/Model/EGenericType.cs
+    startLine: 680
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets the property name for the given container
+  example: []
+  syntax:
+    content: protected override string GetCompositionName(object container)
+    parameters:
+    - id: container
+      type: System.Object
+      description: The container object
+    return:
+      type: System.String
+      description: The name of the respective container reference
+    content.vb: Protected Overrides Function GetCompositionName(container As Object) As String
+  overridden: NMF.Models.ModelElement.GetCompositionName(System.Object)
+  overload: NMF.Interop.Ecore.EGenericType.GetCompositionName*
+  nameWithType.vb: EGenericType.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EGenericType.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
 - uid: NMF.Interop.Ecore.EGenericType.GetClass
   commentId: M:NMF.Interop.Ecore.EGenericType.GetClass
   id: GetClass
@@ -1339,7 +1367,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/EGenericType.cs
-    startLine: 630
+    startLine: 692
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -1804,6 +1832,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -1969,35 +2003,6 @@ references:
   - uid: NMF.Models.IModelElement
     name: IModelElement
   - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   parent: NMF.Models.ModelElement
@@ -2108,6 +2113,35 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: (
   - name: )
+  - name: )
+- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: GetExpressionForAttribute(string)
+  nameWithType: ModelElement.GetExpressionForAttribute(string)
+  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: NMF.Models.ModelElement.Extensions
   commentId: P:NMF.Models.ModelElement.Extensions
@@ -3608,94 +3642,6 @@ references:
   name: SetFeature
   nameWithType: EGenericType.SetFeature
   fullName: NMF.Interop.Ecore.EGenericType.SetFeature
-- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: GetExpressionForAttribute(string)
-  nameWithType: ModelElement.GetExpressionForAttribute(string)
-  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute*
-  commentId: Overload:NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute
-  href: NMF.Interop.Ecore.EGenericType.html#NMF_Interop_Ecore_EGenericType_GetExpressionForAttribute_System_String_
-  name: GetExpressionForAttribute
-  nameWithType: EGenericType.GetExpressionForAttribute
-  fullName: NMF.Interop.Ecore.EGenericType.GetExpressionForAttribute
-- uid: NMF.Expressions.INotifyExpression{System.Object}
-  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
-  parent: NMF.Expressions
-  definition: NMF.Expressions.INotifyExpression`1
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: INotifyExpression<object>
-  nameWithType: INotifyExpression<object>
-  fullName: NMF.Expressions.INotifyExpression<object>
-  nameWithType.vb: INotifyExpression(Of Object)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
-  name.vb: INotifyExpression(Of Object)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: <
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: NMF.Expressions.INotifyExpression`1
-  commentId: T:NMF.Expressions.INotifyExpression`1
-  name: INotifyExpression<T>
-  nameWithType: INotifyExpression<T>
-  fullName: NMF.Expressions.INotifyExpression<T>
-  nameWithType.vb: INotifyExpression(Of T)
-  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
-  name.vb: INotifyExpression(Of T)
-  spec.csharp:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: NMF.Expressions.INotifyExpression`1
-    name: INotifyExpression
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: NMF.Models.ModelElement.GetExpressionForReference(System.String)
   commentId: M:NMF.Models.ModelElement.GetExpressionForReference(System.String)
   parent: NMF.Models.ModelElement
@@ -3757,6 +3703,63 @@ references:
   - uid: NMF.Models.IModelElement
     name: IModelElement
   - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
+  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: GetCompositionName(object)
+  nameWithType: ModelElement.GetCompositionName(object)
+  fullName: NMF.Models.ModelElement.GetCompositionName(object)
+  nameWithType.vb: ModelElement.GetCompositionName(Object)
+  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Interop.Ecore.EGenericType.GetCompositionName*
+  commentId: Overload:NMF.Interop.Ecore.EGenericType.GetCompositionName
+  href: NMF.Interop.Ecore.EGenericType.html#NMF_Interop_Ecore_EGenericType_GetCompositionName_System_Object_
+  name: GetCompositionName
+  nameWithType: EGenericType.GetCompositionName
+  fullName: NMF.Interop.Ecore.EGenericType.GetCompositionName
 - uid: NMF.Models.ModelElement.GetClass
   commentId: M:NMF.Models.ModelElement.GetClass
   parent: NMF.Models.ModelElement

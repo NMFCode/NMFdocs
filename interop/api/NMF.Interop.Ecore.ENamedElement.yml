@@ -8,6 +8,7 @@ items:
   - NMF.Interop.Ecore.ENamedElement.ClassInstance
   - NMF.Interop.Ecore.ENamedElement.GetAttributeValue(System.String,System.Int32)
   - NMF.Interop.Ecore.ENamedElement.GetClass
+  - NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
   - NMF.Interop.Ecore.ENamedElement.IsIdentified
   - NMF.Interop.Ecore.ENamedElement.Name
   - NMF.Interop.Ecore.ENamedElement.NameChanged
@@ -30,7 +31,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ENamedElement
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -44,7 +45,7 @@ items:
 
       [XmlNamespacePrefix("ecore")]
 
-      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/")]
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ENamedElement")]
 
       public abstract class ENamedElement : EModelElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
@@ -54,7 +55,7 @@ items:
 
       <XmlNamespacePrefix("ecore")>
 
-      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/")>
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//ENamedElement")>
 
       Public MustInherit Class ENamedElement Inherits EModelElement Implements IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
   inheritance:
@@ -77,9 +78,15 @@ items:
   - NMF.Interop.Ecore.EModelElement.EAnnotations
   - NMF.Interop.Ecore.EModelElement.Children
   - NMF.Interop.Ecore.EModelElement.ReferencedElements
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  - NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
   - NMF.Interop.Ecore.EModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   - NMF.Interop.Ecore.EModelElement.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Ecore.EModelElement.GetCollectionForFeature(System.String)
+  - NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.Model
   - NMF.Models.ModelElement.Freeze
   - NMF.Models.ModelElement.Lock
@@ -100,6 +107,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.ToString
   - NMF.Models.ModelElement.IdentifierString
   - NMF.Models.ModelElement.ClassName
@@ -108,11 +116,9 @@ items:
   - NMF.Models.ModelElement.Resolve(System.Uri)
   - NMF.Models.ModelElement.Resolve(System.String)
   - NMF.Models.ModelElement.GetRelativePathForChild(NMF.Models.IModelElement)
-  - NMF.Models.ModelElement.GetCompositionName(System.Object)
   - NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   - NMF.Models.ModelElement.CallOperation(NMF.Models.Meta.IOperation,System.Object[])
   - NMF.Models.ModelElement.GetExpressionForReference(System.String)
-  - NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Extensions
   - NMF.Models.ModelElement.GetExtension``1
   - NMF.Models.ModelElement.OnPropertyChanged(System.String,NMF.Expressions.ValueChangedEventArgs,System.Lazy{NMF.Models.Meta.ITypedElement})
@@ -162,7 +168,7 @@ items:
     ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
     arguments:
     - type: System.String
-      value: http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/
+      value: http://www.eclipse.org/emf/2002/Ecore#//ENamedElement
 - uid: NMF.Interop.Ecore.ENamedElement.Name
   commentId: P:NMF.Interop.Ecore.ENamedElement.Name
   id: Name
@@ -181,7 +187,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Name
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 54
+    startLine: 58
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -195,7 +201,7 @@ items:
 
       [XmlAttribute(true)]
 
-      public virtual string Name { get; set; }
+      public string Name { get; set; }
     parameters: []
     return:
       type: System.String
@@ -206,7 +212,7 @@ items:
 
       <XmlAttribute(True)>
 
-      Public Overridable Property Name As String
+      Public Property Name As String
   overload: NMF.Interop.Ecore.ENamedElement.Name*
   implements:
   - NMF.Interop.Ecore.IENamedElement.Name
@@ -242,7 +248,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 81
+    startLine: 88
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -273,7 +279,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsIdentified
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 96
+    startLine: 103
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -289,37 +295,6 @@ items:
   overload: NMF.Interop.Ecore.ENamedElement.IsIdentified*
   implements:
   - NMF.Models.IModelElement.IsIdentified
-- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
-  id: NameChanging
-  parent: NMF.Interop.Ecore.ENamedElement
-  langs:
-  - csharp
-  - vb
-  name: NameChanging
-  nameWithType: ENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
-  type: Event
-  source:
-    remote:
-      path: Interop/EcoreInterop/Model/ENamedElement.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: NameChanging
-    path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 107
-  assemblies:
-  - NMF.EcoreInterop
-  namespace: NMF.Interop.Ecore
-  summary: Gets fired before the Name property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> NameChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event NameChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanged
   id: NameChanged
@@ -338,7 +313,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NameChanged
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 112
+    startLine: 114
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -351,38 +326,37 @@ items:
     content.vb: Public Event NameChanged As EventHandler(Of ValueChangedEventArgs)
   implements:
   - NMF.Interop.Ecore.IENamedElement.NameChanged
-- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.ENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.ENamedElement.NameChanging
+  id: NameChanging
   parent: NMF.Interop.Ecore.ENamedElement
   langs:
   - csharp
   - vb
-  name: OnNameChanging(ValueChangedEventArgs)
-  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
-  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
+  name: NameChanging
+  nameWithType: ENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.ENamedElement.NameChanging
+  type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/ENamedElement.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: OnNameChanging
+    id: NameChanging
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 118
+    startLine: 119
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Raises the NameChanging event
+  summary: Gets fired before the Name property changes its value
   example: []
   syntax:
-    content: protected virtual void OnNameChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnNameChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Interop.Ecore.ENamedElement.OnNameChanging*
+    content: public event EventHandler<ValueChangedEventArgs> NameChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event NameChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
   id: OnNameChanged(NMF.Expressions.ValueChangedEventArgs)
@@ -401,7 +375,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnNameChanged
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 131
+    startLine: 130
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -415,6 +389,38 @@ items:
       description: The event data
     content.vb: Protected Overridable Sub OnNameChanged(eventArgs As ValueChangedEventArgs)
   overload: NMF.Interop.Ecore.ENamedElement.OnNameChanged*
+- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Ecore.ENamedElement
+  langs:
+  - csharp
+  - vb
+  name: OnNameChanging(ValueChangedEventArgs)
+  nameWithType: ENamedElement.OnNameChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/ENamedElement.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnNameChanging
+    path: src/Interop/EcoreInterop/Model/ENamedElement.cs
+    startLine: 143
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Raises the NameChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnNameChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnNameChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Ecore.ENamedElement.OnNameChanging*
 - uid: NMF.Interop.Ecore.ENamedElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Interop.Ecore.ENamedElement.GetAttributeValue(System.String,System.Int32)
   id: GetAttributeValue(System.String,System.Int32)
@@ -433,7 +439,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 146
+    startLine: 158
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -475,7 +481,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 160
+    startLine: 172
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -496,6 +502,45 @@ items:
   nameWithType.vb: ENamedElement.SetFeature(String, Object)
   fullName.vb: NMF.Interop.Ecore.ENamedElement.SetFeature(String, Object)
   name.vb: SetFeature(String, Object)
+- uid: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(System.String)
+  id: GetExpressionForAttribute(System.String)
+  parent: NMF.Interop.Ecore.ENamedElement
+  langs:
+  - csharp
+  - vb
+  name: GetExpressionForAttribute(string)
+  nameWithType: ENamedElement.GetExpressionForAttribute(string)
+  fullName: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(string)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/ENamedElement.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetExpressionForAttribute
+    path: src/Interop/EcoreInterop/Model/ENamedElement.cs
+    startLine: 187
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets the property expression for the given attribute
+  example: []
+  syntax:
+    content: protected override INotifyExpression<object> GetExpressionForAttribute(string attribute)
+    parameters:
+    - id: attribute
+      type: System.String
+      description: The requested attribute in upper case
+    return:
+      type: NMF.Expressions.INotifyExpression{System.Object}
+      description: An incremental property expression
+    content.vb: Protected Overrides Function GetExpressionForAttribute(attribute As String) As INotifyExpression(Of Object)
+  overridden: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  overload: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute*
+  nameWithType.vb: ENamedElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
 - uid: NMF.Interop.Ecore.ENamedElement.GetClass
   commentId: M:NMF.Interop.Ecore.ENamedElement.GetClass
   id: GetClass
@@ -514,7 +559,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 173
+    startLine: 199
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -547,7 +592,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ToIdentifierString
     path: src/Interop/EcoreInterop/Model/ENamedElement.cs
-    startLine: 186
+    startLine: 212
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -675,6 +720,97 @@ references:
   name: ReferencedElements
   nameWithType: EModelElement.ReferencedElements
   fullName: NMF.Interop.Ecore.EModelElement.ReferencedElements
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: EModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: EModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: EModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.EModelElement.GetEAnnotation(string)
+  nameWithType.vb: EModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalling(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalling(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalling(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalling
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalling_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  commentId: M:NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  parent: NMF.Interop.Ecore.EModelElement
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  name: OnGetEAnnotationCalled(OperationCallEventArgs)
+  nameWithType: EModelElement.OnGetEAnnotationCalled(OperationCallEventArgs)
+  fullName: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.OnGetEAnnotationCalled(NMF.Models.OperationCallEventArgs)
+    name: OnGetEAnnotationCalled
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_OnGetEAnnotationCalled_NMF_Models_OperationCallEventArgs_
+  - name: (
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
 - uid: NMF.Interop.Ecore.EModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   commentId: M:NMF.Interop.Ecore.EModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   parent: NMF.Interop.Ecore.EModelElement
@@ -771,6 +907,37 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  commentId: M:NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+  parent: NMF.Interop.Ecore.EModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  name: GetCompositionName(object)
+  nameWithType: EModelElement.GetCompositionName(object)
+  fullName: NMF.Interop.Ecore.EModelElement.GetCompositionName(object)
+  nameWithType.vb: EModelElement.GetCompositionName(Object)
+  fullName.vb: NMF.Interop.Ecore.EModelElement.GetCompositionName(Object)
+  name.vb: GetCompositionName(Object)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.EModelElement.GetCompositionName(System.Object)
+    name: GetCompositionName
+    href: NMF.Interop.Ecore.EModelElement.html#NMF_Interop_Ecore_EModelElement_GetCompositionName_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: NMF.Models.ModelElement.Model
   commentId: P:NMF.Models.ModelElement.Model
@@ -1145,6 +1312,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.ToString
   commentId: M:NMF.Models.ModelElement.ToString
   parent: NMF.Models.ModelElement
@@ -1288,35 +1461,6 @@ references:
   - uid: NMF.Models.IModelElement
     name: IModelElement
   - name: )
-- uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-  commentId: M:NMF.Models.ModelElement.GetCompositionName(System.Object)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.object
-  name: GetCompositionName(object)
-  nameWithType: ModelElement.GetCompositionName(object)
-  fullName: NMF.Models.ModelElement.GetCompositionName(object)
-  nameWithType.vb: ModelElement.GetCompositionName(Object)
-  fullName.vb: NMF.Models.ModelElement.GetCompositionName(Object)
-  name.vb: GetCompositionName(Object)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetCompositionName(System.Object)
-    name: GetCompositionName
-  - name: (
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
 - uid: NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   commentId: M:NMF.Models.ModelElement.GetModelElementForPathSegment(System.String)
   parent: NMF.Models.ModelElement
@@ -1410,35 +1554,6 @@ references:
   spec.vb:
   - uid: NMF.Models.ModelElement.GetExpressionForReference(System.String)
     name: GetExpressionForReference
-  - name: (
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-  parent: NMF.Models.ModelElement
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: GetExpressionForAttribute(string)
-  nameWithType: ModelElement.GetExpressionForAttribute(string)
-  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
-  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
-  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
-  name.vb: GetExpressionForAttribute(String)
-  spec.csharp:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  spec.vb:
-  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
-    name: GetExpressionForAttribute
   - name: (
   - uid: System.String
     name: String
@@ -2353,13 +2468,13 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanged
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanged
+  name: NameChanged
+  nameWithType: IENamedElement.NameChanged
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -2419,19 +2534,19 @@ references:
   - name: " "
   - name: TEventArgs
   - name: )
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanged
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
   parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanged
-  name: NameChanged
-  nameWithType: IENamedElement.NameChanged
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
-- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging*
-  commentId: Overload:NMF.Interop.Ecore.ENamedElement.OnNameChanging
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNameChanging
-  nameWithType: ENamedElement.OnNameChanging
-  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
+- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged*
+  commentId: Overload:NMF.Interop.Ecore.ENamedElement.OnNameChanged
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanged
+  nameWithType: ENamedElement.OnNameChanged
+  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanged
 - uid: NMF.Expressions.ValueChangedEventArgs
   commentId: T:NMF.Expressions.ValueChangedEventArgs
   parent: NMF.Expressions
@@ -2455,12 +2570,12 @@ references:
   - name: .
   - uid: NMF.Expressions
     name: Expressions
-- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanged*
-  commentId: Overload:NMF.Interop.Ecore.ENamedElement.OnNameChanged
-  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnNameChanged
-  nameWithType: ENamedElement.OnNameChanged
-  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanged
+- uid: NMF.Interop.Ecore.ENamedElement.OnNameChanging*
+  commentId: Overload:NMF.Interop.Ecore.ENamedElement.OnNameChanging
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_OnNameChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnNameChanging
+  nameWithType: ENamedElement.OnNameChanging
+  fullName: NMF.Interop.Ecore.ENamedElement.OnNameChanging
 - uid: NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Models.ModelElement
@@ -2566,6 +2681,94 @@ references:
   name: SetFeature
   nameWithType: ENamedElement.SetFeature
   fullName: NMF.Interop.Ecore.ENamedElement.SetFeature
+- uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  commentId: M:NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+  parent: NMF.Models.ModelElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: GetExpressionForAttribute(string)
+  nameWithType: ModelElement.GetExpressionForAttribute(string)
+  fullName: NMF.Models.ModelElement.GetExpressionForAttribute(string)
+  nameWithType.vb: ModelElement.GetExpressionForAttribute(String)
+  fullName.vb: NMF.Models.ModelElement.GetExpressionForAttribute(String)
+  name.vb: GetExpressionForAttribute(String)
+  spec.csharp:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.ModelElement.GetExpressionForAttribute(System.String)
+    name: GetExpressionForAttribute
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute*
+  commentId: Overload:NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute
+  href: NMF.Interop.Ecore.ENamedElement.html#NMF_Interop_Ecore_ENamedElement_GetExpressionForAttribute_System_String_
+  name: GetExpressionForAttribute
+  nameWithType: ENamedElement.GetExpressionForAttribute
+  fullName: NMF.Interop.Ecore.ENamedElement.GetExpressionForAttribute
+- uid: NMF.Expressions.INotifyExpression{System.Object}
+  commentId: T:NMF.Expressions.INotifyExpression{System.Object}
+  parent: NMF.Expressions
+  definition: NMF.Expressions.INotifyExpression`1
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: INotifyExpression<object>
+  nameWithType: INotifyExpression<object>
+  fullName: NMF.Expressions.INotifyExpression<object>
+  nameWithType.vb: INotifyExpression(Of Object)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of Object)
+  name.vb: INotifyExpression(Of Object)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: NMF.Expressions.INotifyExpression`1
+  commentId: T:NMF.Expressions.INotifyExpression`1
+  name: INotifyExpression<T>
+  nameWithType: INotifyExpression<T>
+  fullName: NMF.Expressions.INotifyExpression<T>
+  nameWithType.vb: INotifyExpression(Of T)
+  fullName.vb: NMF.Expressions.INotifyExpression(Of T)
+  name.vb: INotifyExpression(Of T)
+  spec.csharp:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: NMF.Expressions.INotifyExpression`1
+    name: INotifyExpression
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: NMF.Interop.Ecore.EModelElement.GetClass
   commentId: M:NMF.Interop.Ecore.EModelElement.GetClass
   parent: NMF.Interop.Ecore.EModelElement

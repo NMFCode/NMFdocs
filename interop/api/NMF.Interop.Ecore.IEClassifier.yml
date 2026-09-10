@@ -9,12 +9,18 @@ items:
   - NMF.Interop.Ecore.IEClassifier.EPackageChanged
   - NMF.Interop.Ecore.IEClassifier.EPackageChanging
   - NMF.Interop.Ecore.IEClassifier.ETypeParameters
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  - NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
   - NMF.Interop.Ecore.IEClassifier.InstanceClassName
   - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   - NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeName
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   - NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  - NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  - NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  - NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
   langs:
   - csharp
   - vb
@@ -29,7 +35,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEClassifier
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -41,18 +47,30 @@ items:
 
       [XmlDefaultImplementationType(typeof(EClassifier))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EClassifier")]
+
       public interface IEClassifier : IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EClassifier))>
 
       <XmlDefaultImplementationType(GetType(EClassifier))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EClassifier")>
+
       Public Interface IEClassifier Inherits IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EClass
+  - NMF.Interop.Ecore.EClassifier
+  - NMF.Interop.Ecore.EDataType
+  - NMF.Interop.Ecore.EEnum
   inheritedMembers:
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -100,6 +118,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EClassifier
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EClassifier
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceClassName
   commentId: P:NMF.Interop.Ecore.IEClassifier.InstanceClassName
   id: InstanceClassName
@@ -118,19 +141,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InstanceClassName
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The instanceClassName property
   example: []
   syntax:
-    content: string InstanceClassName { get; set; }
+    content: >-
+      [XmlElementName("instanceClassName")]
+
+      [XmlAttribute(true)]
+
+      string InstanceClassName { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property InstanceClassName As String
+    content.vb: >-
+      <XmlElementName("instanceClassName")>
+
+      <XmlAttribute(True)>
+
+      Property InstanceClassName As String
   overload: NMF.Interop.Ecore.IEClassifier.InstanceClassName*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: instanceClassName
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeName
   commentId: P:NMF.Interop.Ecore.IEClassifier.InstanceTypeName
   id: InstanceTypeName
@@ -149,19 +193,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InstanceTypeName
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 53
+    startLine: 59
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The instanceTypeName property
   example: []
   syntax:
-    content: string InstanceTypeName { get; set; }
+    content: >-
+      [XmlElementName("instanceTypeName")]
+
+      [XmlAttribute(true)]
+
+      string InstanceTypeName { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Property InstanceTypeName As String
+    content.vb: >-
+      <XmlElementName("instanceTypeName")>
+
+      <XmlAttribute(True)>
+
+      Property InstanceTypeName As String
   overload: NMF.Interop.Ecore.IEClassifier.InstanceTypeName*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: instanceTypeName
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEClassifier.EPackage
   commentId: P:NMF.Interop.Ecore.IEClassifier.EPackage
   id: EPackage
@@ -180,19 +245,58 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackage
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 62
+    startLine: 72
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The ePackage property
   example: []
   syntax:
-    content: IEPackage EPackage { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("ePackage")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("eClassifiers")]
+
+      IEPackage EPackage { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEPackage
-    content.vb: Property EPackage As IEPackage
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("ePackage")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("eClassifiers")>
+
+      Property EPackage As IEPackage
   overload: NMF.Interop.Ecore.IEClassifier.EPackage*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: ePackage
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eClassifiers
 - uid: NMF.Interop.Ecore.IEClassifier.ETypeParameters
   commentId: P:NMF.Interop.Ecore.IEClassifier.ETypeParameters
   id: ETypeParameters
@@ -211,48 +315,172 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameters
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 71
+    startLine: 86
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eTypeParameters property
   example: []
   syntax:
-    content: IOrderedSetExpression<IETypeParameter> ETypeParameters { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eTypeParameters")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IOrderedSetExpression<IETypeParameter> ETypeParameters { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IETypeParameter}
-    content.vb: ReadOnly Property ETypeParameters As IOrderedSetExpression(Of IETypeParameter)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eTypeParameters")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property ETypeParameters As IOrderedSetExpression(Of IETypeParameter)
   overload: NMF.Interop.Ecore.IEClassifier.ETypeParameters*
-- uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
-  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
-  id: InstanceClassNameChanging
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eTypeParameters
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+  commentId: E:NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
+  id: IsInstanceCalling
   parent: NMF.Interop.Ecore.IEClassifier
   langs:
   - csharp
   - vb
-  name: InstanceClassNameChanging
-  nameWithType: IEClassifier.InstanceClassNameChanging
-  fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  name: IsInstanceCalling
+  nameWithType: IEClassifier.IsInstanceCalling
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstanceCalling
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEClassifier.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: InstanceClassNameChanging
+    id: IsInstanceCalling
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 79
+    startLine: 100
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the InstanceClassName property changes its value
+  summary: Gets fired before the operation isInstance gets called
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> InstanceClassNameChanging
+    content: event EventHandler<OperationCallEventArgs> IsInstanceCalling
     return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event InstanceClassNameChanging As EventHandler(Of ValueChangedEventArgs)
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event IsInstanceCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  commentId: E:NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  id: IsInstanceCalled
+  parent: NMF.Interop.Ecore.IEClassifier
+  langs:
+  - csharp
+  - vb
+  name: IsInstanceCalled
+  nameWithType: IEClassifier.IsInstanceCalled
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstanceCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEClassifier.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsInstanceCalled
+    path: src/Interop/EcoreInterop/Model/IEClassifier.cs
+    startLine: 105
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation isInstance got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> IsInstanceCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event IsInstanceCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  commentId: E:NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  id: GetClassifierIDCalling
+  parent: NMF.Interop.Ecore.IEClassifier
+  langs:
+  - csharp
+  - vb
+  name: GetClassifierIDCalling
+  nameWithType: IEClassifier.GetClassifierIDCalling
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEClassifier.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetClassifierIDCalling
+    path: src/Interop/EcoreInterop/Model/IEClassifier.cs
+    startLine: 110
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getClassifierID gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetClassifierIDCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetClassifierIDCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  commentId: E:NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  id: GetClassifierIDCalled
+  parent: NMF.Interop.Ecore.IEClassifier
+  langs:
+  - csharp
+  - vb
+  name: GetClassifierIDCalled
+  nameWithType: IEClassifier.GetClassifierIDCalled
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierIDCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEClassifier.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetClassifierIDCalled
+    path: src/Interop/EcoreInterop/Model/IEClassifier.cs
+    startLine: 115
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getClassifierID got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetClassifierIDCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetClassifierIDCalled As EventHandler(Of OperationCallEventArgs)
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanged
   id: InstanceClassNameChanged
@@ -271,7 +499,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InstanceClassNameChanged
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 84
+    startLine: 120
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -282,35 +510,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event InstanceClassNameChanged As EventHandler(Of ValueChangedEventArgs)
-- uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
-  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
-  id: InstanceTypeNameChanging
+- uid: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
+  id: InstanceClassNameChanging
   parent: NMF.Interop.Ecore.IEClassifier
   langs:
   - csharp
   - vb
-  name: InstanceTypeNameChanging
-  nameWithType: IEClassifier.InstanceTypeNameChanging
-  fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  name: InstanceClassNameChanging
+  nameWithType: IEClassifier.InstanceClassNameChanging
+  fullName: NMF.Interop.Ecore.IEClassifier.InstanceClassNameChanging
   type: Event
   source:
     remote:
       path: Interop/EcoreInterop/Model/IEClassifier.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: InstanceTypeNameChanging
+    id: InstanceClassNameChanging
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 89
+    startLine: 125
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
-  summary: Gets fired before the InstanceTypeName property changes its value
+  summary: Gets fired before the InstanceClassName property changes its value
   example: []
   syntax:
-    content: event EventHandler<ValueChangedEventArgs> InstanceTypeNameChanging
+    content: event EventHandler<ValueChangedEventArgs> InstanceClassNameChanging
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Event InstanceTypeNameChanging As EventHandler(Of ValueChangedEventArgs)
+    content.vb: Event InstanceClassNameChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanged
   id: InstanceTypeNameChanged
@@ -329,7 +557,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: InstanceTypeNameChanged
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 94
+    startLine: 130
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -340,6 +568,35 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event InstanceTypeNameChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  commentId: E:NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  id: InstanceTypeNameChanging
+  parent: NMF.Interop.Ecore.IEClassifier
+  langs:
+  - csharp
+  - vb
+  name: InstanceTypeNameChanging
+  nameWithType: IEClassifier.InstanceTypeNameChanging
+  fullName: NMF.Interop.Ecore.IEClassifier.InstanceTypeNameChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEClassifier.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: InstanceTypeNameChanging
+    path: src/Interop/EcoreInterop/Model/IEClassifier.cs
+    startLine: 135
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the InstanceTypeName property changes its value
+  example: []
+  syntax:
+    content: event EventHandler<ValueChangedEventArgs> InstanceTypeNameChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Event InstanceTypeNameChanging As EventHandler(Of ValueChangedEventArgs)
 - uid: NMF.Interop.Ecore.IEClassifier.EPackageChanging
   commentId: E:NMF.Interop.Ecore.IEClassifier.EPackageChanging
   id: EPackageChanging
@@ -358,7 +615,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackageChanging
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 99
+    startLine: 140
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -387,7 +644,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EPackageChanged
     path: src/Interop/EcoreInterop/Model/IEClassifier.cs
-    startLine: 104
+    startLine: 145
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -398,6 +655,73 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event EPackageChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  commentId: M:NMF.Interop.Ecore.IEClassifier.IsInstance(System.Object)
+  id: IsInstance(System.Object)
+  parent: NMF.Interop.Ecore.IEClassifier
+  langs:
+  - csharp
+  - vb
+  name: IsInstance(object)
+  nameWithType: IEClassifier.IsInstance(object)
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstance(object)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEClassifier.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsInstance
+    path: src/Interop/EcoreInterop/Model/IEClassifier.cs
+    startLine: 151
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: bool IsInstance(object @object)
+    parameters:
+    - id: object
+      type: System.Object
+      description: ''
+    return:
+      type: System.Boolean
+    content.vb: Function IsInstance([object] As Object) As Boolean
+  overload: NMF.Interop.Ecore.IEClassifier.IsInstance*
+  nameWithType.vb: IEClassifier.IsInstance(Object)
+  fullName.vb: NMF.Interop.Ecore.IEClassifier.IsInstance(Object)
+  name.vb: IsInstance(Object)
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  commentId: M:NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  id: GetClassifierID
+  parent: NMF.Interop.Ecore.IEClassifier
+  langs:
+  - csharp
+  - vb
+  name: GetClassifierID()
+  nameWithType: IEClassifier.GetClassifierID()
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierID()
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEClassifier.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetClassifierID
+    path: src/Interop/EcoreInterop/Model/IEClassifier.cs
+    startLine: 156
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: int GetClassifierID()
+    return:
+      type: System.Int32
+    content.vb: Function GetClassifierID() As Integer
+  overload: NMF.Interop.Ecore.IEClassifier.GetClassifierID*
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -436,13 +760,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -450,6 +767,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -457,6 +781,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement
@@ -1229,6 +1598,65 @@ references:
   - name: .
   - uid: NMF.Collections.Generic
     name: Generic
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
 - uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
   parent: System
@@ -1260,31 +1688,48 @@ references:
   - uid: NMF.Expressions.ValueChangedEventArgs
     name: ValueChangedEventArgs
   - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
+- uid: NMF.Interop.Ecore.IEClassifier.IsInstance*
+  commentId: Overload:NMF.Interop.Ecore.IEClassifier.IsInstance
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_IsInstance_System_Object_
+  name: IsInstance
+  nameWithType: IEClassifier.IsInstance
+  fullName: NMF.Interop.Ecore.IEClassifier.IsInstance
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: NMF.Interop.Ecore.IEClassifier.GetClassifierID*
+  commentId: Overload:NMF.Interop.Ecore.IEClassifier.GetClassifierID
+  href: NMF.Interop.Ecore.IEClassifier.html#NMF_Interop_Ecore_IEClassifier_GetClassifierID
+  name: GetClassifierID
+  nameWithType: IEClassifier.GetClassifierID
+  fullName: NMF.Interop.Ecore.IEClassifier.GetClassifierID
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

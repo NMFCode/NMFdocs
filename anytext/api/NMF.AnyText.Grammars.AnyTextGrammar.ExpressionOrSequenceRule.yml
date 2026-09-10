@@ -20,7 +20,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ExpressionOrSequenceRule
     path: src/AnyText/AnyText/Grammars/AnyTextGrammar.cs
-    startLine: 467
+    startLine: 506
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Grammars
@@ -39,6 +39,7 @@ items:
   - NMF.AnyText.Rules.ChoiceRule.CanStartWith(NMF.AnyText.Rules.Rule,System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
   - NMF.AnyText.Rules.ChoiceRule.AddLeftRecursionRules(System.Collections.Generic.List{NMF.AnyText.Rules.Rule},System.Collections.Generic.List{NMF.AnyText.Rules.RecursiveContinuation})
   - NMF.AnyText.Rules.ChoiceRule.IsEpsilonAllowed(System.Collections.Generic.List{NMF.AnyText.Rules.Rule})
+  - NMF.AnyText.Rules.ChoiceRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.ChoiceRule.Match(NMF.AnyText.ParseContext,NMF.AnyText.RecursionContext,NMF.AnyText.ParsePosition@)
   - NMF.AnyText.Rules.ChoiceRule.CreateRuleApplication(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParsePositionDelta)
   - NMF.AnyText.Rules.ChoiceRule.CanSynthesize(System.Object,NMF.AnyText.ParseContext,NMF.AnyText.SynthesisPlan)
@@ -63,12 +64,14 @@ items:
   - NMF.AnyText.Rules.Rule.SymbolTags(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.PassAlongDocumentSymbols
   - NMF.AnyText.Rules.Rule.Invalidate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
+  - NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.IsLeftRecursive
   - NMF.AnyText.Rules.Rule.Continuations
   - NMF.AnyText.Rules.Rule.CanSynthesize(System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.CreateSynthesisRequirements
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.IO.TextWriter,System.String)
+  - NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   - NMF.AnyText.Rules.Rule.CreateEpsilonRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.CanStartWith(NMF.AnyText.Rules.Rule)
@@ -103,7 +106,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Initialize
     path: src/AnyText/AnyText/Grammars/AnyTextGrammar.cs
-    startLine: 475
+    startLine: 514
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Grammars
@@ -363,6 +366,31 @@ references:
     name: Rule
     href: NMF.AnyText.Rules.Rule.html
   - name: )
+  - name: )
+- uid: NMF.AnyText.Rules.ChoiceRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.Rules.ChoiceRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.Rules.ChoiceRule
+  href: NMF.AnyText.Rules.ChoiceRule.html#NMF_AnyText_Rules_ChoiceRule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  name: GetEssentialInnerRuleApplication(RuleApplication)
+  nameWithType: ChoiceRule.GetEssentialInnerRuleApplication(RuleApplication)
+  fullName: NMF.AnyText.Rules.ChoiceRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.ChoiceRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+    name: GetEssentialInnerRuleApplication
+    href: NMF.AnyText.Rules.ChoiceRule.html#NMF_AnyText_Rules_ChoiceRule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.ChoiceRule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+    name: GetEssentialInnerRuleApplication
+    href: NMF.AnyText.Rules.ChoiceRule.html#NMF_AnyText_Rules_ChoiceRule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
 - uid: NMF.AnyText.Rules.ChoiceRule.Match(NMF.AnyText.ParseContext,NMF.AnyText.RecursionContext,NMF.AnyText.ParsePosition@)
   commentId: M:NMF.AnyText.Rules.ChoiceRule.Match(NMF.AnyText.ParseContext,NMF.AnyText.RecursionContext,NMF.AnyText.ParsePosition@)
@@ -978,6 +1006,69 @@ references:
     name: ParseContext
     href: NMF.AnyText.ParseContext.html
   - name: )
+- uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  isExternal: true
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChanged(RuleApplication, object, object, ParseContext)
+  nameWithType: Rule.OnContextChanged(RuleApplication, object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, object, object, NMF.AnyText.ParseContext)
+  nameWithType.vb: Rule.OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChanged
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChanged
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
 - uid: NMF.AnyText.Rules.Rule.IsLeftRecursive
   commentId: P:NMF.AnyText.Rules.Rule.IsLeftRecursive
   parent: NMF.AnyText.Rules.Rule
@@ -1169,6 +1260,83 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  isExternal: true
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  name: SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  nameWithType: Rule.SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.SynthesizeChanges(object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable<string>, NMF.AnyText.ParseContext)
+  nameWithType.vb: Rule.SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.SynthesizeChanges(Object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable(Of String), NMF.AnyText.ParseContext)
+  name.vb: SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+    name: SynthesizeChanges
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+    name: SynthesizeChanges
+    href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
   - name: )
 - uid: NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   commentId: M:NMF.AnyText.Rules.Rule.IsEpsilonAllowed

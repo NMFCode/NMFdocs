@@ -7,12 +7,11 @@ items:
   children:
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.#ctor(NMF.Glsp.Notation.Edge)
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Clear
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Count
-  - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore
+  - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.GetEnumerator
   - NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EdgeReferencedElementsCollection
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 584
+    startLine: 512
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 592
+    startLine: 520
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 600
+    startLine: 528
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -137,64 +138,38 @@ items:
   overload: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore
-  commentId: M:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: Edge.EdgeReferencedElementsCollection.AttachCore()
-  fullName: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: Edge.EdgeReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: Glsp/Glsp/Notation/Edge.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 619
+    startLine: 550
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
-  summary: Attaches the collection
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore*
-- uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore
-  commentId: M:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: Edge.EdgeReferencedElementsCollection.DetachCore()
-  fullName: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 627
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Detaches the collection
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies*
 - uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 638
+    startLine: 562
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 668
+    startLine: 592
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 680
+    startLine: 604
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 702
+    startLine: 626
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 736
+    startLine: 660
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 761
+    startLine: 685
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore
-  href: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.html#NMF_Glsp_Notation_Edge_EdgeReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: Edge.EdgeReferencedElementsCollection.AttachCore
-  fullName: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies
+  href: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.html#NMF_Glsp_Notation_Edge_EdgeReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: Edge.EdgeReferencedElementsCollection.CreateDependencies
+  fullName: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore
-  href: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.html#NMF_Glsp_Notation_Edge_EdgeReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: Edge.EdgeReferencedElementsCollection.DetachCore
-  fullName: NMF.Glsp.Notation.Edge.EdgeReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

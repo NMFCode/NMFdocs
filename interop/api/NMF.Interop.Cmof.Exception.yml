@@ -7,13 +7,25 @@ items:
   children:
   - NMF.Interop.Cmof.Exception.ClassInstance
   - NMF.Interop.Cmof.Exception.Description
+  - NMF.Interop.Cmof.Exception.DescriptionChanged
+  - NMF.Interop.Cmof.Exception.DescriptionChanging
   - NMF.Interop.Cmof.Exception.ElementInError
+  - NMF.Interop.Cmof.Exception.ElementInErrorChanged
+  - NMF.Interop.Cmof.Exception.ElementInErrorChanging
   - NMF.Interop.Cmof.Exception.GetAttributeValue(System.String,System.Int32)
   - NMF.Interop.Cmof.Exception.GetClass
   - NMF.Interop.Cmof.Exception.GetExpressionForAttribute(System.String)
   - NMF.Interop.Cmof.Exception.GetExpressionForReference(System.String)
   - NMF.Interop.Cmof.Exception.GetModelElementForReference(System.String,System.Int32)
   - NMF.Interop.Cmof.Exception.ObjectInError
+  - NMF.Interop.Cmof.Exception.ObjectInErrorChanged
+  - NMF.Interop.Cmof.Exception.ObjectInErrorChanging
+  - NMF.Interop.Cmof.Exception.OnDescriptionChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Exception.OnDescriptionChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Exception.OnElementInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Exception.OnElementInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Exception.OnObjectInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  - NMF.Interop.Cmof.Exception.OnObjectInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Interop.Cmof.Exception.ReferencedElements
   - NMF.Interop.Cmof.Exception.SetFeature(System.String,System.Object)
   langs:
@@ -30,7 +42,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Exception
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 39
+    startLine: 38
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -83,6 +95,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -161,7 +174,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Description
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 74
+    startLine: 73
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -215,7 +228,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ObjectInError
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 100
+    startLine: 101
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -269,7 +282,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ElementInError
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 134
+    startLine: 137
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -323,7 +336,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 168
+    startLine: 173
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -357,7 +370,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 179
+    startLine: 184
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -370,6 +383,384 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Interop.Cmof.Exception.ClassInstance*
+- uid: NMF.Interop.Cmof.Exception.DescriptionChanged
+  commentId: E:NMF.Interop.Cmof.Exception.DescriptionChanged
+  id: DescriptionChanged
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: DescriptionChanged
+  nameWithType: Exception.DescriptionChanged
+  fullName: NMF.Interop.Cmof.Exception.DescriptionChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DescriptionChanged
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 199
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the Description property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> DescriptionChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event DescriptionChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IException.DescriptionChanged
+- uid: NMF.Interop.Cmof.Exception.DescriptionChanging
+  commentId: E:NMF.Interop.Cmof.Exception.DescriptionChanging
+  id: DescriptionChanging
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: DescriptionChanging
+  nameWithType: Exception.DescriptionChanging
+  fullName: NMF.Interop.Cmof.Exception.DescriptionChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: DescriptionChanging
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 204
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the Description property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> DescriptionChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event DescriptionChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IException.DescriptionChanging
+- uid: NMF.Interop.Cmof.Exception.ObjectInErrorChanging
+  commentId: E:NMF.Interop.Cmof.Exception.ObjectInErrorChanging
+  id: ObjectInErrorChanging
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: ObjectInErrorChanging
+  nameWithType: Exception.ObjectInErrorChanging
+  fullName: NMF.Interop.Cmof.Exception.ObjectInErrorChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ObjectInErrorChanging
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 209
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the ObjectInError property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> ObjectInErrorChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ObjectInErrorChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IException.ObjectInErrorChanging
+- uid: NMF.Interop.Cmof.Exception.ObjectInErrorChanged
+  commentId: E:NMF.Interop.Cmof.Exception.ObjectInErrorChanged
+  id: ObjectInErrorChanged
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: ObjectInErrorChanged
+  nameWithType: Exception.ObjectInErrorChanged
+  fullName: NMF.Interop.Cmof.Exception.ObjectInErrorChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ObjectInErrorChanged
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 214
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the ObjectInError property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> ObjectInErrorChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ObjectInErrorChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IException.ObjectInErrorChanged
+- uid: NMF.Interop.Cmof.Exception.ElementInErrorChanging
+  commentId: E:NMF.Interop.Cmof.Exception.ElementInErrorChanging
+  id: ElementInErrorChanging
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: ElementInErrorChanging
+  nameWithType: Exception.ElementInErrorChanging
+  fullName: NMF.Interop.Cmof.Exception.ElementInErrorChanging
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ElementInErrorChanging
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 219
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired before the ElementInError property changes its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> ElementInErrorChanging
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ElementInErrorChanging As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IException.ElementInErrorChanging
+- uid: NMF.Interop.Cmof.Exception.ElementInErrorChanged
+  commentId: E:NMF.Interop.Cmof.Exception.ElementInErrorChanged
+  id: ElementInErrorChanged
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: ElementInErrorChanged
+  nameWithType: Exception.ElementInErrorChanged
+  fullName: NMF.Interop.Cmof.Exception.ElementInErrorChanged
+  type: Event
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ElementInErrorChanged
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 224
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Gets fired when the ElementInError property changed its value
+  example: []
+  syntax:
+    content: public event EventHandler<ValueChangedEventArgs> ElementInErrorChanged
+    return:
+      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+    content.vb: Public Event ElementInErrorChanged As EventHandler(Of ValueChangedEventArgs)
+  implements:
+  - NMF.Interop.Cmof.IException.ElementInErrorChanged
+- uid: NMF.Interop.Cmof.Exception.OnDescriptionChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Exception.OnDescriptionChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnDescriptionChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: OnDescriptionChanged(ValueChangedEventArgs)
+  nameWithType: Exception.OnDescriptionChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Exception.OnDescriptionChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnDescriptionChanged
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 235
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the DescriptionChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnDescriptionChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnDescriptionChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Exception.OnDescriptionChanged*
+- uid: NMF.Interop.Cmof.Exception.OnDescriptionChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Exception.OnDescriptionChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnDescriptionChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: OnDescriptionChanging(ValueChangedEventArgs)
+  nameWithType: Exception.OnDescriptionChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Exception.OnDescriptionChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnDescriptionChanging
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 248
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the DescriptionChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnDescriptionChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnDescriptionChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Exception.OnDescriptionChanging*
+- uid: NMF.Interop.Cmof.Exception.OnObjectInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Exception.OnObjectInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnObjectInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: OnObjectInErrorChanging(ValueChangedEventArgs)
+  nameWithType: Exception.OnObjectInErrorChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Exception.OnObjectInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnObjectInErrorChanging
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 266
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the ObjectInErrorChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnObjectInErrorChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnObjectInErrorChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Exception.OnObjectInErrorChanging*
+- uid: NMF.Interop.Cmof.Exception.OnObjectInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Exception.OnObjectInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnObjectInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: OnObjectInErrorChanged(ValueChangedEventArgs)
+  nameWithType: Exception.OnObjectInErrorChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Exception.OnObjectInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnObjectInErrorChanged
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 279
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the ObjectInErrorChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnObjectInErrorChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnObjectInErrorChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Exception.OnObjectInErrorChanged*
+- uid: NMF.Interop.Cmof.Exception.OnElementInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Exception.OnElementInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  id: OnElementInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: OnElementInErrorChanging(ValueChangedEventArgs)
+  nameWithType: Exception.OnElementInErrorChanging(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Exception.OnElementInErrorChanging(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnElementInErrorChanging
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 310
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the ElementInErrorChanging event
+  example: []
+  syntax:
+    content: protected virtual void OnElementInErrorChanging(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnElementInErrorChanging(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Exception.OnElementInErrorChanging*
+- uid: NMF.Interop.Cmof.Exception.OnElementInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  commentId: M:NMF.Interop.Cmof.Exception.OnElementInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  id: OnElementInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  parent: NMF.Interop.Cmof.Exception
+  langs:
+  - csharp
+  - vb
+  name: OnElementInErrorChanged(ValueChangedEventArgs)
+  nameWithType: Exception.OnElementInErrorChanged(ValueChangedEventArgs)
+  fullName: NMF.Interop.Cmof.Exception.OnElementInErrorChanged(NMF.Expressions.ValueChangedEventArgs)
+  type: Method
+  source:
+    remote:
+      path: Interop/UMLInterop/Cmof/Exception.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnElementInErrorChanged
+    path: src/Interop/UMLInterop/Cmof/Exception.cs
+    startLine: 323
+  assemblies:
+  - NMF.UMLInterop
+  namespace: NMF.Interop.Cmof
+  summary: Raises the ElementInErrorChanged event
+  example: []
+  syntax:
+    content: protected virtual void OnElementInErrorChanged(ValueChangedEventArgs eventArgs)
+    parameters:
+    - id: eventArgs
+      type: NMF.Expressions.ValueChangedEventArgs
+      description: The event data
+    content.vb: Protected Overridable Sub OnElementInErrorChanged(eventArgs As ValueChangedEventArgs)
+  overload: NMF.Interop.Cmof.Exception.OnElementInErrorChanged*
 - uid: NMF.Interop.Cmof.Exception.GetModelElementForReference(System.String,System.Int32)
   commentId: M:NMF.Interop.Cmof.Exception.GetModelElementForReference(System.String,System.Int32)
   id: GetModelElementForReference(System.String,System.Int32)
@@ -388,7 +779,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 238
+    startLine: 351
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -430,7 +821,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetAttributeValue
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 257
+    startLine: 370
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -472,7 +863,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 271
+    startLine: 384
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -511,7 +902,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForAttribute
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 296
+    startLine: 409
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -550,7 +941,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 310
+    startLine: 423
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -589,7 +980,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Interop/UMLInterop/Cmof/Exception.cs
-    startLine: 326
+    startLine: 439
   assemblies:
   - NMF.UMLInterop
   namespace: NMF.Interop.Cmof
@@ -1060,6 +1451,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -2368,6 +2765,149 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
+- uid: NMF.Interop.Cmof.IException.DescriptionChanged
+  commentId: E:NMF.Interop.Cmof.IException.DescriptionChanged
+  parent: NMF.Interop.Cmof.IException
+  href: NMF.Interop.Cmof.IException.html#NMF_Interop_Cmof_IException_DescriptionChanged
+  name: DescriptionChanged
+  nameWithType: IException.DescriptionChanged
+  fullName: NMF.Interop.Cmof.IException.DescriptionChanged
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<ValueChangedEventArgs>
+  nameWithType: EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
+  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
+  name.vb: EventHandler(Of ValueChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: NMF.Interop.Cmof.IException.DescriptionChanging
+  commentId: E:NMF.Interop.Cmof.IException.DescriptionChanging
+  parent: NMF.Interop.Cmof.IException
+  href: NMF.Interop.Cmof.IException.html#NMF_Interop_Cmof_IException_DescriptionChanging
+  name: DescriptionChanging
+  nameWithType: IException.DescriptionChanging
+  fullName: NMF.Interop.Cmof.IException.DescriptionChanging
+- uid: NMF.Interop.Cmof.IException.ObjectInErrorChanging
+  commentId: E:NMF.Interop.Cmof.IException.ObjectInErrorChanging
+  parent: NMF.Interop.Cmof.IException
+  href: NMF.Interop.Cmof.IException.html#NMF_Interop_Cmof_IException_ObjectInErrorChanging
+  name: ObjectInErrorChanging
+  nameWithType: IException.ObjectInErrorChanging
+  fullName: NMF.Interop.Cmof.IException.ObjectInErrorChanging
+- uid: NMF.Interop.Cmof.IException.ObjectInErrorChanged
+  commentId: E:NMF.Interop.Cmof.IException.ObjectInErrorChanged
+  parent: NMF.Interop.Cmof.IException
+  href: NMF.Interop.Cmof.IException.html#NMF_Interop_Cmof_IException_ObjectInErrorChanged
+  name: ObjectInErrorChanged
+  nameWithType: IException.ObjectInErrorChanged
+  fullName: NMF.Interop.Cmof.IException.ObjectInErrorChanged
+- uid: NMF.Interop.Cmof.IException.ElementInErrorChanging
+  commentId: E:NMF.Interop.Cmof.IException.ElementInErrorChanging
+  parent: NMF.Interop.Cmof.IException
+  href: NMF.Interop.Cmof.IException.html#NMF_Interop_Cmof_IException_ElementInErrorChanging
+  name: ElementInErrorChanging
+  nameWithType: IException.ElementInErrorChanging
+  fullName: NMF.Interop.Cmof.IException.ElementInErrorChanging
+- uid: NMF.Interop.Cmof.IException.ElementInErrorChanged
+  commentId: E:NMF.Interop.Cmof.IException.ElementInErrorChanged
+  parent: NMF.Interop.Cmof.IException
+  href: NMF.Interop.Cmof.IException.html#NMF_Interop_Cmof_IException_ElementInErrorChanged
+  name: ElementInErrorChanged
+  nameWithType: IException.ElementInErrorChanged
+  fullName: NMF.Interop.Cmof.IException.ElementInErrorChanged
+- uid: NMF.Interop.Cmof.Exception.OnDescriptionChanged*
+  commentId: Overload:NMF.Interop.Cmof.Exception.OnDescriptionChanged
+  href: NMF.Interop.Cmof.Exception.html#NMF_Interop_Cmof_Exception_OnDescriptionChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnDescriptionChanged
+  nameWithType: Exception.OnDescriptionChanged
+  fullName: NMF.Interop.Cmof.Exception.OnDescriptionChanged
+- uid: NMF.Expressions.ValueChangedEventArgs
+  commentId: T:NMF.Expressions.ValueChangedEventArgs
+  parent: NMF.Expressions
+  name: ValueChangedEventArgs
+  nameWithType: ValueChangedEventArgs
+  fullName: NMF.Expressions.ValueChangedEventArgs
+- uid: NMF.Interop.Cmof.Exception.OnDescriptionChanging*
+  commentId: Overload:NMF.Interop.Cmof.Exception.OnDescriptionChanging
+  href: NMF.Interop.Cmof.Exception.html#NMF_Interop_Cmof_Exception_OnDescriptionChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnDescriptionChanging
+  nameWithType: Exception.OnDescriptionChanging
+  fullName: NMF.Interop.Cmof.Exception.OnDescriptionChanging
+- uid: NMF.Interop.Cmof.Exception.OnObjectInErrorChanging*
+  commentId: Overload:NMF.Interop.Cmof.Exception.OnObjectInErrorChanging
+  href: NMF.Interop.Cmof.Exception.html#NMF_Interop_Cmof_Exception_OnObjectInErrorChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnObjectInErrorChanging
+  nameWithType: Exception.OnObjectInErrorChanging
+  fullName: NMF.Interop.Cmof.Exception.OnObjectInErrorChanging
+- uid: NMF.Interop.Cmof.Exception.OnObjectInErrorChanged*
+  commentId: Overload:NMF.Interop.Cmof.Exception.OnObjectInErrorChanged
+  href: NMF.Interop.Cmof.Exception.html#NMF_Interop_Cmof_Exception_OnObjectInErrorChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnObjectInErrorChanged
+  nameWithType: Exception.OnObjectInErrorChanged
+  fullName: NMF.Interop.Cmof.Exception.OnObjectInErrorChanged
+- uid: NMF.Interop.Cmof.Exception.OnElementInErrorChanging*
+  commentId: Overload:NMF.Interop.Cmof.Exception.OnElementInErrorChanging
+  href: NMF.Interop.Cmof.Exception.html#NMF_Interop_Cmof_Exception_OnElementInErrorChanging_NMF_Expressions_ValueChangedEventArgs_
+  name: OnElementInErrorChanging
+  nameWithType: Exception.OnElementInErrorChanging
+  fullName: NMF.Interop.Cmof.Exception.OnElementInErrorChanging
+- uid: NMF.Interop.Cmof.Exception.OnElementInErrorChanged*
+  commentId: Overload:NMF.Interop.Cmof.Exception.OnElementInErrorChanged
+  href: NMF.Interop.Cmof.Exception.html#NMF_Interop_Cmof_Exception_OnElementInErrorChanged_NMF_Expressions_ValueChangedEventArgs_
+  name: OnElementInErrorChanged
+  nameWithType: Exception.OnElementInErrorChanged
+  fullName: NMF.Interop.Cmof.Exception.OnElementInErrorChanged
 - uid: NMF.Models.ModelElement.GetModelElementForReference(System.String,System.Int32)
   commentId: M:NMF.Models.ModelElement.GetModelElementForReference(System.String,System.Int32)
   parent: NMF.Models.ModelElement

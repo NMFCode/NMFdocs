@@ -85,7 +85,7 @@
 
 
   <h1 id="NMF_Interop_Ecore_IEFactory" data-uid="NMF.Interop.Ecore.IEFactory" class="text-break">
-Interface IEFactory  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Interface IEFactory  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -100,6 +100,7 @@ Interface IEFactory  <a class="header-action link-secondary" title="View source"
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[DefaultImplementationType(typeof(EFactory))]
 [XmlDefaultImplementationType(typeof(EFactory))]
+[ModelRepresentationClass(&quot;http://www.eclipse.org/emf/2002/Ecore#//EFactory&quot;)]
 public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
@@ -114,6 +115,15 @@ public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChang
     <dd>
     <div>
       <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_EAnnotations">IEModelElement.EAnnotations</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling">IEModelElement.GetEAnnotationCalling</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled">IEModelElement.GetEAnnotationCalled</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_">IEModelElement.GetEAnnotation(string)</a>
     </div>
     <div>
       <a class="xref" href="../../models/api/NMF.Models.IModelElement.html#NMF_Models_IModelElement_Delete">IModelElement.Delete()</a>
@@ -238,7 +248,7 @@ public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChang
 
   <h3 id="NMF_Interop_Ecore_IEFactory_EPackage" data-uid="NMF.Interop.Ecore.IEFactory.EPackage">
   EPackage
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The ePackage property</p>
@@ -246,7 +256,10 @@ public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChang
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEPackage EPackage { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;ePackage&quot;)]
+[XmlAttribute(true)]
+[XmlOpposite(&quot;eFactoryInstance&quot;)]
+IEPackage EPackage { get; set; }</code></pre>
   </div>
 
 
@@ -266,14 +279,316 @@ public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChang
 
 
 
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="NMF_Interop_Ecore_IEFactory_ConvertToString_" data-uid="NMF.Interop.Ecore.IEFactory.ConvertToString*"></a>
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_ConvertToString_NMF_Interop_Ecore_IEDataType_System_Object_" data-uid="NMF.Interop.Ecore.IEFactory.ConvertToString(NMF.Interop.Ecore.IEDataType,System.Object)">
+  ConvertToString(IEDataType, object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string ConvertToString(IEDataType eDataType, object instanceValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eDataType</code> <a class="xref" href="NMF.Interop.Ecore.IEDataType.html">IEDataType</a></dt>
+    <dd></dd>
+    <dt><code>instanceValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NMF_Interop_Ecore_IEFactory_Create_" data-uid="NMF.Interop.Ecore.IEFactory.Create*"></a>
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_Create_NMF_Interop_Ecore_IEClass_" data-uid="NMF.Interop.Ecore.IEFactory.Create(NMF.Interop.Ecore.IEClass)">
+  Create(IEClass)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEObject Create(IEClass eClass)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eClass</code> <a class="xref" href="NMF.Interop.Ecore.IEClass.html">IEClass</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NMF.Interop.Ecore.IEObject.html">IEObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NMF_Interop_Ecore_IEFactory_CreateFromString_" data-uid="NMF.Interop.Ecore.IEFactory.CreateFromString*"></a>
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_CreateFromString_NMF_Interop_Ecore_IEDataType_System_String_" data-uid="NMF.Interop.Ecore.IEFactory.CreateFromString(NMF.Interop.Ecore.IEDataType,System.String)">
+  CreateFromString(IEDataType, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object CreateFromString(IEDataType eDataType, string literalValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eDataType</code> <a class="xref" href="NMF.Interop.Ecore.IEDataType.html">IEDataType</a></dt>
+    <dd></dd>
+    <dt><code>literalValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="events">Events
 </h2>
 
 
 
+  <h3 id="NMF_Interop_Ecore_IEFactory_ConvertToStringCalled" data-uid="NMF.Interop.Ecore.IEFactory.ConvertToStringCalled">
+  ConvertToStringCalled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired after the operation convertToString got called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; ConvertToStringCalled</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_ConvertToStringCalling" data-uid="NMF.Interop.Ecore.IEFactory.ConvertToStringCalling">
+  ConvertToStringCalling
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired before the operation convertToString gets called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; ConvertToStringCalling</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_CreateCalled" data-uid="NMF.Interop.Ecore.IEFactory.CreateCalled">
+  CreateCalled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired after the operation create got called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; CreateCalled</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_CreateCalling" data-uid="NMF.Interop.Ecore.IEFactory.CreateCalling">
+  CreateCalling
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired before the operation create gets called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; CreateCalling</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_CreateFromStringCalled" data-uid="NMF.Interop.Ecore.IEFactory.CreateFromStringCalled">
+  CreateFromStringCalled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired after the operation createFromString got called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; CreateFromStringCalled</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NMF_Interop_Ecore_IEFactory_CreateFromStringCalling" data-uid="NMF.Interop.Ecore.IEFactory.CreateFromStringCalling">
+  CreateFromStringCalling
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets fired before the operation createFromString gets called</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;OperationCallEventArgs&gt; CreateFromStringCalling</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="../../models/api/NMF.Models.OperationCallEventArgs.html">OperationCallEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h3 id="NMF_Interop_Ecore_IEFactory_EPackageChanged" data-uid="NMF.Interop.Ecore.IEFactory.EPackageChanged">
   EPackageChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the EPackage property changed its value</p>
@@ -304,7 +619,7 @@ public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChang
 
   <h3 id="NMF_Interop_Ecore_IEFactory_EPackageChanging" data-uid="NMF.Interop.Ecore.IEFactory.EPackageChanging">
   EPackageChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the EPackage property changes its value</p>
@@ -336,7 +651,7 @@ public interface IEFactory : IEModelElement, IModelElement, INotifyPropertyChang
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IEFactory.cs/#L38" class="edit-link">Edit this page</a>
         </div>
 
 

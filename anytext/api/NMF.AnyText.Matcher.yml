@@ -8,9 +8,13 @@ items:
   - NMF.AnyText.Matcher.#ctor(NMF.AnyText.Rules.CommentRule[])
   - NMF.AnyText.Matcher.Apply(NMF.AnyText.TextEdit)
   - NMF.AnyText.Matcher.GetErrorsExactlyAt(NMF.AnyText.ParsePosition)
+  - NMF.AnyText.Matcher.IsFaithfulPosition(NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParsePosition)
   - NMF.AnyText.Matcher.IsWhiteSpaceTo(NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
   - NMF.AnyText.Matcher.Match(NMF.AnyText.ParseContext)
   - NMF.AnyText.Matcher.NextTokenPosition(NMF.AnyText.ParsePosition)
+  - NMF.AnyText.Matcher.NextTokenPosition(NMF.AnyText.ParsePosition,System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean})
   - NMF.AnyText.Matcher.Reset
   - NMF.AnyText.Matcher.TrailingComments
   langs:
@@ -127,7 +131,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NextTokenPosition
     path: src/AnyText/AnyText.Core/Matcher.cs
-    startLine: 48
+    startLine: 54
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -144,6 +148,47 @@ items:
       description: the position of the next token position
     content.vb: Public Function NextTokenPosition(position As ParsePosition) As ParsePosition
   overload: NMF.AnyText.Matcher.NextTokenPosition*
+- uid: NMF.AnyText.Matcher.NextTokenPosition(NMF.AnyText.ParsePosition,System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean})
+  commentId: M:NMF.AnyText.Matcher.NextTokenPosition(NMF.AnyText.ParsePosition,System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean})
+  id: NextTokenPosition(NMF.AnyText.ParsePosition,System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean})
+  parent: NMF.AnyText.Matcher
+  langs:
+  - csharp
+  - vb
+  name: NextTokenPosition(ParsePosition, Func<RuleApplication, bool>)
+  nameWithType: Matcher.NextTokenPosition(ParsePosition, Func<RuleApplication, bool>)
+  fullName: NMF.AnyText.Matcher.NextTokenPosition(NMF.AnyText.ParsePosition, System.Func<NMF.AnyText.Rules.RuleApplication, bool>)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Matcher.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: NextTokenPosition
+    path: src/AnyText/AnyText.Core/Matcher.cs
+    startLine: 65
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText
+  summary: Gets the position of the next token, starting from the given position
+  example: []
+  syntax:
+    content: public ParsePosition NextTokenPosition(ParsePosition position, Func<RuleApplication, bool> predicate)
+    parameters:
+    - id: position
+      type: NMF.AnyText.ParsePosition
+      description: the position where to look for the next token
+    - id: predicate
+      type: System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean}
+      description: the predicate that should hold for the token position
+    return:
+      type: NMF.AnyText.ParsePosition
+      description: the position of the next token position
+    content.vb: Public Function NextTokenPosition(position As ParsePosition, predicate As Func(Of RuleApplication, Boolean)) As ParsePosition
+  overload: NMF.AnyText.Matcher.NextTokenPosition*
+  nameWithType.vb: Matcher.NextTokenPosition(ParsePosition, Func(Of RuleApplication, Boolean))
+  fullName.vb: NMF.AnyText.Matcher.NextTokenPosition(NMF.AnyText.ParsePosition, System.Func(Of NMF.AnyText.Rules.RuleApplication, Boolean))
+  name.vb: NextTokenPosition(ParsePosition, Func(Of RuleApplication, Boolean))
 - uid: NMF.AnyText.Matcher.IsWhiteSpaceTo(NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
   commentId: M:NMF.AnyText.Matcher.IsWhiteSpaceTo(NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
   id: IsWhiteSpaceTo(NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
@@ -162,7 +207,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsWhiteSpaceTo
     path: src/AnyText/AnyText.Core/Matcher.cs
-    startLine: 78
+    startLine: 95
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -200,7 +245,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TrailingComments
     path: src/AnyText/AnyText.Core/Matcher.cs
-    startLine: 114
+    startLine: 131
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -231,7 +276,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetErrorsExactlyAt
     path: src/AnyText/AnyText.Core/Matcher.cs
-    startLine: 121
+    startLine: 138
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -266,7 +311,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Match
     path: src/AnyText/AnyText.Core/Matcher.cs
-    startLine: 370
+    startLine: 417
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -301,7 +346,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Apply
     path: src/AnyText/AnyText.Core/Matcher.cs
-    startLine: 397
+    startLine: 444
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText
@@ -315,6 +360,114 @@ items:
       description: The change in the input text
     content.vb: Public Sub Apply(edit As TextEdit)
   overload: NMF.AnyText.Matcher.Apply*
+- uid: NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication)
+  id: IsObsoleted(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.Matcher
+  langs:
+  - csharp
+  - vb
+  name: IsObsoleted(RuleApplication)
+  nameWithType: Matcher.IsObsoleted(RuleApplication)
+  fullName: NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Matcher.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsObsoleted
+    path: src/AnyText/AnyText.Core/Matcher.cs
+    startLine: 670
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText
+  summary: Determines whether the given rule application is obsoleted
+  example: []
+  syntax:
+    content: public bool IsObsoleted(RuleApplication ruleApplication)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application to check
+    return:
+      type: System.Boolean
+      description: true, if the rule application is on a line that has been obsoleted
+    content.vb: Public Function IsObsoleted(ruleApplication As RuleApplication) As Boolean
+  overload: NMF.AnyText.Matcher.IsObsoleted*
+- uid: NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParsePosition)
+  commentId: M:NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParsePosition)
+  id: IsObsoleted(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParsePosition)
+  parent: NMF.AnyText.Matcher
+  langs:
+  - csharp
+  - vb
+  name: IsObsoleted(RuleApplication, ParsePosition)
+  nameWithType: Matcher.IsObsoleted(RuleApplication, ParsePosition)
+  fullName: NMF.AnyText.Matcher.IsObsoleted(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParsePosition)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Matcher.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsObsoleted
+    path: src/AnyText/AnyText.Core/Matcher.cs
+    startLine: 691
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText
+  summary: Determines whether the given rule application is obsoleted
+  example: []
+  syntax:
+    content: public bool IsObsoleted(RuleApplication ruleApplication, ParsePosition fromPosition)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application to check
+    - id: fromPosition
+      type: NMF.AnyText.ParsePosition
+      description: position from where to start
+    return:
+      type: System.Boolean
+      description: true, if the rule application is on a line that has been obsoleted
+    content.vb: Public Function IsObsoleted(ruleApplication As RuleApplication, fromPosition As ParsePosition) As Boolean
+  overload: NMF.AnyText.Matcher.IsObsoleted*
+- uid: NMF.AnyText.Matcher.IsFaithfulPosition(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.Matcher.IsFaithfulPosition(NMF.AnyText.Rules.RuleApplication)
+  id: IsFaithfulPosition(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.Matcher
+  langs:
+  - csharp
+  - vb
+  name: IsFaithfulPosition(RuleApplication)
+  nameWithType: Matcher.IsFaithfulPosition(RuleApplication)
+  fullName: NMF.AnyText.Matcher.IsFaithfulPosition(NMF.AnyText.Rules.RuleApplication)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Matcher.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsFaithfulPosition
+    path: src/AnyText/AnyText.Core/Matcher.cs
+    startLine: 701
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText
+  summary: Deteremines whether the given rule application has an up to date position
+  example: []
+  syntax:
+    content: public bool IsFaithfulPosition(RuleApplication ruleApplication)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application to check
+    return:
+      type: System.Boolean
+      description: true, if the position is serious, otherwise false
+    content.vb: Public Function IsFaithfulPosition(ruleApplication As RuleApplication) As Boolean
+  overload: NMF.AnyText.Matcher.IsFaithfulPosition*
 references:
 - uid: NMF.AnyText
   commentId: N:NMF.AnyText
@@ -624,6 +777,85 @@ references:
   name: ParsePosition
   nameWithType: ParsePosition
   fullName: NMF.AnyText.ParsePosition
+- uid: System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean}
+  commentId: T:System.Func{NMF.AnyText.Rules.RuleApplication,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<RuleApplication, bool>
+  nameWithType: Func<RuleApplication, bool>
+  fullName: System.Func<NMF.AnyText.Rules.RuleApplication, bool>
+  nameWithType.vb: Func(Of RuleApplication, Boolean)
+  fullName.vb: System.Func(Of NMF.AnyText.Rules.RuleApplication, Boolean)
+  name.vb: Func(Of RuleApplication, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: NMF.AnyText.Matcher.IsWhiteSpaceTo*
   commentId: Overload:NMF.AnyText.Matcher.IsWhiteSpaceTo
   href: NMF.AnyText.Matcher.html#NMF_AnyText_Matcher_IsWhiteSpaceTo_NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_
@@ -814,3 +1046,15 @@ references:
   name: TextEdit
   nameWithType: TextEdit
   fullName: NMF.AnyText.TextEdit
+- uid: NMF.AnyText.Matcher.IsObsoleted*
+  commentId: Overload:NMF.AnyText.Matcher.IsObsoleted
+  href: NMF.AnyText.Matcher.html#NMF_AnyText_Matcher_IsObsoleted_NMF_AnyText_Rules_RuleApplication_
+  name: IsObsoleted
+  nameWithType: Matcher.IsObsoleted
+  fullName: NMF.AnyText.Matcher.IsObsoleted
+- uid: NMF.AnyText.Matcher.IsFaithfulPosition*
+  commentId: Overload:NMF.AnyText.Matcher.IsFaithfulPosition
+  href: NMF.AnyText.Matcher.html#NMF_AnyText_Matcher_IsFaithfulPosition_NMF_AnyText_Rules_RuleApplication_
+  name: IsFaithfulPosition
+  nameWithType: Matcher.IsFaithfulPosition
+  fullName: NMF.AnyText.Matcher.IsFaithfulPosition

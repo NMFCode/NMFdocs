@@ -7,12 +7,11 @@ items:
   children:
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.#ctor(NMF.AnyText.Metamodel.ModelRule)
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Add(NMF.Models.IModelElement)
-  - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Clear
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Contains(NMF.Models.IModelElement)
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CopyTo(NMF.Models.IModelElement[],System.Int32)
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Count
-  - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore
+  - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.GetEnumerator
   - NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Remove(NMF.Models.IModelElement)
   langs:
@@ -29,7 +28,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ModelRuleReferencedElementsCollection
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 440
+    startLine: 434
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -53,6 +52,8 @@ items:
   - System.Collections.Generic.IEnumerable{NMF.Models.IModelElement}
   - System.Collections.IEnumerable
   inheritedMembers:
+  - NMF.Models.Collections.ReferenceCollection.AttachCore
+  - NMF.Models.Collections.ReferenceCollection.DetachCore
   - NMF.Models.Collections.ReferenceCollection.CollectionChanged
   - NMF.Models.Collections.ReferenceCollection.IsReadOnly
   - NMF.Models.Collections.ReferenceCollection.AsNotifiable
@@ -87,7 +88,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: .ctor
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 448
+    startLine: 442
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -121,7 +122,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Count
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 456
+    startLine: 450
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -137,64 +138,38 @@ items:
   overload: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Count*
   implements:
   - System.Collections.Generic.ICollection{NMF.Models.IModelElement}.Count
-- uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore
-  commentId: M:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore
-  id: AttachCore
+- uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies
+  commentId: M:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies
+  id: CreateDependencies
   parent: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection
   langs:
   - csharp
   - vb
-  name: AttachCore()
-  nameWithType: ModelRule.ModelRuleReferencedElementsCollection.AttachCore()
-  fullName: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies()
+  fullName: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies()
   type: Method
   source:
     remote:
       path: AnyText/AnyText/Metamodel/ModelRule.cs
       branch: main
       repo: https://github.com/NMFCode/NMF.git
-    id: AttachCore
+    id: CreateDependencies
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 472
+    startLine: 467
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
-  summary: Registers event hooks to keep the collection up to date
+  summary: Creates dependencies for the given collection
   example: []
   syntax:
-    content: protected override void AttachCore()
-    content.vb: Protected Overrides Sub AttachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.AttachCore
-  overload: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore*
-- uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore
-  commentId: M:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore
-  id: DetachCore
-  parent: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection
-  langs:
-  - csharp
-  - vb
-  name: DetachCore()
-  nameWithType: ModelRule.ModelRuleReferencedElementsCollection.DetachCore()
-  fullName: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore()
-  type: Method
-  source:
-    remote:
-      path: AnyText/AnyText/Metamodel/ModelRule.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: DetachCore
-    path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 480
-  assemblies:
-  - NMF.AnyText
-  namespace: NMF.AnyText.Metamodel
-  summary: Unregisters all event hooks registered by AttachCore
-  example: []
-  syntax:
-    content: protected override void DetachCore()
-    content.vb: Protected Overrides Sub DetachCore()
-  overridden: NMF.Models.Collections.ReferenceCollection.DetachCore
-  overload: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore*
+    content: protected override INotifiable[] CreateDependencies()
+    return:
+      type: NMF.Expressions.INotifiable[]
+      description: A collection of dependencies
+    content.vb: Protected Overrides Function CreateDependencies() As INotifiable()
+  overridden: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  overload: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies*
 - uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.Add(NMF.Models.IModelElement)
   id: Add(NMF.Models.IModelElement)
@@ -213,7 +188,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Add
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 489
+    startLine: 477
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -248,7 +223,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Clear
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 505
+    startLine: 493
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -279,7 +254,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Contains
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 515
+    startLine: 503
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -317,7 +292,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CopyTo
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 529
+    startLine: 517
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -358,7 +333,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Remove
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 543
+    startLine: 531
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -396,7 +371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetEnumerator
     path: src/AnyText/AnyText/Metamodel/ModelRule.cs
-    startLine: 557
+    startLine: 545
   assemblies:
   - NMF.AnyText
   namespace: NMF.AnyText.Metamodel
@@ -620,6 +595,38 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: AttachCore()
+  nameWithType: ReferenceCollection.AttachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
+    name: AttachCore
+  - name: (
+  - name: )
+- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
+  parent: NMF.Models.Collections.ReferenceCollection
+  name: DetachCore()
+  nameWithType: ReferenceCollection.DetachCore()
+  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+  spec.csharp:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
+    name: DetachCore
+  - name: (
+  - name: )
 - uid: NMF.Models.Collections.ReferenceCollection.CollectionChanged
   commentId: E:NMF.Models.Collections.ReferenceCollection.CollectionChanged
   parent: NMF.Models.Collections.ReferenceCollection
@@ -1359,50 +1366,46 @@ references:
   fullName: System.Collections.Generic.ICollection<T>.Count
   nameWithType.vb: ICollection(Of T).Count
   fullName.vb: System.Collections.Generic.ICollection(Of T).Count
-- uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.AttachCore
+- uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+  commentId: M:NMF.Models.Collections.ReferenceCollection.CreateDependencies
   parent: NMF.Models.Collections.ReferenceCollection
-  name: AttachCore()
-  nameWithType: ReferenceCollection.AttachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.AttachCore()
+  name: CreateDependencies()
+  nameWithType: ReferenceCollection.CreateDependencies()
+  fullName: NMF.Models.Collections.ReferenceCollection.CreateDependencies()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.AttachCore
-    name: AttachCore
+  - uid: NMF.Models.Collections.ReferenceCollection.CreateDependencies
+    name: CreateDependencies
   - name: (
   - name: )
-- uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore*
-  commentId: Overload:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore
-  href: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.html#NMF_AnyText_Metamodel_ModelRule_ModelRuleReferencedElementsCollection_AttachCore
-  name: AttachCore
-  nameWithType: ModelRule.ModelRuleReferencedElementsCollection.AttachCore
-  fullName: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.AttachCore
-- uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-  commentId: M:NMF.Models.Collections.ReferenceCollection.DetachCore
-  parent: NMF.Models.Collections.ReferenceCollection
-  name: DetachCore()
-  nameWithType: ReferenceCollection.DetachCore()
-  fullName: NMF.Models.Collections.ReferenceCollection.DetachCore()
+- uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies*
+  commentId: Overload:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies
+  href: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.html#NMF_AnyText_Metamodel_ModelRule_ModelRuleReferencedElementsCollection_CreateDependencies
+  name: CreateDependencies
+  nameWithType: ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies
+  fullName: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.CreateDependencies
+- uid: NMF.Expressions.INotifiable[]
+  isExternal: true
+  name: INotifiable[]
+  nameWithType: INotifiable[]
+  fullName: NMF.Expressions.INotifiable[]
+  nameWithType.vb: INotifiable()
+  fullName.vb: NMF.Expressions.INotifiable()
+  name.vb: INotifiable()
   spec.csharp:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
-  - name: (
-  - name: )
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: NMF.Models.Collections.ReferenceCollection.DetachCore
-    name: DetachCore
+  - uid: NMF.Expressions.INotifiable
+    name: INotifiable
   - name: (
   - name: )
-- uid: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore*
-  commentId: Overload:NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore
-  href: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.html#NMF_AnyText_Metamodel_ModelRule_ModelRuleReferencedElementsCollection_DetachCore
-  name: DetachCore
-  nameWithType: ModelRule.ModelRuleReferencedElementsCollection.DetachCore
-  fullName: NMF.AnyText.Metamodel.ModelRule.ModelRuleReferencedElementsCollection.DetachCore
 - uid: NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   commentId: M:NMF.Models.Collections.ReferenceCollection.Add(NMF.Models.IModelElement)
   parent: NMF.Models.Collections.ReferenceCollection

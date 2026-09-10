@@ -85,7 +85,7 @@
 
 
   <h1 id="NMF_Interop_Ecore_IETypedElement" data-uid="NMF.Interop.Ecore.IETypedElement" class="text-break">
-Interface IETypedElement  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Interface IETypedElement  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -100,6 +100,7 @@ Interface IETypedElement  <a class="header-action link-secondary" title="View so
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[DefaultImplementationType(typeof(ETypedElement))]
 [XmlDefaultImplementationType(typeof(ETypedElement))]
+[ModelRepresentationClass(&quot;http://www.eclipse.org/emf/2002/Ecore#//ETypedElement&quot;)]
 public interface IETypedElement : IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging</code></pre>
   </div>
 
@@ -116,13 +117,22 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
       <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_Name">IENamedElement.Name</a>
     </div>
     <div>
-      <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging">IENamedElement.NameChanging</a>
-    </div>
-    <div>
       <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanged">IENamedElement.NameChanged</a>
     </div>
     <div>
+      <a class="xref" href="NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging">IENamedElement.NameChanging</a>
+    </div>
+    <div>
       <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_EAnnotations">IEModelElement.EAnnotations</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling">IEModelElement.GetEAnnotationCalling</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled">IEModelElement.GetEAnnotationCalled</a>
+    </div>
+    <div>
+      <a class="xref" href="NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_">IEModelElement.GetEAnnotation(string)</a>
     </div>
     <div>
       <a class="xref" href="../../models/api/NMF.Models.IModelElement.html#NMF_Models_IModelElement_Delete">IModelElement.Delete()</a>
@@ -247,7 +257,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_EGenericType" data-uid="NMF.Interop.Ecore.IETypedElement.EGenericType">
   EGenericType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L115"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eGenericType property</p>
@@ -255,7 +265,11 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEGenericType EGenericType { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Browsable(false)]
+[XmlElementName(&quot;eGenericType&quot;)]
+[XmlAttribute(false)]
+[Containment]
+IEGenericType EGenericType { get; set; }</code></pre>
   </div>
 
 
@@ -279,7 +293,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_EType" data-uid="NMF.Interop.Ecore.IETypedElement.EType">
   EType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The eType property</p>
@@ -287,7 +301,9 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEClassifier EType { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;eType&quot;)]
+[XmlAttribute(true)]
+IEClassifier EType { get; set; }</code></pre>
   </div>
 
 
@@ -311,7 +327,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_LowerBound" data-uid="NMF.Interop.Ecore.IETypedElement.LowerBound">
   LowerBound
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The lowerBound property</p>
@@ -319,7 +335,9 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int? LowerBound { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;lowerBound&quot;)]
+[XmlAttribute(true)]
+int? LowerBound { get; set; }</code></pre>
   </div>
 
 
@@ -343,7 +361,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_Ordered" data-uid="NMF.Interop.Ecore.IETypedElement.Ordered">
   Ordered
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The ordered property</p>
@@ -351,7 +369,9 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool? Ordered { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;ordered&quot;)]
+[XmlAttribute(true)]
+bool? Ordered { get; set; }</code></pre>
   </div>
 
 
@@ -375,7 +395,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_Unique" data-uid="NMF.Interop.Ecore.IETypedElement.Unique">
   Unique
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The unique property</p>
@@ -383,7 +403,9 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool? Unique { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;unique&quot;)]
+[XmlAttribute(true)]
+bool? Unique { get; set; }</code></pre>
   </div>
 
 
@@ -407,7 +429,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_UpperBound" data-uid="NMF.Interop.Ecore.IETypedElement.UpperBound">
   UpperBound
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The upperBound property</p>
@@ -415,7 +437,9 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int? UpperBound { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[XmlElementName(&quot;upperBound&quot;)]
+[XmlAttribute(true)]
+int? UpperBound { get; set; }</code></pre>
   </div>
 
 
@@ -442,7 +466,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_EGenericTypeChanged" data-uid="NMF.Interop.Ecore.IETypedElement.EGenericTypeChanged">
   EGenericTypeChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L183"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the EGenericType property changed its value</p>
@@ -473,7 +497,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_EGenericTypeChanging" data-uid="NMF.Interop.Ecore.IETypedElement.EGenericTypeChanging">
   EGenericTypeChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L178"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the EGenericType property changes its value</p>
@@ -504,7 +528,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_ETypeChanged" data-uid="NMF.Interop.Ecore.IETypedElement.ETypeChanged">
   ETypeChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L173"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the EType property changed its value</p>
@@ -535,7 +559,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_ETypeChanging" data-uid="NMF.Interop.Ecore.IETypedElement.ETypeChanging">
   ETypeChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the EType property changes its value</p>
@@ -566,7 +590,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_LowerBoundChanged" data-uid="NMF.Interop.Ecore.IETypedElement.LowerBoundChanged">
   LowerBoundChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L148"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the LowerBound property changed its value</p>
@@ -597,7 +621,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_LowerBoundChanging" data-uid="NMF.Interop.Ecore.IETypedElement.LowerBoundChanging">
   LowerBoundChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L153"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the LowerBound property changes its value</p>
@@ -628,7 +652,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_OrderedChanged" data-uid="NMF.Interop.Ecore.IETypedElement.OrderedChanged">
   OrderedChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L128"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the Ordered property changed its value</p>
@@ -659,7 +683,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_OrderedChanging" data-uid="NMF.Interop.Ecore.IETypedElement.OrderedChanging">
   OrderedChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the Ordered property changes its value</p>
@@ -690,7 +714,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_UniqueChanged" data-uid="NMF.Interop.Ecore.IETypedElement.UniqueChanged">
   UniqueChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the Unique property changed its value</p>
@@ -721,7 +745,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_UniqueChanging" data-uid="NMF.Interop.Ecore.IETypedElement.UniqueChanging">
   UniqueChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L143"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the Unique property changes its value</p>
@@ -752,7 +776,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_UpperBoundChanged" data-uid="NMF.Interop.Ecore.IETypedElement.UpperBoundChanged">
   UpperBoundChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired when the UpperBound property changed its value</p>
@@ -783,7 +807,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 
   <h3 id="NMF_Interop_Ecore_IETypedElement_UpperBoundChanging" data-uid="NMF.Interop.Ecore.IETypedElement.UpperBoundChanging">
   UpperBoundChanging
-  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L163"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets fired before the UpperBound property changes its value</p>
@@ -815,7 +839,7 @@ public interface IETypedElement : IENamedElement, IEModelElement, IModelElement,
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/NMFCode/NMF/blob/main/Interop/EcoreInterop/Model/IETypedElement.cs/#L38" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -13,6 +13,7 @@ items:
   - NMF.AnyText.Rules.Rule.Continuations
   - NMF.AnyText.Rules.Rule.CreateEpsilonRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.CreateSynthesisRequirements
+  - NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.GetHoverText(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Parser,NMF.AnyText.ParsePosition)
   - NMF.AnyText.Rules.Rule.GetInlayHintText(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.HasFoldingKind(System.String@)
@@ -31,6 +32,7 @@ items:
   - NMF.AnyText.Rules.Rule.Match(NMF.AnyText.ParseContext,NMF.AnyText.RecursionContext,NMF.AnyText.ParsePosition@)
   - NMF.AnyText.Rules.Rule.Name
   - NMF.AnyText.Rules.Rule.OnActivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,System.Boolean)
+  - NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.OnDeactivate(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.OnValueChange(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.Rules.RuleApplication)
   - NMF.AnyText.Rules.Rule.PassAlongDocumentSymbols
@@ -43,6 +45,7 @@ items:
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.IO.TextWriter,System.String)
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParseContext,System.String)
   - NMF.AnyText.Rules.Rule.Synthesize(System.Object,NMF.AnyText.ParsePosition,NMF.AnyText.ParseContext)
+  - NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.Rule.ToString
   - NMF.AnyText.Rules.Rule.TokenModifierIndex
   - NMF.AnyText.Rules.Rule.TokenModifiers
@@ -881,6 +884,84 @@ items:
       description: the parse context in which the rule application is invalidated
     content.vb: Public Overridable Sub Invalidate(ruleApplication As RuleApplication, context As ParseContext)
   overload: NMF.AnyText.Rules.Rule.Invalidate*
+- uid: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  id: OnContextChanged(NMF.AnyText.Rules.RuleApplication,System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  langs:
+  - csharp
+  - vb
+  name: OnContextChanged(RuleApplication, object, object, ParseContext)
+  nameWithType: Rule.OnContextChanged(RuleApplication, object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, object, object, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/Rule.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: OnContextChanged
+    path: src/AnyText/AnyText.Core/Rules/Rule.cs
+    startLine: 183
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Gets called when the parent rule application changes while the rule application is active
+  example: []
+  syntax:
+    content: protected virtual bool OnContextChanged(RuleApplication ruleApplication, object oldContextElement, object newContextElement, ParseContext context)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application whose parent changed
+    - id: oldContextElement
+      type: System.Object
+      description: the old context element
+    - id: newContextElement
+      type: System.Object
+      description: the new context element
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the context in which the parent changed
+    return:
+      type: System.Boolean
+      description: true, if the context change is handled, otherwise false and the context change should be propagated further
+    content.vb: Protected Overridable Function OnContextChanged(ruleApplication As RuleApplication, oldContextElement As Object, newContextElement As Object, context As ParseContext) As Boolean
+  overload: NMF.AnyText.Rules.Rule.OnContextChanged*
+  nameWithType.vb: Rule.OnContextChanged(RuleApplication, Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.OnContextChanged(NMF.AnyText.Rules.RuleApplication, Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChanged(RuleApplication, Object, Object, ParseContext)
+- uid: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  commentId: M:NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  id: GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  parent: NMF.AnyText.Rules.Rule
+  langs:
+  - csharp
+  - vb
+  name: GetEssentialInnerRuleApplication(RuleApplication)
+  nameWithType: Rule.GetEssentialInnerRuleApplication(RuleApplication)
+  fullName: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication(NMF.AnyText.Rules.RuleApplication)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/Rule.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetEssentialInnerRuleApplication
+    path: src/AnyText/AnyText.Core/Rules/Rule.cs
+    startLine: 188
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  syntax:
+    content: protected virtual RuleApplication GetEssentialInnerRuleApplication(RuleApplication ruleApplication)
+    parameters:
+    - id: ruleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+    return:
+      type: NMF.AnyText.Rules.RuleApplication
+    content.vb: Protected Overridable Function GetEssentialInnerRuleApplication(ruleApplication As RuleApplication) As RuleApplication
+  overload: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication*
 - uid: NMF.AnyText.Rules.Rule.IsLeftRecursive
   commentId: P:NMF.AnyText.Rules.Rule.IsLeftRecursive
   id: IsLeftRecursive
@@ -899,7 +980,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsLeftRecursive
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 178
+    startLine: 193
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -930,7 +1011,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Continuations
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 183
+    startLine: 198
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -961,7 +1042,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanSynthesize
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 191
+    startLine: 206
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1002,7 +1083,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanSynthesize
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 200
+    startLine: 215
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1046,7 +1127,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateSynthesisRequirements
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 206
+    startLine: 221
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1077,7 +1158,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synthesize
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 221
+    startLine: 236
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1121,7 +1202,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synthesize
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 244
+    startLine: 259
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1165,7 +1246,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Synthesize
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 264
+    startLine: 279
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1176,7 +1257,7 @@ items:
     parameters:
     - id: semanticElement
       type: System.Object
-      description: ''
+      description: the semantic element that shall be synthesized
     - id: position
       type: NMF.AnyText.ParsePosition
       description: the parse position at which the element should be synthesized
@@ -1191,6 +1272,53 @@ items:
   nameWithType.vb: Rule.Synthesize(Object, ParsePosition, ParseContext)
   fullName.vb: NMF.AnyText.Rules.Rule.Synthesize(Object, NMF.AnyText.ParsePosition, NMF.AnyText.ParseContext)
   name.vb: Synthesize(Object, ParsePosition, ParseContext)
+- uid: NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.Rule.SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  id: SynthesizeChanges(System.Object,NMF.AnyText.Rules.RuleApplication,System.Collections.Generic.IEnumerable{System.String},NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.Rule
+  langs:
+  - csharp
+  - vb
+  name: SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  nameWithType: Rule.SynthesizeChanges(object, RuleApplication, IEnumerable<string>, ParseContext)
+  fullName: NMF.AnyText.Rules.Rule.SynthesizeChanges(object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable<string>, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/Rule.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SynthesizeChanges
+    path: src/AnyText/AnyText.Core/Rules/Rule.cs
+    startLine: 289
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Synthesizes a rule application for the given semantic element, applying the given changes
+  example: []
+  syntax:
+    content: public virtual IEnumerable<RuleApplicationMigration> SynthesizeChanges(object semanticElement, RuleApplication oldRuleApplication, IEnumerable<string> changedProperties, ParseContext context)
+    parameters:
+    - id: semanticElement
+      type: System.Object
+      description: the semantic element that shall be synthesized
+    - id: oldRuleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the rule application before the change
+    - id: changedProperties
+      type: System.Collections.Generic.IEnumerable{System.String}
+      description: the changed properties
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context
+    return:
+      type: System.Collections.Generic.IEnumerable{NMF.AnyText.Rules.RuleApplicationMigration}
+      description: a rule application
+    content.vb: Public Overridable Function SynthesizeChanges(semanticElement As Object, oldRuleApplication As RuleApplication, changedProperties As IEnumerable(Of String), context As ParseContext) As IEnumerable(Of RuleApplicationMigration)
+  overload: NMF.AnyText.Rules.Rule.SynthesizeChanges*
+  nameWithType.vb: Rule.SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
+  fullName.vb: NMF.AnyText.Rules.Rule.SynthesizeChanges(Object, NMF.AnyText.Rules.RuleApplication, System.Collections.Generic.IEnumerable(Of String), NMF.AnyText.ParseContext)
+  name.vb: SynthesizeChanges(Object, RuleApplication, IEnumerable(Of String), ParseContext)
 - uid: NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   commentId: M:NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   id: IsEpsilonAllowed
@@ -1209,7 +1337,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsEpsilonAllowed
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 270
+    startLine: 298
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1240,7 +1368,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IsEpsilonAllowed
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 276
+    startLine: 304
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1277,7 +1405,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateEpsilonRuleApplication
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 283
+    startLine: 311
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1312,7 +1440,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanStartWith
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 290
+    startLine: 318
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1347,7 +1475,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CanStartWith
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 298
+    startLine: 326
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1388,7 +1516,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: AddLeftRecursionRules
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 305
+    startLine: 333
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1426,7 +1554,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TokenModifiers
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 310
+    startLine: 338
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1457,7 +1585,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetInlayHintText
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 318
+    startLine: 346
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1495,7 +1623,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SuggestCompletions
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 327
+    startLine: 355
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1541,7 +1669,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TokenTypeIndex
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 332
+    startLine: 360
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1572,7 +1700,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: TokenModifierIndex
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 341
+    startLine: 369
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1603,7 +1731,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetHoverText
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 366
+    startLine: 394
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -1644,7 +1772,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: RegisterSymbolKind
     path: src/AnyText/AnyText.Core/Rules/Rule.cs
-    startLine: 378
+    startLine: 406
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -2203,6 +2331,18 @@ references:
   name: Invalidate
   nameWithType: Rule.Invalidate
   fullName: NMF.AnyText.Rules.Rule.Invalidate
+- uid: NMF.AnyText.Rules.Rule.OnContextChanged*
+  commentId: Overload:NMF.AnyText.Rules.Rule.OnContextChanged
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_OnContextChanged_NMF_AnyText_Rules_RuleApplication_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChanged
+  nameWithType: Rule.OnContextChanged
+  fullName: NMF.AnyText.Rules.Rule.OnContextChanged
+- uid: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication*
+  commentId: Overload:NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_GetEssentialInnerRuleApplication_NMF_AnyText_Rules_RuleApplication_
+  name: GetEssentialInnerRuleApplication
+  nameWithType: Rule.GetEssentialInnerRuleApplication
+  fullName: NMF.AnyText.Rules.Rule.GetEssentialInnerRuleApplication
 - uid: NMF.AnyText.Rules.Rule.IsLeftRecursive*
   commentId: Overload:NMF.AnyText.Rules.Rule.IsLeftRecursive
   href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_IsLeftRecursive
@@ -2434,6 +2574,80 @@ references:
     name: IO
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: NMF.AnyText.Rules.Rule.SynthesizeChanges*
+  commentId: Overload:NMF.AnyText.Rules.Rule.SynthesizeChanges
+  href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_SynthesizeChanges_System_Object_NMF_AnyText_Rules_RuleApplication_System_Collections_Generic_IEnumerable_System_String__NMF_AnyText_ParseContext_
+  name: SynthesizeChanges
+  nameWithType: Rule.SynthesizeChanges
+  fullName: NMF.AnyText.Rules.Rule.SynthesizeChanges
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{NMF.AnyText.Rules.RuleApplicationMigration}
+  commentId: T:System.Collections.Generic.IEnumerable{NMF.AnyText.Rules.RuleApplicationMigration}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<RuleApplicationMigration>
+  nameWithType: IEnumerable<RuleApplicationMigration>
+  fullName: System.Collections.Generic.IEnumerable<NMF.AnyText.Rules.RuleApplicationMigration>
+  nameWithType.vb: IEnumerable(Of RuleApplicationMigration)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of NMF.AnyText.Rules.RuleApplicationMigration)
+  name.vb: IEnumerable(Of RuleApplicationMigration)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: NMF.AnyText.Rules.RuleApplicationMigration
+    name: RuleApplicationMigration
+    href: NMF.AnyText.Rules.RuleApplicationMigration.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.RuleApplicationMigration
+    name: RuleApplicationMigration
+    href: NMF.AnyText.Rules.RuleApplicationMigration.html
+  - name: )
 - uid: NMF.AnyText.Rules.Rule.IsEpsilonAllowed*
   commentId: Overload:NMF.AnyText.Rules.Rule.IsEpsilonAllowed
   href: NMF.AnyText.Rules.Rule.html#NMF_AnyText_Rules_Rule_IsEpsilonAllowed

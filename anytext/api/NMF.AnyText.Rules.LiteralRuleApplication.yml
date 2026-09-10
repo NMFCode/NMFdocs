@@ -8,15 +8,18 @@ items:
   - NMF.AnyText.Rules.LiteralRuleApplication.#ctor(NMF.AnyText.Rules.Rule,System.String,NMF.AnyText.ParsePositionDelta)
   - NMF.AnyText.Rules.LiteralRuleApplication.#ctor(NMF.AnyText.Rules.Rule,System.String,NMF.AnyText.ParsePositionDelta,NMF.AnyText.ParsePositionDelta)
   - NMF.AnyText.Rules.LiteralRuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
+  - NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.LiteralRuleApplication.GetFirstInnerLiteral
   - NMF.AnyText.Rules.LiteralRuleApplication.GetLastInnerLiteral
   - NMF.AnyText.Rules.LiteralRuleApplication.GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
   - NMF.AnyText.Rules.LiteralRuleApplication.GetValue(NMF.AnyText.ParseContext)
+  - NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
   - NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},System.Boolean)
+  - NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  - NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
   - NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0,System.Boolean)
   - NMF.AnyText.Rules.LiteralRuleApplication.Literal
   - NMF.AnyText.Rules.LiteralRuleApplication.OnMigrate(System.String,System.String,NMF.AnyText.ParseContext)
-  - NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement
   - NMF.AnyText.Rules.LiteralRuleApplication.Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   langs:
   - csharp
@@ -49,6 +52,7 @@ items:
   - NMF.AnyText.Rules.RuleApplication.IsRecovered
   - NMF.AnyText.Rules.RuleApplication.IsPositive
   - NMF.AnyText.Rules.RuleApplication.ContextElement
+  - NMF.AnyText.Rules.RuleApplication.SemanticElement
   - NMF.AnyText.Rules.RuleApplication.DiagnosticItems
   - NMF.AnyText.Rules.RuleApplication.FindChildAt(NMF.AnyText.ParsePosition,NMF.AnyText.Rules.Rule)
   - NMF.AnyText.Rules.RuleApplication.Validate(NMF.AnyText.ParseContext)
@@ -56,13 +60,14 @@ items:
   - NMF.AnyText.Rules.RuleApplication.AddDocumentSymbol(NMF.AnyText.ParseContext,System.Collections.Generic.ICollection{NMF.AnyText.DocumentSymbol},System.Collections.Generic.IEnumerable{NMF.AnyText.DocumentSymbol})
   - NMF.AnyText.Rules.RuleApplication.GetFirstReferenceOrDefinition
   - NMF.AnyText.Rules.RuleApplication.GetIdentifier
-  - NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.Rule
   - NMF.AnyText.Rules.RuleApplication.Comments
   - NMF.AnyText.Rules.RuleApplication.Length
   - NMF.AnyText.Rules.RuleApplication.ExaminedTo
   - NMF.AnyText.Rules.RuleApplication.ScopeLength
   - NMF.AnyText.Rules.RuleApplication.IsActive
+  - NMF.AnyText.Rules.RuleApplication.IsMemoized
   - NMF.AnyText.Rules.RuleApplication.CurrentPosition
   - NMF.AnyText.Rules.RuleApplication.Activate(NMF.AnyText.ParseContext,System.Boolean)
   - NMF.AnyText.Rules.RuleApplication.Deactivate(NMF.AnyText.ParseContext)
@@ -74,7 +79,11 @@ items:
   - NMF.AnyText.Rules.RuleApplication.PotentialError
   - NMF.AnyText.Rules.RuleApplication.CodeLenses(System.Predicate{NMF.AnyText.CodeLensApplication})
   - NMF.AnyText.Rules.RuleApplication.OnValueChange(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext,NMF.AnyText.Rules.RuleApplication)
+  - NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
   - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication})
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  - NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
   - NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,{T}},{T})
   - NMF.AnyText.Rules.RuleApplication.SetupPrettyPrinter(NMF.AnyText.PrettyPrinting.PrettyPrintWriter)
   - System.Object.Equals(System.Object)
@@ -200,38 +209,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property Literal As String
   overload: NMF.AnyText.Rules.LiteralRuleApplication.Literal*
-- uid: NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement
-  commentId: P:NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement
-  id: SemanticElement
-  parent: NMF.AnyText.Rules.LiteralRuleApplication
-  langs:
-  - csharp
-  - vb
-  name: SemanticElement
-  nameWithType: LiteralRuleApplication.SemanticElement
-  fullName: NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement
-  type: Property
-  source:
-    remote:
-      path: AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SemanticElement
-    path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 42
-  assemblies:
-  - NMF.AnyText.Core
-  namespace: NMF.AnyText.Rules
-  summary: Gets the semantic element of the rule application
-  example: []
-  syntax:
-    content: public override object SemanticElement { get; }
-    parameters: []
-    return:
-      type: System.Object
-    content.vb: Public Overrides ReadOnly Property SemanticElement As Object
-  overridden: NMF.AnyText.Rules.RuleApplication.SemanticElement
-  overload: NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement*
 - uid: NMF.AnyText.Rules.LiteralRuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   id: ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
@@ -250,7 +227,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ApplyTo
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 46
+    startLine: 43
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -289,7 +266,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnMigrate
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 57
+    startLine: 54
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -330,7 +307,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetValue
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 66
+    startLine: 63
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -366,7 +343,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IterateLiterals
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 72
+    startLine: 69
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -405,7 +382,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IterateLiterals
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 85
+    startLine: 82
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -432,6 +409,136 @@ items:
   nameWithType.vb: LiteralRuleApplication.IterateLiterals(Of T)(Action(Of LiteralRuleApplication, T), T, Boolean)
   fullName.vb: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(Of T)(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication, T), T, Boolean)
   name.vb: IterateLiterals(Of T)(Action(Of LiteralRuleApplication, T), T, Boolean)
+- uid: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  id: IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  parent: NMF.AnyText.Rules.LiteralRuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition, bool)
+  nameWithType: LiteralRuleApplication.IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition, bool)
+  fullName: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Action<NMF.AnyText.Rules.LiteralRuleApplication>, NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition, bool)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+    startLine: 95
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public override void IterateLiterals(Action<LiteralRuleApplication> action, ParsePosition from, ParsePosition to, bool includeFailures)
+    parameters:
+    - id: action
+      type: System.Action{NMF.AnyText.Rules.LiteralRuleApplication}
+      description: the action that should be performed for all literals
+    - id: from
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position from which the literals should be iterated
+    - id: to
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position to which the literals should be iterated
+    - id: includeFailures
+      type: System.Boolean
+      description: true, if failed rule applications should be considered, otherwise false
+    content.vb: Public Overrides Sub IterateLiterals(action As Action(Of LiteralRuleApplication), from As ParsePosition, [to] As ParsePosition, includeFailures As Boolean)
+  overridden: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  overload: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals*
+  nameWithType.vb: LiteralRuleApplication.IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition, Boolean)
+  fullName.vb: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication), NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition, Boolean)
+  name.vb: IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition, Boolean)
+- uid: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  id: IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  parent: NMF.AnyText.Rules.LiteralRuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, bool)
+  nameWithType: LiteralRuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, bool)
+  fullName: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, bool)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+    startLine: 108
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public override bool IterateLiterals(Func<LiteralRuleApplication, bool> action, bool includeFailures)
+    parameters:
+    - id: action
+      type: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+      description: the action that should be performed for all literals
+    - id: includeFailures
+      type: System.Boolean
+      description: true, if failed rule applications should be considered, otherwise false
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function IterateLiterals(action As Func(Of LiteralRuleApplication, Boolean), includeFailures As Boolean) As Boolean
+  overridden: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  overload: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals*
+  nameWithType.vb: LiteralRuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), Boolean)
+  fullName.vb: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), Boolean)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), Boolean)
+- uid: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  id: IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  parent: NMF.AnyText.Rules.LiteralRuleApplication
+  langs:
+  - csharp
+  - vb
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition, bool)
+  nameWithType: LiteralRuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition, bool)
+  fullName: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, NMF.AnyText.ParsePosition, bool)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IterateLiterals
+    path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+    startLine: 124
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Iterate over all literals
+  example: []
+  syntax:
+    content: public override bool IterateLiterals(Func<LiteralRuleApplication, bool> action, ParsePosition from, bool includeFailures)
+    parameters:
+    - id: action
+      type: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+      description: the action that should be performed for all literals
+    - id: from
+      type: NMF.AnyText.ParsePosition
+      description: the inclusive position from which the literals should be iterated
+    - id: includeFailures
+      type: System.Boolean
+      description: true, if failed rule applications should be considered, otherwise false
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function IterateLiterals(action As Func(Of LiteralRuleApplication, Boolean), from As ParsePosition, includeFailures As Boolean) As Boolean
+  overridden: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  overload: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals*
+  nameWithType.vb: LiteralRuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition, Boolean)
+  fullName.vb: NMF.AnyText.Rules.LiteralRuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), NMF.AnyText.ParsePosition, Boolean)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition, Boolean)
 - uid: NMF.AnyText.Rules.LiteralRuleApplication.Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   id: Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
@@ -450,7 +557,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Write
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 98
+    startLine: 140
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -468,6 +575,48 @@ items:
     content.vb: Public Overrides Sub Write(writer As PrettyPrintWriter, context As ParseContext)
   overridden: NMF.AnyText.Rules.RuleApplication.Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   overload: NMF.AnyText.Rules.LiteralRuleApplication.Write*
+- uid: NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  id: ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.LiteralRuleApplication
+  langs:
+  - csharp
+  - vb
+  name: ContinueToNextToken(RuleApplication, PrettyPrintWriter, ParseContext)
+  nameWithType: LiteralRuleApplication.ContinueToNextToken(RuleApplication, PrettyPrintWriter, ParseContext)
+  fullName: NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.PrettyPrinting.PrettyPrintWriter, NMF.AnyText.ParseContext)
+  type: Method
+  source:
+    remote:
+      path: AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ContinueToNextToken
+    path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
+    startLine: 147
+  assemblies:
+  - NMF.AnyText.Core
+  namespace: NMF.AnyText.Rules
+  summary: Writes white spaces until the next token
+  example: []
+  syntax:
+    content: public override bool ContinueToNextToken(RuleApplication childRuleApplication, PrettyPrintWriter writer, ParseContext context)
+    parameters:
+    - id: childRuleApplication
+      type: NMF.AnyText.Rules.RuleApplication
+      description: the child rule application that was written last
+    - id: writer
+      type: NMF.AnyText.PrettyPrinting.PrettyPrintWriter
+      description: the pretty print writer to write to
+    - id: context
+      type: NMF.AnyText.ParseContext
+      description: the parse context
+    return:
+      type: System.Boolean
+      description: true, if a token was produced, otherwise false
+    content.vb: Public Overrides Function ContinueToNextToken(childRuleApplication As RuleApplication, writer As PrettyPrintWriter, context As ParseContext) As Boolean
+  overridden: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  overload: NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken*
 - uid: NMF.AnyText.Rules.LiteralRuleApplication.GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
   commentId: M:NMF.AnyText.Rules.LiteralRuleApplication.GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
   id: GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
@@ -486,7 +635,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetLiteralAt
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 118
+    startLine: 167
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -528,7 +677,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetFirstInnerLiteral
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 129
+    startLine: 178
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -560,7 +709,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetLastInnerLiteral
     path: src/AnyText/AnyText.Core/Rules/LiteralRuleApplication.cs
-    startLine: 135
+    startLine: 184
   assemblies:
   - NMF.AnyText.Core
   namespace: NMF.AnyText.Rules
@@ -651,6 +800,13 @@ references:
   name: ContextElement
   nameWithType: RuleApplication.ContextElement
   fullName: NMF.AnyText.Rules.RuleApplication.ContextElement
+- uid: NMF.AnyText.Rules.RuleApplication.SemanticElement
+  commentId: P:NMF.AnyText.Rules.RuleApplication.SemanticElement
+  parent: NMF.AnyText.Rules.RuleApplication
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_SemanticElement
+  name: SemanticElement
+  nameWithType: RuleApplication.SemanticElement
+  fullName: NMF.AnyText.Rules.RuleApplication.SemanticElement
 - uid: NMF.AnyText.Rules.RuleApplication.DiagnosticItems
   commentId: P:NMF.AnyText.Rules.RuleApplication.DiagnosticItems
   parent: NMF.AnyText.Rules.RuleApplication
@@ -883,17 +1039,17 @@ references:
     href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_GetIdentifier
   - name: (
   - name: )
-- uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
-  commentId: M:NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
+- uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   parent: NMF.AnyText.Rules.RuleApplication
-  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_
-  name: ReplaceChild(RuleApplication, RuleApplication)
-  nameWithType: RuleApplication.ReplaceChild(RuleApplication, RuleApplication)
-  fullName: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.Rules.RuleApplication)
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_
+  name: ReplaceChild(RuleApplication, RuleApplication, ParseContext)
+  nameWithType: RuleApplication.ReplaceChild(RuleApplication, RuleApplication, ParseContext)
+  fullName: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.Rules.RuleApplication, NMF.AnyText.ParseContext)
   spec.csharp:
-  - uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
+  - uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
     name: ReplaceChild
-    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_
   - name: (
   - uid: NMF.AnyText.Rules.RuleApplication
     name: RuleApplication
@@ -903,11 +1059,16 @@ references:
   - uid: NMF.AnyText.Rules.RuleApplication
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
   - name: )
   spec.vb:
-  - uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication)
+  - uid: NMF.AnyText.Rules.RuleApplication.ReplaceChild(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
     name: ReplaceChild
-    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ReplaceChild_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_ParseContext_
   - name: (
   - uid: NMF.AnyText.Rules.RuleApplication
     name: RuleApplication
@@ -917,6 +1078,11 @@ references:
   - uid: NMF.AnyText.Rules.RuleApplication
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
   - name: )
 - uid: NMF.AnyText.Rules.RuleApplication.Rule
   commentId: P:NMF.AnyText.Rules.RuleApplication.Rule
@@ -960,6 +1126,13 @@ references:
   name: IsActive
   nameWithType: RuleApplication.IsActive
   fullName: NMF.AnyText.Rules.RuleApplication.IsActive
+- uid: NMF.AnyText.Rules.RuleApplication.IsMemoized
+  commentId: P:NMF.AnyText.Rules.RuleApplication.IsMemoized
+  parent: NMF.AnyText.Rules.RuleApplication
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IsMemoized
+  name: IsMemoized
+  nameWithType: RuleApplication.IsMemoized
+  fullName: NMF.AnyText.Rules.RuleApplication.IsMemoized
 - uid: NMF.AnyText.Rules.RuleApplication.CurrentPosition
   commentId: P:NMF.AnyText.Rules.RuleApplication.CurrentPosition
   parent: NMF.AnyText.Rules.RuleApplication
@@ -1281,6 +1454,59 @@ references:
     name: RuleApplication
     href: NMF.AnyText.Rules.RuleApplication.html
   - name: )
+- uid: NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_OnContextChange_System_Object_System_Object_NMF_AnyText_ParseContext_
+  name: OnContextChange(object, object, ParseContext)
+  nameWithType: RuleApplication.OnContextChange(object, object, ParseContext)
+  fullName: NMF.AnyText.Rules.RuleApplication.OnContextChange(object, object, NMF.AnyText.ParseContext)
+  nameWithType.vb: RuleApplication.OnContextChange(Object, Object, ParseContext)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.OnContextChange(Object, Object, NMF.AnyText.ParseContext)
+  name.vb: OnContextChange(Object, Object, ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChange
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_OnContextChange_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.OnContextChange(System.Object,System.Object,NMF.AnyText.ParseContext)
+    name: OnContextChange
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_OnContextChange_System_Object_System_Object_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
 - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication})
   commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication})
   parent: NMF.AnyText.Rules.RuleApplication
@@ -1323,6 +1549,189 @@ references:
     name: LiteralRuleApplication
     href: NMF.AnyText.Rules.LiteralRuleApplication.html
   - name: )
+  - name: )
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>)
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean))
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean))
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean))
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean})
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__NMF_AnyText_ParsePosition_
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, NMF.AnyText.ParsePosition)
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), NMF.AnyText.ParsePosition)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__NMF_AnyText_ParsePosition_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__NMF_AnyText_ParsePosition_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: )
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Action_NMF_AnyText_Rules_LiteralRuleApplication__NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_
+  name: IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition)
+  nameWithType: RuleApplication.IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action<NMF.AnyText.Rules.LiteralRuleApplication>, NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition)
+  nameWithType.vb: RuleApplication.IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication), NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition)
+  name.vb: IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Action_NMF_AnyText_Rules_LiteralRuleApplication__NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Action_NMF_AnyText_Rules_LiteralRuleApplication__NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
   - name: )
 - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,{T}},{T})
   commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals``1(System.Action{NMF.AnyText.Rules.LiteralRuleApplication,``0},``0)
@@ -1762,19 +2171,6 @@ references:
   name: Literal
   nameWithType: LiteralRuleApplication.Literal
   fullName: NMF.AnyText.Rules.LiteralRuleApplication.Literal
-- uid: NMF.AnyText.Rules.RuleApplication.SemanticElement
-  commentId: P:NMF.AnyText.Rules.RuleApplication.SemanticElement
-  parent: NMF.AnyText.Rules.RuleApplication
-  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_SemanticElement
-  name: SemanticElement
-  nameWithType: RuleApplication.SemanticElement
-  fullName: NMF.AnyText.Rules.RuleApplication.SemanticElement
-- uid: NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement*
-  commentId: Overload:NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement
-  href: NMF.AnyText.Rules.LiteralRuleApplication.html#NMF_AnyText_Rules_LiteralRuleApplication_SemanticElement
-  name: SemanticElement
-  nameWithType: LiteralRuleApplication.SemanticElement
-  fullName: NMF.AnyText.Rules.LiteralRuleApplication.SemanticElement
 - uid: NMF.AnyText.Rules.RuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Rules.RuleApplication.ApplyTo(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.ParseContext)
   parent: NMF.AnyText.Rules.RuleApplication
@@ -2225,6 +2621,311 @@ references:
   name: T
   nameWithType: T
   fullName: T
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Action_NMF_AnyText_Rules_LiteralRuleApplication__NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_System_Boolean_
+  name: IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition, bool)
+  nameWithType: RuleApplication.IterateLiterals(Action<LiteralRuleApplication>, ParsePosition, ParsePosition, bool)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action<NMF.AnyText.Rules.LiteralRuleApplication>, NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition, bool)
+  nameWithType.vb: RuleApplication.IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition, Boolean)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action(Of NMF.AnyText.Rules.LiteralRuleApplication), NMF.AnyText.ParsePosition, NMF.AnyText.ParsePosition, Boolean)
+  name.vb: IterateLiterals(Action(Of LiteralRuleApplication), ParsePosition, ParsePosition, Boolean)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Action_NMF_AnyText_Rules_LiteralRuleApplication__NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_System_Boolean_
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Action{NMF.AnyText.Rules.LiteralRuleApplication},NMF.AnyText.ParsePosition,NMF.AnyText.ParsePosition,System.Boolean)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Action_NMF_AnyText_Rules_LiteralRuleApplication__NMF_AnyText_ParsePosition_NMF_AnyText_ParsePosition_System_Boolean_
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: NMF.AnyText.ParsePosition
+  commentId: T:NMF.AnyText.ParsePosition
+  parent: NMF.AnyText
+  href: NMF.AnyText.ParsePosition.html
+  name: ParsePosition
+  nameWithType: ParsePosition
+  fullName: NMF.AnyText.ParsePosition
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__System_Boolean_
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, bool)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, bool)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, bool)
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), Boolean)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), Boolean)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), Boolean)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},System.Boolean)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+  commentId: T:System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<LiteralRuleApplication, bool>
+  nameWithType: Func<LiteralRuleApplication, bool>
+  fullName: System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>
+  nameWithType.vb: Func(Of LiteralRuleApplication, Boolean)
+  fullName.vb: System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean)
+  name.vb: Func(Of LiteralRuleApplication, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+  parent: NMF.AnyText.Rules.RuleApplication
+  isExternal: true
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__NMF_AnyText_ParsePosition_System_Boolean_
+  name: IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition, bool)
+  nameWithType: RuleApplication.IterateLiterals(Func<LiteralRuleApplication, bool>, ParsePosition, bool)
+  fullName: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func<NMF.AnyText.Rules.LiteralRuleApplication, bool>, NMF.AnyText.ParsePosition, bool)
+  nameWithType.vb: RuleApplication.IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition, Boolean)
+  fullName.vb: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func(Of NMF.AnyText.Rules.LiteralRuleApplication, Boolean), NMF.AnyText.ParsePosition, Boolean)
+  name.vb: IterateLiterals(Func(Of LiteralRuleApplication, Boolean), ParsePosition, Boolean)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__NMF_AnyText_ParsePosition_System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.IterateLiterals(System.Func{NMF.AnyText.Rules.LiteralRuleApplication,System.Boolean},NMF.AnyText.ParsePosition,System.Boolean)
+    name: IterateLiterals
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_IterateLiterals_System_Func_NMF_AnyText_Rules_LiteralRuleApplication_System_Boolean__NMF_AnyText_ParsePosition_System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.AnyText.Rules.LiteralRuleApplication
+    name: LiteralRuleApplication
+    href: NMF.AnyText.Rules.LiteralRuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParsePosition
+    name: ParsePosition
+    href: NMF.AnyText.ParsePosition.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
 - uid: NMF.AnyText.Rules.RuleApplication.Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   commentId: M:NMF.AnyText.Rules.RuleApplication.Write(NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
   parent: NMF.AnyText.Rules.RuleApplication
@@ -2303,6 +3004,57 @@ references:
   - uid: NMF.AnyText.PrettyPrinting
     name: PrettyPrinting
     href: NMF.AnyText.PrettyPrinting.html
+- uid: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  commentId: M:NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+  parent: NMF.AnyText.Rules.RuleApplication
+  href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ContinueToNextToken_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_PrettyPrinting_PrettyPrintWriter_NMF_AnyText_ParseContext_
+  name: ContinueToNextToken(RuleApplication, PrettyPrintWriter, ParseContext)
+  nameWithType: RuleApplication.ContinueToNextToken(RuleApplication, PrettyPrintWriter, ParseContext)
+  fullName: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication, NMF.AnyText.PrettyPrinting.PrettyPrintWriter, NMF.AnyText.ParseContext)
+  spec.csharp:
+  - uid: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+    name: ContinueToNextToken
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ContinueToNextToken_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_PrettyPrinting_PrettyPrintWriter_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.PrettyPrinting.PrettyPrintWriter
+    name: PrettyPrintWriter
+    href: NMF.AnyText.PrettyPrinting.PrettyPrintWriter.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+  spec.vb:
+  - uid: NMF.AnyText.Rules.RuleApplication.ContinueToNextToken(NMF.AnyText.Rules.RuleApplication,NMF.AnyText.PrettyPrinting.PrettyPrintWriter,NMF.AnyText.ParseContext)
+    name: ContinueToNextToken
+    href: NMF.AnyText.Rules.RuleApplication.html#NMF_AnyText_Rules_RuleApplication_ContinueToNextToken_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_PrettyPrinting_PrettyPrintWriter_NMF_AnyText_ParseContext_
+  - name: (
+  - uid: NMF.AnyText.Rules.RuleApplication
+    name: RuleApplication
+    href: NMF.AnyText.Rules.RuleApplication.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.PrettyPrinting.PrettyPrintWriter
+    name: PrettyPrintWriter
+    href: NMF.AnyText.PrettyPrinting.PrettyPrintWriter.html
+  - name: ','
+  - name: " "
+  - uid: NMF.AnyText.ParseContext
+    name: ParseContext
+    href: NMF.AnyText.ParseContext.html
+  - name: )
+- uid: NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken*
+  commentId: Overload:NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken
+  href: NMF.AnyText.Rules.LiteralRuleApplication.html#NMF_AnyText_Rules_LiteralRuleApplication_ContinueToNextToken_NMF_AnyText_Rules_RuleApplication_NMF_AnyText_PrettyPrinting_PrettyPrintWriter_NMF_AnyText_ParseContext_
+  name: ContinueToNextToken
+  nameWithType: LiteralRuleApplication.ContinueToNextToken
+  fullName: NMF.AnyText.Rules.LiteralRuleApplication.ContinueToNextToken
 - uid: NMF.AnyText.Rules.RuleApplication.GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
   commentId: M:NMF.AnyText.Rules.RuleApplication.GetLiteralAt(NMF.AnyText.ParsePosition,System.Boolean)
   parent: NMF.AnyText.Rules.RuleApplication
@@ -2350,13 +3102,6 @@ references:
   name: GetLiteralAt
   nameWithType: LiteralRuleApplication.GetLiteralAt
   fullName: NMF.AnyText.Rules.LiteralRuleApplication.GetLiteralAt
-- uid: NMF.AnyText.ParsePosition
-  commentId: T:NMF.AnyText.ParsePosition
-  parent: NMF.AnyText
-  href: NMF.AnyText.ParsePosition.html
-  name: ParsePosition
-  nameWithType: ParsePosition
-  fullName: NMF.AnyText.ParsePosition
 - uid: NMF.AnyText.Rules.RuleApplication.GetFirstInnerLiteral
   commentId: M:NMF.AnyText.Rules.RuleApplication.GetFirstInnerLiteral
   parent: NMF.AnyText.Rules.RuleApplication

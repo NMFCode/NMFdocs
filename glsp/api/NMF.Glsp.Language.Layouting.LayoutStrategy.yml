@@ -11,6 +11,7 @@ items:
   - NMF.Glsp.Language.Layouting.LayoutStrategy.Hbox
   - NMF.Glsp.Language.Layouting.LayoutStrategy.NeedsLayout
   - NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point)
+  - NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point,System.Nullable{NMF.Glsp.Protocol.Types.Dimension})
   - NMF.Glsp.Language.Layouting.LayoutStrategy.Update(NMF.Glsp.Graph.GElement)
   - NMF.Glsp.Language.Layouting.LayoutStrategy.Vbox
   langs:
@@ -195,7 +196,7 @@ items:
   summary: Sets the position for the given element
   example: []
   syntax:
-    content: public abstract void SetPosition(GElement element, Point position)
+    content: public void SetPosition(GElement element, Point position)
     parameters:
     - id: element
       type: NMF.Glsp.Graph.GElement
@@ -203,7 +204,45 @@ items:
     - id: position
       type: NMF.Glsp.Protocol.Types.Point
       description: The position
-    content.vb: Public MustOverride Sub SetPosition(element As GElement, position As Point)
+    content.vb: Public Sub SetPosition(element As GElement, position As Point)
+  overload: NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition*
+- uid: NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point,System.Nullable{NMF.Glsp.Protocol.Types.Dimension})
+  commentId: M:NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point,System.Nullable{NMF.Glsp.Protocol.Types.Dimension})
+  id: SetPosition(NMF.Glsp.Graph.GElement,NMF.Glsp.Protocol.Types.Point,System.Nullable{NMF.Glsp.Protocol.Types.Dimension})
+  parent: NMF.Glsp.Language.Layouting.LayoutStrategy
+  langs:
+  - csharp
+  - vb
+  name: SetPosition(GElement, Point, Dimension?)
+  nameWithType: LayoutStrategy.SetPosition(GElement, Point, Dimension?)
+  fullName: NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition(NMF.Glsp.Graph.GElement, NMF.Glsp.Protocol.Types.Point, NMF.Glsp.Protocol.Types.Dimension?)
+  type: Method
+  source:
+    remote:
+      path: Glsp/Glsp/Language/Layouting/LayoutStrategy.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: SetPosition
+    path: src/Glsp/Glsp/Language/Layouting/LayoutStrategy.cs
+    startLine: 43
+  assemblies:
+  - NMF.Glsp
+  namespace: NMF.Glsp.Language.Layouting
+  summary: Sets the position for the given element
+  example: []
+  syntax:
+    content: public abstract void SetPosition(GElement element, Point position, Dimension? size)
+    parameters:
+    - id: element
+      type: NMF.Glsp.Graph.GElement
+      description: The element
+    - id: position
+      type: NMF.Glsp.Protocol.Types.Point
+      description: The position
+    - id: size
+      type: System.Nullable{NMF.Glsp.Protocol.Types.Dimension}
+      description: the size
+    content.vb: Public MustOverride Sub SetPosition(element As GElement, position As Point, size As Dimension?)
   overload: NMF.Glsp.Language.Layouting.LayoutStrategy.SetPosition*
 - uid: NMF.Glsp.Language.Layouting.LayoutStrategy.Update(NMF.Glsp.Graph.GElement)
   commentId: M:NMF.Glsp.Language.Layouting.LayoutStrategy.Update(NMF.Glsp.Graph.GElement)
@@ -223,7 +262,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Update
     path: src/Glsp/Glsp/Language/Layouting/LayoutStrategy.cs
-    startLine: 41
+    startLine: 49
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Language.Layouting
@@ -255,7 +294,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Apply
     path: src/Glsp/Glsp/Language/Layouting/LayoutStrategy.cs
-    startLine: 47
+    startLine: 55
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Language.Layouting
@@ -287,7 +326,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: NeedsLayout
     path: src/Glsp/Glsp/Language/Layouting/LayoutStrategy.cs
-    startLine: 52
+    startLine: 60
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Language.Layouting
@@ -695,6 +734,52 @@ references:
   - uid: NMF.Glsp.Protocol.Types
     name: Types
     href: NMF.Glsp.Protocol.Types.html
+- uid: System.Nullable{NMF.Glsp.Protocol.Types.Dimension}
+  commentId: T:System.Nullable{NMF.Glsp.Protocol.Types.Dimension}
+  parent: System
+  definition: System.Nullable`1
+  href: NMF.Glsp.Protocol.Types.Dimension.html
+  name: Dimension?
+  nameWithType: Dimension?
+  fullName: NMF.Glsp.Protocol.Types.Dimension?
+  spec.csharp:
+  - uid: NMF.Glsp.Protocol.Types.Dimension
+    name: Dimension
+    href: NMF.Glsp.Protocol.Types.Dimension.html
+  - name: '?'
+  spec.vb:
+  - uid: NMF.Glsp.Protocol.Types.Dimension
+    name: Dimension
+    href: NMF.Glsp.Protocol.Types.Dimension.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: NMF.Glsp.Language.Layouting.LayoutStrategy.Update*
   commentId: Overload:NMF.Glsp.Language.Layouting.LayoutStrategy.Update
   href: NMF.Glsp.Language.Layouting.LayoutStrategy.html#NMF_Glsp_Language_Layouting_LayoutStrategy_Update_NMF_Glsp_Graph_GElement_

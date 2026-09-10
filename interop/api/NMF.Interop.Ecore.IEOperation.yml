@@ -12,6 +12,12 @@ items:
   - NMF.Interop.Ecore.IEOperation.EGenericExceptions
   - NMF.Interop.Ecore.IEOperation.EParameters
   - NMF.Interop.Ecore.IEOperation.ETypeParameters
+  - NMF.Interop.Ecore.IEOperation.GetOperationID
+  - NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+  - NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+  - NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  - NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
+  - NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
   langs:
   - csharp
   - vb
@@ -26,7 +32,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: IEOperation
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -38,13 +44,19 @@ items:
 
       [XmlDefaultImplementationType(typeof(EOperation))]
 
+      [ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EOperation")]
+
       public interface IEOperation : IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
     content.vb: >-
       <DefaultImplementationType(GetType(EOperation))>
 
       <XmlDefaultImplementationType(GetType(EOperation))>
 
+      <ModelRepresentationClass("http://www.eclipse.org/emf/2002/Ecore#//EOperation")>
+
       Public Interface IEOperation Inherits IETypedElement, IENamedElement, IEModelElement, IModelElement, INotifyPropertyChanged, INotifyPropertyChanging
+  derivedClasses:
+  - NMF.Interop.Ecore.EOperation
   inheritedMembers:
   - NMF.Interop.Ecore.IETypedElement.Ordered
   - NMF.Interop.Ecore.IETypedElement.Unique
@@ -52,22 +64,25 @@ items:
   - NMF.Interop.Ecore.IETypedElement.UpperBound
   - NMF.Interop.Ecore.IETypedElement.EType
   - NMF.Interop.Ecore.IETypedElement.EGenericType
-  - NMF.Interop.Ecore.IETypedElement.OrderedChanging
   - NMF.Interop.Ecore.IETypedElement.OrderedChanged
-  - NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  - NMF.Interop.Ecore.IETypedElement.OrderedChanging
   - NMF.Interop.Ecore.IETypedElement.UniqueChanged
-  - NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  - NMF.Interop.Ecore.IETypedElement.UniqueChanging
   - NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
-  - NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  - NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
   - NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
+  - NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
   - NMF.Interop.Ecore.IETypedElement.ETypeChanging
   - NMF.Interop.Ecore.IETypedElement.ETypeChanged
   - NMF.Interop.Ecore.IETypedElement.EGenericTypeChanging
   - NMF.Interop.Ecore.IETypedElement.EGenericTypeChanged
   - NMF.Interop.Ecore.IENamedElement.Name
-  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IENamedElement.NameChanged
+  - NMF.Interop.Ecore.IENamedElement.NameChanging
   - NMF.Interop.Ecore.IEModelElement.EAnnotations
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  - NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
   - NMF.Models.IModelElement.Delete
   - NMF.Models.IModelElement.Deleted
   - NMF.Models.IModelElement.Deleting
@@ -115,6 +130,11 @@ items:
     arguments:
     - type: System.Type
       value: NMF.Interop.Ecore.EOperation
+  - type: NMF.Models.ModelRepresentationClassAttribute
+    ctor: NMF.Models.ModelRepresentationClassAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: http://www.eclipse.org/emf/2002/Ecore#//EOperation
 - uid: NMF.Interop.Ecore.IEOperation.EContainingClass
   commentId: P:NMF.Interop.Ecore.IEOperation.EContainingClass
   id: EContainingClass
@@ -133,19 +153,58 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClass
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eContainingClass property
   example: []
   syntax:
-    content: IEClass EContainingClass { get; set; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eContainingClass")]
+
+      [XmlAttribute(true)]
+
+      [XmlOpposite("eOperations")]
+
+      IEClass EContainingClass { get; set; }
     parameters: []
     return:
       type: NMF.Interop.Ecore.IEClass
-    content.vb: Property EContainingClass As IEClass
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eContainingClass")>
+
+      <XmlAttribute(True)>
+
+      <XmlOpposite("eOperations")>
+
+      Property EContainingClass As IEClass
   overload: NMF.Interop.Ecore.IEOperation.EContainingClass*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eContainingClass
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eOperations
 - uid: NMF.Interop.Ecore.IEOperation.ETypeParameters
   commentId: P:NMF.Interop.Ecore.IEOperation.ETypeParameters
   id: ETypeParameters
@@ -164,19 +223,56 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ETypeParameters
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 53
+    startLine: 60
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eTypeParameters property
   example: []
   syntax:
-    content: IOrderedSetExpression<IETypeParameter> ETypeParameters { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eTypeParameters")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IOrderedSetExpression<IETypeParameter> ETypeParameters { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IETypeParameter}
-    content.vb: ReadOnly Property ETypeParameters As IOrderedSetExpression(Of IETypeParameter)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eTypeParameters")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property ETypeParameters As IOrderedSetExpression(Of IETypeParameter)
   overload: NMF.Interop.Ecore.IEOperation.ETypeParameters*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eTypeParameters
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
 - uid: NMF.Interop.Ecore.IEOperation.EParameters
   commentId: P:NMF.Interop.Ecore.IEOperation.EParameters
   id: EParameters
@@ -195,19 +291,65 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EParameters
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 61
+    startLine: 74
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eParameters property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEParameter> EParameters { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eParameters")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      [XmlOpposite("eOperation")]
+
+      IOrderedSetExpression<IEParameter> EParameters { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEParameter}
-    content.vb: ReadOnly Property EParameters As IOrderedSetExpression(Of IEParameter)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eParameters")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      <XmlOpposite("eOperation")>
+
+      ReadOnly Property EParameters As IOrderedSetExpression(Of IEParameter)
   overload: NMF.Interop.Ecore.IEOperation.EParameters*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eParameters
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
+  - type: NMF.Serialization.XmlOppositeAttribute
+    ctor: NMF.Serialization.XmlOppositeAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eOperation
 - uid: NMF.Interop.Ecore.IEOperation.EExceptions
   commentId: P:NMF.Interop.Ecore.IEOperation.EExceptions
   id: EExceptions
@@ -226,19 +368,40 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EExceptions
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 69
+    startLine: 89
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eExceptions property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEClassifier> EExceptions { get; }
+    content: >-
+      [XmlElementName("eExceptions")]
+
+      [XmlAttribute(true)]
+
+      IOrderedSetExpression<IEClassifier> EExceptions { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEClassifier}
-    content.vb: ReadOnly Property EExceptions As IOrderedSetExpression(Of IEClassifier)
+    content.vb: >-
+      <XmlElementName("eExceptions")>
+
+      <XmlAttribute(True)>
+
+      ReadOnly Property EExceptions As IOrderedSetExpression(Of IEClassifier)
   overload: NMF.Interop.Ecore.IEOperation.EExceptions*
+  attributes:
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eExceptions
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: true
 - uid: NMF.Interop.Ecore.IEOperation.EGenericExceptions
   commentId: P:NMF.Interop.Ecore.IEOperation.EGenericExceptions
   id: EGenericExceptions
@@ -257,19 +420,172 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EGenericExceptions
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 77
+    startLine: 103
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
   summary: The eGenericExceptions property
   example: []
   syntax:
-    content: IOrderedSetExpression<IEGenericType> EGenericExceptions { get; }
+    content: >-
+      [Browsable(false)]
+
+      [XmlElementName("eGenericExceptions")]
+
+      [XmlAttribute(false)]
+
+      [Containment]
+
+      IOrderedSetExpression<IEGenericType> EGenericExceptions { get; }
     parameters: []
     return:
       type: NMF.Collections.Generic.IOrderedSetExpression{NMF.Interop.Ecore.IEGenericType}
-    content.vb: ReadOnly Property EGenericExceptions As IOrderedSetExpression(Of IEGenericType)
+    content.vb: >-
+      <Browsable(False)>
+
+      <XmlElementName("eGenericExceptions")>
+
+      <XmlAttribute(False)>
+
+      <Containment>
+
+      ReadOnly Property EGenericExceptions As IOrderedSetExpression(Of IEGenericType)
   overload: NMF.Interop.Ecore.IEOperation.EGenericExceptions*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Serialization.XmlElementNameAttribute
+    ctor: NMF.Serialization.XmlElementNameAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: eGenericExceptions
+  - type: NMF.Serialization.XmlAttributeAttribute
+    ctor: NMF.Serialization.XmlAttributeAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: NMF.Models.ContainmentAttribute
+    ctor: NMF.Models.ContainmentAttribute.#ctor
+    arguments: []
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+  commentId: E:NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+  id: GetOperationIDCalling
+  parent: NMF.Interop.Ecore.IEOperation
+  langs:
+  - csharp
+  - vb
+  name: GetOperationIDCalling
+  nameWithType: IEOperation.GetOperationIDCalling
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationIDCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetOperationIDCalling
+    path: src/Interop/EcoreInterop/Model/IEOperation.cs
+    startLine: 117
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation getOperationID gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetOperationIDCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetOperationIDCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+  commentId: E:NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+  id: GetOperationIDCalled
+  parent: NMF.Interop.Ecore.IEOperation
+  langs:
+  - csharp
+  - vb
+  name: GetOperationIDCalled
+  nameWithType: IEOperation.GetOperationIDCalled
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationIDCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetOperationIDCalled
+    path: src/Interop/EcoreInterop/Model/IEOperation.cs
+    startLine: 122
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation getOperationID got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> GetOperationIDCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event GetOperationIDCalled As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+  commentId: E:NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+  id: IsOverrideOfCalling
+  parent: NMF.Interop.Ecore.IEOperation
+  langs:
+  - csharp
+  - vb
+  name: IsOverrideOfCalling
+  nameWithType: IEOperation.IsOverrideOfCalling
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalling
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsOverrideOfCalling
+    path: src/Interop/EcoreInterop/Model/IEOperation.cs
+    startLine: 127
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired before the operation isOverrideOf gets called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> IsOverrideOfCalling
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event IsOverrideOfCalling As EventHandler(Of OperationCallEventArgs)
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
+  commentId: E:NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
+  id: IsOverrideOfCalled
+  parent: NMF.Interop.Ecore.IEOperation
+  langs:
+  - csharp
+  - vb
+  name: IsOverrideOfCalled
+  nameWithType: IEOperation.IsOverrideOfCalled
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOfCalled
+  type: Event
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsOverrideOfCalled
+    path: src/Interop/EcoreInterop/Model/IEOperation.cs
+    startLine: 132
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: Gets fired after the operation isOverrideOf got called
+  example: []
+  syntax:
+    content: event EventHandler<OperationCallEventArgs> IsOverrideOfCalled
+    return:
+      type: System.EventHandler{NMF.Models.OperationCallEventArgs}
+    content.vb: Event IsOverrideOfCalled As EventHandler(Of OperationCallEventArgs)
 - uid: NMF.Interop.Ecore.IEOperation.EContainingClassChanging
   commentId: E:NMF.Interop.Ecore.IEOperation.EContainingClassChanging
   id: EContainingClassChanging
@@ -288,7 +604,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClassChanging
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 85
+    startLine: 137
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -317,7 +633,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EContainingClassChanged
     path: src/Interop/EcoreInterop/Model/IEOperation.cs
-    startLine: 90
+    startLine: 142
   assemblies:
   - NMF.EcoreInterop
   namespace: NMF.Interop.Ecore
@@ -328,6 +644,70 @@ items:
     return:
       type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
     content.vb: Event EContainingClassChanged As EventHandler(Of ValueChangedEventArgs)
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationID
+  commentId: M:NMF.Interop.Ecore.IEOperation.GetOperationID
+  id: GetOperationID
+  parent: NMF.Interop.Ecore.IEOperation
+  langs:
+  - csharp
+  - vb
+  name: GetOperationID()
+  nameWithType: IEOperation.GetOperationID()
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationID()
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: GetOperationID
+    path: src/Interop/EcoreInterop/Model/IEOperation.cs
+    startLine: 147
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: int GetOperationID()
+    return:
+      type: System.Int32
+    content.vb: Function GetOperationID() As Integer
+  overload: NMF.Interop.Ecore.IEOperation.GetOperationID*
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  commentId: M:NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  id: IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  parent: NMF.Interop.Ecore.IEOperation
+  langs:
+  - csharp
+  - vb
+  name: IsOverrideOf(IEOperation)
+  nameWithType: IEOperation.IsOverrideOf(IEOperation)
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOf(NMF.Interop.Ecore.IEOperation)
+  type: Method
+  source:
+    remote:
+      path: Interop/EcoreInterop/Model/IEOperation.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: IsOverrideOf
+    path: src/Interop/EcoreInterop/Model/IEOperation.cs
+    startLine: 153
+  assemblies:
+  - NMF.EcoreInterop
+  namespace: NMF.Interop.Ecore
+  summary: ''
+  example: []
+  syntax:
+    content: bool IsOverrideOf(IEOperation someOperation)
+    parameters:
+    - id: someOperation
+      type: NMF.Interop.Ecore.IEOperation
+      description: ''
+    return:
+      type: System.Boolean
+    content.vb: Function IsOverrideOf(someOperation As IEOperation) As Boolean
+  overload: NMF.Interop.Ecore.IEOperation.IsOverrideOf*
 references:
 - uid: NMF.Interop.Ecore
   commentId: N:NMF.Interop.Ecore
@@ -401,13 +781,6 @@ references:
   name: EGenericType
   nameWithType: IETypedElement.EGenericType
   fullName: NMF.Interop.Ecore.IETypedElement.EGenericType
-- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanging
-  parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanging
-  name: OrderedChanging
-  nameWithType: IETypedElement.OrderedChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.IETypedElement.OrderedChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -415,13 +788,13 @@ references:
   name: OrderedChanged
   nameWithType: IETypedElement.OrderedChanged
   fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanged
-- uid: NMF.Interop.Ecore.IETypedElement.UniqueChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanging
+- uid: NMF.Interop.Ecore.IETypedElement.OrderedChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.OrderedChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UniqueChanging
-  name: UniqueChanging
-  nameWithType: IETypedElement.UniqueChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_OrderedChanging
+  name: OrderedChanging
+  nameWithType: IETypedElement.OrderedChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.OrderedChanging
 - uid: NMF.Interop.Ecore.IETypedElement.UniqueChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -429,13 +802,13 @@ references:
   name: UniqueChanged
   nameWithType: IETypedElement.UniqueChanged
   fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanged
-- uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+- uid: NMF.Interop.Ecore.IETypedElement.UniqueChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.UniqueChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_LowerBoundChanging
-  name: LowerBoundChanging
-  nameWithType: IETypedElement.LowerBoundChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UniqueChanging
+  name: UniqueChanging
+  nameWithType: IETypedElement.UniqueChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.UniqueChanging
 - uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -443,13 +816,13 @@ references:
   name: LowerBoundChanged
   nameWithType: IETypedElement.LowerBoundChanged
   fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanged
-- uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
-  commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+- uid: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
   parent: NMF.Interop.Ecore.IETypedElement
-  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UpperBoundChanging
-  name: UpperBoundChanging
-  nameWithType: IETypedElement.UpperBoundChanging
-  fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_LowerBoundChanging
+  name: LowerBoundChanging
+  nameWithType: IETypedElement.LowerBoundChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.LowerBoundChanging
 - uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
   commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
   parent: NMF.Interop.Ecore.IETypedElement
@@ -457,6 +830,13 @@ references:
   name: UpperBoundChanged
   nameWithType: IETypedElement.UpperBoundChanged
   fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanged
+- uid: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  commentId: E:NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
+  parent: NMF.Interop.Ecore.IETypedElement
+  href: NMF.Interop.Ecore.IETypedElement.html#NMF_Interop_Ecore_IETypedElement_UpperBoundChanging
+  name: UpperBoundChanging
+  nameWithType: IETypedElement.UpperBoundChanging
+  fullName: NMF.Interop.Ecore.IETypedElement.UpperBoundChanging
 - uid: NMF.Interop.Ecore.IETypedElement.ETypeChanging
   commentId: E:NMF.Interop.Ecore.IETypedElement.ETypeChanging
   parent: NMF.Interop.Ecore.IETypedElement
@@ -492,13 +872,6 @@ references:
   name: Name
   nameWithType: IENamedElement.Name
   fullName: NMF.Interop.Ecore.IENamedElement.Name
-- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
-  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
-  parent: NMF.Interop.Ecore.IENamedElement
-  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
-  name: NameChanging
-  nameWithType: IENamedElement.NameChanging
-  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IENamedElement.NameChanged
   commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanged
   parent: NMF.Interop.Ecore.IENamedElement
@@ -506,6 +879,13 @@ references:
   name: NameChanged
   nameWithType: IENamedElement.NameChanged
   fullName: NMF.Interop.Ecore.IENamedElement.NameChanged
+- uid: NMF.Interop.Ecore.IENamedElement.NameChanging
+  commentId: E:NMF.Interop.Ecore.IENamedElement.NameChanging
+  parent: NMF.Interop.Ecore.IENamedElement
+  href: NMF.Interop.Ecore.IENamedElement.html#NMF_Interop_Ecore_IENamedElement_NameChanging
+  name: NameChanging
+  nameWithType: IENamedElement.NameChanging
+  fullName: NMF.Interop.Ecore.IENamedElement.NameChanging
 - uid: NMF.Interop.Ecore.IEModelElement.EAnnotations
   commentId: P:NMF.Interop.Ecore.IEModelElement.EAnnotations
   parent: NMF.Interop.Ecore.IEModelElement
@@ -513,6 +893,51 @@ references:
   name: EAnnotations
   nameWithType: IEModelElement.EAnnotations
   fullName: NMF.Interop.Ecore.IEModelElement.EAnnotations
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalling
+  name: GetEAnnotationCalling
+  nameWithType: IEModelElement.GetEAnnotationCalling
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalling
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  commentId: E:NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+  parent: NMF.Interop.Ecore.IEModelElement
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotationCalled
+  name: GetEAnnotationCalled
+  nameWithType: IEModelElement.GetEAnnotationCalled
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotationCalled
+- uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  commentId: M:NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+  parent: NMF.Interop.Ecore.IEModelElement
+  isExternal: true
+  href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  name: GetEAnnotation(string)
+  nameWithType: IEModelElement.GetEAnnotation(string)
+  fullName: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(string)
+  nameWithType.vb: IEModelElement.GetEAnnotation(String)
+  fullName.vb: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(String)
+  name.vb: GetEAnnotation(String)
+  spec.csharp:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: NMF.Interop.Ecore.IEModelElement.GetEAnnotation(System.String)
+    name: GetEAnnotation
+    href: NMF.Interop.Ecore.IEModelElement.html#NMF_Interop_Ecore_IEModelElement_GetEAnnotation_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: NMF.Models.IModelElement.Delete
   commentId: M:NMF.Models.IModelElement.Delete
   parent: NMF.Models.IModelElement
@@ -1367,25 +1792,25 @@ references:
     name: IEGenericType
     href: NMF.Interop.Ecore.IEGenericType.html
   - name: )
-- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+- uid: System.EventHandler{NMF.Models.OperationCallEventArgs}
+  commentId: T:System.EventHandler{NMF.Models.OperationCallEventArgs}
   parent: System
   definition: System.EventHandler`1
   href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<ValueChangedEventArgs>
-  nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
-  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
-  name.vb: EventHandler(Of ValueChangedEventArgs)
+  name: EventHandler<OperationCallEventArgs>
+  nameWithType: EventHandler<OperationCallEventArgs>
+  fullName: System.EventHandler<NMF.Models.OperationCallEventArgs>
+  nameWithType.vb: EventHandler(Of OperationCallEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Models.OperationCallEventArgs)
+  name.vb: EventHandler(Of OperationCallEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
     name: EventHandler
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
   - name: <
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: '>'
   spec.vb:
   - uid: System.EventHandler`1
@@ -1395,8 +1820,8 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
+  - uid: NMF.Models.OperationCallEventArgs
+    name: OperationCallEventArgs
   - name: )
 - uid: System.EventHandler`1
   commentId: T:System.EventHandler`1
@@ -1433,3 +1858,75 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<ValueChangedEventArgs>
+  nameWithType: EventHandler<ValueChangedEventArgs>
+  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
+  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
+  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
+  name.vb: EventHandler(Of ValueChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: NMF.Expressions.ValueChangedEventArgs
+    name: ValueChangedEventArgs
+  - name: )
+- uid: NMF.Interop.Ecore.IEOperation.GetOperationID*
+  commentId: Overload:NMF.Interop.Ecore.IEOperation.GetOperationID
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_GetOperationID
+  name: GetOperationID
+  nameWithType: IEOperation.GetOperationID
+  fullName: NMF.Interop.Ecore.IEOperation.GetOperationID
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: NMF.Interop.Ecore.IEOperation.IsOverrideOf*
+  commentId: Overload:NMF.Interop.Ecore.IEOperation.IsOverrideOf
+  href: NMF.Interop.Ecore.IEOperation.html#NMF_Interop_Ecore_IEOperation_IsOverrideOf_NMF_Interop_Ecore_IEOperation_
+  name: IsOverrideOf
+  nameWithType: IEOperation.IsOverrideOf
+  fullName: NMF.Interop.Ecore.IEOperation.IsOverrideOf
+- uid: NMF.Interop.Ecore.IEOperation
+  commentId: T:NMF.Interop.Ecore.IEOperation
+  parent: NMF.Interop.Ecore
+  href: NMF.Interop.Ecore.IEOperation.html
+  name: IEOperation
+  nameWithType: IEOperation
+  fullName: NMF.Interop.Ecore.IEOperation
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

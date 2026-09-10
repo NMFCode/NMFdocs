@@ -15,18 +15,10 @@ items:
   - NMF.Glsp.Notation.Edge.GetExpressionForReference(System.String)
   - NMF.Glsp.Notation.Edge.GetModelElementForReference(System.String,System.Int32)
   - NMF.Glsp.Notation.Edge.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
-  - NMF.Glsp.Notation.Edge.OnSourceChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.Edge.OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.Edge.OnTargetChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.Edge.OnTargetChanging(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Glsp.Notation.Edge.ReferencedElements
   - NMF.Glsp.Notation.Edge.SetFeature(System.String,System.Object)
   - NMF.Glsp.Notation.Edge.Source
-  - NMF.Glsp.Notation.Edge.SourceChanged
-  - NMF.Glsp.Notation.Edge.SourceChanging
   - NMF.Glsp.Notation.Edge.Target
-  - NMF.Glsp.Notation.Edge.TargetChanged
-  - NMF.Glsp.Notation.Edge.TargetChanging
   langs:
   - csharp
   - vb
@@ -77,14 +69,6 @@ items:
   inheritedMembers:
   - NMF.Glsp.Notation.NotationElement.Id
   - NMF.Glsp.Notation.NotationElement.SemanticElement
-  - NMF.Glsp.Notation.NotationElement.IdChanging
-  - NMF.Glsp.Notation.NotationElement.IdChanged
-  - NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-  - NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-  - NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  - NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Glsp.Notation.NotationElement.GetAttributeValue(System.String,System.Int32)
   - NMF.Glsp.Notation.NotationElement.GetExpressionForAttribute(System.String)
   - NMF.Models.ModelElement.Model
@@ -107,6 +91,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -337,7 +322,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Target
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 135
+    startLine: 133
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -391,7 +376,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Children
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 171
+    startLine: 167
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -425,7 +410,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ReferencedElements
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 182
+    startLine: 178
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -459,7 +444,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ClassInstance
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 193
+    startLine: 189
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -472,258 +457,6 @@ items:
       type: NMF.Models.Meta.IClass
     content.vb: Public Shared ReadOnly Property ClassInstance As IClass
   overload: NMF.Glsp.Notation.Edge.ClassInstance*
-- uid: NMF.Glsp.Notation.Edge.SourceChanging
-  commentId: E:NMF.Glsp.Notation.Edge.SourceChanging
-  id: SourceChanging
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: SourceChanging
-  nameWithType: Edge.SourceChanging
-  fullName: NMF.Glsp.Notation.Edge.SourceChanging
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SourceChanging
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 208
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired before the Source property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> SourceChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event SourceChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Glsp.Notation.IEdge.SourceChanging
-- uid: NMF.Glsp.Notation.Edge.SourceChanged
-  commentId: E:NMF.Glsp.Notation.Edge.SourceChanged
-  id: SourceChanged
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: SourceChanged
-  nameWithType: Edge.SourceChanged
-  fullName: NMF.Glsp.Notation.Edge.SourceChanged
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: SourceChanged
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 213
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired when the Source property changed its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> SourceChanged
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event SourceChanged As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Glsp.Notation.IEdge.SourceChanged
-- uid: NMF.Glsp.Notation.Edge.TargetChanging
-  commentId: E:NMF.Glsp.Notation.Edge.TargetChanging
-  id: TargetChanging
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: TargetChanging
-  nameWithType: Edge.TargetChanging
-  fullName: NMF.Glsp.Notation.Edge.TargetChanging
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: TargetChanging
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 218
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired before the Target property changes its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> TargetChanging
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event TargetChanging As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Glsp.Notation.IEdge.TargetChanging
-- uid: NMF.Glsp.Notation.Edge.TargetChanged
-  commentId: E:NMF.Glsp.Notation.Edge.TargetChanged
-  id: TargetChanged
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: TargetChanged
-  nameWithType: Edge.TargetChanged
-  fullName: NMF.Glsp.Notation.Edge.TargetChanged
-  type: Event
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: TargetChanged
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 223
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Gets fired when the Target property changed its value
-  example: []
-  syntax:
-    content: public event EventHandler<ValueChangedEventArgs> TargetChanged
-    return:
-      type: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-    content.vb: Public Event TargetChanged As EventHandler(Of ValueChangedEventArgs)
-  implements:
-  - NMF.Glsp.Notation.IEdge.TargetChanged
-- uid: NMF.Glsp.Notation.Edge.OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.Edge.OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: OnSourceChanging(ValueChangedEventArgs)
-  nameWithType: Edge.OnSourceChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.Edge.OnSourceChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnSourceChanging
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 259
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Raises the SourceChanging event
-  example: []
-  syntax:
-    content: protected virtual void OnSourceChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnSourceChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Glsp.Notation.Edge.OnSourceChanging*
-- uid: NMF.Glsp.Notation.Edge.OnSourceChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.Edge.OnSourceChanged(NMF.Expressions.ValueChangedEventArgs)
-  id: OnSourceChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: OnSourceChanged(ValueChangedEventArgs)
-  nameWithType: Edge.OnSourceChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.Edge.OnSourceChanged(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnSourceChanged
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 272
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Raises the SourceChanged event
-  example: []
-  syntax:
-    content: protected virtual void OnSourceChanged(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnSourceChanged(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Glsp.Notation.Edge.OnSourceChanged*
-- uid: NMF.Glsp.Notation.Edge.OnTargetChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.Edge.OnTargetChanging(NMF.Expressions.ValueChangedEventArgs)
-  id: OnTargetChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: OnTargetChanging(ValueChangedEventArgs)
-  nameWithType: Edge.OnTargetChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.Edge.OnTargetChanging(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnTargetChanging
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 300
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Raises the TargetChanging event
-  example: []
-  syntax:
-    content: protected virtual void OnTargetChanging(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnTargetChanging(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Glsp.Notation.Edge.OnTargetChanging*
-- uid: NMF.Glsp.Notation.Edge.OnTargetChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.Edge.OnTargetChanged(NMF.Expressions.ValueChangedEventArgs)
-  id: OnTargetChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.Edge
-  langs:
-  - csharp
-  - vb
-  name: OnTargetChanged(ValueChangedEventArgs)
-  nameWithType: Edge.OnTargetChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.Edge.OnTargetChanged(NMF.Expressions.ValueChangedEventArgs)
-  type: Method
-  source:
-    remote:
-      path: Glsp/Glsp/Notation/Edge.cs
-      branch: main
-      repo: https://github.com/NMFCode/NMF.git
-    id: OnTargetChanged
-    path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 313
-  assemblies:
-  - NMF.Glsp
-  namespace: NMF.Glsp.Notation
-  summary: Raises the TargetChanged event
-  example: []
-  syntax:
-    content: protected virtual void OnTargetChanged(ValueChangedEventArgs eventArgs)
-    parameters:
-    - id: eventArgs
-      type: NMF.Expressions.ValueChangedEventArgs
-      description: The event data
-    content.vb: Protected Overridable Sub OnTargetChanged(eventArgs As ValueChangedEventArgs)
-  overload: NMF.Glsp.Notation.Edge.OnTargetChanged*
 - uid: NMF.Glsp.Notation.Edge.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   commentId: M:NMF.Glsp.Notation.Edge.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   id: GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
@@ -742,7 +475,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForNonIdentifiedChild
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 337
+    startLine: 267
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -778,7 +511,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetModelElementForReference
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 353
+    startLine: 283
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -820,7 +553,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCollectionForFeature
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 382
+    startLine: 312
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -859,7 +592,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SetFeature
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 396
+    startLine: 326
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -898,7 +631,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetExpressionForReference
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 416
+    startLine: 346
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -937,7 +670,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetCompositionName
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 434
+    startLine: 364
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -976,7 +709,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetClass
     path: src/Glsp/Glsp/Notation/Edge.cs
-    startLine: 446
+    startLine: 376
   assemblies:
   - NMF.Glsp
   namespace: NMF.Glsp.Notation
@@ -1096,126 +829,6 @@ references:
   name: SemanticElement
   nameWithType: NotationElement.SemanticElement
   fullName: NMF.Glsp.Notation.NotationElement.SemanticElement
-- uid: NMF.Glsp.Notation.NotationElement.IdChanging
-  commentId: E:NMF.Glsp.Notation.NotationElement.IdChanging
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_IdChanging
-  name: IdChanging
-  nameWithType: NotationElement.IdChanging
-  fullName: NMF.Glsp.Notation.NotationElement.IdChanging
-- uid: NMF.Glsp.Notation.NotationElement.IdChanged
-  commentId: E:NMF.Glsp.Notation.NotationElement.IdChanged
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_IdChanged
-  name: IdChanged
-  nameWithType: NotationElement.IdChanged
-  fullName: NMF.Glsp.Notation.NotationElement.IdChanged
-- uid: NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-  commentId: E:NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_SemanticElementChanging
-  name: SemanticElementChanging
-  nameWithType: NotationElement.SemanticElementChanging
-  fullName: NMF.Glsp.Notation.NotationElement.SemanticElementChanging
-- uid: NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-  commentId: E:NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_SemanticElementChanged
-  name: SemanticElementChanged
-  nameWithType: NotationElement.SemanticElementChanged
-  fullName: NMF.Glsp.Notation.NotationElement.SemanticElementChanged
-- uid: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnIdChanging(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnIdChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnIdChanged(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnIdChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnIdChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnIdChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnIdChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSemanticElementChanging(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnSemanticElementChanging(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanging(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanging
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanging_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-  commentId: M:NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-  parent: NMF.Glsp.Notation.NotationElement
-  href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSemanticElementChanged(ValueChangedEventArgs)
-  nameWithType: NotationElement.OnSemanticElementChanged(ValueChangedEventArgs)
-  fullName: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-  spec.csharp:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-  spec.vb:
-  - uid: NMF.Glsp.Notation.NotationElement.OnSemanticElementChanged(NMF.Expressions.ValueChangedEventArgs)
-    name: OnSemanticElementChanged
-    href: NMF.Glsp.Notation.NotationElement.html#NMF_Glsp_Notation_NotationElement_OnSemanticElementChanged_NMF_Expressions_ValueChangedEventArgs_
-  - name: (
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
 - uid: NMF.Glsp.Notation.NotationElement.GetAttributeValue(System.String,System.Int32)
   commentId: M:NMF.Glsp.Notation.NotationElement.GetAttributeValue(System.String,System.Int32)
   parent: NMF.Glsp.Notation.NotationElement
@@ -1663,6 +1276,12 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -2977,123 +2596,6 @@ references:
   - name: .
   - uid: NMF.Models.Meta
     name: Meta
-- uid: NMF.Glsp.Notation.IEdge.SourceChanging
-  commentId: E:NMF.Glsp.Notation.IEdge.SourceChanging
-  parent: NMF.Glsp.Notation.IEdge
-  href: NMF.Glsp.Notation.IEdge.html#NMF_Glsp_Notation_IEdge_SourceChanging
-  name: SourceChanging
-  nameWithType: IEdge.SourceChanging
-  fullName: NMF.Glsp.Notation.IEdge.SourceChanging
-- uid: System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  commentId: T:System.EventHandler{NMF.Expressions.ValueChangedEventArgs}
-  parent: System
-  definition: System.EventHandler`1
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<ValueChangedEventArgs>
-  nameWithType: EventHandler<ValueChangedEventArgs>
-  fullName: System.EventHandler<NMF.Expressions.ValueChangedEventArgs>
-  nameWithType.vb: EventHandler(Of ValueChangedEventArgs)
-  fullName.vb: System.EventHandler(Of NMF.Expressions.ValueChangedEventArgs)
-  name.vb: EventHandler(Of ValueChangedEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: NMF.Expressions.ValueChangedEventArgs
-    name: ValueChangedEventArgs
-  - name: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
-  spec.csharp:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: <
-  - name: TEventArgs
-  - name: '>'
-  spec.vb:
-  - uid: System.EventHandler`1
-    name: EventHandler
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TEventArgs
-  - name: )
-- uid: NMF.Glsp.Notation.IEdge.SourceChanged
-  commentId: E:NMF.Glsp.Notation.IEdge.SourceChanged
-  parent: NMF.Glsp.Notation.IEdge
-  href: NMF.Glsp.Notation.IEdge.html#NMF_Glsp_Notation_IEdge_SourceChanged
-  name: SourceChanged
-  nameWithType: IEdge.SourceChanged
-  fullName: NMF.Glsp.Notation.IEdge.SourceChanged
-- uid: NMF.Glsp.Notation.IEdge.TargetChanging
-  commentId: E:NMF.Glsp.Notation.IEdge.TargetChanging
-  parent: NMF.Glsp.Notation.IEdge
-  href: NMF.Glsp.Notation.IEdge.html#NMF_Glsp_Notation_IEdge_TargetChanging
-  name: TargetChanging
-  nameWithType: IEdge.TargetChanging
-  fullName: NMF.Glsp.Notation.IEdge.TargetChanging
-- uid: NMF.Glsp.Notation.IEdge.TargetChanged
-  commentId: E:NMF.Glsp.Notation.IEdge.TargetChanged
-  parent: NMF.Glsp.Notation.IEdge
-  href: NMF.Glsp.Notation.IEdge.html#NMF_Glsp_Notation_IEdge_TargetChanged
-  name: TargetChanged
-  nameWithType: IEdge.TargetChanged
-  fullName: NMF.Glsp.Notation.IEdge.TargetChanged
-- uid: NMF.Glsp.Notation.Edge.OnSourceChanging*
-  commentId: Overload:NMF.Glsp.Notation.Edge.OnSourceChanging
-  href: NMF.Glsp.Notation.Edge.html#NMF_Glsp_Notation_Edge_OnSourceChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSourceChanging
-  nameWithType: Edge.OnSourceChanging
-  fullName: NMF.Glsp.Notation.Edge.OnSourceChanging
-- uid: NMF.Expressions.ValueChangedEventArgs
-  commentId: T:NMF.Expressions.ValueChangedEventArgs
-  parent: NMF.Expressions
-  name: ValueChangedEventArgs
-  nameWithType: ValueChangedEventArgs
-  fullName: NMF.Expressions.ValueChangedEventArgs
-- uid: NMF.Glsp.Notation.Edge.OnSourceChanged*
-  commentId: Overload:NMF.Glsp.Notation.Edge.OnSourceChanged
-  href: NMF.Glsp.Notation.Edge.html#NMF_Glsp_Notation_Edge_OnSourceChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnSourceChanged
-  nameWithType: Edge.OnSourceChanged
-  fullName: NMF.Glsp.Notation.Edge.OnSourceChanged
-- uid: NMF.Glsp.Notation.Edge.OnTargetChanging*
-  commentId: Overload:NMF.Glsp.Notation.Edge.OnTargetChanging
-  href: NMF.Glsp.Notation.Edge.html#NMF_Glsp_Notation_Edge_OnTargetChanging_NMF_Expressions_ValueChangedEventArgs_
-  name: OnTargetChanging
-  nameWithType: Edge.OnTargetChanging
-  fullName: NMF.Glsp.Notation.Edge.OnTargetChanging
-- uid: NMF.Glsp.Notation.Edge.OnTargetChanged*
-  commentId: Overload:NMF.Glsp.Notation.Edge.OnTargetChanged
-  href: NMF.Glsp.Notation.Edge.html#NMF_Glsp_Notation_Edge_OnTargetChanged_NMF_Expressions_ValueChangedEventArgs_
-  name: OnTargetChanged
-  nameWithType: Edge.OnTargetChanged
-  fullName: NMF.Glsp.Notation.Edge.OnTargetChanged
 - uid: NMF.Models.ModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   commentId: M:NMF.Models.ModelElement.GetRelativePathForNonIdentifiedChild(NMF.Models.IModelElement)
   parent: NMF.Models.ModelElement

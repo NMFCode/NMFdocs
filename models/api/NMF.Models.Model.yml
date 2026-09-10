@@ -31,12 +31,14 @@ items:
   - NMF.Models.Model.Repository
   - NMF.Models.Model.Resolve(System.String)
   - NMF.Models.Model.ResolveGlobal(System.String)
+  - NMF.Models.Model.ResolveGlobal``1(System.String)
   - NMF.Models.Model.RootElements
   - NMF.Models.Model.SerializeAsReference(NMF.Models.IModelElement)
   - NMF.Models.Model.SetFeature(System.String,System.Object)
   - NMF.Models.Model.SimplifyUri(System.Uri)
   - NMF.Models.Model.UnlockRequested
   - NMF.Models.Model.UnregisterId(System.String)
+  - NMF.Models.Model.UnregisterId(System.String,NMF.Models.ModelElement)
   langs:
   - csharp
   - vb
@@ -106,6 +108,7 @@ items:
   - NMF.Models.ModelElement.PropagateNewId(NMF.Expressions.ValueChangedEventArgs)
   - NMF.Models.ModelElement.EnforceModels
   - NMF.Models.ModelElement.PreferIdentifiers
+  - NMF.Models.ModelElement.RaiseDeletionEvents
   - NMF.Models.ModelElement.IsIdentified
   - NMF.Models.ModelElement.ToIdentifierString
   - NMF.Models.ModelElement.ToString
@@ -961,6 +964,47 @@ items:
   nameWithType.vb: Model.RegisterId(String, ModelElement)
   fullName.vb: NMF.Models.Model.RegisterId(String, NMF.Models.ModelElement)
   name.vb: RegisterId(String, ModelElement)
+- uid: NMF.Models.Model.UnregisterId(System.String,NMF.Models.ModelElement)
+  commentId: M:NMF.Models.Model.UnregisterId(System.String,NMF.Models.ModelElement)
+  id: UnregisterId(System.String,NMF.Models.ModelElement)
+  parent: NMF.Models.Model
+  langs:
+  - csharp
+  - vb
+  name: UnregisterId(string, ModelElement)
+  nameWithType: Model.UnregisterId(string, ModelElement)
+  fullName: NMF.Models.Model.UnregisterId(string, NMF.Models.ModelElement)
+  type: Method
+  source:
+    remote:
+      path: Models/Models/Model.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: UnregisterId
+    path: src/Models/Models/Model.cs
+    startLine: 698
+  assemblies:
+  - NMF.Models
+  namespace: NMF.Models
+  summary: Unregister the given identifier
+  example: []
+  syntax:
+    content: public bool UnregisterId(string id, ModelElement element)
+    parameters:
+    - id: id
+      type: System.String
+      description: The identifier
+    - id: element
+      type: NMF.Models.ModelElement
+      description: the element that should be unregistered
+    return:
+      type: System.Boolean
+      description: True, if the identifier is removed. False denotes that this identifier was not registered
+    content.vb: Public Function UnregisterId(id As String, element As ModelElement) As Boolean
+  overload: NMF.Models.Model.UnregisterId*
+  nameWithType.vb: Model.UnregisterId(String, ModelElement)
+  fullName.vb: NMF.Models.Model.UnregisterId(String, NMF.Models.ModelElement)
+  name.vb: UnregisterId(String, ModelElement)
 - uid: NMF.Models.Model.UnregisterId(System.String)
   commentId: M:NMF.Models.Model.UnregisterId(System.String)
   id: UnregisterId(System.String)
@@ -979,7 +1023,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UnregisterId
     path: src/Models/Models/Model.cs
-    startLine: 699
+    startLine: 722
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1017,7 +1061,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: CreateUriForElement
     path: src/Models/Models/Model.cs
-    startLine: 713
+    startLine: 736
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1049,7 +1093,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SimplifyUri
     path: src/Models/Models/Model.cs
-    startLine: 728
+    startLine: 751
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1081,7 +1125,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: ResolveGlobal
     path: src/Models/Models/Model.cs
-    startLine: 752
+    startLine: 775
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1101,6 +1145,46 @@ items:
   nameWithType.vb: Model.ResolveGlobal(String)
   fullName.vb: NMF.Models.Model.ResolveGlobal(String)
   name.vb: ResolveGlobal(String)
+- uid: NMF.Models.Model.ResolveGlobal``1(System.String)
+  commentId: M:NMF.Models.Model.ResolveGlobal``1(System.String)
+  id: ResolveGlobal``1(System.String)
+  parent: NMF.Models.Model
+  langs:
+  - csharp
+  - vb
+  name: ResolveGlobal<T>(string)
+  nameWithType: Model.ResolveGlobal<T>(string)
+  fullName: NMF.Models.Model.ResolveGlobal<T>(string)
+  type: Method
+  source:
+    remote:
+      path: Models/Models/Model.cs
+      branch: main
+      repo: https://github.com/NMFCode/NMF.git
+    id: ResolveGlobal
+    path: src/Models/Models/Model.cs
+    startLine: 790
+  assemblies:
+  - NMF.Models
+  namespace: NMF.Models
+  summary: Resolves the given global ID
+  example: []
+  syntax:
+    content: public T ResolveGlobal<T>(string id)
+    parameters:
+    - id: id
+      type: System.String
+      description: The given global id
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+      description: The model element with the given id or null, if no such element is found
+    content.vb: Public Function ResolveGlobal(Of T)(id As String) As T
+  overload: NMF.Models.Model.ResolveGlobal*
+  nameWithType.vb: Model.ResolveGlobal(Of T)(String)
+  fullName.vb: NMF.Models.Model.ResolveGlobal(Of T)(String)
+  name.vb: ResolveGlobal(Of T)(String)
 - uid: NMF.Models.Model.Resolve(System.String)
   commentId: M:NMF.Models.Model.Resolve(System.String)
   id: Resolve(System.String)
@@ -1119,7 +1203,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: Resolve
     path: src/Models/Models/Model.cs
-    startLine: 763
+    startLine: 801
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1160,7 +1244,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: GetRelativePathForChild
     path: src/Models/Models/Model.cs
-    startLine: 831
+    startLine: 868
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1196,7 +1280,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: EnsureAllElementsContained
     path: src/Models/Models/Model.cs
-    startLine: 841
+    startLine: 878
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1223,7 +1307,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: SerializeAsReference
     path: src/Models/Models/Model.cs
-    startLine: 865
+    startLine: 902
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1258,7 +1342,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: UnlockRequested
     path: src/Models/Models/Model.cs
-    startLine: 873
+    startLine: 910
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1287,7 +1371,7 @@ items:
       repo: https://github.com/NMFCode/NMF.git
     id: OnBubbledChange
     path: src/Models/Models/Model.cs
-    startLine: 877
+    startLine: 914
   assemblies:
   - NMF.Models
   namespace: NMF.Models
@@ -1754,6 +1838,13 @@ references:
   name: PreferIdentifiers
   nameWithType: ModelElement.PreferIdentifiers
   fullName: NMF.Models.ModelElement.PreferIdentifiers
+- uid: NMF.Models.ModelElement.RaiseDeletionEvents
+  commentId: P:NMF.Models.ModelElement.RaiseDeletionEvents
+  parent: NMF.Models.ModelElement
+  href: NMF.Models.ModelElement.html#NMF_Models_ModelElement_RaiseDeletionEvents
+  name: RaiseDeletionEvents
+  nameWithType: ModelElement.RaiseDeletionEvents
+  fullName: NMF.Models.ModelElement.RaiseDeletionEvents
 - uid: NMF.Models.ModelElement.IsIdentified
   commentId: P:NMF.Models.ModelElement.IsIdentified
   parent: NMF.Models.ModelElement
@@ -3879,7 +3970,7 @@ references:
   fullName: NMF.Models.Model.RegisterId
 - uid: NMF.Models.Model.UnregisterId*
   commentId: Overload:NMF.Models.Model.UnregisterId
-  href: NMF.Models.Model.html#NMF_Models_Model_UnregisterId_System_String_
+  href: NMF.Models.Model.html#NMF_Models_Model_UnregisterId_System_String_NMF_Models_ModelElement_
   name: UnregisterId
   nameWithType: Model.UnregisterId
   fullName: NMF.Models.Model.UnregisterId
@@ -3901,6 +3992,16 @@ references:
   name: ResolveGlobal
   nameWithType: Model.ResolveGlobal
   fullName: NMF.Models.Model.ResolveGlobal
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
 - uid: NMF.Models.ModelElement.Resolve(System.String)
   commentId: M:NMF.Models.ModelElement.Resolve(System.String)
   parent: NMF.Models.ModelElement
